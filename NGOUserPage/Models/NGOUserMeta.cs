@@ -1,7 +1,6 @@
 ﻿using NGOUserPage;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text.RegularExpressions;
 
 namespace Comonweal.Models
 {
@@ -30,23 +29,23 @@ namespace Comonweal.Models
     public class NGOUserMeta
     {
         public int NGOUserId { get; set; }
-        [Required]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "only numbers allowed "),MaxLength(30)]
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "only numbers allowed "), MaxLength(30)]
         public string UniqueuId { get; set; }
-        [Required(ErrorMessage="This field is required")]
+        [Required(ErrorMessage = "This field is required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
         [StringLength(50)]
         public string NGOName { get; set; }
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail adress")]
-        [Required]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
+        [Required(ErrorMessage = "This field is required")]
         public string NGOEmailID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         public string NGOPassword { get; set; }
         public Nullable<int> LoginID { get; set; }
         public string NGOKey { get; set; }
         public string NGOProfilePic { get; set; }
         public string Telephone { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         [RegularExpression(@"^\(?([7-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
         public string Mobile { get; set; }
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
@@ -55,36 +54,35 @@ namespace Comonweal.Models
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
         [StringLength(50)]
         public string State { get; set; }
-        [Required]
-        [StringLength(100)]   
+        [Required(ErrorMessage = "This field is required")]
+        [StringLength(100)]
         public string NGOAddress { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
         [StringLength(50)]
         public string ChairmanName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         public string ChairmanID { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
         [StringLength(50)]
         public string ParentOrganisation { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
         [StringLength(50)]
         public string RegisteredWith { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         [RegularExpression("[0-9]*$", ErrorMessage = "only numbers are allowed")]
         public string RegistrationNumber { get; set; }
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets are allowed")]
         [StringLength(50)]
         public string CityOfRegistration { get; set; }
         public Nullable<System.DateTime> DateOfRegistration { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         public string RegistrationProof { get; set; }
         public string FCRANumber { get; set; }
         public string AreaOfIntrest { get; set; }
         public string OperationalArea { get; set; }
-       
         public string WebsiteUrl { get; set; }
         public bool IsActive { get; set; }
         public bool IsBlock { get; set; }
