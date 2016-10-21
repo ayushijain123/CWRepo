@@ -180,6 +180,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonWealEDM.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ngoRegistrationController.cs" />
@@ -219,6 +220,7 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Commonweal.css" />
@@ -306,6 +308,8 @@
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\Hydrangeas.jpg" />
+    <Content Include="Images\Image.jpg" />
+    <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\FormValidation.js" />
@@ -362,6 +366,12 @@
     <Content Include="Views\userRegistration\CreateUser.cshtml" />
     <Content Include="Views\ngoRegistration\CreateNgo.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\Active_Users.cshtml" />
+    <Content Include="Views\Admin\Blocked_Users.cshtml" />
+    <Content Include="Views\Admin\Requests.cshtml" />
+    <Content Include="Views\Admin\Settings.cshtml" />
+    <Content Include="Views\Admin\Admin_Master.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />

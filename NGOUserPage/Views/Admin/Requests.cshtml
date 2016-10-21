@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Admin/Admin_Master.cshtml";
+}
+
+<div class="col-md-10 pull-right">
+    <div class="row">
+        <div class="top-panel col-md-12">
+            <div class="input-append">
+                <input type="text" class="search-query" placeholder="Search..." />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-10 pull-right">
+    <div class="row">
+        <div class="inbox-top col-md-12">
+            <div class="col-md-6">
+                <div class="check-all">
+                    <input type="checkbox" value="">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        All
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Accept</a></li>
+                        <li><a href="#">Decline</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="inbox-pagination">
+                    <ul>
+                        <li><span>1-10 of 100</span>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </button>
+
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="requests">
+                <div class="request1 well">
+                    <input type="checkbox" value="">
+                    Request1                 
+                    <button type="button" class="btn btn-default accept">Accept1</button>
+                    <button type="button" class="btn btn-default decline">Decline1</button>
+                </div>
+
+                <div class="request2 well">
+                    <input type="checkbox" value="">
+                    Request2
+                    <button type="button" class="btn btn-default accept">Accept1</button>
+                    <button type="button" class="btn btn-default decline">Decline1</button>
+                </div>
+
+                <div class="request3 well">
+                    <input type="checkbox" value="">
+                    Request3
+                    <button type="button" class="btn btn-default accept">Accept1</button>
+                    <button type="button" class="btn btn-default decline">Decline1</button>
+                </div>
+
+                <div class="request4 well">
+                    <input type="checkbox" value="">
+                    Request4
+                    <button type="button" class="btn btn-default accept">Accept1</button>
+                    <button type="button" class="btn btn-default decline">Decline1</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
