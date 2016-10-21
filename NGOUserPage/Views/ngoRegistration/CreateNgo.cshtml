@@ -59,8 +59,8 @@
 
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="fn">NGO Name:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.NGOName, new { placeholder="name" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.NGOName, new { placeholder="Name" })&nbsp;
                             @*<input type="text" class="form-control" name="ngo_userName" id="ngo name" placeholder="NGO name">*@
                             @Html.ValidationMessageFor(a=>a.NGOName)
 
@@ -68,78 +68,76 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="ln">Unique Id:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.UniqueuId, new { placeholder="Uniqueu ID" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.UniqueuId, new { placeholder="Uniqueu ID" })&nbsp;
                             @* <input type="text" class="form-control" name="ngo_UniqueuId" id="Unique Id" placeholder="Unique Id">*@
-                            @Html.ValidationMessageFor(a => a.UniqueuId,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.UniqueuId)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="email">Email:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.NGOEmailID, new { placeholder="Email ID" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.NGOEmailID, new { placeholder="Email ID" })&nbsp;
                             @*<input type="email" name="ngo_Email" class="form-control" id="email1" placeholder="Enter email">*@
-                            @Html.ValidationMessageFor(a => a.NGOEmailID,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.NGOEmailID)
                         </div>
                     </div>
                    
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="MobileNumber">Mobile No:*</label>
-                        <div class="col-xs-6">
+                        <div class="col-xs-8">
                       
-                            @Html.TextBoxFor(a => a.Mobile, new { placeholder="Mobile Number" })<br />
+                            @Html.TextBoxFor(a => a.Mobile, new { placeholder="Mobile Number" })&nbsp;
                             @*<input type="text" name="ngo_mobileNumber" class="form-control" id="MobileNumber" placeholder="Mobile Number">*@
-                            @Html.ValidationMessageFor(a => a.Mobile,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.Mobile)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="Address">Address:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.NGOAddress, new { placeholder="Address" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.NGOAddress, new { placeholder="Address" })&nbsp;
                             @*<input type="text" class="form-control" name="ngo_Address" id="Address" placeholder="Address">*@
-                            @Html.ValidationMessageFor(a => a.NGOAddress,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.NGOAddress)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="CheifFunctionary/ChairmanName">Chairman Name:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.ChairmanName, new { placeholder="Chairman Name" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.ChairmanName, new { placeholder="Chairman Name" })&nbsp;
                             @* <input type="text" class="form-control" name="ngo_ChairmanPersonName" id="CheifFunctionaryChairmanName" placeholder="CheifFunctionary/Chairman Name" />*@
-                            @Html.ValidationMessageFor(a => a.ChairmanName,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.ChairmanName)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="PhotoIdOfChairman">Photo Id Of Chairman:*</label>
-                        <div class="col-xs-6">
-                         <div class="editor-label">
-                           
+                        <div class="col-xs-8">
                              @Html.TextBoxFor(m => m.ChairmanID, new { type = "file" })
+                             @Html.ValidationMessageFor(a => a.ChairmanID)
                         </div>
-                          @Html.ValidationMessageFor(a => a.ChairmanID,"This field is reguired")
-                        </div>
+                    
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="ParentOrganization">Parent Organization:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.ParentOrganisation, new { placeholder="Name of current organisation" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.ParentOrganisation, new { placeholder="Name of current organisation" })&nbsp;
                             @*<input type="text" class="form-control" name="ngo_ParentOrganisation" id="ParentOrganization" placeholder="Parent Organization">*@
-                            @Html.ValidationMessageFor(a => a.ParentOrganisation,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.ParentOrganisation)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="RegisterWith">Register With:*</label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.RegisteredWith, new { placeholder="Registered With" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.RegisteredWith, new { placeholder="Registered With" })&nbsp;
                             @* <input type="text" class="form-control" name="ngo_RegisteredWith" id="RegisterWith" placeholder="Register With">*@
-                            @Html.ValidationMessageFor(a => a.RegisteredWith,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.RegisteredWith)
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="RegisterationNumber">Registeration No:* </label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.RegistrationNumber, new { placeholder="Registration Number" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.RegistrationNumber, new { placeholder="Registration Number" })&nbsp;
                             @* <input type="text" class="form-control" name="ngo_RegistrationNumber" id="RegisterationNumber" placeholder="Registeration Number" />*@
-                            @Html.ValidationMessageFor(a => a.RegistrationNumber,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.RegistrationNumber)
                         </div>
                     </div>
 
@@ -168,9 +166,9 @@
                     @*  Changed By Rishiraj Start*@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="DateOfRegistration">Date Of Registration:* </label>
-                        <div class="col-xs-6">
+                        <div class="col-xs-8">
                             @Html.EditorFor(model => model.DateOfRegistration, new { placeholder="Select Date"})
-                            @Html.ValidationMessageFor(model => model.DateOfRegistration,"This field is reguired")
+                            @Html.ValidationMessageFor(model => model.DateOfRegistration)
                             @*        <input type="date" class="form-control" id="JoiningDate" name="dateOfregistration" />*@
                         </div>
                     </div>
@@ -180,12 +178,12 @@
 
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="CopyOfRegistration">Copy Of Registration:*</label>
-                        <div class="col-xs-6">
+                        <div class="col-xs-8">
                             <div class="editor-label">
                             
                              @Html.TextBoxFor(m => m.RegistrationProof, new { type = "file" })
                           </div>
-                                 @Html.ValidationMessageFor(a => a.RegistrationProof,"This field is reguired")
+                                 @Html.ValidationMessageFor(a => a.RegistrationProof)
                             @* <input type="file" class="btn1 btn-default btn-file" name="filengo_CopyOfRegistration" title="No File Choosen" />*@
                         </div>
                     </div>
@@ -200,8 +198,8 @@
                     </div>*@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="FCRARegisterationNumber">FCRA Registeration No:* </label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.FCRANumber, new { placeholder="FCRA Number" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.FCRANumber, new { placeholder="FCRA Number" })&nbsp;
                         </div>
                     </div>
                     @*<div class="form-group">
@@ -225,19 +223,19 @@
                     </div>*@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="WebsiteURL">Website URL:* </label>
-                        <div class="col-xs-6">
-                            @Html.TextBoxFor(a => a.WebsiteUrl, new { placeholder="Website URL" })<br />
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(a => a.WebsiteUrl, new { placeholder="Website URL" })&nbsp;
                             @*<input type="url" class="form-control" name="ngo_WebsiteUrl"placeholder="Website URL" id="WebsiteURL" />*@
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="pwd">Password:*</label>
 
-                        <div class="col-xs-6">
+                        <div class="col-xs-8">
                             @Html.PasswordFor(a => a.NGOPassword, new { placeholder="Password" })
                            @* @Html.EditorFor(a => a.NGOPassword, new { placeholder="Password" })<br />*@
                             @* <input type="password" class="form-control" id="pwd" name="ngo_password" placeholder="Enter password">*@
-                            @Html.ValidationMessageFor(a => a.NGOPassword,"This field is reguired")
+                            @Html.ValidationMessageFor(a => a.NGOPassword)
                         </div>
                     </div>
                    @* <div class="form-group">
