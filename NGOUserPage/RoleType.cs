@@ -12,9 +12,18 @@ namespace NGOUserPage
     using System;
     using System.Collections.Generic;
     
-    public partial class AreaOfInterest
+    public partial class RoleType
     {
-        public string id { get; set; }
-        public string AreaOfInterest1 { get; set; }
+        public RoleType()
+        {
+            this.UserLogins = new HashSet<UserLogin>();
+        }
+    
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<System.DateTime> ModifiedOn { get; set; }
+    
+        public virtual ICollection<UserLogin> UserLogins { get; set; }
     }
 }

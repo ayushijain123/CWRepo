@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Comonweal.Controllers
+namespace Commonweal3.Controllers
 {
     public class HomeController : Controller
     {

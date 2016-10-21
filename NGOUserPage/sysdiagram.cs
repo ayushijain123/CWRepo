@@ -12,16 +12,12 @@ namespace NGOUserPage
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_user
+    public partial class sysdiagram
     {
-        public long user_id { get; set; }
-        public string login_Email { get; set; }
-        public string login_password { get; set; }
-        public string login_userName { get; set; }
-        public string login_userType { get; set; }
-        public string Login_mobileNumber { get; set; }
-        public long login_id { get; set; }
-    
-        public virtual tbl_login tbl_login { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

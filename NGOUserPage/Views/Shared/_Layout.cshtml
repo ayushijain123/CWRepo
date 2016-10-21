@@ -5,43 +5,29 @@
     <title>@ViewBag.Title - All Right Reserved</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <header>
-
         <div class="logo1">
             COMMONWEAL
         </div>
-
-        @* <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>*@
+      
         <nav>
             <ul id="menu">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("NGO Login", "Index", "ngoLogin")</li>
-                <li>@Html.ActionLink("User Login", "Index", "userLogin")</li>
+                <li>@Html.ActionLink("Home","Index","Home")</li>
+                <li>@Html.ActionLink("Login","login","Login")</li>
+                <li>@Html.ActionLink("NGO Register","CreateNGO","ngoRegistration")</li>
+                <li>@Html.ActionLink("USER Register","CreateUser","userRegistration")</li>
 
             </ul>
         </nav>
-
-
     </header>
     <div id="body" class="container">
         @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix" >
-            @*@RenderBody()*@
+        <section class="content-wrapper main-content clear-fix" style="width:100%;">
             @RenderBody()
-
-            @* @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/jqueryval")
-            @Scripts.Render("~/bundles/jqueryui")
-            @RenderSection("scripts", required: false)*@
         </section>
     </div>
     <footer class=" navbar-fixed-bottom">

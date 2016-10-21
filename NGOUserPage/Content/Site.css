@@ -1,5 +1,30 @@
 ﻿/*Home page css*/
+.custom-navbar .fa {font-size:25px}
 
+@media (max-width:767px) { 
+	.custom-navbar .navbar-right {
+	    float: right;
+	   
+	}
+	.custom-navbar .nav.navbar-nav.navbar-right li {
+	    float: right;
+	}
+  	.custom-navbar .nav.navbar-nav.navbar-right li > a {
+	  
+	}
+	.custom-navbar .navbar-toggle {
+	    float: right;
+        color:crimson;
+	}
+	.custom-navbar .navbar-header {
+	    float: right;
+	    width: auto!important;
+	}
+	.custom-navbar .navbar-collapse {
+	    clear: both;
+	    float: none;
+	}
+}
 
 html {
     background-color:white;
@@ -17,15 +42,20 @@ body {
     
 }
 
+/*#body {
 
+
+    margin-left: 227px;
+
+}*/
 
 
 
 a {
     color: #333;
     outline: none;
-      
-
+    padding-left: 3px;
+    padding-right: 3px;
     text-decoration: underline;
 }
 
@@ -151,7 +181,20 @@ footer {
 .panel-heading {
 color:red;
 }
+.panel{
 
+        width: 600px!important;
+          
+    margin-left: 256px!important;
+    margin-top: 100px!important;
+
+
+
+}
+#panel {
+
+    width: 800px!important;
+}
 /* site title
 ----------------------------------------------------------*/
 .site-title {
@@ -193,28 +236,34 @@ color:red;
 
 #Login h5  {
     float:right;
-    margin-right:50px;
+    /*margin-right:50px;*/
    
 }
 
-
+#Login #forgatpassword {
+    float:right;
+    /*margin-right:380px;*/
+}
 #Login a {
     color:darkblue;
-     float:right;
-         margin-right: 560px;
-
 }
- 
-     
+#Login p {
+    float: right;
+      /*margin-right:389px;*/
     
-
+}
 .btn {
-    width:206px;
-   margin-left:312px;
+  
+ 
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+
+   /*margin-left:280px;*/
    
 }
 .form-horizontal {
-    margin-left:110px;
+    /*margin-left:110px;*/
 }
 
 

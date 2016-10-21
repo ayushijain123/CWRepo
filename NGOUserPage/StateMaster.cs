@@ -16,14 +16,14 @@ namespace NGOUserPage
     {
         public StateMaster()
         {
-            this.CityMaster = new HashSet<CityMaster>();
+            this.CityMasters = new HashSet<CityMaster>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public Nullable<int> CountryID { get; set; }
     
-        public virtual ICollection<CityMaster> CityMaster { get; set; }
+        public virtual ICollection<CityMaster> CityMasters { get; set; }
         public virtual CountryMaster CountryMaster { get; set; }
     }
 }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Comonweal.Models;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using NGOUserPage.CommonOperation;
 
 namespace NGOUserPage.Controllers
 {
@@ -11,129 +10,59 @@ namespace NGOUserPage.Controllers
     {
         //
         // GET: /ngoRegistration/
-        
-
-        dbOperation db = new dbOperation();
-
-        public ActionResult Index()
+        public ActionResult CreateNGO()
         {
-            var oa = db.getList();
-            ViewBag.Areaofinterest = oa;
-           var qa = db.GetArea();
-           ViewBag.value = qa;
 
-           List<SelectListItem> li = new List<SelectListItem>();
-           li.Add(new SelectListItem { Text = "Select", Value = "0" });
-           li.Add(new SelectListItem { Text = "India", Value = "1" });
-           li.Add(new SelectListItem { Text = "Srilanka", Value = "2" });
-           li.Add(new SelectListItem { Text = "China", Value = "3" });
-           li.Add(new SelectListItem { Text = "Austrila", Value = "4" });
-           li.Add(new SelectListItem { Text = "USA", Value = "5" });
-           li.Add(new SelectListItem { Text = "UK", Value = "6" });
-           SelectList sl = new SelectList(li,"Value","Text");
-           ViewBag.Country = sl;
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(tbl_ngo objngo, HttpPostedFileBase filengo_CopyOfRegistration, HttpPostedFileBase filengo_PhotoId)
+        public ActionResult CreateNGO(NGOUserMeta objngoMeta, NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
-            if (filengo_CopyOfRegistration != null)
-            {
-                string pic = System.IO.Path.GetFileName(filengo_CopyOfRegistration.FileName);
-                int position = pic.IndexOf(".");
-                int length=pic.Length-position;
+            CommonWealEntities context = new CommonWealEntities();
 
-                if ((pic.Substring(position, length)).ToLower().Equals(".jpg") || (pic.Substring(position, length)).ToLower().Equals(".png"))
+            if (ModelState.IsValid)
+            {
+                if (chairmanID != null)
                 {
-                    string copyofregpath = System.IO.Path.Combine(Server.MapPath(@"/NgoImage/"), pic);
+                    string pic = System.IO.Path.GetFileName(chairmanID.FileName);
+                    string copyofregpath = System.IO.Path.Combine(Server.MapPath(@"/Album/ChairmanID/"), pic);
                     // file is uploaded
-                    filengo_CopyOfRegistration.SaveAs(copyofregpath);
+                    chairmanID.SaveAs(copyofregpath);
                     //save in model property
-                    objngo.ngo_CopyOfRegistration = "NgoImage/" + pic;
-
-
+                    objngoMeta.ChairmanID = "/Album/ChairmanID/" + pic;
+                    objngo.ChairmanID = objngoMeta.ChairmanID;
                 }
-                else {
-                    Response.Write("<script>alert('uploaded image should be in the format of .jpg and .png ')</script>");
-                    return View();
-                
-                }
-                
-            }
-            if (filengo_PhotoId != null)
-            {
-                string pic = System.IO.Path.GetFileName(filengo_PhotoId.FileName);
-                int position = pic.IndexOf(".");
-                int length = pic.Length - position;
-                if ((pic.Substring(position, length)).ToLower().Equals(".jpg") || (pic.Substring(position, length)).ToLower().Equals(".png"))
+                if (RegistrationProof != null)
                 {
-
-                    string photoidpath = System.IO.Path.Combine(Server.MapPath(@"/NgoImage/"), pic);
+                    string pic = System.IO.Path.GetFileName(RegistrationProof.FileName);
+                    string copyofregpath = System.IO.Path.Combine(Server.MapPath(@"/Album/RegistrationID/"), pic);
                     // file is uploaded
-                    filengo_PhotoId.SaveAs(photoidpath);
-
+                    chairmanID.SaveAs(copyofregpath);
                     //save in model property
-                    objngo.ngo_PhotoId = "NgoImage/" + pic;
-
-
-
+                    objngoMeta.RegistrationProof = "/Album/RegistrationID/" + pic;
+                    objngo.RegistrationProof = objngoMeta.RegistrationProof;
                 }
-                    
-                else {
-
-                    Response.Write("<script>alert('uploaded image should be in the format of .jpg and .png ')</script>");
-                    return View();
-                
-                }
-                return RedirectToAction("Display","ngoRegistration");
-               
+                UserLogin obj = new UserLogin();
+                obj.LoginPassword = objngo.NGOPassword;
+                obj.LoginEmailID = objngo.NGOEmailID;
+                var roleobj = context.RoleTypes.Where(w => w.RoleName == "NGO").FirstOrDefault();
+                obj.LoginUserType = roleobj.RoleID;
+                obj.IsActive = false;
+                obj.IsBlock = false;
+                obj.ModifiedOn = DateTime.Now;
+                obj.CreatedOn = DateTime.Now;
+                context.UserLogins.Add(obj);
+                context.SaveChanges();
+                objngo.LoginID = obj.LoginID;
+                context.NGOUsers.Add(objngo);
+                context.SaveChanges();
             }
-            tbl_login loginObj = new tbl_login();
-            //loginObj.Login_mobileNumber = objngo.ngo_UserId.ToString();
-            objngo.ngo_Type = "NGO";
-            loginObj.login_userType = "NGO";
-            loginObj.isAccepted = 0;
-            loginObj.login_Email = objngo.ngo_Email;
-            loginObj.login_password = objngo.ngo_password;
-            long id = db.Insert(loginObj);
-            objngo.login_id = id;
-            var result1 = db.Insert(objngo);
-
-            if (result1 && id != 0)
+            if (!ModelState.IsValid)
             {
-                EmailGateway objemail = new EmailGateway();
-                string mailto = "vilas.holkar@valuelabs.com";
-                string subject = "new ngorequest : " + objngo.ngo_userName;
-                string message = "please Login into your account and verify ngo request whose email id is:" + objngo.ngo_Email + " and name is: " + objngo.ngo_userName;
-                bool emailresult = objemail.sendEmail(mailto, subject, "", message);
-                if (emailresult)
-                {
-                    Response.Write("<script>alert('please wait for email through admin that will verify your ngoid ')</script>");
-                }
-
+                return View();
             }
-            
-            List<SelectListItem> li = new List<SelectListItem>();
-            li.Add(new SelectListItem { Text = "Select", Value = "0" });
-            li.Add(new SelectListItem { Text = "India", Value = "1" });
-            li.Add(new SelectListItem { Text = "Srilanka", Value = "2" });
-            li.Add(new SelectListItem { Text = "China", Value = "3" });
-            li.Add(new SelectListItem { Text = "Austrila", Value = "4" });
-            li.Add(new SelectListItem { Text = "USA", Value = "5" });
-            li.Add(new SelectListItem { Text = "UK", Value = "6" });
-            SelectList sl = new SelectList(li, "Value", "Text");
-            ViewBag.Country = sl;
-            return View();
-
+            return RedirectToAction("CreateNgo", "NgoRegistration");
         }
-
-        public ActionResult Display() { 
-        
-                    return View();
-        
-        }
-
-
     }
 }

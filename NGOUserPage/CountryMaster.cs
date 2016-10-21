@@ -16,13 +16,13 @@ namespace NGOUserPage
     {
         public CountryMaster()
         {
-            this.StateMaster = new HashSet<StateMaster>();
+            this.StateMasters = new HashSet<StateMaster>();
         }
     
         public int ID { get; set; }
         public string Name { get; set; }
         public string CountryCode { get; set; }
     
-        public virtual ICollection<StateMaster> StateMaster { get; set; }
+        public virtual ICollection<StateMaster> StateMasters { get; set; }
     }
 }

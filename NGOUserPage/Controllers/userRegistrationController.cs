@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Comonweal.Models;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using NGOUserPage.Models;
 
 
 namespace NGOUserPage.Controllers
@@ -12,44 +10,36 @@ namespace NGOUserPage.Controllers
     {
         //
         // GET: /userRegistration/
-        dbOperation con = new dbOperation();
-
-        public ActionResult Index()
+        public ActionResult CreateUser()
         {
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index1(userregistration usrvalue )
+        public ActionResult CreateUser(RegisteredUser ru, RegisteredUserMeta objm)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                long id = 0;
-                tbl_login loginObj = new tbl_login();
-                tbl_user usr=new tbl_user();
-                loginObj.login_userType = "USER";
-                loginObj.isAccepted = 1;
-                loginObj.login_Email = usrvalue.login_Email;
-                loginObj.login_password = usrvalue.login_password;
-
-                id = con.Insert(loginObj);
-                usr.login_id = id;
-                usr.login_userType = "USER";
-                usr.login_userName = usrvalue.firstName + " " + usrvalue.lastName;
-                usr.login_password = usrvalue.login_password;
-                usr.Login_mobileNumber = usrvalue.Login_mobileNumber;
-                usr.login_Email = usrvalue.login_Email;
-                con.Insert(usr);
+                CommonWealEntities context = new CommonWealEntities();
+                UserLogin obj = new UserLogin();
+                obj.LoginPassword = ru.UserPassword;
+                obj.LoginEmailID = ru.UserEmail;
+                var roleobj = context.RoleTypes.Where(w => w.RoleName == "USER").FirstOrDefault();
+                obj.LoginUserType = roleobj.RoleID;
+                obj.IsActive = true;
+                obj.IsBlock = false;
+                obj.ModifiedOn = DateTime.Now;
+                obj.CreatedOn = DateTime.Now;
+                context.UserLogins.Add(obj);
+                context.SaveChanges();
+                ru.LoginID = obj.LoginID;
+                context.RegisteredUsers.Add(ru);
+                context.SaveChanges();
                 Response.Write("<script>alert('Registration successfully')</script>");
             }
-                
-             return View();
-            }
-           
-
-
-
+            return View();
         }
-
     }
+
+}
 

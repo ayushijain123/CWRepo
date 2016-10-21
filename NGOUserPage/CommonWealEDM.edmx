@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CommonWealModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="CommonWealModelStoreContainer">
+          <EntitySet Name="CityMaster" EntityType="CommonWealModel.Store.CityMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CountryMaster" EntityType="CommonWealModel.Store.CountryMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NGOUser" EntityType="CommonWealModel.Store.NGOUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateMaster" EntityType="CommonWealModel.Store.StateMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserLogin" EntityType="CommonWealModel.Store.UserLogin" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__UserLogin__Login__34C8D9D1" Association="CommonWealModel.Store.FK__UserLogin__Login__34C8D9D1">
+            <End Role="RoleType" EntitySet="RoleType" />
+            <End Role="UserLogin" EntitySet="UserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityMaster_StateMaster" Association="CommonWealModel.Store.FK_CityMaster_StateMaster">
+            <End Role="StateMaster" EntitySet="StateMaster" />
+            <End Role="CityMaster" EntitySet="CityMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.Store.FK_NGOUser_UserLogin">
+            <End Role="UserLogin" EntitySet="UserLogin" />
+            <End Role="NGOUser" EntitySet="NGOUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.Store.FK_RegisteredUser_UserLogin">
+            <End Role="UserLogin" EntitySet="UserLogin" />
+            <End Role="RegisteredUser" EntitySet="RegisteredUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMaster_CountryMaster" Association="CommonWealModel.Store.FK_StateMaster_CountryMaster">
+            <End Role="CountryMaster" EntitySet="CountryMaster" />
+            <End Role="StateMaster" EntitySet="StateMaster" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateID" Type="int" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="NGOUser">
+          <Key>
+            <PropertyRef Name="NGOUserId" />
+          </Key>
+          <Property Name="NGOUserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueuId" Type="varchar" MaxLength="50" />
+          <Property Name="NGOName" Type="varchar" MaxLength="50" />
+          <Property Name="NGOEmailID" Type="varchar" MaxLength="100" />
+          <Property Name="NGOPassword" Type="varchar" MaxLength="100" />
+          <Property Name="LoginID" Type="int" />
+          <Property Name="NGOKey" Type="varchar" MaxLength="100" />
+          <Property Name="NGOProfilePic" Type="varchar" MaxLength="100" />
+          <Property Name="Telephone" Type="varchar" MaxLength="50" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="20" />
+          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="NGOAddress" Type="varchar" MaxLength="100" />
+          <Property Name="ChairmanName" Type="varchar" MaxLength="50" />
+          <Property Name="ChairmanID" Type="varchar" MaxLength="100" />
+          <Property Name="ParentOrganisation" Type="varchar" MaxLength="50" />
+          <Property Name="RegisteredWith" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationNumber" Type="varchar" MaxLength="50" />
+          <Property Name="CityOfRegistration" Type="varchar" MaxLength="50" />
+          <Property Name="DateOfRegistration" Type="date" />
+          <Property Name="RegistrationProof" Type="varchar" MaxLength="100" />
+          <Property Name="FCRANumber" Type="varchar" MaxLength="50" />
+          <Property Name="AreaOfIntrest" Type="varchar" MaxLength="500" />
+          <Property Name="OperationalArea" Type="varchar" MaxLength="50" />
+          <Property Name="WebsiteUrl" Type="varchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsBlock" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="LoginUserType" Type="int" />
+        </EntityType>
+        <EntityType Name="RegisteredUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="UserPassword" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="UserKey" Type="varchar" MaxLength="100" />
+          <Property Name="Mobile" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="LoginID" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="LoginUserType" Type="int" />
+        </EntityType>
+        <EntityType Name="RoleType">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginPassword" Type="varchar" MaxLength="50" />
+          <Property Name="LoginUserType" Type="int" />
+          <Property Name="LoginEmailID" Type="varchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsBlock" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__UserLogin__Login__34C8D9D1">
+          <End Role="RoleType" Type="CommonWealModel.Store.RoleType" Multiplicity="0..1" />
+          <End Role="UserLogin" Type="CommonWealModel.Store.UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleType">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="LoginUserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityMaster_StateMaster">
+          <End Role="StateMaster" Type="CommonWealModel.Store.StateMaster" Multiplicity="0..1" />
+          <End Role="CityMaster" Type="CommonWealModel.Store.CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGOUser_UserLogin">
+          <End Role="UserLogin" Type="CommonWealModel.Store.UserLogin" Multiplicity="0..1" />
+          <End Role="NGOUser" Type="CommonWealModel.Store.NGOUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLogin">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="NGOUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredUser_UserLogin">
+          <End Role="UserLogin" Type="CommonWealModel.Store.UserLogin" Multiplicity="1" />
+          <End Role="RegisteredUser" Type="CommonWealModel.Store.RegisteredUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLogin">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="RegisteredUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMaster_CountryMaster">
+          <End Role="CountryMaster" Type="CommonWealModel.Store.CountryMaster" Multiplicity="0..1" />
+          <End Role="StateMaster" Type="CommonWealModel.Store.StateMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StateMaster">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'CommonWeal.dbo.NGOArea' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="NGOArea">
+        <Property Name="id" Type="int" />
+        <Property Name="Area" Type="varchar" MaxLength="50" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CommonWealModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CommonWealEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="CityMasters" EntityType="CommonWealModel.CityMaster" />
+          <EntitySet Name="CountryMasters" EntityType="CommonWealModel.CountryMaster" />
+          <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
+          <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
+          <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
+          <EntitySet Name="StateMasters" EntityType="CommonWealModel.StateMaster" />
+          <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.sysdiagram" />
+          <EntitySet Name="UserLogins" EntityType="CommonWealModel.UserLogin" />
+          <AssociationSet Name="FK_CityMaster_StateMaster" Association="CommonWealModel.FK_CityMaster_StateMaster">
+            <End Role="StateMaster" EntitySet="StateMasters" />
+            <End Role="CityMaster" EntitySet="CityMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMaster_CountryMaster" Association="CommonWealModel.FK_StateMaster_CountryMaster">
+            <End Role="CountryMaster" EntitySet="CountryMasters" />
+            <End Role="StateMaster" EntitySet="StateMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
+            <End Role="UserLogin" EntitySet="UserLogins" />
+            <End Role="NGOUser" EntitySet="NGOUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
+            <End Role="UserLogin" EntitySet="UserLogins" />
+            <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserLogin__Login__34C8D9D1" Association="CommonWealModel.FK__UserLogin__Login__34C8D9D1">
+            <End Role="RoleType" EntitySet="RoleTypes" />
+            <End Role="UserLogin" EntitySet="UserLogins" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="StateID" Type="Int32" />
+          <NavigationProperty Name="StateMaster" Relationship="CommonWealModel.FK_CityMaster_StateMaster" FromRole="CityMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="5" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="StateMasters" Relationship="CommonWealModel.FK_StateMaster_CountryMaster" FromRole="CountryMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="NGOUser">
+          <Key>
+            <PropertyRef Name="NGOUserId" />
+          </Key>
+          <Property Name="NGOUserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueuId" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="NGOName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="NGOEmailID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NGOPassword" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="LoginID" Type="Int32" />
+          <Property Name="NGOKey" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="NGOProfilePic" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="State" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="NGOAddress" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ChairmanName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ChairmanID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="ParentOrganisation" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegisteredWith" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="RegistrationNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CityOfRegistration" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="DateOfRegistration" Type="DateTime" Precision="0" />
+          <Property Name="RegistrationProof" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FCRANumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="AreaOfIntrest" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="OperationalArea" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="WebsiteUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="LoginUserType" Type="Int32" />
+          <NavigationProperty Name="UserLogin" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="UserLogin" />
+        </EntityType>
+        <EntityType Name="RegisteredUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="UserKey" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LoginID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="LoginUserType" Type="Int32" />
+          <NavigationProperty Name="UserLogin" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="UserLogin" />
+        </EntityType>
+        <EntityType Name="RoleType">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="UserLogins" Relationship="CommonWealModel.FK__UserLogin__Login__34C8D9D1" FromRole="RoleType" ToRole="UserLogin" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CountryID" Type="Int32" />
+          <NavigationProperty Name="CityMasters" Relationship="CommonWealModel.FK_CityMaster_StateMaster" FromRole="StateMaster" ToRole="CityMaster" />
+          <NavigationProperty Name="CountryMaster" Relationship="CommonWealModel.FK_StateMaster_CountryMaster" FromRole="StateMaster" ToRole="CountryMaster" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UserLogin">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="LoginID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginPassword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="LoginUserType" Type="Int32" />
+          <Property Name="LoginEmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="UserLogin" ToRole="NGOUser" />
+          <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="UserLogin" ToRole="RegisteredUser" />
+          <NavigationProperty Name="RoleType" Relationship="CommonWealModel.FK__UserLogin__Login__34C8D9D1" FromRole="UserLogin" ToRole="RoleType" />
+        </EntityType>
+        <Association Name="FK_CityMaster_StateMaster">
+          <End Role="StateMaster" Type="CommonWealModel.StateMaster" Multiplicity="0..1" />
+          <End Role="CityMaster" Type="CommonWealModel.CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMaster_CountryMaster">
+          <End Role="CountryMaster" Type="CommonWealModel.CountryMaster" Multiplicity="0..1" />
+          <End Role="StateMaster" Type="CommonWealModel.StateMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StateMaster">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NGOUser_UserLogin">
+          <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="0..1" />
+          <End Role="NGOUser" Type="CommonWealModel.NGOUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLogin">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="NGOUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredUser_UserLogin">
+          <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="1" />
+          <End Role="RegisteredUser" Type="CommonWealModel.RegisteredUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserLogin">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="RegisteredUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserLogin__Login__34C8D9D1">
+          <End Role="RoleType" Type="CommonWealModel.RoleType" Multiplicity="0..1" />
+          <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleType">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="UserLogin">
+              <PropertyRef Name="LoginUserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CommonWealModelStoreContainer" CdmEntityContainer="CommonWealEntities">
+          <EntitySetMapping Name="CityMasters">
+            <EntityTypeMapping TypeName="CommonWealModel.CityMaster">
+              <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryMasters">
+            <EntityTypeMapping TypeName="CommonWealModel.CountryMaster">
+              <MappingFragment StoreEntitySet="CountryMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGOUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
+              <MappingFragment StoreEntitySet="NGOUser">
+                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
+                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
+                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
+                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
+                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
+                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
+                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
+                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
+                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
+                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
+                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
+                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
+                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.RegisteredUser">
+              <MappingFragment StoreEntitySet="RegisteredUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleTypes">
+            <EntityTypeMapping TypeName="CommonWealModel.RoleType">
+              <MappingFragment StoreEntitySet="RoleType">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMasters">
+            <EntityTypeMapping TypeName="CommonWealModel.StateMaster">
+              <MappingFragment StoreEntitySet="StateMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CommonWealModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogins">
+            <EntityTypeMapping TypeName="CommonWealModel.UserLogin">
+              <MappingFragment StoreEntitySet="UserLogin">
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="LoginEmailID" ColumnName="LoginEmailID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
