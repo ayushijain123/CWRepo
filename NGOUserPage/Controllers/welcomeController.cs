@@ -9,7 +9,7 @@ namespace NGOUserPage.Controllers
     public class welcomeController : Controller
     {
         //
-        // GET: /welcome/
+        // GET: /welcome/ Test This
 
         public ActionResult Index()
         {
