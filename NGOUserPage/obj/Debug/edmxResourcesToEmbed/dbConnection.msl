@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="commanwealdbModelStoreContainer" CdmEntityContainer="commonwealEntities">
+    <EntitySetMapping Name="tbl_comment">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_comment">
+        <MappingFragment StoreEntitySet="tbl_comment">
+          <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="comment_text" ColumnName="comment_text" />
+          <ScalarProperty Name="comment_datetime" ColumnName="comment_datetime" />
+          <ScalarProperty Name="comment_likecount" ColumnName="comment_likecount" />
+          <ScalarProperty Name="comment_isReply" ColumnName="comment_isReply" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_commentlike">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_commentlike">
+        <MappingFragment StoreEntitySet="tbl_commentlike">
+          <ScalarProperty Name="commentlike_id" ColumnName="commentlike_id" />
+          <ScalarProperty Name="comment_id" ColumnName="comment_id" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="commentlike_datetime" ColumnName="commentlike_datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_login">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_login">
+        <MappingFragment StoreEntitySet="tbl_login">
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="login_password" ColumnName="login_password" />
+          <ScalarProperty Name="login_userType" ColumnName="login_userType" />
+          <ScalarProperty Name="login_Email" ColumnName="login_Email" />
+          <ScalarProperty Name="isAccepted" ColumnName="isAccepted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_ngo">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_ngo">
+        <MappingFragment StoreEntitySet="tbl_ngo">
+          <ScalarProperty Name="ngo_UserId" ColumnName="ngo_UserId" />
+          <ScalarProperty Name="ngo_UniqueuId" ColumnName="ngo_UniqueuId" />
+          <ScalarProperty Name="ngo_Telephone" ColumnName="ngo_Telephone" />
+          <ScalarProperty Name="ngo_City" ColumnName="ngo_City" />
+          <ScalarProperty Name="ngo_State" ColumnName="ngo_State" />
+          <ScalarProperty Name="ngo_Address" ColumnName="ngo_Address" />
+          <ScalarProperty Name="ngo_ChairmanPersonName" ColumnName="ngo_ChairmanPersonName" />
+          <ScalarProperty Name="ngo_PhotoId" ColumnName="ngo_PhotoId" />
+          <ScalarProperty Name="ngo_ParentOrganisation" ColumnName="ngo_ParentOrganisation" />
+          <ScalarProperty Name="ngo_RegisteredWith" ColumnName="ngo_RegisteredWith" />
+          <ScalarProperty Name="ngo_RegistrationNumber" ColumnName="ngo_RegistrationNumber" />
+          <ScalarProperty Name="ngo_CityOfRegistration" ColumnName="ngo_CityOfRegistration" />
+          <ScalarProperty Name="ngo_DateOfRegistration" ColumnName="ngo_DateOfRegistration" />
+          <ScalarProperty Name="ngo_CopyOfRegistration" ColumnName="ngo_CopyOfRegistration" />
+          <ScalarProperty Name="ngo_Type" ColumnName="ngo_Type" />
+          <ScalarProperty Name="ngo_fcraNumber" ColumnName="ngo_fcraNumber" />
+          <ScalarProperty Name="ngo_AreaOfIntrest" ColumnName="ngo_AreaOfIntrest" />
+          <ScalarProperty Name="ngo_OperationalAera" ColumnName="ngo_OperationalAera" />
+          <ScalarProperty Name="ngo_WebsiteUrl" ColumnName="ngo_WebsiteUrl" />
+          <ScalarProperty Name="ngo_Email" ColumnName="ngo_Email" />
+          <ScalarProperty Name="ngo_password" ColumnName="ngo_password" />
+          <ScalarProperty Name="ngo_userName" ColumnName="ngo_userName" />
+          <ScalarProperty Name="ngo_mobileNumber" ColumnName="ngo_mobileNumber" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_post">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_post">
+        <MappingFragment StoreEntitySet="tbl_post">
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="post_datetime" ColumnName="post_datetime" />
+          <ScalarProperty Name="post_type" ColumnName="post_type" />
+          <ScalarProperty Name="post_conent" ColumnName="post_conent" />
+          <ScalarProperty Name="post_url" ColumnName="post_url" />
+          <ScalarProperty Name="post_likeCount" ColumnName="post_likeCount" />
+          <ScalarProperty Name="post_commentCount" ColumnName="post_commentCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_postlike">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_postlike">
+        <MappingFragment StoreEntitySet="tbl_postlike">
+          <ScalarProperty Name="postlike_id" ColumnName="postlike_id" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+          <ScalarProperty Name="post_id" ColumnName="post_id" />
+          <ScalarProperty Name="like_datetime" ColumnName="like_datetime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_user">
+      <EntityTypeMapping TypeName="commanwealdbModel.tbl_user">
+        <MappingFragment StoreEntitySet="tbl_user">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="login_Email" ColumnName="login_Email" />
+          <ScalarProperty Name="login_password" ColumnName="login_password" />
+          <ScalarProperty Name="login_userName" ColumnName="login_userName" />
+          <ScalarProperty Name="login_userType" ColumnName="login_userType" />
+          <ScalarProperty Name="Login_mobileNumber" ColumnName="Login_mobileNumber" />
+          <ScalarProperty Name="login_id" ColumnName="login_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

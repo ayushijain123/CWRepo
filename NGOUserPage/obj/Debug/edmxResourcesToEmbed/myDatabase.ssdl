@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="commanwealdbModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="commanwealdbModelStoreContainer">
+    <EntitySet Name="AreaOfInterest" EntityType="commanwealdbModel.Store.AreaOfInterest" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CityMaster" EntityType="commanwealdbModel.Store.CityMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CountryMaster" EntityType="commanwealdbModel.Store.CountryMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="operationalArea" EntityType="commanwealdbModel.Store.operationalArea" store:Type="Tables" store:Schema="dbo" store:Name="operationalArea">
+      <DefiningQuery>SELECT 
+      [operationalArea].[id] AS [id], 
+      [operationalArea].[operationalArea] AS [operationalArea]
+      FROM [dbo].[operationalArea] AS [operationalArea]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="StateMaster" EntityType="commanwealdbModel.Store.StateMaster" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_comment" EntityType="commanwealdbModel.Store.tbl_comment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_commentlike" EntityType="commanwealdbModel.Store.tbl_commentlike" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_login" EntityType="commanwealdbModel.Store.tbl_login" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_ngo" EntityType="commanwealdbModel.Store.tbl_ngo" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_post" EntityType="commanwealdbModel.Store.tbl_post" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_postlike" EntityType="commanwealdbModel.Store.tbl_postlike" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="tbl_user" EntityType="commanwealdbModel.Store.tbl_user" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__tbl_comme__comme__267ABA7A" Association="commanwealdbModel.Store.FK__tbl_comme__comme__267ABA7A">
+      <End Role="tbl_comment" EntitySet="tbl_comment" />
+      <End Role="tbl_commentlike" EntitySet="tbl_commentlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_comme__login__29572725" Association="commanwealdbModel.Store.FK__tbl_comme__login__29572725">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_comment" EntitySet="tbl_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_comme__login__300424B4" Association="commanwealdbModel.Store.FK__tbl_comme__login__300424B4">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_commentlike" EntitySet="tbl_commentlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_comme__post___25869641" Association="commanwealdbModel.Store.FK__tbl_comme__post___25869641">
+      <End Role="tbl_post" EntitySet="tbl_post" />
+      <End Role="tbl_comment" EntitySet="tbl_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_post__login___25869641" Association="commanwealdbModel.Store.FK__tbl_post__login___25869641">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_post" EntitySet="tbl_post" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_postl__login__2C3393D0" Association="commanwealdbModel.Store.FK__tbl_postl__login__2C3393D0">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_postlike" EntitySet="tbl_postlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_postl__post___2A4B4B5E" Association="commanwealdbModel.Store.FK__tbl_postl__post___2A4B4B5E">
+      <End Role="tbl_post" EntitySet="tbl_post" />
+      <End Role="tbl_postlike" EntitySet="tbl_postlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_user__login___440B1D61" Association="commanwealdbModel.Store.FK__tbl_user__login___440B1D61">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_user" EntitySet="tbl_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CityMaster_StateMaster" Association="commanwealdbModel.Store.FK_CityMaster_StateMaster">
+      <End Role="StateMaster" EntitySet="StateMaster" />
+      <End Role="CityMaster" EntitySet="CityMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StateMaster_CountryMaster" Association="commanwealdbModel.Store.FK_StateMaster_CountryMaster">
+      <End Role="CountryMaster" EntitySet="CountryMaster" />
+      <End Role="StateMaster" EntitySet="StateMaster" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AreaOfInterest">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="AreaOfInterest" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CityMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="StateID" Type="int" />
+  </EntityType>
+  <EntityType Name="CountryMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'commanwealdb.dbo.operationalArea' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="operationalArea">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="operationalArea" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="StateMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="CountryID" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="comment_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="post_id" Type="bigint" Nullable="false" />
+    <Property Name="comment_text" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="comment_datetime" Type="date" Nullable="false" />
+    <Property Name="comment_likecount" Type="int" />
+    <Property Name="comment_isReply" Type="bit" />
+    <Property Name="login_id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_commentlike">
+    <Key>
+      <PropertyRef Name="commentlike_id" />
+    </Key>
+    <Property Name="commentlike_id" Type="bigint" Nullable="false" />
+    <Property Name="comment_id" Type="bigint" Nullable="false" />
+    <Property Name="login_id" Type="bigint" Nullable="false" />
+    <Property Name="commentlike_datetime" Type="date" />
+  </EntityType>
+  <EntityType Name="tbl_login">
+    <Key>
+      <PropertyRef Name="login_id" />
+    </Key>
+    <Property Name="login_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="login_password" Type="varchar" MaxLength="50" />
+    <Property Name="login_userType" Type="varchar" MaxLength="50" />
+    <Property Name="login_Email" Type="varchar" MaxLength="50" />
+    <Property Name="isAccepted" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_ngo">
+    <Key>
+      <PropertyRef Name="ngo_UserId" />
+    </Key>
+    <Property Name="ngo_UserId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ngo_UniqueuId" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_Telephone" Type="bigint" />
+    <Property Name="ngo_City" Type="varchar" MaxLength="20" />
+    <Property Name="ngo_State" Type="varchar" MaxLength="20" />
+    <Property Name="ngo_Address" Type="varchar" MaxLength="100" />
+    <Property Name="ngo_ChairmanPersonName" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_PhotoId" Type="varchar" MaxLength="100" />
+    <Property Name="ngo_ParentOrganisation" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_RegisteredWith" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_RegistrationNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_CityOfRegistration" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_DateOfRegistration" Type="date" />
+    <Property Name="ngo_CopyOfRegistration" Type="varchar" MaxLength="100" />
+    <Property Name="ngo_Type" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_fcraNumber" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_AreaOfIntrest" Type="varchar" MaxLength="500" />
+    <Property Name="ngo_OperationalAera" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_WebsiteUrl" Type="varchar" MaxLength="500" />
+    <Property Name="ngo_Email" Type="varchar" MaxLength="100" />
+    <Property Name="ngo_password" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_userName" Type="varchar" MaxLength="50" />
+    <Property Name="ngo_mobileNumber" Type="varchar" MaxLength="50" />
+    <Property Name="login_id" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tbl_post">
+    <Key>
+      <PropertyRef Name="post_id" />
+    </Key>
+    <Property Name="post_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="login_id" Type="bigint" Nullable="false" />
+    <Property Name="post_datetime" Type="date" Nullable="false" />
+    <Property Name="post_type" Type="varchar" MaxLength="10" />
+    <Property Name="post_conent" Type="varchar" MaxLength="500" />
+    <Property Name="post_url" Type="varchar" MaxLength="100" />
+    <Property Name="post_likeCount" Type="bigint" />
+    <Property Name="post_commentCount" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_postlike">
+    <Key>
+      <PropertyRef Name="postlike_id" />
+    </Key>
+    <Property Name="postlike_id" Type="bigint" Nullable="false" />
+    <Property Name="login_id" Type="bigint" Nullable="false" />
+    <Property Name="post_id" Type="bigint" Nullable="false" />
+    <Property Name="like_datetime" Type="date" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="login_Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="login_password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="login_userName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="login_userType" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Login_mobileNumber" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="login_id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tbl_comme__comme__267ABA7A">
+    <End Role="tbl_comment" Type="commanwealdbModel.Store.tbl_comment" Multiplicity="1" />
+    <End Role="tbl_commentlike" Type="commanwealdbModel.Store.tbl_commentlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_comment">
+        <PropertyRef Name="comment_id" />
+      </Principal>
+      <Dependent Role="tbl_commentlike">
+        <PropertyRef Name="comment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_comme__login__29572725">
+    <End Role="tbl_login" Type="commanwealdbModel.Store.tbl_login" Multiplicity="1" />
+    <End Role="tbl_comment" Type="commanwealdbModel.Store.tbl_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_comment">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_comme__login__300424B4">
+    <End Role="tbl_login" Type="commanwealdbModel.Store.tbl_login" Multiplicity="1" />
+    <End Role="tbl_commentlike" Type="commanwealdbModel.Store.tbl_commentlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_commentlike">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_comme__post___25869641">
+    <End Role="tbl_post" Type="commanwealdbModel.Store.tbl_post" Multiplicity="1" />
+    <End Role="tbl_comment" Type="commanwealdbModel.Store.tbl_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_post">
+        <PropertyRef Name="post_id" />
+      </Principal>
+      <Dependent Role="tbl_comment">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_post__login___25869641">
+    <End Role="tbl_login" Type="commanwealdbModel.Store.tbl_login" Multiplicity="1" />
+    <End Role="tbl_post" Type="commanwealdbModel.Store.tbl_post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_post">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_postl__login__2C3393D0">
+    <End Role="tbl_login" Type="commanwealdbModel.Store.tbl_login" Multiplicity="1" />
+    <End Role="tbl_postlike" Type="commanwealdbModel.Store.tbl_postlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_postlike">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_postl__post___2A4B4B5E">
+    <End Role="tbl_post" Type="commanwealdbModel.Store.tbl_post" Multiplicity="1" />
+    <End Role="tbl_postlike" Type="commanwealdbModel.Store.tbl_postlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_post">
+        <PropertyRef Name="post_id" />
+      </Principal>
+      <Dependent Role="tbl_postlike">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_user__login___440B1D61">
+    <End Role="tbl_login" Type="commanwealdbModel.Store.tbl_login" Multiplicity="1" />
+    <End Role="tbl_user" Type="commanwealdbModel.Store.tbl_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_user">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CityMaster_StateMaster">
+    <End Role="StateMaster" Type="commanwealdbModel.Store.StateMaster" Multiplicity="0..1" />
+    <End Role="CityMaster" Type="commanwealdbModel.Store.CityMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StateMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CityMaster">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StateMaster_CountryMaster">
+    <End Role="CountryMaster" Type="commanwealdbModel.Store.CountryMaster" Multiplicity="0..1" />
+    <End Role="StateMaster" Type="commanwealdbModel.Store.StateMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CountryMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StateMaster">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

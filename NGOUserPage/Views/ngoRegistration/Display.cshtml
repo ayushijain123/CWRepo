@@ -1,0 +1,29 @@
+﻿@model NGOUserPage.tbl_ngo
+@{
+    ViewBag.Title = "Display";
+}
+
+@{
+   NGOUserPage.commonwealdbEntities db = new NGOUserPage.commonwealdbEntities();
+}
+@using (Html.BeginForm())
+{
+<table border="1">
+<thead>
+    <tr>
+        <th>Image</th>
+        <th>First name</th>
+        <th>Last name</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in db.tbl_ngo)
+    {
+        <tr>
+            <td><img src="~/images/@item.ngo_PhotoId" width="100" height="100" /></td>
+            
+        </tr>
+    }
+</tbody>
+</table>
+}

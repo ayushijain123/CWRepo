@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - All Right Reserved</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header>
+
+        <div class="logo1">
+            COMMONWEAL
+        </div>
+
+        @* <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>*@
+        <nav>
+            <ul id="menu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("NGO Login", "Index", "ngoLogin")</li>
+                <li>@Html.ActionLink("User Login", "Index", "userLogin")</li>
+
+            </ul>
+        </nav>
+
+
+    </header>
+    <div id="body" class="container">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix" >
+            @*@RenderBody()*@
+            @RenderBody()
+
+            @* @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/jqueryval")
+            @Scripts.Render("~/bundles/jqueryui")
+            @RenderSection("scripts", required: false)*@
+        </section>
+    </div>
+    <footer class=" navbar-fixed-bottom">
+
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Commonweal</p>
+            </div>
+        </div>
+
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

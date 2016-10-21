@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="commanwealdbModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="commonwealEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_comment" EntityType="commanwealdbModel.tbl_comment" />
+    <EntitySet Name="tbl_commentlike" EntityType="commanwealdbModel.tbl_commentlike" />
+    <EntitySet Name="tbl_login" EntityType="commanwealdbModel.tbl_login" />
+    <EntitySet Name="tbl_ngo" EntityType="commanwealdbModel.tbl_ngo" />
+    <EntitySet Name="tbl_post" EntityType="commanwealdbModel.tbl_post" />
+    <EntitySet Name="tbl_postlike" EntityType="commanwealdbModel.tbl_postlike" />
+    <EntitySet Name="tbl_user" EntityType="commanwealdbModel.tbl_user" />
+    <AssociationSet Name="FK__tbl_comme__comme__1DE57479" Association="commanwealdbModel.FK__tbl_comme__comme__1DE57479">
+      <End Role="tbl_comment" EntitySet="tbl_comment" />
+      <End Role="tbl_commentlike" EntitySet="tbl_commentlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_comme__login__29572725" Association="commanwealdbModel.FK__tbl_comme__login__29572725">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_comment" EntitySet="tbl_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_comme__post___1CF15040" Association="commanwealdbModel.FK__tbl_comme__post___1CF15040">
+      <End Role="tbl_post" EntitySet="tbl_post" />
+      <End Role="tbl_comment" EntitySet="tbl_comment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_comme__login__300424B4" Association="commanwealdbModel.FK__tbl_comme__login__300424B4">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_commentlike" EntitySet="tbl_commentlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_ngo__login_i__1FCDBCEB" Association="commanwealdbModel.FK__tbl_ngo__login_i__1FCDBCEB">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_ngo" EntitySet="tbl_ngo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_post__login___25869641" Association="commanwealdbModel.FK__tbl_post__login___25869641">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_post" EntitySet="tbl_post" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_postl__login__2C3393D0" Association="commanwealdbModel.FK__tbl_postl__login__2C3393D0">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_postlike" EntitySet="tbl_postlike" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_user__login___239E4DCF" Association="commanwealdbModel.FK__tbl_user__login___239E4DCF">
+      <End Role="tbl_login" EntitySet="tbl_login" />
+      <End Role="tbl_user" EntitySet="tbl_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_postl__post___22AA2996" Association="commanwealdbModel.FK__tbl_postl__post___22AA2996">
+      <End Role="tbl_post" EntitySet="tbl_post" />
+      <End Role="tbl_postlike" EntitySet="tbl_postlike" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tbl_comment">
+    <Key>
+      <PropertyRef Name="comment_id" />
+    </Key>
+    <Property Name="comment_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="post_id" Type="Int64" Nullable="false" />
+    <Property Name="comment_text" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="comment_datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="comment_likecount" Type="Int32" />
+    <Property Name="comment_isReply" Type="Boolean" />
+    <Property Name="login_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tbl_commentlike" Relationship="commanwealdbModel.FK__tbl_comme__comme__1DE57479" FromRole="tbl_comment" ToRole="tbl_commentlike" />
+    <NavigationProperty Name="tbl_login" Relationship="commanwealdbModel.FK__tbl_comme__login__29572725" FromRole="tbl_comment" ToRole="tbl_login" />
+    <NavigationProperty Name="tbl_post" Relationship="commanwealdbModel.FK__tbl_comme__post___1CF15040" FromRole="tbl_comment" ToRole="tbl_post" />
+  </EntityType>
+  <EntityType Name="tbl_commentlike">
+    <Key>
+      <PropertyRef Name="commentlike_id" />
+    </Key>
+    <Property Name="commentlike_id" Type="Int64" Nullable="false" />
+    <Property Name="comment_id" Type="Int64" Nullable="false" />
+    <Property Name="login_id" Type="Int64" Nullable="false" />
+    <Property Name="commentlike_datetime" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tbl_comment" Relationship="commanwealdbModel.FK__tbl_comme__comme__1DE57479" FromRole="tbl_commentlike" ToRole="tbl_comment" />
+    <NavigationProperty Name="tbl_login" Relationship="commanwealdbModel.FK__tbl_comme__login__300424B4" FromRole="tbl_commentlike" ToRole="tbl_login" />
+  </EntityType>
+  <EntityType Name="tbl_login">
+    <Key>
+      <PropertyRef Name="login_id" />
+    </Key>
+    <Property Name="login_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="login_password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="login_userType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="login_Email" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="isAccepted" Type="Int32" />
+    <NavigationProperty Name="tbl_comment" Relationship="commanwealdbModel.FK__tbl_comme__login__29572725" FromRole="tbl_login" ToRole="tbl_comment" />
+    <NavigationProperty Name="tbl_commentlike" Relationship="commanwealdbModel.FK__tbl_comme__login__300424B4" FromRole="tbl_login" ToRole="tbl_commentlike" />
+    <NavigationProperty Name="tbl_ngo" Relationship="commanwealdbModel.FK__tbl_ngo__login_i__1FCDBCEB" FromRole="tbl_login" ToRole="tbl_ngo" />
+    <NavigationProperty Name="tbl_post" Relationship="commanwealdbModel.FK__tbl_post__login___25869641" FromRole="tbl_login" ToRole="tbl_post" />
+    <NavigationProperty Name="tbl_postlike" Relationship="commanwealdbModel.FK__tbl_postl__login__2C3393D0" FromRole="tbl_login" ToRole="tbl_postlike" />
+    <NavigationProperty Name="tbl_user" Relationship="commanwealdbModel.FK__tbl_user__login___239E4DCF" FromRole="tbl_login" ToRole="tbl_user" />
+  </EntityType>
+  <EntityType Name="tbl_ngo">
+    <Key>
+      <PropertyRef Name="ngo_UserId" />
+    </Key>
+    <Property Name="ngo_UserId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ngo_UniqueuId" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_Telephone" Type="Int64" Nullable="false" />
+    <Property Name="ngo_City" Type="String" MaxLength="20" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_State" Type="String" MaxLength="20" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_Address" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_ChairmanPersonName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_PhotoId" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_ParentOrganisation" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_RegisteredWith" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_RegistrationNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_CityOfRegistration" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_DateOfRegistration" Type="DateTime" Precision="0" Nullable="false" />
+    <Property Name="ngo_CopyOfRegistration" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_Type" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_fcraNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ngo_AreaOfIntrest" Type="String" MaxLength="500" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_OperationalAera" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_WebsiteUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="ngo_Email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_userName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="ngo_mobileNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="login_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tbl_login" Relationship="commanwealdbModel.FK__tbl_ngo__login_i__1FCDBCEB" FromRole="tbl_ngo" ToRole="tbl_login" />
+  </EntityType>
+  <EntityType Name="tbl_post">
+    <Key>
+      <PropertyRef Name="post_id" />
+    </Key>
+    <Property Name="post_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="login_id" Type="Int64" Nullable="false" />
+    <Property Name="post_datetime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="post_type" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
+    <Property Name="post_conent" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="post_url" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="post_likeCount" Type="Int64" />
+    <Property Name="post_commentCount" Type="Int32" />
+    <NavigationProperty Name="tbl_comment" Relationship="commanwealdbModel.FK__tbl_comme__post___1CF15040" FromRole="tbl_post" ToRole="tbl_comment" />
+    <NavigationProperty Name="tbl_login" Relationship="commanwealdbModel.FK__tbl_post__login___25869641" FromRole="tbl_post" ToRole="tbl_login" />
+    <NavigationProperty Name="tbl_postlike" Relationship="commanwealdbModel.FK__tbl_postl__post___22AA2996" FromRole="tbl_post" ToRole="tbl_postlike" />
+  </EntityType>
+  <EntityType Name="tbl_postlike">
+    <Key>
+      <PropertyRef Name="postlike_id" />
+    </Key>
+    <Property Name="postlike_id" Type="Int64" Nullable="false" />
+    <Property Name="login_id" Type="Int64" Nullable="false" />
+    <Property Name="post_id" Type="Int64" Nullable="false" />
+    <Property Name="like_datetime" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="tbl_login" Relationship="commanwealdbModel.FK__tbl_postl__login__2C3393D0" FromRole="tbl_postlike" ToRole="tbl_login" />
+    <NavigationProperty Name="tbl_post" Relationship="commanwealdbModel.FK__tbl_postl__post___22AA2996" FromRole="tbl_postlike" ToRole="tbl_post" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="login_Email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="login_password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="login_userName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="login_userType" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Login_mobileNumber" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="login_id" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tbl_login" Relationship="commanwealdbModel.FK__tbl_user__login___239E4DCF" FromRole="tbl_user" ToRole="tbl_login" />
+  </EntityType>
+  <Association Name="FK__tbl_comme__comme__1DE57479">
+    <End Role="tbl_comment" Type="commanwealdbModel.tbl_comment" Multiplicity="1" />
+    <End Role="tbl_commentlike" Type="commanwealdbModel.tbl_commentlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_comment">
+        <PropertyRef Name="comment_id" />
+      </Principal>
+      <Dependent Role="tbl_commentlike">
+        <PropertyRef Name="comment_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_comme__login__29572725">
+    <End Role="tbl_login" Type="commanwealdbModel.tbl_login" Multiplicity="1" />
+    <End Role="tbl_comment" Type="commanwealdbModel.tbl_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_comment">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_comme__post___1CF15040">
+    <End Role="tbl_post" Type="commanwealdbModel.tbl_post" Multiplicity="1" />
+    <End Role="tbl_comment" Type="commanwealdbModel.tbl_comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_post">
+        <PropertyRef Name="post_id" />
+      </Principal>
+      <Dependent Role="tbl_comment">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_comme__login__300424B4">
+    <End Role="tbl_login" Type="commanwealdbModel.tbl_login" Multiplicity="1" />
+    <End Role="tbl_commentlike" Type="commanwealdbModel.tbl_commentlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_commentlike">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_ngo__login_i__1FCDBCEB">
+    <End Role="tbl_login" Type="commanwealdbModel.tbl_login" Multiplicity="0..1" />
+    <End Role="tbl_ngo" Type="commanwealdbModel.tbl_ngo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_ngo">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_post__login___25869641">
+    <End Role="tbl_login" Type="commanwealdbModel.tbl_login" Multiplicity="1" />
+    <End Role="tbl_post" Type="commanwealdbModel.tbl_post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_post">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_postl__login__2C3393D0">
+    <End Role="tbl_login" Type="commanwealdbModel.tbl_login" Multiplicity="1" />
+    <End Role="tbl_postlike" Type="commanwealdbModel.tbl_postlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_postlike">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_user__login___239E4DCF">
+    <End Role="tbl_login" Type="commanwealdbModel.tbl_login" Multiplicity="1" />
+    <End Role="tbl_user" Type="commanwealdbModel.tbl_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_login">
+        <PropertyRef Name="login_id" />
+      </Principal>
+      <Dependent Role="tbl_user">
+        <PropertyRef Name="login_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_postl__post___22AA2996">
+    <End Role="tbl_post" Type="commanwealdbModel.tbl_post" Multiplicity="1" />
+    <End Role="tbl_postlike" Type="commanwealdbModel.tbl_postlike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_post">
+        <PropertyRef Name="post_id" />
+      </Principal>
+      <Dependent Role="tbl_postlike">
+        <PropertyRef Name="post_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
