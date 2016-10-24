@@ -19,7 +19,7 @@ namespace NGOUserPage.Controllers
         [HttpPost]
         public ActionResult CreateNGO(NGOUserMeta objngoMeta, NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
-            CommonWealEntities context = new CommonWealEntities();
+            CommonWealEntities1 context = new CommonWealEntities1();
 
             if (ModelState.IsValid)
             {
