@@ -1,0 +1,42 @@
+﻿@model CommonWeal.NGOWeb.Models.Reset
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    @*    <script src="~/Bootstrap/js/bootstrap.js"></script>
+    <script src="~/Bootstrap/js/bootstrap.min.js"></script>*@
+
+    @* <script src="~/Scripts/FormValidation.js"></script>*@
+</head>
+<body>
+    <form method="post" id="frmReset" name="formReset" action="/Reset/VerifyPassword">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+              <label class="control-label col-xs-3" for="fn">Email:*</label>
+            <div class="col-xs-6">
+                 @Html.TextBoxFor(a => a.email_address)<br/>
+              @*  <input type="text" class="form-control" name="email_address" id="email" placeholder="Email">*@
+                @Html.ValidationMessageFor(a => a.email_address)
+
+                <br />
+                <button type="submit" class="btn1 btn-danger">Send me reset instruction</button><br />
+                <br />
+            </div>
+        </div>
+
+    </form>
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

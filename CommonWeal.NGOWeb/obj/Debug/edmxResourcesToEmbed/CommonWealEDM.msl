@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CommonWealModelStoreContainer" CdmEntityContainer="CommonWealEntities1">
+    <EntitySetMapping Name="RegisteredUsers">
+      <EntityTypeMapping TypeName="CommonWealModel.RegisteredUser">
+        <MappingFragment StoreEntitySet="RegisteredUser">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleTypes">
+      <EntityTypeMapping TypeName="CommonWealModel.RoleType">
+        <MappingFragment StoreEntitySet="RoleType">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="CommonWealModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogin">
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+          <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+          <ScalarProperty Name="LoginEmailID" ColumnName="LoginEmailID" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NGOPosts">
+      <EntityTypeMapping TypeName="CommonWealModel.NGOPost">
+        <MappingFragment StoreEntitySet="NGOPost">
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="PostCommentCount" ColumnName="PostCommentCount" />
+          <ScalarProperty Name="PostLikeCount" ColumnName="PostLikeCount" />
+          <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
+          <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+          <ScalarProperty Name="PostType" ColumnName="PostType" />
+          <ScalarProperty Name="PostDateTime" ColumnName="PostDateTime" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NGOPostDetails">
+      <EntityTypeMapping TypeName="CommonWealModel.NGOPostDetail">
+        <MappingFragment StoreEntitySet="NGOPostDetail">
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="PostComment" ColumnName="PostComment" />
+          <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="PostDetailID" ColumnName="PostDetailID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NGOUsers">
+      <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
+        <MappingFragment StoreEntitySet="NGOUser">
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+          <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
+          <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
+          <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
+          <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
+          <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+          <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
+          <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
+          <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
+          <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
+          <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
+          <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
+          <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
+          <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
+          <ScalarProperty Name="NGOName" ColumnName="NGOName" />
+          <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
+          <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="CommonWealModel.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

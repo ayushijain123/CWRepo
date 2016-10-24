@@ -1,0 +1,98 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.Models.NGOUser>
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Admin/Admin_Master.cshtml";
+}
+<style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<div class="col-md-10 pull-right">
+    <div class="row">
+        <div class="top-panel col-md-12">
+            <div class="input-append">
+                <input type="text" class="search-query" placeholder="Search..." />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-10 pull-right">
+    <div class="row">
+        <div class="inbox-top col-md-12">
+            <div class="col-md-6">
+                <div class="check-all">
+                    <input type="checkbox" value="">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        All
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Accept</a></li>
+                        <li><a href="#">Decline</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="inbox-pagination">
+                    <ul>
+                        <li><span>1-10 of 100</span>
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </button>
+
+                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="requests">
+                  <table>
+
+                 @foreach (var item in Model) 
+                 { 
+               <tr>
+              
+               
+                 <td class="col-xs-2" > @Html.DisplayFor(modelItem => item.NGOName)</td>
+
+                 <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+            
+    
+                <td > <a href="/Admin/Accept/@item.LoginID"> <button type="button" class="btn btn-default accept">Accept</button></a> 
+                     @* <a href="/Admin/Block/@item.LoginID">  <button type="button" class="btn btn-default decline">Decline</button></a>*@
+
+                </td>
+                    
+              </tr>
+                    }
+                
+               </table>
+                 
+        </div>
+    </div>
+</div>
+

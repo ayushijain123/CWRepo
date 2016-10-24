@@ -1,0 +1,260 @@
+﻿/*Admin module css*/
+
+body {
+    overflow: hidden;
+}
+
+
+/*For making page responsive*/
+/* For desktop: */
+.col-1 {
+    width: 8.33%;
+}
+
+.col-2 {
+    width: 16.66%;
+}
+
+.col-3 {
+    width: 25%;
+}
+
+.col-4 {
+    width: 33.33%;
+}
+
+.col-5 {
+    width: 41.66%;
+}
+
+.col-6 {
+    width: 50%;
+}
+
+.col-7 {
+    width: 58.33%;
+}
+
+.col-8 {
+    width: 66.66%;
+}
+
+.col-9 {
+    width: 75%;
+}
+
+.col-10 {
+    width: 83.33%;
+}
+
+.col-11 {
+    width: 91.66%;
+}
+
+.col-12 {
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+}
+
+/*Side Nav CSS*/
+.navbar-fixed-left {
+    background-color: #42647F;
+    width: 348px;
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+    left: 0px;
+    box-shadow: inset 0px 0px 17px #fff;
+}
+
+    .navbar-fixed-left .navbar-nav > li {
+        float: none; /* Cancel default li float: left */
+        width: 150px;
+    }
+
+    .navbar-fixed-left + .container {
+        padding-left: 160px;
+    }
+
+    /* On using dropdown menu (To right shift popuped) */
+    .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+        margin-top: -50px;
+        margin-left: 140px;
+    }
+
+.side-nav h2 {
+    color: #fff;
+    font-weight: bold;
+    padding-left: 5px;
+    text-shadow: 1px 2px #fff;
+    text-align: center;
+}
+
+.navbar-nav {
+    margin-top: 25px;
+    font-size: 20px;
+    margin-left: 91px;
+}
+
+.profile_pic {
+    box-shadow: 0px 10px 5px #9d9d9d;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.profile_info {
+    margin-top: 15px;
+    text-align: center;
+    color: #fff;
+}
+
+.clear {
+    clear: both;
+}
+/*Header CSS*/
+.header {
+    background-color: #9d9d9d;
+    border-bottom: 1px solid #D9DEE4;
+    height: 50px;
+    width: 1905px;
+}
+
+.dropdown {
+    right: 0px;
+    position: absolute;
+    margin-top: 10px;
+}
+
+/*form.form-search:before {
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        /*background-image: url(http://getbootstrap.com/2.3.2/assets/img/glyphicons-halflings.png);*/
+
+
+.log-out {
+    color: #000;
+    float: right;
+    padding-left: 15px;
+    top: 15px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.container {
+    width: 100%;
+}
+
+/*Admin Request Page CSS*/
+
+.panel {
+    height: 200px;
+    width: 300px;
+    margin-left: 90px;
+    margin-top: 40px;
+}
+
+.total-count {
+    background-color: #ededed;
+    margin-left: 18px;
+    width: 1587px;
+}
+
+.panel-text {
+    font-size: 80px;
+    text-align: center;
+}
+
+.panel-top {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+.chart {
+    margin-left: 18px;
+}
+
+.page-footer {
+    background-color: #ededed;
+    margin-left: 18px;
+    height: 170px;
+    width: 1600px;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 80px;
+}
+
+
+/*Active Users CSS*/
+.check-all {
+    border: 1px solid #e7e7e7;
+    border-radius: 3px !important;
+    color: #afafaf;
+    display: inline-block;
+}
+
+.inbox-pagination > ul {
+    float: right;
+    list-style-type: none;
+}
+
+    .inbox-pagination > ul > li {
+        font-size: 20px;
+    }
+
+.inbox-top {
+    top: 15px;
+}
+
+.requests {
+    width: 1350px;
+    margin-left: 115px;
+    margin-top: 30px;
+}
+
+.accept {
+    margin-left: 1045px;
+}
+
+/*Search box CSS*/
+input.search-query {
+    padding-right: 0px;
+    box-shadow: 2px 1px 2px #000;
+}
+
+.input-append {
+    position: relative;
+    float: right;
+    margin-top: 10px;
+}
+
+/*Settings page CSS*/
+.password-panel {
+    left: 522px;
+    top: 40px;
+    height: 373px;
+    width: 530px;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 15px #9d9d9d;
+}
+
+.panel-header {
+    margin-top: 10px;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}
+
+
+.panel-footer {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+}

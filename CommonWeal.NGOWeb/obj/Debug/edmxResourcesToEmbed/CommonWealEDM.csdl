@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CommonWealModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CommonWealEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
+    <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
+    <EntitySet Name="UserLogins" EntityType="CommonWealModel.UserLogin" />
+    <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
+      <End Role="UserLogin" EntitySet="UserLogins" />
+      <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserLogin__Login__34C8D9D1" Association="CommonWealModel.FK__UserLogin__Login__34C8D9D1">
+      <End Role="RoleType" EntitySet="RoleTypes" />
+      <End Role="UserLogin" EntitySet="UserLogins" />
+    </AssociationSet>
+    <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
+    <EntitySet Name="NGOPostDetails" EntityType="CommonWealModel.NGOPostDetail" />
+    <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
+    <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
+      <End Role="UserLogin" EntitySet="UserLogins" />
+      <End Role="NGOUser" EntitySet="NGOUsers" />
+    </AssociationSet>
+    <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
+  </EntityContainer>
+  <EntityType Name="RegisteredUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="UserKey" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LoginID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <Property Name="LoginUserType" Type="Int32" />
+    <NavigationProperty Name="UserLogin" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="UserLogin" />
+  </EntityType>
+  <EntityType Name="RoleType">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserLogins" Relationship="CommonWealModel.FK__UserLogin__Login__34C8D9D1" FromRole="RoleType" ToRole="UserLogin" />
+  </EntityType>
+  <EntityType Name="UserLogin">
+    <Key>
+      <PropertyRef Name="LoginID" />
+    </Key>
+    <Property Name="LoginID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginPassword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="LoginUserType" Type="Int32" />
+    <Property Name="LoginEmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsBlock" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="UserLogin" ToRole="RegisteredUser" />
+    <NavigationProperty Name="RoleType" Relationship="CommonWealModel.FK__UserLogin__Login__34C8D9D1" FromRole="UserLogin" ToRole="RoleType" />
+    <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="UserLogin" ToRole="NGOUser" />
+  </EntityType>
+  <Association Name="FK_RegisteredUser_UserLogin">
+    <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="1" />
+    <End Role="RegisteredUser" Type="CommonWealModel.RegisteredUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="LoginID" />
+      </Principal>
+      <Dependent Role="RegisteredUser">
+        <PropertyRef Name="LoginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserLogin__Login__34C8D9D1">
+    <End Role="RoleType" Type="CommonWealModel.RoleType" Multiplicity="0..1" />
+    <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleType">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserLogin">
+        <PropertyRef Name="LoginUserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="NGOPost">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Type="Int32" Name="PostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="EmailID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="PostDateTime" Precision="3" />
+    <Property Type="String" Name="PostType" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PostContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="PostUrl" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="PostLikeCount" />
+    <Property Type="Int32" Name="PostCommentCount" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+  </EntityType>
+  <EntityType Name="NGOPostDetail">
+    <Key>
+      <PropertyRef Name="PostDetailID" />
+    </Key>
+    <Property Type="Int32" Name="PostDetailID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="PostID" Nullable="false" />
+    <Property Type="String" Name="EmailID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="RoleID" Nullable="false" />
+    <Property Type="Boolean" Name="IsLike" />
+    <Property Type="String" Name="PostComment" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+  </EntityType>
+  <EntityType Name="NGOUser">
+    <Key>
+      <PropertyRef Name="NGOUserId" />
+    </Key>
+    <Property Type="Int32" Name="NGOUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UniqueuId" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NGOName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NGOEmailID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NGOPassword" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LoginID" />
+    <Property Type="String" Name="NGOKey" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NGOProfilePic" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Mobile" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="State" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LoginUserType" />
+    <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ChairmanID" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
+    <Property Type="String" Name="RegistrationProof" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsActive" Nullable="false" />
+    <Property Type="Boolean" Name="IsBlock" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+    <NavigationProperty Name="UserLogin" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="UserLogin" />
+  </EntityType>
+  <Association Name="FK_NGOUser_UserLogin">
+    <End Type="CommonWealModel.UserLogin" Role="UserLogin" Multiplicity="0..1" />
+    <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserLogin">
+        <PropertyRef Name="LoginID" />
+      </Principal>
+      <Dependent Role="NGOUser">
+        <PropertyRef Name="LoginID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>
