@@ -1,13 +1,11 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 
 
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+
 
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -19,8 +17,19 @@
     <script>
         $(document).ready(function () {
             $("#postimage").click(function () {
-                $("#newcomment").html('<div><img src="~/Images/orderedList1.png"></img></div>');
-                // $("#newcomment").html("<div class='form-group'><div class='form-inline'style='border-bottom: ridge; width: 600px;'><img src="~/Images/orderedList.jpg"></img><a href='#'><span style='font-size: 16px;'><b>Ayushi Jain</b></span></a><a href='#'>@DateTime.Now.ToString()</a><br /><span style='margin-left: 55px;'>wow!!!! penguins looks awesome</span><div class='form-inline' style='height: 30px; margin-left: 10px;'><a href='#'>Like</a><a href='#'>Reply</a></div></div></div>");
+                //$("#newcomment").html('<div><img src="/Images/orderedList1.png"></img></div>');
+                $("#newcomment").append('<div class="form-group">'
+                      + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">'+
+                           '<img src="/Images/orderedList3.png"></img>'+
+                           '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'+
+                           '<a href="#">@DateTime.Now.ToString()</a><br />'+
+                            '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'+
+                            '<div class="form-inline" style="height: 30px; margin-left: 10px;">'+
+                                '<a href="#">Like</a>'+
+                                '<a href="#">Reply</a>'+
+                            '</div>'+
+                        '</div>'+
+                    '</div>');
 
             });
 
@@ -70,7 +79,7 @@
             @*  <div class="form-group">*@
             <div id="image/video">
                 <img src="~/images/Penguins.jpg" style="height: 500px; width: 600px;" />
-               
+
 
 
                 @* ///edited on 24/10/16*@
@@ -126,8 +135,9 @@
                                 <a href="#">Reply</a>
                             </div>
                         </div>*@
-                    
-                    <div id="newcomment"><br/>
+
+                    <div id="newcomment">
+                        <br />
                     </div>
 
 
