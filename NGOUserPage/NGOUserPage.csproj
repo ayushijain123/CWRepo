@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NGOProfileController.cs" />
     <Compile Include="Controllers\ngoRegistrationController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\userRegistrationController.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Commonweal.css" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\NGOProfile.css" />
     <Content Include="Content\Register.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -256,9 +258,16 @@
       <LastGenOutput>CommonWealEDM.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Images\Chrysanthemum.jpg" />
+    <Content Include="Images\Desert.jpg" />
     <Content Include="Images\Hydrangeas.jpg" />
     <Content Include="Images\Image.jpg" />
+    <Content Include="Images\images1.jpg" />
+    <Content Include="Images\Jellyfish.jpg" />
+    <Content Include="Images\Koala.jpg" />
+    <Content Include="Images\Lighthouse.jpg" />
     <Content Include="Images\Penguins.jpg" />
+    <Content Include="Images\Tulips.jpg" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -279,6 +288,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\NGOProfile.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -326,6 +336,11 @@
     <Content Include="Views\userRegistration\CreateUserPost.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\NGOProfile\AboutUs.cshtml" />
+    <Content Include="Views\NGOProfile\Album.cshtml" />
+    <Content Include="Views\NGOProfile\Index.cshtml" />
+    <Content Include="Views\NGOProfile\_Layout.cshtml" />
+    <Content Include="Views\NGOProfile\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
