@@ -26,6 +26,7 @@ namespace NGOUserPage
         public string Mobile { get; set; }
         public string City { get; set; }
         public string State { get; set; }
+        public Nullable<int> LoginUserType { get; set; }
         public string NGOAddress { get; set; }
         public string ChairmanName { get; set; }
         public string ChairmanID { get; set; }
@@ -43,7 +44,6 @@ namespace NGOUserPage
         public bool IsBlock { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public Nullable<int> LoginUserType { get; set; }
     
         public virtual UserLogin UserLogin { get; set; }
     }

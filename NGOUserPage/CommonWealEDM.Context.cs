@@ -25,13 +25,11 @@ namespace NGOUserPage
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<CityMaster> CityMasters { get; set; }
-        public DbSet<CountryMaster> CountryMasters { get; set; }
-        public DbSet<NGOUser> NGOUsers { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
-        public DbSet<StateMaster> StateMasters { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<UserLogin> UserLogins { get; set; }
+        public DbSet<NGOPost> NGOPosts { get; set; }
+        public DbSet<NGOPostDetail> NGOPostDetails { get; set; }
+        public DbSet<NGOUser> NGOUsers { get; set; }
     }
 }

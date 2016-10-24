@@ -164,9 +164,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="CityMaster.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="CommonOperation\EmailGateway.cs" />
     <Compile Include="CommonWealEDM.Context.cs">
       <AutoGen>True</AutoGen>
@@ -189,9 +186,6 @@
     <Compile Include="Controllers\ngoRegistrationController.cs" />
     <Compile Include="Controllers\userRegistrationController.cs" />
     <Compile Include="Controllers\welcomeController.cs" />
-    <Compile Include="CountryMaster.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbOperations.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +193,12 @@
     </Compile>
     <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\RegisteredUserMeta.cs" />
+    <Compile Include="NGOPost.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NGOPostDetail.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="NGOUser.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
@@ -207,12 +207,6 @@
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleType.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StateMaster.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagram.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="UserLogin.cs">
