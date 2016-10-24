@@ -15,7 +15,7 @@ namespace Comonweal.Controllers
         [HttpPost]
         public ActionResult Login(UserLogin obj)
         {
-            CommonWealEntities context = new CommonWealEntities();
+            CommonWealEntities1 context = new CommonWealEntities1();
             var result = context.UserLogins.Where(w => w.LoginEmailID == obj.LoginEmailID).FirstOrDefault();
             if (result == null)
             {
@@ -23,11 +23,16 @@ namespace Comonweal.Controllers
             }
             else if (result.LoginEmailID != null && result.LoginPassword != null)
             {
+               
                 if (result.LoginEmailID == obj.LoginEmailID && result.LoginPassword == obj.LoginPassword)
                 {
                     if (result.IsActive == true && result.IsBlock == false)
                     {
-                        if (result.LoginUserType == 1 || result.LoginUserType == 3)
+                        if (result.LoginUserType == 3 && obj.LoginEmailID=="admin@gmail.com"&&obj.LoginPassword=="admin")
+                        {
+                            return RedirectToAction("admin", "Admin");
+                        }
+                        if (result.LoginUserType == 1 )
                         { //login for ngo and user
                             return RedirectToAction("Index", "welcome");
                         }
