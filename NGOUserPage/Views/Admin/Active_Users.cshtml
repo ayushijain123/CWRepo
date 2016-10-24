@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<NGOUserPage.NGOUser>
+@{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
@@ -50,35 +51,19 @@
     <div class="row">
         <div class="col-md-12 ">
             <div class="requests">
+            <table>
+                      @foreach (var item in Model)
+                      { 
+                         <div class="request1 well">
 
-                <div class="request1 well">
-                    <input type="checkbox" value="">
-                    User1                 
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
-
-                <div class="request2 well">
-                    <input type="checkbox" value="">
-                    User2
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
-
-                <div class="request3 well">
-                    <input type="checkbox" value="">
-                    User3
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
-
-                <div class="request4 well">
-                    <input type="checkbox" value="">
-                    User4
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
-
+                              <td class="col-xs-2" > @Html.DisplayFor(modelItem => item.NGOName)</td>
+                               <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                         <a href="Admin/Block/@item.LoginID"><button type="button" class="btn btn-default accept">Block</button></a>
+                    
+                          </div>
+                      }
+               </table>
+                
             </div>
         </div>
     </div>

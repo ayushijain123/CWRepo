@@ -28,7 +28,7 @@ namespace Comonweal.Controllers
                 {
                     if (result.IsActive == true && result.IsBlock == false)
                     {
-                        if (result.LoginUserType == 3 && obj.LoginEmailID=="admin@gmail.com"&&obj.LoginPassword=="admin")
+                        if (result.LoginUserType == 2 && obj.LoginEmailID=="admin@gmail.com"&&obj.LoginPassword=="admin")
                         {
                             return RedirectToAction("admin", "Admin");
                         }

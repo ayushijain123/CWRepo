@@ -1,8 +1,26 @@
-﻿@{
+﻿@model IEnumerable<NGOUserPage.NGOUser>
+@{
     ViewBag.Title = "Requests";
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
+<style>
+    table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 <div class="col-md-10 pull-right">
     <div class="row">
         <div class="top-panel col-md-12">
@@ -52,34 +70,28 @@
     <div class="row">
         <div class="col-md-12">
             <div class="requests">
-                <div class="request1 well">
-                    <input type="checkbox" value="">
-                    Request1                 
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
+                  <table>
 
-                <div class="request2 well">
-                    <input type="checkbox" value="">
-                    Request2
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
+                 @foreach (var item in Model) 
+                 { 
+               <tr>
+              
+               
+                 <td class="col-xs-2" > @Html.DisplayFor(modelItem => item.NGOName)</td>
 
-                <div class="request3 well">
-                    <input type="checkbox" value="">
-                    Request3
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
+                 <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+            
+    
+                <td > <a href="/Admin/Accept/@item.LoginID"> <button type="button" class="btn btn-default accept">Accept</button></a> 
+                     @* <a href="/Admin/Block/@item.LoginID">  <button type="button" class="btn btn-default decline">Decline</button></a>*@
 
-                <div class="request4 well">
-                    <input type="checkbox" value="">
-                    Request4
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
-            </div>
+                </td>
+                    
+              </tr>
+                    }
+                
+               </table>
+                 
         </div>
     </div>
 </div>

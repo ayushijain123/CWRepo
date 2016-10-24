@@ -15,7 +15,7 @@ namespace NGOUserPage.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       
         public ActionResult CreateUser(RegisteredUser ru, RegisteredUserMeta objm)
         {
             if (ModelState.IsValid)
