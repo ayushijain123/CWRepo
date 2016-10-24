@@ -11,6 +11,7 @@
           <EntitySet Name="NGOUser" EntityType="CommonWealModel.Store.NGOUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserLogin" EntityType="CommonWealModel.Store.UserLogin" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.Store.FK_NGOUser_UserLogin">
             <End Role="UserLogin" EntitySet="UserLogin" />
@@ -109,6 +110,13 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="UserLogin">
           <Key>
             <PropertyRef Name="LoginID" />
@@ -169,6 +177,7 @@
             <End Role="UserLogin" EntitySet="UserLogins" />
             <End Role="NGOUser" EntitySet="NGOUsers" />
           </AssociationSet>
+          <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
         </EntityContainer>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -313,6 +322,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -423,6 +439,14 @@
                 <ScalarProperty Name="NGOName" ColumnName="NGOName" />
                 <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
                 <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="CommonWealModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

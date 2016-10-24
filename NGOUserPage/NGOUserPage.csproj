@@ -211,6 +211,9 @@
     <Compile Include="RoleType.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Test.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserLogin.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
