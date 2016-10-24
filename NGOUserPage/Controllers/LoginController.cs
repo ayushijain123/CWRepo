@@ -32,7 +32,8 @@ namespace Comonweal.Controllers
                         {
                             return RedirectToAction("admin", "Admin");
                         }
-                        if (result.LoginUserType == 1 )
+                        //Edited by abhijeet on 24/10/2016
+                        if (result.LoginUserType == 1 || result.LoginUserType==3)
                         { //login for ngo and user
                             return RedirectToAction("Index", "welcome");
                         }
