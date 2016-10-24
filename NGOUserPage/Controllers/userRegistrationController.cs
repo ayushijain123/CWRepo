@@ -10,7 +10,7 @@ namespace NGOUserPage.Controllers
     {
         //
         // GET: /userRegistration/
-        public ActionResult CreateUser()
+        public ActionResult CreateUserPost()
         {
             return View();
         }
@@ -20,7 +20,7 @@ namespace NGOUserPage.Controllers
         {
             if (ModelState.IsValid)
             {
-                CommonWealEntities context = new CommonWealEntities();
+                CommonWealEntities1 context = new CommonWealEntities1();
                 UserLogin obj = new UserLogin();
                 obj.LoginPassword = ru.UserPassword;
                 obj.LoginEmailID = ru.UserEmail;
@@ -35,9 +35,11 @@ namespace NGOUserPage.Controllers
                 ru.LoginID = obj.LoginID;
                 context.RegisteredUsers.Add(ru);
                 context.SaveChanges();
-                Response.Write("<script>alert('Registration successfully')</script>");
+               
             }
-            return View();
+           
+            return RedirectToAction("CreateUserPost","userRegistration");
+          
         }
     }
 
