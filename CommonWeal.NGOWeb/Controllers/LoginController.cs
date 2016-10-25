@@ -33,7 +33,7 @@ namespace CommonWeal.NGOWeb.Controllers
                     {
                         if (result.LoginUserType == 2 && obj.LoginEmailID=="admin@gmail.com"&&obj.LoginPassword=="admin")
                         {
-                            return RedirectToAction("admin", "Admin");
+                            return RedirectToAction("Index", "Admin");
                         }
                         //Edited by abhijeet on 24/10/2016
                         if (result.LoginUserType==3 || result.LoginUserType == 1)
