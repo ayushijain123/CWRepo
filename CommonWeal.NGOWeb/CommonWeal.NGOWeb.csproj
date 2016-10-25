@@ -193,6 +193,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin_Pass.cs" />
     <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\RegisteredUserMeta.cs" />
     <Compile Include="NGOPost.cs">
