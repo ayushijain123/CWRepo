@@ -272,6 +272,15 @@
     <Content Include="Images\Koala.jpg" />
     <Content Include="Images\Lighthouse.jpg" />
     <Content Include="Images\Penguins.jpg" />
+    <Content Include="Images\Post\accent.png" />
+    <Content Include="Images\Post\Chrysanthemum.jpg" />
+    <Content Include="Images\Post\Desert.jpg" />
+    <Content Include="Images\Post\Hydrangeas.jpg" />
+    <Content Include="Images\Post\Jellyfish.jpg" />
+    <Content Include="Images\Post\Koala.jpg" />
+    <Content Include="Images\Post\Lighthouse.jpg" />
+    <Content Include="Images\Post\Penguins.jpg" />
+    <Content Include="Images\Post\Tulips.jpg" />
     <Content Include="Images\Tulips.jpg" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
