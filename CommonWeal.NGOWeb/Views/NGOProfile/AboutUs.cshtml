@@ -1,32 +1,55 @@
-﻿
+﻿@model CommonWeal.NGOWeb.NGOUser
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="image panel-default">
-                <img src="~/Images/images1.jpg " width="1140" height="500" />
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <nav class="navbar navbar-default">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/NGOProfile/Index/">Timeline</a></li>
-                    <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
-                    <li><a href="/NGOProfile/Album/">Album</a></li>
-                    <li><a href="#">Messages</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">    
-            <p> hello,<br/>
-                This is commonweal,<br/>
-            </p>
+@{
+    ViewBag.Title = "AboutUs";
+}
 
-            </div>
-        </div>
-    </div>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+    tr:nth-child(even) {
+        background-color: #00ff21;
+    }
+
+th {
+    background-color: #12110e;
+    color: white;
+}
+</style>
+<table>
+<thead>
+    <th>UniqueuID</th>
+     <th>NGOName</th>
+     <th>NGOEmailID</th>
+     <th>Mobile</th>
+     <th>NGOAddress</th>
+     <th>ChairmanName</th>
+     <th>ParentOrganisation</th>
+     <th>RegisteredWith</th>
+    <th>RegistrationNumber</th>
+    <th>DateOfRegistration</th>
+     <th>FCRANumber</th>
+    <tr></tr>
+</thead>
+    <tbody>   
+        <td>@Model.UniqueuId</td>   
+         <td>@Model.NGOName</td>
+        <td>@Model.NGOEmailID</td>
+        <td>@Model.Mobile</td>
+        <td>@Model.NGOAddress</td>
+        <td>@Model.ChairmanName</td>
+        <td>@Model.ParentOrganisation</td>
+        <td>@Model.RegisteredWith</td>
+         <td>@Model.RegistrationNumber</td>
+         <td>@Model.DateOfRegistration</td>
+         <td>@Model.FCRANumber</td>
+       </tbody>
+</table>
