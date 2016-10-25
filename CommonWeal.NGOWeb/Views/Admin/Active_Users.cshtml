@@ -54,16 +54,15 @@
             <table>
                       @foreach (var item in Model)
                       { 
-                         <div class="request1 well">
+                         <tr>
 
                               <td class="col-xs-2" > @Html.DisplayFor(modelItem => item.NGOName)</td>
-                               <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-                         <a href="Admin/Block/@item.LoginID"><button type="button" class="btn btn-default accept">Block</button></a>
-                    
-                          </div>
+                              <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                      <td><a href="Admin/Block/@item.LoginID"><button type="button" class="btn btn-default accept">Block</button></a></td>
+                    </tr>
                       }
                </table>
-                
+              
             </div>
         </div>
     </div>
