@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace CommonWeal.NGOWeb.Controllers
 {
     public class NGOProfileController : Controller
@@ -14,7 +15,15 @@ namespace CommonWeal.NGOWeb.Controllers
         }
         public ActionResult AboutUs()
         {
-            return View();
+            int res = Convert.ToInt32(Session["UserID"]);
+            dbOperations obj = new dbOperations();
+           var details=obj.GetNGODetails(res);
+           if (details != null)
+           {
+             // ViewBag.value = details;
+               return View(details);
+           }
+           return RedirectToAction("Login", "Login");
         }
         public ActionResult Album()
         {
