@@ -19,16 +19,16 @@
             $("#postimage").click(function () {
                 //$("#newcomment").html('<div><img src="/Images/orderedList1.png"></img></div>');
                 $("#newcomment").append('<div class="form-group">'
-                      + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">'+
-                           '<img src="/Images/orderedList3.png"></img>'+
-                           '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'+
-                           '<a href="#">@DateTime.Now.ToString()</a><br />'+
-                            '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'+
-                            '<div class="form-inline" style="height: 30px; margin-left: 10px;">'+
-                                '<a href="#">Like</a>'+
-                                '<a href="#">Reply</a>'+
-                            '</div>'+
-                        '</div>'+
+                      + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">' +
+                           '<img src="/Images/orderedList3.png"></img>' +
+                           '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>' +
+                           '<a href="#">@DateTime.Now.ToString()</a><br />' +
+                            '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>' +
+                            '<div class="form-inline" style="height: 30px; margin-left: 10px;">' +
+                                '<a href="#">Like</a>' +
+                                '<a href="#">Reply</a>' +
+                            '</div>' +
+                        '</div>' +
                     '</div>');
 
             });
@@ -50,7 +50,7 @@
             </div>
             <div style="background-color: lightcyan;">
                 <ul id="menu">
-                    <li><a href="">Post</a></li>
+                    <li><a href="#">Post</a></li>
 
                     <li>
                         <span class="menu-icon yamicon yamicon-paperclip"></span>
@@ -62,16 +62,16 @@
         </div>
         <br />
         @*  //post*@
-        <div style="height: 50px; width: 600px; margin-left: 170px;">
+        <div @*style="height: 50px; width: 600px; margin-left: 170px;*@">
             <div style="background-color: lightgray;" id="postuserdetail">
                 <div class="form-inline">
-                    <img src="~/Images/orderedList3.png"></img>
-                    <a href="">Ayushi Jain</a>
-                    <a href="">@DateTime.Now.ToString()</a>
+                    <img src="~/Images/orderedList3.png"/>
+                    <a href="#">Ayushi Jain</a>
+                    <a href="#">@DateTime.Now.ToString()</a>
                 </div>
             </div>
             @*  Text for image*@
-            <div name="Textmessage">
+            <div class="Textmessage">
                 <div class="form-inline" style="height: 50px;">
                     <p>welcome to NGO</p>
                 </div>
@@ -86,13 +86,9 @@
 
                 <div style="background-color: lightgray">
                     <div class="form-inline" style="height: 30px;">
-                        <a href="">Like</a>
-                        <a href="">Comment</a>
+                        <a href="#">Like</a>
+                        <a href="#">Comment</a>
                     </div>
-
-
-
-
 
                 </div>
                 <br />
@@ -102,7 +98,7 @@
 
                     <div class="form-group">
                         <div class="form-inline" style="border-bottom: ridge; width: 600px;">
-                            <img src="~/Images/orderedList3.png"></img>
+                            <img src="~/Images/orderedList3.png" />
                             <a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>
                             <a href="#">@DateTime.Now.ToString()</a><br />
                             <p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>
@@ -115,7 +111,7 @@
 
                     <div class="form-group">
                         <div class="form-inline" style="border-bottom: ridge; width: 600px;">
-                            <img src="~/Images/orderedList3.png"></img>
+                            <img src="~/Images/orderedList3.png" />
                             <a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>
                             <a href="#">@DateTime.Now.ToString()</a><br />
                             <p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>
@@ -140,23 +136,15 @@
                         <br />
                     </div>
 
-
-
                     @*///user Comment section*@
 
                     <div class="form-inline">
-                        <img src="~/Images/orderedList3.png"></img>
+                        <img src="~/Images/orderedList3.png" />
 
                         @Html.TextArea("Description", null, new { @class = "form-control", @style = " width: 480px; height:35px;" })
                         <input type="button" id="postimage" name="button" class="btn1 btn-primary" value="post" />
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
         </div>
     </form>
@@ -170,17 +158,6 @@
     <br />
     <br />
 </body>
-
-
-
-
-
-
-
-
-
-
-
 @*div class="container">
  
   <div class="well">Basic Well</div>
