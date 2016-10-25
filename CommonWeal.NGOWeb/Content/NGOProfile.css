@@ -1,6 +1,5 @@
-﻿body {
-}
-
+﻿
+/*Index Css*/
 .header {
     height: 80px;
     width: 100%;
@@ -11,6 +10,19 @@
     height: 50px;
     width: 100%;
     background-color: blueviolet;
+}
+
+.nav {
+    font-size: 20px;
+}
+
+.post {
+    font-size: 20px;
+}
+
+.post-button {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 /*Timeline or Index page css*/
@@ -40,9 +52,14 @@
 
 .thumbnail {
     padding: 0;
+  
 }
 
 .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     width: 100%;
     height: 560px;
+}
+/*AboutUs css*/
+.about-us-details > p {
+    font-size: 30px;
 }
