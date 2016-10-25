@@ -30,5 +30,11 @@ namespace CommonWeal.NGOWeb
             userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
             return userList;
         }
+        public NGOUser GetNGODetails(int id)
+        {
+            NGOUser ob = new NGOUser();
+            ob = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+            return ob;
+        }
     }
 }
