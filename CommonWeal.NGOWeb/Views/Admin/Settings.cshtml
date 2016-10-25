@@ -1,8 +1,9 @@
-﻿@{
+﻿@model CommonWeal.NGOWeb.Models.Admin_Pass
+@{
     ViewBag.Title = "Settings";
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
-
+<form>
 <div class="col-md-10 pull-right">
     <div class="row">
         <div class=" col-md-12">
@@ -12,19 +13,24 @@
                 </div>
                 <div class="form-group">
                     <label for="usr">Current Password:</label>
-                    <input type="text" class="form-control" id="usr">
+                    @Html.TextBoxFor(a => a.current_password, new { placeholder = "Current Password", @class = "form-control", @id = "cur-pwd" })
+                    @Html.ValidationMessageFor(a => a.current_password)
                 </div>
 
                 <div class="form-group">
                     <label for="pwd">New Password:</label>
-                    <input type="password" class="form-control" id="n-pwd">
+                    @Html.TextBoxFor(a => a.new_password, new { placeholder = "New Password", @class = "form-control", @id = "n-pwd" })
+                    @Html.ValidationMessageFor(a => a.new_password)
+
                 </div>
                 <div class="form-group">
                     <label for="pwd">Confirm Password:</label>
-                    <input type="password" class="form-control" id="c-pwd">
+                    @Html.TextBoxFor(a => a.confirm_password, new { placeholder = "Confirm Password", @class = "form-control", @id = "c-pwd" })
+                    @Html.ValidationMessageFor(a => a.confirm_password)
+
                 </div>
                 <div class="panel-footer">
-                    <button type="button" class="btn btn-primary save">Save</button>
+                    <button type="submit" class="btn btn-primary save">Save</button>
                     <button type="button" class="btn btn-default cancel">Cancel</button>
                 </div>
             </div>
@@ -32,7 +38,12 @@
     </div>
 </div>
 
+    </form>
 
 
 
 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
