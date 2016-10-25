@@ -13,6 +13,7 @@ namespace CommonWeal.NGOWeb.Controllers
 
         public ActionResult Login()
         {
+            Session.Clear();
             return View();
         }
         [HttpPost]
@@ -26,7 +27,7 @@ namespace CommonWeal.NGOWeb.Controllers
             }
             else if (result.LoginEmailID != null && result.LoginPassword != null)
             {
-               
+                
                 if (result.LoginEmailID == obj.LoginEmailID && result.LoginPassword == obj.LoginPassword)
                 {
                     if (result.IsActive == true && result.IsBlock == false)
@@ -36,10 +37,15 @@ namespace CommonWeal.NGOWeb.Controllers
                             return RedirectToAction("Index", "Admin");
                         }
                         //Edited by abhijeet on 24/10/2016
-                        if (result.LoginUserType==3 || result.LoginUserType == 1)
+                        if (result.LoginUserType==3)
                         { //login for ngo and user
                             return RedirectToAction("Index", "welcome");
-                        }                       
+                        }
+                        if (result.LoginUserType == 1)
+                        {
+                            Session["UserID"] = result.LoginID;
+                            return RedirectToAction("Index", "NGOProfile");
+                        }
                     }
                     //else if (result.IsActive == false && result.IsBlock == false)
                     //{
