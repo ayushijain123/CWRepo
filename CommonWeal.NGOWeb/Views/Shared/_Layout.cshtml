@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
     <meta charset="utf-8" />
     <title>@ViewBag.Title - All Right Reserved</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -16,10 +17,13 @@
         </div>
        <nav>
             <ul id="menu">
-                <li>@Html.ActionLink("Home","Index","Home")</li>
-                <li>@Html.ActionLink("Login","login","Login")</li>
-                <li>@Html.ActionLink("NGO Register","CreateNGO","ngoRegistration")</li>
-                <li>@Html.ActionLink("USER Register","CreateUserPost","userRegistration")</li>
+                <li><a href="@Url.Action("Index", "Home")" class="glyphicon glyphicon-home" title="Home"></a><li>
+                    <li><a href="@Url.Action("login", "Login")" class="fa fa-sign-in" title="Sign In"></a><li>
+                         <li><a href="@Url.Action("CreateNGO", "ngoRegistration")" class="fa fa-group" title="Sign up as NGO"></a><li>
+                               <li><a href="@Url.Action("CreateUserPost", "userRegistration")" class="fa fa-user-plus" title="Sign up as User"></a><li>
+                
+              
+               
                 
 
             </ul>

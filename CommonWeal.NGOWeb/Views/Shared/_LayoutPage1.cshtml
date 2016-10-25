@@ -1,5 +1,19 @@
-﻿<link href="~/Content/Register.css" rel="stylesheet" />
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery-1.12.4.min.js"></script>
+<link href="~/Content/Register.css" rel="stylesheet" />
+    </head>
 @* <div class="float-right">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
@@ -26,7 +40,7 @@
 
 @* //left Nav*@
 
-<ul id="sidenav">
+<nav id="sidenav">
   
 
     <li>
@@ -51,20 +65,20 @@
             </div>
         </div>
     </li>
-    <li><a class="active" href="#home">Home</a></li>
-    <li><a href="#news">About</a></li>
-    <li><a href="#contact">settings</a></li>
+    <li><a class="active" href="/Register/">Home</a></li>
+    
+    <li><a href="/Register/Setting">settings</a></li>
     <li><a href="/Login/Login">Logout</a></li>
-</ul>
+</nav>
 
 
-<ul id="sidenavright">
+<nav id="sidenavright">
     <br />
     <li><a class="active" href="#home">Post</a></li>
     <li><a href="#news">Upload Image</a></li>
     <li><a href="#contact">Upload Video</a></li>
 
-</ul>
+</nav>
 
 
 
@@ -78,6 +92,7 @@
     </section>
 </div>
 
+    </html>
 
 
 
