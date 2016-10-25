@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<CommonWeal.NGOWeb.Models.NGOUser>
+@{
     ViewBag.Title = "Blocked_Users";
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
@@ -52,34 +53,27 @@
     <div class="row">
         <div class="col-md-12">
             <div class="requests">
-                <div class="request1 well">
-                    <input type="checkbox" value="">
-                    B User1                 
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
+                  <table>
 
-                <div class="request2 well">
-                    <input type="checkbox" value="">
-                    B User2
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
+                 @foreach (var item in Model) 
+                 { 
+               <tr>
+              
+               
+                 <td> @Html.DisplayFor(modelItem => item.NGOName)</td>
 
-                <div class="request3 well">
-                    <input type="checkbox" value="">
-                    B User3
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
+                 <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+            
+    
+                <td > <a href="/Admin/Unblock/@item.LoginID"> <button type="button" class="btn btn-default accept">Unblock</button></a> 
+                     @* <a href="/Admin/Block/@item.LoginID">  <button type="button" class="btn btn-default decline">Decline</button></a>*@
 
-                <div class="request4 well">
-                    <input type="checkbox" value="">
-                    B User4
-                    <button type="button" class="btn btn-default accept">Accept1</button>
-                    <button type="button" class="btn btn-default decline">Decline1</button>
-                </div>
-            </div>
+                </td>
+                    
+              </tr>
+                    }
+                
+               </table>
         </div>
     </div>
 </div>
