@@ -14,6 +14,7 @@ namespace CommonWeal.NGOWeb
     
     public partial class RegisteredUser
     {
+        
         public int UserID { get; set; }
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }

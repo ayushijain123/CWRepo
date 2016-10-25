@@ -56,6 +56,8 @@ namespace CommonWeal.NGOWeb.Controllers
                 context.UserLogins.Add(obj);
                 context.SaveChanges();
                 objngo.LoginID = obj.LoginID;
+                objngo.IsActive = false;
+                objngo.IsBlock = false;
                 context.NGOUsers.Add(objngo);
                 context.SaveChanges();
             }

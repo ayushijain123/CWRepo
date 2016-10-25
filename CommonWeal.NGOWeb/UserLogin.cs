@@ -6,7 +6,7 @@
 //    Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace CommonWeal.NGOWeb
 {
     using System;
@@ -19,10 +19,14 @@ namespace CommonWeal.NGOWeb
             this.RegisteredUsers = new HashSet<RegisteredUser>();
             this.NGOUsers = new HashSet<NGOUser>();
         }
-    
+       
+  
         public int LoginID { get; set; }
+        [Required (ErrorMessage="This field is required")]
         public string LoginPassword { get; set; }
         public Nullable<int> LoginUserType { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
         public string LoginEmailID { get; set; }
         public bool IsActive { get; set; }
         public bool IsBlock { get; set; }

@@ -41,22 +41,23 @@ namespace CommonWeal.NGOWeb.Controllers
                             return RedirectToAction("Index", "welcome");
                         }                       
                     }
-                    else if (result.IsActive == false && result.IsBlock == false)
-                    {
+                    //else if (result.IsActive == false && result.IsBlock == false)
+                    //{
 
-                        //redirect to login page
-                        //request is pending for admin portal
-                    }
-                    else if (result.IsActive == true && result.IsBlock == true)
-                    {
-                        //redirect to login page
-                        //all user are blocked
-                    }
+                    //    //redirect to login page
+                    //    //request is pending for admin portal
+                    //}
+                    //else if (result.IsActive == true && result.IsBlock == true)
+                    //{
+                    //    //redirect to login page
+                    //    //all user are blocked
+                    //}
                 }
                 else
                 {
-                    Response.Write("<script>alert('check email and password'</script>)");
+                    Response.Write("<script>alert('Incorrect email or password'</script>)");
                 }
+               
             }
 
             return View();

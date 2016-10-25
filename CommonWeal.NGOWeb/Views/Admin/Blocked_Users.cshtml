@@ -1,8 +1,25 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.Models.NGOUser>
+﻿@model IEnumerable<CommonWeal.NGOWeb.NGOUser>
 @{
     ViewBag.Title = "Blocked_Users";
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
+<style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
 
 <div class="col-md-10 pull-right">
     <div class="row">
@@ -54,24 +71,23 @@
         <div class="col-md-12">
             <div class="requests">
                   <table>
+                          <thead>
+                              <th>NGO NAME</th>
+                              <th>NGo URL</th>
+                                <th >Action</th>
+                          </thead>
+                      @foreach (var item in Model)
+                      { 
+                                           <tr>
 
-                 @foreach (var item in Model) 
-                 { 
-               <tr>
-              
-               
-                 <td> @Html.DisplayFor(modelItem => item.NGOName)</td>
+                              <td> @Html.DisplayFor(modelItem => item.NGOName)</td>
+                              <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                              <td><a href="/admin/unblock/@item.LoginID"><button type="button" class="">Unblock</button></a></td>
+                         </tr>
+                             
 
-                 <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-            
-    
-                <td > <a href="/Admin/Unblock/@item.LoginID"> <button type="button" class="btn btn-default accept">Unblock</button></a> 
-                     @* <a href="/Admin/Block/@item.LoginID">  <button type="button" class="btn btn-default decline">Decline</button></a>*@
-
-                </td>
-                    
-              </tr>
-                    }
+                      }
+               </table>
                 
                </table>
         </div>

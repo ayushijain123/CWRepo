@@ -29,9 +29,10 @@
                         <br />
                         <br />
                         <div class="form-group">
-                            <label class="control-label col-xs-4" for="fn">Email or Mobile No.:</label>
+                            <label class="control-label col-xs-4" for="fn">Email:</label>
                             <div class="col-xs-4">
                                 @Html.TextBoxFor(a => a.LoginEmailID, new { placeholder="Email ID" })<br/>
+                                 @Html.ValidationMessageFor(a => a.LoginEmailID)
                                 @*  <input type="text" class="form-control" id="email/mobno" placeholder="Email/Mobile Number" name="login_Email">*@
                             </div>
                         </div>
@@ -39,6 +40,7 @@
                             <label class="control-label col-xs-4" for="ln">Password:</label>
                             <div class="col-xs-4">
                                 @Html.PasswordFor(a => a.LoginPassword, new { placeholder="Password" })
+                                 @Html.ValidationMessageFor(a => a.LoginPassword)
                                 @*@Html.EditorFor(a => a.LoginPassword)*@ <br />
                             </div>
                         </div>

@@ -3,7 +3,23 @@
     ViewBag.Title = "Admin";
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
+<style>
+   table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
 <div class="col-md-10 pull-right">
     <div class="row">
         <div class="top-panel col-md-12">
@@ -52,17 +68,24 @@
         <div class="col-md-12 ">
             <div class="requests">
             <table>
+                          <thead>
+                              <th>NGO NAME</th>
+                              <th>NGo URL</th>
+                                <th >Action</th>
+                          </thead>
                       @foreach (var item in Model)
                       { 
-                         <tr>
+                                           <tr>
 
-                              <td class="col-xs-2" > @Html.DisplayFor(modelItem => item.NGOName)</td>
+                              <td> @Html.DisplayFor(modelItem => item.NGOName)</td>
                               <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-                      <td><a href="Admin/Block/@item.LoginID"><button type="button" class="btn btn-default accept">Block</button></a></td>
-                    </tr>
+                              <td><a href="/admin/Block/@item.LoginID"><button type="button" class="">Block</button></a></td>
+                         </tr>
+                             
+
                       }
                </table>
-              <h1>ystysdgn</h1>
+             
             </div>
         </div>
     </div>

@@ -14,8 +14,7 @@ namespace CommonWeal.NGOWeb
         public List<NGOUser> GetAllUserNotAccepted()
         {
             List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == false).ToList();
-            //userList = context.NGOUsers.Include(x => x.UserLogin).Where(w => w.UserLogin.IsActive== false).ToList();
+            userList = context.NGOUsers.Where(w => w.IsActive == false&& w.IsBlock==false).ToList();
             return userList;
         }
         public List<NGOUser> GetAllUserAccepted()
@@ -23,6 +22,12 @@ namespace CommonWeal.NGOWeb
             List<NGOUser> userList = new List<NGOUser>();
             userList = context.NGOUsers.Where(w => w.IsActive == true).ToList();
             //userList = context.NGOUsers.Include(x => x.UserLogin).Where(w => w.UserLogin.IsActive== false).ToList();
+            return userList;
+        }
+        public List<NGOUser> GetAllUserBlocked()
+        {
+            List<NGOUser> userList = new List<NGOUser>();
+            userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
             return userList;
         }
     }
