@@ -185,6 +185,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NGOProfileController.cs" />
     <Compile Include="Controllers\NGORegistrationController.cs" />
+    <Compile Include="Controllers\PasswordController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\UserRegistrationController.cs" />
     <Compile Include="Controllers\WelcomeController.cs" />
@@ -194,6 +195,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\NGOUserMeta.cs" />
+    <Compile Include="Models\Password.cs" />
     <Compile Include="Models\RegisteredUserMeta.cs" />
     <Compile Include="NGOPost.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
@@ -355,6 +357,8 @@
     <Content Include="Views\NGOProfile\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Register\Setting.cshtml" />
+    <Content Include="Views\Password\ForgotPassword.cshtml" />
+    <Content Include="Views\Password\ConfirmPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
