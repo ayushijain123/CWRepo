@@ -1,7 +1,4 @@
-﻿#post {
-    height:100px;
-    background-color:white;
-}
+﻿
 /* Profile container */
 .profile {
   margin: 20px 0;
@@ -50,18 +47,30 @@ body {
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
+        height: 681px;
 }
 .logo1 {
     color: #fff;
     font-size: 40px;
     font-family: 'AR DARLING','Comic Sans MS';
     text-shadow: 5px 4px #000000;
-    margin-left:10px;
+    margin-left:10px;    width: 325px;
 }
 header {
     background-color:#008B8B;
     height:100px;
     border-color:black;
+}
+nav {
+float:right;
+
+}
+#search {
+    width: 520px;
+}
+#searchbtn {
+margin-right:350px;
+
 }
 
 img{
@@ -149,6 +158,7 @@ h5, h6 {
 .content-wrapper {
     margin: 0 auto;
     max-width: 960px;
+  
 }
 
 #body {
@@ -257,7 +267,7 @@ footer {
     color: white;
 }
 
- #sidenavright {
+ /*#sidenavright {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -285,7 +295,7 @@ footer {
 #sidenavright li a:hover:not(.active) {
     background-color: #555;
     color: white;
-}
+}*/
 /* menu
 ----------------------------------------------------------*/
 ul#menu {
@@ -293,7 +303,9 @@ ul#menu {
     font-weight: 600;
     margin: 0 0 5px;
     padding-right: 15px;
-    text-align: right;
+    float:right;
+   
+   
 }
 
     ul#menu li {
