@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
 
 
 <head>
@@ -140,7 +140,7 @@
 </head>
 @*<div  style="background-color:gray;"></div>*@
 <body>
-    <form method="post" action="/Register/PostImage" enctype="multipart/form-data">
+    <form method="post" action="/Register/PostImage" enctype="multipart/form-data" style="background-color: #e9eff1; padding-top: 5px; padding-right: 5px; padding-bottom: 25px; padding-left: 5px; ">
         <div class="form-inline">
             <b>Choose video/images:</b>
             <input type="file" id="file" name="file" class="filestyle" data-badge="false">
@@ -152,18 +152,18 @@
                 @Html.TextArea("PostContent", null, new { @class = "form-control", placeholder = "Write message for post" })
             </div>
 
-            <div id="menu" style="float: right; height: 20px; background-color: lightcyan;">
-                <input type="submit" id="post" style="height: 10px; width: 15px; background-color: lightcyan; font-size: 20px" value="post" />
+            <div id="menu" style="float: right;">
+                <input type="submit" id="post" value="Post" style="background-color:#c2d8d8; width: 70px; height: 25px; text-align: center; padding-top: 0;" />
             </div>
 
         </div>
     </form>
     <br />
-
+    <br />
 
     @*  //post*@
 
-    <div style="height: 50px; width: 600px; margin-left: 170px;">
+    <div style="height: 50px; width: 800px; margin-left: 80px;">
 
         @*//new upload post*@
         <div id="newuploadpost">
@@ -190,7 +190,7 @@
                 </div>
 @*  <div class="form-group">*@
                 <div id="image/video">
-                    <img src="@item.PostUrl" style="height: 500px; width: 600px;" />
+                    <img src="@item.PostUrl" style="height: 500px; width: 800px;" />
 
 
 
@@ -201,7 +201,7 @@
                             <a href="">Like</a>
                             <a href="">Comment</a>
                         </div>
-                         
+
 
                     </div>
                     <br />
@@ -248,19 +248,20 @@
                         <div id="@item.PostID">
                             <br />
                         </div>
-                         
+
                         @*///user Comment section*@
 
                         <div class="form-inline">
                             <img src="~/Images/orderedList3.png"></img>
 
-                            @Html.TextArea("TextComment", new { id = "txtComment-"+item.PostID, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
+                            @Html.TextArea("TextComment", new { id = "txtComment-" + item.PostID, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
                             <input type="button" id="postimage-@item.PostID" name="button" class="btn1 btn-primary btnPost" value="post" />
                         </div>
                     </div>
                 </div> <br />
-    <br /><br/> <br />
-    <br />
+                <br />
+                <br /> <br />
+                <br />
             }
         </div>
     </div>
@@ -275,7 +276,7 @@
     <br />
     <br />
 </body>
- 
+
 @*div class="container">
  
   <div class="well">Basic Well</div>
