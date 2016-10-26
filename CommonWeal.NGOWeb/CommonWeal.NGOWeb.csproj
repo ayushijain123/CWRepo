@@ -186,7 +186,6 @@
     <Compile Include="Controllers\NGOProfileController.cs" />
     <Compile Include="Controllers\NGORegistrationController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserRegistrationController.cs" />
     <Compile Include="Controllers\WelcomeController.cs" />
     <Compile Include="dbOperations.cs" />
