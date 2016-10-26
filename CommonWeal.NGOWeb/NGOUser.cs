@@ -45,6 +45,6 @@ namespace CommonWeal.NGOWeb
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
     
-        public virtual UserLogin UserLogin { get; set; }
+        public virtual User User { get; set; }
     }
 }

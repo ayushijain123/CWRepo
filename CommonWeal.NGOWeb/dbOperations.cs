@@ -21,7 +21,7 @@ namespace CommonWeal.NGOWeb
         {
             List<NGOUser> userList = new List<NGOUser>();
             userList = context.NGOUsers.Where(w => w.IsActive == true).ToList();
-            //userList = context.NGOUsers.Include(x => x.UserLogin).Where(w => w.UserLogin.IsActive== false).ToList();
+            //userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive== false).ToList();
             return userList;
         }
         public List<NGOUser> GetAllUserBlocked()
@@ -40,7 +40,7 @@ namespace CommonWeal.NGOWeb
         {
             List<RegisteredUser> userList = new List<RegisteredUser>();
             // userList = context.RegisteredUsers.ToList();
-            userList = context.RegisteredUsers.Include(x => x.UserLogin).Where(w => w.UserLogin.IsActive == true).ToList();
+            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true).ToList();
             return userList;
         }
         private string GenerateRandomPassword(int length)

@@ -25,12 +25,12 @@ namespace CommonWeal.NGOWeb
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
-        public DbSet<RoleType> RoleTypes { get; set; }
-        public DbSet<UserLogin> UserLogins { get; set; }
         public DbSet<NGOPost> NGOPosts { get; set; }
         public DbSet<NGOPostDetail> NGOPostDetails { get; set; }
         public DbSet<NGOUser> NGOUsers { get; set; }
+        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
+        public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Test> Tests { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }

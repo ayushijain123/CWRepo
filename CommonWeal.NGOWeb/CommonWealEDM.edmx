@@ -12,13 +12,13 @@
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UserLogin" EntityType="CommonWealModel.Store.UserLogin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="CommonWealModel.Store.User" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.Store.FK_NGOUser_UserLogin">
-            <End Role="UserLogin" EntitySet="UserLogin" />
+            <End Role="User" EntitySet="User" />
             <End Role="NGOUser" EntitySet="NGOUser" />
           </AssociationSet>
           <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.Store.FK_RegisteredUser_UserLogin">
-            <End Role="UserLogin" EntitySet="UserLogin" />
+            <End Role="User" EntitySet="User" />
             <End Role="RegisteredUser" EntitySet="RegisteredUser" />
           </AssociationSet>
         </EntityContainer>
@@ -117,13 +117,13 @@
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Content" Type="varchar(max)" />
         </EntityType>
-        <EntityType Name="UserLogin">
+        <EntityType Name="User">
           <Key>
             <PropertyRef Name="LoginID" />
           </Key>
           <Property Name="LoginID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LoginPassword" Type="varchar" MaxLength="50" />
-          <Property Name="LoginUserType" Type="int" />
+          <Property Name="LoginUserType" Type="int" Nullable="false" />
           <Property Name="LoginEmailID" Type="varchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="IsBlock" Type="bit" Nullable="false" />
@@ -131,10 +131,10 @@
           <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
         <Association Name="FK_NGOUser_UserLogin">
-          <End Role="UserLogin" Type="CommonWealModel.Store.UserLogin" Multiplicity="0..1" />
+          <End Role="User" Type="CommonWealModel.Store.User" Multiplicity="0..1" />
           <End Role="NGOUser" Type="CommonWealModel.Store.NGOUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserLogin">
+            <Principal Role="User">
               <PropertyRef Name="LoginID" />
             </Principal>
             <Dependent Role="NGOUser">
@@ -143,10 +143,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RegisteredUser_UserLogin">
-          <End Role="UserLogin" Type="CommonWealModel.Store.UserLogin" Multiplicity="1" />
+          <End Role="User" Type="CommonWealModel.Store.User" Multiplicity="1" />
           <End Role="RegisteredUser" Type="CommonWealModel.Store.RegisteredUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="UserLogin">
+            <Principal Role="User">
               <PropertyRef Name="LoginID" />
             </Principal>
             <Dependent Role="RegisteredUser">
@@ -159,93 +159,22 @@
     <edmx:ConceptualModels>
       <Schema Namespace="CommonWealModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CommonWealEntities1" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
-          <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
-          <EntitySet Name="UserLogins" EntityType="CommonWealModel.UserLogin" />
-          <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
-            <End Role="UserLogin" EntitySet="UserLogins" />
-            <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserLogin__Login__34C8D9D1" Association="CommonWealModel.FK__UserLogin__Login__34C8D9D1">
-            <End Role="RoleType" EntitySet="RoleTypes" />
-            <End Role="UserLogin" EntitySet="UserLogins" />
-          </AssociationSet>
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
           <EntitySet Name="NGOPostDetails" EntityType="CommonWealModel.NGOPostDetail" />
           <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
+          <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
+          <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
+          <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
+          <EntitySet Name="Users" EntityType="CommonWealModel.User" />
           <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
-            <End Role="UserLogin" EntitySet="UserLogins" />
+            <End Role="User" EntitySet="Users" />
             <End Role="NGOUser" EntitySet="NGOUsers" />
           </AssociationSet>
-          <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
+          <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="RegisteredUser">
-          <Key>
-            <PropertyRef Name="UserID" />
-          </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="UserKey" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LoginID" Type="Int32" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="LoginUserType" Type="Int32" />
-          <NavigationProperty Name="UserLogin" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="UserLogin" />
-        </EntityType>
-        <EntityType Name="RoleType">
-          <Key>
-            <PropertyRef Name="RoleID" />
-          </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="UserLogins" Relationship="CommonWealModel.FK__UserLogin__Login__34C8D9D1" FromRole="RoleType" ToRole="UserLogin" />
-        </EntityType>
-        <EntityType Name="UserLogin">
-          <Key>
-            <PropertyRef Name="LoginID" />
-          </Key>
-          <Property Name="LoginID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginPassword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LoginUserType" Type="Int32" />
-          <Property Name="LoginEmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="UserLogin" ToRole="RegisteredUser" />
-          <NavigationProperty Name="RoleType" Relationship="CommonWealModel.FK__UserLogin__Login__34C8D9D1" FromRole="UserLogin" ToRole="RoleType" />
-          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="UserLogin" ToRole="NGOUser" />
-        </EntityType>
-        <Association Name="FK_RegisteredUser_UserLogin">
-          <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="1" />
-          <End Role="RegisteredUser" Type="CommonWealModel.RegisteredUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserLogin">
-              <PropertyRef Name="LoginID" />
-            </Principal>
-            <Dependent Role="RegisteredUser">
-              <PropertyRef Name="LoginID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserLogin__Login__34C8D9D1">
-          <End Role="RoleType" Type="CommonWealModel.RoleType" Multiplicity="0..1" />
-          <End Role="UserLogin" Type="CommonWealModel.UserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RoleType">
-              <PropertyRef Name="RoleID" />
-            </Principal>
-            <Dependent Role="UserLogin">
-              <PropertyRef Name="LoginUserType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="NGOPost">
           <Key>
             <PropertyRef Name="PostID" />
@@ -308,20 +237,34 @@
           <Property Type="Boolean" Name="IsBlock" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <NavigationProperty Name="UserLogin" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="UserLogin" />
+          <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
         </EntityType>
-        <Association Name="FK_NGOUser_UserLogin">
-          <End Type="CommonWealModel.UserLogin" Role="UserLogin" Multiplicity="0..1" />
-          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserLogin">
-              <PropertyRef Name="LoginID" />
-            </Principal>
-            <Dependent Role="NGOUser">
-              <PropertyRef Name="LoginID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="RegisteredUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginUserType" />
+          <Property Type="String" Name="UserKey" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <NavigationProperty Name="User" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RoleType">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Type="Int32" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+        </EntityType>
         <EntityType Name="Test">
           <Key>
             <PropertyRef Name="ID" />
@@ -329,53 +272,51 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Type="Int32" Name="LoginID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LoginPassword" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginUserType" Nullable="false" />
+          <Property Type="String" Name="LoginEmailID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
+          <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="User" ToRole="RegisteredUser" />
+        </EntityType>
+        <Association Name="FK_NGOUser_UserLogin">
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="NGOUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredUser_UserLogin">
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="1" />
+          <End Type="CommonWealModel.RegisteredUser" Role="RegisteredUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="RegisteredUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CommonWealModelStoreContainer" CdmEntityContainer="CommonWealEntities1">
-          <EntitySetMapping Name="RegisteredUsers">
-            <EntityTypeMapping TypeName="CommonWealModel.RegisteredUser">
-              <MappingFragment StoreEntitySet="RegisteredUser">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoleTypes">
-            <EntityTypeMapping TypeName="CommonWealModel.RoleType">
-              <MappingFragment StoreEntitySet="RoleType">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserLogins">
-            <EntityTypeMapping TypeName="CommonWealModel.UserLogin">
-              <MappingFragment StoreEntitySet="UserLogin">
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-                <ScalarProperty Name="LoginEmailID" ColumnName="LoginEmailID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="NGOPosts">
             <EntityTypeMapping TypeName="CommonWealModel.NGOPost">
               <MappingFragment StoreEntitySet="NGOPost">
@@ -442,11 +383,52 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RegisteredUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.RegisteredUser">
+              <MappingFragment StoreEntitySet="RegisteredUser">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleTypes">
+            <EntityTypeMapping TypeName="CommonWealModel.RoleType">
+              <MappingFragment StoreEntitySet="RoleType">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Tests">
             <EntityTypeMapping TypeName="CommonWealModel.Test">
               <MappingFragment StoreEntitySet="Test">
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CommonWealModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LoginEmailID" ColumnName="LoginEmailID" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

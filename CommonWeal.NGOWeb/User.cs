@@ -12,11 +12,24 @@ namespace CommonWeal.NGOWeb
     using System;
     using System.Collections.Generic;
     
-    public partial class RoleType
+    public partial class User
     {
-        public int RoleID { get; set; }
-        public string RoleName { get; set; }
+        public User()
+        {
+            this.NGOUsers = new HashSet<NGOUser>();
+            this.RegisteredUsers = new HashSet<RegisteredUser>();
+        }
+    
+        public int LoginID { get; set; }
+        public string LoginPassword { get; set; }
+        public int LoginUserType { get; set; }
+        public string LoginEmailID { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsBlock { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+    
+        public virtual ICollection<NGOUser> NGOUsers { get; set; }
+        public virtual ICollection<RegisteredUser> RegisteredUsers { get; set; }
     }
 }

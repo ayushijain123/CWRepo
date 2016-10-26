@@ -207,6 +207,7 @@
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="RegisteredUser.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
@@ -216,7 +217,7 @@
     <Compile Include="Test.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserLogin.cs">
+    <Compile Include="User.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -354,6 +355,7 @@
     <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
