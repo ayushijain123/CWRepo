@@ -1,5 +1,4 @@
-﻿using CommonWeal.NGOWeb;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 
 
@@ -27,17 +26,18 @@ namespace CommonWeal.NGOWeb.Controllers
             }
             else if (result.LoginEmailID != null && result.LoginPassword != null)
             {
-                
+
                 if (result.LoginEmailID == obj.LoginEmailID && result.LoginPassword == obj.LoginPassword)
                 {
                     if (result.IsActive == true && result.IsBlock == false)
                     {
-                        if (result.LoginUserType == 2 && obj.LoginEmailID=="admin@gmail.com"&&obj.LoginPassword=="admin")
+                        if (result.LoginUserType == 2 && obj.LoginEmailID == "admin@gmail.com" && obj.LoginPassword == "admin")
                         {
+                            TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
                             return RedirectToAction("Index", "Admin");
                         }
                         //Edited by abhijeet on 24/10/2016
-                        if (result.LoginUserType==3)
+                        if (result.LoginUserType == 3)
                         { //login for ngo and user
                             return RedirectToAction("Index", "welcome");
                         }
@@ -61,9 +61,9 @@ namespace CommonWeal.NGOWeb.Controllers
                 }
                 else
                 {
-                    Response.Write("<script>alert('Incorrect email or password'</script>)");
+                    TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
                 }
-               
+
             }
 
             return View();
