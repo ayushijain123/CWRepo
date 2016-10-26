@@ -55,10 +55,10 @@
   
 }
 
-.carousel-inner > .item > img, .carousel-inner > .item > a > img {
-    width: 100%;
-    height: 560px;
-}
+/*.carousel-inner > .item > img, .carousel-inner > .item > a > img {
+    width: 600px;
+    height: 400px;
+}*/
 /*AboutUs css*/
 .about-us-details > p {
     font-size: 30px;
