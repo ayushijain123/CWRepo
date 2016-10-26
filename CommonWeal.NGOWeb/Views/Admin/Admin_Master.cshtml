@@ -9,26 +9,30 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href="~/Content/Admin.css" rel="stylesheet" />
     <script src="~/Scripts/Admin_Script.js"></script>
-      @Scripts.Render("~/bundles/modernizr")
-</head>
+    @Scripts.Render("~/bundles/modernizr")
+
     <style>
-    table {
-    border-collapse: collapse;
-    width: 100%;
-}
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
 
-tr:nth-child(even){background-color: #f2f2f2}
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+
 <body>
     <div class="container-fluid">
         <div class="header">
@@ -56,7 +60,7 @@ th {
                                         Home <span class="caret"></span></a>
                                     <ul class="dropdown-menu users-menu" role="menu">
                                         <li><a href="/Admin/Index">Admin Home</a></li>
-                                        <li><a href="#">Users Home</a></li>
+                                        <li><a href="/Register/Index">Users Home</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown user-dropdown">
@@ -89,9 +93,6 @@ th {
     <div class="container">
         @RenderBody()
     </div>
-     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
 </body>
 </html>
 

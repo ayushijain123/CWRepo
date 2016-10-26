@@ -4,21 +4,23 @@
 }
 <style>
     table {
-    border-collapse: collapse;
-    width: 100%;
-}
+        border-collapse: collapse;
+        width: 100%;
+    }
 
-th, td {
-    text-align: left;
-    padding: 8px;
-}
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
 
-tr:nth-child(even){background-color: #f2f2f2}
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-th {
-    background-color: #4CAF50;
-    color: white;
-}
+    th {
+        background-color: #4CAF50;
+        color: white;
+    }
 </style>
 <div class="col-md-10 pull-right">
     <div class="row">
@@ -26,30 +28,30 @@ th {
             <div class="total-request col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-top">
-                       <a href="admin/requests"> <span class="glyphicon glyphicon-hand-up"></span>
-                        Total Requests</a>
+                        <a href="/Admin/Requests"><span class="glyphicon glyphicon-hand-up"></span>
+                            Total Requests</a>
                     </div>
-                    <div class="panel-text"><a href="#">30</a></div>
+                    <div class="panel-text"><a href="/Admin/Requests">30</a></div>
                 </div>
             </div>
 
             <div class="active-users col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-top">
-                        <a href="#"><span class="glyphicon glyphicon-user"></span>
-                        Active Users</a>
+                        <a href="/Admin/Active_Users"><span class="glyphicon glyphicon-user"></span>
+                            Active Users</a>
                     </div>
-                    <div class="panel-text"><a href="#">15</a></div>
+                    <div class="panel-text"><a href="/Admin/Active_Users">15</a></div>
                 </div>
             </div>
 
             <div class="blocked-users col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-top">
-                        <a href="#"><span class="glyphicon glyphicon-ban-circle"></span>
-                        Blocked Users</a>
+                        <a href="/Admin/Blocked_Users"><span class="glyphicon glyphicon-ban-circle"></span>
+                            Blocked Users</a>
                     </div>
-                    <div class="panel-text"><a href="#">5</a></div>
+                    <div class="panel-text"><a href="/Admin/Blocked_Users">5</a></div>
                 </div>
             </div>
         </div>
