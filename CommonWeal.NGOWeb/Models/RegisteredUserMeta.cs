@@ -34,8 +34,15 @@ namespace CommonWeal.NGOWeb.Models
         //[UniqueEmail]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
         public string UserEmail { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password should be minimum 8 characters with uppercase lowercase and special character")]
+        [DataType(DataType.Password)]
+        [Display(Name = "UserPassword")]
         public string UserPassword { get; set; }
+        [Required(ErrorMessage = "Password and Confirm Password does not match")]
+        [DataType(DataType.Password)]
+        [Display(Name = "CnfrmPassword")]
+        [Compare("UserPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        public string CnfrmPassword { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets allowed")]
         [StringLength(50)]
