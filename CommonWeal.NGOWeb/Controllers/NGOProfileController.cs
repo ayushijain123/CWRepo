@@ -14,7 +14,7 @@ namespace CommonWeal.NGOWeb.Controllers
             CommonWealEntities1 obj=new CommonWealEntities1();
             //UserLogin UL = new UserLogin();
             var CountOfRequests=obj.UserLogins.Where(w=>w.IsActive==false&& w.IsBlock==false); 
-            ViewBag["CountOfRequests"]=CountOfRequests;
+          //  ViewBag["CountOfRequests"]=CountOfRequests;
             return View();
         }
         public ActionResult AboutUs()
