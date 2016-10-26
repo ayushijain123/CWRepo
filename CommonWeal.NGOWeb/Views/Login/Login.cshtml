@@ -16,6 +16,7 @@
     @*    <script src="~/Bootstrap/js/bootstrap.js"></script>
     <script src="~/Bootstrap/js/bootstrap.min.js"></script>*@
 </head>
+@Html.Raw(TempData["msg"])
 <body>
     <div id="main">
         <div class="panel panel-default">
@@ -49,7 +50,8 @@
                          
                             <center><button type="submit" class="btn btn-primary" onclick="">Login</button></center><br />
                             <br />
-                            <a id="forgatpassword" href="/Reset/">Forgot Password</a><br />
+                           @* <a id="forgatpassword" href="~Password">Forgot Password</a><br />*@
+                            <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password</a><br/>
                           
                         </div>
                     </form>
