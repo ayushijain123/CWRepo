@@ -15,19 +15,10 @@
         <div class="logo1">
             COMMONWEAL
         </div>
-       <nav>
-            <ul id="menu">
-                <li><a href="@Url.Action("Index", "Home")" class="glyphicon glyphicon-home" title="Home"></a><li>
-                    <li><a href="@Url.Action("login", "Login")" class="fa fa-sign-in" title="Sign In"></a><li>
-                         <li><a href="@Url.Action("CreateNGO", "ngoRegistration")" class="fa fa-group" title="Sign up as NGO"></a><li>
-                               <li><a href="@Url.Action("CreateUserPost", "userRegistration")" class="fa fa-user-plus" title="Sign up as User"></a><li>
-                
-              
-               
-                
-
-            </ul>
-        </nav>
+       <section>
+         @Html.Partial("_LoginPartial")
+      </section>
+       
     </header>
 
     <div id="body" class="container">

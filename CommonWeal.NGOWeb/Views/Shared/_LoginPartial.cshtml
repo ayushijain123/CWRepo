@@ -1,14 +1,36 @@
-﻿@if (Request.IsAuthenticated) {
-    <text>
-        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
-        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" })) {
-            @Html.AntiForgeryToken()
-            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
-        }
-    </text>
-} else {
-    <ul>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+﻿<div class="form-inline">
+    <nav>
+        <input type="text" class="form-control" id="search" placeholder="Search" name="q">
+
+        <button class="btn btn-default" id="searchbtn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+
+        <ul id="menu">
+
+            @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                
+                <li><a href="@Url.Action("Index", "Register")" class="fa fa-home" title="Home"></a></li>
+                 <li><a href="@Url.Action("Index", "Register")" class="fa fa-user" title="Home"></a></li>
+                <li><a href="@Url.Action("LogOut", "Register")" class="fa fa-bell" title="Home"></a></li> 
+                
+                
+                if (User.IsInRole("Admin"))
+                {
+                    
+                }
+                
+                
+                
+            }
+            else
+            {
+       
+                <li><a href="@Url.Action("Index", "Home")" class="fa fa-home" title="Home"></a></li>
+                <li><a href="@Url.Action("login", "Login")" class="fa fa-sign-in" title="Sign In"></a></li>
+                <li><a href="@Url.Action("CreateNGO", "ngoRegistration")" class="fa fa-group" title="Sign up as NGO"></a></li>
+                <li><a href="@Url.Action("CreateUserPost", "userRegistration")" class="fa fa-user-plus" title="Sign up as User"></a></li>
+            }
+
+        </ul>
+    </nav>
+</div>
