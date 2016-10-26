@@ -51,29 +51,46 @@ namespace CommonWeal.NGOWeb.Controllers
         //}
         [HttpPost]
         public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)
-        {
+        {CommonWealEntities1 db = new CommonWealEntities1();
+            if (file != null)
+            {
 
-            CommonWealEntities1 db = new CommonWealEntities1();
-            string ImageName = System.IO.Path.GetFileName(file.FileName);
-            string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
+                
+                string ImageName = System.IO.Path.GetFileName(file.FileName);
+                string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
 
-            // save image in folder
-            file.SaveAs(physicalPath);
+                // save image in folder
+                file.SaveAs(physicalPath);
 
-            //save new record in database
-
-
-            obpost.PostUrl = "/Images/Post/" + ImageName;
-            obpost.PostType = "Image";
-            obpost.PostDateTime = DateTime.Now;
-            obpost.ModifiedOn = DateTime.Now;
-            obpost.CreatedOn = DateTime.Now;
-
-            db.NGOPosts.Add(obpost);
-            db.SaveChanges();
+                //save new record in database
 
 
+                obpost.PostUrl = "/Images/Post/" + ImageName;
+                obpost.PostType = "Image";
+                obpost.PostDateTime = DateTime.Now;
+                obpost.ModifiedOn = DateTime.Now;
+                obpost.CreatedOn = DateTime.Now;
+
+                db.NGOPosts.Add(obpost);
+                db.SaveChanges();
+
+            }else if(obpost.PostContent!=null){
+               
+                obpost.PostType = "Text";
+                obpost.PostDateTime = DateTime.Now;
+                obpost.ModifiedOn = DateTime.Now;
+                obpost.CreatedOn = DateTime.Now;
+                db.NGOPosts.Add(obpost);
+                db.SaveChanges();
+            
+            
+            }
+           
             return RedirectToAction("Index", "Register");
+            
+
+
+           
 
         }
         //[HttpPost]
