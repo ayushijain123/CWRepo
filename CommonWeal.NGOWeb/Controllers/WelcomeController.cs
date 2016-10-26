@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
+    [Authorize]
     public class WelcomeController : Controller
     {
         //

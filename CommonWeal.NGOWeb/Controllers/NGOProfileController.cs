@@ -7,13 +7,15 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
+    [Authorize]
+    //[Authorize(Roles = "NGOAdmin")]
     public class NGOProfileController : Controller
     {
         public ActionResult Index()
         {
             CommonWealEntities1 obj=new CommonWealEntities1();
-            //UserLogin UL = new UserLogin();
-            var CountOfRequests=obj.UserLogins.Where(w=>w.IsActive==false&& w.IsBlock==false); 
+            //User UL = new User();
+            var CountOfRequests=obj.Users.Where(w=>w.IsActive==false&& w.IsBlock==false); 
           //  ViewBag["CountOfRequests"]=CountOfRequests;
             return View();
         }

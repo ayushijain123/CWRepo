@@ -15,10 +15,12 @@ namespace CommonWeal.NGOWeb.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
             return View();
         }
+
 
         //[HttpPost]
         public ActionResult ConfirmPassword(string UserEmail)
@@ -62,7 +64,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
                 ob.UserPassword = NewPassword;
                 var LoginId = ob.LoginID;
-                var Pooja = context.UserLogins.Where(w => w.LoginID == LoginId).FirstOrDefault();
+                var Pooja = context.Users.Where(w => w.LoginID == LoginId).FirstOrDefault();
                 Pooja.LoginPassword = NewPassword;
                 context.SaveChanges();
                 //Session["FinalEmail"] = null;

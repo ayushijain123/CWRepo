@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
+    [Authorize]
     public class ngoRegistrationController : Controller
     {
         //
@@ -44,7 +45,7 @@ namespace CommonWeal.NGOWeb.Controllers
                     objngoMeta.RegistrationProof = "/Album/RegistrationID/" + pic;
                     objngo.RegistrationProof = objngoMeta.RegistrationProof;
                 }
-                UserLogin obj = new UserLogin();
+                User obj = new User();
                 obj.LoginPassword = objngo.NGOPassword;
                 obj.LoginEmailID = objngo.NGOEmailID;
                 var roleobj = context.RoleTypes.Where(w => w.RoleName == "NGO").FirstOrDefault();
@@ -53,7 +54,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 obj.IsBlock = false;
                 obj.ModifiedOn = DateTime.Now;
                 obj.CreatedOn = DateTime.Now;
-                context.UserLogins.Add(obj);
+                context.Users.Add(obj);
                 context.SaveChanges();
                 objngo.LoginID = obj.LoginID;
                 objngo.IsActive = false;

@@ -3,7 +3,8 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
-
+    //[Authorize(Roles = "Admin")]
+    [Authorize]
     public class AdminController : Controller
     {
         dbOperations obj = new dbOperations();
@@ -12,11 +13,11 @@ namespace CommonWeal.NGOWeb.Controllers
             CommonWealEntities1 obj = new CommonWealEntities1();
             var users = obj.NGOUsers;
             var CountOfRequests = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
-            ViewBag.COR= CountOfRequests;
+            ViewBag.COR = CountOfRequests;
             var CountOfActiveUsers = users.Where(w => w.IsActive == true && w.IsBlock == false).Count();
-            ViewBag.COAU= CountOfActiveUsers;
-            var CountOfBlockedUsers = users.Where(w => w.IsBlock==true).Count();
-            ViewBag.COBU= CountOfBlockedUsers;
+            ViewBag.COAU = CountOfActiveUsers;
+            var CountOfBlockedUsers = users.Where(w => w.IsBlock == true).Count();
+            ViewBag.COBU = CountOfBlockedUsers;
             return View();
 
         }
@@ -52,8 +53,8 @@ namespace CommonWeal.NGOWeb.Controllers
         public ActionResult Accept(int id)
         {
             CommonWealEntities1 context = new CommonWealEntities1();
-            //UserLogin UL = new UserLogin ();
-            var ob = context.UserLogins.Where(w => w.LoginID == id).FirstOrDefault();
+            //User UL = new User ();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = true;
             context.SaveChanges();
             var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
@@ -67,8 +68,8 @@ namespace CommonWeal.NGOWeb.Controllers
 
 
             CommonWealEntities1 context = new CommonWealEntities1();
-            UserLogin UL = new UserLogin();
-            var ob = context.UserLogins.Where(w => w.LoginID == id).FirstOrDefault();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = false;
             ob.IsBlock = true;
             context.SaveChanges();
@@ -83,8 +84,8 @@ namespace CommonWeal.NGOWeb.Controllers
 
 
             CommonWealEntities1 context = new CommonWealEntities1();
-            UserLogin UL = new UserLogin();
-            var ob = context.UserLogins.Where(w => w.LoginID == id).FirstOrDefault();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = true;
             ob.IsBlock = false;
             var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
