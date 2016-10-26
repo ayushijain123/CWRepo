@@ -1,5 +1,4 @@
-﻿using CommonWeal.NGOWeb;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CommonWeal.NGOWeb.Models
@@ -34,32 +33,42 @@ namespace CommonWeal.NGOWeb.Models
         //[UniqueEmail]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
         public string UserEmail { get; set; }
+
+
         [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password should be minimum 8 characters with uppercase lowercase and special character")]
         [DataType(DataType.Password)]
         [Display(Name = "UserPassword")]
         public string UserPassword { get; set; }
+
         [Required(ErrorMessage = "Password and Confirm Password does not match")]
         [DataType(DataType.Password)]
         [Display(Name = "CnfrmPassword")]
         [Compare("UserPassword", ErrorMessage = "The password and confirmation password do not match.")]
         public string CnfrmPassword { get; set; }
+
         [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets allowed")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
         [StringLength(50)]
         public string FirstName { get; set; }
+
         [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "only alphabets allowed")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
         [StringLength(50)]
         public string LastName { get; set; }
+
         public string UserKey { get; set; }
+
         [Required(ErrorMessage = "This field is required")]
-        [RegularExpression(@"^\(?([7-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Invalid Phone number")]
+        //[RegularExpression(@"^((0091)|(\+91)|0?)[789]{1}\d{9}$", ErrorMessage = "Invalid Phone number")]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Enter 10 digit Number only")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Enter Numbers only")]
         public string Mobile { get; set; }
+
         //public int LoginID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
 
-        public virtual UserLogin UserLogin { get; set; }
+        public virtual User UserLogin { get; set; }
 
 
     }
