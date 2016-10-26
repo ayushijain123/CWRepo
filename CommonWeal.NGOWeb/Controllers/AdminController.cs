@@ -3,6 +3,7 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
+
     public class AdminController : Controller
     {
         dbOperations obj = new dbOperations();
