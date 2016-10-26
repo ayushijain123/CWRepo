@@ -9,9 +9,9 @@
     border-collapse: collapse;
     width: 100%;
 }
-
-td, th {
-    border: 1px solid #dddddd;
+ th {
+    background-color:#008B8B;
+    ActiveBorder: 1px solid #009688;
     text-align: left;
     padding: 8px;
 }
@@ -65,8 +65,35 @@ tr:nth-child(even) {
             </div>
         </div>
     </div>
+     <div class="row">
+        <div class="col-md-12 ">
+            <div class="requests">
+            <table>
+                          <thead>
+                              <th>NGO NAME</th>
+                              <th>NGo Email</th>
+                              <th >NGO URL</th>
+                              <th >Action</th>
 
-    <div class="row">
+                          </thead>
+                      @foreach (var item in Model)
+                      { 
+                                           <tr>
+
+                              <td> @Html.DisplayFor(modelItem => item.NGOName)</td>
+                              <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                              <td><a>@Html.DisplayFor(modelItem => item.WebsiteUrl) </a><td>
+                              <a href="/admin/Accept/@item.LoginID"><button type="button" class="">Accept</button></a>
+                         </tr>
+                             
+
+                      }
+               </table>
+             
+            </div>
+        </div>
+    </div>
+   @* <div class="row">
         <div class="col-md-12">
             <div class="requests">
                   <table>
@@ -82,8 +109,7 @@ tr:nth-child(even) {
             
     
                 <td > <a href="/Admin/Accept/@item.LoginID"> <button type="button" class="btn btn-default accept">Accept</button></a> 
-                     @* <a href="/Admin/Block/@item.LoginID">  <button type="button" class="btn btn-default decline">Decline</button></a>*@
-
+                 
                 </td>
                     
               </tr>
@@ -93,5 +119,5 @@ tr:nth-child(even) {
                  
         </div>
     </div>
-</div>
+</div>*@
 
