@@ -35,7 +35,7 @@ namespace CommonWeal.NGOWeb.Models
         public string UserEmail { get; set; }
 
 
-        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password should be minimum 8 characters with uppercase lowercase and special character")]
+        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password Length should be minimum 8 characters with uppercase lowercase and special character")]
         [DataType(DataType.Password)]
         [Display(Name = "UserPassword")]
         public string UserPassword { get; set; }
@@ -43,7 +43,7 @@ namespace CommonWeal.NGOWeb.Models
         [Required(ErrorMessage = "Password and Confirm Password does not match")]
         [DataType(DataType.Password)]
         [Display(Name = "CnfrmPassword")]
-        [Compare("UserPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("UserPassword", ErrorMessage = "Password and Confirm Password does not match")]
         public string CnfrmPassword { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
