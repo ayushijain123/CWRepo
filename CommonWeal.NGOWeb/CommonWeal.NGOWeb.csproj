@@ -356,7 +356,9 @@
     <Content Include="Views\NGOProfile\_Layout.cshtml" />
     <Content Include="Views\NGOProfile\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Register\Setting.cshtml" />
+    <Content Include="Views\Shared\_Home.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
   </ItemGroup>
