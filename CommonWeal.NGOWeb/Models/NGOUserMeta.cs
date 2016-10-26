@@ -39,8 +39,18 @@ namespace CommonWeal.NGOWeb.Models
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
         [Required(ErrorMessage = "This field is required")]
         public string NGOEmailID { get; set; }
-        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password should be minimum 8 characters with uppercase lowercase and special character")]
+
+        [DataType(DataType.Password)]
+        [Display(Name = "NGOPassword")]
         public string NGOPassword { get; set; }
+
+
+        [DataType(DataType.Password)]
+        [Display(Name = "CnfrmPassword")]
+        [Compare("NGOPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        public string CnfrmPassword { get; set; }
+
         public Nullable<int> LoginID { get; set; }
         public string NGOKey { get; set; }
         public string NGOProfilePic { get; set; }
