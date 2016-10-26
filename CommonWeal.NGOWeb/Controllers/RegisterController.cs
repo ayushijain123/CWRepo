@@ -100,7 +100,14 @@ namespace CommonWeal.NGOWeb.Controllers
 
 
         //}
-     
 
+
+        public ActionResult LogOut()
+        {
+            System.Web.Security.FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
+
+        }
     }
 }
