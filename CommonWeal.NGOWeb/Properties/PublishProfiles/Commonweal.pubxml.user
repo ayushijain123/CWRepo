@@ -14,7 +14,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="bin/CommonWeal.NGOWeb.dll">
-      <publishTime>10/26/2016 11:26:46</publishTime>
+      <publishTime>10/26/2016 15:32:54</publishTime>
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
       <publishTime>10/26/2016 11:24:20</publishTime>
@@ -143,7 +143,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Content/Admin.css">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 15:32:31</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
       <publishTime>10/26/2016 11:24:20</publishTime>
@@ -158,10 +158,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Content/NGOProfile.css">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:48:48</publishTime>
     </File>
     <File Include="Content/Register.css">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:15:46</publishTime>
     </File>
     <File Include="Content/Site.css">
       <publishTime>10/26/2016 11:24:20</publishTime>
@@ -329,61 +329,70 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Scripts/NGOProfile.js">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:34:53</publishTime>
     </File>
     <File Include="Scripts/_references.js">
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Views/Admin/Active_Users.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:53:09</publishTime>
     </File>
     <File Include="Views/Admin/Admin.cshtml">
       <publishTime>10/21/2016 17:38:30</publishTime>
     </File>
     <File Include="Views/Admin/Admin_Master.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 15:23:17</publishTime>
     </File>
     <File Include="Views/Admin/Blocked_Users.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:53:09</publishTime>
     </File>
     <File Include="Views/Admin/Index.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 11:37:59</publishTime>
     </File>
     <File Include="Views/Admin/Requests.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:53:09</publishTime>
     </File>
     <File Include="Views/Admin/Settings.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 11:37:59</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Views/Login/Login.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:38:25</publishTime>
     </File>
     <File Include="Views/NGOProfile/AboutUs.cshtml">
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Views/NGOProfile/Album.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:52:52</publishTime>
     </File>
     <File Include="Views/NGOProfile/Index.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:31:30</publishTime>
     </File>
     <File Include="Views/NGOProfile/_Layout.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:46:29</publishTime>
     </File>
     <File Include="Views/NGOProfile/_ViewStart.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:47:59</publishTime>
     </File>
     <File Include="Views/ngoRegistration/CreateNgo.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:53:09</publishTime>
+    </File>
+    <File Include="Views/Password/ConfirmPassword.cshtml">
+      <publishTime>10/26/2016 14:53:09</publishTime>
+    </File>
+    <File Include="Views/Password/ForgotPassword.cshtml">
+      <publishTime>10/26/2016 14:53:09</publishTime>
     </File>
     <File Include="Views/Register/Index.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:45:20</publishTime>
+    </File>
+    <File Include="Views/Register/Setting.cshtml">
+      <publishTime>10/26/2016 13:57:02</publishTime>
     </File>
     <File Include="Views/Register/_ViewStart.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 14:45:21</publishTime>
     </File>
     <File Include="Views/Reset/Index.cshtml">
       <publishTime>10/26/2016 11:24:20</publishTime>
@@ -401,7 +410,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutPage1.cshtml">
-      <publishTime>10/26/2016 11:24:20</publishTime>
+      <publishTime>10/26/2016 13:57:02</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>10/26/2016 11:24:20</publishTime>
@@ -422,7 +431,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/26/2016 11:24:20</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/26/2016 11:26:46</publishTime>
+      <publishTime>10/26/2016 15:32:54</publishTime>
     </File>
   </ItemGroup>
 </Project>
