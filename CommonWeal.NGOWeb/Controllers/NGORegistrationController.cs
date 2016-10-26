@@ -7,8 +7,8 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
-    [Authorize]
-    public class ngoRegistrationController : Controller
+    [AllowAnonymous]
+    public class ngoRegistrationController : BaseController
     {
         //
         // GET: /ngoRegistration/

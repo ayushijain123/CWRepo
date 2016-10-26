@@ -3,9 +3,9 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
-    //[Authorize(Roles = "Admin")]
-    [Authorize]
-    public class AdminController : Controller
+    [Authorize(Roles = "Admin")]
+    //[Authorize]
+    public class AdminController : BaseController
     {
         dbOperations obj = new dbOperations();
         public ActionResult Index()

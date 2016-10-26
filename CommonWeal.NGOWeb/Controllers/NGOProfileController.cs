@@ -7,9 +7,9 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
-    [Authorize]
-    //[Authorize(Roles = "NGOAdmin")]
-    public class NGOProfileController : Controller
+    //[Authorize]
+     [Authorize(Roles = "NGOAdmin")]
+    public class NGOProfileController : BaseController
     {
         public ActionResult Index()
         {

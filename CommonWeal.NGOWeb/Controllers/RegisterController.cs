@@ -6,7 +6,8 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
-    public class RegisterController : Controller
+    [Authorize]
+    public class RegisterController : BaseController
     {
         //
         // GET: /Register/
@@ -15,6 +16,16 @@ namespace CommonWeal.NGOWeb.Controllers
         {
             CommonWealEntities1 db = new CommonWealEntities1();
             var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
+
+
+            var s = (from p in db.NGOPosts
+                     join u in db.Users on p.EmailID equals u.LoginEmailID
+                     into up
+                     select up).ToList();
+
+
+
+
 
             return View(ngopost);
         }
@@ -51,11 +62,12 @@ namespace CommonWeal.NGOWeb.Controllers
         //}
         [HttpPost]
         public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)
-        {CommonWealEntities1 db = new CommonWealEntities1();
+        {
+            CommonWealEntities1 db = new CommonWealEntities1();
             if (file != null)
             {
 
-                
+
                 string ImageName = System.IO.Path.GetFileName(file.FileName);
                 string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
 
@@ -71,26 +83,31 @@ namespace CommonWeal.NGOWeb.Controllers
                 obpost.ModifiedOn = DateTime.Now;
                 obpost.CreatedOn = DateTime.Now;
 
+                obpost.EmailID = this.User.Identity.Name;
+
+
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
 
-            }else if(obpost.PostContent!=null){
-               
+            }
+            else if (obpost.PostContent != null)
+            {
+
                 obpost.PostType = "Text";
                 obpost.PostDateTime = DateTime.Now;
                 obpost.ModifiedOn = DateTime.Now;
                 obpost.CreatedOn = DateTime.Now;
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
-            
-            
+
+
             }
-           
+
             return RedirectToAction("Index", "Register");
-            
 
 
-           
+
+
 
         }
         //[HttpPost]

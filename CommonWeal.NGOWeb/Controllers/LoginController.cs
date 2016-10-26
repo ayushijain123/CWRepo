@@ -38,30 +38,31 @@ namespace CommonWeal.NGOWeb.Controllers
                 {
                     if (result.IsActive == true && result.IsBlock == false)
                     {
-                        string roles = "";
+
                         string controllerName = "";
 
-                        if (result.LoginUserType == (int)Helper.UserType.Admin)
-                        {                            
-                            roles = "Admin";
-                            controllerName = "Admin";
 
-                        }
-                        //Edited by abhijeet on 24/10/2016
-                        if (result.LoginUserType == (int)Helper.UserType.User)
-                        { //login for ngo and user
-                            roles = "User";
-                            controllerName = "welcome";
+                        Helper.UserType usertype = (Helper.UserType)result.LoginUserType;
 
-                        }
-                        if (result.LoginUserType == (int)Helper.UserType.NGOAdmin)
+                        string roles = usertype.ToString();
+                        switch (usertype)
                         {
-                            Session["UserID"] = result.LoginID;
-                            roles = "NGOAdmin";
-                            controllerName = "NGOProfile";
+                            case Helper.UserType.NGOAdmin:
+                                controllerName = "NGOProfile";
+                                break;
+                            case Helper.UserType.Admin:
+                                controllerName = "Admin";
 
-
+                                break;
+                            case Helper.UserType.User:
+                                controllerName = "Register";
+                                break;
+                            default:
+                                break;
                         }
+
+
+
 
                         //Authenticated user
 
