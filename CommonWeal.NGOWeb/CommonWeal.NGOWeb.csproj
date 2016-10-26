@@ -234,7 +234,6 @@
     <Content Include="Content\Commonweal.css" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\NGOProfile.css" />
-    <Content Include="Content\Register.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="bootstrap\css\bootstrap-theme.css.map" />
@@ -346,18 +345,12 @@
     <Content Include="Views\Admin\Settings.cshtml" />
     <Content Include="Views\Admin\Admin_Master.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
-    <Content Include="Views\Register\_ViewStart.cshtml" />
     <Content Include="Views\userRegistration\CreateUserPost.cshtml" />
-    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\NGOProfile\AboutUs.cshtml" />
     <Content Include="Views\NGOProfile\Album.cshtml" />
     <Content Include="Views\NGOProfile\Index.cshtml" />
-    <Content Include="Views\NGOProfile\_Layout.cshtml" />
-    <Content Include="Views\NGOProfile\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Shared\_Home.cshtml" />
-    <Content Include="Views\Home\_ViewStart.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
