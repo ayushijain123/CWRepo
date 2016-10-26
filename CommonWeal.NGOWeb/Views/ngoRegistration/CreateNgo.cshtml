@@ -238,6 +238,13 @@
                             @Html.ValidationMessageFor(a => a.NGOPassword)
                         </div>
                     </div>
+                    <div class="form-group">
+                            <label class="control-label col-xs-4" for="pwd">Confirm Password:*</label>
+                            <div class="col-xs-6">
+                                @Html.PasswordFor(a => a.CnfrmPassword, new { placeholder="Confirm Password" })
+                                 @Html.ValidationMessageFor(a => a.CnfrmPassword)
+                            </div>
+                        </div>
                    @* <div class="form-group">
 
                         <label class="control-label col-xs-4" for="rpwd">Confirm Password:*</label>
