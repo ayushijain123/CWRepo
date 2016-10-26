@@ -1,21 +1,19 @@
-﻿
-
-<div class="container">
+﻿<div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12" style="text-align: center;">
             <div class="image panel-default">
-                <img src="~/Images/images1.jpg " width="1140" height="500" />
+                <img src="~/Images/images1.jpg " width="1000" height="400" />
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default" style="width: 1000px; left: 55px;">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/NGOProfile/Index/">Timeline</a></li>
                     <li><a href="/Welcome/Index/">About Us</a></li>
                     <li><a href="/NGOProfile/Album/">Album</a></li>
-                   @* <li><a href="#">Messages</a></li>*@
+                    @* <li><a href="#">Messages</a></li>*@
                     <li><a href="/NGOProfile/AboutUs/">Details</a></li>
                 </ul>
             </nav>
@@ -23,7 +21,34 @@
     </div>
     <div class="row">
         <div class="col-md-10">
-            <div class="post panel-default">
+
+            <form method="post" action="/Register/PostImage" enctype="multipart/form-data" style="background-color: #e9eff1; padding-top: 5px; padding-right: 5px; padding-bottom: 25px; padding-left: 5px;">
+                <div class="form-inline">
+
+                    <a href="#" class="btn btn-primary btn-lg" style="height: 40px; width: 60px">
+                        <span class="glyphicon glyphicon-paperclip" onclick="fileclick(); return false;"></span>
+                    </a>
+                    <span>Upload images/videos</span>
+                    <input type="file" id="file" name="file" data-badge="false" style="display: none" />
+
+                </div>
+                <div class="form-horizontal">
+
+                    <div>
+
+                        @Html.TextArea("PostContent", null, new { @class = "form-control", placeholder = "Write message for post" })
+                    </div>
+
+                    <div id="menu" style="float: right;">
+                        <input type="submit" class="btn-primary" id="post" value="Post" style="width: 70px; height: 25px; text-align: center; padding-top: 0;" />
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*   <div class="post panel-default">
                 <div class="panel-header">
                     <ul class="list-inline">
                         <li>
@@ -41,7 +66,4 @@
                 <div class="panel-footer">
                     <button type="button" value="">Post</button>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            </div>*@
