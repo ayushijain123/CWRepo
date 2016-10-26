@@ -178,8 +178,7 @@
             @foreach (var item in Model)
             { 
                 
-              
-                <div style="background-color: lightgray;" id="postuserdetail">
+              <div style="background-color: lightgray;" id="postuserdetail">
                     <div class="form-inline">
                         <img src="~/Images/orderedList3.png"/>
                         <a href="#">Ayushi Jain</a>
@@ -194,7 +193,13 @@
                 </div>
 @*  <div class="form-group">*@
                 <div id="image/video">
-                    <img src="@item.PostUrl" style="height: 500px; width: 800px;" />
+                    @if(item.PostUrl!=null){
+                        
+                            <img src="@item.PostUrl" style="height: 500px; width: 800px;" />
+                    
+                    
+                    }
+                
 
 
 
