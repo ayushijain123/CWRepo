@@ -50,8 +50,16 @@ body {
     margin-left: 227px;
 
 }*/
+nav {
+    float: right;
+}
+#search {
+    width: 520px;
+}
 
-
+#searchbtn {
+    margin-right: 350px;
+}
 
 a {
     color: #333;
@@ -273,12 +281,11 @@ color:red;
 /* menu
 ----------------------------------------------------------*/
 ul#menu {
-    font-size: 1.6em;
+    font-size: 1.8em;
     font-weight: 600;
     margin: 0 0 5px;
-    padding: 0;
-    text-align: right;
-    margin-right:20px;
+    padding-right: 15px;
+    float: right;
 }
 
     ul#menu li {
@@ -289,15 +296,14 @@ ul#menu {
 
         ul#menu li a {
             background: none;
-            color: azure;
+            color: white;
             text-decoration: none;
         }
 
-        ul#menu li a:hover {
-            color: #333;
-            text-decoration: none;
-        }
-
+            ul#menu li a:hover {
+                color: #333;
+                text-decoration: none;
+            }
 
 /* page elements
 ----------------------------------------------------------*/
