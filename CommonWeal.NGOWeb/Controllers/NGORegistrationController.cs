@@ -60,6 +60,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 objngo.IsBlock = false;
                 context.NGOUsers.Add(objngo);
                 context.SaveChanges();
+                TempData["msg"] = ("<script>alert('Registered successfully');</script>");
             }
             if (!ModelState.IsValid)
             {
