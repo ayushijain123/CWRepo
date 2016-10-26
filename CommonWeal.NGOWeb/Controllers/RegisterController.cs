@@ -83,9 +83,7 @@ namespace CommonWeal.NGOWeb.Controllers
 
 
         //}
-        public ActionResult Setting() {
-            return View();
-        }
+     
 
     }
 }
