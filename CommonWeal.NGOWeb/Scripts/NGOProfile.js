@@ -21,3 +21,10 @@
         $('#carousel-text').html($('#slide-content-' + id).html());
     });
 });
+
+
+//Upload button script
+function fileclick() {
+    $("#file").click();
+
+}
