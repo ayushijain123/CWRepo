@@ -15,7 +15,7 @@ namespace CommonWeal.NGOWeb.Controllers
             ViewBag.COR= CountOfRequests;
             var CountOfActiveUsers = users.Where(w => w.IsActive == true && w.IsBlock == false).Count();
             ViewBag.COAU= CountOfActiveUsers;
-            var CountOfBlockedUsers = users.Where(w => w.IsActive == true && w.IsBlock == true).Count();
+            var CountOfBlockedUsers = users.Where(w => w.IsBlock==true).Count();
             ViewBag.COBU= CountOfBlockedUsers;
             return View();
 
