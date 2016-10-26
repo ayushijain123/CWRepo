@@ -14,19 +14,18 @@ namespace CommonWeal.NGOWeb
     
     public partial class RegisteredUser
     {
-        
         public int UserID { get; set; }
         public string UserEmail { get; set; }
         public string UserPassword { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public Nullable<int> LoginUserType { get; set; }
         public string UserKey { get; set; }
         public string Mobile { get; set; }
         public int LoginID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-        public Nullable<int> LoginUserType { get; set; }
     
-        public virtual UserLogin UserLogin { get; set; }
+        public virtual User User { get; set; }
     }
 }
