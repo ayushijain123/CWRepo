@@ -354,6 +354,7 @@
     <Content Include="Views\NGOProfile\_Layout.cshtml" />
     <Content Include="Views\NGOProfile\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Register\Setting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
