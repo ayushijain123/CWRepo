@@ -3,24 +3,21 @@
     Layout = "~/Views/Admin/Admin_Master.cshtml";
 }
 <style>
-    table {
+   table {
+    font-family: arial, sans-serif;
         border-collapse: collapse;
         width: 100%;
     }
 
-    th, td {
-        text-align: left;
-        padding: 8px;
-    }
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
 
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    th {
-        background-color: #4CAF50;
-        color: white;
-    }
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 </style>
 <div class="col-md-10 pull-right">
     <div class="row">
@@ -31,7 +28,7 @@
                         <a href="/Admin/Requests"><span class="glyphicon glyphicon-hand-up"></span>
                             Total Requests</a>
                     </div>
-                    <div class="panel-text"><a href="/Admin/Requests">30</a></div>
+                    <div class="panel-text"><a href="#">@ViewBag.COR</a></div>
                 </div>
             </div>
 
@@ -41,7 +38,7 @@
                         <a href="/Admin/Active_Users"><span class="glyphicon glyphicon-user"></span>
                             Active Users</a>
                     </div>
-                    <div class="panel-text"><a href="/Admin/Active_Users">15</a></div>
+                    <div class="panel-text"><a href="#">@ViewBag.COAU</a></div>
                 </div>
             </div>
 
@@ -51,7 +48,7 @@
                         <a href="/Admin/Blocked_Users"><span class="glyphicon glyphicon-ban-circle"></span>
                             Blocked Users</a>
                     </div>
-                    <div class="panel-text"><a href="/Admin/Blocked_Users">5</a></div>
+                    <div class="panel-text"><a href="#">@ViewBag.COBU</a></div>
                 </div>
             </div>
         </div>

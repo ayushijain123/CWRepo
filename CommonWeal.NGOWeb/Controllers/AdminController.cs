@@ -8,8 +8,16 @@ namespace CommonWeal.NGOWeb.Controllers
         dbOperations obj = new dbOperations();
         public ActionResult Index()
         {
-            
+            CommonWealEntities1 obj = new CommonWealEntities1();
+            var users = obj.NGOUsers;
+            var CountOfRequests = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
+            ViewBag.COR= CountOfRequests;
+            var CountOfActiveUsers = users.Where(w => w.IsActive == true && w.IsBlock == false).Count();
+            ViewBag.COAU= CountOfActiveUsers;
+            var CountOfBlockedUsers = users.Where(w => w.IsActive == true && w.IsBlock == true).Count();
+            ViewBag.COBU= CountOfBlockedUsers;
             return View();
+
         }
 
         public ActionResult Active_Users()

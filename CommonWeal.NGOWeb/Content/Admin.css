@@ -64,7 +64,7 @@ body {
 
 /*Side Nav CSS*/
 .navbar-fixed-left {
-    background-color: #42647F;
+    background-color: #e70909;
     width: 348px;
     position: fixed;
     border-radius: 0;
@@ -81,8 +81,10 @@ body {
     .navbar-fixed-left + .container {
         padding-left: 160px;
     }
-
-    /* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left {
+     background-color: #e60909;
+}
+     /* On using dropdown menu (To right shift popuped) */
     .navbar-fixed-left .navbar-nav > li > .dropdown-menu {
         margin-top: -50px;
         margin-left: 140px;
