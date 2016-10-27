@@ -13,7 +13,7 @@ namespace CommonWeal.NGOWeb.Controllers
 
     public class BaseController : Controller
     {
-        public User DBUser { get; set; }
+        public User LoggedInUser { get; set; }
         /// <summary>
         /// Fetch logged in user detail
         /// </summary>
@@ -23,7 +23,7 @@ namespace CommonWeal.NGOWeb.Controllers
             base.OnActionExecuting(filterContext);
 
             CommonWealEntities1 CWContext = new CommonWealEntities1();
-            this.DBUser = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
+            this.LoggedInUser = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
 
 
         }
