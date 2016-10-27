@@ -195,6 +195,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Models\LoginMeta.cs" />
     <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\Password.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Test.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="UserLogin.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
