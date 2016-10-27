@@ -26,12 +26,13 @@
                 var TextComment = $("#txtComment-" + postid).val();
 
                 if (TextComment != "") {
-
+                    //var dt = new Date($.now());
+                    //var time = dt.getDate() + "-" + dt.getMonth() + "-" + dt.getYear() + "  " + dt.getHours() + ":" + dt.getMinutes() + ":" + dt.getSeconds();
                     $("#" + postid).append('<div class="form-group">'
                      + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">' +
                           '<img src="/Images/orderedList3.png"></img>' +
-                          '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>' +
-                          '<a href="#">@DateTime.Now.ToString()</a><br />' +
+                          '<a href="#"><span style="font-size: 16px;"><b>@this.User.Identity.Name</b></span></a>' +
+                          '<a href="#">' + new Date($.now()) + '</a><br />' +
                                 '<p style="margin-left: 55px;">' + TextComment + '</p>' +
                                 '<div class="form-inline" style="height: 30px; margin-left: 10px;">' +
                                     '<a href="#">Like</a>' +
@@ -85,7 +86,7 @@
                        + '  <div class="form-inline" style="border-bottom: ridge; width: 600px;">'
                              + '<img src="/Images/orderedList3.png"></img>'
  + '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'
-                             + '<a href="#">@DateTime.Now.ToString()</a><br />'
+                             + '<a href="#">'+new Date($.now())+'</a><br />'
                                  + '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'
                              + '<div class="form-inline" style="height: 30px; margin-left: 10px;">'
                                 + ' <a href="#">Like</a>'
@@ -97,7 +98,7 @@
                      + '<div class="form-group">'
                        + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">'
                             + ' <img src="/Images/orderedList3.png"></img>'
-                            + ' <a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'
+                            + ' <a href="#"><span style="font-size: 16px;"><b>ayushi jain </b></span></a>'
                             + ' <a href="#">@DateTime.Now.ToString()</a><br />'
                              + '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'
                              + '<div class="form-inline" style="height: 30px; margin-left: 10px;">'
@@ -181,7 +182,7 @@
               <div style="background-color: lightgray;" id="postuserdetail">
                     <div class="form-inline">
                         <img src="~/Images/orderedList3.png"/>
-                        <a href="#">Ayushi Jain</a>
+                        <a href="#">@item.EmailID</a>
                         <a href="#">@item.PostDateTime</a>
                     </div>
                 </div>
@@ -221,7 +222,7 @@
                         <div class="form-group">
                             <div class="form-inline" style="border-bottom: ridge; width: 600px;">
                                 <img src="~/Images/orderedList3.png"></img>
-                                <a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>
+                                <a href="#"><span style="font-size: 16px;"><b>@item.EmailID</b></span></a>
                                 <a href="#">@DateTime.Now.ToString()</a><br />
                                 <p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>
                                 <div class="form-inline" style="height: 30px; margin-left: 10px;">
