@@ -1,0 +1,29 @@
+﻿@model CommonWeal.NGOWeb.Models.Password
+
+@{
+    ViewBag.Title = "ConfirmOTP";
+}
+
+<h2>ConfirmOTP</h2>
+
+@using (Html.BeginForm("ConfirmPassword", "Password", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Password</legend>
+         @Html.Hidden("FinalEmail", Session["FinalEmail"])
+       @* @Html.ViewBag.code *@
+        @Html.Hidden("OTP", Session["OTP"])
+        
+      
+        @Html.TextBox("FinalOTP")
+        <p>
+            <input type="submit" value="Recover" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
