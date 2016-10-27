@@ -220,9 +220,6 @@
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
-    <Compile Include="UserLogin.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
