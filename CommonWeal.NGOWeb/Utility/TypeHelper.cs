@@ -20,6 +20,5 @@ namespace CommonWeal.NGOWeb
             State_Government,
             Central_Government
         }
-
     }
 }

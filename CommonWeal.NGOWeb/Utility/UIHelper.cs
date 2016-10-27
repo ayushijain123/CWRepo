@@ -12,18 +12,17 @@ namespace CommonWeal.NGOWeb.Utility
         public static List<SelectListItem> GetDropDownListFromEnum(Type enumType)
         {
 
-            //    if ( Type.GetType(enumType).IsAssignableFrom(enumType))
-            //{
+           // if (enumType.IsAssignableFrom(typeof(Enum)))
+            {
 
-            //}
-
-            IEnumerable<string> names = Enum.GetNames(enumType);
-            IEnumerable<int> values = Enum.GetValues(enumType).Cast<int>();
+                IEnumerable<string> names = Enum.GetNames(enumType);
+                IEnumerable<int> values = Enum.GetValues(enumType).Cast<int>();
 
 
+                return names.Zip(values, (name, value) => new SelectListItem() { Value = value.ToString(), Text = name.Replace("_", " ") }).ToList();
+            }
 
-            return names.Zip(values, (name, value) => new SelectListItem() { Value = value.ToString(), Text = name.Replace("_"," " )}).ToList();
-
+          //  return null;
 
         }
     }
