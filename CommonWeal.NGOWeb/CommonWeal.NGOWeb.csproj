@@ -180,16 +180,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CommonWealEDM.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\NGOProfileController.cs" />
-    <Compile Include="Controllers\NGORegistrationController.cs" />
-    <Compile Include="Controllers\PasswordController.cs" />
-    <Compile Include="Controllers\RegisterController.cs" />
-    <Compile Include="Controllers\UserRegistrationController.cs" />
-    <Compile Include="Controllers\WelcomeController.cs" />
+    <Compile Include="Controllers\Shared\LoginController.cs" />
+    <Compile Include="Controllers\NGO\NGOProfileController.cs" />
+    <Compile Include="Controllers\NGO\NGORegistrationController.cs" />
+    <Compile Include="Controllers\Shared\PasswordController.cs" />
+    <Compile Include="Controllers\AuthUser\UserHomeController.cs" />
+    <Compile Include="Controllers\AuthUser\UserRegistrationController.cs" />
+    <Compile Include="Controllers\Shared\WelcomeController.cs" />
     <Compile Include="dbOperations.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -219,7 +219,9 @@
     <Compile Include="Test.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
@@ -345,9 +347,8 @@
     <Content Include="Views\Admin\Blocked_Users.cshtml" />
     <Content Include="Views\Admin\Requests.cshtml" />
     <Content Include="Views\Admin\Settings.cshtml" />
-    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\UserHome\Index.cshtml" />
     <Content Include="Views\UserRegistration\CreateUserPost.cshtml" />
-    <Content Include="Views\Register\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\NGOProfile\AboutUs.cshtml" />
@@ -368,7 +369,6 @@
     <Folder Include="Album\ChairmanID\" />
     <Folder Include="Album\RegistrationID\" />
     <Folder Include="Content\themes\" />
-    <Folder Include="NgoImage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

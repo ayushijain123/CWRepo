@@ -1,0 +1,271 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.NGOPost>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="jquery-1.12.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //    $("#file").filestyle({ badge: false });
+
+            $(".btnPost").click(function () {
+                var postid = $(this).attr('id').split('-')[1];
+
+                var TextComment = $("#txtComment-" + postid).val();
+
+                if (TextComment != "") {
+
+                    $("#" + postid).append('<div class="form-group">'
+                     + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">' +
+                          '<img src="/Images/orderedList3.png"></img>' +
+                          '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>' +
+                          '<a href="#">@DateTime.Now.ToString()</a><br />' +
+                                '<p style="margin-left: 55px;">' + TextComment + '</p>' +
+                                '<div class="form-inline" style="height: 30px; margin-left: 10px;">' +
+                                    '<a href="#">Like</a>' +
+                                    '<a href="#">Reply</a>' +
+                                '</div>' +
+                            '</div>' +
+                        '</div>');
+
+                }
+                else {
+
+                    alert('hello ' + $("#TextComment").val());
+                }
+                //$("#newcomment").html('<div><img src="/Images/orderedList1.png"></img></div>');
+            });
+            //Script for post
+            $("#post").click(function () {
+
+                $("#newuploadpost").append('<div style="background-color: lightgray;" id="postuserdetail">'
+                    + '<div class="form-inline"><img src="/Images/orderedList3.png"></img>'
+                    + '<a href="#">Satish Patidar</a>'
+                    + ' <a href="#">@DateTime.Now.ToString()</a>'
+                 + '</div>'
+             + '</div>'
+           // Text for image*
+             + '<div name="Textmessage">'
+                + ' <div class="form-inline" style="height: 50px;">'
+ + '<p>welcome to NGO</p>'
+                + ' </div>'
+ + '</div>'
+
+            + ' <div id="image/video">'
+                + ' <img src="/images/Penguins.jpg" style="height: 500px; width: 600px;" />'
+
+
+
+              ///edited on 24/10/16
+
+                + ' <div style="background-color: lightgray">'
+                     + '<div class="form-inline" style="height: 30px;">'
+                         + '<a href="">Like</a>'
+                         + '<a href="">Comment</a>'
+                    + ' </div>'
+                 + '</div>'
+
+              ///Comment div action
+
+               + '  <div class="form-inline" style="background-color: lightgray">'
+
+                    + ' <div class="form-group">'
+                       + '  <div class="form-inline" style="border-bottom: ridge; width: 600px;">'
+                             + '<img src="/Images/orderedList3.png"></img>'
+ + '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'
+                             + '<a href="#">@DateTime.Now.ToString()</a><br />'
+                                 + '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'
+                             + '<div class="form-inline" style="height: 30px; margin-left: 10px;">'
+                                + ' <a href="#">Like</a>'
+                                + '<a href="#">Reply</a>'
+                           + '  </div>'
+                         + '</div>'
+                     + '</div>'
+
+                     + '<div class="form-group">'
+                       + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">'
+                            + ' <img src="/Images/orderedList3.png"></img>'
+                            + ' <a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'
+                            + ' <a href="#">@DateTime.Now.ToString()</a><br />'
+                             + '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'
+                             + '<div class="form-inline" style="height: 30px; margin-left: 10px;">'
+                                + ' <a href="#">Like</a>'
+                              + '  <a href="#">Reply</a>'
+                            + ' </div>'
+                        + ' </div>'
+                    + ' </div>'
+
+                   + '  <div id="newcomment">'
+                        + ' <br />'
+                    + ' </div>'
+                    //user Comment section*
+
+                     + '<div class="form-inline">'
+                     + '<img src="/Images/orderedList3.png"></img>'
+
+                        + '<textarea style="width: 480px; height:35px;" class="form-control" placeholder="Write your Comment" id="TextComment"/> '
+                        + '<input type="button" id="postimage" name="button" class="btn1 btn-primary" value="post" />'
+
+
+                    + '  </div>'
+              + '  </div>'
+
+            + ' </div>'
+       + '  </div><br/><br/>');
+
+            });
+
+        });
+
+
+        function fileclick() {
+            $("#file").click();
+
+        }
+        //$(":file").filestyle({ badge: false });
+    </script>
+</head>
+@*<div  style="background-color:gray;"></div>*@
+<body>
+    <form method="post" action="/Register/PostImage" enctype="multipart/form-data" style="background-color: #e9eff1; padding-top: 5px; padding-right: 5px; padding-bottom: 25px; padding-left: 5px;">
+        <div class="form-inline">
+           
+            <a href="#" class="btn btn-primary btn-lg" style="height:40px; width:60px">
+                <span class="glyphicon glyphicon-paperclip" onclick="fileclick(); return false;"></span>                
+            </a>
+            <span>Upload images/videos</span>
+            <input type="file" id="file" name="file" data-badge="false" style="display: none" />
+
+        </div>
+        <div class="form-horizontal">
+
+            <div>
+
+                @Html.TextArea("PostContent", null, new { @class = "form-control", placeholder = "Write message for post" })
+            </div>
+
+            <div id="menu" style="float: right;">
+                <input type="submit" class="btn-primary" id="post" value="Post" style="width: 70px; height: 25px; text-align: center; padding-top: 0;" />
+            </div>
+
+        </div>
+    </form>
+    <br />
+    <br />
+
+    @*  //post*@
+
+    <div style="height: 50px; width: 800px; margin-left: 80px;">
+
+        @*//new upload post*@
+        <div id="newuploadpost">
+        </div>
+
+        @*//end upload post*@
+        <div>
+            @foreach (var item in Model)
+            { 
+                
+              <div style="background-color: lightgray;" id="postuserdetail">
+                    <div class="form-inline">
+                        <img src="~/Images/orderedList3.png"/>
+                        <a href="#">Ayushi Jain</a>
+                        <a href="#">@item.PostDateTime</a>
+                    </div>
+                </div>
+@*  Text for image*@
+                <div name="Textmessage">
+                    <div class="form-inline" style="height: 50px;">
+                        <p>@item.PostContent</p>
+                    </div>
+                </div>
+@*  <div class="form-group">*@
+                <div id="image/video">
+                    @if(item.PostUrl!=null){
+                        
+                            <img src="@item.PostUrl" style="height: 500px; width: 800px;" />
+                    
+                    
+                    }
+                
+
+
+
+                    @* ///edited on 24/10/16*@
+
+                    <div style="background-color: lightgray">
+                        <div class="form-inline" style="height: 30px;">
+                            <a href="#">Like</a>
+                            <a href="#">Comment</a>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    @*///Comment div action*@
+
+                    <div class="form-inline" style="background-color: lightgray">
+
+                        <div class="form-group">
+                            <div class="form-inline" style="border-bottom: ridge; width: 600px;">
+                                <img src="~/Images/orderedList3.png"></img>
+                                <a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>
+                                <a href="#">@DateTime.Now.ToString()</a><br />
+                                <p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>
+                                <div class="form-inline" style="height: 30px; margin-left: 10px;">
+                                    <a href="#">Like</a>
+                                    <a href="#">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+
+                   
+
+                        <div id="@item.PostID">
+                            <br />
+                        </div>
+
+                        @*///user Comment section*@
+
+                        <div class="form-inline">
+                            <img src="~/Images/orderedList3.png"></img>
+
+                            @Html.TextArea("TextComment", new { id = "txtComment-" + item.PostID, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
+                            <input type="button" id="postimage-@item.PostID" name="button" class="btn1 btn-primary btnPost" value="post" />
+                        </div>
+                    </div>
+                </div> <br />
+                <br />
+                <br /> <br />
+                <br />
+            }
+        </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</body>
+
+@*div class="container">
+ 
+  <div class="well">Basic Well</div>
+</di*@

@@ -6,6 +6,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CommonWeal.NGOWeb;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
@@ -45,7 +46,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 //set roles and recreate context user
                 GenericPrincipal userPrincipal = new GenericPrincipal(new GenericIdentity(authTicket.Name), roles);
 
-                HttpContext.User = userPrincipal;
+                HttpContext.User = userPrincipal;                             
 
             }
 

@@ -5,30 +5,22 @@
         <button class="btn btn-default" id="searchbtn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
 
         <ul id="menu">
-
+            Hello 
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                
-                <li><a href="@Url.Action("Index", "Register")" class="fa fa-home" title="Home"></a></li>
-                <li><a href="@Url.Action("Index", "Register")" class="fa fa-user" title="Home"></a></li>
-                <li><a  href="@Url.Action("LogOut", "Register")" ><span class="glyphicon glyphicon-off log-out"></span></a></li>
-                
-                
-                if (User.IsInRole("Admin"))
-                {
-
-                }
-
-
+                <span>@User.Identity.Name</span> 
+                <li><a href="@Url.Action("Index", "UserHome")" class="fa fa-user" title="Home"></a></li>
+                <li><a  href="@Url.Action("LogOut", "Login")" ><span class="glyphicon glyphicon-off log-out"></span></a></li>
+             
 
             }
             else
             {
-       
+                <span>Guest</span> 
                 <li><a href="@Url.Action("Index", "Home")" class="fa fa-home" title="Home"></a></li>
                 <li><a href="@Url.Action("Index", "Login")" class="fa fa-sign-in" title="Sign In"></a></li>
-                <li><a href="@Url.Action("CreateNGO", "ngoRegistration")" class="fa fa-group" title="Sign up as NGO"></a></li>
-                <li><a href="@Url.Action("CreateUserPost", "userRegistration")" class="fa fa-user-plus" title="Sign up as User"></a></li>
+                <li><a href="@Url.Action("CreateNGO", "NGORegistration")" class="fa fa-group" title="Sign up as NGO"></a></li>
+                <li><a href="@Url.Action("CreateUserPost", "UserRegistration")" class="fa fa-user-plus" title="Sign up as User"></a></li>
             }
 
         </ul>

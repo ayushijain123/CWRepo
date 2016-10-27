@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1e61b32f187b446e80bbfb17efff6c31" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="5.0871477988954386" PointY="23.968087386325042" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOPostDetail" Width="1.5" PointX="11.094238478268608" PointY="16.146228544482135" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="2.862224479607411" PointY="6.4033909171835477" />
-        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="4.4562505523004807" PointY="1.4759798652846272" />
-        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="10.900462768459908" PointY="22.02596081328856" />
-        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="4.4330621456881341" PointY="30.904863565650238" />
-        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="9.6863939490571589" PointY="29.730292050973649" />
+      <Diagram DiagramId="1e61b32f187b446e80bbfb17efff6c31" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="5.375" PointY="1" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOPostDetail" Width="1.5" PointX="7.125" PointY="2.25" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="0.5" PointY="0.75" />
+        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="3" PointY="0.5" />
+        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="4.75" PointY="5.375" />
+        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="7" PointY="5.25" />
+        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="2.5" PointY="4.625" />
         <AssociationConnector Association="CommonWealModel.FK_NGOUser_User" />
         <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_User" />
       </Diagram>
