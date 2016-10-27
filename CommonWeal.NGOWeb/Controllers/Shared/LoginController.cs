@@ -46,19 +46,19 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         string controllerName = "";
 
 
-                        Helper.UserType usertype = (Helper.UserType)result.LoginUserType;
+                        TypeHelper.UserType usertype = (TypeHelper.UserType)result.LoginUserType;
 
                         string roles = usertype.ToString();
                         switch (usertype)
                         {
-                            case Helper.UserType.NGOAdmin:
+                            case TypeHelper.UserType.NGOAdmin:
                                 controllerName = "NGOProfile";
                                 break;
-                            case Helper.UserType.Admin:
+                            case TypeHelper.UserType.Admin:
                                 controllerName = "Admin";
 
                                 break;
-                            case Helper.UserType.User:
+                            case TypeHelper.UserType.User:
                                 controllerName = "UserHome";
                                 break;
                             default:

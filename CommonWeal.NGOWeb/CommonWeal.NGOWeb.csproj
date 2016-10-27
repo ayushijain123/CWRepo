@@ -195,7 +195,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
+    <Compile Include="Utility\UIHelper.cs" />
+    <Compile Include="Utility\TypeHelper.cs" />
     <Compile Include="Models\LoginMeta.cs" />
     <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\Password.cs" />

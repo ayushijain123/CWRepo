@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.NGOWeb.Utility;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
@@ -17,6 +18,8 @@ namespace CommonWeal.NGOWeb.Controllers
         {
             CommonWealEntities1 db = new CommonWealEntities1();
             var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
+
+            var t = UIHelper.GetDropDownListFromEnum(typeof(TypeHelper.UserType));
 
             return View(ngopost);
         }
