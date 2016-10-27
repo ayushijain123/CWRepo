@@ -124,16 +124,22 @@
                             @Html.ValidationMessageFor(a => a.ParentOrganisation)
                         </div>
                     </div>
+                    
+                         
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="RegisterWith">Register With:*</label>
-                        <div class="col-xs-8">
-                            @Html.TextBoxFor(a => a.RegisteredWith, new { placeholder="Registered With" })&nbsp;
+                        <div class="col-xs-5">                          
+                           @* @Html.TextBoxFor(a => a.RegisteredWith, new { placeholder="Registered With" })*@
                             @* <input type="text" class="form-control" name="ngo_RegisteredWith" id="RegisterWith" placeholder="Register With">*@
+                            @Html.DropDownList("RegisteredWith", 
+                           CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.NGOWeb.TypeHelper.RegisteredWith))),
+                           "Select Type",
+                            new { @class = "form-control" })
                             @Html.ValidationMessageFor(a => a.RegisteredWith)
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="RegisterationNumber">Registeration No:* </label>
+                        <label class="control-label col-xs-4" for="RegisterationNumber">Registration No:* </label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.RegistrationNumber, new { placeholder="Registration Number" })&nbsp;
                             @* <input type="text" class="form-control" name="ngo_RegistrationNumber" id="RegisterationNumber" placeholder="Registeration Number" />*@
