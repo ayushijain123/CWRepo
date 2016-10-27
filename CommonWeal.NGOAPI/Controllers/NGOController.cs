@@ -5,7 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using CommonWeal.NGOWeb;
- 
+
+
 
 namespace CommonWeal.NGOAPI.Controllers
 {
@@ -20,6 +21,17 @@ namespace CommonWeal.NGOAPI.Controllers
             var response = Request.CreateResponse(HttpStatusCode.OK, objTest);
             return response;
         }
+
+
+        [HttpGet]
+        public HttpResponseMessage GetPosts()
+        {
+            CommonWealEntities1 db = new CommonWealEntities1();
+            var response = Request.CreateResponse(HttpStatusCode.OK, db.NGOPosts);
+            return response;
+        }
+
+
 
         [HttpPost]
         public bool PostTest(Test objTest)
