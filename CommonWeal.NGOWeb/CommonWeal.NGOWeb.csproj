@@ -349,18 +349,16 @@
     <Content Include="Views\Admin\Settings.cshtml" />
     <Content Include="Views\UserHome\Index.cshtml" />
     <Content Include="Views\UserRegistration\CreateUserPost.cshtml" />
-    <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\NGOProfile\AboutUs.cshtml" />
     <Content Include="Views\NGOProfile\Album.cshtml" />
     <Content Include="Views\NGOProfile\Index.cshtml" />
-    <Content Include="Views\NGOProfile\_Layout.cshtml" />
-    <Content Include="Views\NGOProfile\_ViewStart.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
