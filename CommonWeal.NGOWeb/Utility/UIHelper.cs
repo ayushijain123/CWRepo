@@ -22,7 +22,7 @@ namespace CommonWeal.NGOWeb.Utility
 
 
 
-            return names.Zip(values, (name, value) => new SelectListItem() { Value = value.ToString(), Text = name }).ToList();
+            return names.Zip(values, (name, value) => new SelectListItem() { Value = value.ToString(), Text = name.Replace("_"," " )}).ToList();
 
 
         }

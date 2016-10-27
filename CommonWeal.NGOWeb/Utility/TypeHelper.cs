@@ -17,8 +17,8 @@ namespace CommonWeal.NGOWeb
 
         public enum RegisteredWith
         {
-            State_Govenment,
-            Central_Govenment
+            State_Government,
+            Central_Government
         }
 
     }
