@@ -79,7 +79,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
             }
-            return RedirectToAction("Index", "Register");
+            return RedirectToAction("Index", "UserHome");
         }
        
        
