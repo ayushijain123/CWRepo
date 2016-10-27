@@ -98,7 +98,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             return View();
         }
 
-        public ActionResult UpdatePassword(string NewPassword, string ConfirmPassword, string FinalEmail,string ConfirmOTP, string OTP)
+        public ActionResult UpdatePassword(string NewPassword, string ConfirmPassword, string FinalEmail)//,string ConfirmOTP, string OTP
         {
             //if (ConfirmOTP == OTP)
             //{
