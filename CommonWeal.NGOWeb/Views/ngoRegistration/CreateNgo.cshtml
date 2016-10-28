@@ -132,7 +132,7 @@
                            @* @Html.TextBoxFor(a => a.RegisteredWith, new { placeholder="Registered With" })*@
                             @* <input type="text" class="form-control" name="ngo_RegisteredWith" id="RegisterWith" placeholder="Register With">*@
                             @Html.DropDownList("RegisteredWith", 
-                           CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.NGOWeb.TypeHelper.RegisteredWith))),
+                          CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.NGOWeb.TypeHelper.RegisteredWith))),
                            "Select Type",
                             new { @class = "form-control" })
                             @Html.ValidationMessageFor(a => a.RegisteredWith)

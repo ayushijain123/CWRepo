@@ -6,23 +6,27 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Utility
 {
-    public class UIHelper
+    public static class UIHelper
     {
 
-        public static List<SelectListItem> GetDropDownListFromEnum(Type enumType)
+        public static IEnumerable<SelectListItem> GetDropDownListFromEnum(this Type enumType)
         {
 
-           // if (enumType.IsAssignableFrom(typeof(Enum)))
+            if (!typeof(Enum).IsAssignableFrom(enumType))
             {
-
-                IEnumerable<string> names = Enum.GetNames(enumType);
-                IEnumerable<int> values = Enum.GetValues(enumType).Cast<int>();
-
-
-                return names.Zip(values, (name, value) => new SelectListItem() { Value = value.ToString(), Text = name.Replace("_", " ") }).ToList();
             }
+            IEnumerable<string> names = Enum.GetNames(enumType);
+            IEnumerable<int> values = Enum.GetValues(enumType).Cast<int>();
 
-          //  return null;
+
+            var items = names.Zip(values, (name, value) =>
+                 new SelectListItem()
+                 {
+                     Value = value.ToString(),
+                     Text = name.Replace("_", " ")
+                 });
+
+            return items;
 
         }
     }
