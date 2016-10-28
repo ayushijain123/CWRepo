@@ -40,6 +40,13 @@ namespace CommonWeal.NGOWeb
 
             return ob;
         }
+        public ForgotPassword UserDetail(string FinalOTP)
+        {
+            ForgotPassword ob = new ForgotPassword();
+            ob = context.ForgotPasswords.Where(w => w.OTP == FinalOTP).FirstOrDefault();
+
+            return ob;
+        }
         public List<RegisteredUser> RegisteredUserIsAccepted()
         {
             List<RegisteredUser> userList = new List<RegisteredUser>();
@@ -57,6 +64,51 @@ namespace CommonWeal.NGOWeb
                 chars[i] = allowedChars[rd.Next(0, allowedChars.Length)];
             }
             return new string(chars);
+        }
+        public string SendActivationEmail(string UserEmail, string Randomcode)//int userId it should be used in the brackets
+        {
+            //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+            string activationCode = Guid.NewGuid().ToString();
+
+            var fromAddress = new MailAddress("poojapandey8284@Gmail.com");
+            var fromPassword = "dienotattitude";
+            var toAddress = new MailAddress(UserEmail);
+            try
+            {
+
+
+                string subject = "Fassword Change";
+                string body = Randomcode;
+
+                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+
+                };
+
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = Randomcode
+                })
+
+
+                    smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+
+                // Response.Write("Exception in sendEmail:" + ex.Message);
+            }
+
+            return activationCode;
+
+
         }
         public List<Post> GetAllPost()
         {
