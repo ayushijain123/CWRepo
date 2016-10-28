@@ -66,3 +66,6 @@ D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\bin\System.Web.WebPages.Razor.xml
 D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\obj\Debug\CommonWeal.NGOAPI.csprojResolveAssemblyReference.cache
 D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\obj\Debug\CommonWeal.NGOAPI.dll
 D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\obj\Debug\CommonWeal.NGOAPI.pdb
+D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\bin\System.Web.Cors.dll
+D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\bin\System.Web.Http.Cors.dll
+D:\CommonWealRepo\trunk\CommonWeal.NGOAPI\bin\System.Web.Http.Cors.xml

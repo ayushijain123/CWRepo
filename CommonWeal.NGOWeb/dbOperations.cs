@@ -76,7 +76,7 @@ namespace CommonWeal.NGOWeb
 
               
                 Post pm = new Post();
-                int UserRole = Convert.ToInt32(LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType));
+                int UserRole = 1; // Convert.ToInt32(LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType));
 
                 switch (UserRole)
                 {
@@ -91,8 +91,8 @@ namespace CommonWeal.NGOWeb
                 }
                 pm.postImageUrl = item.PostUrl;
                 pm.postCreateTime = item.CreatedOn.Value;
-                pm.likeCount = item.PostLikeCount.Value;
-                pm.commentCount = item.PostCommentCount.Value;
+                pm.likeCount = 1;//item.PostLikeCount.Value;
+                pm.commentCount = 2;// item.PostCommentCount.Value;
                 
                 var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
                
