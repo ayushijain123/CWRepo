@@ -5,15 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1e61b32f187b446e80bbfb17efff6c31" Name="Diagram1" ZoomLevel="98">
-        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="5.375" PointY="1" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOPostDetail" Width="1.5" PointX="7.125" PointY="2.25" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="0.5" PointY="0.75" />
-        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="3" PointY="0.5" />
-        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="4.75" PointY="5.375" />
-        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="7" PointY="5.25" />
-        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="2.5" PointY="4.625" />
         <AssociationConnector Association="CommonWealModel.FK_NGOUser_User" />
         <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_User" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="11.305934931759692" PointY="29.633491664022902" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOPostDetail" Width="1.5" PointX="3.2207181766725697" PointY="22.743998329501597" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="11.532120320728104" PointY="26.600408283341867" />
+        <EntityTypeShape EntityType="CommonWealModel.PostComment" Width="1.5" PointX="1.8857511216242568" PointY="16.492724307110869" />
+        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="2.2397521241753138" PointY="1.5452929742379546" />
+        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="6.6736985997640055" PointY="23.267246644602739" />
+        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="0.67378856273078758" PointY="9.5055711462654031" />
+        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="3.3632844087496792" PointY="29.362606717908108" />
+        <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
+        <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_UserLogin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

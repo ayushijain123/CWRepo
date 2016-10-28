@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Data.Entity;
+using CommonWeal.NGOWeb.Utility;
 
 
 namespace CommonWeal.NGOWeb.Controllers.Shared
@@ -52,7 +53,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         switch (usertype)
                         {
                             case TypeHelper.UserType.NGOAdmin:
-                                controllerName = "NGOProfile";
+                                controllerName = "NGOHome";
                                 break;
                             case TypeHelper.UserType.Admin:
                                 controllerName = "Admin";

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.NGOPost>
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
 @{
     ViewBag.Title = "Index";
@@ -29,20 +29,20 @@
                             '</div>' +
                         '</div>');
 
-                }
-                else {
+            }
+            else {
 
-                    alert('hello ' + $("#TextComment").val());
-                }
-                //$("#newcomment").html('<div><img src="/Images/orderedList1.png"></img></div>');
-            });
-            //Script for post
-            $("#post").click(function () {
+                alert('hello ' + $("#TextComment").val());
+            }
+            //$("#newcomment").html('<div><img src="/Images/orderedList1.png"></img></div>');
+        });
+        //Script for post
+        $("#post").click(function () {
 
-                $("#newuploadpost").append('<div style="background-color: lightgray;" id="postuserdetail">'
-                    + '<div class="form-inline"><img src="/Images/orderedList3.png"></img>'
-                    + '<a href="#">Satish Patidar</a>'
-                    + ' <a href="#">@DateTime.Now.ToString()</a>'
+            $("#newuploadpost").append('<div style="background-color: lightgray;" id="postuserdetail">'
+                + '<div class="form-inline"><img src="/Images/orderedList3.png"></img>'
+                + '<a href="#">Satish Patidar</a>'
+                + ' <a href="#">@DateTime.Now.ToString()</a>'
                  + '</div>'
              + '</div>'
            // Text for image*
@@ -114,45 +114,15 @@
             + ' </div>'
        + '  </div><br/><br/>');
 
-            });
-
         });
 
+    });
 
 
 
-        //$(":file").filestyle({ badge: false });
+
+    //$(":file").filestyle({ badge: false });
 </script>
- 
-@*<div  style="background-color:gray;"></div>*@
- 
 
 
-    @*  //post*@
-
-    <div style="height: 50px; width: 800px; margin-left: 80px;">
-
-        @*//new upload post*@
-        <div id="newuploadpost">
-        </div>
-
-        @*//end upload post*@
-        @Html.Partial("../UserHome/_posts", Model);
-
-    </div>
-
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
-</body>
-
-@*div class="container">
- 
-  <div class="well">Basic Well</div>
-</di*@
+@Html.Partial("../UserHome/_Posts", Model);

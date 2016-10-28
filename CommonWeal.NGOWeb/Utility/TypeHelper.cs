@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CommonWeal.NGOWeb
+namespace CommonWeal.NGOWeb.Utility
 {
     public static class TypeHelper
     {

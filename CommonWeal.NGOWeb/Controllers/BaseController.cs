@@ -11,7 +11,6 @@ using CommonWeal.NGOWeb;
 namespace CommonWeal.NGOWeb.Controllers
 {
     [Authorize]
-
     public class BaseController : Controller
     {
         public User LoggedInUser { get; set; }
@@ -23,9 +22,11 @@ namespace CommonWeal.NGOWeb.Controllers
         {
             base.OnActionExecuting(filterContext);
 
-            CommonWealEntities1 CWContext = new CommonWealEntities1();
-            this.LoggedInUser = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
-
+            if (User.Identity.IsAuthenticated)
+            {
+                CommonWealEntities1 CWContext = new CommonWealEntities1();
+                this.LoggedInUser = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
+            }
 
         }
         /// <summary>
@@ -46,7 +47,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 //set roles and recreate context user
                 GenericPrincipal userPrincipal = new GenericPrincipal(new GenericIdentity(authTicket.Name), roles);
 
-                HttpContext.User = userPrincipal;                             
+                HttpContext.User = userPrincipal;
 
             }
 

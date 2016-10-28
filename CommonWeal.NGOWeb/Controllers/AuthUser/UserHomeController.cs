@@ -11,13 +11,16 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
     {
         public ActionResult Index()
         {
+            dbOperations ob = new dbOperations();
+            var postlist=ob.GetAllPost();
             CommonWealEntities1 db = new CommonWealEntities1();
             var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
             var s = (from p in db.NGOPosts
                      join u in db.Users on p.EmailID equals u.LoginEmailID
                      into up
                      select up).ToList();
-            return View(ngopost);
+           postlist= postlist.OrderByDescending(x => x.postCreateTime).ToList();
+            return View(postlist);
         }
         //      public ActionResult FileUpload(HttpPostedFileBase file)
         //    {
@@ -50,37 +53,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
         //    }
 
         //}
-        [HttpPost]
-        public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)
-        {
-            CommonWealEntities1 db = new CommonWealEntities1();
-            if (file != null)
-            {
-                string ImageName = System.IO.Path.GetFileName(file.FileName);
-                string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
-                // save image in folder
-                file.SaveAs(physicalPath);
-                //save new record in database
-                obpost.PostUrl = "/Images/Post/" + ImageName;
-                obpost.PostType = "Image";
-                obpost.PostDateTime = DateTime.Now;
-                obpost.ModifiedOn = DateTime.Now;
-                obpost.CreatedOn = DateTime.Now;
-                obpost.EmailID = this.User.Identity.Name;
-                db.NGOPosts.Add(obpost);
-                db.SaveChanges();
-            }
-            else if (obpost.PostContent != null)
-            {
-                obpost.PostType = "Text";
-                obpost.PostDateTime = DateTime.Now;
-                obpost.ModifiedOn = DateTime.Now;
-                obpost.CreatedOn = DateTime.Now;
-                db.NGOPosts.Add(obpost);
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index", "UserHome");
-        }
+       
        
        
     }

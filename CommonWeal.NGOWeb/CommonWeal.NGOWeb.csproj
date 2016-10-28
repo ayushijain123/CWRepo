@@ -183,6 +183,7 @@
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NGO\NGOHomeController.cs" />
     <Compile Include="Controllers\Shared\LoginController.cs" />
     <Compile Include="Controllers\NGO\NGOProfileController.cs" />
     <Compile Include="Controllers\NGO\NGORegistrationController.cs" />
@@ -200,6 +201,8 @@
     <Compile Include="Models\LoginMeta.cs" />
     <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\Password.cs" />
+    <Compile Include="ViewModel\Comment.cs" />
+    <Compile Include="ViewModel\Post.cs" />
     <Compile Include="Models\RegisteredUserMeta.cs" />
     <Compile Include="NGOPost.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
@@ -208,6 +211,9 @@
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="NGOUser.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PostComment.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -292,7 +298,6 @@
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
-    <Content Include="Scripts\FormValidation.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -363,6 +368,8 @@
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\UserHome\_Posts.cshtml" />
+    <Content Include="Views\NGOHome\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />

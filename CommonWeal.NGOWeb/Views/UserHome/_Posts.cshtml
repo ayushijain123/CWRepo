@@ -1,6 +1,13 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.NGOPost>
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+      <div style="height: 50px; width: 800px; margin-left: 80px;">
 
-<div style="height: 50px; width: 800px; margin-left: 80px;">
+        @*//new upload post*@
+        <div id="newuploadpost">
+        </div>
+
+        @*//end upload post*@
+       @* @Html.Partial("../UserHome/_posts", Model);*@
+        <div style="height: 50px; width: 800px; margin-left: 80px;">
 
     @*//new upload post*@
     <div id="newuploadpost">
@@ -14,22 +21,22 @@
             <div style="background-color: lightgray;" id="postuserdetail">
                 <div class="form-inline">
                     <img src="~/Images/orderedList3.png" />
-                    <a href="#">Ayushi Jain</a>
-                    <a href="#">@item.PostDateTime</a>
+                    <a href="#">@item.userName</a>
+                    <a href="#">@item.postCreateTime</a>
                 </div>
             </div>
 @*  Text for image*@
             <div name="Textmessage">
                 <div class="form-inline" style="height: 50px;">
-                    <p>@item.PostContent</p>
+                    <p>@item.postcontent</p>
                 </div>
             </div>
 @*  <div class="form-group">*@
             <div id="image/video">
-                @if (item.PostUrl != null)
+                @if (item.postImageUrl != null)
                 {
                         
-                    <img src="@item.PostUrl" style="height: 500px; width: 800px;" />
+                    <img src="@item.postImageUrl" style="height: 500px; width: 800px;" />
                     
                     
                 }
@@ -67,7 +74,7 @@
 
 
 
-                    <div id="@item.PostID">
+                    <div id="@item.postId">
                         <br />
                     </div>
 
@@ -79,8 +86,8 @@
                         <div class="form-inline">
                             <img src="~/Images/orderedList3.png"></img>
 
-                            @Html.TextArea("TextComment", new { id = "txtComment-" + item.PostID, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
-                            <input type="button" id="postimage-@item.PostID" name="button" class="btn1 btn-primary btnPost" value="post" />
+                            @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
+                            <input type="button" id="postimage-@item.postId" name="button" class="btn1 btn-primary btnPost" value="post" />
                         </div>
                     }
 
@@ -92,3 +99,6 @@
         }
     </div>
 </div>
+
+
+    </div>

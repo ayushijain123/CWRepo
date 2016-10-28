@@ -8,20 +8,44 @@ using CommonWeal.NGOWeb.Utility;
 namespace CommonWeal.NGOWeb.Controllers
 {
 
-
-    public class HomeController : Controller
+    [AllowAnonymous]
+    public class HomeController : BaseController
     {
         //
         // GET: /Home/ Changed By Pooja
 
         public ActionResult Index()
         {
-            CommonWealEntities1 db = new CommonWealEntities1();
-            var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
+            if (!User.Identity.IsAuthenticated)
+            {
 
-            var t = UIHelper.GetDropDownListFromEnum(typeof(TypeHelper.UserType));
+                dbOperations ob = new dbOperations();
+                var postlist = ob.GetAllPost();
+                CommonWealEntities1 db = new CommonWealEntities1();
+                var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
 
-            return View(ngopost);
+                var t = UIHelper.GetDropDownListFromEnum(typeof(TypeHelper.UserType));
+                postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
+
+                return View(postlist);
+
+            }
+            else
+            {
+                if(this.User.IsInRole(TypeHelper.UserType.NGOAdmin.ToString()))
+                {
+                    return RedirectToAction("Index", "NGOHome");
+                }
+                else if (this.User.IsInRole(TypeHelper.UserType.Admin.ToString()))
+                {
+                    return RedirectToAction("Index", "UserHome");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "UserHome");
+                }
+
+            }
         }
         //[HttpPost]
         //public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)

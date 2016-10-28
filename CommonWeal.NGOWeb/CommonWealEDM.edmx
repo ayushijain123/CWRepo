@@ -9,6 +9,7 @@
           <EntitySet Name="NGOPost" EntityType="CommonWealModel.Store.NGOPost" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPostDetail" EntityType="CommonWealModel.Store.NGOPostDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOUser" EntityType="CommonWealModel.Store.NGOUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PostComment" EntityType="CommonWealModel.Store.PostComment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
@@ -84,6 +85,17 @@
           <Property Name="IsBlock" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PostComment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Name="CommentID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="PostID" Type="int" />
+          <Property Name="CommentText" Type="varchar(max)" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="ModifiedOn" Type="date" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -162,6 +174,7 @@
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
           <EntitySet Name="NGOPostDetails" EntityType="CommonWealModel.NGOPostDetail" />
           <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
+          <EntitySet Name="PostComments" EntityType="CommonWealModel.PostComment" />
           <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
           <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
           <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
@@ -238,6 +251,17 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
+        </EntityType>
+        <EntityType Name="PostComment">
+          <Key>
+            <PropertyRef Name="CommentID" />
+          </Key>
+          <Property Type="Int32" Name="CommentID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" />
+          <Property Type="Int32" Name="PostID" />
+          <Property Type="String" Name="CommentText" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="0" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="0" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -380,6 +404,18 @@
                 <ScalarProperty Name="NGOName" ColumnName="NGOName" />
                 <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
                 <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostComments">
+            <EntityTypeMapping TypeName="CommonWealModel.PostComment">
+              <MappingFragment StoreEntitySet="PostComment">
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

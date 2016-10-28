@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
+using CommonWeal.NGOWeb.Models;
 using System.Net.Mail;
 using System.Net;
-
 namespace CommonWeal.NGOWeb
 {
     public class dbOperations
@@ -16,7 +16,7 @@ namespace CommonWeal.NGOWeb
         public List<NGOUser> GetAllUserNotAccepted()
         {
             List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == false&& w.IsBlock==false).ToList();
+            userList = context.NGOUsers.Where(w => w.IsActive == false && w.IsBlock == false).ToList();
             return userList;
         }
         public List<NGOUser> GetAllUserAccepted()
@@ -36,6 +36,7 @@ namespace CommonWeal.NGOWeb
         {
             NGOUser ob = new NGOUser();
             ob = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+
             return ob;
         }
         public List<RegisteredUser> RegisteredUserIsAccepted()
@@ -56,50 +57,51 @@ namespace CommonWeal.NGOWeb
             }
             return new string(chars);
         }
-        public string SendActivationEmail(string UserEmail, string Randomcode)//int userId it should be used in the brackets
+        public List<PostModel> GetAllPost()
         {
-            //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
-            string activationCode = Guid.NewGuid().ToString();
-        
-            var fromAddress = new MailAddress("poojapandey8284@Gmail.com");
-            var fromPassword = "dienotattitude";
-            var toAddress = new MailAddress(UserEmail);
-            try
+
+            List<PostModel> ob = new List<PostModel>();
+            var NGOPostlist = context.NGOPosts.ToList();
+            var RegUserlist = context.RegisteredUsers.ToList();
+            var Commentlist = context.PostComments.ToList();
+            var NGOUserlist = context.NGOUsers.ToList();
+            var LoginUserlist = context.Users.ToList();
+
+            foreach (var item in NGOPostlist)
             {
 
+                // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
+                var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
-                string subject = "Fassword Change";
-                string body = Randomcode;
+              
+                PostModel pm = new PostModel();
+                int UserRole = Convert.ToInt32(LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType));
 
-                System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
+                switch (UserRole)
                 {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-
-                };
-
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = subject,
-                    Body = body
-                })
+                    case 1: String NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == item.EmailID).Select(ngusr => ngusr.NGOName).ToString();
+                        pm.userName = NGOUser;
+                        break;
+                    case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == item.EmailID).FirstOrDefault();
+                        pm.userName = RegUser.FirstName + " " + RegUser.LastName;
+                        break;
 
 
-                    smtp.Send(message);
+                }
+                pm.postImageUrl = item.PostUrl;
+                pm.postCreateTime = item.CreatedOn.Value;
+                pm.likeCount = item.PostLikeCount.Value;
+                pm.commentCount = item.PostCommentCount.Value;
+                
+                var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
+                CommentModel cm = new CommentModel();
+                cm.postcomment=postcomment;
+                pm.comment = cm;
+
+                ob.Add(pm);    
+
             }
-            catch (Exception ex)
-            {
-
-               // Response.Write("Exception in sendEmail:" + ex.Message);
-            }
-
-            return activationCode ;
-            
-          
+            return (ob);
         }
     }
 }
