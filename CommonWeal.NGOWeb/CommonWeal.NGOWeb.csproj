@@ -365,6 +365,8 @@
     <Folder Include="Album\ChairmanID\" />
     <Folder Include="Album\RegistrationID\" />
     <Folder Include="Content\themes\" />
+    <Folder Include="Scripts\Admin\" />
+    <Folder Include="Scripts\NGOAdmin\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
