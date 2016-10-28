@@ -223,6 +223,7 @@
     <Compile Include="User.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\TestModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
@@ -287,6 +288,7 @@
     <Content Include="Images\Post\Penguins.jpg" />
     <Content Include="Images\Post\Tulips.jpg" />
     <Content Include="Images\Tulips.jpg" />
+    <Content Include="Scripts\Admin\Test.js" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -307,6 +309,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\NGOAdmin\Profile\Test.js" />
     <Content Include="Scripts\NGOProfile.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -365,8 +368,6 @@
     <Folder Include="Album\ChairmanID\" />
     <Folder Include="Album\RegistrationID\" />
     <Folder Include="Content\themes\" />
-    <Folder Include="Scripts\Admin\" />
-    <Folder Include="Scripts\NGOAdmin\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
