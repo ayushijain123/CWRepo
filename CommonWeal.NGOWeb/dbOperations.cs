@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using CommonWeal.NGOWeb.Models;
 using System.Net.Mail;
 using System.Net;
+using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb
 {
     public class dbOperations
@@ -57,10 +58,10 @@ namespace CommonWeal.NGOWeb
             }
             return new string(chars);
         }
-        public List<PostModel> GetAllPost()
+        public List<Post> GetAllPost()
         {
 
-            List<PostModel> ob = new List<PostModel>();
+            List<Post> ob = new List<Post>();
             var NGOPostlist = context.NGOPosts.ToList();
             var RegUserlist = context.RegisteredUsers.ToList();
             var Commentlist = context.PostComments.ToList();
@@ -74,7 +75,7 @@ namespace CommonWeal.NGOWeb
                 var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
               
-                PostModel pm = new PostModel();
+                Post pm = new Post();
                 int UserRole = Convert.ToInt32(LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType));
 
                 switch (UserRole)
@@ -94,9 +95,7 @@ namespace CommonWeal.NGOWeb
                 pm.commentCount = item.PostCommentCount.Value;
                 
                 var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
-                CommentModel cm = new CommentModel();
-                cm.postcomment=postcomment;
-                pm.comment = cm;
+               
 
                 ob.Add(pm);    
 
