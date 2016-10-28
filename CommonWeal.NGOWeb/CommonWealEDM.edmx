@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="CommonWealModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CommonWealModelStoreContainer">
+          <EntitySet Name="ForgotPassword" EntityType="CommonWealModel.Store.ForgotPassword" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPost" EntityType="CommonWealModel.Store.NGOPost" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPostDetail" EntityType="CommonWealModel.Store.NGOPostDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOUser" EntityType="CommonWealModel.Store.NGOUser" store:Type="Tables" Schema="dbo" />
@@ -23,6 +24,18 @@
             <End Role="RegisteredUser" EntitySet="RegisteredUser" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ForgotPassword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="OTP" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="DateInserted" Type="datetime" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="NGOPost">
           <Key>
             <PropertyRef Name="PostID" />
@@ -37,6 +50,7 @@
           <Property Name="PostCommentCount" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="NGOPostDetail">
           <Key>
@@ -85,6 +99,7 @@
           <Property Name="IsBlock" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="PostComment">
           <Key>
@@ -96,6 +111,7 @@
           <Property Name="CommentText" Type="varchar(max)" />
           <Property Name="CreatedOn" Type="date" />
           <Property Name="ModifiedOn" Type="date" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -112,6 +128,7 @@
           <Property Name="LoginID" Type="int" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RoleType">
           <Key>
@@ -187,6 +204,7 @@
             <End Role="User" EntitySet="Users" />
             <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
           </AssociationSet>
+          <EntitySet Name="ForgotPasswords" EntityType="CommonWealModel.ForgotPassword" />
         </EntityContainer>
         <EntityType Name="NGOPost">
           <Key>
@@ -202,6 +220,7 @@
           <Property Type="Int32" Name="PostCommentCount" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="NGOPostDetail">
           <Key>
@@ -251,6 +270,7 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PostComment">
           <Key>
@@ -262,6 +282,7 @@
           <Property Type="String" Name="CommentText" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="0" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="0" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -279,6 +300,7 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="User" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RoleType">
           <Key>
@@ -335,6 +357,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ForgotPassword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OTP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateInserted" Precision="3" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -344,6 +378,7 @@
           <EntitySetMapping Name="NGOPosts">
             <EntityTypeMapping TypeName="CommonWealModel.NGOPost">
               <MappingFragment StoreEntitySet="NGOPost">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="PostCommentCount" ColumnName="PostCommentCount" />
@@ -374,6 +409,7 @@
           <EntitySetMapping Name="NGOUsers">
             <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
               <MappingFragment StoreEntitySet="NGOUser">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
@@ -410,6 +446,7 @@
           <EntitySetMapping Name="PostComments">
             <EntityTypeMapping TypeName="CommonWealModel.PostComment">
               <MappingFragment StoreEntitySet="PostComment">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="CommentText" ColumnName="CommentText" />
@@ -422,6 +459,7 @@
           <EntitySetMapping Name="RegisteredUsers">
             <EntityTypeMapping TypeName="CommonWealModel.RegisteredUser">
               <MappingFragment StoreEntitySet="RegisteredUser">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
@@ -465,6 +503,19 @@
                 <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
                 <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ForgotPasswords">
+            <EntityTypeMapping TypeName="CommonWealModel.ForgotPassword">
+              <MappingFragment StoreEntitySet="ForgotPassword">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DateInserted" ColumnName="DateInserted" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
