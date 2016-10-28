@@ -193,6 +193,9 @@
     <Compile Include="Controllers\Shared\WelcomeController.cs" />
     <Compile Include="dbOperations.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="ForgotPassword.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
