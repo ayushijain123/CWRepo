@@ -111,27 +111,27 @@ h4, h5, h6
 
 h1
 {
-    font-size: 4em;
+    /*font-size: 4em;*/
 }
 
 h2
 {
-    font-size: 1.75em;
+    /*font-size: 1.75em;*/
 }
 
 h3
 {
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
 }
 
 h4
 {
-    font-size: 1.1em;
+    /*font-size: 1.1em;*/
 }
 
 h5, h6
 {
-    font-size: 1em;
+    /*font-size: 1em;*/
 }
 
     h5 a:link, h5 a:visited, h5 a:active
@@ -171,7 +171,7 @@ header
 footer
 {
     background-color: #008B8B;
-    font-size: 1.0em;
+    /*font-size: 1.0em;*/
     height: 40px;
     color: black;
 }
@@ -194,7 +194,7 @@ footer
 {
     color: #c8c8c8;
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
-    font-size: 2.3em;
+    /*font-size: 2.3em;*/
     margin: 0;
 }
 
@@ -267,7 +267,7 @@ footer
 ----------------------------------------------------------*/
 ul#menu
 {
-    font-size: 1.8em;
+    /*font-size: 1.8em;*/
     font-weight: 600;
     margin: 0 0 5px;
     padding-right: 15px;
@@ -321,7 +321,7 @@ ul#menu
 
     .featured p
     {
-        font-size: 1.1em;
+       /*font-size: 1.1em;*/
     }
 
 /* page titles */
@@ -507,7 +507,7 @@ aside
 /* contact */
 .contact h3
 {
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
 }
 
 .contact p
@@ -548,7 +548,7 @@ fieldset
 label
 {
     display: block;
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
     font-weight: 600;
 }
 
@@ -562,7 +562,7 @@ input, textarea
     border: 1px solid #e2e2e2;
     background: #fff;
     color: #333;
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
     margin: 5px 0 6px 0;
     padding: 5px;
     width: 300px;
@@ -593,7 +593,7 @@ button
     background-color: #d3dce0;
     border: 1px solid #787878;
     cursor: pointer;
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
     font-weight: 600;
     padding: 7px;
     margin-right: 8px;
@@ -604,7 +604,7 @@ td input[type="submit"],
 td input[type="button"],
 td button
 {
-    font-size: 1em;
+    /*font-size: 1em;*/
     padding: 4px;
     margin-right: 4px;
 }
@@ -621,7 +621,7 @@ td button
 {
     clear: both;
     color: #e80c4d;
-    font-size: 1.1em;
+    /*font-size: 1.1em;*/
     font-weight: bold;
     margin: 20px 0 10px 0;
 }
@@ -629,7 +629,7 @@ td button
 .message-success
 {
     color: #7ac0da;
-    font-size: 1.3em;
+    /*font-size: 1.3em;*/
     font-weight: bold;
     margin: 20px 0 10px 0;
 }
@@ -665,7 +665,7 @@ input[type="checkbox"].input-validation-error
 {
     color: #e80c4d;
     font-weight: bold;
-    font-size: 1.1em;
+    /*font-size: 1.1em;*/
 }
 
 .validation-summary-valid
@@ -680,13 +680,13 @@ table
 {
     border-collapse: collapse;
     border-spacing: 0;
-    margin-top: 0.75em;
+    /*margin-top: 0.75em;*/
     border: 0 none;
 }
 
 th
 {
-    font-size: 1.2em;
+    /*font-size: 1.2em;*/
     text-align: left;
     border: none 0px;
     padding-left: 0;
@@ -713,7 +713,7 @@ th
 
     th.asc a, th.desc a
     {
-        margin-right: .75em;
+        /*margin-right: .75em;*/
     }
 
         th.asc a:after, th.desc a:after
@@ -737,13 +737,13 @@ th
 
 td
 {
-    padding: 0.25em 2em 0.25em 0em;
+    /*padding: 0.25em 2em 0.25em 0em;*/
     border: 0 none;
 }
 
 tr.pager td
 {
-    padding: 0 0.25em 0 0;
+    /*padding: 0 0.25em 0 0;*/
 }
 
 
@@ -771,7 +771,7 @@ tr.pager td
     /* login */
     #login
     {
-        font-size: .85em;
+        /*font-size: .85em;*/
         margin: 0 0 12px;
         text-align: center;
     }
@@ -889,7 +889,7 @@ tr.pager td
         {
             color: #999;
             content: attr(alt);
-            font-size: 1.5em;
+            /*font-size: 1.5em;*/
             font-weight: 600;
         }
 
