@@ -33,5 +33,6 @@ namespace CommonWeal.NGOWeb
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<ForgotPassword> ForgotPasswords { get; set; }
     }
 }
