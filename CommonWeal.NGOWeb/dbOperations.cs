@@ -74,9 +74,11 @@ namespace CommonWeal.NGOWeb
                 // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
                 var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
-              
+
                 Post pm = new Post();
-                int UserRole = 1; // Convert.ToInt32(LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType));
+
+                pm.userName = "";
+                int UserRole = LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType).FirstOrDefault();
 
                 switch (UserRole)
                 {
@@ -92,12 +94,12 @@ namespace CommonWeal.NGOWeb
                 pm.postImageUrl = item.PostUrl;
                 pm.postCreateTime = item.CreatedOn.Value;
                 pm.likeCount = 1;//item.PostLikeCount.Value;
-                pm.commentCount = 2;// item.PostCommentCount.Value;
-                
-                var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
-               
+                pm.commentCount = 1;//item.PostCommentCount.Value;
 
-                ob.Add(pm);    
+                var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
+
+
+                ob.Add(pm);
 
             }
             return (ob);

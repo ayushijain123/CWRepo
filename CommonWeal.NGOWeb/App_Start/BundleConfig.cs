@@ -22,6 +22,7 @@ namespace CommonWeal.NGOWeb
                        "~/Scripts/jquery.validate*"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
+                         "~/Content/themes/base/jquery.ui.css",
                         "~/Content/themes/base/jquery.ui.core.css",
                         "~/Content/themes/base/jquery.ui.resizable.css",
                         "~/Content/themes/base/jquery.ui.selectable.css",
@@ -35,9 +36,7 @@ namespace CommonWeal.NGOWeb
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            //css
-            bundles.Add(new StyleBundle("~/Content/jqueryuicss").Include(
-                   "~/Content/jquery-ui.css"));
+            
 
             //************************************** modernizr bundle **********************************************
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -45,6 +44,12 @@ namespace CommonWeal.NGOWeb
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            //************************************** bootstrap bundle **********************************************
+
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
 
 
             //************************************** datapicker bundle **********************************************
@@ -53,7 +58,10 @@ namespace CommonWeal.NGOWeb
                           "~/Scripts/bootstrap-datepicker.min.js"));
 
             //************************************** datapicker bundle **********************************************
-            bundles.Add(new StyleBundle("~/Content/sitecss").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/sitecss").Include(
+                "~/Content/bootstrap.css",
+                 "~/Content/site.css"));
         }
     }
 }
+

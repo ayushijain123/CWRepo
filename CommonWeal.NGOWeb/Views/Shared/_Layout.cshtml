@@ -6,12 +6,10 @@
     <title>@ViewBag.Title - All Right Reserved</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/sitecss")
     @Styles.Render("~/bundles/jqueryui")
-    @Styles.Render("~/Content/jqueryuicss")
 
-    @Scripts.Render("~/bundles/modernizr")
+
 </head>
 <body>
     <header>
@@ -41,8 +39,11 @@
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
 
-      @Styles.Render("~/Content/sitecss")
+
+
 
     @RenderSection("scripts", required: false)
 </body>

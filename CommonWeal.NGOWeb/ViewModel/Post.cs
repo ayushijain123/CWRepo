@@ -9,13 +9,13 @@ namespace CommonWeal.NGOWeb.ViewModel
     {
        
         public int postId { get; set; }
-        public String userName { get; set; }
-        public String userImage { get; set; }
+        public string userName { get; set; }
+        public string userImage { get; set; }
         public DateTime postCreateTime { get; set; }
-        public String postImageUrl{ get; set; }
+        public string postImageUrl{ get; set; }
         public int likeCount { get; set; }
         public int commentCount { get; set; }
-        public String postcontent { get; set; }
+        public string postcontent { get; set; }
 
         public List<Comment> PostComments { get; set; }
     } 
