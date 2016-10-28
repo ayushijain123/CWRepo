@@ -37,6 +37,15 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         var Randomcode = obj.GenerateRandomPassword(7);
                         obj.SendActivationEmail(UserEmail, Randomcode);
                         ViewBag.code = Randomcode;
+                        ForgotPassword entry = new ForgotPassword();
+                        entry.EmailId = UserEmail;
+                        entry.OTP = Randomcode;
+                        entry.CreatedOn= System.DateTime.Now;
+                        entry.ModifiedOn = System.DateTime.Now;
+                        entry.CreatedBy = UserEmail;
+                       // context.Users.Add(obj);
+                        context.ForgotPasswords.Add(entry);
+                        context.SaveChanges();
                         Session["FinalEmail"] = UserEmail;
                         Session["OTP"] = Randomcode;
                         return View();//"ConfirmPassword","Password"
@@ -56,6 +65,8 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         //[HttpPost]
         public ActionResult ConfirmPassword(string FinalEmail,string OTP,string FinalOTP)
         {
+            CommonWealEntities1 context = new CommonWealEntities1();
+            dbOperations obj = new dbOperations();
 
             if (OTP == FinalOTP)
             {
