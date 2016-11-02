@@ -4,7 +4,6 @@
     ViewBag.Title = "CreateUser";
 }
 
-<body>
 
     <div id="main">
         <div class="panel panel-default">
@@ -15,18 +14,16 @@
             <div class="panel-body">
                 <div id="user">
 
-                    <form name="UserRegistration" id="horizontal" class="form-horizontal" method="post" action="/userRegistration/CreateUser">
+                   @* <form name="UserRegistration" id="horizontal" class="form-horizontal" method="post" action="/userRegistration/CreateUser">
                         @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true)
-
-                        <br />
-                        <br />
-
+                        @Html.ValidationSummary(true)*@
+                     @using (Ajax.BeginForm("CreateUser", "UserRegistration", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
+                     { 
                         <div class="form-group ">
                             <label class="control-label col-xs-4" for="fn">First Name:*</label>
                             <div class="col-xs-8">
                           @*      @Html.LabelFor(a => a.firstName)*@
-                                @Html.TextBoxFor(a => a.FirstName, new { placeholder="First Name" })
+                                @Html.TextBoxFor(a => a.FirstName, new { placeholder = "First Name" })
                                 @*<input type="text" class="form-control" id="fntext" name="firstName" placeholder="First Name">*@
                                 @Html.ValidationMessageFor(a => a.FirstName)
                             </div>
@@ -34,7 +31,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4" for="ln">Last Name:*</label>
                             <div class="col-xs-8">
-                                 @Html.TextBoxFor(a => a.LastName, new { placeholder="Last Name" })
+                                 @Html.TextBoxFor(a => a.LastName, new { placeholder = "Last Name" })
 
                               @*  <input type="text" class="form-control" id="lntext" name="lastname" placeholder="Last Name">*@
                                 @Html.ValidationMessageFor(a => a.LastName)
@@ -43,7 +40,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4" for="email">Email:*</label>
                             <div class="col-xs-8">
-                                 @Html.TextBoxFor(a => a.UserEmail, new { placeholder="Email ID" })
+                                 @Html.TextBoxFor(a => a.UserEmail, new { placeholder = "Email ID" })
                                @* <input type="email" class="form-control" id="email" name="login_Email" placeholder="Enter email">*@
                                 @Html.ValidationMessageFor(a => a.UserEmail)
                             </div>
@@ -51,7 +48,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4" for="MobileNumber">Mobile Number:*</label>
                             <div class="col-xs-8">
-                                 @Html.TextBoxFor(a => a.Mobile, new { placeholder="Mobile Number" })
+                                 @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number" })
                                @* <input type="tel" class="form-control" name="Login_mobileNumber" id="Mnumber" placeholder="Mobile Number">*@
                                 @Html.ValidationMessageFor(a => a.Mobile)
                             </div>
@@ -60,7 +57,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4" for="pwd">Password:*</label>
                             <div class="col-xs-8">
-                                @Html.PasswordFor(a => a.UserPassword, new { placeholder="Password" })
+                                @Html.PasswordFor(a => a.UserPassword, new { placeholder = "Password" })
                              @*    @Html.EditorFor(a => a.UserPassword, new { placeholder="Password" })*@
                                 @*<input type="password" class="form-control" id="pwd" name="login_password" placeholder="Enter password">*@
                                 @Html.ValidationMessageFor(a => a.UserPassword)
@@ -87,8 +84,10 @@
                            <center> <button type="submit" class="btn btn-primary" onclick="">Submit</button></center><br />
                             <br />
                         </div>
-                    </form>
-
+                    @*</form>*@
+                     }
+                     <p>@TempData["message"]</p>
+                    @{Html.EndForm();}
                 </div>
 
             </div>
@@ -97,10 +96,6 @@
 
     </div>
 
-
-
-
-</body>
 
 
 @section Scripts {

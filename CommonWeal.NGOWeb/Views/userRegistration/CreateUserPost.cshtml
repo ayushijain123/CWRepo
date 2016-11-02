@@ -4,106 +4,72 @@
     ViewBag.Title = "CreateUserPost";
 }
 
- 
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
-    <div id="main">
-        <div class="panel panel-default">
-            <div class="panel-heading" style="">
-                <h3>Registration Form</h3>
-            </div>
-
-            <div class="panel-body">
-                <div id="user">
-
-                    <form name="UserRegistration" id="horizontal" class="form-horizontal" method="post" action="/userRegistration/CreateUser">
-                      @*  @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true)*@
-
-                        <br />
-                        <br />
-
-                        <div class="form-group ">
-                            <label class="control-label col-xs-4" for="fn">First Name:*</label>
-                            <div class="col-xs-6">
-                          @*      @Html.LabelFor(a => a.firstName)*@
-                                @Html.TextBoxFor(a => a.FirstName, new { placeholder="First Name" })
-                                @*<input type="text" class="form-control" id="fntext" name="firstName" placeholder="First Name">*@
-                                @Html.ValidationMessageFor(a => a.FirstName)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-4" for="ln">Last Name:*</label>
-                            <div class="col-xs-6">
-                                 @Html.TextBoxFor(a => a.LastName, new { placeholder="Last Name" })
-
-                              @*  <input type="text" class="form-control" id="lntext" name="lastname" placeholder="Last Name">*@
-                                @Html.ValidationMessageFor(a => a.LastName)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-4" for="email">Email:*</label>
-                            <div class="col-xs-6">
-                                 @Html.TextBoxFor(a => a.UserEmail, new { placeholder="Email ID" })
-                               @* <input type="email" class="form-control" id="email" name="login_Email" placeholder="Enter email">*@
-                                @Html.ValidationMessageFor(a => a.UserEmail)
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-xs-4" for="MobileNumber">Mobile Number:*</label>
-                            <div class="col-xs-6">
-                                 @Html.TextBoxFor(a => a.Mobile, new { placeholder="Mobile Number" })
-                               @* <input type="tel" class="form-control" name="Login_mobileNumber" id="Mnumber" placeholder="Mobile Number">*@
-                                @Html.ValidationMessageFor(a => a.Mobile)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-xs-4" for="pwd">Password:*</label>
-                            <div class="col-xs-6">
-                                @Html.PasswordFor(a => a.UserPassword, new { placeholder="Password" })
-                             @*    @Html.EditorFor(a => a.UserPassword, new { placeholder="Password" })*@
-                                @*<input type="password" class="form-control" id="pwd" name="login_password" placeholder="Enter password">*@
-                                @Html.ValidationMessageFor(a => a.UserPassword)
-                            </div>
-                        </div>
-                         <div class="form-group">
-                            <label class="control-label col-xs-4" for="pwd">Confirm Password:*</label>
-                            <div class="col-xs-6">
-                                @Html.PasswordFor(a => a.CnfrmPassword, new { placeholder="Confirm Password" })
-                                 @Html.ValidationMessageFor(a => a.CnfrmPassword)
-                            </div>
-                        </div>
-                     @*   <div class="form-group">
-                            <label class="control-label col-xs-4" for="rpwd">Confirm Password:*</label>
-                            <div class="col-xs-6">
-                                 @Html.TextBoxFor(a => a.confirmpassword)
-                              
-                                @Html.ValidationMessageFor(a => a.confirmpassword)
-                            </div>
-                        </div>*@
-                      @*  <div class="form-inline">
-                                <label class="control-label col-xs-4" for="gender">Gender:*</label>
-                                <div class="col-xs-6">
-                                    <input type="radio" class="form-control" name="gid" required />
-                                    <label>Male</label>
-                                    <input type="radio" class="form-control" name="gid" required /><label>Female</label>
-                                </div>
-                            </div>*@
-                        <div class="form-group">
-
-                           <center> <button type="submit" class="btn btn-primary" onclick="">Submit</button></center><br />
-                            <br />
-                        </div>
-                    </form>
-
-                </div>
-
-            </div>
-
+<div id="main">
+    <div class="panel panel-default">
+        <div class="panel-heading" style="">
+            <h3>Registration Form</h3>
         </div>
+        <div class="panel-body">
+            <div id="user">
+                @using (Ajax.BeginForm("CreateUser", "UserRegistration", new AjaxOptions { HttpMethod = "POST", OnSuccess = "createsuccess" }, new { @class = "form-horizontal" }))
+                { 
+                    <div class="form-group ">
+                        <label class="control-label col-xs-4" for="fn">First Name:*</label>
+                        <div class="col-xs-6">
+                            @Html.TextBoxFor(a => a.FirstName, new { placeholder = "First Name" })
+                            @Html.ValidationMessageFor(a => a.FirstName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="ln">Last Name:*</label>
+                        <div class="col-xs-6">
+                            @Html.TextBoxFor(a => a.LastName, new { placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(a => a.LastName)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="email">Email:*</label>
+                        <div class="col-xs-6">
+                            @Html.TextBoxFor(a => a.UserEmail, new { placeholder = "Email" })
+                            @Html.ValidationMessageFor(a => a.UserEmail)
+                            <label id="lblEmail" style="color: red"></label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="MobileNumber">Mobile Number:*</label>
+                        <div class="col-xs-6">
+                            @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number" })
+                            @Html.ValidationMessageFor(a => a.Mobile)
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="pwd">Password:*</label>
+                        <div class="col-xs-6">
+                            @Html.PasswordFor(a => a.UserPassword, new { placeholder = "Password" })
+                            @Html.ValidationMessageFor(a => a.UserPassword)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="pwd">Confirm Password:*</label>
+                        <div class="col-xs-6">
+                            @Html.PasswordFor(a => a.CnfrmPassword, new { placeholder = "Confirm Password" })
+                            @Html.ValidationMessageFor(a => a.CnfrmPassword)
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <center> <button type="submit" class="btn btn-primary" onclick="">Submit</button></center>
+                        <br />
+                        <br />
+                    </div>@*@Html.ActionLink("Click Here" , "CreateUser","UserRegistration" )}*@
+                }
+
+            </div>
+        </div>
     </div>
+</div>
 
-
-
-  
