@@ -142,6 +142,7 @@ namespace CommonWeal.NGOWeb
                         break;
 
                 }
+                pm.postcontent = item.PostContent;
                 pm.postImageUrl = item.PostUrl;
                 pm.postCreateTime = item.CreatedOn.Value;
                 pm.likeCount = 1;//item.PostLikeCount.Value;
@@ -157,14 +158,14 @@ namespace CommonWeal.NGOWeb
                     cmnt.commentLike = 0;
                     cmnt.commentUserImage = "";
                     cmnt.CreatedDateTime = a.CreatedOn.Value;
-                    int userType = LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType).FirstOrDefault();
+                    int userType = LoginUserlist.Where(user => user.LoginEmailID == a.UserID).FirstOrDefault().LoginUserType;
 
                     switch (userType)
                     {
-                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == item.EmailID).FirstOrDefault().NGOName.ToString();
+                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == a.UserID).FirstOrDefault().NGOName.ToString();
                             cmnt.Username = NGOUser;
                             break;
-                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == item.EmailID).FirstOrDefault();
+                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == a.UserID).FirstOrDefault();
                             cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
                             break;
 
