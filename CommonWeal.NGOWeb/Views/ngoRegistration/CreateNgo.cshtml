@@ -1,4 +1,4 @@
-﻿@model CommonWeal.NGOWeb.Models.NGOUserMeta
+﻿@model CommonWeal.NGOWeb.Models.NGOUser
 @{
     ViewBag.Title = "CreateNgo";
 }
@@ -125,6 +125,7 @@
                         <label class="control-label col-xs-4" for="WebsiteURL">Website URL:* </label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.WebsiteUrl, new { placeholder = "Website URL" })&nbsp;
+                            @Html.ValidationMessageFor(a => a.WebsiteUrl)
                         </div>
                     </div>
                     
