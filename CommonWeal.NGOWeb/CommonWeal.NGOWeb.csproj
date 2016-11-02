@@ -199,6 +199,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PostComment.cs">
+      <DependentUpon>CommonWealEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Utility\TypeHelper.cs" />
     <Compile Include="Models\LoginMeta.cs" />
@@ -214,9 +217,6 @@
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="NGOUser.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PostComment.cs">
       <DependentUpon>CommonWealEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
