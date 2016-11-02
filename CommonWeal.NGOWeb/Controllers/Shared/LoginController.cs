@@ -84,7 +84,6 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         Response.Cookies.Add(cookie);
 
 
-                        //return RedirectToAction("Index", controllerName);
                         return JavaScript("window.location = '" + Url.Action("Index", controllerName) + "'");
 
                         //FormsAuthenticationTicket ticket = CreateAuthenticationTicket(userName, commaSeperatedRoles,createPersistentCookie, strCookiePath);
@@ -120,7 +119,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                     //    //redirect to login page
                     //    //request is pending for admin portal
                     //}
-                    //else if (result.IsActive == true && result.IsBlock == true)
+                    //else if  (result.IsActive == true && result.IsBlock == true)
                     //{
                     //    //redirect to login page
                     //    //all user are blocked
