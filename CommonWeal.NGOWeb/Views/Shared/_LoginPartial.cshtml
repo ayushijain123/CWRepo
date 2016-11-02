@@ -1,18 +1,23 @@
-﻿<div class="form-inline">
+﻿<div class="col-md-12">
     <nav>
-        <input type="text" class="form-control" id="search" placeholder="Search" name="q">
 
-        <button class="btn btn-default" id="searchbtn" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        <img src="~/Images/Logo1.png" class="col-md-1" />
 
-        <ul id="menu">
-            Hello 
+        <div class="col-md-offset-5 col-md-3">
+            <input type="text" class="col-md-10" id="search" placeholder="Search" name="q" />
+
+            <button class="glyphicon glyphicon-search col-md-1" id="searchbtn" type="submit"  >...</button>
+        </div>
+        <div id="menu" class="col-md-2 right">
+
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                <span>@User.Identity.Name</span> 
-                <li><a href="@Url.Action("Index", "UserHome")" class="fa fa-user" title="Home"></a></li>
-                <li><a  href="@Url.Action("LogOut", "Login")" ><span class="glyphicon glyphicon-off log-out"></span></a></li>
-                <li>
-                    <input type="hidden" id="appUserName" value="@ViewBag.LoggedInUser.LoginEmailID" /></li>
+                <span class="usernav">Hello @User.Identity.Name,</span>  
+                <br />
+                <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-user" title="Home"></a> 
+                <a  href="@Url.Action("LogOut", "Login")" ><span class="menuitem glyphicon glyphicon-off log-out"></span></a> 
+                                  
+                <input type="hidden" id="appUserName" value="@ViewBag.LoggedInUser.LoginEmailID" /> 
                 
                 
                 <li>
@@ -28,15 +33,17 @@
             }
             else
             {
-                <span>Guest</span> 
-                <li><a href="@Url.Action("Index", "Home")" class="fa fa-home" title="Home"></a></li>
-                <li><a href="@Url.Action("Index", "Login")" class="fa fa-sign-in" title="Sign In"></a></li>
-                <li><a href="@Url.Action("CreateNGO", "NGORegistration")" class="fa fa-group" title="Sign up as NGO"></a></li>
-                <li><a href="@Url.Action("CreateUserPost", "UserRegistration")" class="fa fa-user-plus" title="Sign up as User"></a></li>
-                
+                <span>Hello Guest,</span>   
+                <br />
+                <a href="@Url.Action("Index", "Home")" class="menuitem fa fa-home" title="Home" style="color:pink;"></a> 
+                <a href="@Url.Action("Index", "Login")" class="menuitem fa fa-sign-in" title="Sign In"></a> 
+                <a href="@Url.Action("CreateNGO", "NGORegistration")" class="menuitem fa fa-group" title="Sign up as NGO"></a> 
+                <a href="@Url.Action("CreateUserPost", "UserRegistration")" class="menuitem fa fa-user-plus" title="Sign up as User"></a> 
+
                 
             }
 
-        </ul>
+        </div>
+
     </nav>
 </div>

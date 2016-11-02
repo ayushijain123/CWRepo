@@ -7,22 +7,15 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/sitecss")
- <script src="~/Scripts/jquery-1.7.1.min.js"></script>
-
-    
 
 </head>
 <body>
-    <header>
-        <div class="logo1">
-            COMMONWEAL
-        </div>
-        <section>
-            @Html.Partial("_LoginPartial")
-        </section>
+    <header class="col-md-12">
+
+
+        @Html.Partial("_LoginPartial")
 
     </header>
-
     <div id="body" class="container">
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix" style="width: 100%;">
@@ -38,14 +31,12 @@
         </div>
 
     </footer>
-    
-    @*@Scripts.Render("~/bundles/jquery")*@
+
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
-       @Styles.Render("~/bundles/jqueryui")
-
-
+    @Styles.Render("~/bundles/jqueryui")
 
     @RenderSection("scripts", required: false)
 </body>
