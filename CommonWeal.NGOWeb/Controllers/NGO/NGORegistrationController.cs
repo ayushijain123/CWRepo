@@ -1,9 +1,9 @@
-﻿using CommonWeal.NGOWeb;
-using CommonWeal.NGOWeb.Models;
+﻿using CommonWeal.NGOWeb.Models;
 using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -16,6 +16,14 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
 
             return View();
+        }
+        [HttpPost]
+        public JsonResult doesEmailExist(string UserName)
+        {
+
+            var user = Membership.GetUser(UserName);
+
+            return Json(user == null);
         }
 
         [HttpPost]
@@ -69,5 +77,13 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             }
             return RedirectToAction("CreateNgo", "NgoRegistration");
         }
+
+
+        public JsonResult checkEmail(string NGOEmailID)
+        {
+            CommonWealEntities1 context = new CommonWealEntities1();
+            return Json(!context.NGOUsers.Any(x => x.NGOEmailID == NGOEmailID), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
