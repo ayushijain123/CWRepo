@@ -86,7 +86,7 @@
                         </div>
                     @*</form>*@
                      }
-                     <p>@TempData["message"]</p>
+                    @Html.Raw(TempData["msg"])
                     @{Html.EndForm();}
                 </div>
 
