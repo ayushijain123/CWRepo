@@ -40,6 +40,8 @@ namespace CommonWeal.NGOWeb.Models
 
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
         [Required(ErrorMessage = "This field is required")]
+        //[System.Web.Mvc.Remote("doesEmailExist", "NGORegistration", HttpMethod = "POST", ErrorMessage = "User name already exists. Please enter a different user name.")]
+        [System.Web.Mvc.Remote("checkEmail", "ngoRegistration", ErrorMessage = "Email already exists")]
         public string NGOEmailID { get; set; }
 
         [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password Length should be minimum 8 characters with uppercase lowercase and special character")]
