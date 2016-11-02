@@ -36,7 +36,7 @@ namespace CommonWeal.NGOWeb
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            
+
 
             //************************************** modernizr bundle **********************************************
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -60,7 +60,12 @@ namespace CommonWeal.NGOWeb
             //************************************** datapicker bundle **********************************************
             bundles.Add(new StyleBundle("~/Content/sitecss").Include(
                 "~/Content/bootstrap.css",
-                 "~/Content/site.css"));
+                 "~/Content/Site.css"));
+
+
+            //css  
+            bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
+                   "~/Content/jquery-ui.css"));
         }
     }
 }
