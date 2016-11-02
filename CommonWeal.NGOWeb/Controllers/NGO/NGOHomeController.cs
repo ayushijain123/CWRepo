@@ -17,7 +17,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             dbOperations ob = new dbOperations();
             var postlist = ob.GetAllPost();
-           postlist= postlist.OrderByDescending(x => x.postCreateTime).ToList();
+            postlist= postlist.OrderByDescending(x => x.postCreateTime).ToList();
             return View(postlist);
         }
 

@@ -1,11 +1,9 @@
-﻿using System;
+﻿using CommonWeal.NGOWeb.Utility;
+using System;
 using System.Linq;
-using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Data.Entity;
-using CommonWeal.NGOWeb.Utility;
 
 
 namespace CommonWeal.NGOWeb.Controllers.Shared
@@ -33,12 +31,11 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower()).FirstOrDefault();
             if (result == null)
             {
+                TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
                 return View();
             }
             else if (result.LoginEmailID != null && result.LoginPassword != null)
             {
-                
-
                 if (result.LoginEmailID.ToLower() == userEMail && result.LoginPassword == user.LoginPassword)
                 {
                     if (result.IsActive == true && result.IsBlock == false)
@@ -125,13 +122,13 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                     //    //all user are blocked
                     //}
 
-
+                    else
+                    {
+                        TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
+                    }
 
                 }
-                else
-                {
-                    TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
-                }
+
 
             }
 
@@ -144,7 +141,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             System.Web.Security.FormsAuthentication.SignOut();
             Session.Clear();
             Session.Abandon();
-            
+
             return RedirectToAction("Index", "Home");
         }
 

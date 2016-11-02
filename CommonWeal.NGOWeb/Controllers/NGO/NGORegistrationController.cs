@@ -1,5 +1,4 @@
-﻿using CommonWeal.NGOWeb.Models;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,7 +26,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
 
         [HttpPost]
-        public ActionResult CreateNGO(NGOUserMeta objngoMeta, NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
+        public ActionResult CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
             CommonWealEntities1 context = new CommonWealEntities1();
 
@@ -40,8 +39,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     // file is uploaded
                     chairmanID.SaveAs(copyofregpath);
                     //save in model property
-                    objngoMeta.ChairmanID = "/Album/ChairmanID/" + pic;
-                    objngo.ChairmanID = objngoMeta.ChairmanID;
+                    objngo.ChairmanID = "/Album/ChairmanID/" + pic;
+                    objngo.ChairmanID = objngo.ChairmanID;
                 }
                 if (RegistrationProof != null)
                 {
@@ -50,8 +49,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     // file is uploaded
                     chairmanID.SaveAs(copyofregpath);
                     //save in model property
-                    objngoMeta.RegistrationProof = "/Album/RegistrationID/" + pic;
-                    objngo.RegistrationProof = objngoMeta.RegistrationProof;
+                    objngo.RegistrationProof = "/Album/RegistrationID/" + pic;
+                    objngo.RegistrationProof = objngo.RegistrationProof;
                 }
                 User obj = new User();
                 obj.LoginPassword = objngo.NGOPassword;
