@@ -63,13 +63,11 @@
                         <br />
                     </div>
                 }
+                @Html.Raw(TempData["msg"])
             </div>
         </div>
     </div>
-    @if (TempData["Usermsg"] != null)
-    {
-        <p>@TempData["Usermsg"]</p>
-    }
+  
 </body>
 
 @section Scripts {
