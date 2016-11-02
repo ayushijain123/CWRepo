@@ -15,10 +15,11 @@ namespace CommonWeal.NGOWeb
     public partial class PostComment
     {
         public int CommentID { get; set; }
-        public Nullable<int> UserID { get; set; }
+        public string UserID { get; set; }
         public Nullable<int> PostID { get; set; }
         public string CommentText { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
     }
 }
