@@ -1,4 +1,7 @@
-﻿<div style="height: 50px; width: 800px; margin-left: 80px;">
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+<br/>
+<br/>
+<div style="height: 50px; width: 800px; margin-left: 80px;">
 
     @*//new upload post*@
     <div id="newuploadpost">
@@ -55,25 +58,25 @@
                     </div>
                     <br />
                     @*///Comment div action*@
-                    
-                    @foreach (var comment in item.PostComments)
-                    {
                     <div class="form-inline" style="background-color: lightgray">
+                        @foreach (var comment in item.PostComments)
+                        {
+         
 
-                        <div class="form-group">
-                            <div class="form-inline" style="border-bottom: ridge; width: 600px;">
-                                <img src="~/Images/orderedList3.png"></img>
-                                <a href="#"><span style="font-size: 16px;"><b>@comment. </b></span></a>
-                                <a href="#">@DateTime.Now.ToString()</a><br />
-                                <p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>
-                                <div class="form-inline" style="height: 30px; margin-left: 10px;">
-                                    <a href="#">Like</a>
-                                    <a href="#">Reply</a>
+                            <div class="form-group">
+                                <div class="form-inline" style="border-bottom: ridge; width: 600px;">
+                                    <img src="~/Images/orderedList3.png"></img>
+                                    <a href="#"><span style="font-size: 16px;"><b>@comment.Username </b></span></a>
+                                    <a href="#">@comment.CreatedDateTime</a><br />
+                                    <p style="margin-left: 55px;">@comment.commentContent</p>
+                                    <div class="form-inline" style="height: 30px; margin-left: 10px;">
+                                        <a href="#">Like</a>
+                                        <a href="#">Reply</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                     }
+                        }
 
                         <div id="@item.postId">
                             <br />
@@ -100,6 +103,3 @@
             }
         </div>
     </div>
-
-
-</div>
