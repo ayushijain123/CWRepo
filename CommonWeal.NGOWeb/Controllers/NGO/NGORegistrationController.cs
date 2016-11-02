@@ -75,7 +75,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             {
                 return View();
             }
-            return RedirectToAction("CreateNgo", "NgoRegistration");
+            //return RedirectToAction("CreateNgo", "NgoRegistration");
+            return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
         }
 
 
