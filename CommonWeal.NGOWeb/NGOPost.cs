@@ -24,5 +24,6 @@ namespace CommonWeal.NGOWeb
         public Nullable<int> PostCommentCount { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

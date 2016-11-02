@@ -44,6 +44,7 @@ namespace CommonWeal.NGOWeb
         public bool IsBlock { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
     
         public virtual User User { get; set; }
     }
