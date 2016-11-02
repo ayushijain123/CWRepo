@@ -11,20 +11,20 @@
         });
         if (TextComment != "") {
 
-            $("#" + postid).append('<div class="form-group">'
-              + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">' +
-                   '<img src="/Images/orderedList3.png"></img>' +
-                   '<a href="#"><span style="font-size: 16px;"><b>' + $("#appUserName").val() + '</b></span></a>' +
-                   '<a href="#">@DateTime.Now.ToString()</a><br />' +
-                             '<p style="margin-left: 55px;">' + TextComment + '</p>' +
-                             '<div class="form-inline" style="height: 30px; margin-left: 10px;">' +
-                                 '<a href="#">Like</a>' +
-                                 '<a href="#">Reply</a>' +
-                             '</div>' +
-                         '</div>' +
-                     '</div>');
+            //$("#" + postid).append('<div class="form-group">'
+            //  + '<div class="form-inline" style="border-bottom: ridge; width: 600px;">' +
+            //       '<img src="/Images/orderedList3.png"></img>' +
+            //       '<a href="#"><span style="font-size: 16px;"><b>' + $("#appUserName").val() + '</b></span></a>' +
+            //       '<a href="#">@DateTime.Now.ToString()</a><br />' +
+            //                 '<p style="margin-left: 55px;">' + TextComment + '</p>' +
+            //                 '<div class="form-inline" style="height: 30px; margin-left: 10px;">' +
+            //                     '<a href="#">Like</a>' +
+            //                     '<a href="#">Reply</a>' +
+            //                 '</div>' +
+            //             '</div>' +
+            //         '</div>');
             $("#txtComment-" + postid).val("");
-
+            window.location.reload(true);
         }
         else {
 
@@ -112,11 +112,6 @@
 
     });
 
-
-    function fileclick() {
-        $("#file").click();
-
-    }
 
 });
  
