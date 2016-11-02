@@ -31,8 +31,10 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower()).FirstOrDefault();
             if (result == null)
             {
-                TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
-                return View();
+                TempData["msg"] = "<script>alert('Invalid email or password');</script>";
+                return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+                //TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
+                //return View();
             }
             else if (result.LoginEmailID != null && result.LoginPassword != null)
             {
