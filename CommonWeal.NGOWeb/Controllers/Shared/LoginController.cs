@@ -84,7 +84,8 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         Response.Cookies.Add(cookie);
 
 
-                        return RedirectToAction("Index", controllerName);
+                        //return RedirectToAction("Index", controllerName);
+                        return JavaScript("window.location = '" + Url.Action("Index", controllerName) + "'");
 
                         //FormsAuthenticationTicket ticket = CreateAuthenticationTicket(userName, commaSeperatedRoles,createPersistentCookie, strCookiePath);
                         ////Encrypt the authentication ticket
