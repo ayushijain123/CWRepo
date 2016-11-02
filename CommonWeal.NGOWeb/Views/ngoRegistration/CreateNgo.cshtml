@@ -68,7 +68,7 @@
                         <label class="control-label col-xs-4" for="PhotoIdOfChairman">Photo Id Of Chairman:*</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(m => m.ChairmanID, new { type = "file" })
-                            @Html.ValidationMessageFor(a => a.ChairmanID)
+                           @* @Html.ValidationMessageFor(a => a.ChairmanID)*@
                         </div>
                     </div>
                     
@@ -153,10 +153,11 @@
                         <br />
                     </div>
                 }
+          @Html.Raw(TempData["msg"])
             </div>
         </div>
     </div>
-    @Html.Raw(TempData["msg"])
+  
 
 </body>
 
