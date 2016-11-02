@@ -96,7 +96,7 @@ namespace CommonWeal.NGOWeb.Models
         public string ParentOrganisation { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
+        //[RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
         [StringLength(50)]
         public string RegisteredWith { get; set; }
 
@@ -110,7 +110,8 @@ namespace CommonWeal.NGOWeb.Models
         [StringLength(50)]
         public string CityOfRegistration { get; set; }
 
-        public Nullable<System.DateTime> DateOfRegistration { get; set; }
+        [Required(ErrorMessage = "This field is required")]
+        public DateTime DateOfRegistration { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
         public string RegistrationProof { get; set; }
@@ -130,7 +131,6 @@ namespace CommonWeal.NGOWeb.Models
         public Nullable<System.DateTime> CreatedOn { get; set; }
 
         public Nullable<System.DateTime> ModifiedOn { get; set; }
-
 
         public virtual User UserLogin { get; set; }
 
