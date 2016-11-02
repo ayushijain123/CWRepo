@@ -13,6 +13,17 @@
                 <li><a  href="@Url.Action("LogOut", "Login")" ><span class="glyphicon glyphicon-off log-out"></span></a></li>
                 <li>
                     <input type="hidden" id="appUserName" value="@ViewBag.LoggedInUser.LoginEmailID" /></li>
+                
+                
+                <li>
+
+                    <script>
+
+                        userName = '@HttpContext.Current.User.Identity.Name';
+
+                    </script>
+
+                </li>
                  
             }
             else
