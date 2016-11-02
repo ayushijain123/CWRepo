@@ -7,8 +7,9 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/sitecss")
-    @Styles.Render("~/bundles/jqueryui")
+ <script src="~/Scripts/jquery-1.7.1.min.js"></script>
 
+    
 
 </head>
 <body>
@@ -37,11 +38,12 @@
         </div>
 
     </footer>
-    @Scripts.Render("~/bundles/jquery")
+    
+    @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
-
+       @Styles.Render("~/bundles/jqueryui")
 
 
 

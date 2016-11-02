@@ -9,12 +9,12 @@ namespace CommonWeal.NGOWeb.ViewModel
     public class Comment
     {
        
-        public String Username { get; set; }
+        public string Username { get; set; }
         public DateTime CreatedDateTime { get; set; }
-        public String commentContent { get; set; }
+        public string commentContent { get; set; }
         public int commentLike { get; set; }
-        public String commentUserImage { get; set; }
-        public String commentId { get; set; }
+        public string commentUserImage { get; set; }
+        public int commentId { get; set; }
 
     }
 }

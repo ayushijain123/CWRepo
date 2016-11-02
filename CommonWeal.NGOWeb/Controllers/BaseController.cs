@@ -26,6 +26,7 @@ namespace CommonWeal.NGOWeb.Controllers
             {
                 CommonWealEntities1 CWContext = new CommonWealEntities1();
                 this.LoggedInUser = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
+                ViewBag.LoggedInUser = LoggedInUser;
             }
 
         }
@@ -52,5 +53,7 @@ namespace CommonWeal.NGOWeb.Controllers
             }
 
         }
+
+
     }
 }

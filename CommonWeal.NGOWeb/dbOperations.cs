@@ -129,28 +129,51 @@ namespace CommonWeal.NGOWeb
 
                 Post pm = new Post();
 
-                pm.userName = "";
+
                 int UserRole = LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType).FirstOrDefault();
 
                 switch (UserRole)
                 {
-                    case 1: String NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == item.EmailID).Select(ngusr => ngusr.NGOName).ToString();
+                    case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == item.EmailID).FirstOrDefault().NGOName.ToString();
                         pm.userName = NGOUser;
                         break;
                     case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == item.EmailID).FirstOrDefault();
                         pm.userName = RegUser.FirstName + " " + RegUser.LastName;
                         break;
 
-
                 }
                 pm.postImageUrl = item.PostUrl;
                 pm.postCreateTime = item.CreatedOn.Value;
                 pm.likeCount = 1;//item.PostLikeCount.Value;
                 pm.commentCount = 1;//item.PostCommentCount.Value;
-
+                pm.postId = item.PostID;
                 var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
+                List<Comment> imagecommentlist = new List<Comment>();
+                foreach (var a in postcomment)
+                {
+                    Comment cmnt = new Comment();
+                    cmnt.commentId = a.CommentID;
+                    cmnt.commentContent = a.CommentText;
+                    cmnt.commentLike = 0;
+                    cmnt.commentUserImage = "";
+                    cmnt.CreatedDateTime = a.CreatedOn.Value;
+                    int userType = LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType).FirstOrDefault();
 
+                    switch (userType)
+                    {
+                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == item.EmailID).FirstOrDefault().NGOName.ToString();
+                            cmnt.Username = NGOUser;
+                            break;
+                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == item.EmailID).FirstOrDefault();
+                            cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
+                            break;
 
+                    }
+
+                    imagecommentlist.Add(cmnt);
+                    
+                }
+                pm.PostComments=imagecommentlist;
                 ob.Add(pm);
 
             }
