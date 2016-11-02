@@ -20,12 +20,8 @@ namespace CommonWeal.NGOWeb.Models
     //    }
     //}
 
-    [MetadataType(typeof(NGOUserMeta))]
+    //[MetadataType(typeof(NGOUserMeta))]
     public partial class NGOUser
-    {
-    }
-
-    public class NGOUserMeta
     {
         public int NGOUserId { get; set; }
 
@@ -87,7 +83,7 @@ namespace CommonWeal.NGOWeb.Models
         [StringLength(50)]
         public string ChairmanName { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
+        //[Required(ErrorMessage = "This field is required")]
         public string ChairmanID { get; set; }
 
         [Required(ErrorMessage = "This field is required")]
@@ -113,7 +109,7 @@ namespace CommonWeal.NGOWeb.Models
         [Required(ErrorMessage = "This field is required")]
         public DateTime DateOfRegistration { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
+        //[Required(ErrorMessage = "This field is required")]
         public string RegistrationProof { get; set; }
 
         public string FCRANumber { get; set; }
@@ -122,6 +118,9 @@ namespace CommonWeal.NGOWeb.Models
 
         public string OperationalArea { get; set; }
 
+        
+        [Required(ErrorMessage = "This field is required")]
+        [Url(ErrorMessage = "Enter Valid URL")]
         public string WebsiteUrl { get; set; }
 
         public bool IsActive { get; set; }
@@ -133,6 +132,5 @@ namespace CommonWeal.NGOWeb.Models
         public Nullable<System.DateTime> ModifiedOn { get; set; }
 
         public virtual User UserLogin { get; set; }
-
     }
 }
