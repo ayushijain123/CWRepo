@@ -39,7 +39,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
                     ru.LoginUserType = 3; // Added by Rishiraj  on 24/10/2016
                     context.RegisteredUsers.Add(ru);
                     context.SaveChanges();
-                    TempData["message"] = "Registration Sucessful";
+                    TempData["msg"] = "<script>alert('Registration succesfull');</script>";
                     //return RedirectToAction("Index", new { controller = "Home", area = string.Empty });
                     return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
                 }
