@@ -44,6 +44,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             }
             else if (obpost.PostContent != null)
             {
+                obpost.EmailID = this.User.Identity.Name;
                 obpost.PostType = "Text";
                 obpost.PostDateTime = DateTime.Now;
                 obpost.ModifiedOn = DateTime.Now;

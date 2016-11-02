@@ -24,6 +24,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
             db.PostComments.Add(postcmnt);
             db.SaveChanges();
+            
+           
 
         }
 

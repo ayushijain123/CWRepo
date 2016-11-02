@@ -32,14 +32,11 @@ namespace CommonWeal.NGOWeb.Controllers
             }
             else
             {
-                if(this.User.IsInRole(TypeHelper.UserType.NGOAdmin.ToString()))
+                if (this.User.IsInRole(TypeHelper.UserType.NGOAdmin.ToString()))
                 {
                     return RedirectToAction("Index", "NGOHome");
                 }
-                else if (this.User.IsInRole(TypeHelper.UserType.Admin.ToString()))
-                {
-                    return RedirectToAction("Index", "UserHome");
-                }
+
                 else
                 {
                     return RedirectToAction("Index", "UserHome");
