@@ -28,6 +28,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
 
                 return View(postlist);
+                //return View();
 
             }
             else

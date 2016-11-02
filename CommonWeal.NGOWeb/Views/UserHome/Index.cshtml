@@ -4,14 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<script src="~/Scripts/Post/PostComment.js"></script>
 
 @*<div  style="background-color:gray;"></div>*@
 
 
-    @*  //post*@
+@*  //post*@
 
-  @*  @Html.Partial("_posts", Model);*@
+@*  @Html.Partial("_posts", Model);*@
 
 <div style="height: 50px; width: 800px; margin-left: 80px;">
 
@@ -20,8 +19,11 @@
     </div>
 
     @*//end upload post*@
-     @Html.Partial("../UserHome/_posts", Model);
+    @Html.Partial("../UserHome/_posts", Model);
     
 
 </div>
-            
+
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}

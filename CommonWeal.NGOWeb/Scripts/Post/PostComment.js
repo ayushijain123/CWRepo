@@ -1,6 +1,13 @@
-﻿$(document).ready(function () {
+﻿
 
+function fileclick() {
+    $("#file").click();
+
+}
+
+$(document).ready(function () {
     //    $("#file").filestyle({ badge: false });
+
 
     $(".btnPost").click(function () {
         var postid = $(this).attr('id').split('-')[1];
@@ -44,9 +51,9 @@
        // Text for image*
          + '<div name="Textmessage">'
             + ' <div class="form-inline" style="height: 50px;">'
-+ '<p>welcome to NGO</p>'
+    + '<p>welcome to NGO</p>'
             + ' </div>'
-+ '</div>'
+    + '</div>'
 
         + ' <div id="image/video">'
             + ' <img src="/images/Penguins.jpg" style="height: 500px; width: 600px;" />'
@@ -69,7 +76,7 @@
                 + ' <div class="form-group">'
                    + '  <div class="form-inline" style="border-bottom: ridge; width: 600px;">'
                          + '<img src="/Images/orderedList3.png"></img>'
-+ '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'
+    + '<a href="#"><span style="font-size: 16px;"><b>Ayushi Jain</b></span></a>'
                          + '<a href="#">@DateTime.Now.ToString()</a><br />'
                              + '<p style="margin-left: 55px;">wow!!!! penguins looks awesome</p>'
                          + '<div class="form-inline" style="height: 30px; margin-left: 10px;">'
@@ -108,10 +115,8 @@
           + '  </div>'
 
         + ' </div>'
-   + '  </div><br/><br/>');
+    + '  </div><br/><br/>');
 
     });
 
-
 });
- 

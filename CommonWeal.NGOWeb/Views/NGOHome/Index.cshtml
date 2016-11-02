@@ -3,17 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<script src="~/Scripts/Post/PostComment.js"></script>
-<script>
 
-
-    function fileclick() {
-        $("#file").click();
-
-    }
-
-
-</script>
 
 <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" style="background-color: #e9eff1; padding-top: 5px; padding-right: 5px; padding-bottom: 25px; padding-left: 5px;">
     <div class="form-inline">
@@ -39,5 +29,9 @@
     </div>
 </form>
 
-@Html.Partial("../UserHome/_Posts",Model)
+@Html.Partial("../UserHome/_Posts", Model)
+
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}
 

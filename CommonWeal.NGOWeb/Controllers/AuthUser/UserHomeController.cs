@@ -12,15 +12,16 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
         public ActionResult Index()
         {
             dbOperations ob = new dbOperations();
-            var postlist=ob.GetAllPost();
+            var postlist = ob.GetAllPost();
             CommonWealEntities1 db = new CommonWealEntities1();
             var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
             var s = (from p in db.NGOPosts
                      join u in db.Users on p.EmailID equals u.LoginEmailID
                      into up
                      select up).ToList();
-           postlist= postlist.OrderByDescending(x => x.postCreateTime).ToList();
+            postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
             return View(postlist);
+            //return View();
         }
         //      public ActionResult FileUpload(HttpPostedFileBase file)
         //    {
