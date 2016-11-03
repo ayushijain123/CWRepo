@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.Data;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -25,7 +26,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [HttpPost]
         public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)
         {
-            CommonWealEntities1 db = new CommonWealEntities1();
+            CommonWealEntities db = new CommonWealEntities();
             if (file != null)
             {
                 string ImageName = System.IO.Path.GetFileName(file.FileName);

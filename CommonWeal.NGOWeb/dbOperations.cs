@@ -5,15 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
-using CommonWeal.NGOWeb.Models;
+ 
 using System.Net.Mail;
 using System.Net;
 using CommonWeal.NGOWeb.ViewModel;
+using CommonWeal.Data;
 namespace CommonWeal.NGOWeb
 {
     public class dbOperations
     {
-        CommonWealEntities1 context = new CommonWealEntities1();
+        CommonWealEntities context = new CommonWealEntities();
         public List<NGOUser> GetAllUserNotAccepted()
         {
             List<NGOUser> userList = new List<NGOUser>();

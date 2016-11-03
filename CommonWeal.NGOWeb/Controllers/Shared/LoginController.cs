@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CommonWeal.Data;
 
 
 namespace CommonWeal.NGOWeb.Controllers.Shared
@@ -24,7 +25,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         {
 
 
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
 
             string userEMail = user.LoginEmailID.ToLower();
 

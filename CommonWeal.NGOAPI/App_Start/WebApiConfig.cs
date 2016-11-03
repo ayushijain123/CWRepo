@@ -6,6 +6,7 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using Newtonsoft.Json.Serialization;
 
 
 namespace CommonWeal.NGOAPI
@@ -13,28 +14,25 @@ namespace CommonWeal.NGOAPI
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
-        {//enable CORS - cross origin request
+        {
 
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
-            // config.EnableCors();
+            // Web API routes
+            config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
+                routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.Formatters.Clear();
-            config.Formatters.Add(new System.Net.Http.Formatting.JsonMediaTypeFormatter());
-            //config.Formatters.Add(new System.Net.Http.Formatting.XmlMediaTypeFormatter());
-            config.Formatters.Add(new System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter());
-
-
-
-
+            var jsonFormatter = config.Formatters.OfType<JsonMediaTypeFormatter>().First();
+            jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
+        //config.Formatters.Clear();
+        //config.Formatters.Add(new System.Net.Http.Formatting.JsonMediaTypeFormatter());
+        ////config.Formatters.Add(new System.Net.Http.Formatting.XmlMediaTypeFormatter());
+        //config.Formatters.Add(new System.Net.Http.Formatting.FormUrlEncodedMediaTypeFormatter());
 
     }
 }

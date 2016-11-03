@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using CommonWeal.Data;
 using CommonWeal.NGOWeb;
 
 
@@ -12,7 +13,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         dbOperations obj = new dbOperations();
         public ActionResult Index()
         {
-            CommonWealEntities1 obj = new CommonWealEntities1();
+            CommonWealEntities obj = new CommonWealEntities();
             var users = obj.NGOUsers;
             var CountOfRequests = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
             ViewBag.COR = CountOfRequests;
@@ -26,7 +27,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
         public ActionResult Active_Users()
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
             var request = obj.GetAllUserAccepted();
             return View(request);
@@ -34,7 +35,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
         public ActionResult Blocked_Users()
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
             var request = obj.GetAllUserBlocked();
             return View(request);
@@ -42,7 +43,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
         public ActionResult Requests()
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
             var request = obj.GetAllUserNotAccepted();
             return View(request);
@@ -54,7 +55,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
         public ActionResult Accept(int id)
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             //User UL = new User ();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = true;
@@ -69,7 +70,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
 
 
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = false;
@@ -85,7 +86,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
 
 
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = true;

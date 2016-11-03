@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using CommonWeal.Data;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -28,7 +29,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [HttpPost]
         public ActionResult CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
 
             if (ModelState.IsValid)
             {
@@ -83,7 +84,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         public JsonResult checkEmail(string NGOEmailID)
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             return Json(!context.NGOUsers.Any(x => x.NGOEmailID == NGOEmailID), JsonRequestBehavior.AllowGet);
         }
 

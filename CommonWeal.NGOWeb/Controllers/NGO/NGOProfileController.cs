@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.Data;
 
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
@@ -13,7 +14,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
     {
         public ActionResult Index()
         {
-            CommonWealEntities1 obj=new CommonWealEntities1();
+            CommonWealEntities obj=new CommonWealEntities();
             //User UL = new User();
             var CountOfRequests=obj.Users.Where(w=>w.IsActive==false&& w.IsBlock==false); 
           //  ViewBag["CountOfRequests"]=CountOfRequests;

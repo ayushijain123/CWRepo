@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
 
 namespace CommonWeal.NGOWeb.Controllers
@@ -21,7 +22,7 @@ namespace CommonWeal.NGOWeb.Controllers
 
                 dbOperations ob = new dbOperations();
                 var postlist = ob.GetAllPost();
-                CommonWealEntities1 db = new CommonWealEntities1();
+                CommonWealEntities db = new CommonWealEntities();
                 var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
 
                 var t = UIHelper.GetDropDownListFromEnum(typeof(TypeHelper.UserType));

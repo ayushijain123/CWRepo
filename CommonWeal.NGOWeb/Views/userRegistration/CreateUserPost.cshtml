@@ -1,4 +1,4 @@
-﻿@model CommonWeal.NGOWeb.Models.RegisteredUser
+﻿@model CommonWeal.Data.RegisteredUser
 
 @{
     ViewBag.Title = "CreateUserPost";
@@ -57,8 +57,8 @@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="pwd">Confirm Password:*</label>
                         <div class="col-xs-6">
-                            @Html.PasswordFor(a => a.CnfrmPassword, new { placeholder = "Confirm Password" })
-                            @Html.ValidationMessageFor(a => a.CnfrmPassword)
+                            @Html.PasswordFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password" })
+                            @Html.ValidationMessageFor(a => a.ConfirmPassword)
                         </div>
                     </div>
                     <div class="form-group">

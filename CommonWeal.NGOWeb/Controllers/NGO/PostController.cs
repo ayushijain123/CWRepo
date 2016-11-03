@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.Data;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -14,7 +15,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         public void SumitComment(string strComment, int postId)
         {
-            CommonWealEntities1 db = new CommonWealEntities1();
+            CommonWealEntities db = new CommonWealEntities();
             PostComment postcmnt = new PostComment();
             postcmnt.CommentText = strComment;
             postcmnt.CreatedOn = DateTime.Now;

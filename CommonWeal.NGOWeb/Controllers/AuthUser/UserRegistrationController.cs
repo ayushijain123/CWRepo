@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using CommonWeal.Data;
 
 
 namespace CommonWeal.NGOWeb.Controllers.AuthUser
@@ -22,7 +23,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
             {
                 try
                 {
-                    CommonWealEntities1 context = new CommonWealEntities1();
+                    CommonWealEntities context = new CommonWealEntities();
                     User obj = new User();
                     obj.LoginPassword = ru.UserPassword;
                     obj.LoginEmailID = ru.UserEmail;
@@ -56,7 +57,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
 
         public JsonResult checkEmail(string UserEmail)
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             return Json(!context.RegisteredUsers.Any(x => x.UserEmail == UserEmail), JsonRequestBehavior.AllowGet);
         }
     }

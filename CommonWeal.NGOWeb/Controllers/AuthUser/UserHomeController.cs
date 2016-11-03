@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.Data;
 
 namespace CommonWeal.NGOWeb.Controllers.AuthUser
 {
@@ -13,7 +14,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
         {
             dbOperations ob = new dbOperations();
             var postlist = ob.GetAllPost();
-            CommonWealEntities1 db = new CommonWealEntities1();
+            CommonWealEntities db = new CommonWealEntities();
             var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
             var s = (from p in db.NGOPosts
                      join u in db.Users on p.EmailID equals u.LoginEmailID
@@ -58,7 +59,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
         [HttpPost]
         public ActionResult UserPostComment(string strComment, int postId)
         {
-            CommonWealEntities1 db = new CommonWealEntities1();
+            CommonWealEntities db = new CommonWealEntities();
             PostComment postcmnt = new PostComment();
             postcmnt.CommentText = strComment;
             postcmnt.CreatedOn = DateTime.Now;

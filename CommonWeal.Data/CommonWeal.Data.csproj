@@ -66,6 +66,9 @@
     <Compile Include="ForgotPassword.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelExtension\NGOUser.cs" />
+    <Compile Include="ModelExtension\RegisteredUser.cs" />
+    <Compile Include="ModelExtension\User.cs" />
     <Compile Include="NGOPost.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

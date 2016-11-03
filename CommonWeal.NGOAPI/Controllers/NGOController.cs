@@ -4,29 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using CommonWeal.NGOWeb;
 
 
 
+
+using CommonWeal.Data;
 namespace CommonWeal.NGOAPI.Controllers
 {
+
     public class NGOController : ApiController
     {
 
-        [HttpGet]
-        public HttpResponseMessage Get()
-        {
-            CommonWealEntities1 db = new CommonWealEntities1();
-            var objTest = db.Tests.Where(x => x.ID == 1).FirstOrDefault();
-            var response = Request.CreateResponse(HttpStatusCode.OK, objTest);
-            return response;
-        }
+
 
 
         [HttpGet]
         public HttpResponseMessage GetPosts()
         {
-            CommonWealEntities1 db = new CommonWealEntities1();
+            CommonWealEntities db = new CommonWealEntities();
             var response = Request.CreateResponse(HttpStatusCode.OK, db.NGOPosts);
             return response;
         }
@@ -36,7 +31,7 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public bool PostTest(Test objTest)
         {
-            CommonWealEntities1 db = new CommonWealEntities1();
+            CommonWealEntities db = new CommonWealEntities();
             db.Tests.Add(objTest);
             db.SaveChanges();
             return true;

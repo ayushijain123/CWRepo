@@ -40,10 +40,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -63,9 +70,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -165,21 +169,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="CommonOperation\EmailGateway.cs" />
-    <Compile Include="CommonWealEDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonWealEDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CommonWealEDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CommonWealEDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CommonWealEDM.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\Admin\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -194,46 +183,16 @@
     <Compile Include="Controllers\Shared\WelcomeController.cs" />
     <Compile Include="dbOperations.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
-    <Compile Include="ForgotPassword.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PostComment.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Utility\TypeHelper.cs" />
-    <Compile Include="Models\LoginMeta.cs" />
-    <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="ViewModel\Comment.cs" />
     <Compile Include="ViewModel\LoggedInUser.cs" />
     <Compile Include="ViewModel\Post.cs" />
-    <Compile Include="Models\RegisteredUserMeta.cs" />
-    <Compile Include="NGOPost.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NGOPostDetail.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="NGOUser.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisteredUser.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RoleType.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Test.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="User.cs">
-      <DependentUpon>CommonWealEDM.tt</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\TestModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -315,23 +274,6 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
-    <EntityDeploy Include="CommonWealEDM.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CommonWealEDM.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="CommonWealEDM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CommonWealEDM.edmx</DependentUpon>
-      <LastGenOutput>CommonWealEDM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="CommonWealEDM.edmx.diagram">
-      <DependentUpon>CommonWealEDM.edmx</DependentUpon>
-    </Content>
-    <Content Include="CommonWealEDM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CommonWealEDM.edmx</DependentUpon>
-      <LastGenOutput>CommonWealEDM.cs</LastGenOutput>
-    </Content>
     <None Include="Properties\PublishProfiles\Commonweal.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\Chrysanthemum.jpg" />
@@ -443,6 +385,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonWeal.Data\CommonWeal.Data.csproj">
+      <Project>{c1d90102-fbf4-4f85-9f08-38a72f86d472}</Project>
+      <Name>CommonWeal.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

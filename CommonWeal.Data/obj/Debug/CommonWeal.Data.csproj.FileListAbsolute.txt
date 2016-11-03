@@ -1,0 +1,5 @@
+D:\Projects\CWSourceCode\trunk\CommonWeal.Data\bin\Debug\CommonWeal.Data.dll.config
+D:\Projects\CWSourceCode\trunk\CommonWeal.Data\bin\Debug\CommonWeal.Data.dll
+D:\Projects\CWSourceCode\trunk\CommonWeal.Data\bin\Debug\CommonWeal.Data.pdb
+D:\Projects\CWSourceCode\trunk\CommonWeal.Data\obj\Debug\CommonWeal.Data.dll
+D:\Projects\CWSourceCode\trunk\CommonWeal.Data\obj\Debug\CommonWeal.Data.pdb

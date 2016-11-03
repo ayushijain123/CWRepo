@@ -9,6 +9,7 @@ using System.Web.Security;
 using CommonWeal.NGOWeb;
 using CommonWeal.NGOWeb.ViewModel;
 using CommonWeal.NGOWeb.Utility;
+using CommonWeal.Data;
 
 namespace CommonWeal.NGOWeb.Controllers
 {
@@ -26,18 +27,18 @@ namespace CommonWeal.NGOWeb.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                CommonWealEntities1 CWContext = new CommonWealEntities1();
+                CommonWealEntities CWContext = new CommonWealEntities();
 
                 var usr = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
 
 
-                this.LoginUser = new ViewModel.LoggedInUser()
+                this.LoginUser = new LoggedInUser()
                 {
                     LoginID = usr.LoginID,
                     LoginEmailID = usr.LoginEmailID,
                     LoginUserType = usr.LoginUserType,
 
-
+                     
                 };
 
 

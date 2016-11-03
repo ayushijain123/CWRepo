@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CommonWeal.Data;
 
 namespace CommonWeal.NGOWeb.Controllers.Shared
 {
@@ -20,7 +21,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         public ActionResult ConfirmOTP(string UserEmail)
         {
             var EnteredEmail = UserEmail;
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
             var request = obj.RegisteredUserIsAccepted();
             var request2 = obj.UserIsAccepted();
@@ -71,7 +72,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         //[HttpPost]
         public ActionResult ConfirmPassword(string FinalEmail, string OTP, string FinalOTP)
         {
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
 
             //if (OTP == FinalOTP)
@@ -129,7 +130,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             //if (ConfirmOTP == OTP)
             //{
             var EnteredEmail = FinalEmail;
-            CommonWealEntities1 context = new CommonWealEntities1();
+            CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
 
             if (NewPassword == ConfirmPassword)
