@@ -26,9 +26,10 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             var request2 = obj.UserIsAccepted();
             
             var request1 = obj.RegisteredNGOIsAccepted();
-            
-            var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
-            var ob1 = context.NGOUsers.Where(w => w.NGOEmailID == EnteredEmail).FirstOrDefault();
+            var ob=request.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
+            //var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
+            //var ob1 = context.NGOUsers.Where(w => w.NGOEmailID == EnteredEmail).FirstOrDefault();
+           var ob1=request1.Where(w => w.NGOEmailID == EnteredEmail).FirstOrDefault();
             //var Email = ob.UserEmail;
             if (ob != null || ob1 !=null)
             {
