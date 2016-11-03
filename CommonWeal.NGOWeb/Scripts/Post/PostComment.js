@@ -47,5 +47,18 @@ $(document).ready(function () {
         //console.log(result);
     });
 
+    $(".textComment").on("keydown", function (e) {
+        console.log(e.type, e);
+        var text = e.type;
+        var code = e.which ? e.which : e.keyCode;
+        if (13 === code) {
+            // As ASCII code for ENTER key is "13"
+            var postid = $(this).attr('id').split('-')[1];
+            $("#postimage-" + postid).click(); // Submit form code
+        } else {
+            text += ': keycode ' + code;
+        }
+    });
+
 
 });
