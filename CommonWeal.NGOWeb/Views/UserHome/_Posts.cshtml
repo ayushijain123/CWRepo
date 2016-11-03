@@ -41,10 +41,10 @@
                     }
 @* ///edited on 24/10/16*@
 
-                    <div style="background-color: lightgray">
+                    <div style="background-color: lightgray;border-bottom: ridge; width: 800px;">
                         <div class="form-inline" style="height: 30px;">
-                              <span class="fa fa-thumbs-up"></span>
-                            <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon"></span>
+                              <span class="fa fa-thumbs-up fa-2x" style="width:35px;"></span>
+                            <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x"></span>
                         </div>
 
 
@@ -55,9 +55,9 @@
                         {
                             <div class="form-group">
                                 <div class="form-inline" style="border-bottom: ridge; width: 800px;">
-                                    <img src="~/Images/user.jpg" style="height: 20px; width: 20px" />
+                                    <img src="~/Images/user.jpg" style="height: 30px; width: 25px" />
                                     <span style="font-size: 16px;"><b>@comment.Username </b></span>
-                                    @comment.CreatedDateTime<br />
+                                    @comment.CreatedDateTime
                                     <p style="margin-left: 55px;">@comment.commentContent</p>
                                     @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
                                         <a href="#">Like</a>
