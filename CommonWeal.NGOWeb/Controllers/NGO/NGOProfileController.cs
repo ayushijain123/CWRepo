@@ -21,7 +21,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
         public ActionResult AboutUs()
         {
-            int res = Convert.ToInt32(Session["UserID"]);
+            string res = this.User.Identity.Name;
             dbOperations obj = new dbOperations();
            var details=obj.GetNGODetails(res);
            if (details != null)
