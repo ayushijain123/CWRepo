@@ -16,8 +16,6 @@
                     @*<form name="User" class="form-horizontal" action="/Login/login" method="post">*@
                     @using (Ajax.BeginForm("Login", "Login", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
                     {  
-                        
-                          
                         <br />
                         <br />
                         <div class="form-group">
@@ -42,7 +40,7 @@
                             @if (TempData["Success"] != null)
                             {
                       
-                                    <p style="color: red"><strong></strong>@TempData["Success"].ToString()</p>
+                                <p style="color: red"><strong></strong>@TempData["Success"].ToString()</p>
                             }
                         </div>
                         <br />  
@@ -50,13 +48,9 @@
 
                             <center><button type="submit" class="btn btn-primary" onclick="">Login</button></center>
                             <br />
-                            <br />
-
-
-                            <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password</a><br />
 
                         </div>
-@*</form>*@
+                        <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password</a><br />
                     }
                     @*  @Html.Raw(TempData["Loginmsg"])*@
 
