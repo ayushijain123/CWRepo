@@ -172,7 +172,7 @@ namespace CommonWeal.NGOWeb
                     cmnt.commentLike = 0;
                     cmnt.commentUserImage = "";
                     cmnt.CreatedDateTime = a.CreatedOn.Value;
-                  //  int userType = LoginUserlist.Where(user => user.LoginEmailID == a.UserID).FirstOrDefault().LoginUserType;
+                  int userType = LoginUserlist.Where(user => user.LoginEmailID == a.UserID).FirstOrDefault().LoginUserType;
 
                     switch (userType)
                     {
