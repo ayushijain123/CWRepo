@@ -1,26 +1,26 @@
-﻿<div class="col-md-12">
+﻿<div class="col-md-12 ">
     <nav>
 
         <img src="~/Images/Logo1.png" class="col-md-1" />
 
-        <div class="col-md-offset-5 col-md-3">
+        <div class="col-md-offset-3 col-md-3">
             <input type="text" class="col-md-10" id="search" placeholder="Search" name="q" />
 
-            <button class="glyphicon glyphicon-search col-md-1" id="searchbtn" type="submit"  >...</button>
+            <button class="fa fa-search col-md-1" id="searchbtn" type="submit"  ></button>
         </div>
-        <div id="menu" class="col-md-2 right">
+        <div id="menu" class="col-md-2  col-md-offset-2 " style="margin-top: 48px;">
 
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 <span class="usernav">Hello @User.Identity.Name,</span>  
                 <br />
                 <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-user" title="Home"></a> 
-                <a  href="@Url.Action("LogOut", "Login")" ><span class="menuitem glyphicon glyphicon-off log-out"></span></a> 
+                <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-sign-out"></a> 
                                   
                 <input type="hidden" id="appUserName" value="@ViewBag.LoggedInUser.LoginEmailID" /> 
                 
                 
-                <li>
+               
 
                     <script>
 
@@ -28,14 +28,14 @@
 
                     </script>
 
-                </li>
+               
                  
             }
             else
             {
                 <span>Hello Guest,</span>   
                 <br />
-                <a href="@Url.Action("Index", "Home")" class="menuitem fa fa-home" title="Home" style="color:pink;"></a> 
+                <a href="@Url.Action("Index", "Home")" class="menuitem fa fa-home" title="Home"></a> 
                 <a href="@Url.Action("Index", "Login")" class="menuitem fa fa-sign-in" title="Sign In"></a> 
                 <a href="@Url.Action("CreateNGO", "NGORegistration")" class="menuitem fa fa-group" title="Sign up as NGO"></a> 
                 <a href="@Url.Action("CreateUserPost", "UserRegistration")" class="menuitem fa fa-user-plus" title="Sign up as User"></a> 
