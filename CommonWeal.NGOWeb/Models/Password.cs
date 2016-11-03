@@ -12,6 +12,7 @@ namespace CommonWeal.NGOWeb.Models
         [Required(ErrorMessage = "This field is required")]
         public string UserEmail { get; set; }
 
+        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password Length should be minimum 8 characters with uppercase lowercase and special character")]
         [Required(ErrorMessage = "This field is required")]
         public string NewPassword { get; set; }
 
