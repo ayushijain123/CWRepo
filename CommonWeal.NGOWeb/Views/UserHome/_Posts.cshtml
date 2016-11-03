@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
-<br/>
-<br/>
+<br />
+<br />
 <div style="height: 50px; width: 800px; margin-left: 80px;">
 
     @*//new upload post*@
@@ -22,15 +22,15 @@
                 
                 <div style="background-color: lightgray;" id="postuserdetail">
                     <div class="form-inline">
-                        <img src="~/Images/user.jpg" style="height:30px;width:30px"/>
-                       <b>@item.userName</b>
+                        <img src="~/Images/user.png" style="height: 30px; width: 30px" />
+                        <b>@item.userName</b>
                         @item.postCreateTime
                     </div>
                 </div>
 @*  Text for image*@
                 <div name="Textmessage">
-                    <div class="form-inline" style="height: 50px;">
-                        <p>@item.postcontent</p>
+                    <div class="form-inline" style="height: auto;">
+                        <span>@item.postcontent</span>
                     </div>
                 </div>
 @*  <div class="form-group">*@
@@ -39,30 +39,23 @@
                     {    
                         <img src="@item.postImageUrl" style="height: 500px; width: 800px;" />
                     }
-                
-
-
-
 @* ///edited on 24/10/16*@
 
                     <div style="background-color: lightgray">
                         <div class="form-inline" style="height: 30px;">
-                            <a href="#">Like</a>
-                            <a href="#" onclick="jumpTo('testComment');">Comment</a>
+                              <span class="fa fa-thumbs-up"></span>
+                            <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon"></span>
                         </div>
 
 
                     </div>
-                    <br />
                     @*///Comment div action*@
                     <div class="form-inline" style="background-color: lightgray">
                         @foreach (var comment in item.PostComments)
                         {
-         
-
                             <div class="form-group">
-                                <div class="form-inline" style="border-bottom: ridge; width: 600px;">
-                                    <img src="~/Images/user.jpg" style="height:20px;width:20px"/>
+                                <div class="form-inline" style="border-bottom: ridge; width: 800px;">
+                                    <img src="~/Images/user.jpg" style="height: 20px; width: 20px" />
                                     <span style="font-size: 16px;"><b>@comment.Username </b></span>
                                     @comment.CreatedDateTime<br />
                                     <p style="margin-left: 55px;">@comment.commentContent</p>
@@ -84,8 +77,8 @@
                         @if (User.Identity.IsAuthenticated)
                         {
     
-                            <div class="form-inline" id="testComment">
-                                <img src="~/Images/orderedList3.png"/>
+                            <div class="form-inline">
+                                <img src="~/Images/orderedList3.png" />
 
                                 @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
                                 <input type="button" id="postimage-@item.postId" name="button" class="btn1 btn-primary btnPost" value="Post" />
