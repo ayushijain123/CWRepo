@@ -14,9 +14,13 @@
         </div>
         <div class="panel-body">
             <div id="ngo">
-                @using (Ajax.BeginForm("CreateNGO", "NGORegistration", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
+              @*  @using (Ajax.BeginForm("CreateNGO", "NGORegistration", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
                 { 
-                    <div class="form-group">
+                    *@
+
+                      <form name="NGO" class="form-horizontal" action="/NGORegistration/CreateNGO" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
                         <label class="control-label col-xs-4" for="fn">NGO Name:*</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.NGOName, new { placeholder = "Name" })&nbsp;
@@ -68,7 +72,7 @@
                         <label class="control-label col-xs-4" for="PhotoIdOfChairman">Photo Id Of Chairman:*</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(m => m.ChairmanID, new { type = "file" })
-                           @* @Html.ValidationMessageFor(a => a.ChairmanID)*@
+                            @Html.ValidationMessageFor(a => a.ChairmanID)
                         </div>
                     </div>
                     
@@ -153,6 +157,7 @@
                         <br />
                     </div>
                 }
+                </form>
            @Html.Raw(TempData["msg"])
             </div>
         </div>
