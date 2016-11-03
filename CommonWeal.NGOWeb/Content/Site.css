@@ -1,13 +1,13 @@
 ﻿/*Home page css*/
 .menuitem {
     font-size: 25px;
-    padding:5px;
-    color:white;
+    padding: 5px;
+    color: white;
 }
 
 .usernav {
- font-size: 20px;
-  padding:5px;
+    font-size: 20px;
+    padding: 5px;
 }
 
 
@@ -54,14 +54,13 @@ html {
     margin-left: 227px;
 
 }*/
-#search
-{
-   margin-top: 67px;
-   
+#search {
+    margin-top: 67px;
 }
+
 #searchbtn {
- margin-top: 67px;
- height:35px;
+    margin-top: 67px;
+    height: 35px;
 }
 /*padding-top: 8px;
     padding-bottom: 8px;
@@ -145,7 +144,7 @@ h5, h6 {
 }
 
 header {
-    background-color: #008B8B;
+    background-color: #FF7148;
     height: 108px;
 }
 
@@ -155,7 +154,7 @@ header {
 
 
 footer {
-    background-color: #008B8B;
+    background-color: #FF7148;
     /*font-size: 1.0em;*/
     height: 40px;
     color: black;
@@ -820,4 +819,15 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+}
+
+.uploadicon {
+    height: 34px;
+    width: 37px;
+    padding-left: 8px;
+    padding-top: 4px;
+}
+
+.mainlogo {
+    width: 141px;
 }
