@@ -52,7 +52,7 @@ namespace CommonWeal.NGOWeb.Controllers
                         break;
                     case TypeHelper.UserType.User:
                         var reguser = CWContext.RegisteredUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault(); ;
-                        this.LoginUser.UserName = reguser.LastName + " " + reguser.FirstName;
+                        this.LoginUser.UserName = reguser.FirstName + " " + reguser.LastName;
                         break;
                 }
 
