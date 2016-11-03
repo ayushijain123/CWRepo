@@ -109,8 +109,8 @@
           <Property Name="UserID" Type="varchar" MaxLength="50" />
           <Property Name="PostID" Type="int" />
           <Property Name="CommentText" Type="varchar(max)" />
-          <Property Name="CreatedOn" Type="date" />
-          <Property Name="ModifiedOn" Type="date" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RegisteredUser">
@@ -365,8 +365,8 @@
           <Property Type="String" Name="UserID" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="PostID" />
           <Property Type="String" Name="CommentText" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="CreatedOn" Precision="0" />
-          <Property Type="DateTime" Name="ModifiedOn" Precision="0" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>

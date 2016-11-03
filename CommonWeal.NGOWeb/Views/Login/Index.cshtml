@@ -16,6 +16,8 @@
                     @*<form name="User" class="form-horizontal" action="/Login/login" method="post">*@
                      @using (Ajax.BeginForm("Login", "Login", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
                      {  
+                        
+                          
                         <br />
                         <br />
                         <div class="form-group">
@@ -39,7 +41,8 @@
                          
                             <center><button type="submit" class="btn btn-primary" onclick="">Login</button></center><br />
                             <br />
-                           @* <a id="forgatpassword" href="~Password">Forgot Password</a><br />*@
+                            
+                      
                             
                             <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password</a><br/>
                           
