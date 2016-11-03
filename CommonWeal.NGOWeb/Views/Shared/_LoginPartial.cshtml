@@ -12,12 +12,12 @@
 
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                <span class="usernav">Hello @User.Identity.Name,</span>  
+                <span class="usernav">Hello @ViewBag.LoginUser.UserName,</span>  
                 <br />
                 <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-user" title="Home"></a> 
                 <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-sign-out"></a> 
                                   
-                <input type="hidden" id="appUserName" value="@ViewBag.LoggedInUser.LoginEmailID" /> 
+                <input type="hidden" id="appUserName" value="@ViewBag.LoginUser.LoginEmailID" /> 
                 
                 
                
