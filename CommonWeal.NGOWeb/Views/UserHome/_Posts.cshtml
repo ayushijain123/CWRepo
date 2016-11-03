@@ -80,7 +80,7 @@
                             <div class="form-inline">
                                 <img src="~/Images/orderedList3.png" />
 
-                                @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
+                                @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control textComment", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
                                 <input type="button" id="postimage-@item.postId" name="button" class="btn1 btn-primary btnPost" value="Post" />
                             </div>
                         }
