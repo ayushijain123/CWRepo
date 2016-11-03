@@ -23,14 +23,19 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             CommonWealEntities1 context = new CommonWealEntities1();
             dbOperations obj = new dbOperations();
             var request = obj.RegisteredUserIsAccepted();
+            var request2 = obj.UserIsAccepted();
+            
+            var request1 = obj.RegisteredNGOIsAccepted();
+            
             var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
+            var ob1 = context.NGOUsers.Where(w => w.NGOEmailID == EnteredEmail).FirstOrDefault();
             //var Email = ob.UserEmail;
-            if (ob != null)
+            if (ob != null || ob1 !=null)
             {
-                foreach (var EmailId in request)
+                foreach (var EmailId in request2)
                 {
                     if
-                        (EnteredEmail == EmailId.UserEmail.ToString())
+                        (EnteredEmail == EmailId.LoginEmailID.ToString()) //
                     {
                         //return( RedirectToAction("ForgotPasswordConfirm",EmailId));
                         //ViewBag.Email = UserEmail;
@@ -130,11 +135,25 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             {
                 var request = obj.RegisteredUserIsAccepted();
                 var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
-                ob.UserPassword = NewPassword;
-                var LoginId = ob.LoginID;
-                var Pooja = context.Users.Where(w => w.LoginID == LoginId).FirstOrDefault();
-                Pooja.LoginPassword = NewPassword;
+                if (ob != null)
+                {
+                    ob.UserPassword = NewPassword;
+                    var LoginId = ob.LoginID;
+                    var ChangePassword = context.Users.Where(w => w.LoginID == LoginId).FirstOrDefault();
+                ChangePassword.LoginPassword = NewPassword;
                 context.SaveChanges();
+                }
+                
+                var ob1 = context.NGOUsers.Where(w => w.NGOEmailID == EnteredEmail).FirstOrDefault();
+                if (ob1 != null)
+                {
+                    ob1.NGOPassword = NewPassword;
+                    var LoginId = ob1.LoginID;
+                    //var LoginId = ob.LoginID;
+                    var ChangePassword = context.Users.Where(w => w.LoginID == LoginId).FirstOrDefault();
+                    ChangePassword.LoginPassword = NewPassword;
+                    context.SaveChanges();
+                }
                 //Session["FinalEmail"] = null;
                 Session.Remove("FinalEmail");
                 //return Content("Password Changed Successfully please Login");
