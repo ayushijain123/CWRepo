@@ -28,11 +28,17 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
 
             string userEMail = user.LoginEmailID.ToLower();
 
-            var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower()).FirstOrDefault();
+            var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower() && usr.LoginPassword == user.LoginPassword).FirstOrDefault();
             if (result == null)
             {
                 //ViewBag.result = "Invalid username or password";
-                TempData["msg"] = "<script>alert('Invalid email or password');</script>";
+                //TempData["msg"] = "<script>alert('Invalid email or password');</script>";
+               // ViewBag.FirstNameError = "Please write first name";
+                //ViewData["Loginalert"] = "Invalid email or password";
+                TempData["Success"] = "Invalid Email or Password";
+
+                //ViewData["Error"] = "Error message text.";
+
                 return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
                 //TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
                 //return View();
@@ -113,13 +119,15 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         //FormsAuthentication.AttachRolesToUser();
 
                     }
-                    //else if (result.IsActive == false && result.IsBlock == false)
-                    //{
+                    else if (result.IsActive == false && result.IsBlock == false)
+                    {
 
-                    //    //redirect to login page
-                    //    //request is pending for admin portal
-                    //}
-                    //else if  (result.IsActive == true && result.IsBlock == true)
+                        //redirect to login page
+                        //request is pending for admin portal
+
+                        TempData["pendingmsg"] = ("<script>alert('your request status is pending');</script>");
+                    }
+                    //else if (result.IsActive == true && result.IsBlock == true)
                     //{
                     //    //redirect to login page
                     //    //all user are blocked
@@ -127,7 +135,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
 
                     else
                     {
-                        TempData["msg"] = ("<script>alert('Invalid Email or Password');</script>");
+                        TempData["Loginmsg"] = ("<script>alert('Invalid Email or Password');</script>");
                     }
 
                 }
