@@ -4,7 +4,7 @@
     ViewBag.Title = "Login";
 }
 
-@Html.Raw(TempData["msg"])
+@*@Html.Raw(TempData["Loginmsg"])*@
 <body>
     <div id="main">
         <div class="panel panel-default">
@@ -14,8 +14,8 @@
             <div class="panel-body">
                 <div id="Login">
                     @*<form name="User" class="form-horizontal" action="/Login/login" method="post">*@
-                     @using (Ajax.BeginForm("Login", "Login", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
-                     {  
+                    @using (Ajax.BeginForm("Login", "Login", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
+                    {  
                         
                           
                         <br />
@@ -23,33 +23,43 @@
                         <div class="form-group">
                             <label class="control-label col-xs-4" for="fn">Email:</label>
                             <div class="col-xs-4">
-                                @Html.TextBoxFor(a => a.LoginEmailID, new { placeholder="Email ID" })<br/>
-                                 @Html.ValidationMessageFor(a => a.LoginEmailID)
+                                @Html.TextBoxFor(a => a.LoginEmailID, new { placeholder = "Email ID" })<br />
+                                @Html.ValidationMessageFor(a => a.LoginEmailID)
                                 @*  <input type="text" class="form-control" id="email/mobno" placeholder="Email/Mobile Number" name="login_Email">*@
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-4" for="ln">Password:</label>
                             <div class="col-xs-4">
-                                @Html.PasswordFor(a => a.LoginPassword, new { placeholder="Password" })
-                                 @Html.ValidationMessageFor(a => a.LoginPassword)
-                                @*@Html.EditorFor(a => a.LoginPassword)*@ <br />
+                                @Html.PasswordFor(a => a.LoginPassword, new { placeholder = "Password" })
+                                @Html.ValidationMessageFor(a => a.LoginPassword)
+                                @*@Html.EditorFor(a => a.LoginPassword)*@
+                                <br />
                             </div>
+
                         </div>
-                        <br />
                         <div class="form-group">
-                         
-                            <center><button type="submit" class="btn btn-primary" onclick="">Login</button></center><br />
-                            <br />
-                            
+                            @if (TempData["Success"] != null)
+                            {
                       
-                            
-                            <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password</a><br/>
-                          
+                                    <p style="color: red"><strong></strong>@TempData["Success"].ToString()</p>
+                            }
                         </div>
-                    @*</form>*@
-                     }
-                      @Html.Raw(TempData["msg"])
+                        <br />  
+                        <div class="form-group">
+
+                            <center><button type="submit" class="btn btn-primary" onclick="">Login</button></center>
+                            <br />
+                            <br />
+
+
+                            <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password</a><br />
+
+                        </div>
+@*</form>*@
+                    }
+                    @*  @Html.Raw(TempData["Loginmsg"])*@
+
                 </div>
             </div>
         </div>
