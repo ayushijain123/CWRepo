@@ -209,6 +209,7 @@
     <Compile Include="Models\NGOUserMeta.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="ViewModel\Comment.cs" />
+    <Compile Include="ViewModel\LoggedInUser.cs" />
     <Compile Include="ViewModel\Post.cs" />
     <Compile Include="Models\RegisteredUserMeta.cs" />
     <Compile Include="NGOPost.cs">
@@ -352,6 +353,7 @@
     <Content Include="Images\Post\Penguins.jpg" />
     <Content Include="Images\Post\Tulips.jpg" />
     <Content Include="Images\Tulips.jpg" />
+    <Content Include="Images\user.jpg" />
     <Content Include="Scripts\Admin\Test.js" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -430,6 +432,7 @@
     <Content Include="Views\UserHome\_Posts.cshtml" />
     <Content Include="Views\NGOHome\Index.cshtml" />
     <Content Include="Views\Password\ConfirmOTP.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
