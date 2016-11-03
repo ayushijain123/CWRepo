@@ -54,6 +54,20 @@ namespace CommonWeal.NGOWeb
             userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true).ToList();
             return userList;
         }
+        public List<NGOUser> RegisteredNGOIsAccepted()
+        {
+            List<NGOUser> userList = new List<NGOUser>();
+            // userList = context.RegisteredUsers.ToList();
+            userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive == true).ToList();
+            return userList;
+        }
+        public List<User> UserIsAccepted()
+        {
+            List<User> userList = new List<User>();
+            // userList = context.RegisteredUsers.ToList();
+            userList = context.Users.Where(w => w.IsActive == true).ToList();
+            return userList;
+        }
         public string GenerateRandomPassword(int length)
         {
             string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-*&#+";
@@ -158,7 +172,7 @@ namespace CommonWeal.NGOWeb
                     cmnt.commentLike = 0;
                     cmnt.commentUserImage = "";
                     cmnt.CreatedDateTime = a.CreatedOn.Value;
-                    int userType = LoginUserlist.Where(user => user.LoginEmailID == a.UserID).FirstOrDefault().LoginUserType;
+                  //  int userType = LoginUserlist.Where(user => user.LoginEmailID == a.UserID).FirstOrDefault().LoginUserType;
 
                     switch (userType)
                     {
