@@ -68,8 +68,9 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 objngo.IsBlock = false;
                 context.NGOUsers.Add(objngo);
                 context.SaveChanges();
-                TempData["msg"] = "<script>alert('Registered succesfully');</script>";
-                return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+                TempData["msg"] = "<script>alert('Change succesfully');</script>";
+                //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+                return RedirectToAction("Index", "Login");
             }
             if (!ModelState.IsValid)
             {
