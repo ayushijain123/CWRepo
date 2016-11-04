@@ -369,14 +369,12 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
     <Content Include="Views\Password\ForgotPassword.cshtml" />
-    <Content Include="Views\Password\ConfirmPassword.cshtml" />
-    <Content Include="Views\Password\ConfirmPassword.cshtml" />
-    <Content Include="Views\Password\ForgotPassword.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\UserHome\_Posts.cshtml" />
     <Content Include="Views\NGOHome\Index.cshtml" />
     <Content Include="Views\Password\ConfirmOTP.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Post.cshtml" />
+    <Content Include="Views\Password\ConfirmPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
