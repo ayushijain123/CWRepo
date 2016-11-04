@@ -21,10 +21,16 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             return View();
         }
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Index(User user)
         {
+            //ModelState.AddModelError("dsfsdf", "where to render errir");
 
+            //if (!ModelState.IsValid)
+            //{
+            //    return View("Index",user);
+            //}
 
+              
             CommonWealEntities context = new CommonWealEntities();
 
             string userEMail = user.LoginEmailID.ToLower();
