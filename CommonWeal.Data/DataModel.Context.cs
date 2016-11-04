@@ -10,10 +10,10 @@
 namespace CommonWeal.Data
 {
     using System;
+    using System.Data;
     using System.Data.Entity;
     using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
-
     using System.Linq;
     
     public partial class CommonWealEntities : DbContext
@@ -33,6 +33,7 @@ namespace CommonWeal.Data
         public DbSet<NGOPostDetail> NGOPostDetails { get; set; }
         public DbSet<NGOUser> NGOUsers { get; set; }
         public DbSet<PostComment> PostComments { get; set; }
+        public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Test> Tests { get; set; }

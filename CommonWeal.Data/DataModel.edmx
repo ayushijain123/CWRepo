@@ -4,13 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CommonWealModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CommonWealModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CommonWealModelStoreContainer">
           <EntitySet Name="ForgotPassword" EntityType="CommonWealModel.Store.ForgotPassword" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPost" EntityType="CommonWealModel.Store.NGOPost" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPostDetail" EntityType="CommonWealModel.Store.NGOPostDetail" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOUser" EntityType="CommonWealModel.Store.NGOUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PostComment" EntityType="CommonWealModel.Store.PostComment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PostLike" EntityType="CommonWealModel.Store.PostLike" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
@@ -113,6 +114,17 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="PostLike">
+          <Key>
+            <PropertyRef Name="LikeID" />
+          </Key>
+          <Property Name="LikeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="IsLike" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="PostID" Type="int" />
+        </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -186,17 +198,20 @@
         <Function Name="usp_GetPostDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PostID" Type="int" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CommonWealModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="CommonWealEntities" p1:LazyLoadingEnabled="true">
+          <FunctionImport Name="usp_GetPostDetails" ReturnType="Collection(String)">
+          <Parameter Name="PostID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="ForgotPasswords" EntityType="CommonWealModel.ForgotPassword" />
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
           <EntitySet Name="NGOPostDetails" EntityType="CommonWealModel.NGOPostDetail" />
           <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
           <EntitySet Name="PostComments" EntityType="CommonWealModel.PostComment" />
+          <EntitySet Name="PostLikes" EntityType="CommonWealModel.PostLike" />
           <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
           <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
           <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
@@ -209,152 +224,160 @@
             <End Role="User" EntitySet="Users" />
             <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
           </AssociationSet>
-          <FunctionImport Name="usp_GetPostDetails" ReturnType="Collection(String)">
-            <Parameter Name="PostID" Mode="In" Type="Int32" />
-          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ForgotPassword">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="OTP" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="DateInserted" Type="DateTime" Precision="3" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EmailId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OTP" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateInserted" Precision="3" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="NGOPost">
           <Key>
             <PropertyRef Name="PostID" />
           </Key>
-          <Property Name="PostID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="PostDateTime" Type="DateTime" Precision="3" />
-          <Property Name="PostType" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="PostContent" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="PostUrl" Type="String" MaxLength="250" Unicode="false" FixedLength="false" />
-          <Property Name="PostLikeCount" Type="Int32" />
-          <Property Name="PostCommentCount" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="PostID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EmailID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="PostDateTime" Precision="3" />
+          <Property Type="String" Name="PostType" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PostContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PostUrl" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="PostLikeCount" />
+          <Property Type="Int32" Name="PostCommentCount" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="NGOPostDetail">
           <Key>
             <PropertyRef Name="PostDetailID" />
           </Key>
-          <Property Name="PostDetailID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="PostID" Type="Int32" Nullable="false" />
-          <Property Name="EmailID" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="RoleID" Type="Int32" Nullable="false" />
-          <Property Name="IsLike" Type="Boolean" />
-          <Property Name="PostComment" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Type="Int32" Name="PostDetailID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PostID" Nullable="false" />
+          <Property Type="String" Name="EmailID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" />
+          <Property Type="Boolean" Name="IsLike" />
+          <Property Type="String" Name="PostComment" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
         </EntityType>
         <EntityType Name="NGOUser">
           <Key>
             <PropertyRef Name="NGOUserId" />
           </Key>
-          <Property Name="NGOUserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UniqueuId" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="NGOName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="NGOEmailID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="NGOPassword" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="LoginID" Type="Int32" />
-          <Property Name="NGOKey" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="NGOProfilePic" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Telephone" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Mobile" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="LoginUserType" Type="Int32" />
-          <Property Name="NGOAddress" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="ChairmanName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="ChairmanID" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="ParentOrganisation" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="RegisteredWith" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="RegistrationNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CityOfRegistration" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="DateOfRegistration" Type="DateTime" Precision="0" />
-          <Property Name="RegistrationProof" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="FCRANumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="AreaOfIntrest" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="OperationalArea" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="WebsiteUrl" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="NGOUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UniqueuId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOEmailID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOPassword" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginID" />
+          <Property Type="String" Name="NGOKey" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOProfilePic" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mobile" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginUserType" />
+          <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
+          <Property Type="String" Name="RegistrationProof" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
         </EntityType>
         <EntityType Name="PostComment">
           <Key>
             <PropertyRef Name="CommentID" />
           </Key>
-          <Property Name="CommentID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="PostID" Type="Int32" />
-          <Property Name="CommentText" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="CommentID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="PostID" />
+          <Property Type="String" Name="CommentText" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PostLike">
+          <Key>
+            <PropertyRef Name="LikeID" />
+          </Key>
+          <Property Type="Int32" Name="LikeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserID" Nullable="false" />
+          <Property Type="Boolean" Name="IsLike" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="Int32" Name="PostID" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="UserPassword" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LoginUserType" Type="Int32" />
-          <Property Name="UserKey" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LoginID" Type="Int32" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
-          <Property Name="CreatedBy" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="UserID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserEmail" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserPassword" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginUserType" />
+          <Property Type="String" Name="UserKey" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mobile" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="User" />
         </EntityType>
         <EntityType Name="RoleType">
           <Key>
             <PropertyRef Name="RoleID" />
           </Key>
-          <Property Name="RoleID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Type="Int32" Name="RoleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
         </EntityType>
         <EntityType Name="Test">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Content" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="LoginID" />
           </Key>
-          <Property Name="LoginID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="LoginPassword" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="LoginUserType" Type="Int32" Nullable="false" />
-          <Property Name="LoginEmailID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="IsBlock" Type="Boolean" Nullable="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LoginPassword" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginUserType" Nullable="false" />
+          <Property Type="String" Name="LoginEmailID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
           <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="User" ToRole="RegisteredUser" />
         </EntityType>
         <Association Name="FK_NGOUser_UserLogin">
-          <End Role="User" Type="CommonWealModel.User" Multiplicity="0..1" />
-          <End Role="NGOUser" Type="CommonWealModel.NGOUser" Multiplicity="*" />
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="LoginID" />
@@ -365,8 +388,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RegisteredUser_UserLogin">
-          <End Role="User" Type="CommonWealModel.User" Multiplicity="1" />
-          <End Role="RegisteredUser" Type="CommonWealModel.RegisteredUser" Multiplicity="*" />
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="1" />
+          <End Type="CommonWealModel.RegisteredUser" Role="RegisteredUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="LoginID" />
@@ -376,157 +399,169 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CommonWealModelStoreContainer" CdmEntityContainer="CommonWealEntities">
+          <FunctionImportMapping FunctionImportName="usp_GetPostDetails" FunctionName="CommonWealModel.Store.usp_GetPostDetails" />
           <EntitySetMapping Name="ForgotPasswords">
             <EntityTypeMapping TypeName="CommonWealModel.ForgotPassword">
               <MappingFragment StoreEntitySet="ForgotPassword">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
-                <ScalarProperty Name="OTP" ColumnName="OTP" />
-                <ScalarProperty Name="DateInserted" ColumnName="DateInserted" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DateInserted" ColumnName="DateInserted" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NGOPosts">
             <EntityTypeMapping TypeName="CommonWealModel.NGOPost">
               <MappingFragment StoreEntitySet="NGOPost">
-                <ScalarProperty Name="PostID" ColumnName="PostID" />
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="PostDateTime" ColumnName="PostDateTime" />
-                <ScalarProperty Name="PostType" ColumnName="PostType" />
-                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
-                <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
-                <ScalarProperty Name="PostLikeCount" ColumnName="PostLikeCount" />
-                <ScalarProperty Name="PostCommentCount" ColumnName="PostCommentCount" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PostCommentCount" ColumnName="PostCommentCount" />
+                <ScalarProperty Name="PostLikeCount" ColumnName="PostLikeCount" />
+                <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
+                <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+                <ScalarProperty Name="PostType" ColumnName="PostType" />
+                <ScalarProperty Name="PostDateTime" ColumnName="PostDateTime" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NGOPostDetails">
             <EntityTypeMapping TypeName="CommonWealModel.NGOPostDetail">
               <MappingFragment StoreEntitySet="NGOPostDetail">
-                <ScalarProperty Name="PostDetailID" ColumnName="PostDetailID" />
-                <ScalarProperty Name="PostID" ColumnName="PostID" />
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
-                <ScalarProperty Name="PostComment" ColumnName="PostComment" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="PostComment" ColumnName="PostComment" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="PostDetailID" ColumnName="PostDetailID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NGOUsers">
             <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
               <MappingFragment StoreEntitySet="NGOUser">
-                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
-                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
-                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
-                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
-                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
-                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
-                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
-                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
-                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
-                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
-                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
-                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
-                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
-                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
-                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
-                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
+                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
+                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
+                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
+                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
+                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
+                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
+                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
+                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
+                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
+                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
+                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
+                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PostComments">
             <EntityTypeMapping TypeName="CommonWealModel.PostComment">
               <MappingFragment StoreEntitySet="PostComment">
-                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="PostID" ColumnName="PostID" />
-                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CommentText" ColumnName="CommentText" />
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostLikes">
+            <EntityTypeMapping TypeName="CommonWealModel.PostLike">
+              <MappingFragment StoreEntitySet="PostLike">
+                <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsLike" ColumnName="IsLike" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LikeID" ColumnName="LikeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RegisteredUsers">
             <EntityTypeMapping TypeName="CommonWealModel.RegisteredUser">
               <MappingFragment StoreEntitySet="RegisteredUser">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UserKey" ColumnName="UserKey" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoleTypes">
             <EntityTypeMapping TypeName="CommonWealModel.RoleType">
               <MappingFragment StoreEntitySet="RoleType">
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tests">
             <EntityTypeMapping TypeName="CommonWealModel.Test">
               <MappingFragment StoreEntitySet="Test">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CommonWealModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-                <ScalarProperty Name="LoginEmailID" ColumnName="LoginEmailID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="LoginEmailID" ColumnName="LoginEmailID" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="LoginPassword" ColumnName="LoginPassword" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="usp_GetPostDetails" FunctionName="CommonWealModel.Store.usp_GetPostDetails" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

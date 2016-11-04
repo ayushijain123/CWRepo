@@ -82,6 +82,9 @@
     <Compile Include="PostComment.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PostLike.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisteredUser.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
