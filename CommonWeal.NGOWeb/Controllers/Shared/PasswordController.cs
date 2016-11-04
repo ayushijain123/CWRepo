@@ -108,7 +108,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             {
                 var request = obj.RegisteredUserIsAccepted();
                 var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
-                if (ob.UserEmail != null)
+                if (ob != null) //.UserEmail
                 {
                     try
                     {
@@ -153,8 +153,9 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                 //Session["FinalEmail"] = null;
                 Session.Remove("FinalEmail");
                 //return Content("Password Changed Successfully please Login");
-                TempData["msg"] = "<script>alert('Password Changed Successfully please Login');</script>";
+                TempData["PasswordChange"] = "<script>alert('Password Changed Successfully please Login');</script>";
                 return RedirectToAction("Index", "Login");
+                
             }
             //}
 
