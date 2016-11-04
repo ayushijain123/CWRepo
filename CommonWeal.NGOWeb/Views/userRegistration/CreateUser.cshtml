@@ -62,8 +62,14 @@
                         <br />
                         <br />
                     </div>
+                   if(null != ViewData["msg"])
+                     {
+                    <script type="text/javascript">
+                    alert("@ViewData["msg"]");
+                    </script>
+                     }
                 }
-                @Html.Raw(TempData["msg"])
+               
             </div>
         </div>
     </div>
