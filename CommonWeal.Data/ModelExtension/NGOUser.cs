@@ -38,7 +38,7 @@ namespace CommonWeal.Data
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [DataType(DataType.Password)]
-        [Display(Name = "CnfrmPassword")]
+        [Display(Name = "ConfrmPassword")]
         [Compare("NGOPassword", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_ConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
@@ -93,7 +93,7 @@ namespace CommonWeal.Data
 
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
-        [Url(ErrorMessage = "Enter Valid URL")]
+        [Url(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_URL")]
         public string WebsiteUrl { get; set; }
 
 
