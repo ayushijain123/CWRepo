@@ -134,7 +134,7 @@ namespace CommonWeal.NGOWeb
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
             var LoginUserlist = context.Users.ToList();
-
+            var PostLikeList=context.PostLikes.ToList();
             foreach (var item in NGOPostlist)
             {
 
@@ -164,6 +164,35 @@ namespace CommonWeal.NGOWeb
                 pm.commentCount = 1;//item.PostCommentCount.Value;
                 pm.postId = item.PostID;
                 var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
+               
+                //start like list
+                List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
+                foreach(var like in PostLikeList )
+                {
+                    PostLikeModel pl = new PostLikeModel();
+                    int userType = LoginUserlist.Where(user => user.LoginID == like.UserID).FirstOrDefault().LoginUserType;
+
+                    switch (userType)
+                    {
+                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == like.UserID).FirstOrDefault().NGOName.ToString();
+                            pl.userName = NGOUser;
+                            break;
+                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserID == like.UserID).FirstOrDefault();
+                           pl.userName= RegUser.FirstName + " " + RegUser.LastName;
+                            break;
+
+                    }
+                    pl.userImageUrl = "";
+                    pl.UserID = like.UserID;
+
+                    imageLikeList.Add(pl);
+                   
+
+                }
+                pm.postlike = imageLikeList;
+                //end like list
+
+                // start all comment of  particular post
                 List<Comment> imagecommentlist = new List<Comment>();
                 foreach (var a in postcomment)
                 {
@@ -189,6 +218,7 @@ namespace CommonWeal.NGOWeb
                     imagecommentlist.Add(cmnt);
                     
                 }
+                //end all comment of  particular post
                 pm.PostComments=imagecommentlist;
                 ob.Add(pm);
 
