@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CommonWeal.Data.Properties {
+namespace CommonWeal.Data {
     using System;
     
     
@@ -22,7 +22,7 @@ namespace CommonWeal.Data.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ModelMessages {
+    internal class ModelMessages {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,10 +36,10 @@ namespace CommonWeal.Data.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CommonWeal.Data.Properties.ModelMessages", typeof(ModelMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CommonWeal.Data.ModelMessages", typeof(ModelMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace CommonWeal.Data.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Password and Confirm Password does not match.
         /// </summary>
-        public static string Generic_ConfirmPassword {
+        internal static string Generic_ConfirmPassword {
             get {
                 return ResourceManager.GetString("Generic_ConfirmPassword", resourceCulture);
             }
@@ -72,7 +72,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter valid email.
         /// </summary>
-        public static string Generic_Email {
+        internal static string Generic_Email {
             get {
                 return ResourceManager.GetString("Generic_Email", resourceCulture);
             }
@@ -81,7 +81,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter 10 digit numbers only.
         /// </summary>
-        public static string Generic_MobileNumberLength {
+        internal static string Generic_MobileNumberLength {
             get {
                 return ResourceManager.GetString("Generic_MobileNumberLength", resourceCulture);
             }
@@ -90,7 +90,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter alphabets only.
         /// </summary>
-        public static string Generic_OnlyAlphabets {
+        internal static string Generic_OnlyAlphabets {
             get {
                 return ResourceManager.GetString("Generic_OnlyAlphabets", resourceCulture);
             }
@@ -99,7 +99,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter valid numbers only.
         /// </summary>
-        public static string Generic_OnlyNumbers {
+        internal static string Generic_OnlyNumbers {
             get {
                 return ResourceManager.GetString("Generic_OnlyNumbers", resourceCulture);
             }
@@ -108,7 +108,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Password Length should be minimum 8 characters with uppercase lowercase and special character.
         /// </summary>
-        public static string Generic_passwordStrength {
+        internal static string Generic_passwordStrength {
             get {
                 return ResourceManager.GetString("Generic_passwordStrength", resourceCulture);
             }
@@ -117,7 +117,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This field is mandatory..
         /// </summary>
-        public static string Generic_Required {
+        internal static string Generic_Required {
             get {
                 return ResourceManager.GetString("Generic_Required", resourceCulture);
             }
@@ -126,7 +126,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Entered value exceeds the required length.
         /// </summary>
-        public static string Generic_StringLength {
+        internal static string Generic_StringLength {
             get {
                 return ResourceManager.GetString("Generic_StringLength", resourceCulture);
             }
@@ -135,7 +135,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Email already exist.
         /// </summary>
-        public static string Generic_UniqueEmail {
+        internal static string Generic_UniqueEmail {
             get {
                 return ResourceManager.GetString("Generic_UniqueEmail", resourceCulture);
             }
@@ -144,7 +144,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter valid URL.
         /// </summary>
-        public static string Generic_URL {
+        internal static string Generic_URL {
             get {
                 return ResourceManager.GetString("Generic_URL", resourceCulture);
             }
@@ -153,7 +153,7 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter valid URL.
         /// </summary>
-        public static string NGO_ValidURL {
+        internal static string NGO_ValidURL {
             get {
                 return ResourceManager.GetString("NGO_ValidURL", resourceCulture);
             }

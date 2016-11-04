@@ -144,10 +144,10 @@
   <data name="Generic_UniqueEmail" xml:space="preserve">
     <value>Email already exist</value>
   </data>
-  <data name="NGO_ValidURL" xml:space="preserve">
+  <data name="Generic_URL" xml:space="preserve">
     <value>Enter valid URL</value>
   </data>
-  <data name="Generic_URL" xml:space="preserve">
+  <data name="NGO_ValidURL" xml:space="preserve">
     <value>Enter valid URL</value>
   </data>
 </root>

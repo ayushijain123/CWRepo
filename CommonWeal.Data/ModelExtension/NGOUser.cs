@@ -1,4 +1,4 @@
-﻿using CommonWeal.Data.Properties;
+﻿using CommonWeal.Data;
 using System;
 using System.ComponentModel.DataAnnotations;
 
