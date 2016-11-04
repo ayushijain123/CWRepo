@@ -85,7 +85,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         public JsonResult checkEmail(string NGOEmailID)
         {
             CommonWealEntities context = new CommonWealEntities();
-            return Json(!context.NGOUsers.Any(x => x.NGOEmailID == NGOEmailID), JsonRequestBehavior.AllowGet);
+            return Json(!context.Users.Any(x => x.LoginEmailID == NGOEmailID), JsonRequestBehavior.AllowGet);
         }
 
     }
