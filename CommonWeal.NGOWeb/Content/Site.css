@@ -8,7 +8,7 @@
 .usernav {
     font-size: 20px;
     padding: 5px;
-    color:lightgray;
+    color: lightgray;
 }
 
 
@@ -145,7 +145,7 @@ h5, h6 {
 }
 
 header {
-    background-color:#2A3F54;
+    background-color: #2A3F54;
     height: 108px;
 }
 
@@ -155,7 +155,7 @@ header {
 
 
 footer {
-    background-color:#2A3F54;
+    background-color: #2A3F54;
     /*font-size: 1.0em;*/
     height: 40px;
     color: black;
@@ -831,4 +831,101 @@ tr.pager td {
 
 .mainlogo {
     width: 141px;
+}
+/*post*/
+#postuserdetail {
+    background-color: #B8B8B8;
+}
+
+#images {
+    height: 35px;
+}
+
+#Textmessage {
+    background-color: #F8F8F8;
+}
+
+#uploadpost {
+    height: 50px;
+}
+
+#usernamepost {
+    font-size: 18px;
+}
+
+#imageurlpost {
+    max-height: 500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.likecommentsign {
+    background-color: #EFEFEF;
+    border-bottom: ridge;
+}
+
+#postcommentbox {
+    background-color: #EFEFEF;
+}
+
+#comentpost {
+    border-bottom: solid ;
+    border-color: lightgray;
+    border-width:1px;
+}
+
+#profileimagecomment {
+    height: 30px;
+}
+
+#commentusername {
+    font-size: 16px;
+}
+
+#postcommentcontent {
+    margin-left: 55px;
+}
+
+#txtComment- {
+    height: 35px;
+}
+
+#postform {
+    background-color: #e9eff1;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 25px;
+    padding-left: 5px;
+}
+
+#uploadbtn {
+    height: 40px;
+}
+
+#file {
+    display: none;
+}
+
+#menupost {
+    float: right;
+}
+
+#post {
+    height: 25px;
+    text-align: center;
+    padding-top: 0;
+}
+
+#posttemplate {
+    border: ridge;
+}
+
+.col-md-12 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.imagepost {
+    background-color: #F8F8F8;
 }
