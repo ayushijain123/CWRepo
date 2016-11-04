@@ -14,30 +14,30 @@
         </div>
         <div class="panel-body">
             <div id="ngo">
-              @*  @using (Ajax.BeginForm("CreateNGO", "NGORegistration", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
+                @*  @using (Ajax.BeginForm("CreateNGO", "NGORegistration", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
                 { 
                     *@
 
-                      <form name="NGO" class="form-horizontal" action="/NGORegistration/CreateNGO" method="post" enctype="multipart/form-data">
+                <form name="NGO" class="form-horizontal" action="/NGORegistration/CreateNGO" method="post" enctype="multipart/form-data">
 
-                        <div class="form-group">
-                        <label class="control-label col-xs-4" for="fn">NGO Name:*</label>
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="fn">NGO Name :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.NGOName, new { placeholder = "Name" })&nbsp;
                             @Html.ValidationMessageFor(a => a.NGOName)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="ln">Unique Id:*</label>
+                        <label class="control-label col-xs-4" for="ln">Unique Id :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.UniqueuId, new { placeholder = "Uniqueu ID" })&nbsp;
                             @Html.ValidationMessageFor(a => a.UniqueuId)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="email">Email:*</label>
+                        <label class="control-label col-xs-4" for="email">Email :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.NGOEmailID, new { placeholder = "Email ID" })&nbsp;
                             @Html.ValidationMessageFor(a => a.NGOEmailID)
@@ -45,56 +45,72 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="MobileNumber">Mobile No:*</label>
+                        <label class="control-label col-xs-4" for="pwd">Password :</label>
+
+                        <div class="col-xs-8">
+                            @Html.PasswordFor(a => a.NGOPassword, new { placeholder = "Password" })
+                            @Html.ValidationMessageFor(a => a.NGOPassword)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="pwd">Confirm Password :</label>
+                        <div class="col-xs-8">
+                            @Html.PasswordFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password" })
+                            @Html.ValidationMessageFor(a => a.ConfirmPassword)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-xs-4" for="MobileNumber">Mobile No :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number" })&nbsp;
                             @Html.ValidationMessageFor(a => a.Mobile)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="Address">Address:*</label>
+                        <label class="control-label col-xs-4" for="Address">Address :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.NGOAddress, new { placeholder = "Address" })&nbsp;
                             @Html.ValidationMessageFor(a => a.NGOAddress)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="CheifFunctionary/ChairmanName">Chairman Name:*</label>
+                        <label class="control-label col-xs-4" for="CheifFunctionary/ChairmanName">Chairman Name :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.ChairmanName, new { placeholder = "Chairman Name" })&nbsp;
                             @Html.ValidationMessageFor(a => a.ChairmanName)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="PhotoIdOfChairman">Photo Id Of Chairman:*</label>
+                        <label class="control-label col-xs-4" for="PhotoIdOfChairman">Photo Id Of Chairman :</label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(m => m.ChairmanID, new { type = "file" })
                             @Html.ValidationMessageFor(a => a.ChairmanID)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="ParentOrganization">Parent Organization:*</label>
+                        <label class="control-label col-xs-4" for="ParentOrganization">Parent Organization :</label>
                         <div class="col-xs-8">
-                            @Html.TextBoxFor(a => a.ParentOrganisation, new { placeholder = "Name of parrent organisation" })&nbsp;
+                            @Html.TextBoxFor(a => a.ParentOrganisation, new { placeholder = "Name of Parent organisation" })&nbsp;
                             @Html.ValidationMessageFor(a => a.ParentOrganisation)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="RegisterWith">Register With:*</label>
+                        <label class="control-label col-xs-4" for="RegisterWith">Register with :</label>
                         <div class="col-xs-5">
-                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.NGOWeb.Utility.TypeHelper.RegisteredWith))),
-                           "Select Type",
-                            new { @class = "form-control" })
+                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.NGOWeb.Utility.TypeHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RegisteredWith)
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="RegisterationNumber">Registration No:* </label>
+                        <label class="control-label col-xs-4" for="RegisterationNumber">Registration No : </label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.RegistrationNumber, new { placeholder = "Registration Number" })&nbsp;
                             @Html.ValidationMessageFor(a => a.RegistrationNumber)
@@ -102,7 +118,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="DateOfRegistration">Date Of Registration:* </label>
+                        <label class="control-label col-xs-4" for="DateOfRegistration">Date Of Registration : </label>
                         <div class="col-xs-8">
                             @Html.EditorFor(model => model.DateOfRegistration)
                             @Html.ValidationMessageFor(model => model.DateOfRegistration)
@@ -110,59 +126,38 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="CopyOfRegistration">Copy Of Registration:*</label>
+                        <label class="control-label col-xs-4" for="CopyOfRegistration">Copy Of Registration :</label>
                         <div class="col-xs-8">
-                            <div class="editor-label">
-                                @Html.TextBoxFor(m => m.RegistrationProof, new { type = "file" })&nbsp @Html.ValidationMessageFor(a => a.RegistrationProof)
-                            </div>
+                            @Html.TextBoxFor(m => m.RegistrationProof, new { type = "file" })
+                            @Html.ValidationMessageFor(a => a.RegistrationProof)
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="FCRARegisterationNumber">FCRA Registeration No:* </label>
+                        <label class="control-label col-xs-4" for="FCRARegisterationNumber">FCRA Registration No : </label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.FCRANumber, new { placeholder = "FCRA Number" })&nbsp;
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="WebsiteURL">Website URL:* </label>
+                        <label class="control-label col-xs-4" for="WebsiteURL">Website URL : </label>
                         <div class="col-xs-8">
                             @Html.TextBoxFor(a => a.WebsiteUrl, new { placeholder = "Website URL" })&nbsp;
                             @Html.ValidationMessageFor(a => a.WebsiteUrl)
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="control-label col-xs-4" for="pwd">Password:*</label>
 
-                        <div class="col-xs-8">
-                            @Html.PasswordFor(a => a.NGOPassword, new { placeholder = "Password" })
-                            @Html.ValidationMessageFor(a => a.NGOPassword)
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="control-label col-xs-4" for="pwd">Confirm Password:*</label>
-                        <div class="col-xs-6">
-                            @Html.PasswordFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password" })
-                            @Html.ValidationMessageFor(a => a.ConfirmPassword)
-                        </div>
-                    </div>
-                    <br />
-                    <br />
                     <div class="form-group">
                         <center><button type="submit" class="btn btn-primary" onclick="">Submit</button></center>
                         <br />
-                        <br />
                     </div>
-                }
                 </form>
-           @Html.Raw(TempData["msg"])
+                @Html.Raw(TempData["msg"])
             </div>
         </div>
     </div>
-  
+
 
 </body>
 
@@ -170,9 +165,9 @@
 
 @section Scripts {
 
-@Scripts.Render("~/bundles/jqueryui")  
-@Styles.Render("~/Content/cssjqryUi")  
-    
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
     <script type="text/javascript">
         $(document).ready(function () {
             $('input[type=datetime]').datepicker({
