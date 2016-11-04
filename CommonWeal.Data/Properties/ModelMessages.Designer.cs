@@ -144,6 +144,15 @@ namespace CommonWeal.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Enter valid URL.
         /// </summary>
+        public static string Generic_URL {
+            get {
+                return ResourceManager.GetString("Generic_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter valid URL.
+        /// </summary>
         public static string NGO_ValidURL {
             get {
                 return ResourceManager.GetString("NGO_ValidURL", resourceCulture);
