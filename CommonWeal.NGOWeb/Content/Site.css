@@ -867,6 +867,9 @@ tr.pager td {
 .likecommentsign {
     background-color: #EFEFEF;
     border-bottom: ridge;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #postcommentbox {
