@@ -10,12 +10,12 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <header class="col-md-12">
+    <header class="col-md-12 navbar-fixed-top ">
 
 
         @Html.Partial("_LoginPartial")
 
-    </header>
+    </header><br/><br/><br/><br/><br/>
     <div id="body" class="container">
         @RenderSection("featured", required: false)
         <section class="content-wrapper main-content clear-fix" style="width: 100%;">
