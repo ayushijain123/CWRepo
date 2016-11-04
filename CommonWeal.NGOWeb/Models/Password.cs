@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommonWeal.Data.Properties;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CommonWeal.NGOWeb.Models
 {
@@ -12,12 +9,12 @@ namespace CommonWeal.NGOWeb.Models
         [Required(ErrorMessage = "This field is required")]
         public string UserEmail { get; set; }
 
-        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password Length should be minimum 8 characters with uppercase lowercase and special character")]
-        [Required(ErrorMessage = "This field is required")]
+        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_passwordStrength")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         public string NewPassword { get; set; }
 
         [Compare("NewPassword")]
-        [Required(ErrorMessage = "This field is required")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         public string ConfirmPassword { get; set; }
     }
 }
