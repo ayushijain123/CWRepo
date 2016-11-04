@@ -12,17 +12,13 @@
 
 @*  @Html.Partial("_posts", Model);*@
 
-<div style="height: 50px; width: 800px; margin-left: 80px;">
 
-    @*//new upload post*@
-    <div id="newuploadpost">
-    </div>
 
     @*//end upload post*@
     @Html.Partial("../UserHome/_posts", Model)
     
 
-</div>
+
 
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
