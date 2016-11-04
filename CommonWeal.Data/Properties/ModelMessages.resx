@@ -147,4 +147,7 @@
   <data name="NGO_ValidURL" xml:space="preserve">
     <value>Enter valid URL</value>
   </data>
+  <data name="Generic_URL" xml:space="preserve">
+    <value>Enter valid URL</value>
+  </data>
 </root>
