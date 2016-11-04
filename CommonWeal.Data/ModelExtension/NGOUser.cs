@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommonWeal.Data.Properties;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommonWeal.Data
 {
@@ -19,85 +16,83 @@ namespace CommonWeal.Data
     {
         public int NGOUserId { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Enter Number only "), MaxLength(30)]
+        [RegularExpression("[a-zA-Z0-9]+$", ErrorMessage = "Enter Alphanumeric only")]
+        //[RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyNumbers"), MaxLength(30)]
         public string UniqueuId { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string NGOName { get; set; }
 
-        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Please enter a valid e-mail")]
-        [Required(ErrorMessage = "This field is required")]
-        //[System.Web.Mvc.Remote("doesEmailExist", "NGORegistration", HttpMethod = "POST", ErrorMessage = "User name already exists. Please enter a different user name.")]
-        [System.Web.Mvc.Remote("checkEmail", "ngoRegistration", ErrorMessage = "Email already exists")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Email")]
+        [System.Web.Mvc.Remote("checkEmail", "ngoRegistration", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_UniqueEmail")]
         public string NGOEmailID { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessage = "Password Length should be minimum 8 characters with uppercase lowercase and special character")]     
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression(@"^.*(?=.{8,12})(?=.*\d)(?=.*[a-zA-Z]).*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_passwordStrength")]
         [DataType(DataType.Password)]
         [Display(Name = "NGOPassword")]
         public string NGOPassword { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [DataType(DataType.Password)]
         [Display(Name = "CnfrmPassword")]
-        [Compare("NGOPassword", ErrorMessage = "Password and Confirm Password does not match")]
+        [Compare("NGOPassword", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_ConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
 
-        [Required(ErrorMessage = "This field is required")]
-        //[RegularExpression(@"^((0091)|(\+91)|0?)[789]{1}\d{9}$", ErrorMessage = "Not a valid Phone number")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "Enter 10 digit Number only")]
-        [RegularExpression("([1-9][0-9]*)", ErrorMessage = "Enter Numbers only")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [StringLength(10, MinimumLength = 10, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_MobileNumberLength")]
+        [RegularExpression("([1-9][0-9]*)", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyNumbers")]
         public string Mobile { get; set; }
 
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string City { get; set; }
 
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string State { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [StringLength(100)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [StringLength(100, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string NGOAddress { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string ChairmanName { get; set; }
 
-        //[Required(ErrorMessage = "This field is required")]
+
         public string ChairmanID { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string ParentOrganisation { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        //[RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string RegisteredWith { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
-        //[RegularExpression("[0-9]*$", ErrorMessage = "Enter Numbers only")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [RegularExpression("[a-zA-Z0-9]+$", ErrorMessage = "Enter Alphanumeric only")]
-        [StringLength(15)]
+        [StringLength(15, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string RegistrationNumber { get; set; }
 
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessage = "Enter Alphabets only")]
-        [StringLength(50)]
+        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string CityOfRegistration { get; set; }
 
-        [Required(ErrorMessage = "This field is required")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         public DateTime DateOfRegistration { get; set; }
 
 
-        [Required(ErrorMessage = "This field is required")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [Url(ErrorMessage = "Enter Valid URL")]
         public string WebsiteUrl { get; set; }
 
