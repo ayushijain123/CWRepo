@@ -29,7 +29,7 @@ namespace CommonWeal.Data
         [Display(Name = "UserPassword")]
         public string UserPassword { get; set; }
 
-        [Required(ErrorMessage = "Password and Confirm Password does not match")]
+        [Required(ErrorMessage = "This field is required")]
         [DataType(DataType.Password)]
         [Display(Name = "CnfrmPassword")]
         [Compare("UserPassword", ErrorMessage = "Password and Confirm Password does not match")]
