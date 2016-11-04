@@ -14,10 +14,8 @@
             <div class="panel-body">
                 <div id="Login">
                     @*<form name="User" class="form-horizontal" action="/Login/login" method="post">*@
-                    @using (Html.BeginForm("Index", "Login", FormMethod.Post,new { @class = "form-horizontal" }))
-                    {
-                       
-                         @Html.ValidationSummary()
+                    @using (Ajax.BeginForm("Index", "Login", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
+                    {  
                         <br />
                         <br />
                         <div class="form-group">
