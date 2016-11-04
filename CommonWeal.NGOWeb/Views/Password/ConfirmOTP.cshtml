@@ -5,11 +5,11 @@
 }
 
 <h2>Confirm OTP</h2>
-
+ </br>
 @using (Html.BeginForm("ConfirmPassword", "Password", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
-
+   
     <fieldset>
         <legend>Password</legend>
          @Html.Hidden("FinalEmail", Session["FinalEmail"])
@@ -17,9 +17,9 @@
         @Html.Hidden("OTP", Session["OTP"])
         
       
-        @Html.TextBox("FinalOTP")
+        @Html.Editor("FinalOTP", new { placeholder = "Enter OTP"})
         <p>
-            <input type="submit" value="Recover" />
+            <input type="submit" value="Submit" />
         </p>
     </fieldset>
 }
