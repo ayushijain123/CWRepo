@@ -1,94 +1,92 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
-<br />
 
-<div style="height: 50px; width: 800px; margin-left: 80px;">
+
+
+<div id="uploadpost" class="col-md-10 col-md-offset-1">
 
     @*//new upload post*@
-    <div id="newuploadpost">
-    </div>
+    @*<div id="newuploadpost">
+        </div>*@
 
     @*//end upload post*@
-    @* @Html.Partial("../UserHome/_posts", Model);*@
-    <div style="height: 50px; width: 800px; margin-left: 80px;">
 
-        @*//new upload post*@
-        <div id="newuploadpost">
+    @foreach (var item in Model)
+    { 
+         <div id="posttemplate">       
+        <div id="postuserdetail">
+            <div class="form-inline">
+                <img src="~/Images/user.png" id="images" />
+                <b id="usernamepost">@item.userName</b>
+                @item.postCreateTime
+            </div>
         </div>
-
-        @*//end upload post*@
-        <div>
-            @foreach (var item in Model)
-            { 
-                
-                <div style="background-color: #EFEFEF" id="postuserdetail">
-                    <div class="form-inline">
-                        <img src="~/Images/user.png" style="height: 35px; width: 35px" />
-                        <b style="font-size:18px;">@item.userName</b>
-                        @item.postCreateTime
-                    </div>
-                </div>
 @*  Text for image*@
-                <div name="Textmessage">
-                    <div class="form-inline" style="height: auto;">
-                        <span>@item.postcontent</span>
-                    </div>
-                </div>
+        <div name="Textmessage" id="Textmessage">
+            <div class="form-inline">
+                <span>@item.postcontent</span>
+            </div>
+        </div>
 @*  <div class="form-group">*@
-                <div id="image/video">
-                    @if (item.postImageUrl != null)
-                    {    
-                        <img src="@item.postImageUrl" style="height: 500px; width: 800px;" />
-                    }
+        <div id="image/video" class="col-md-12 imagepost">
+            @if (item.postImageUrl != null)
+            {    
+                <img src="@item.postImageUrl" id="imageurlpost" class="col-md-offset-1 " />
+            }
+                    
 @* ///edited on 24/10/16*@
 
-                    <div style="background-color: #EFEFEF;border-bottom: ridge; width: 800px;">
-                        <div class="form-inline" style="height: 30px;">
-                              <span class="fa fa-thumbs-up fa-2x" style="width:35px;"></span>
-                            <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x"></span>
-                        </div>
+           
+                <div class="form-inline likecommentsign">
+                    <span class="fa fa-thumbs-up fa-2x"></span>
+                    <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x"></span>
+                </div>
 
 
-                    </div>
-                    @*///Comment div action*@
-                    <div class="form-inline" style="background-color: #EFEFEF">
-                        @foreach (var comment in item.PostComments)
-                        {
-                            <div class="form-group">
-                                <div class="form-inline" style="border-bottom: ridge; width: 800px;">
-                                    <img src="~/Images/user.jpg" style="height: 30px; width: 25px" />
-                                    <span style="font-size: 16px;"><b>@comment.Username </b></span>
-                                    @comment.CreatedDateTime
-                                    <p style="margin-left: 55px;">@comment.commentContent</p>
-                                    @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
+         
+            @*///Comment div action*@
+
+        </div> 
+        <div class="form-inline " id="postcommentbox">
+            @foreach (var comment in item.PostComments)
+            {
+                <div class="form-group col-md-12 " >
+                    <div class="form-inline " id="comentpost">
+                        <img src="~/Images/user.jpg" id="profileimagecomment" />
+                        <span id="commentusername "><b>@comment.Username </b></span>
+                        @comment.CreatedDateTime
+                        <p id="postcommentcontent">@comment.commentContent</p>
+                        @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
                                         <a href="#">Like</a>
                                         <a href="#">Reply</a>
                                     </div>*@
-                                </div>
-                            </div>
-
-                        }
-
-                        <div id="@item.postId">
-                            <br />
-                        </div>
-
-                        @*///user Comment section*@
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-    
-                            <div class="form-inline">
-                                <img src="~/Images/orderedList3.png" />
-
-                                @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control textComment", @style = " width: 480px; height:35px;", placeholder = "Write Your comment" })
-                                <input type="button" id="postimage-@item.postId" name="button" class="btn1 btn-primary btnPost" value="Post" />
-                            </div>
-                        }
-
                     </div>
-                </div> <br />
+                </div>
                 <br />
-                
+
             }
+
+            <div id="@item.postId">
+                <br />
+            </div>
+
+            @*///user Comment section*@
+
+            @if (User.Identity.IsAuthenticated)
+            {
+    
+                <div class="form-inline">
+                    <img src="~/Images/orderedList3.png" />
+
+                    @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control textComment", placeholder = "Write Your comment" })
+                    <input type="button" id="postimage-@item.postId" name="button" class="btn1 btn-primary btnPost" value="Post" />
+                </div>
+            }
+
         </div>
-    </div>
+        </div>
+        <br />
+        <br />
+                
+    }
+</div>
+
