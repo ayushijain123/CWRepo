@@ -30,5 +30,36 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         }
 
+
+        [HttpPost]
+
+        public void SubmitLike(bool like,int PostID)
+        {
+            CommonWealEntities db = new CommonWealEntities();
+            PostLike pl = new PostLike();
+            pl.CreatedOn = DateTime.Now;
+            pl.ModifiedOn = DateTime.Now;
+            pl.IsLike = true;
+            string EmailID = User.Identity.Name;
+           int UserID= db.Users.Where(usr => usr.LoginEmailID == EmailID).FirstOrDefault().LoginID;
+            pl.UserID = UserID;
+            pl.PostID = PostID;
+           var currentLikeUser= db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.UserID == UserID);
+           if (currentLikeUser == null)
+           {        
+               var post=db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+               post.PostLikeCount++;
+               db.PostLikes.Add(pl);
+
+               db.SaveChanges();
+           }
+           
+            
+
+
+
+        }
+
+
     }
 }
