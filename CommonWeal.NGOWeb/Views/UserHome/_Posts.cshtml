@@ -20,10 +20,10 @@
             @foreach (var item in Model)
             { 
                 
-                <div style="background-color: lightgray;" id="postuserdetail">
+                <div style="background-color: #EFEFEF" id="postuserdetail">
                     <div class="form-inline">
-                        <img src="~/Images/user.png" style="height: 30px; width: 30px" />
-                        <b>@item.userName</b>
+                        <img src="~/Images/user.png" style="height: 35px; width: 35px" />
+                        <b style="font-size:18px;">@item.userName</b>
                         @item.postCreateTime
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                     }
 @* ///edited on 24/10/16*@
 
-                    <div style="background-color: lightgray;border-bottom: ridge; width: 800px;">
+                    <div style="background-color: #EFEFEF;border-bottom: ridge; width: 800px;">
                         <div class="form-inline" style="height: 30px;">
                               <span class="fa fa-thumbs-up fa-2x" style="width:35px;"></span>
                             <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x"></span>
@@ -50,7 +50,7 @@
 
                     </div>
                     @*///Comment div action*@
-                    <div class="form-inline" style="background-color: lightgray">
+                    <div class="form-inline" style="background-color: #EFEFEF">
                         @foreach (var comment in item.PostComments)
                         {
                             <div class="form-group">
