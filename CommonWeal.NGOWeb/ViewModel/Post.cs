@@ -16,7 +16,7 @@ namespace CommonWeal.NGOWeb.ViewModel
         public int likeCount { get; set; }
         public int commentCount { get; set; }
         public string postcontent { get; set; }
-
+        public List<PostLikeModel> postlike { get; set; }
         public List<Comment> PostComments { get; set; }
     } 
 }
