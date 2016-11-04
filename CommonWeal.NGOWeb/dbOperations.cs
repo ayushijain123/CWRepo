@@ -177,7 +177,7 @@ namespace CommonWeal.NGOWeb
                         case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == like.UserID).FirstOrDefault().NGOName.ToString();
                             pl.userName = NGOUser;
                             break;
-                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserID == like.UserID).FirstOrDefault();
+                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == like.UserID).FirstOrDefault();
                            pl.userName= RegUser.FirstName + " " + RegUser.LastName;
                             break;
 
