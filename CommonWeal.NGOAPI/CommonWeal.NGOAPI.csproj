@@ -184,6 +184,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\Startup.Auth.cs" />
     <None Include="Properties\PublishProfiles\APIBuild.pubxml" />
   </ItemGroup>
   <ItemGroup>

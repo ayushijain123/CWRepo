@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using Newtonsoft.Json.Serialization;
+using Microsoft.Owin.Security.OAuth;
 
 
 namespace CommonWeal.NGOAPI
@@ -15,6 +16,8 @@ namespace CommonWeal.NGOAPI
     {
         public static void Register(HttpConfiguration config)
         {
+            config.SuppressDefaultHostAuthentication();
+            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
