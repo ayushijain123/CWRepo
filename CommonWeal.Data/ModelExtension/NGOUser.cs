@@ -48,15 +48,15 @@ namespace CommonWeal.Data
         [RegularExpression("([1-9][0-9]*)", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyNumbers")]
         public string Mobile { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
-        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
-        public string City { get; set; }
+        //[Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        //[RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        //[StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
+        //public string City { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
-        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
-        public string State { get; set; }
+        //[Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        //[RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        //[StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
+        //public string State { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [StringLength(100, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
