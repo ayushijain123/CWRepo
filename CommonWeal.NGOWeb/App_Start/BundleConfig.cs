@@ -60,7 +60,7 @@ namespace CommonWeal.NGOWeb
             //************************************** datapicker bundle **********************************************
             bundles.Add(new StyleBundle("~/Content/sitecss").Include(
                 "~/Content/bootstrap.css",
-               
+                 "~/Content/bootstrap-theme.css",
                  "~/Content/Site.css"));
 
 
