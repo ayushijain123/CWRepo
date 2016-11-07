@@ -1,12 +1,14 @@
 ﻿<div class="col-md-12 ">
-    <nav>
-        <a href="@Url.Action("Index", "Home")">
-           
-         
-            <img src="~/Images/Logo1.png" class="col-md-1 col-xs-2 col-lg-1 col-sm-2"  /></a>
-            
-        <div id="menu" class="right" style="margin-top: 25px;">
 
+    @* <a class="navbar-brand" href="http://disputebills.com"><img src="http://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png" alt="Dispute Bills">
+        </a>*@
+
+    <a href="@Url.Action("Index", "Home")" class="navbar-brand">         
+        <img src="~/Images/Logo1.png" style="max-height: 100px; max-width: 70px" />
+    </a>
+
+    <nav>        
+        <div id="menu" class="right" style="margin-top: 25px;">
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 <span class="usernav">Hello @ViewBag.LoginUser.UserName</span>  
