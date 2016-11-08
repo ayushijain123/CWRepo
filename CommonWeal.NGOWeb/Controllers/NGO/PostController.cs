@@ -61,6 +61,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
                     db.SaveChanges();
                 }
+                else
+                {
+                  var removeLike  =  db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.UserID == UserID).FirstOrDefault();
+                  db.PostLikes.Remove(removeLike);
+                  db.SaveChanges();
+                }
             }
 
 
