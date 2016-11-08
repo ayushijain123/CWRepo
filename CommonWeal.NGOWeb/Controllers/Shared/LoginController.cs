@@ -47,26 +47,26 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                     //redirect to login page
                     //request is pending for admin portal
 
-                    ModelState.AddModelError("", "your request status is pending or blocked");
+                    ModelState.AddModelError("", "Your request status is pending or blocked");
                 }
                 else if (result.LoginEmailID.ToLower() == userEMail && result.LoginPassword == user.LoginPassword)
                 {
                     string controllerName = "";
 
 
-                    TypeHelper.UserType usertype = (TypeHelper.UserType)result.LoginUserType;
+                    EnumHelper.UserType usertype = (EnumHelper.UserType)result.LoginUserType;
 
                     string roles = usertype.ToString();
                     switch (usertype)
                     {
-                        case TypeHelper.UserType.NGOAdmin:
+                        case EnumHelper.UserType.NGOAdmin:
                             controllerName = "NGOHome";
                             break;
-                        case TypeHelper.UserType.Admin:
+                        case EnumHelper.UserType.Admin:
                             controllerName = "Admin";
 
                             break;
-                        case TypeHelper.UserType.User:
+                        case EnumHelper.UserType.User:
                             controllerName = "UserHome";
                             break;
                         default:

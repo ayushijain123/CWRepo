@@ -60,7 +60,7 @@ namespace CommonWeal.NGOAPI.App_Start
                                 identity.AddClaim(new Claim(ClaimTypes.Name, loginuser.LoginEmailID));
                                 identity.AddClaim(new Claim(ClaimTypes.Sid, loginuser.LoginID.ToString()));
                                 // Add a Role Claim:
-                                identity.AddClaim(new Claim(ClaimTypes.Role, ((TypeHelper.UserType)loginuser.LoginUserType).ToString()));
+                                identity.AddClaim(new Claim(ClaimTypes.Role, ((EnumHelper.UserType)loginuser.LoginUserType).ToString()));
 
                                 // Identity info will ultimatly be encoded into an Access Token
                                 // as a result of this call:

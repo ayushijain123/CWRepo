@@ -17,6 +17,7 @@ namespace CommonWeal.NGOWeb.Controllers
     public class BaseController : Controller
     {
         public LoggedInUser LoginUser { get; set; }
+
         /// <summary>
         /// Fetch logged in user detail
         /// </summary>
@@ -37,28 +38,31 @@ namespace CommonWeal.NGOWeb.Controllers
                     LoginID = usr.LoginID,
                     LoginEmailID = usr.LoginEmailID,
                     LoginUserType = usr.LoginUserType,
-
-                     
                 };
 
 
-                switch ((TypeHelper.UserType)usr.LoginUserType)
+                switch ((EnumHelper.UserType)usr.LoginUserType)
                 {
-                    case TypeHelper.UserType.Admin:
+                    case EnumHelper.UserType.Admin:
                         this.LoginUser.UserName = "Admin";
                         break;
-                    case TypeHelper.UserType.NGOAdmin:
+                    case EnumHelper.UserType.NGOAdmin:
 
-                        this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName; ;
+                        //this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName; ;
+                        this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName;
+                        this.LoginUser.LoginUserType = 1; // Added on 07/11/2016 by Rishiraj
+
                         break;
-                    case TypeHelper.UserType.User:
+                    case CommonWeal.Data.EnumHelper.UserType.User:
                         var reguser = CWContext.RegisteredUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault(); ;
                         this.LoginUser.UserName = reguser.FirstName + " " + reguser.LastName;
+                        this.LoginUser.LoginUserType = 3; // Added on 07/11/2016 by Rishiraj
                         break;
                 }
 
 
                 ViewBag.LoginUser = LoginUser;
+                ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
             }
 
         }

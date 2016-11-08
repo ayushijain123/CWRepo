@@ -6,13 +6,19 @@ using System.Web.Mvc;
 
 namespace CommonWeal.NGOWeb.Controllers.Shared
 {
-    [Authorize]
+     [AllowAnonymous]
     public class WelcomeController : BaseController
     {
         //
         // GET: /welcome/ Test This
 
         public ActionResult Index()
+        {
+            return View();
+        }
+
+
+        public ActionResult Profile()
         {
             return View();
         }

@@ -40,7 +40,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
                     context.RegisteredUsers.Add(ru);
                     context.SaveChanges();
                     ViewData["msg"] = "<script>alert('Registered succesfully');</script>";
-                    return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+                    return JavaScript("window.location = '" + Url.Action("Index", "Welcome") + "'");
                     //return RedirectToAction("Index", new { controller = "Home", area = string.Empty });
                     //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
                 }

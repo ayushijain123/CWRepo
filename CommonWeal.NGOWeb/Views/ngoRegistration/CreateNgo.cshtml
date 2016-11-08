@@ -104,7 +104,7 @@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="RegisterWith">Register with :</label>
                         <div class="col-xs-5">
-                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.NGOWeb.Utility.TypeHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
+                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.UserType))), "Select Type", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.RegisteredWith)
 
                         </div>

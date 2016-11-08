@@ -11,7 +11,7 @@ using CommonWeal.Data;
 namespace CommonWeal.NGOAPI.Controllers
 {
  
-    public class NGOController : ApiController
+    public class NGOController :BaseController
     {
 
         [Authorize(Roles= "User")]

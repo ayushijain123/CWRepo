@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CommonWeal.Data
 {
-    public static class TypeHelper
+    public static class EnumHelper
     {
 
         public enum UserType

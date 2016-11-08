@@ -25,7 +25,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 CommonWealEntities db = new CommonWealEntities();
                 var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
 
-                var t = UIHelper.GetDropDownListFromEnum(typeof(TypeHelper.UserType));
+                var t = UIHelper.GetDropDownListFromEnum(typeof(EnumHelper.UserType));
                 postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
 
                 return View(postlist);
@@ -34,7 +34,7 @@ namespace CommonWeal.NGOWeb.Controllers
             }
             else
             {
-                if (this.User.IsInRole(TypeHelper.UserType.NGOAdmin.ToString()))
+                if (this.User.IsInRole(EnumHelper.UserType.NGOAdmin.ToString()))
                 {
                     return RedirectToAction("Index", "NGOHome");
                 }

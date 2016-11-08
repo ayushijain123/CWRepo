@@ -188,7 +188,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Utility\UIHelper.cs" />
-    <Compile Include="Utility\TypeHelper.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="ViewModel\Comment.cs" />
     <Compile Include="ViewModel\LoggedInUser.cs" />
@@ -379,6 +378,7 @@
     <Content Include="Views\Password\ConfirmOTP.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Post.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
+    <Content Include="Views\Welcome\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />

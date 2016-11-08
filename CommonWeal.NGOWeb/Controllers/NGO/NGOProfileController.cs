@@ -30,7 +30,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
              // ViewBag.value = details;
                return View(details);
            }
-           return RedirectToAction("Login", "Login");
+           return RedirectToAction("Index", "Login");
         }
         public ActionResult Album()
         {

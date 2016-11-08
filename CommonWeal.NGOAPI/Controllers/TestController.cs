@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace CommonWeal.NGOAPI.Controllers
 {
-    public class TestController : ApiController
+    public class TestController : BaseController
     {
     }
 }
