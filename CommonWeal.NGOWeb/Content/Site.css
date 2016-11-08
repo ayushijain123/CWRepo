@@ -173,7 +173,7 @@ footer {
 }
 
 .panelNGO {
-     margin-top: 20px!important;
+    margin-top: 20px!important;
 }
 
 #panel {
@@ -524,7 +524,7 @@ input[type="checkbox"] {
 input[type="submit"],
 input[type="button"],
 button {
-    background-color:#225d77;
+    background-color: #225d77;
     border: 1px solid #787878;
     border-radius:9px;
     cursor: pointer;
@@ -891,9 +891,9 @@ tr.pager td {
 }
 
 #comentpost {
-    border-bottom: solid ;
+    border-bottom: solid;
     border-color: lightgray;
-    border-width:1px;
+    border-width: 1px;
 }
 
 #profileimagecomment {
@@ -956,6 +956,12 @@ tr.pager td {
 
 .imagepost {
     background-color: #F8F8F8;
+}
+
+/*css for pop body*/
+.modal-body {
+    overflow-y: auto !important;
+    height: 300px;
 }
 .ahover:hover {
     color:	#4073bf;

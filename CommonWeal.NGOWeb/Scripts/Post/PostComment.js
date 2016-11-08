@@ -71,6 +71,35 @@ $(document).ready(function () {
 
     });
 
+    $(".showLikeuser").click(function () {
+        console.log('clicked');
+        var postid = $(this).attr("id").split('-')[1];
+        console.log('clicked-'+postid);
+        $("#likelist-" + postid).html("");
+        $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
+            //alert('hi');
+            $.each(postlikelist, function (i, value) {
+                console.log(postlikelist);
+                var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
+                '<div class="form-inline">'+
+                '<img src="/Images/user.png" id="images" />'+
+                '  <b id="usernamepost">' + value.userName + '</b>'+
+
+                '</div>'+
+                '</div>';
+
+                $("#likelist-" + postid).append(content);
+                
+               // console.log(value.userName);
+               // console.log(value.ModifiedOn);
+            });
+                
+           
+
+        });
+
+    });
+
 
     //end Likecount
 

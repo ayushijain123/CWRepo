@@ -134,7 +134,7 @@ namespace CommonWeal.NGOWeb
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
             var LoginUserlist = context.Users.ToList();
-            var PostLikeList=context.PostLikes.ToList();
+            var PostLikeListmain=context.PostLikes.ToList();
             foreach (var item in NGOPostlist)
             {
 
@@ -167,8 +167,12 @@ namespace CommonWeal.NGOWeb
                
                 //start like list
                 List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
+                var PostLikeList = PostLikeListmain.Where(pstlike => pstlike.PostID == item.PostID).ToList();
+               
+                int likecount = 0;
                 foreach(var like in PostLikeList )
                 {
+                   
                     PostLikeModel pl = new PostLikeModel();
                     int userType = LoginUserlist.Where(user => user.LoginID == like.UserID).FirstOrDefault().LoginUserType;
 
@@ -186,14 +190,17 @@ namespace CommonWeal.NGOWeb
                     pl.UserID = like.UserID;
 
                     imageLikeList.Add(pl);
-                   
+                    likecount++;
 
                 }
+                pm.likeCount = likecount;
                 pm.postlike = imageLikeList;
                 //end like list
 
                 // start all comment of  particular post
                 List<Comment> imagecommentlist = new List<Comment>();
+                pm.commentCount = postcomment.Count();
+                int commentcount=0;
                 foreach (var a in postcomment)
                 {
                     Comment cmnt = new Comment();
@@ -216,8 +223,9 @@ namespace CommonWeal.NGOWeb
                     }
 
                     imagecommentlist.Add(cmnt);
-                    
+                    commentcount++; 
                 }
+                pm.commentCount = commentcount;
                 //end all comment of  particular post
                 pm.PostComments=imagecommentlist;
                 ob.Add(pm);

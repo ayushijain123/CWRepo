@@ -1,14 +1,16 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
+
 <br />
 
 <div id="uploadpost" class="col-md-12">
- 
+
     @*//new upload post*@
     @*<div id="newuploadpost">
         </div>*@
 
     @*//end upload post*@
+
 
     @foreach (var item in Model)
     { 
@@ -37,9 +39,138 @@
 
 
                 <div class="form-inline likecommentsign col-md-12 ">
-                    <span class="fa fa-thumbs-up fa-2x ahover"></span>
-                    <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x ahover"></span>
+                    <span class="fa fa-thumbs-up fa-2x ahover" LikeIcon" id="LikeIcon-@item.postId"></span>
+                    
+                    <span id="commentIcon-@item.postId" class="fa fa-comment fa-2x commentIcon "></span>
+                    <div class="text-primary">
+
+                    @{    int userLoginId = -1, count = 0;
+                          if (User.Identity.IsAuthenticated)
+                          {
+                              CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
+                              userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
+                              var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
+                              if (likeuser != null)
+                              {
+                                  if (likeuser.UserID == userLoginId)
+                                  {<span>You,</span>count++;
+                                  }
+                              }
+                          }
+
+                          int totalcount=item.postlike.Count;
+                          var likelist=item.postlike.Where(pstlk=>pstlk.UserID!=userLoginId).Take(2);
+                          foreach (var like in  likelist)
+                          {
+                               if (count == 2 && totalcount == 3)
+                                   { <span>and </span>}
+                               if (count == 1 && totalcount == 2)
+                                   { <span>and </span>}
+                              if (userLoginId != like.UserID)
+                              {@like.userName<span>,</span>count++;
+                               
+                              }
+                              else
+                              {
+                                  count++;
+                              }
+                          }
+
+ 
+
+                        if (item.likeCount > 2 && count!=3)
+                        {
+                        <span>and 
+                        <u class="showLikeuser" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(item.likeCount - count) others</u>
+                        </span>
+                         
+                        
+                           
+                        }
+                        if (item.likeCount>=1)
+                        {<span>like this</span>   
+                        }
+
+
+                    }
+
                 </div>
+                </div>
+
+
+
+
+
+                @*     //popup portion*@
+                @*   <div class="container">
+                    <h2>Modal Example</h2>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Modal Header</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Some text in the modal.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>*@
+
+                <!-- Button trigger modal -->
+
+
+                
+
+
+                @*  <button type="button" class="btn btn-primary btn-lg showLikeuser" data-toggle="modal" data-target="#myModal-@item.postId" id="showLikeuser-@item.postId">
+                    Launch demo modal
+                </button>*@
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto"  role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                            </div>
+                            <div class="modal-body" id="likelist-@item.postId">
+                                @*@foreach(var like in item.postlike)
+                                {                
+                                <div id="postuserdetail">
+                <div class="form-inline">
+                    <img src="~/Images/user.png" id="images" />
+                    <b id="usernamepost">@like.userName</b>
+                    
+                </div>
+            </div>
+                                }*@
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*     //popup portion*@
+
 
 
 
