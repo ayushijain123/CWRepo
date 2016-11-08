@@ -3,6 +3,7 @@
     font-size: 25px;
     padding: 5px;
     color: white;
+    
 }
 
 .usernav {
@@ -239,7 +240,7 @@ footer {
 }
 
 .btn {
-    padding-top: 8px;
+    padding-top: 5px;
     padding-bottom: 8px;
     /*margin-left:280px;*/
 }
@@ -507,7 +508,7 @@ input, textarea {
 
 textarea {
     font-family: inherit;
-    width: 500px;
+ max-height:50px;
 }
 
     input:focus, textarea:focus {
@@ -525,12 +526,15 @@ input[type="button"],
 button {
     background-color:#225d77;
     border: 1px solid #787878;
+    border-radius:9px;
     cursor: pointer;
     /*font-size: 1.2em;*/
-    font-weight: 600;
-    padding: 7px;
+    font-weight: 500;
+    padding: 4px;
     margin-right: 8px;
+    height:34px;
     width: auto;
+
 }
 
 td input[type="submit"],
@@ -858,9 +862,15 @@ tr.pager td {
 
 #usernamepost {
     font-size: 18px;
-    color: #0033cc;
+    color: #476a87;
 }
+.commentdate {
+    color:#6c8ba5;
 
+}
+.posttime {
+    color:#4d7597;
+}
 #imageurlpost {
     max-height: 500px;
     display: block;
@@ -890,8 +900,11 @@ tr.pager td {
     height: 30px;
 }
 
-#commentusername {
-    font-size: 16px;
+.commentusername {
+  
+        color:#428bca;
+
+
 }
 
 #postcommentcontent {
@@ -923,10 +936,14 @@ tr.pager td {
 }
 
 #post {
-    height: 25px;
-    text-align: center;
-    padding-top: 0;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-right-width: 10px;
+    border-left-width: 10px;
+    border-color:#225d77;
 }
+
 
 #posttemplate {
     border: ridge;
@@ -940,3 +957,7 @@ tr.pager td {
 .imagepost {
     background-color: #F8F8F8;
 }
+.ahover:hover {
+    color:	#4073bf;
+}
+
