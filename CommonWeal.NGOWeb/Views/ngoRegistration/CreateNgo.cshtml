@@ -7,9 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src="~/Scripts/jquery-1.7.1.js"></script>
+@*    <script src="~/Scripts/jquery-1.7.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
 
 
 </head>
@@ -110,7 +110,7 @@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="RegisterWith">Register with :</label>
                         <div class="col-xs-5">
-                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.UserType))), "Select Type", new { @class = "form-control" })
+                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.RegisteredWith)
 
                         </div>
