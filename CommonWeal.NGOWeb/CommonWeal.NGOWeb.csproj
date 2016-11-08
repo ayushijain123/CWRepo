@@ -291,7 +291,9 @@
     <Content Include="Images\Post\Penguins.jpg" />
     <Content Include="Images\Post\Tulips.jpg" />
     <Content Include="Images\Tulips.jpg" />
+    <Content Include="Images\user-group.png" />
     <Content Include="Images\user.jpg" />
+    <Content Include="Images\userprofile.jpg" />
     <Content Include="Scripts\Admin\Test.js" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
