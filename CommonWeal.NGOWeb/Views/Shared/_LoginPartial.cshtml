@@ -3,11 +3,11 @@
     @* <a class="navbar-brand" href="http://disputebills.com"><img src="http://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png" alt="Dispute Bills">
         </a>*@
 
-    <a href="@Url.Action("Index", "Home")" class="navbar-brand">         
+    <a href="@Url.Action("Index", "Home")" class="navbar-brand">
         <img src="~/Images/Logo1.png" style="max-height: 100px; max-width: 70px" />
     </a>
 
-    <nav>        
+    <nav>
         <div id="menu" class="right" style="margin-top: 25px;">
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
@@ -15,23 +15,39 @@
                 if (System.Web.HttpContext.Current.User.IsInRole("NGOAdmin"))
                 {
                 <div>
-                     <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
+                    <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
                     <a href="@Url.Action("Index", "NGOProfile")" class="menuitem fa fa-user" title="Profile"></a>
-                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-sign-out" title="Logout"></a>
-                </div>      }  
-                            
-                            
-                            else {
+                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off" title="Logout"></a>
+                </div>      
+                }
+
+                else
+                {
+
+                    if (System.Web.HttpContext.Current.User.IsInRole("Admin"))
+                    {
                 <div>
-                     <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>
-                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-sign-out" title="Logout"></a>
-                </div>      }  
+                    <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>
+                    <a href="@Url.Action("Index", "Admin")" class="menuitem fa fa-tachometer" title="Dashboard"></a>
+                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>
+                </div>      
+                    }
+
+                    else
+                    {
+                <div>
+                    <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>
+                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>
+                </div>  
+                    }
+                }
+                
                 <input type="hidden" id="appUserName" value="@ViewBag.LoginUser.LoginEmailID" /> 
                 <script>
                     userName = '@HttpContext.Current.User.Identity.Name';
                 </script>
             }
-            
+
             else
             {
                 <span class="usernav">Hello Guest</span> 
