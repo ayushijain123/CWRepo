@@ -65,9 +65,10 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
+            window.location.reload(true);
             //console.log(result);
         });
-        
+      
 
     });
 
