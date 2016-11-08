@@ -967,3 +967,9 @@ tr.pager td {
     color:	#4073bf;
 }
 
+/*Added by Rishiraj on 08/11/2016*/
+/*.showmeonhover { text-decoration: none; }*/
+.showLikeuser:hover  {
+    text-decoration: underline;
+}
+/*Added by Rishiraj on 08/11/2016*/
