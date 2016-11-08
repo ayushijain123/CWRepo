@@ -5,19 +5,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-
-
-
 using CommonWeal.Data;
+
+
 namespace CommonWeal.NGOAPI.Controllers
 {
-
+ 
     public class NGOController : ApiController
     {
 
-
-
-
+        [Authorize(Roles= "User")]
         [HttpGet]
         public HttpResponseMessage GetPosts()
         {
@@ -29,6 +26,7 @@ namespace CommonWeal.NGOAPI.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public bool PostTest(Test objTest)
         {
             CommonWealEntities db = new CommonWealEntities();
