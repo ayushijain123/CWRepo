@@ -17,7 +17,7 @@
                 <div class="form-inline">
                     <img src="~/Images/user.png" id="images" />
                     <b id="usernamepost">@item.userName</b>
-                    @item.postCreateTime
+                   <span class="posttime"> @item.postCreateTime</span>
                 </div>
             </div>
             @*  Text for image*@
@@ -37,8 +37,8 @@
 
 
                 <div class="form-inline likecommentsign col-md-12 ">
-                    <span class="fa fa-thumbs-up fa-2x"></span>
-                    <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x"></span>
+                    <span class="fa fa-thumbs-up fa-2x ahover"></span>
+                    <span id="commentIcon-@item.postId" class="fa fa-comment commentIcon fa-2x ahover"></span>
                 </div>
 
 
@@ -52,8 +52,8 @@
                     <div class="form-group col-md-12 ">
                         <div class="form-inline " id="comentpost">
                             <img src="~/Images/user.jpg" id="profileimagecomment" />
-                            <span id="commentusername "><b>@comment.Username </b></span>
-                            @comment.CreatedDateTime
+                            <span class="commentusername "><b>@comment.Username </b></span>
+                           <span class="commentdate"> @comment.CreatedDateTime</span>
                             <p id="postcommentcontent">@comment.commentContent</p>
                             @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
                                         <a href="#">Like</a>
