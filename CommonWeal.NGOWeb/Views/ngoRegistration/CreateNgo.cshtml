@@ -6,6 +6,12 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
 </head>
 <body>
     <div class="panel panel-default panelNGO" id="panel">
@@ -31,7 +37,7 @@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="ln">Unique Id :</label>
                         <div class="col-xs-8">
-                            @Html.TextBoxFor(a => a.UniqueuId, new { placeholder = "Uniqueu ID" })&nbsp;
+                            @Html.TextBoxFor(a => a.UniqueuId, new { placeholder = "Unique ID" })&nbsp;
                             @Html.ValidationMessageFor(a => a.UniqueuId)
                         </div>
                     </div>
@@ -164,9 +170,10 @@
 @*Added on 18/10/2016*@
 
 @section Scripts {
-
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
     @Styles.Render("~/Content/cssjqryUi")
+    @Styles.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
         $(document).ready(function () {
