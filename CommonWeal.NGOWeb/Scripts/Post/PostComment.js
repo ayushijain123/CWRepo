@@ -35,7 +35,7 @@ $(document).ready(function () {
         }
         else {
 
-            alert('comment section cannot empty ' + $("#TextComment").val());
+            alert('Please enter your Comment');
         }
         //$("#newcomment").html('<div><img src="/Images/orderedList1.png"></img></div>');
     });
