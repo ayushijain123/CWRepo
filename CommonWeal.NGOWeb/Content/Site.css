@@ -154,9 +154,15 @@ header {
 
     position:fixed;
 }*/
-
-
-
+#logofont 
+{
+    
+  color:white;
+  /*margin-right:6px;*/
+  font-size:20px;
+  margin-top:10px;
+  font-family:;
+}
 
 footer {
     background-color: #2A3F54;
@@ -843,21 +849,21 @@ tr.pager td {
 .mainlogo {
     width: 141px;
 }
-/*post*/
+/*POST*/
 #postuserdetail {
     background-color: #B8B8B8;
 }
 
 #images {
-    height: 35px;
+    height: 25px;
 }
 
 #Textmessage {
-    background-color: #F8F8F8;
+    background-color: #7ac0da;
 }
 
 #uploadpost {
-    height: 50px;
+    height: 25px;
 }
 
 #usernamepost {
@@ -939,9 +945,9 @@ tr.pager td {
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
-    border-right-width: 10px;
-    border-left-width: 10px;
-    border-color:#225d77;
+    border-right-width:0px;
+    border-left-width:0px;
+    /*border-color:#225d77;*/
 }
 
 
