@@ -1,93 +1,33 @@
 ﻿@model IEnumerable<CommonWeal.Data.NGOUser>
  
-<style>
-   table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th {
-    background-color:#008B8B;
-    ActiveBorder: 1px solid #009688;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-<div class="col-md-10 pull-right">
-    <div class="row">
-        <div class="top-panel col-md-12">
-            <div class="input-append">
-                <input type="text" class="search-query" placeholder="Search..." />
-                <button type="submit" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-md-10 pull-right">
-    <div class="row">
-        <div class="inbox-top col-md-12">
-            <div class="col-md-6">
-                <div class="check-all">
-                    <input type="checkbox" value="">
-                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        All
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Block</a></li>
-                        <li><a href="#">Warning</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="inbox-pagination">
-                    <ul>
-                        <li><span>1-10 of 100</span>
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-chevron-left"></span>
-                            </button>
-
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-chevron-right"></span>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
+ <div class="row">
+        <div class="col-md-12 ">
             <div class="requests">
-                  <table>
-                          <thead>
+            <table class="tableAdmin">
+                          <thead class="tableheader">
                               <th>NGO NAME</th>
-                              <th>NGo URL</th>
-                                <th >Action</th>
+                              
+                              <th >NGO URL</th>
+                              <th >UNBLOCK</th>
+
                           </thead>
                       @foreach (var item in Model)
                       { 
-                                           <tr>
+                      
+                         <tr>
 
-                              <td> @Html.DisplayFor(modelItem => item.NGOName)</td>
-                              <td ><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-                              <td><a href="/admin/unblock/@item.LoginID"><button type="button" class="">Unblock</button></a></td>
-                         </tr>
+                              <td class="tableData"> @Html.DisplayFor(modelItem => item.NGOName)</td>
+                              <td class="tableData"><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
                              
+                              <td class="tableData"><a href="/admin/unblock/@item.LoginID" class="fa fa-unlock fa-2x" aria-hidden="true" style="color:green"></a></td>
+                          
+                         </tr>
+              
 
                       }
                </table>
-                
-               </table>
+             
+            </div>
         </div>
     </div>
-</div>
-
+ 

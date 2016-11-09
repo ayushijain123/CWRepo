@@ -1,54 +1,63 @@
-﻿<style>
-    table {
-        font-family: arial, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
+﻿﻿
 
-    td, th {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 8px;
-    }
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
-</style>
-<div class="col-md-10 pull-right">
+<div class="row">
+   <table class="adminLinks" >
+       <tr>
+           <td>
+     <div col-lg-4 col-md-4 col-sm-4>
+           <a href="/Admin/Requests" data-toggle="tooltip" title="Total Requests"><span class="fa fa-user-plus fa-3x"></span> </br><strong>Total Requests</strong></a>
+    </div>
+               </td>
+           <td>
+      <div col-lg-4 col-md-4 col-sm-4>
+           <a href="/Admin/Active_Users" data-toggle="tooltip" title="Active Users"><span  class="fa fa-users fa-3x"></span> </br><strong>Active Users</strong></a>
+    </div>
+               </td>
+           <td>
+      <div col-lg-4 col-md-4 col-sm-4>
+           <a href="/Admin/Blocked_Users" data-toggle="tooltip" title="Blocked Users"><span class="fa fa-ban fa-3x"></span> </br><strong>Blocked Users</strong></a>
+    </div>
+               </td>
+           </tr>
+    </table>
+</div>
+
     <div class="row">
-        <div class="total-count col-md-12">
-            <div class="total-request col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-top">
-                        <a href="/Admin/Requests"><span class="glyphicon glyphicon-hand-up"></span>
-                            Total Requests</a>
-                    </div>
-                    <div class="panel-text"><a href="#">@ViewBag.COR</a></div>
-                </div>
-            </div>
+        <div class="chart">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
 
-            <div class="active-users col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-top">
-                        <a href="/Admin/Active_Users"><span class="glyphicon glyphicon-user"></span>
-                            Active Users</a>
-                    </div>
-                    <div class="panel-text"><a href="#">@ViewBag.COAU</a></div>
-                </div>
-            </div>
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                      ['Months', 'Requests', 'Active Users'],
+                      ['1', 10, 40],
+                      ['2', 11, 46],
+                      ['3', 66, 112],
+                      ['4', 103, 540]
+                    ]);
 
-            <div class="blocked-users col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-top">
-                        <a href="/Admin/Blocked_Users"><span class="glyphicon glyphicon-ban-circle"></span>
-                            Blocked Users</a>
-                    </div>
-                    <div class="panel-text"><a href="#">@ViewBag.COBU</a></div>
-                </div>
-            </div>
+                    var options = {
+                        title: 'Users Report',
+                        hAxis: { title: 'Months', titleTextStyle: { color: '#333' } },
+                        vAxis: { minValue: 0 }
+                    };
+
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                }
+            </script>
+
+            <div id="chart_div" style="width: 100%; height: 500px;"></div>
         </div>
     </div>
+
+    <div class="row">
+      
+    </div>
+=
 </div>
 
 
