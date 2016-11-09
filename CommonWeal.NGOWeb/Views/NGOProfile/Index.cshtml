@@ -1,35 +1,43 @@
-﻿
-<div class="container">
+﻿<div class="container">
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
             <div class="image panel-default">
-                <img src="~/Images/images1.jpg " style="width: 717px; height:500px" />
+                <img src="~/Images/Koala.jpg" style="margin-top: 25px; width: 50%;" />
             </div>
         </div>
     </div>
+    @*<div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <nav class="navbar navbar-default ">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/NGOProfile/Index/">Timeline</a></li>
+                    <li><a href="/Welcome/Index/">About Us</a></li>*@
+
+                    @* <li><a href="#">Messages</a></li>*@
+                   @* <li><a href="/NGOProfile/AboutUs/">Details</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>*@
     <div class="row">
         <div class="col-md-12">
-            <nav class="navbar navbar-default" style="width: 1000px; left: 55px;">
+
+            <form method="post" action="/Register/PostImage" class="col-md-8 col-md-offset-2" enctype="multipart/form-data" style=" padding-top: 5px;  padding-bottom: 25px; ">
+                 <nav class="navbar navbar-default ">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/NGOProfile/Index/">Timeline</a></li>
                     <li><a href="/Welcome/Index/">About Us</a></li>
-                    <li><a href="/NGOProfile/Album/">Album</a></li>
+
                     @* <li><a href="#">Messages</a></li>*@
                     <li><a href="/NGOProfile/AboutUs/">Details</a></li>
                 </ul>
             </nav>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-10">
+                <div class="form-inline" style="background-color: #e9eff1;">
 
-            <form method="post" action="/Register/PostImage" enctype="multipart/form-data" style="background-color: #e9eff1; padding-top: 5px; padding-right: 5px; padding-bottom: 25px; padding-left: 5px;">
-                <div class="form-inline">
-
-                    <a href="#" class="btn btn-primary btn-lg" style="height: 40px; width: 60px">
+                    <a href="#" class="btn btn-primary btn-lg" style="height: 35px; width: 50px">
                         <span class="glyphicon glyphicon-paperclip" onclick="fileclick(); return false;"></span>
                     </a>
-                    <span>Upload images/videos</span>
+                    <span>Upload image</span>
                     <input type="file" id="file" name="file" data-badge="false" style="display: none" />
 
                 </div>
@@ -41,7 +49,7 @@
                     </div>
 
                     <div id="menu" style="float: right;">
-                        <input type="submit" class="btn-primary" id="post" value="Post" style="width: 70px; height: 25px; text-align: center; padding-top: 0;" />
+                        <input type="submit" class="btn btn-primary" id="post" value="Post" style="width: 70px; height: 25px; text-align: center; padding-top: 0;" />
                     </div>
 
                 </div>
