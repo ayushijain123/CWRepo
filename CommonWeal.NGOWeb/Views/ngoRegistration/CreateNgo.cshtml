@@ -7,19 +7,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@*    <script src="~/Scripts/jquery-1.7.1.js"></script>
+   @* <script src="~/Scripts/jquery-1.7.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
 
 
 </head>
 <body>
-    <div class="panel panel-default panelNGO" id="panel">
+    <div id="main" class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default panelNGO" >
         <div class="panel-heading" style="">
             <h3>NGO Registration Form</h3>
         </div>
         <div class="panel-body">
-            <div id="ngo">
+            <div id="ngo" class="col-md-9 col-md-offset-2">
                @*@using (Ajax.BeginForm("CreateNGO", "NGORegistration", new AjaxOptions { HttpMethod = "POST" }, new { @class = "form-horizontal" }))
                 { 
       
@@ -111,7 +113,8 @@
                     <div class="form-group">
                         <label class="control-label col-xs-4" for="RegisterWith">Register with :</label>
                         <div class="col-xs-5">
-                            @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
+                           @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
+
                             @Html.ValidationMessageFor(model => model.RegisteredWith)
 
                         </div>
@@ -164,8 +167,8 @@
             </div>
         </div>
     </div>
-
-
+        <//div>
+        </div>
 </body>
 
 @*Added on 18/10/2016*@

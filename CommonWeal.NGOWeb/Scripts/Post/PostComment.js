@@ -65,7 +65,10 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
-            window.location.reload(true);
+           
+            window.location.reload();
+          
+
             //console.log(result);
         });
       
@@ -83,7 +86,7 @@ $(document).ready(function () {
                 console.log(postlikelist);
                 var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
                 '<div class="form-inline">'+
-                '<img src="/Images/user.png" id="images" />'+
+                '<img src="/Images/usernew.png" id="images" />'+
                 '  <b id="usernamepost">' + value.userName + '</b>'+
 
                 '</div>'+

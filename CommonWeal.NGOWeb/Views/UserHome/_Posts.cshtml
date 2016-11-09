@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+
 <br />
+
+
 <div id="uploadpost" class="col-md-12">
 
     @*//new upload post*@
@@ -9,12 +12,12 @@
     @*//end upload post*@
     @foreach (var item in Model)
     { 
-        <div id="posttemplate">
-            <div id="postuserdetail">
-                <div class="form-inline">
-                    <img src="~/Images/user.png" id="images" />
-                    <b id="usernamepost">@item.userName</b>
-                    <span class="posttime">@item.postCreateTime</span>
+        <div id="posttemplate ">
+            <div class="postuserdetail col-md-12" id="postuserdetail">
+                <div class="form-inline ">
+                    <img src="~/Images/usergroupnew.png" id="images" class="col-md-1" />
+                    <b class="usernamepost col-md-3" id="usernamepost">@item.userName</b>
+                    <span class="posttime col-md-3">@item.postCreateTime</span>
                 </div>
             </div>
             @*  Text for image*@
@@ -27,7 +30,7 @@
             <div id="image/video" class="col-md-12 imagepost">
                 @if (item.postImageUrl != null)
                 {    
-                    <img src="@item.postImageUrl" id="imageurlpost" class="col-md-offset-1 "/>
+                    <img src="@item.postImageUrl" id="imageurlpost" />
                 }
                     
 @* ///edited on 24/10/16*@
@@ -39,55 +42,53 @@
                     else
                     {<span class="fa fa-thumbs-up fa-2x ahover" ></span>}*@
                     <span class="fa fa-thumbs-up fa-2x ahover LikeIcon" id="LikeIcon-@item.postId"></span>
-                    <span id="commentIcon-@item.postId" class="fa fa-comment fa-2x commentIcon "></span>
-                    <div class="text-primary">
 
-                        @{    int userLoginId = -1, count = 0;
-                              if (User.Identity.IsAuthenticated)
+                    @{    int userLoginId = -1, count = 0;
+                          if (User.Identity.IsAuthenticated)
+                          {
+                              CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
+                              userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
+                              var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
+                              if (likeuser != null)
                               {
-                                  CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
-                                  userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
-                                  var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
-                                  if (likeuser != null)
-                                  {
-                                      if (likeuser.UserID == userLoginId)
-                                      {<span>You,</span>count++;
-                                      }
+                                  if (likeuser.UserID == userLoginId)
+                                  {<span>You,</span>count++;
                                   }
                               }
+                          }
 
-                              int totalcount = item.postlike.Count;
-                              var likelist = item.postlike.Where(pstlk => pstlk.UserID != userLoginId).Take(2);
-                              foreach (var like in likelist)
-                              {
-                                  if (count == 2 && totalcount == 3)
-                                  { <span>and </span>}
-                                  if (count == 1 && totalcount == 2)
-                                  { <span>and </span>}
-                                  if (userLoginId != like.UserID)
-                                  {@like.userName<span>,</span>count++;
+                          int totalcount = item.postlike.Count;
+                          var likelist = item.postlike.Where(pstlk => pstlk.UserID != userLoginId).Take(2);
+                          foreach (var like in likelist)
+                          {
+                              if (count == 2 && totalcount == 3)
+                              { <span>and </span>}
+                              if (count == 1 && totalcount == 2)
+                              { <span>and </span>}
+                              if (userLoginId != like.UserID)
+                              {@like.userName<span>,</span>count++;
 
-                                  }
-                                  else
-                                  {
-                                      count++;
-                                  }
                               }
-                              if (item.likeCount > 2 && count != 3)
+                              else
                               {
-                            <span>and 
+                                  count++;
+                              }
+                          }
+                          if (item.likeCount > 2 && count != 3)
+                          {
+                        <span>and 
                         <span  class="showLikeuser" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(item.likeCount - count) others</span>
-                            </span>   
-                              }
-                              if (item.likeCount >= 1)
-                              {<span>like this</span>   
-                              }
-                        }
+                        </span>   
+                          }
+                          if (item.likeCount >= 1)
+                          {<span>like this</span>   
+                          }
+                    }
 
-                    </div>
                 </div>
-                @*     //popup portion*@
-                @*   <div class="container">
+            </div>
+            @*     //popup portion*@
+            @*   <div class="container">
                     <h2>Modal Example</h2>
                     <!-- Trigger the modal with a button -->
                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
@@ -116,22 +117,22 @@
 
                 </div>*@
 
-                <!-- Button trigger modal -->
+            <!-- Button trigger modal -->
 
-                @*  <button type="button" class="btn btn-primary btn-lg showLikeuser" data-toggle="modal" data-target="#myModal-@item.postId" id="showLikeuser-@item.postId">
+            @*  <button type="button" class="btn btn-primary btn-lg showLikeuser" data-toggle="modal" data-target="#myModal-@item.postId" id="showLikeuser-@item.postId">
                     Launch demo modal
                 </button>*@
 
-                <!-- Modal -->
-                <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto"  role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"><b>Likes</b></h4>
-                            </div>
-                            <div class="modal-body" id="likelist-@item.postId">
-                                @*@foreach(var like in item.postlike)
+            <!-- Modal -->
+            <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto"  role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel"><b>Likes</b></h4>
+                        </div>
+                        <div class="modal-body" id="likelist-@item.postId">
+                            @*@foreach(var like in item.postlike)
                                 {                
                                 <div id="postuserdetail">
                 <div class="form-inline">
@@ -141,57 +142,57 @@
                 </div>
             </div>
                                 }*@
-                            </div>
-                            @*<div class="modal-footer">
+                        </div>
+                        @*<div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                <button type="button" class="btn btn-primary">Save changes</button>
                             </div>*@
-                        </div>
                     </div>
                 </div>
-
-                @*     //popup portion*@
-
-                @*///Comment div action*@
-
             </div>
-            <div class="form-inline " id="postcommentbox">
-                @foreach (var comment in item.PostComments)
-                {
-                    <div class="form-group col-md-12 ">
-                        <div class="form-inline " id="comentpost">
-                            <img src="~/Images/user.jpg" id="profileimagecomment" />
-                            <span class="commentusername "><b>@comment.Username </b></span>
-                            <span class="commentdate">@comment.CreatedDateTime</span>
-                            <p id="postcommentcontent">@comment.commentContent</p>
-                            @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
+
+            @*     //popup portion*@
+
+            @*///Comment div action*@
+
+        </div>
+        <div class="form-inline " id="postcommentbox">
+            @foreach (var comment in item.PostComments)
+            {
+                <div class="form-group col-md-12 ">
+                    <div class="form-inline col-md-12" id="comentpost">
+                        <img src="~/Images/usernew.png" class="col-md-1 commentimage " />
+                        <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
+                        <span class="commentdate">@comment.CreatedDateTime</span>
+                        <p id="postcommentcontent">@comment.commentContent</p>
+                        @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
                                         <a href="#">Like</a>
                                         <a href="#">Reply</a>
                                     </div>*@
-                        </div>
                     </div>
-                    <br />
-
-                }
-
-                <div id="@item.postId">
-                    <br />
                 </div>
+                <br />
 
-                @*///user Comment section*@
+            }
 
-                @if (User.Identity.IsAuthenticated)
-                {
-    
-                    <div class="form-inline">
-                        <img src="~/Images/user.jpg" id="profileimagecomment" />
-
-                        @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = "form-control textComment", placeholder = "Write Your comment" })
-                        <input type="button" id="postimage-@item.postId" name="button" class="btn1 btn-primary btnPost" value="Post" />
-                    </div>
-                }
+            <div id="@item.postId" class="form-inline col-md-12">
+                <br />
             </div>
+
+            @*///user Comment section*@
+
+            @if (User.Identity.IsAuthenticated)
+            {
+    
+                <div class="form-group col-md-12">
+                    <img src="~/Images/usernew.png" id="profileimagecomment" class="float-left" />
+
+                    @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-10", placeholder = "Write Your comment" })
+                    <input type="button" id="postimage-@item.postId" name="button" class="float-right btn-primary btnPost " value="Post" />
+                </div>
+            }
         </div>
+
         <br />
         <br />               
     }

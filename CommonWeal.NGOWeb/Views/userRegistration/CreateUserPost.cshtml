@@ -4,17 +4,18 @@
     ViewBag.Title = "CreateUserPost";
 }
 
-<script src="~/Scripts/jquery-1.7.1.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
 
-<div id="main">
+<div id="main" class="col-md-12">
+    <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
         <div class="panel-heading" style="">
             <h3>Registration Form</h3>
         </div>
-        <div class="panel-body">
-            <div id="user">
+        <div class="panel-body ">
+            <div id="user" class="col-md-10 col-md-offset-1">
                 @using (Ajax.BeginForm("CreateUser", "UserRegistration", new AjaxOptions { HttpMethod = "POST", OnSuccess = "createsuccess" }, new { @class = "form-horizontal" }))
                 { 
                     <div class="form-group ">
@@ -70,6 +71,6 @@
 
             </div>
         </div>
-    </div>
+    </div></div>
 </div>
 

@@ -6,7 +6,7 @@ namespace CommonWeal.Data
     [MetadataType(typeof(RegisteredUserMeta))]
     public partial class RegisteredUser
     {
-        //[Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_ConfirmPassword")]
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_ConfirmPassword")]
         public string ConfirmPassword { get; set; }
 
     }

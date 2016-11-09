@@ -1,7 +1,9 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">*@
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
     <meta charset="utf-8" />
     <title>@ViewBag.Title - All Right Reserved</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -10,32 +12,37 @@
     @Scripts.Render("~/bundles/jquery")
 </head>
 <body>
-    <header class="col-md-12 navbar-fixed-top" role="navigation">
+    <header class="navbar-fixed-top" role="navigation">
 
+        <div class="content-wrapper">
+            <div class="float-left">
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <img src="~/Images/Logo1.png" style="max-height: 100px; max-width: 70px" />
+                </a>
+            </div>
+            <div class="float-right">
+                @Html.Partial("_LoginPartial")
+            </div>
 
-        @Html.Partial("_LoginPartial")
-
+        </div>
     </header>
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />
+
     <div id="body" class="container">
         @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix" style="width: 100%;">
+        <section class="content-wrapper main-content clear-fix">
             @RenderBody()
         </section>
     </div>
-    <footer class=" navbar-fixed-bottom">
 
+    <footer class=" navbar-fixed-bottom">
         <div class="content-wrapper">
-            <div>
-                <p style="text-align: center; font-size: large; color: white; padding-top: 10px;">&copy; @DateTime.Now.Year - Commonweal</p>
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Commonweal</p>
             </div>
         </div>
-
     </footer>
+
+
 
 
     @Scripts.Render("~/bundles/jqueryval")
