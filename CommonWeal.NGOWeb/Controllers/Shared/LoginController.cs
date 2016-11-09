@@ -22,13 +22,11 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         }
         [HttpPost]
         public ActionResult Index(User user)
-            {
-          
+        {
+
 
             if (ModelState.IsValid)
             {
-
-
                 CommonWealEntities context = new CommonWealEntities();
 
                 string userEMail = user.LoginEmailID.ToLower();
@@ -36,26 +34,17 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                 var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower() && usr.LoginPassword == user.LoginPassword).FirstOrDefault();
                 if (result == null)
                 {
-
                     ModelState.AddModelError("", "Invalid Email or Password");
-
                 }
 
                 else if (!result.IsActive || result.IsBlock)
                 {
-
-                    //redirect to login page
-                    //request is pending for admin portal
-
                     ModelState.AddModelError("", "Your request status is pending or blocked");
                 }
                 else if (result.LoginEmailID.ToLower() == userEMail && result.LoginPassword == user.LoginPassword)
                 {
                     string controllerName = "";
-
-
                     EnumHelper.UserType usertype = (EnumHelper.UserType)result.LoginUserType;
-
                     string roles = usertype.ToString();
                     switch (usertype)
                     {
@@ -73,7 +62,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                             break;
                     }
 
-                    
+
 
                     FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.LoginEmailID, //user id
                         DateTime.Now, DateTime.Now.AddMinutes(20),  // expiry
@@ -100,10 +89,11 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         public ActionResult LogOut()
         {
             System.Web.Security.FormsAuthentication.SignOut();
-            Session.Clear();
+            //Session.Clear();
             Session.Abandon();
-
+            //Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
             return RedirectToAction("Index", "Home");
+
         }
 
     }
