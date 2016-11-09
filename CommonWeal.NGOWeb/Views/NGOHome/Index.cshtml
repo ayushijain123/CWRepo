@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<br/>
+<br />
 <div class="col-md-12">
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
         <div class="form-inline">
@@ -11,19 +11,18 @@
             <a href="#" class="btn btn-primary btn-lg" id="uploadbtn ">
                 <span class="glyphicon glyphicon-paperclip" onclick="fileclick(); return false;"></span>
             </a>
-            <span>Upload images/videos</span>
+            <span>Upload Image</span>
             <input type="file" id="file" name="file" data-badge="false" />
 
         </div>
         <div class="form-horizontal">
 
             <div>
-
                 @Html.TextArea("PostContent", null, new { @class = "form-control", placeholder = "Write message for post" })
             </div>
 
             <div id="menupost">
-                <input type="submit" class="btn-primary" id="post" value="Post" />
+                <input type="submit" class="btn-primary" id="post" value="Post" style="height:30px; width:50px;" />
             </div>
 
         </div>
