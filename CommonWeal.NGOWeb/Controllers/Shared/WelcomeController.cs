@@ -18,10 +18,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         }
 
 
-        public ActionResult Profile()
-        {
-            return View();
-        }
+        
 
     }
 }
