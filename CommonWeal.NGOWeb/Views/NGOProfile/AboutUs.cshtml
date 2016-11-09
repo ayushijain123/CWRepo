@@ -27,18 +27,19 @@ th {
 <br/>
 <table style="background-color:lightgray;">
 <thead>
+    <tr>
     <th>UniqueuID</th>
      <th>NGOName</th>
-     <th>NGOEmailID</th>
+     <th>EmailID</th>
      <th>Mobile</th>
-     <th>NGOAddress</th>
+     <th>Address</th>
      <th>ChairmanName</th>
      <th>ParentOrganisation</th>
      <th>RegisteredWith</th>
     <th>RegistrationNumber</th>
-    <th>DateOfRegistration</th>
-     <th>FCRANumber</th>
-    <tr></tr>
+    <th>FCRANumber</th>
+        </tr>
+
 </thead>
     <tbody>   
         <td>@Model.UniqueuId</td>   
@@ -50,7 +51,7 @@ th {
         <td>@Model.ParentOrganisation</td>
         <td>@Model.RegisteredWith</td>
          <td>@Model.RegistrationNumber</td>
-         <td>@Model.DateOfRegistration</td>
          <td>@Model.FCRANumber</td>
+
        </tbody>
 </table>
