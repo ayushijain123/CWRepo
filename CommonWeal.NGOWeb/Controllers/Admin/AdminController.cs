@@ -1,7 +1,7 @@
-﻿using System.Linq;
+﻿using CommonWeal.Data;
+using System;
+using System.Linq;
 using System.Web.Mvc;
-using CommonWeal.Data;
-using CommonWeal.NGOWeb;
 
 
 namespace CommonWeal.NGOWeb.Controllers.Admin
@@ -55,32 +55,78 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
         public ActionResult Accept(int id)
         {
-            CommonWealEntities context = new CommonWealEntities();
-            //User UL = new User ();
-            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
-            ob.IsActive = true;
-            context.SaveChanges();
-            var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
-            ob1.IsActive = true;
-            context.SaveChanges();
-            return RedirectToAction("Requests", "Admin");
+
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                //User UL = new User ();
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsActive = true;
+                context.SaveChanges();
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsActive = true;
+
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                context.SaveChanges();
+                return RedirectToAction("Requests", "Admin");
+
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
 
         }
         public ActionResult Block(int id)
         {
 
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                User UL = new User();
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsActive = false;
+                ob.IsBlock = true;
+                context.SaveChanges();
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsActive = false;
+                ob1.IsBlock = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
+                context.SaveChanges();
+                return RedirectToAction("Active_Users", "Admin");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
 
-            CommonWealEntities context = new CommonWealEntities();
-            User UL = new User();
-            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
-            ob.IsActive = false;
-            ob.IsBlock = true;
-            context.SaveChanges();
-            var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
-            ob1.IsActive = false;
-            ob1.IsBlock = true;
-            context.SaveChanges();
-            return RedirectToAction("Active_Users", "Admin");
         }
         public ActionResult Unblock(int id)
         {
@@ -94,6 +140,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
             ob1.IsActive = true;
             ob1.IsBlock = false;
+            context.Configuration.ValidateOnSaveEnabled = false;
             context.SaveChanges();
             return RedirectToAction("Blocked_Users", "Admin");
         }
