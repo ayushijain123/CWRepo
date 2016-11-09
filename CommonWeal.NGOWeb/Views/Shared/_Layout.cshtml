@@ -15,10 +15,12 @@
     <header class="navbar-fixed-top" role="navigation">
 
         <div class="content-wrapper">
-            <div class="float-left">
-                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
-                    <img src="~/Images/Logo1.png" style="max-height: 100px; max-width: 70px" />
-                </a>
+            <div class="float-left col-md-2">
+               <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+        <img src="~/Images/lg.png" id="logoimage" class="col-md-offset-2"/>
+        <br/>
+        <span id="logofont">Commonweal</span>
+    </a>
             </div>
             <div class="float-right">
                 @Html.Partial("_LoginPartial")

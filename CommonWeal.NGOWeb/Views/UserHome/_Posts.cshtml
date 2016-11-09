@@ -22,7 +22,7 @@
             </div>
             @*  Text for image*@
             <div name="Textmessage" id="Textmessage">
-                <div class="form-inline">
+                <div class="form-inline" id="postcontent">
                     <span>@item.postcontent</span>
                 </div>
             </div>
@@ -41,7 +41,9 @@
                     }
                     else
                     {<span class="fa fa-thumbs-up fa-2x ahover" ></span>}*@
-                    <span class="fa fa-thumbs-up fa-2x ahover LikeIcon" id="LikeIcon-@item.postId"></span>
+                    <span class="  fa fa-thumbs-up fa-2x ahover " id="LikeIcon-@item.postId"></span>
+                     <span id="commentIcon-@item.postId" class=" fa fa-comment fa-2x ahover   "></span>
+
 
                     @{    int userLoginId = -1, count = 0;
                           if (User.Identity.IsAuthenticated)
@@ -185,10 +187,10 @@
             {
     
                 <div class="form-group col-md-12">
-                    <img src="~/Images/usernew.png" id="profileimagecomment" class="float-left" />
+                    <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
 
-                    @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-10", placeholder = "Write Your comment" })
-                    <input type="button" id="postimage-@item.postId" name="button" class="float-right btn-primary btnPost " value="Post" />
+                    @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })
+                    <input type="button" id="postimage-@item.postId" name="button" class=" btn-primary btnPost col-md-2  " value="Post" />
                 </div>
             }
         </div>

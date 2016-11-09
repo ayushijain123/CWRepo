@@ -13,22 +13,14 @@ body {
     padding: 0;
 }
 
-a {
-  
-    outline: none;
-    padding-left: 3px;
-    padding-right: 3px;
-    text-decoration: underline;
-}
+
 
     a:link, a:visited,
     a:active, a:hover {
        
     }
 
-    a:hover {
-        background-color: #c7d1d6;
-    }
+   
     body
 header, footer, hgroup,
 nav, section {
@@ -117,14 +109,22 @@ h5, h6 {
 {
     
   color:white;
-  /*margin-right:6px;*/
+text-decoration:none;
   font-size:20px;
   margin-top:10px;
-  font-family:;
+  
+}
+#logoimage {
+max-height: 70px;
+width:auto;
+    
+}
+.navbar-brand:hover{
+    color:none;
 }
 
 header  {
-    padding-top: 20px;
+ 
      background-color: #2A3F54;
   display:block;
 }
@@ -828,11 +828,7 @@ cursor:pointer;
     margin-left: auto;
     margin-right: auto;
 }
-.LikeIcon, .commentIcon{
-color:#7d7c7c;
-padding-right: 0px;
-    padding-left: 8px;
-}
+
 
 #postcommentbox {
     background-color: #EFEFEF;
@@ -879,6 +875,10 @@ font-size:16px
     padding-bottom: 25px;
     padding-left: 5px;
 }
+#postcontent {
+background-color:#EFEFEF;
+
+}
 
 #uploadbtn {
     height: 40px;
@@ -923,12 +923,15 @@ font-size:16px
 .ahover:hover {
     color:	#4073bf;
 }
+.ahover {
+color:grey;
+}
 
-#profileimagecomment{
+.profileimagecomment{
     padding-left: 0px;
-    padding-right: 0px;
+   
     height: 45px;
-    width: auto;
+    width: auto;padding-right: 9px;
 }
 .textcomment {
 height:30px !important;

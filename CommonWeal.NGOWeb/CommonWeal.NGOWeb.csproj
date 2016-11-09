@@ -331,6 +331,7 @@
     <Content Include="Images\images1.jpg" />
     <Content Include="Images\Jellyfish.jpg" />
     <Content Include="Images\Koala.jpg" />
+    <Content Include="Images\lg.png" />
     <Content Include="Images\Lighthouse.jpg" />
     <Content Include="Images\Penguins.jpg" />
     <Content Include="Images\Post\accent.png" />
@@ -380,7 +381,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\CW.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
