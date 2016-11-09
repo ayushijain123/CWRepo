@@ -3,9 +3,14 @@
     font-size: 25px;
     padding: 5px;
     color: white;
-    
 }
 
+.user-menuitem {
+    font-size: 25px;
+    padding: 5px;
+    color: white;
+    margin-left: 88px;
+}
 .usernav {
     font-size: 20px;
     padding: 5px;
