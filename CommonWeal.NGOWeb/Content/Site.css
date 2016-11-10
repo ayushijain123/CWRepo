@@ -942,3 +942,60 @@ height:30px !important;
     text-decoration: underline;
 }
 /*Added by Rishiraj on 08/11/2016*/
+
+
+
+/*Added by vilas on 10/11/2016*/
+
+ .content-wrapper, .main-content ,.clear-fix 
+    {
+        width: 1207px;
+        padding-top: 59px;
+        height: 464px;
+    }
+   table {
+    font-family: arial, sans-serif;
+    /*border-collapse: collapse;*/
+    width: 100%;
+    overflow:auto;
+    max-height:600px;
+    border:solid thin;
+}
+ th {
+    
+    background-color:#2A3F54;
+    ActiveBorder: 1px solid #009688;
+    text-align: left;
+    padding: 8px;
+    
+    padding-left: 25px;
+
+}
+.tableData {
+    
+   
+
+    padding-top: 1px;
+    height: 38px;
+    
+    padding-left: 26px;
+
+
+   
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.tableheader {
+color:white;
+}
+
+.tableAdmin {
+margin-bottom: 65px;
+}
+.adminLinks {
+     border:hidden; 
+    margin-left:130px 
+}
+

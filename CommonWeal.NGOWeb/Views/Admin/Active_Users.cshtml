@@ -1,4 +1,38 @@
-﻿@model IEnumerable<CommonWeal.Data.NGOUser>
+﻿@*@model IEnumerable<CommonWeal.Data.NGOUser>
+
+<div >
+       <div class="row">
+        <div class="col-md-12 ">
+            <div class="requests">
+            <table class="tableAdmin">
+                          <thead class="tableheader">
+                              <th>NGO NAME</th>
+                              
+                              <th >NGO URL</th>
+                              <th >BLOCK</th>
+
+                          </thead>
+                      @foreach (var item in Model)
+                      { 
+                      
+                         <tr>
+
+                              <td class="tableData"> @Html.DisplayFor(modelItem => item.NGOName)</td>
+                              <td class="tableData"><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                             
+                              <td class="tableData"><a href="/admin/Block/@item.LoginID"class="fa fa-ban fa-2x" aria-hidden="true" style="color:red"></a></td>
+                          
+                         </tr>
+              
+
+                      }
+               </table>
+             
+            </div>
+        </div>
+    </div>
+ *@
+@model IEnumerable<CommonWeal.Data.NGOUser>
 
 <div >
        <div class="row">

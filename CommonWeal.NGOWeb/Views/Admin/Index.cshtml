@@ -1,4 +1,4 @@
-﻿﻿
+﻿@*﻿
 
 
 <div class="row">
@@ -61,4 +61,117 @@
 </div>
 
 
+*@
+
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.2/jquery.validate.unobtrusive.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+ 
+
+<table style="border:hidden">
+    <tr>
+        <td>
+
+@using (Ajax.BeginForm("Requests", "Admin",
+                null, 
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+               
+                ))     
+                      
+    {     
+    <button class="fa fa-user-plus fa-5x,btn btn-primary btn-lg " type="submit">&nbsp Requests</button>
+    }
+  </td>
+<td>
+ @using (Ajax.BeginForm("Active_Users", "Admin",
+                null, 
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+           ))
+ {         
+    
+       <button class="fa fa-users fa-5x,btn btn-primary btn-lg " type="submit">&nbsp Active Users</button>
+ }
+    </td>
+        <td>
+
+ @using (Ajax.BeginForm("Blocked_Users", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+
+                ))
+ {        
+      <button class="fa fa-ban ,btn btn-primary btn-lg " type="submit">&nbsp Blocked Users </button>
+ }
+
+            </td>
+        </tr>
+    </table>
+    
+    <span id="lblResult"></span>      
+
+
+
+@*    <div class="row">
+        <div class="chart">
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                      ['Months', 'Requests', 'Active Users'],
+                      ['1', 10, 40],
+                      ['2', 11, 46],
+                      ['3', 66, 112],
+                      ['4', 103, 540]
+                    ]);
+
+                    var options = {
+                        title: 'Users Report',
+                        hAxis: { title: 'Months', titleTextStyle: { color: '#333' } },
+                        vAxis: { minValue: 0 }
+                    };
+
+                    var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+                    chart.draw(data, options);
+                }
+            </script>
+
+            <div id="chart_div" style="width: 100%; height: 500px;"></div>
+        </div>
+    </div>
+
+
+
+*@
 

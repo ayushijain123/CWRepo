@@ -428,6 +428,13 @@
     <Content Include="Views\Password\ConfirmOTP.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Post.cshtml" />
     <Content Include="Views\Password\ConfirmPassword.cshtml" />
+    <Content Include="Views\Admin\Active_Users.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Admin\Blocked_Users.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Admin\Requests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
