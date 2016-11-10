@@ -8,7 +8,7 @@
     
 
     <nav>
-        <div id="menu" class="right" style="margin-top: 25px;">
+        <div id="menu" class="right" >
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 <span class="usernav">Hello @ViewBag.LoginUser.UserName</span>  
