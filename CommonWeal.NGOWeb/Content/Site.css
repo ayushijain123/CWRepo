@@ -947,12 +947,12 @@ height:30px !important;
 
 /*Added by vilas on 10/11/2016*/
 
- .content-wrapper, .main-content ,.clear-fix 
+ /*.content-wrapper, .main-content ,.clear-fix 
     {
         width: 1207px;
         padding-top: 59px;
         height: 464px;
-    }
+    }*/
    table {
     font-family: arial, sans-serif;
     /*border-collapse: collapse;*/
