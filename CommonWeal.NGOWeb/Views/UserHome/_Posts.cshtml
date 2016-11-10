@@ -3,7 +3,7 @@
 <br />
 
 
-<div id="uploadpost" class="col-md-12">
+<div id="uploadpost" class="col-md-10 col-md-offset-1">
 
     @*//new upload post*@
     @*<div id="newuploadpost">
@@ -35,57 +35,70 @@
                     
 @* ///edited on 24/10/16*@
                 <div class="form-inline likecommentsign col-md-12 ">
-                    @*  @if(User.Identity.IsAuthenticated)
-                    {
-                    <span class="fa fa-thumbs-up fa-2x ahover LikeIcon" id="LikeIcon-@item.postId"></span>
+                      @if(!User.Identity.IsAuthenticated)
+                    { 
+
+                           <span class="fa fa-thumbs-up fa-2x likecommentcolor " ></span>
+                    
+                     <span id="" class=" fa fa-comment fa-2x  likecommentcolor "></span>
+
                     }
-                    else
-                    {<span class="fa fa-thumbs-up fa-2x ahover" ></span>}*@
-                    <span class="  fa fa-thumbs-up fa-2x ahover " id="LikeIcon-@item.postId"></span>
-                     <span id="commentIcon-@item.postId" class=" fa fa-comment fa-2x ahover   "></span>
+                
+                   
 
-
-                    @{    int userLoginId = -1, count = 0;
+                    @{    int userLoginId = -1, count = 0,preTotalcount=0;
+                          string currentLikeUserColor = "darkgray";
                           if (User.Identity.IsAuthenticated)
                           {
                               CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
                               userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
                               var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
+                              
                               if (likeuser != null)
-                              {
-                                  if (likeuser.UserID == userLoginId)
-                                  {<span>You,</span>count++;
+                              {  if (likeuser.UserID == userLoginId)
+                                  {
+                                      currentLikeUserColor = "#4073bf";
+                                  }    
+                                  
+                              }
+                              <span class="fa fa-thumbs-up fa-2x  LikeIcon ahover"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor"></span>
+                                  <span id="commentIcon-@item.postId" class=" fa fa-comment fa-2x ahover likecommentcolor commentIcon   "></span>   
+                           if (likeuser != null)
+                                  {  preTotalcount=item.postlike.Count;
+                                      if (likeuser.UserID == userLoginId)
+                                      {<span>You</span>
+                                          if (preTotalcount == 1)
+                                          { <span>like this</span>}
+                                          else if(preTotalcount>2)
+                                          {<span>,</span>}                        
+                                        item.postlike.Remove(likeuser);
+                                      }
                                   }
-                              }
-                          }
-
-                          int totalcount = item.postlike.Count;
-                          var likelist = item.postlike.Where(pstlk => pstlk.UserID != userLoginId).Take(2);
-                          foreach (var like in likelist)
-                          {
-                              if (count == 2 && totalcount == 3)
-                              { <span>and </span>}
-                              if (count == 1 && totalcount == 2)
-                              { <span>and </span>}
-                              if (userLoginId != like.UserID)
-                              {@like.userName<span>,</span>count++;
-
-                              }
-                              else
+                           
+                              int totalcount = item.postlike.Count;
+                              var likelist = item.postlike.Take(2);
+                              
+                              if (totalcount == 1)
                               {
-                                  count++;
+                                  if (preTotalcount == 2)
+                                  { <span>and</span>}
+                                
+                                <span>@item.postlike[0].userName like this</span>  
                               }
-                          }
-                          if (item.likeCount > 2 && count != 3)
-                          {
-                        <span>and 
-                        <span  class="showLikeuser" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(item.likeCount - count) others</span>
-                        </span>   
-                          }
-                          if (item.likeCount >= 1)
-                          {<span>like this</span>   
-                          }
-                    }
+                              else if (totalcount == 2)
+                              {
+                                      
+                            <span>@item.postlike[0].userName and</span>   
+                            <span>@item.postlike[1].userName like this</span>   
+                              }
+                              else if (totalcount >= 3)
+                              {         @item.postlike[0].userName<span>,</span>   
+                            <span>@item.postlike[1].userName and</span>
+                            <span  class="showLikeuser" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) people</span> <span>like this</span>
+                                 
+                              }
+                      }
+                }   
 
                 </div>
             </div>
@@ -178,7 +191,7 @@
             }
 
             <div id="@item.postId" class="form-inline col-md-12">
-                <br />
+              
             </div>
 
             @*///user Comment section*@
@@ -188,9 +201,9 @@
     
                 <div class="form-group col-md-12">
                     <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
-
-                    @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })
-                    <input type="button" id="postimage-@item.postId" name="button" class=" btn-primary btnPost col-md-2  " value="Post" />
+                    <textarea class=" textComment col-md-8 " cols="20" id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
+                   @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
+                    <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1   " value="Post" />
                 </div>
             }
         </div>

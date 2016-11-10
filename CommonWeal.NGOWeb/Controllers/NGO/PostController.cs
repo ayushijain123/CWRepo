@@ -13,10 +13,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
     public class PostController : BaseController
     {
 
-        [HttpPost]
-
-        public void SumitComment(string strComment, int postId)
+       [HttpPost]
+       public JsonResult SumitComment(string strComment, int postId)
        {
+           string userName = "";
+           List<string> userinfo = new List<string>();
            if (strComment != null)
            {
                CommonWealEntities db = new CommonWealEntities();
@@ -29,10 +30,26 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
                db.PostComments.Add(postcmnt);
                db.SaveChanges();
+               int userType = db.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginUserType;
 
+               switch (userType)
+               {
+                   case 1: string NGOUser = db.NGOUsers.Where(ngusr => ngusr.NGOEmailID == User.Identity.Name).FirstOrDefault().NGOName.ToString();
+                       userName = NGOUser;
+                       break;
+                   case 3: var RegUser = db.RegisteredUsers.Where(lgnuser => lgnuser.UserEmail == User.Identity.Name).FirstOrDefault();
+                       userName = RegUser.FirstName + " " + RegUser.LastName;
+                       break;
+
+               }
+
+               userinfo.Add(userName);
+               userinfo.Add(postcmnt.CreatedOn.ToString());
            }
+           return Json(userinfo, JsonRequestBehavior.AllowGet);
+       }
 
-        }
+       
 
 
         [HttpPost]

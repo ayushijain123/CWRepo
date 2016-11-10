@@ -13,9 +13,22 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         console.log(postid);
         var TextComment = $("#txtComment-" + postid).val();
-      
+        var userName = "";
+        var createdOn = "";
         if (TextComment != "") {
-            $.post("/Post/SumitComment?strComment=" + TextComment + "&postId=" + postid, function (result) {
+            $.post("/Post/SumitComment?strComment=" + TextComment + "&postId=" + postid, function (userinfo) {
+                userName = userinfo[0];
+                createdOn = userinfo[1];
+
+                $("#" + postid).append('    <div class="form-group col-md-12 ">' +
+                '<div class="form-inline " id="comentpost">' +
+                    '<img src="/Images/usernew.png" class="col-md-1 commentimage profileimagecomment" />' +
+                    '<span class="commentusername "><b>' + userName + ' </b></span>' +
+                    '<span class="commentdate">' + createdOn + '</span>' +
+                    '<p id="postcommentcontent">' + TextComment + '</p>' +
+
+                '</div>' +
+            '</div>');
                 //console.log(result);
             });
             //$("#" + postid).append('<div class="form-group">'
@@ -31,7 +44,7 @@ $(document).ready(function () {
             //             '</div>' +
             //         '</div>');
             $("#txtComment-" + postid).val("");
-            window.location.reload(true);
+         
         }
         else {
 

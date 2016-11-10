@@ -128,6 +128,11 @@ header  {
      background-color: #2A3F54;
   display:block;
 }
+#menu {
+ padding-right: 17px;
+    margin-top: 0px;
+    padding-top: 53px;
+}
 .menuitem {
     font-size: 25px;
     padding: 5px;
@@ -809,7 +814,7 @@ tr.pager td {
 
 }
 .posttime {
-    color:#4d7597; padding-top: 8px;
+    color:#4d7597; padding-top: 10px;
 
 }
 #imageurlpost {
@@ -872,7 +877,7 @@ font-size:16px
     background-color: #e9eff1;
     padding-top: 5px;
     padding-right: 5px;
-    padding-bottom: 25px;
+    padding-bottom:40px;
     padding-left: 5px;
 }
 #postcontent {
@@ -880,7 +885,7 @@ background-color:#EFEFEF;
 
 }
 
-#uploadbtn {
+#upload {
     height: 40px;
 }
 
@@ -892,12 +897,25 @@ background-color:#EFEFEF;
     float: right;
 }
 
-#post {
+ #post{
+    padding-top: 3px;
+    padding-bottom: 4px;
     margin-right: 0px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-    border-right-width:0px;
-    border-left-width:0px;
+    border-radius: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+   margin-top: 0px;
+    /*border-color:#225d77;*/
+}
+.btnPost{
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    margin-right: 0px;
+    border-radius: 15px;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+   margin-left: 11px;
+      margin-top:0px !important;
     /*border-color:#225d77;*/
 }
 
@@ -923,20 +941,23 @@ background-color:#EFEFEF;
 .ahover:hover {
     color:	#4073bf;
 }
-.ahover {
-color:grey;
+
+
+.likecommentcolor {
+
+   color:darkgray;
 }
 
 .profileimagecomment{
-    padding-left: 0px;
-   
+    padding-left: 5px;
+   padding-bottom:5px;
     height: 45px;
     width: auto;padding-right: 9px;
 }
-.textcomment {
-height:30px !important;
-    padding-top: 0px;
-}/*Added by Rishiraj on 08/11/2016*/
+.textComment {
+        margin-top:0px !important;
+}
+/*Added by Rishiraj on 08/11/2016*/
 /*.showmeonhover { text-decoration: none; }*/
 .showLikeuser:hover  {
     text-decoration: underline;
