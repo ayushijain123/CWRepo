@@ -9,7 +9,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
     [AllowAnonymous]
     public class UserRegistrationController : BaseController
     {
-        //
+        
         // GET: /userRegistration/
         public ActionResult CreateUserPost()
         {
