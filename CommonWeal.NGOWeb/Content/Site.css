@@ -824,6 +824,9 @@ tr.pager td {
     color:#4d7597; padding-top: 10px;
 
 }
+.uploadimage {
+cursor:pointer;
+}
  
 .imageurlpost {
   max-width:100%;
