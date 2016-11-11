@@ -213,7 +213,7 @@
     
                 <div class="form-group col-md-12">
                     <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
-                    <textarea class=" textComment col-md-8 " cols="20" id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
+                    <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
                    @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
                     <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1   " value="Post" />
                 </div>

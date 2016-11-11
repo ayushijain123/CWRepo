@@ -8,10 +8,10 @@
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
         <div class="form-inline">
 
-            <a href="#" class="btn btn-primary " id="uploadbtn ">
-                <span class="glyphicon glyphicon-paperclip" onclick="fileclick(); return false;"></span>
+            <a href="#" id="uploadbtn ">
+              <span class="fa fa-picture-o fa-3x" onclick="fileclick(); return false;"></span>
             </a>
-            <span>Upload Image</span>
+            <a class="uploadimage">  <span  onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
             <input type="file" id="file" name="file" data-badge="false" />
 
         </div>
