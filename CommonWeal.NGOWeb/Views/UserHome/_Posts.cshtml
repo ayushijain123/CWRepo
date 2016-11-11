@@ -1,26 +1,9 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
 <br />
-   @*  ////  start for fullimage modal    *@ 
-
-              <!-- The Modal -->
-
-<div id="myModal" class="modal">
-  <span class="close">×</span>
-  <img   class="modal-content" id="img01">
-  <div id="caption"></div>
-</div>
-
-
-                @*////  end for fullimage modal     *@ 
 
 <div id="uploadpost" class="col-md-10 col-md-offset-1">
 
-    @*//new upload post*@
-    @*<div id="newuploadpost">
-        </div>*@
-
-    @*//end upload post*@
     @foreach (var item in Model)
     { 
         <div id="posttemplate ">
@@ -41,144 +24,84 @@
             <div id="image/video" class="col-md-12 imagepost">
                 @if (item.postImageUrl != null)
                 {    
-                    <img src="@item.postImageUrl" class="imageurlpost" id="imageurlpost-@item.postId" />
+                    <img src="@item.postImageUrl" data-toggle="modal" data-target="#myModal2-@item.postId" class="imageurlpost" id="imageurlpost-@item.postId" />
                 }
-             
-         
-@* ///edited on 24/10/16*@
                 <div class="form-inline likecommentsign col-md-12 ">
-                      @if(!User.Identity.IsAuthenticated)
+                    @if (!User.Identity.IsAuthenticated)
                     { 
-
-                           <span class="fa fa-thumbs-up fa-2x likecommentcolor " ></span>
-                    
-                     <span id="" class=" fa fa-comment fa-2x  likecommentcolor "></span>
-
+                        <span class="fa fa-thumbs-up fa-2x likecommentcolor "></span>                   
+                        <span id="" class=" fa fa-comment fa-2x  likecommentcolor "></span>
                     }
-                
-                   
 
-                    @{    int userLoginId = -1, count = 0,preTotalcount=0;
+                    @{    int userLoginId = -1, count = 0, preTotalcount = 0;
                           string currentLikeUserColor = "darkgray";
                           if (User.Identity.IsAuthenticated)
                           {
                               CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
                               userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
                               var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
-                              
+
                               if (likeuser != null)
-                              {  if (likeuser.UserID == userLoginId)
+                              {
+                                  if (likeuser.UserID == userLoginId)
                                   {
                                       currentLikeUserColor = "#4073bf";
-                                  }    
-                                  
-                              }
-                              <span class="fa fa-thumbs-up fa-2x  LikeIcon ahover"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor"></span>
-                                  <span id="commentIcon-@item.postId" class=" fa fa-comment fa-2x ahover likecommentcolor commentIcon   "></span>   
-                           if (likeuser != null)
-                                  {  preTotalcount=item.postlike.Count;
-                                      if (likeuser.UserID == userLoginId)
-                                      {<span class="commentlikeuserfont">You</span>
-                                          if (preTotalcount == 1)
-                                          { <span>like this</span>}
-                                          else if(preTotalcount>2)
-                                          {<span>,</span>}                        
-                                        item.postlike.Remove(likeuser);
-                                      }
                                   }
-                           
+                              }
+                        <span class="fa fa-thumbs-up fa-2x  LikeIcon ahover"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor"></span>
+                        <span id="commentIcon-@item.postId" class=" fa fa-comment fa-2x ahover likecommentcolor commentIcon   "></span>   
+                              if (likeuser != null)
+                              {
+                                  preTotalcount = item.postlike.Count;
+                                  if (likeuser.UserID == userLoginId)
+                                  {<span class="commentlikeuserfont">You</span>
+                                      if (preTotalcount == 1)
+                                      { <span>like this</span>}
+                                      else if (preTotalcount > 2)
+                                      {<span>,</span>}
+                                      item.postlike.Remove(likeuser);
+                                  }
+                              }
+
                               int totalcount = item.postlike.Count;
                               var likelist = item.postlike.Take(2);
-                              
                               if (totalcount == 1)
                               {
                                   if (preTotalcount == 2)
                                   { <span>and</span>}
                                 
-                                <span class="commentlikeuserfont">@item.postlike[0].userName like this</span>  
+                        <span class="commentlikeuserfont">@item.postlike[0].userName like this</span>  
                               }
                               else if (totalcount == 2)
                               {
-                                      
-                            <span class="commentlikeuserfont">@item.postlike[0].userName and</span>   
-                            <span class="commentlikeuserfont">@item.postlike[1].userName like this</span>   
+                        <span class="commentlikeuserfont">@item.postlike[0].userName and</span>   
+                        <span class="commentlikeuserfont">@item.postlike[1].userName like this</span>   
                               }
                               else if (totalcount >= 3)
                               {        <span class="commentlikeuserfont"> @item.postlike[0].userName</span><span>,</span>   
-                            <span class="commentlikeuserfont">@item.postlike[1].userName and</span>
-                            <span  class="showLikeuser commentlikeuserfont" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) people</span> <span>like this</span>
+                        <span class="commentlikeuserfont">@item.postlike[1].userName and</span>
+                        <span  class="showLikeuser commentlikeuserfont" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) other</span> <span>like this</span>
                                  
                               }
-                      }
-                }   
-
+                          }
+                    }
                 </div>
             </div>
-            @*     //popup portion*@
-            @*   <div class="container">
-                    <h2>Modal Example</h2>
-                    <!-- Trigger the modal with a button -->
-                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Modal Header</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Some text in the modal.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>*@
-
-            <!-- Button trigger modal -->
-
-            @*  <button type="button" class="btn btn-primary btn-lg showLikeuser" data-toggle="modal" data-target="#myModal-@item.postId" id="showLikeuser-@item.postId">
-                    Launch demo modal
-                </button>*@
-
-            <!-- Modal -->
-            <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto"  role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
+            <!--Like Modal Start -->
+            <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog likemodaldialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title" id="myModalLabel"><b>Likes</b></h4>
                         </div>
                         <div class="modal-body" id="likelist-@item.postId">
-                            @*@foreach(var like in item.postlike)
-                                {                
-                                <div id="postuserdetail">
-                <div class="form-inline">
-                    <img src="~/Images/user.png" id="images" />
-                    <b id="usernamepost">@like.userName</b>
-                    
-                </div>
-            </div>
-                                }*@
                         </div>
-                        @*<div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                               <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>*@
                     </div>
                 </div>
             </div>
-
-            @*     //popup portion*@
+            <!--Like Modal End -->
 
             @*///Comment div action*@
 
@@ -192,18 +115,12 @@
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime</span>
                         <p id="postcommentcontent">@comment.commentContent</p>
-                        @*<div class="form-inline" style="height: 30px; margin-left: 10px;">
-                                        <a href="#">Like</a>
-                                        <a href="#">Reply</a>
-                                    </div>*@
                     </div>
                 </div>
                 <br />
-
             }
 
             <div id="@item.postId" class="form-inline col-md-12">
-              
             </div>
 
             @*///user Comment section*@
@@ -214,14 +131,21 @@
                 <div class="form-group col-md-12">
                     <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
                     <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
-                   @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
+                    @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
                     <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1   " value="Post" />
                 </div>
             }
         </div>
 
         <br />
-        <br />               
+        <br />  
+
+        <div class="modal fade" id="myModal2-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <div class="modal-dialog likemodaldialog" role="document">          
+                <img class="modal-content fullImage" id="img01-@item.postId">
+            </div>
+        </div>           
     }
 </div>
 
