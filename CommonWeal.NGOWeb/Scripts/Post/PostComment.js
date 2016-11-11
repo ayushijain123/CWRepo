@@ -12,7 +12,7 @@ $(document).ready(function () {
     $(".btnPost").click(function () {
         var postid = $(this).attr('id').split('-')[1];
         console.log(postid);
-        var TextComment = $("#txtComment-" + postid).val();
+        var TextComment = $("#txtComment-" + postid).val().trim();
         var userName = "";
         var createdOn = "";
         if (TextComment != "") {
@@ -44,7 +44,7 @@ $(document).ready(function () {
             //             '</div>' +
             //         '</div>');
             $("#txtComment-" + postid).val("");
-         
+
         }
         else {
 
@@ -66,8 +66,11 @@ $(document).ready(function () {
         var code = e.which ? e.which : e.keyCode;
         if (13 === code) {
             // As ASCII code for ENTER key is "13"
+
             var postid = $(this).attr('id').split('-')[1];
-            $("#postimage-" + postid).click(); // Submit form code
+            if ($("#txtComment-" + postid).val().trim() != null) {
+                $("#postimage-" + postid).click(); // Submit form code
+            }
         } else {
             text += ': keycode ' + code;
         }
@@ -78,41 +81,36 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
-           
-            window.location.reload();
-          
 
+            window.location.reload();
             //console.log(result);
         });
-      
+
 
     });
 
     $(".showLikeuser").click(function () {
         console.log('clicked');
         var postid = $(this).attr("id").split('-')[1];
-        console.log('clicked-'+postid);
+        console.log('clicked-' + postid);
         $("#likelist-" + postid).html("");
         $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
             //alert('hi');
             $.each(postlikelist, function (i, value) {
                 console.log(postlikelist);
                 var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
-                '<div class="form-inline">'+
-                '<img src="/Images/usernew.png" id="images" />'+
-                '  <b id="usernamepost">' + value.userName + '</b>'+
+                '<div class="form-inline">' +
+                '<img src="/Images/usernew.png" id="images" />' +
+                '  <b id="usernamepost">' + value.userName + '</b>' +
 
-                '</div>'+
+                '</div>' +
                 '</div>';
 
                 $("#likelist-" + postid).append(content);
-                
-               // console.log(value.userName);
-               // console.log(value.ModifiedOn);
-            });
-                
-           
 
+                // console.log(value.userName);
+                // console.log(value.ModifiedOn);
+            });
         });
 
     });
@@ -122,31 +120,30 @@ $(document).ready(function () {
 
 
     //full image script
- 
+
     // Get the modal
 
     $(".imageurlpost").click(function () {
-       
+
         var postid = $(this).attr("id").split('-')[1];
         //alert(postid);
+        //$("#myModal2-" + postid).css('display', 'block');
 
-
-        $("#myModal").css('display', 'block');
-        $("#img01").attr('src', this.src);
+        $("#img01-" + postid).attr('src', this.src);
         $("#caption").html(this.alt);
 
-        $(".topfix").css("z-index", 0);
-        $("#uploadpost").css("display", 'none');
+        // $(".topfix").css("z-index", 0);
+        // $("#uploadpost").css("display", 'none');
         //$('body').css("filter", "blur(2px)");
     });
-    $(".close").click(function () {
-        $("#uploadpost").css("display", 'block');
-        $("#myModal").css('display', 'none');
-    });
-    $(".modal").click(function () {
-        $("#uploadpost").css("display", 'block');
-        $(".topfix").css("z-index", 1);
-        $("#myModal").css('display', 'none');
-    });
+    //$(".fullImageClose").click(function () {
+    //    // $("#uploadpost").css("display", 'block');
+    //    $("#myModal2-" + postid).css('display', 'none');
+    //});
+    //$(".fullImageModal").click(function () {
+    //    // $("#uploadpost").css("display", 'block');
+    //    //  $(".topfix").css("z-index", 1);
+    //    $("#myModal2-" + postid).css('display', 'none');
+    //});
 
 });
