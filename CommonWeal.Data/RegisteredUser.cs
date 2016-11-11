@@ -20,7 +20,6 @@ namespace CommonWeal.Data
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public Nullable<int> LoginUserType { get; set; }
-        public string UserKey { get; set; }
         public string Mobile { get; set; }
         public int LoginID { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }

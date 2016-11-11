@@ -10,10 +10,10 @@
 namespace CommonWeal.Data
 {
     using System;
-    using System.Data;
     using System.Data.Entity;
-    using System.Data.Entity.Core.Objects;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
     using System.Linq;
     
     public partial class CommonWealEntities : DbContext
@@ -34,18 +34,11 @@ namespace CommonWeal.Data
         public DbSet<NGOUser> NGOUsers { get; set; }
         public DbSet<PostComment> PostComments { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
-        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
     
-        public virtual ObjectResult<string> usp_GetPostDetails(Nullable<int> postID)
-        {
-            var postIDParameter = postID.HasValue ?
-                new ObjectParameter("PostID", postID) :
-                new ObjectParameter("PostID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("usp_GetPostDetails", postIDParameter);
-        }
+        
     }
 }

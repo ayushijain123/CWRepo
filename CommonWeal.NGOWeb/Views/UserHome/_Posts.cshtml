@@ -1,7 +1,18 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
 <br />
+   @*  ////  start for fullimage modal    *@ 
 
+              <!-- The Modal -->
+
+<div id="myModal" class="modal">
+  <span class="close">×</span>
+  <img   class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+
+                @*////  end for fullimage modal     *@ 
 
 <div id="uploadpost" class="col-md-10 col-md-offset-1">
 
@@ -30,9 +41,10 @@
             <div id="image/video" class="col-md-12 imagepost">
                 @if (item.postImageUrl != null)
                 {    
-                    <img src="@item.postImageUrl" id="imageurlpost" />
+                    <img src="@item.postImageUrl" class="imageurlpost" id="imageurlpost-@item.postId" />
                 }
-                    
+             
+         
 @* ///edited on 24/10/16*@
                 <div class="form-inline likecommentsign col-md-12 ">
                       @if(!User.Identity.IsAuthenticated)

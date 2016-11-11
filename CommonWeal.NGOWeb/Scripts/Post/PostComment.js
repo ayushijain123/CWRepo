@@ -120,4 +120,33 @@ $(document).ready(function () {
 
     //end Likecount
 
+
+    //full image script
+ 
+    // Get the modal
+
+    $(".imageurlpost").click(function () {
+       
+        var postid = $(this).attr("id").split('-')[1];
+        //alert(postid);
+
+
+        $("#myModal").css('display', 'block');
+        $("#img01").attr('src', this.src);
+        $("#caption").html(this.alt);
+
+        $(".topfix").css("z-index", 0);
+        $("#uploadpost").css("display", 'none');
+        //$('body').css("filter", "blur(2px)");
+    });
+    $(".close").click(function () {
+        $("#uploadpost").css("display", 'block');
+        $("#myModal").css('display', 'none');
+    });
+    $(".modal").click(function () {
+        $("#uploadpost").css("display", 'block');
+        $(".topfix").css("z-index", 1);
+        $("#myModal").css('display', 'none');
+    });
+
 });
