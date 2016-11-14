@@ -68,19 +68,19 @@
                               if (totalcount == 1)
                               {
                                   if (preTotalcount == 2)
-                                  { <span>and</span>}
+                                  { <span class="commentlikeuserfont">and</span>}
                                 
-                        <span class="commentlikeuserfont">@item.postlike[0].userName like this</span>  
+                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont"> this</span>  
                               }
                               else if (totalcount == 2)
                               {
-                        <span class="commentlikeuserfont">@item.postlike[0].userName and</span>   
-                        <span class="commentlikeuserfont">@item.postlike[1].userName like this</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">  and</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">  like this</span>   
                               }
                               else if (totalcount >= 3)
-                              {        <span class="commentlikeuserfont"> @item.postlike[0].userName</span><span>,</span>   
-                        <span class="commentlikeuserfont">@item.postlike[1].userName and</span>
-                        <span  class="showLikeuser commentlikeuserfont" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) other</span> <span>like this</span>
+                              {        <span class="commentlikeuserfont text-primary"> @item.postlike[0].userName</span><span>,</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont"> and</span>
+                        <span  class="showLikeuser commentlikeuserfont text-primary" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) other</span> <span class="commentlikeuserfont">like this</span>
                                  
                               }
                           }
