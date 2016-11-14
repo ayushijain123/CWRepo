@@ -7,7 +7,7 @@ namespace CommonWeal.NGOWeb.ViewModel
 {
     public class Post
     {
-       
+        public int userId { get; set; }
         public int postId { get; set; }
         public string userName { get; set; }
         public string userImage { get; set; }
