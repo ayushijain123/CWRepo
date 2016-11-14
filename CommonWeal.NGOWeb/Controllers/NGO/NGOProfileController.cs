@@ -14,11 +14,13 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
     {
         public ActionResult Index()
         {
-            CommonWealEntities obj=new CommonWealEntities();
+            CommonWealEntities context=new CommonWealEntities();
+            dbOperations db = new dbOperations();
             //User UL = new User();
-            var CountOfRequests=obj.Users.Where(w=>w.IsActive==false&& w.IsBlock==false); 
-          //  ViewBag["CountOfRequests"]=CountOfRequests;
-            return View();
+            var userId=context.Users.Where(w=>w.LoginEmailID==User.Identity.Name).FirstOrDefault().LoginID;
+           var postList= db.GetAllPost();
+           var ngoPostList = postList.Where(w => w.userId == userId).OrderByDescending(x=>x.postCreateTime).ToList();
+            return View(ngoPostList);
         }
         public ActionResult AboutUs()
         {
