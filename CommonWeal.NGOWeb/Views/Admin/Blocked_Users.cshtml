@@ -5,10 +5,11 @@
             <div class="requests">
             <table class="tableAdmin col-md-12">
                           <thead class="tableheader">
+                              <tr>
                               <th>NGO NAME</th>
-                              
                               <th >NGO URL</th>
                               <th >UNBLOCK</th>
+                              </tr>
 
                           </thead>
                       @foreach (var item in Model)
@@ -20,14 +21,19 @@
                               <td class="tableData"><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
                              
                               <td class="tableData"><a href="/admin/unblock/@item.LoginID" class="fa fa-unlock fa-2x" aria-hidden="true" style="color:green; margin-left:24px;" onmouseover:></a></td>
-                          
+                        
                          </tr>
-              
+               
 
                       }
+                   <i><a href="/Admin/" style="font-size:16px;">Back to Home click Here.</a></i>
+                 
                </table>
              
+              
             </div>
         </div>
+   
+     
     </div>
  
