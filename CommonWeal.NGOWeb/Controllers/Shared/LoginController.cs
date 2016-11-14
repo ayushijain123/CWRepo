@@ -64,7 +64,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
 
 
 
-                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.LoginEmailID, //user id
+                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, result.LoginEmailID, //user id
                         DateTime.Now, DateTime.Now.AddMinutes(20),  // expiry
                       false,  //do not remember
                       roles, //role in userdata
