@@ -1,4 +1,5 @@
-﻿<div class="container">
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+<div class="container">
     <div class="row">
         <div class="col-md-12" style="text-align: center;">
             <div class="image panel-default">
@@ -27,37 +28,25 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/NGOProfile/Index/">Timeline</a></li>
                     <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
-
+                    <li><a href="/NGOProfile/Index/">General</a></li>
                     @* <li><a href="#">Messages</a></li>*@
                    @* <li><a href="/NGOProfile/AboutUs/">Details</a></li>*@
                 </ul>
             </nav>
-                <div class="form-inline" style="background-color: #e9eff1;">
-
-                    <a href="#" class="btn btn-primary btn-lg" style="height: 35px; width: 50px">
-                        <span class="glyphicon glyphicon-paperclip" onclick="fileclick(); return false;"></span>
-                    </a>
-                    <span>Upload image</span>
-                    <input type="file" id="file" name="file" data-badge="false" style="display: none" />
-
-                </div>
-                <div class="form-horizontal">
-
-                    <div>
-
-                        @Html.TextArea("PostContent", null, new { @class = "form-control", placeholder = "Write message for post" })
-                    </div>
-
-                    <div id="menu" style="float: right;">
-                        <input type="submit" class="btn btn-primary" id="post" value="Post" style="width: 70px; height: 25px; text-align: center; padding-top: 0;" />
-                    </div>
-
-                </div>
+               
             </form>
+            
         </div>
     </div>
+       
 </div>
-@*   <div class="post panel-default">
+@Html.Partial("../UserHome/_posts", Model)
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}
+
+@* 
+  <div class="post panel-default">
                 <div class="panel-header">
                     <ul class="list-inline">
                         <li>
