@@ -143,7 +143,7 @@ namespace CommonWeal.NGOWeb
 
 
                 Post pm = new Post();
-
+                pm.userId = LoginUserlist.Where(lgnusr => lgnusr.LoginEmailID == item.EmailID).FirstOrDefault().LoginID;
 
                 int UserRole = LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType).FirstOrDefault();
 
