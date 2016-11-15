@@ -28,41 +28,43 @@ namespace CommonWeal.NGOWeb.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                CommonWealEntities CWContext = new CommonWealEntities();
-
-                var usr = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
-
-
-                this.LoginUser = new LoggedInUser()
+                using (CommonWealEntities CWContext = new CommonWealEntities())
                 {
-                    LoginID = usr.LoginID,
-                    LoginEmailID = usr.LoginEmailID,
-                    LoginUserType = usr.LoginUserType,
-                };
+
+                    var usr = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
 
 
-                switch ((EnumHelper.UserType)usr.LoginUserType)
-                {
-                    case EnumHelper.UserType.Admin:
-                        this.LoginUser.UserName = "Admin";
-                        break;
-                    case EnumHelper.UserType.NGOAdmin:
+                    this.LoginUser = new LoggedInUser()
+                    {
+                        LoginID = usr.LoginID,
+                        LoginEmailID = usr.LoginEmailID,
+                        LoginUserType = usr.LoginUserType,
+                    };
 
-                        //this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName; ;
-                        this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName;
-                        this.LoginUser.LoginUserType = 1; // Added on 07/11/2016 by Rishiraj
 
-                        break;
-                    case CommonWeal.Data.EnumHelper.UserType.User:
-                        var reguser = CWContext.RegisteredUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault(); ;
-                        this.LoginUser.UserName = reguser.FirstName + " " + reguser.LastName;
-                        this.LoginUser.LoginUserType = 3; // Added on 07/11/2016 by Rishiraj
-                        break;
+                    switch ((EnumHelper.UserType)usr.LoginUserType)
+                    {
+                        case EnumHelper.UserType.Admin:
+                            this.LoginUser.UserName = "Admin";
+                            break;
+                        case EnumHelper.UserType.NGOAdmin:
+
+                            //this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName; ;
+                            this.LoginUser.UserName = CWContext.NGOUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault().NGOName;
+                            this.LoginUser.LoginUserType = 1; // Added on 07/11/2016 by Rishiraj
+
+                            break;
+                        case CommonWeal.Data.EnumHelper.UserType.User:
+                            var reguser = CWContext.RegisteredUsers.Where(user => user.LoginID == this.LoginUser.LoginID).FirstOrDefault(); ;
+                            this.LoginUser.UserName = reguser.FirstName + " " + reguser.LastName;
+                            this.LoginUser.LoginUserType = 3; // Added on 07/11/2016 by Rishiraj
+                            break;
+                    }
+
+
+                    ViewBag.LoginUser = LoginUser;
+                    ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
                 }
-
-
-                ViewBag.LoginUser = LoginUser;
-                ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
             }
 
         }
