@@ -23,7 +23,9 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
             {
                 try
                 {
-                    CommonWealEntities context = new CommonWealEntities();
+                    using(CommonWealEntities context = new CommonWealEntities())
+                    {
+                    
                     User obj = new User();
                     obj.LoginPassword = ru.UserPassword;
                     obj.LoginEmailID = ru.UserEmail;
@@ -41,8 +43,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
                     context.SaveChanges();
                     ViewData["msg"] = "<script>alert('Registered succesfully');</script>";
                     return JavaScript("window.location = '" + Url.Action("Index", "Welcome") + "'");
-                    //return RedirectToAction("Index", new { controller = "Home", area = string.Empty });
-                    //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+                    }
                 }
                 catch (Exception ex)
                 {
