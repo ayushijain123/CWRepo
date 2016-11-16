@@ -33,6 +33,7 @@
                       
     {     
     <button id="getRequest" class="fa fa-user-plus fa-5x,btn btn-primary btn-lg  btnMenu" type="submit" style="width:167px;">&nbsp Requests</button>
+    
     }
   </td>
 <td>
@@ -47,7 +48,7 @@
            ))
  {         
     
-       <button class="fa fa-users fa-5x,btn btn-primary btn-lg "    type="submit" style="width:167px;" >&nbsp Active Users</button>
+       <button class="fa fa-users fa-5x,btn btn-primary btn-lg "    type="submit" style="width:167px;" >&nbsp Active NGO</button>
  }
     </td>
         <td>
@@ -64,7 +65,43 @@
 
                 ))
  {        
-      <button class="fa fa-ban ,btn btn-primary btn-lg "  type="submit" style="width:164px;">&nbsp Blocked Users </button>
+      <button class="fa fa-ban ,btn btn-primary btn-lg "  type="submit" style="width:164px;">&nbsp Blocked NGO </button>
+ }
+
+            </td>
+        <td>
+
+ @using (Ajax.BeginForm("All_Users", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+
+                ))
+ {        
+     <a href="/Admin/All_Users"><button class="fa fa-ban ,btn btn-primary btn-lg " type="submit" style="width:164px;">&nbsp All Users</button></a>
+ }
+
+            </td>
+         <td>
+
+ @using (Ajax.BeginForm("Blocked_NormalUsers", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+
+                ))
+ {        
+      <a href="~/Views/Admin/Blocked_NormalUsers"><button class="fa fa-ban ,btn btn-primary btn-lg "  type="submit" style="width:164px;">&nbsp Blocked Users</button></a>
  }
 
             </td>
