@@ -49,6 +49,25 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(request);
         }
 
+
+        public ActionResult All_Users()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            dbOperations obj = new dbOperations();
+            var request = obj.All_Users();
+            return View(request);
+        }
+
+        public ActionResult Blocked_NormalUsers()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            dbOperations obj = new dbOperations();
+            var request = obj.Blocked_NormalUsers();
+            return View(request);
+        }
+
+
+
         public ActionResult Settings()
         {
             return View();
@@ -144,7 +163,48 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             context.SaveChanges();
             return RedirectToAction("Blocked_Users", "Admin");
         }
+        public ActionResult BlockUsers(int id)
+        {
 
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                User UL = new User();
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsActive = false;
+                ob.IsBlock = true;
+                context.SaveChanges();
+                return RedirectToAction("All_Users", "Admin");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+
+        }
+        public ActionResult unblockUsers(int id)
+        {
+             CommonWealEntities context = new CommonWealEntities();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsActive = true;
+            ob.IsBlock = false;
+            context.SaveChanges();
+            return RedirectToAction("Blocked_NormalUsers", "Admin");
+        }
 
     }
 }
