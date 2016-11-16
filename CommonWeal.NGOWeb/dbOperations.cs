@@ -134,7 +134,7 @@ namespace CommonWeal.NGOWeb
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
             var LoginUserlist = context.Users.ToList();
-            var PostLikeListmain=context.PostLikes.ToList();
+            var PostLikeListmain = context.PostLikes.ToList();
             foreach (var item in NGOPostlist)
             {
 
@@ -164,15 +164,15 @@ namespace CommonWeal.NGOWeb
                 pm.commentCount = 1;//item.PostCommentCount.Value;
                 pm.postId = item.PostID;
                 var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
-               
+
                 //start like list
                 List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
                 var PostLikeList = PostLikeListmain.Where(pstlike => pstlike.PostID == item.PostID).ToList();
-               
+
                 int likecount = 0;
-                foreach(var like in PostLikeList )
+                foreach (var like in PostLikeList)
                 {
-                   
+
                     PostLikeModel pl = new PostLikeModel();
                     int userType = LoginUserlist.Where(user => user.LoginID == like.UserID).FirstOrDefault().LoginUserType;
 
@@ -182,7 +182,7 @@ namespace CommonWeal.NGOWeb
                             pl.userName = NGOUser;
                             break;
                         case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == like.UserID).FirstOrDefault();
-                           pl.userName= RegUser.FirstName + " " + RegUser.LastName;
+                            pl.userName = RegUser.FirstName + " " + RegUser.LastName;
                             break;
 
                     }
@@ -200,7 +200,7 @@ namespace CommonWeal.NGOWeb
                 // start all comment of  particular post
                 List<Comment> imagecommentlist = new List<Comment>();
                 pm.commentCount = postcomment.Count();
-                int commentcount=0;
+                int commentcount = 0;
                 foreach (var a in postcomment)
                 {
                     Comment cmnt = new Comment();
@@ -223,15 +223,32 @@ namespace CommonWeal.NGOWeb
                     }
 
                     imagecommentlist.Add(cmnt);
-                    commentcount++; 
+                    commentcount++;
                 }
                 pm.commentCount = commentcount;
                 //end all comment of  particular post
-                pm.PostComments=imagecommentlist;
+                pm.PostComments = imagecommentlist;
                 ob.Add(pm);
 
             }
             return (ob);
         }
+
+
+        public List<RegisteredUser> All_Users()
+        {
+            List<RegisteredUser> userList = new List<RegisteredUser>();
+            // userList = context.RegisteredUsers.ToList();
+            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true).ToList();
+            return userList;
+        }
+        public List<RegisteredUser> Blocked_NormalUsers()
+        {
+            List<RegisteredUser> userList = new List<RegisteredUser>();
+            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsBlock == true).ToList();
+            return userList;
+        }
+
     }
 }
+     
