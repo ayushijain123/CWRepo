@@ -4,21 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CommonWeal.Data;
+using CommonWeal.NGOWeb.Utility;
+using Newtonsoft.Json;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
-    [Authorize(Roles="NGOAdmin")]
-    public class NGOHomeController :BaseController
+    [Authorize(Roles = "NGOAdmin")]
+    public class NGOHomeController : BaseController
     {
         //
         // GET: /NGOHome/
-       
-       
+
+
         public ActionResult Index()
         {
+            
+
+
             dbOperations ob = new dbOperations();
+
+
             var postlist = ob.GetAllPost();
-            postlist= postlist.OrderByDescending(x => x.postCreateTime).ToList();
+            postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
+
+
             return View(postlist);
         }
 
@@ -55,7 +64,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             }
             return RedirectToAction("Index", "NGOHome");
         }
-       
+
 
     }
 }

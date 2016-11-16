@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CommonWeal.Data;
+using CommonWeal.NGOWeb.Utility;
+using Newtonsoft.Json;
 
 namespace CommonWeal.NGOWeb.Controllers.AuthUser
 {
@@ -12,6 +14,14 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
     {
         public ActionResult Index()
         {
+            /* Sammple API call */
+            APIHelper helper = new APIHelper();
+
+            var payLoad = helper.GetJson("/Post/PostAll");
+
+            var data = JsonConvert.DeserializeObject<List<PostComment>>(payLoad);
+            /* Sammple API call */
+
             dbOperations ob = new dbOperations();
             var postlist = ob.GetAllPost();
             CommonWealEntities db = new CommonWealEntities();
@@ -72,6 +82,6 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
             return RedirectToAction("Index", "Home");
         }
 
-       
+
     }
 }

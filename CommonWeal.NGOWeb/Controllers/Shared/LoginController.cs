@@ -28,6 +28,14 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                 using (CommonWealEntities context = new CommonWealEntities())
                 {
                     string userEMail = user.LoginEmailID.ToLower();
+
+                    //authentication using API 
+                    APIHelper helper = new APIHelper();
+
+                    helper.Login(user.LoginEmailID.ToLower(), user.LoginPassword, "password");
+
+                    // need to modify for exception and false handling cases
+
                     var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower() && usr.LoginPassword == user.LoginPassword).FirstOrDefault();
                     if (result == null)
                     {
@@ -58,16 +66,14 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                             default:
                                 break;
                         }
-                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.LoginEmailID, //user id
 
 
+                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, result.LoginEmailID, //user id
 
-                    FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, result.LoginEmailID, //user id
-
-                        DateTime.Now, DateTime.Now.AddMinutes(20),  // expiry
-                        false,  //do not remember
-                        roles, //role in userdata
-                        "/");
+                            DateTime.Now, DateTime.Now.AddMinutes(20),  // expiry
+                            false,  //do not remember
+                            roles, //role in userdata
+                            "/");
                         HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName,
                                                     FormsAuthentication.Encrypt(authTicket));
                         Response.Cookies.Add(cookie);
@@ -75,11 +81,11 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                     }
                 }
             }
-                return View();
-            
-            }
-            
-        
+            return View();
+
+        }
+
+
 
         [Authorize]
         public ActionResult LogOut()
@@ -88,6 +94,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             //Session.Clear();
             Session.Abandon();
             //Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
+            APIHelper.LogOut();
             return RedirectToAction("Index", "Home");
 
         }
