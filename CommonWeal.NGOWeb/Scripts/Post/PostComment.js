@@ -119,6 +119,12 @@ $(document).ready(function () {
     //end Likecount
 
 
+
+
+
+
+
+
     //full image script
 
     // Get the modal
@@ -126,17 +132,23 @@ $(document).ready(function () {
     $(".imageurlpost").click(function () {
 
         var postid = $(this).attr("id").split('-')[1];
-        //alert(postid);
+        alert(postid);
         //$("#myModal2-" + postid).css('display', 'block');
 
-        $("#img01-" + postid).attr('src', this.src);
-        $("#caption").html(this.alt);
-
-        // $(".topfix").css("z-index", 0);
-        // $("#uploadpost").css("display", 'none');
-        //$('body').css("filter", "blur(2px)");
+      $("#img01-" + postid).attr('src', this.src);
+    //  //$("#caption").html(this.alt);
+    //    console.log(postid);
+    //    var comment = $("#postcommentbox-" + postid).html();
+    //   // $("#comnt-" + postid).html("");
+    //   // $("#comnt-" + postid).append(comment);
+    // console.log(comment);
+    //// alert(comment);
+    //    // $(".topfix").css("z-index", 0);
+    //    // $("#uploadpost").css("display", 'none');
+    //    //$('body').css("filter", "blur(2px)");
     });
-    //$(".fullImageClose").click(function () {
+
+    //$(".likemodaldialog").click(function () {
     //    // $("#uploadpost").css("display", 'block');
     //    $("#myModal2-" + postid).css('display', 'none');
     //});
@@ -145,5 +157,45 @@ $(document).ready(function () {
     //    //  $(".topfix").css("z-index", 1);
     //    $("#myModal2-" + postid).css('display', 'none');
     //});
+
+    //upload image name in Ngohome
+    $("#file").change(function (event) {
+       
+        var fileName = window.URL.createObjectURL(event.target.files[0])
+            
+        $("#uploadFileName").html("");
+        $("#uploadFileName").append('<img src="'+fileName+'" style="height:40px;width:40px">');
+       
+      
+    });
+
+
+
+    //on load more button ajax call
+
+    var loadcount=0;
+    $("#btnLoad").click(function () {
+        loadcount++;
+        $.post("/post/onLoadPost?count="+loadcount, function (result) {
+         
+            console.log(result);
+            $("#loadMoreSection").append(result);
+            //console.log(result);
+        });
+
+       
+    });
+
+
+    /*date picked ngo registration page*/
+    //$("#DateOfRegistration").datepicker({
+    //    dateFormat: "yy-mm-dd",
+    //    changeMonth: true,
+    //    changeYear: true,
+    //    yearRange: "-60:+0",
+    //    maxDate: '0'
+    //});
+
+/*date picked ngo registration page*/
 
 });
