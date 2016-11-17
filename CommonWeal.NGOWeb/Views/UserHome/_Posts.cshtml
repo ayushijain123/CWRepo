@@ -37,8 +37,8 @@
                           string currentLikeUserColor = "darkgray";
                           if (User.Identity.IsAuthenticated)
                           {
+                            
                               CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
-                              //userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
                               userLoginId = Convert.ToInt32(User.Identity.Name);
                               var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
 
@@ -57,7 +57,7 @@
                                   if (likeuser.UserID == userLoginId)
                                   {<span class="commentlikeuserfont">You</span>
                                       if (preTotalcount == 1)
-                                      { <span>like this</span>}
+                                      { <span class="commentlikeuserfont">like this</span>}
                                       else if (preTotalcount > 2)
                                       {<span>,</span>}
                                       item.postlike.Remove(likeuser);
