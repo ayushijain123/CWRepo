@@ -30,9 +30,9 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                     string userEMail = user.LoginEmailID.ToLower();
 
                     //authentication using API 
-                    APIHelper helper = new APIHelper();
+                  //  APIHelper helper = new APIHelper();
 
-                    helper.Login(user.LoginEmailID.ToLower(), user.LoginPassword, "password");
+                   // helper.Login(user.LoginEmailID.ToLower(), user.LoginPassword, "password");
 
                     // need to modify for exception and false handling cases
 
@@ -68,7 +68,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         }
 
 
-                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, result.LoginEmailID, //user id
+                        FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, result.LoginID.ToString(), //user id
 
                             DateTime.Now, DateTime.Now.AddMinutes(20),  // expiry
                             false,  //do not remember
