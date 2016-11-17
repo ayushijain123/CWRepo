@@ -15,7 +15,7 @@ namespace CommonWeal.Data
     public partial class NGOPost
     {
         public int PostID { get; set; }
-        public string EmailID { get; set; }
+        public Nullable<int> LoginID { get; set; }
         public Nullable<System.DateTime> PostDateTime { get; set; }
         public string PostType { get; set; }
         public string PostContent { get; set; }

@@ -29,15 +29,15 @@ namespace CommonWeal.Data
         }
     
         public DbSet<ForgotPassword> ForgotPasswords { get; set; }
+        public DbSet<ImageHandler> ImageHandlers { get; set; }
         public DbSet<NGOPost> NGOPosts { get; set; }
-        public DbSet<NGOPostDetail> NGOPostDetails { get; set; }
         public DbSet<NGOUser> NGOUsers { get; set; }
+        public DbSet<PostComment> PostComments { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
+        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<RegisteredUser> RegisteredUsers { get; set; }
-        public DbSet<PostComment> PostComments { get; set; }
     
         //public virtual ObjectResult<string> usp_GetPostDetails(Nullable<int> postID)
         //{

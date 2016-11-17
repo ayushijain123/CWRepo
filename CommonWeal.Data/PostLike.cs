@@ -15,7 +15,7 @@ namespace CommonWeal.Data
     public partial class PostLike
     {
         public int LikeID { get; set; }
-        public int UserID { get; set; }
+        public int LoginID { get; set; }
         public Nullable<bool> IsLike { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
