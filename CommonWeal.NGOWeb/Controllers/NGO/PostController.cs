@@ -26,7 +26,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                postcmnt.CreatedOn = DateTime.Now;
                postcmnt.ModifiedOn = DateTime.Now;
                postcmnt.PostID = postId;
-               postcmnt.UserID = User.Identity.Name;
+               postcmnt.LoginID = Convert.ToInt32(User.Identity.Name);
 
                db.PostComments.Add(postcmnt);
                db.SaveChanges();
