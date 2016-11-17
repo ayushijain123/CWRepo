@@ -30,8 +30,8 @@ namespace CommonWeal.NGOWeb.Controllers
             {
                 using (CommonWealEntities CWContext = new CommonWealEntities())
                 {
-
-                    var usr = CWContext.Users.Where(user => user.LoginEmailID.ToLower() == HttpContext.User.Identity.Name.ToLower() && user.IsActive && !user.IsBlock).FirstOrDefault();
+                    var userId =  Convert.ToInt32(HttpContext.User.Identity.Name);
+                    var usr = CWContext.Users.Where(user => user.LoginID ==userId && user.IsActive && !user.IsBlock).FirstOrDefault();
 
 
                     this.LoginUser = new LoggedInUser()
