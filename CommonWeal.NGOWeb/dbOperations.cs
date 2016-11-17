@@ -125,11 +125,11 @@ namespace CommonWeal.NGOWeb
 
 
         }
-        public List<Post> GetAllPost()
+        public List<Post> GetAllPost(int pageNum=0)
         {
 
             List<Post> ob = new List<Post>();
-            var NGOPostlist = context.NGOPosts.ToList();
+            var NGOPostlist = context.NGOPosts.OrderByDescending(x=>x.CreatedOn).Skip(pageNum * 5).Take(5);
             var RegUserlist = context.RegisteredUsers.ToList();
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
@@ -209,14 +209,14 @@ namespace CommonWeal.NGOWeb
                     cmnt.commentLike = 0;
                     cmnt.commentUserImage = "";
                     cmnt.CreatedDateTime = a.CreatedOn.Value;
-                    int userType = LoginUserlist.Where(user => user.LoginEmailID == a.UserID).FirstOrDefault().LoginUserType;
+                    int userType = LoginUserlist.Where(user => user.LoginID == a.LoginID).FirstOrDefault().LoginUserType;
 
                     switch (userType)
                     {
-                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == a.UserID).FirstOrDefault().NGOName.ToString();
+                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == a.LoginID).FirstOrDefault().NGOName.ToString();
                             cmnt.Username = NGOUser;
                             break;
-                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == a.UserID).FirstOrDefault();
+                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == a.LoginID).FirstOrDefault();
                             cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
                             break;
 
