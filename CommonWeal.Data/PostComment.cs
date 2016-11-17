@@ -15,7 +15,7 @@ namespace CommonWeal.Data
     public partial class PostComment
     {
         public int CommentID { get; set; }
-        public string UserID { get; set; }
+        public Nullable<int> LoginID { get; set; }
         public Nullable<int> PostID { get; set; }
         public string CommentText { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
