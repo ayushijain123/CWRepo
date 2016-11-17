@@ -38,7 +38,8 @@
                           if (User.Identity.IsAuthenticated)
                           {
                               CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
-                              userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
+                              //userLoginId = context.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
+                              userLoginId = Convert.ToInt32(User.Identity.Name);
                               var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
 
                               if (likeuser != null)
