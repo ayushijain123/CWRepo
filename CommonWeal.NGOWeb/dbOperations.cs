@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
- 
+
 using System.Net.Mail;
 using System.Net;
 using CommonWeal.NGOWeb.ViewModel;
@@ -34,10 +34,10 @@ namespace CommonWeal.NGOWeb
             userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
             return userList;
         }
-        public NGOUser GetNGODetails(string id)
+        public NGOUser GetNGODetails(int id)
         {
             NGOUser ob = new NGOUser();
-            ob = context.NGOUsers.Where(w => w.NGOEmailID == id).FirstOrDefault();
+            ob = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
 
             return ob;
         }
@@ -125,111 +125,119 @@ namespace CommonWeal.NGOWeb
 
 
         }
-        public List<Post> GetAllPost(int pageNum=0)
+        /*Getting set of Post in  List form */
+        public List<Post> GetAllPost(int pageNum = 0)
         {
-
+            /*Make List of custom post model type */
             List<Post> ob = new List<Post>();
-            var NGOPostlist = context.NGOPosts.OrderByDescending(x=>x.CreatedOn).Skip(pageNum * 5).Take(5);
+            /*Getting list from all table */
+            var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5);
             var RegUserlist = context.RegisteredUsers.ToList();
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
             var LoginUserlist = context.Users.ToList();
             var PostLikeListmain = context.PostLikes.ToList();
-            foreach (var item in NGOPostlist)
+            if (NGOPostlist != null)
             {
 
-                // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
-                var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
-
-                Post pm = new Post();
-                pm.userId = LoginUserlist.Where(lgnusr => lgnusr.LoginEmailID == item.EmailID).FirstOrDefault().LoginID;
-
-                int UserRole = LoginUserlist.Where(user => user.LoginEmailID == item.EmailID).Select(x => x.LoginUserType).FirstOrDefault();
-
-                switch (UserRole)
-                {
-                    case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.NGOEmailID == item.EmailID).FirstOrDefault().NGOName.ToString();
-                        pm.userName = NGOUser;
-                        break;
-                    case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.UserEmail == item.EmailID).FirstOrDefault();
-                        pm.userName = RegUser.FirstName + " " + RegUser.LastName;
-                        break;
-
-                }
-                pm.postcontent = item.PostContent;
-                pm.postImageUrl = item.PostUrl;
-                pm.postCreateTime = item.CreatedOn.Value;
-                pm.likeCount = 1;//item.PostLikeCount.Value;
-                pm.commentCount = 1;//item.PostCommentCount.Value;
-                pm.postId = item.PostID;
-                var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
-
-                //start like list
-                List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
-                var PostLikeList = PostLikeListmain.Where(pstlike => pstlike.PostID == item.PostID).ToList();
-
-                int likecount = 0;
-                foreach (var like in PostLikeList)
+                foreach (var item in NGOPostlist)
                 {
 
-                    PostLikeModel pl = new PostLikeModel();
-                    int userType = LoginUserlist.Where(user => user.LoginID == like.UserID).FirstOrDefault().LoginUserType;
+                    // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
+                    var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
-                    switch (userType)
+
+                    Post pm = new Post();
+                    pm.userId = item.LoginID.Value;
+
+                    int UserRole = LoginUserlist.Where(user => user.LoginID == item.LoginID).Select(x => x.LoginUserType).FirstOrDefault();
+
+                    switch (UserRole)
                     {
-                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == like.UserID).FirstOrDefault().NGOName.ToString();
-                            pl.userName = NGOUser;
+                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == item.LoginID).FirstOrDefault().NGOName.ToString();
+                            pm.userName = NGOUser;
                             break;
-                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == like.UserID).FirstOrDefault();
-                            pl.userName = RegUser.FirstName + " " + RegUser.LastName;
+                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == item.LoginID).FirstOrDefault();
+                            pm.userName = RegUser.FirstName + " " + RegUser.LastName;
                             break;
 
                     }
-                    pl.userImageUrl = "";
-                    pl.UserID = like.UserID;
+                    pm.postcontent = item.PostContent;
+                    pm.postImageUrl = item.PostUrl;
+                    pm.postCreateTime = item.CreatedOn.Value;
+                    pm.likeCount = item.PostLikeCount.Value;
+                    pm.commentCount = item.PostCommentCount.Value;
+                    pm.postId = item.PostID;
+                    /*getting list of like user of curent post*/
+                    var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
 
-                    imageLikeList.Add(pl);
-                    likecount++;
+                    //start like list
+                    List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
+                    var PostLikeList = PostLikeListmain.Where(pstlike => pstlike.PostID == item.PostID).ToList();
 
-                }
-                pm.likeCount = likecount;
-                pm.postlike = imageLikeList;
-                //end like list
-
-                // start all comment of  particular post
-                List<Comment> imagecommentlist = new List<Comment>();
-                pm.commentCount = postcomment.Count();
-                int commentcount = 0;
-                foreach (var a in postcomment)
-                {
-                    Comment cmnt = new Comment();
-                    cmnt.commentId = a.CommentID;
-                    cmnt.commentContent = a.CommentText;
-                    cmnt.commentLike = 0;
-                    cmnt.commentUserImage = "";
-                    cmnt.CreatedDateTime = a.CreatedOn.Value;
-                    int userType = LoginUserlist.Where(user => user.LoginID == a.LoginID).FirstOrDefault().LoginUserType;
-
-                    switch (userType)
+                    int likecount = 0;
+                    foreach (var like in PostLikeList)
                     {
-                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == a.LoginID).FirstOrDefault().NGOName.ToString();
-                            cmnt.Username = NGOUser;
-                            break;
-                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == a.LoginID).FirstOrDefault();
-                            cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
-                            break;
+
+                        PostLikeModel pl = new PostLikeModel();
+                        int userType = LoginUserlist.Where(user => user.LoginID == like.LoginID).FirstOrDefault().LoginUserType;
+
+                        switch (userType)
+                        {
+                            case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == like.LoginID).FirstOrDefault().NGOName.ToString();
+                                pl.userName = NGOUser;
+                                break;
+                            case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == like.LoginID).FirstOrDefault();
+                                pl.userName = RegUser.FirstName + " " + RegUser.LastName;
+                                break;
+
+                        }
+                        pl.userImageUrl = "";
+                        pl.UserID = like.LoginID;
+
+                        imageLikeList.Add(pl);
+                        likecount++;
 
                     }
+                    pm.likeCount = item.PostLikeCount.Value;
+                    pm.postlike = imageLikeList;
+                    //end like list
 
-                    imagecommentlist.Add(cmnt);
-                    commentcount++;
+                    // start all comment of  particular post
+                    List<Comment> imagecommentlist = new List<Comment>();
+                    pm.commentCount = postcomment.Count();
+                    int commentcount = 0;
+                    foreach (var a in postcomment)
+                    {
+                        Comment cmnt = new Comment();
+                        cmnt.commentId = a.CommentID;
+                        cmnt.commentContent = a.CommentText;
+                        cmnt.commentLike = 0;
+                        cmnt.commentUserImage = "";
+                        cmnt.CreatedDateTime = a.CreatedOn.Value;
+                        int userType = LoginUserlist.Where(user => user.LoginID == a.LoginID).FirstOrDefault().LoginUserType;
+
+                        switch (userType)
+                        {
+                            case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == a.LoginID).FirstOrDefault().NGOName.ToString();
+                                cmnt.Username = NGOUser;
+                                break;
+                            case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == a.LoginID).FirstOrDefault();
+                                cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
+                                break;
+
+                        }
+
+                        imagecommentlist.Add(cmnt);
+                        commentcount++;
+                    }
+                    pm.commentCount = item.PostCommentCount.Value;
+                    //end all comment of  particular post
+                    pm.PostComments = imagecommentlist;
+                    ob.Add(pm);
+
                 }
-                pm.commentCount = commentcount;
-                //end all comment of  particular post
-                pm.PostComments = imagecommentlist;
-                ob.Add(pm);
-
             }
             return (ob);
         }
@@ -251,4 +259,4 @@ namespace CommonWeal.NGOWeb
 
     }
 }
-     
+
