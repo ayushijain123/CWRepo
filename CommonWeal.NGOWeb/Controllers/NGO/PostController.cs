@@ -12,7 +12,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
    [Authorize]
     public class PostController : BaseController
     {
-
+       /*action for commenting on a post through post*/
        [HttpPost]
        public JsonResult SumitComment(string strComment, int postId)
        {
@@ -26,18 +26,25 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                postcmnt.CreatedOn = DateTime.Now;
                postcmnt.ModifiedOn = DateTime.Now;
                postcmnt.PostID = postId;
-               postcmnt.LoginID = Convert.ToInt32(User.Identity.Name);
+               /*login user property defined in base controller*/
+               postcmnt.LoginID = LoginUser.LoginID;
+                   //Convert.ToInt32(User.Identity.Name);
 
                db.PostComments.Add(postcmnt);
                db.SaveChanges();
-               int userType = db.Users.Where(user => user.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginUserType;
+               /*update like count in post table  */
+               var post = db.NGOPosts.Where(ngpost => ngpost.PostID == postId).FirstOrDefault();
+               post.PostLikeCount = db.PostComments.Where(x=>x.PostID==postId).Count();
+               db.SaveChanges();
+               /*getting user type for getting name from user or ngo table dynamically by switch case */
+               int userType = db.Users.Where(user => user.LoginID == LoginUser.LoginID).FirstOrDefault().LoginUserType;
 
                switch (userType)
                {
-                   case 1: string NGOUser = db.NGOUsers.Where(ngusr => ngusr.NGOEmailID == User.Identity.Name).FirstOrDefault().NGOName.ToString();
+                   case 1: string NGOUser = db.NGOUsers.Where(ngusr => ngusr.LoginID == LoginUser.LoginID).FirstOrDefault().NGOName.ToString();
                        userName = NGOUser;
                        break;
-                   case 3: var RegUser = db.RegisteredUsers.Where(lgnuser => lgnuser.UserEmail == User.Identity.Name).FirstOrDefault();
+                   case 3: var RegUser = db.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == LoginUser.LoginID).FirstOrDefault();
                        userName = RegUser.FirstName + " " + RegUser.LastName;
                        break;
 
@@ -51,7 +58,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
        
 
-
+       /*action for submit like through ajax*/
         [HttpPost]
 
         public void SubmitLike(bool like, int PostID=-1)
@@ -60,27 +67,32 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             {
                 CommonWealEntities db = new CommonWealEntities();
 
-                string EmailID = User.Identity.Name;
-                int UserID = db.Users.Where(usr => usr.LoginEmailID == EmailID).FirstOrDefault().LoginID;
-                var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.UserID == UserID).FirstOrDefault();
+                /*login user property defined in base controller*/
+               /*checking is current login user already liked the image or not */
+                var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID== LoginUser.LoginID).FirstOrDefault();
+              
                 if (currentLikeUser == null)
                 {
+                    /*if not like than add row in post  */
                     PostLike pl = new PostLike();
                     pl.CreatedOn = DateTime.Now;
                     pl.ModifiedOn = DateTime.Now;
                     pl.IsLike = true;
-
-                    pl.UserID = UserID;
+                    /*login user property defined in base controller*/
+                    pl.LoginID = LoginUser.LoginID;
                     pl.PostID = PostID;
-                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                    post.PostLikeCount++;
+                   
                     db.PostLikes.Add(pl);
 
                     db.SaveChanges();
+                    /*update like count */
+                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+                    post.PostLikeCount = db.PostLikes.Where(x => x.PostID == PostID).Count();
+                    db.SaveChanges();
                 }
                 else
-                {
-                  var removeLike  =  db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.UserID == UserID).FirstOrDefault();
+                {/*if already liked by user than remove like row of user for unlike */
+                  var removeLike  =  db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
                   db.PostLikes.Remove(removeLike);
                   db.SaveChanges();
                 }
@@ -89,31 +101,34 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         }
 
+       /*action for getting like list of particular post*/
         [AllowAnonymous]
         [HttpPost]
         public JsonResult getLikeList(int postid)
         {
             CommonWealEntities db = new CommonWealEntities();
+           
             List<PostLikeModel> postlikelist = new List<PostLikeModel>();
           
              var likeuserlist= db.PostLikes.Where(pstlike => pstlike.PostID == postid).ToList();
             foreach(var item in likeuserlist)
             {
+                /*getting post like list and filling in post like model list */
                 PostLikeModel plm = new PostLikeModel();
-              int userType = db.Users.Where(user => user.LoginID == item.UserID).FirstOrDefault().LoginUserType;
+              int userType = db.Users.Where(user => user.LoginID == item.LoginID).FirstOrDefault().LoginUserType;
 
                     switch (userType)
                     {
-                        case 1: string NGOUser = db.NGOUsers.Where(ngusr => ngusr.LoginID == item.UserID).FirstOrDefault().NGOName.ToString();
+                        case 1: string NGOUser = db.NGOUsers.Where(ngusr => ngusr.LoginID == item.LoginID).FirstOrDefault().NGOName.ToString();
                             plm.userName= NGOUser;
                             break;
-                        case 3: var RegUser =db.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == item.UserID).FirstOrDefault();
+                        case 3: var RegUser =db.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == item.LoginID).FirstOrDefault();
                            plm.userName = RegUser.FirstName + " " + RegUser.LastName;
                             break;
 
                     }
                 plm.userImageUrl = "";
-                plm.UserID = item.UserID;
+                plm.UserID = item.LoginID;
                 postlikelist.Add(plm);
 
             }
@@ -123,26 +138,31 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
 
 
+
+       /*method for getting next slot of posts on click of load more button*/
         //[HttpPost]
-        //[AllowAnonymous]
-        //public string GetPosts([From] FormCollection myobj)
-        //{
-        //    CommonWealEntities db = new CommonWealEntities();
+        [AllowAnonymous]
+        public PartialViewResult onLoadPost(int count)
+        {
+            try
+            {
+                CommonWealEntities db = new CommonWealEntities();
+                dbOperations ob = new dbOperations();
+                var load = ob.GetAllPost(count);
+
+                /*returing list to  partial view and than partial view is retuned to ajax call  */
+                return PartialView("~/views/userHome/_Posts.cshtml", load);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            
+        }
 
 
-
-        //    return "sdfasdfasdfasd";
-        //}
-
-
-        //public class mycls
-        //{
-
-        //    public int i { get; set; }
-        //    public int j { get; set; }
-        //    public int k { get; set; }
-
-        //}
+      
 
 
 

@@ -33,9 +33,13 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             {
                 using (CommonWealEntities context = new CommonWealEntities())
                 {
-
+                    if (objngo.DateOfRegistration == null)
+                    {
+                        objngo.DateOfRegistration = DateTime.Now;
+                    }
                     if (ModelState.IsValid)
                     {
+                        /*to save chairmanID  in folder*/
                         if (chairmanID != null)
                         {
                             string pic = System.IO.Path.GetFileName(chairmanID.FileName);
@@ -56,33 +60,36 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                             objngo.RegistrationProof = "/Album/RegistrationID/" + pic;
                             objngo.RegistrationProof = objngo.RegistrationProof;
                         }
+                        /*first we update user table than NGOUser table to maintain referential integrity */
                         User obj = new User();
                         obj.LoginPassword = objngo.NGOPassword;
-                        obj.LoginEmailID = objngo.NGOEmailID;
+                        obj.LoginEmailID = objngo.NGOEmailID.ToLower();
                         var roleobj = context.RoleTypes.Where(w => w.RoleName == "NGO").FirstOrDefault();
                         obj.LoginUserType = roleobj.RoleID;
-                        obj.IsActive = false;
-                        obj.IsBlock = false;
+                        obj.IsActive = false;/*NGO is not active bydefault it will become active after admin verification  */
+                        obj.IsBlock = false;/*default ngo user is not blocked */
                         obj.ModifiedOn = DateTime.Now;
                         obj.CreatedOn = DateTime.Now;
                         context.Users.Add(obj);
                         context.SaveChanges();
-                        objngo.LoginID = obj.LoginID;
+                        /*to append data in ngoUser object objngo which are not submitted through form */
+                        objngo.LoginID = obj.LoginID;/*reference key from user table */
                         objngo.IsActive = false;
+                        objngo.NGOEmailID = objngo.NGOEmailID.ToLower();
                         objngo.IsBlock = false;
                         context.NGOUsers.Add(objngo);
+
                         context.SaveChanges();
-                        TempData["msg"] = "<script>alert('Change succesfully');</script>";
-                        //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+                        /*it will redirect ngo user to welcome page after registration*/
                         return RedirectToAction("Index", "Welcome");
                     }
                 }
                 if (!ModelState.IsValid)
                 {
-                    return View();
+                    return View();/*if form is not valid it will return same view with error message*/
                 }
                 return RedirectToAction("CreateNgo", "NgoRegistration");
-                //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -104,7 +111,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         }
 
-
+        /*to check unique email it will return result to model */
         public JsonResult checkEmail(string NGOEmailID)
         {
             CommonWealEntities context = new CommonWealEntities();

@@ -17,15 +17,16 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             CommonWealEntities context = new CommonWealEntities();
             dbOperations db = new dbOperations();
             //User UL = new User();
-            //var userId = context.Users.Where(w => w.LoginEmailID == User.Identity.Name).FirstOrDefault().LoginID;
-            var userId = Convert.ToInt32(User.Identity.Name);
-            var postList = db.GetAllPost();
-            var ngoPostList = postList.Where(w => w.userId == userId).OrderByDescending(x => x.postCreateTime).ToList();
+          //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
+           var postList= db.GetAllPost();
+           var ngoPostList = postList.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x=>x.postCreateTime).ToList();
             return View(ngoPostList);
         }
+
+         /*action for getting ngo details*/
         public ActionResult AboutUs()
         {
-            string res = this.User.Identity.Name;
+            int res = LoginUser.LoginID;
             dbOperations obj = new dbOperations();
             var details = obj.GetNGODetails(res);
             if (details != null)

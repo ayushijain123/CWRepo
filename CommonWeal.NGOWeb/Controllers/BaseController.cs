@@ -64,6 +64,7 @@ namespace CommonWeal.NGOWeb.Controllers
 
                     ViewBag.LoginUser = LoginUser;
                     ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
+                      
                 }
             }
 

@@ -19,7 +19,7 @@ namespace CommonWeal.NGOWeb.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-
+             
                 dbOperations ob = new dbOperations();
                 var postlist = ob.GetAllPost();
                 CommonWealEntities db = new CommonWealEntities();
@@ -34,6 +34,7 @@ namespace CommonWeal.NGOWeb.Controllers
             }
             else
             {
+              
                 if (this.User.IsInRole(EnumHelper.UserType.NGOAdmin.ToString()))
                 {
                     return RedirectToAction("Index", "NGOHome");

@@ -23,25 +23,28 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
             {
                 try
                 {
+                    /*using keyword will automatically dispose objects which are not referenced or in use*/
                     using(CommonWealEntities context = new CommonWealEntities())
                     {
-                    
+                    /*first we update user table than registered user table to maintain referential integrity */
                     User obj = new User();
                     obj.LoginPassword = ru.UserPassword;
-                    obj.LoginEmailID = ru.UserEmail;
+                    obj.LoginEmailID = ru.UserEmail.ToLower();
                     var roleobj = context.RoleTypes.Where(w => w.RoleName == "USER").FirstOrDefault();
                     obj.LoginUserType = roleobj.RoleID;
-                    obj.IsActive = true;
-                    obj.IsBlock = false;
+                    obj.IsActive = true;/*user is by default active*/ 
+                    obj.IsBlock = false;/*to block user.presently user is not blocked*/
                     obj.ModifiedOn = DateTime.Now;
                     obj.CreatedOn = DateTime.Now;
-                    context.Users.Add(obj);
+                    context.Users.Add(obj); /*add user to users table*/
                     context.SaveChanges();
+                    /*to add user to RegisteredUser table that contain refrfence key*/
                     ru.LoginID = obj.LoginID;
-                    ru.LoginUserType = 3; // Added by Rishiraj  on 24/10/2016
+                    ru.UserEmail = ru.UserEmail.ToLower();
+                    ru.LoginUserType = roleobj.RoleID; 
                     context.RegisteredUsers.Add(ru);
                     context.SaveChanges();
-                    ViewData["msg"] = "<script>alert('Registered succesfully');</script>";
+                    /*the form type is ajaxform  that's why return type should be (return JavaScript) */
                     return JavaScript("window.location = '" + Url.Action("Index", "Welcome") + "'");
                     }
                 }
@@ -50,12 +53,11 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
                     throw ex;
                 }
             }
-
-            // return Json(new { result = "Redirect", url = Url.Action("Index", "Home") });
+            /*the form type is ajaxform  that's why return type should be (return JavaScript) */
             return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
-
         }
-
+         
+        /*to identify email address uniquely through ajax on registration*/
         public JsonResult checkEmail(string UserEmail)
         {
             CommonWealEntities context = new CommonWealEntities();

@@ -14,23 +14,27 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
     {
         public ActionResult Index()
         {
+            
             /* Sammple API call */
-            APIHelper helper = new APIHelper();
+          //  APIHelper helper = new APIHelper();
 
-            var payLoad = helper.GetJson("/Post/PostAll");
+           // var payLoad = helper.GetJson("/Post/PostAll");
 
-            var data = JsonConvert.DeserializeObject<List<PostComment>>(payLoad);
+          //  var data = JsonConvert.DeserializeObject<List<PostComment>>(payLoad);
             /* Sammple API call */
 
             dbOperations ob = new dbOperations();
+           /*call method from dboperation class for getting post list*/
             var postlist = ob.GetAllPost();
             CommonWealEntities db = new CommonWealEntities();
-            var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
-            var s = (from p in db.NGOPosts
-                     join u in db.Users on p.EmailID equals u.LoginEmailID
-                     into up
-                     select up).ToList();
+            //var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
+            //var s = (from p in db.NGOPosts
+            //         join u in db.Users on p.EmailID equals u.LoginEmailID
+            //         into up
+            //         select up).ToList();
+            
             postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
+            /*return to view with post list*/
             return View(postlist);
             //return View();
         }
@@ -66,6 +70,8 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
 
         //}
 
+
+        /*for submit comment by ngo and registered user*/
         [HttpPost]
         public ActionResult UserPostComment(string strComment, int postId)
         {
@@ -75,10 +81,13 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
             postcmnt.CreatedOn = DateTime.Now;
             postcmnt.ModifiedOn = DateTime.Now;
             postcmnt.PostID = postId;
-            postcmnt.UserID = User.Identity.Name;
+            /*use current username from loginUser viewbag definrd from basecontroller*/
+            postcmnt.LoginID = LoginUser.LoginID;
+                //Convert.ToInt32(User.Identity.Name);
 
             db.PostComments.Add(postcmnt);
             db.SaveChanges();
+            /* redirect to home than from their it will redirect on accordintg to role*/
             return RedirectToAction("Index", "Home");
         }
 

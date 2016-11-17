@@ -25,9 +25,11 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
         {
             if (ModelState.IsValid)
             {
+                /*using keyword will automatically dispose objects which are not referenced or in use*/
                 using (CommonWealEntities context = new CommonWealEntities())
                 {
-                    string userEMail = user.LoginEmailID.ToLower();
+                    /*user can enter email in any case(upper/lower )*/
+                    user.LoginEmailID = user.LoginEmailID.ToLower();
 
                     //authentication using API 
                   //  APIHelper helper = new APIHelper();
@@ -35,21 +37,26 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                    // helper.Login(user.LoginEmailID.ToLower(), user.LoginPassword, "password");
 
                     // need to modify for exception and false handling cases
-
-                    var result = context.Users.Where(usr => userEMail == usr.LoginEmailID.ToLower() && usr.LoginPassword == user.LoginPassword).FirstOrDefault();
+                    /*check for email and password validity from User table*/
+                    var result = context.Users.Where(usr =>usr.LoginEmailID.Equals(user.LoginEmailID)&& usr.LoginPassword.Equals(user.LoginPassword)).FirstOrDefault();
                     if (result == null)
                     {
                         ModelState.AddModelError("", "Invalid Email or Password");
                     }
+                        /*if email is valid and user is blocked or not active*/
                     else if (!result.IsActive || result.IsBlock)
                     {
                         ModelState.AddModelError("", "Your request status is pending or blocked");
                     }
-                    else if (result.LoginEmailID.ToLower() == userEMail && result.LoginPassword == user.LoginPassword)
+                        /*email and password are valid and user is no active and not blocked*/
+                    else if (result.LoginEmailID.ToLower().Equals(user.LoginEmailID) && result.LoginPassword.Equals(user.LoginPassword))
                     {
+                        /*controller name will set dynamically based on usertype  */
                         string controllerName = "";
+                        /*typecasting of loginUserType to enum helper usertype*/
                         EnumHelper.UserType usertype = (EnumHelper.UserType)result.LoginUserType;
                         string roles = usertype.ToString();
+                        /*enum helper is defined in base controller*/
                         switch (usertype)
                         {
                             case EnumHelper.UserType.NGOAdmin:
@@ -67,16 +74,18 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                                 break;
                         }
 
-
+                        /*authentication ticket will be generated on browser which contain LoginID and UserRole  */
                         FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, result.LoginID.ToString(), //user id
 
                             DateTime.Now, DateTime.Now.AddMinutes(20),  // expiry
                             false,  //do not remember
                             roles, //role in userdata
                             "/");
+                        /*to add ticket to cookie in browser*/
                         HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName,
                                                     FormsAuthentication.Encrypt(authTicket));
                         Response.Cookies.Add(cookie);
+                        /*the page will redirect to index metod of "controller name" which is decided dynamically*/
                         return RedirectToAction("Index", controllerName);
                     }
                 }
