@@ -9,10 +9,11 @@
         <div class="form-inline">
 
             <a href="#" id="uploadbtn ">
-              <span class="fa fa-picture-o fa-3x" onclick="fileclick(); return false;"></span>
+              <span class="fa fa-picture-o fa-3x uploadimage" onclick="fileclick(); return false;"></span>
             </a>
             <a class="uploadimage">  <span  onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
             <input type="file" id="file" name="file" data-badge="false" />
+            <span id="uploadFileName"></span>
 
         </div>
         <div class="form-horizontal">
@@ -27,8 +28,13 @@
 
         </div>
     </form>
-
+       
     @Html.Partial("../UserHome/_Posts", Model)
+    
+<div id="loadMoreSection"></div>
+
+ <input type="button" value="load more" id="btnLoad">
+
 </div>
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
