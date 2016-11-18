@@ -65,7 +65,7 @@ h2 {
 }
 
 h3 {
-    margin-top:px;
+   
     font-size: 1.2em;
 }
 
@@ -120,7 +120,7 @@ width:auto;
 padding-left:5px;
     
 }
-.navbar-fixed-top {
+.navbarlayout {
     height: 110px;
 }
 .navbar-brand:hover{
@@ -1160,4 +1160,23 @@ color:white;
 padding-top:12px;
 font-size:17px;
 
+}
+/*ngo profile-----------------------------------------------------------------------------------------------*/
+.profilesummary {
+font-size:18px;
+}
+
+.ngoprofilepic {
+max-height:80px;
+    margin-left: 25px;
+}
+.ngoprofilepanelbody {
+    max-height:250px;
+    min-height:250px;
+background-color:aquamarine;
+}
+.fixed {
+     position: fixed;
+    top:0; left:0;
+    width: 100%;
 }
