@@ -17,8 +17,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var users = obj.NGOUsers;
             var CountOfRequests = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
             ViewBag.COR = CountOfRequests;
-            var CountOfActiveUsers = users.Where(w => w.IsActive == true && w.IsBlock == false).Count();
-            ViewBag.COAU = CountOfActiveUsers;
+            var CountOfActiveNGO = users.Where(w => w.IsActive == true && w.IsBlock == false).Count();
+            ViewBag.COAN = CountOfActiveNGO;
+            var CountOfBlockedNGO = users.Where(w => w.IsBlock == true).Count();
+            ViewBag.COBN = CountOfBlockedNGO;
+            var CountOfAllUsers = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
+            ViewBag.COAL = CountOfRequests;
             var CountOfBlockedUsers = users.Where(w => w.IsBlock == true).Count();
             ViewBag.COBU = CountOfBlockedUsers;
             return View();
