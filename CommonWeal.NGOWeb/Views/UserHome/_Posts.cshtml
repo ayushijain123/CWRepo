@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
-<br />
+
 
 <div id="uploadpost" class="col-md-10 col-md-offset-1">
 
     @foreach (var item in Model)
     { 
         <div id="posttemplate ">
-            <div class="postuserdetail col-md-12" id="postuserdetail">
+            <div class="postuserdetail col-md-12 column12" id="postuserdetail">
                 <div class="form-inline ">
                     <img src="~/Images/usergroupnew.png" id="images" class="col-md-1" />
                     <b class="usernamepost col-md-3" id="usernamepost">@item.userName</b>
@@ -110,8 +110,8 @@
         <div class="form-inline " id="postcommentbox">
             @foreach (var comment in item.PostComments)
             {
-                <div class="form-group col-md-12 ">
-                    <div class="form-inline col-md-12" id="comentpost">
+                <div class="form-group col-md-12 column12">
+                    <div class="form-inline col-md-12 column12" id="comentpost">
                         <img src="~/Images/usernew.png" class="col-md-1 commentimage " />
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime</span>
@@ -129,7 +129,7 @@
             @if (User.Identity.IsAuthenticated)
             {
     
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 column12">
                     <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
                     <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
                     @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
