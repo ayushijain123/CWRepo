@@ -1228,3 +1228,25 @@ tr:nth-child(even) {
 .side-warned-users {
     background-color: #dd2c2b;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.button:hover {
+    background-color: #3e8e41;
+
+
+}
+.request {
+
+text-decoration:none;
+}
