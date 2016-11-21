@@ -1,0 +1,65 @@
+﻿@model IEnumerable<CommonWeal.Data.AreaOfInterest>
+@{
+    ViewBag.Title = "Index";
+}
+<!-- Button modal fullscreen -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-fullscreen">
+  Launch modal fullscreen
+</button>
+
+
+
+<div class="modal modal-fullscreen fade" id="modal-fullscreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header areaofinterestheader">
+        <button type="button" class="close" id="closebutton" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Area of interest</h4>
+      </div>
+      <div class="modal-body" id="modalcheckbox" >
+       @* <table class="checkboxmodal">
+
+    <tbody>   
+       @foreach (var  items in Model)
+       {
+           <tr>
+                <td >
+              <input type="checkbox" value="@items.CategoryID">
+               </td>
+              <td >
+                @Html.DisplayFor(model => items.CategoryName)
+              </td>
+              
+        </tr>
+       }
+       </tbody>
+</table>*@
+          	<table class="span12">
+                  <tbody>   
+       @foreach (var  items in Model)
+       {
+									<tr class="filters">
+									<td >
+									
+										
+											  <input type="checkbox" class="areaofinterest"  value="@items.CategoryID">
+												
+										
+									
+									</td>
+									<td>
+										 @Html.DisplayFor(model => items.CategoryName)
+									</td>
+									
+									</tr>
+            }
+       </tbody>
+								</table>
+      </div>
+      <div class="modal-footer">
+        <button type="Submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
