@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 <div class=" ngoprofilenavbar">
     <div class="col-md-12">
-        <div class="panel panel-default col-md-12 panelNGO">
+        <div class="panel panel-default col-md-12 panelNGO column12">
             <div class="panel-heading">
                 <center> <b class="profilesummary"> Profile summary</b></center>
             </div>
-            <div class="panel-body col-md-12 ngoprofilepanelbody">
-                    <div class="col-md-4 col-md-offset-5">
-                        <img src="~/Images/Lighthouse.jpg" class="ngoprofilepic" />
+            <div class="panel-body col-md-12 " id="ngoprofilepanelbody" >
+                    <div class="col-md-4 col-md-offset-5" >
+                        <img src="~/Images/usergroupnew.png" class="ngoprofilepic" /><br/>
+                        <b class="col-md- col-md-offset-1">@ViewBag.LoginUser.UserName</b>
                     </div>
                  </div>
             <div class="panel-group navbar-fixed sticky">
@@ -30,45 +31,17 @@
         </div>
     </div>
 </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-
-   @section scripts{
-    <script src="~/Scripts/Post/PostComment.js">
-</script>
-       }
+<div>
+  @Html.Partial("../UserHome/_Posts" , Model)
+    </div>
 
 
-@*@Html.Partial("../UserHome/_posts", Model)*@
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}
 
 
+ 
 
 
 
