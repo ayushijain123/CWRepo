@@ -1,9 +1,32 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
 @{
-    ViewBag.Title = "All Rights Reserved";
+    ViewBag.Title = "Index";
 }
+@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+<link href="~/Content/chosen.css" rel="stylesheet" />
+<script src="~/Scripts/chosen.jquery.min.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $(".chosen-select-multiple").chosen();
+        $('.chosen-select-multiple').change(function () {
+            if ($(this).val() != null && $(this).val().length > 0) {
+                $.each($(this).val(), function (key, value) {
+                    if (value == 1) {
+                        $('.chosen-select-multiple').val('').trigger('chosen:updated');
+                        $('.chosen-select-multiple').val('1').trigger('chosen:updated');
+                    }
+                });
+            }
+            else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
+            console.log($('.chosen-select-multiple').val().length);
+        });
+        
+    });
+  </script>
 <div class="col-md-12">
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
         <div class="form-inline">
@@ -14,7 +37,8 @@
             <a class="uploadimage">  <span  onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
             <input type="file" id="file" name="file" data-badge="false" />
             <span id="uploadFileName"></span>
-
+              @Html.DropDownList("category",(SelectList)ViewBag.categoryList , new { @class = "form-control chosen-select-multiple", @multiple="multiple", })
+           
         </div>
         <div class="form-horizontal">
 
