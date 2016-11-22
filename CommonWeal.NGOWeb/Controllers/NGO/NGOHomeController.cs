@@ -26,15 +26,17 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             /*get postList from GetAllPost method*/
             var postlist = ob.GetAllPost();
             postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
-
+            var list = ob.GetAllCategory();
+            ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
             /*return To view with postList */
             return View(postlist);
         }
 
         /*method for upload image*/
         [HttpPost]
-        public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)
+        public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost,int[] category)
         {
+            dbOperations ob = new dbOperations();
             CommonWealEntities db = new CommonWealEntities();
             /*if file is uploaded with or without content message*/
             if (file != null)
@@ -57,6 +59,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     //this.User.Identity.Name;
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
+                ob.SubmitPostCategory(obpost.PostID, category);
+                
             }
                 /*if only content is posted without any image*/
             else if (obpost.PostContent != null)
@@ -73,11 +77,16 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 obpost.PostLikeCount = 0;
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
+                ob.SubmitPostCategory(obpost.PostID, category);
             }
+           Console.Write("<script>alert('"+obpost.PostID+"')</script>");
             /*return to current view*/
             return RedirectToAction("Index", "NGOHome");
         }
 
-
+        public ActionResult Test()
+        {
+            return View();
+        }
     }
 }
