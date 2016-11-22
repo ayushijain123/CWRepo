@@ -7,8 +7,7 @@
       <Diagram DiagramId="1f20fc33f3e44cc4a93beb5f2bc9258d" Name="Diagram1">
         <EntityTypeShape EntityType="CommonWealModel.ForgotPassword" Width="1.5" PointX="0.518552145230841" PointY="10.267607499969941" />
         <EntityTypeShape EntityType="CommonWealModel.ImageHandler" Width="1.5" PointX="1.9573022266651048" PointY="29.553061901383597" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="3.2374742940242749" PointY="21.093424940990946" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="11.660782601526371" PointY="16.711158551606889" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="11.625" PointY="17" />
         <EntityTypeShape EntityType="CommonWealModel.PostComment" Width="1.5" PointX="5.8105807703968981" PointY="21.67020835991493" />
         <EntityTypeShape EntityType="CommonWealModel.PostLike" Width="1.5" PointX="2.6524422683997275" PointY="15.959788851421228" />
         <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="10.694439125570673" PointY="30.921041517947355" />
@@ -17,6 +16,11 @@
         <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="5.0862261583498807" PointY="29.471581070437832" />
         <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
         <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_UserLogin" />
+        <EntityTypeShape EntityType="CommonWealModel.AreaOfInterest" Width="1.5" PointX="10.875" PointY="15.125" />
+        <EntityTypeShape EntityType="CommonWealModel.WorkingArea" Width="1.5" PointX="13.875" PointY="16.625" />
+        <EntityTypeShape EntityType="CommonWealModel.sysdiagram" Width="1.5" PointX="11.661510614520642" PointY="18.212383785383956" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="2.9049993822840041" PointY="2.4713175010268191" />
+        <EntityTypeShape EntityType="CommonWealModel.PostCategory" Width="1.5" PointX="4.1117123663945643" PointY="16.218139954012884" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
