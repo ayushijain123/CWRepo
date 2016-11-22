@@ -257,6 +257,60 @@ namespace CommonWeal.NGOWeb
             return userList;
         }
 
+
+
+
+
+        /*getting all categoryname from areaofintrest table*/
+        public List<AreaOfInterest> GetAllCategory()
+        {
+            CommonWealEntities db = new CommonWealEntities();
+            var categoryList = db.AreaOfInterests.ToList();
+            return categoryList;
+
+        }
+        /*method for submit area of intrest by ngouser from  edit profile*/
+        public bool SubmitCategory(List<WorkingArea> WAlist)
+        {
+            CommonWealEntities db = new CommonWealEntities();
+            foreach (var item in WAlist)
+            {
+
+
+                db.WorkingAreas.Add(item);
+
+            }
+
+            db.SaveChanges();
+            return true;
+
+        }
+        /*method for submit category for which post is uploded and will search by*/
+        public void SubmitPostCategory(int postid, int[] category)
+        {
+            try
+            {
+                CommonWealEntities db = new CommonWealEntities();
+                foreach (var item in category)
+                {
+
+                    PostCategory pc = new PostCategory();
+                    pc.PostID = postid;
+                    pc.CategoryID = item;
+                    db.PostCategories.Add(pc);
+
+
+
+                }
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
+
+        }
     }
 }
 
