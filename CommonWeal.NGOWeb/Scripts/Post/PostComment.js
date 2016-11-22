@@ -197,5 +197,49 @@ $(document).ready(function () {
     //});
 
 /*date picked ngo registration page*/
+    /*method for getting checked category*/
+    $("#submitcategory").click(function () {
+       
+        var categorylist = [];
+        $.each($(".category:checked"), function () {
+            var CategoryID = $(this).val();
+            categorylist.push(CategoryID);
+            $('#' + CategoryID).remove();
+        });
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            type: "POST",
+            url: "/NGOProfile/areaOfIntrest",
+            dataType: "json",
+            traditional: true,
+            data: JSON.stringify(categorylist)
+        });
+      //  $.post("/NGOProfile/areaOfIntrest?List=" + list, function (result) {
+
+           // alert(result);
+            //console.log(result);
+      //  }, 'json');
+       
+    });
+
+
+
+    /*script for admin page methods (activeUsers)*/
+    $(".BlockButton").click(function () {
+        var postid = $(this).attr('id').split('-')[1];
+       
+        $.post("/Admin/Block?PostID="+postid, function (result) {
+
+            $('#activeUser-' + postid).remove();
+            alert('hi');
+            //console.log(result);
+        });
+
+
+    });
 
 });
+
+
+///////
+
