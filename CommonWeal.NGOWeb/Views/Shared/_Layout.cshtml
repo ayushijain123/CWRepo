@@ -24,55 +24,9 @@
                     <span id="logofont">Commonweal</span>
                 </a>
             </div>
-            <div id="custom-search-input">
-                <div class="input-group col-md-4 col-md-offset-2 form-inline">
-                    <div class="input-group-btn search-panel">
-                        <button type="button" class="dropdownbtn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span id="search_concept">Categories</span> <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            @foreach (var items in ViewData["CategoryList"] as IList<CommonWeal.Data.AreaOfInterest>)
-                            { 
-                          
-
-
-                                <li>
-                                    <table class="span12">
-                                        <tbody>
-
-
-                                            <tr class="filters">
-                                                <td>
-
-
-                                                    <input type="checkbox" class="areaofinterest"  value="@items.CategoryID">
-                                                </td>
-                                                <td>
-                                                     @items.CategoryName
-
-                                                </td>
-
-
-                                        </tbody>
-                                    </table>
-                                </li>
-                            }
-
-                          <div class="modal-footer">
-                              <button type="submit" class="btn btn-success">Filter</button>
-                           </div>
-                        </ul>
-                         
-                    </div>
-                    <input type="text" class="  search-query form-control" placeholder="Search" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-danger searchbtn" type="button">
-                            <span class=" glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-
-                </div>
-            </div>
+            @if(User.Identity.IsAuthenticated){
+              @Html.Partial("_filter")
+            }
             <div class="float-right">
                 @Html.Partial("_LoginPartial")
             </div>
