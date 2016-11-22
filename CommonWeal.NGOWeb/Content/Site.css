@@ -731,7 +731,7 @@ tr.pager td {
 
 /*POST*/
 .postuserdetail {
-    background-color: #B8B8B8;
+    background-color: #d9edf7;
     height: 45px;
     padding-left: 0px;
     padding-right: 0px;
@@ -791,7 +791,7 @@ tr.pager td {
 }
 
 .likecommentsign {
-    background-color: #EFEFEF;
+    background-color: #FFFFFF;
     border-bottom: ridge;
     display: block;
     margin-left: auto;
@@ -858,7 +858,7 @@ tr.pager td {
 }
 
 #postcontent {
-    background-color: #EFEFEF;
+    background-color:  #FFFFFF;
     font-size: 16px;
 }
 
@@ -1114,7 +1114,7 @@ tr:nth-child(even) {
 }
 
 .ngoprofilepic {
-    max-height: 80px;
+    max-height: 100px;
     margin-left: 25px;
 }
 #ngoprofilepanelbody {
