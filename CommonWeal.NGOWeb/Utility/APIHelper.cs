@@ -19,7 +19,7 @@ namespace CommonWeal.NGOWeb.Utility
         public string Expires_In;
     }
 
-    public class APIHelper
+    public class APIHelper<T> where T : class
     {
         public static string Access_Token
         {
@@ -50,7 +50,7 @@ namespace CommonWeal.NGOWeb.Utility
         /// This propery will hold User token
 
         /// </summary>
-        private HttpClient GetHttpClient(string resourceURL)
+        private static HttpClient GetHttpClient(string resourceURL)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(resourceURL);
@@ -112,11 +112,11 @@ namespace CommonWeal.NGOWeb.Utility
             Expires_In = "";
         }
 
-        public string GetJson(string url)
+        public static T GetJson(string url)
         {
             url = APIBaseUrl + url;
             string result = "";
-            using (HttpClient client = this.GetHttpClient(url))
+            using (HttpClient client = GetHttpClient(url))
             {
                 // HTTP GET 
                 HttpResponseMessage response = client.GetAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -126,7 +126,7 @@ namespace CommonWeal.NGOWeb.Utility
                     throw new Exception("API error");
                 }
             }
-            return result;
+            return JsonConvert.DeserializeObject<T>(result); ;
         }
 
         /// <summary>
@@ -138,14 +138,16 @@ namespace CommonWeal.NGOWeb.Utility
         /// <param name="Url"></param>
         /// <param name="payLoad"></param>
         /// <returns></returns>
-        public string PostJsonString(string url, string payLoad)
+        public static T PostJson<U>(string url, U payLoad)
         {
             string result = "";
             url = APIBaseUrl + url;
-            using (HttpClient client = this.GetHttpClient(url))
+            using (HttpClient client = GetHttpClient(url))
             {
+                string postData = JsonConvert.SerializeObject(payLoad);
+
                 // HTTP POST 
-                StringContent content = new StringContent(payLoad);
+                StringContent content = new StringContent(postData);
                 //Added a check to identify it is a normal post request or delete request. 
 
                 if (!url.Contains("Delete"))
@@ -160,7 +162,7 @@ namespace CommonWeal.NGOWeb.Utility
                     throw new Exception("API error");
                 }
             }
-            return result;
+            return JsonConvert.DeserializeObject<T>(result);
         }
 
         /// <summary>
@@ -169,7 +171,7 @@ namespace CommonWeal.NGOWeb.Utility
         /// <param name="Url"></param>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public string UploadFile(string url, string filePath)
+        public static string UploadFile(string url, string filePath)
         {
             string result = "";
             url = APIBaseUrl + url;
@@ -178,7 +180,7 @@ namespace CommonWeal.NGOWeb.Utility
                 using (StreamContent streamContent = new StreamContent(fileStream))
                 {
                     streamContent.Headers.ContentType = new MediaTypeHeaderValue(applicationOctet);
-                    using (HttpClient client = this.GetHttpClient(url))
+                    using (HttpClient client = GetHttpClient(url))
                     {
 
                         HttpResponseMessage response = client.PostAsync(url, streamContent).Result;
@@ -193,16 +195,25 @@ namespace CommonWeal.NGOWeb.Utility
             return result;
         }
 
+        //public static async Task<T> GetJsonAsync(string url)
+        //{
+
+        //    string result = await GetJsonAsync(url);
+
+        //    return  await JsonConvert.DeserializeObject<T>(result);
+
+        //}
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="url"></param>
         /// <returns></returns>
-        public async Task<String> GetJsonAsync(string url)
+        public static async Task<String> GetJsonAsync(string url)
         {
             String result = "";
             url = APIBaseUrl + url;
-            using (HttpClient client = this.GetHttpClient(url))
+            using (HttpClient client = GetHttpClient(url))
             {
 
                 //Get async, do not care about holding context, consumer of this method shoul hold context 
@@ -219,17 +230,22 @@ namespace CommonWeal.NGOWeb.Utility
             return result;
         }
 
+        public static async Task<String> PostJsonStringAsync<T>(string url, T payload)
+        {
+            return await PostJsonStringAsync(url, JsonConvert.SerializeObject(payload));
+        }
+
         /// <summary>
         /// get async response for HTTP Post request 
         /// </summary>
         /// <param name="url"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public async Task<String> PostJsonStringAsync(string url, string payload)
+        public static async Task<String> PostJsonStringAsync(string url, string payload)
         {
             String result = "";
             url = APIBaseUrl + url;
-            using (HttpClient client = this.GetHttpClient(url))
+            using (HttpClient client = GetHttpClient(url))
             {
                 // HTTP POST 
                 StringContent content = new StringContent(payload);
@@ -255,14 +271,14 @@ namespace CommonWeal.NGOWeb.Utility
         }
 
 
-        public string DownloadFile(string url, string payload, string filePath)
+        public static string DownloadFile(string url, string payload, string filePath)
         {
             url = APIBaseUrl + url;
             string result = "";
             StringContent content = null;
             try
             {
-                using (HttpClient client = this.GetHttpClient(url))
+                using (HttpClient client = GetHttpClient(url))
                 {
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(applicationOctet));
