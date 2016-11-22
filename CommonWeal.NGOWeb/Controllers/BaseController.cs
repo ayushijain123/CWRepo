@@ -16,6 +16,7 @@ namespace CommonWeal.NGOWeb.Controllers
     [Authorize]
     public class BaseController : Controller
     {
+        public List<AreaOfInterest> CategoryList { get; set; }
         public LoggedInUser LoginUser { get; set; }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace CommonWeal.NGOWeb.Controllers
                 {
                     var userId =  Convert.ToInt32(HttpContext.User.Identity.Name);
                     var usr = CWContext.Users.Where(user => user.LoginID ==userId && user.IsActive && !user.IsBlock).FirstOrDefault();
-
+                  
 
                     this.LoginUser = new LoggedInUser()
                     {
@@ -64,10 +65,15 @@ namespace CommonWeal.NGOWeb.Controllers
 
                     ViewBag.LoginUser = LoginUser;
                     ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
-                      
+                   
                 }
             }
 
+            using (CommonWealEntities CWContext = new CommonWealEntities())
+            {
+                CategoryList = CWContext.AreaOfInterests.ToList();
+                ViewData["CategoryList"] = CategoryList;
+            }
         }
         /// <summary>
         /// Create Context and set role for authenticated user
