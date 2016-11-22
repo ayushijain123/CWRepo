@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommonWeal.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using CommonWeal.Data;
 
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
@@ -17,28 +14,53 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             CommonWealEntities context = new CommonWealEntities();
             dbOperations db = new dbOperations();
             //User UL = new User();
-          //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
-           var postList= db.GetAllPost();
-           var ngoPostList = postList.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x=>x.postCreateTime).ToList();
+            //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
+            var postList = db.GetAllPost();
+            var ngoPostList = postList.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
             return View(ngoPostList);
         }
 
-         /*action for getting ngo details*/
-        public ActionResult AboutUs()
+        /*action for getting ngo details*/
+        [HttpGet]
+        public ActionResult AboutUsEditable()
         {
-            int res = LoginUser.LoginID;
-            dbOperations obj = new dbOperations();
-            var details = obj.GetNGODetails(res);
-            if (details != null)
+            CommonWealEntities context = new CommonWealEntities();
+
+
+            var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+
+            return View(obj);
+        }
+        [HttpPost]
+        public ActionResult Edit(NGOUser obj)
+        {
+            using (CommonWealEntities context = new CommonWealEntities())
             {
-                // ViewBag.value = details;
-                return View(details);
+                var ob = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                ob.NGOEmailID = obj.NGOEmailID;
+                ob.Mobile = obj.Mobile;
+                ob.NGOAddress = obj.NGOAddress;
+                ob.NGOName = obj.NGOName;
+                ob.Telephone = obj.Telephone;
+                ob.City = obj.City;
+                ob.ChairmanName = obj.ChairmanName;
+                ob.NGOPassword = obj.NGOPassword;
+                context.Configuration.ValidateOnSaveEnabled = false;
+                context.SaveChanges();
+                User objuser = new User();
+                objuser.LoginEmailID = obj.NGOEmailID;
+                context.SaveChanges();
+
             }
-            return RedirectToAction("Index", "Login");
+
+            return View("AboutUsEditable");
         }
-        public ActionResult Album()
-        {
-            return View();
-        }
+        //public List<NGOUser> GetAllUserBlocked()
+        //{
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    List<NGOUser> userList = new List<NGOUser>();
+        //    userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
+        //    return userList;
+        //}
     }
 }
