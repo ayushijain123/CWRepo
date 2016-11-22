@@ -189,6 +189,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminChart.cs" />
+    <Compile Include="Models\AdminChartData.cs" />
     <Compile Include="Utility\APIHelper.cs" />
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Models\Password.cs" />
@@ -210,6 +212,8 @@
     <Content Include="Content\Admin.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
     <Content Include="Content\Commonweal.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
@@ -354,6 +358,9 @@
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Content\chosen.css" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -410,10 +417,14 @@
     <Content Include="Views\Reset\update.cshtml" />
     <Content Include="Views\UserRegistration\CreateUser.cshtml" />
     <Content Include="Views\NGORegistration\CreateNgo.cshtml" />
+    <Content Include="Views\Shared\Active_Users.cshtml" />
+    <Content Include="Views\Shared\Admin\Blocked_Users.cshtml" />
+    <Content Include="Views\Shared\Admin\Requests.cshtml" />
     <Content Include="Views\Admin\Settings.cshtml" />
     <Content Include="Views\UserHome\Index.cshtml" />
     <Content Include="Views\UserRegistration\CreateUserPost.cshtml" />
     <Content Include="Views\NGOProfile\AboutUs.cshtml" />
+    <Content Include="Views\NGOProfile\Album.cshtml" />
     <Content Include="Views\NGOProfile\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
@@ -431,7 +442,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Admin\Requests.cshtml" />
-    <Content Include="Views\Shared\_filter.cshtml" />
+    <Content Include="Views\NGOProfile\AreaOfInterestGET.cshtml" />
+    <Content Include="Views\NGOHome\Test.cshtml" />
+    <Content Include="Views\Admin\DisplayGraph.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
