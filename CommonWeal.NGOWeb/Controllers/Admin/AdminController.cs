@@ -1,4 +1,5 @@
 ﻿using CommonWeal.Data;
+using CommonWeal.NGOWeb.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -201,7 +202,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
         public ActionResult unblockUsers(int id)
         {
-             CommonWealEntities context = new CommonWealEntities();
+            CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsActive = true;
@@ -209,6 +210,39 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             context.SaveChanges();
             return RedirectToAction("Blocked_NormalUsers", "Admin");
         }
+
+        /// CONTROLLER METHODS   
+        public ActionResult DisplayGraph()
+        {
+            AdminChart objChart = new AdminChart();
+            objChart.DataValue = new AdminChartData();
+            objChart.DataValue = GetChartData();
+            objChart.MonthsTitle = "Months";
+            objChart.NGOTitle = "NGO";
+            objChart.UserTitle = "User";
+            return View(objChart);
+
+        }
+
+
+
+        /// <summary>
+        /// Code to get the data which we will pass to chart
+        /// </summary>
+        /// <returns></returns>
+        public AdminChartData GetChartData()
+        {
+            AdminChartData objChartData = new AdminChartData();
+            /*Get the data from databse and prepare the chart record data in string form.*/
+            objChartData.Months = "1,2,3,4,5,6,7,8,9,10,11,12";
+            CommonWealEntities obj = new CommonWealEntities();
+            var users = obj.NGOUsers.Where(w => w.IsActive == true && w.IsBlock == false).Count();
+            var user1 = obj.Users.Where(w => w.IsActive == true && w.IsBlock == false && w.LoginUserType == 3).Count();
+            objChartData.NGO = users.ToString();
+            objChartData.User = user1.ToString();
+            return objChartData;
+        }
+
 
     }
 }
