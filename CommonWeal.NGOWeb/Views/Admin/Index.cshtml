@@ -1,53 +1,51 @@
-﻿@*   <script>
-
-        $(document).ready(function () {
-            $('#getRequest').click();
-        });
-    </script>*@
-
-
-<div class="row">
+﻿<div class="row">
     <div class="top-panel col-md-12">
         <div class="col-md-4">
-            <a href="/Admin/Requests"><div class="media bg-primary request button">
-                <div class="media-left side-request pull-left">
-                    <i class="icon fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>Total Request</h3>
-                    <h4>Today 
+            <a href="/Admin/Requests">
+                <div class="media bg-primary request admin-button">
+                    <div class="media-left side-request pull-left">
+                        <i class="icon fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3>Total Request</h3>
+                        <h4>Today 
                         <span class="pull-right">@ViewBag.COR</span>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
-            </div></a>
+            </a>
         </div>
 
         <div class="col-md-4">
-            <a href="/Admin/Active_Users"><div class="media bg-primary active-ngo button">
-                <div class="media-left side-active-ngo pull-left">
-                    <i class="icon fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>Active NGO</h3>
-                    <h4>Today
+            <a href="/Admin/Active_Users">
+                <div class="media bg-primary active-ngo admin-button">
+                    <div class="media-left side-active-ngo pull-left">
+                        <i class="icon fa fa-rotate-right fa-spin" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3>Active NGO</h3>
+                        <h4>Today
                         <span class="pull-right">@ViewBag.COAN</span>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
-            </div></a>
+            </a>
         </div>
 
         <div class="col-md-4">
-            <a href="/Admin/Blocked_Users"><div class="media bg-primary blocked-ngo button">
-                <div class="media-left side-blocked-ngo pull-left">
-                    <i class="icon fa fa-ban fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>Blocked NGO</h3>
-                    <h4>Today
+            <a href="/Admin/Blocked_Users">
+                <div class="media bg-primary blocked-ngo admin-button">
+                    <div class="media-left side-blocked-ngo pull-left">
+                        <i class="icon fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3>Blocked NGO</h3>
+                        <h4>Today
                         <span class="pull-right">@ViewBag.COBN</span>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
-            </div></a>
+            </a>
         </div>
     </div>
 </div>
@@ -55,31 +53,35 @@
 <div class="row">
     <div class="bottom-panel col-md-12">
         <div class="col-md-4">
-            <a href="/Admin/All_Users"><div class="media bg-primary all-users button">
-                <div class="media-left side-all-users pull-left">
-                    <i class="icon fa fa-users fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>All Users</h3>
-                    <h4>Today
+            <a href="/Admin/All_Users">
+                <div class="media bg-primary all-users admin-button">
+                    <div class="media-left side-all-users pull-left">
+                        <i class="icon fa fa-users fa-spin-hover" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3>All Users</h3>
+                        <h4>Today
                         <span class="pull-right">@ViewBag.COAL</span>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
-            </div></a>
+            </a>
         </div>
 
         <div class="col-md-4">
-            <a href="/Admin/Blocked_NormalUsers"><div class="media bg-primary blocked-users button">
-                <div class="media-left side-blocked-users pull-left">
-                    <i class="icon fa fa-ban fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>Blocked Users</h3>
-                    <h4>Today
+            <a href="/Admin/Blocked_NormalUsers">
+                <div class="media bg-primary blocked-users admin-button">
+                    <div class="media-left side-blocked-users pull-left">
+                        <i class="icon fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                    </div>
+                    <div class="media-body">
+                        <h3>Blocked Users</h3>
+                        <h4>Today
                         <span class="pull-right">@ViewBag.COBU</span>
-                    </h4>
+                        </h4>
+                    </div>
                 </div>
-            </div></a>
+            </a>
         </div>
 
         <div class="col-md-4">
@@ -98,7 +100,60 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-12">
+        <script>
 
+            $(document).ready(function () {
+                $('#getRequest').click();
+            });
+        </script>
+
+        <script type="text/javascript" src="/assets/script/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/assets/script/jquery.canvasjs.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.2/jquery.validate.unobtrusive.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>
+
+        @using (Ajax.BeginForm("DisplayGraph", "Admin",
+                null, //route values
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                },
+                new { id = "SampleForm" }))
+        {
+           
+           
+            <button class="btn btn-primary" id="getRequest" type="submit">Graph</button>
+        }
+
+
+
+        @* @using (Ajax.BeginForm("DisplayGraph", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+                ))
+        {     
+            <button id="getRequest" class="fa fa-user-plus fa-5x,btn btn-primary btn-lg  btnMenu" type="submit" style="width: 167px;">&nbsp Requests</button>
+    
+        }*@
+
+        @*   <span id="lblResult"></span>*@
+
+    </div>
+</div>
+<span id="lblResult"></span>
 @*<table class="col-md-12 col-md-offset-1" style="border:hidden">
     <tr>
         <td>
