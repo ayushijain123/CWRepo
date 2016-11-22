@@ -16,11 +16,11 @@
         <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="5.0862261583498807" PointY="29.471581070437832" />
         <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
         <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_UserLogin" />
-        <EntityTypeShape EntityType="CommonWealModel.AreaOfInterest" Width="1.5" PointX="10.875" PointY="15.125" />
         <EntityTypeShape EntityType="CommonWealModel.WorkingArea" Width="1.5" PointX="13.875" PointY="16.625" />
         <EntityTypeShape EntityType="CommonWealModel.sysdiagram" Width="1.5" PointX="11.661510614520642" PointY="18.212383785383956" />
         <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="2.9049993822840041" PointY="2.4713175010268191" />
         <EntityTypeShape EntityType="CommonWealModel.PostCategory" Width="1.5" PointX="4.1117123663945643" PointY="16.218139954012884" />
+        <EntityTypeShape EntityType="CommonWealModel.AreaOfInterest" Width="1.5" PointX="5.9970954554141951" PointY="21.005308667665958" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

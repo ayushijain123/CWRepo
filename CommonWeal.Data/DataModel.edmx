@@ -91,13 +91,13 @@
           <Property Name="LoginUserType" Type="int" />
           <Property Name="NGOAddress" Type="varchar" MaxLength="100" />
           <Property Name="ChairmanName" Type="varchar" MaxLength="50" />
-          <Property Name="ChairmanID" Type="varchar" MaxLength="100" />
+          <Property Name="ChairmanID" Type="varchar" MaxLength="50" />
           <Property Name="ParentOrganisation" Type="varchar" MaxLength="50" />
           <Property Name="RegisteredWith" Type="varchar" MaxLength="50" />
           <Property Name="RegistrationNumber" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationProof" Type="varchar" MaxLength="50" />
           <Property Name="CityOfRegistration" Type="varchar" MaxLength="50" />
           <Property Name="DateOfRegistration" Type="date" />
-          <Property Name="RegistrationProof" Type="varchar" MaxLength="100" />
           <Property Name="FCRANumber" Type="varchar" MaxLength="50" />
           <Property Name="AreaOfIntrest" Type="varchar" MaxLength="500" />
           <Property Name="OperationalArea" Type="varchar" MaxLength="50" />
@@ -257,11 +257,11 @@
             <End Role="User" EntitySet="Users" />
             <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
           </AssociationSet>
-          <EntitySet Name="AreaOfInterests" EntityType="CommonWealModel.AreaOfInterest" />
           <EntitySet Name="WorkingAreas" EntityType="CommonWealModel.WorkingArea" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.sysdiagram" />
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
           <EntitySet Name="PostCategories" EntityType="CommonWealModel.PostCategory" />
+          <EntitySet Name="AreaOfInterests" EntityType="CommonWealModel.AreaOfInterest" />
           </EntityContainer>
         <EntityType Name="ForgotPassword">
           <Key>
@@ -302,13 +302,13 @@
           <Property Type="Int32" Name="LoginUserType" />
           <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ChairmanID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanID" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
-          <Property Type="String" Name="RegistrationProof" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegistrationProof" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -416,13 +416,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AreaOfInterest">
-          <Key>
-            <PropertyRef Name="CategoryID" />
-          </Key>
-          <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="WorkingArea">
           <Key>
             <PropertyRef Name="WorkingAreaID" />
@@ -466,6 +459,13 @@
           <Property Type="Int32" Name="CategoryID" Nullable="false" />
           <Property Type="DateTime" Name="createdOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+        </EntityType>
+        <EntityType Name="AreaOfInterest">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -608,14 +608,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AreaOfInterests">
-            <EntityTypeMapping TypeName="CommonWealModel.AreaOfInterest">
-              <MappingFragment StoreEntitySet="AreaOfInterest">
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WorkingAreas">
             <EntityTypeMapping TypeName="CommonWealModel.WorkingArea">
               <MappingFragment StoreEntitySet="WorkingArea">
@@ -661,6 +653,14 @@
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="PostcategoryID" ColumnName="PostcategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AreaOfInterests">
+            <EntityTypeMapping TypeName="CommonWealModel.AreaOfInterest">
+              <MappingFragment StoreEntitySet="AreaOfInterest">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
