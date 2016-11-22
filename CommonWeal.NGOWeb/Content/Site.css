@@ -1115,12 +1115,13 @@ tr:nth-child(even) {
 
 .ngoprofilepic {
     max-height: 100px;
+    max-width:100px;
     margin-left: 25px;
 }
 #ngoprofilepanelbody {
     max-height:250px;
     min-height:250px;
-       background-color:#d9edf7;
+       background-color:#7ac0da;
 }
 
 .ngoprofilenavbar {
