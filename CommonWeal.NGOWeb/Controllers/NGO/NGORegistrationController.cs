@@ -1,6 +1,9 @@
 ﻿using CommonWeal.Data;
+using CommonWeal.NGOWeb.Utility;
 using System;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -26,97 +29,61 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return Json(user == null);
         }
 
+        public class ImageHandler
+        {
+            public byte[] ImagePost(HttpPostedFileBase file)
+            {
+                byte[] fileData = null;
+
+                if (file != null)
+                {
+                    // var docfiles = new List<string>();
+                    //byte[] fileData = null;
+                    using (var binaryReader = new BinaryReader(file.InputStream))
+                    {
+                        fileData = binaryReader.ReadBytes(file.ContentLength);
+                    }
+                }
+                return fileData;
+            }
+        }
         [HttpPost]
         public ActionResult CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
-            try
+            if (ModelState.IsValid)
             {
-                using (CommonWealEntities context = new CommonWealEntities())
+                try
                 {
-                    if (objngo.DateOfRegistration == null)
+                    if (chairmanID != null && RegistrationProof != null)
                     {
-                        objngo.DateOfRegistration = DateTime.Now;
+                        ImageHandler img = new ImageHandler();
+                        var res = img.ImagePost(chairmanID);
+                        var res1 = img.ImagePost(RegistrationProof);
+                       // string result = System.Text.Encoding.UTF8.GetString(byteArray);                  
+                        objngo.ChairmanID = Convert.ToBase64String(res);
+                        objngo.RegistrationProof = Convert.ToBase64String(res1);
                     }
-                    if (ModelState.IsValid)
-                    {
-                        /*to save chairmanID  in folder*/
-                        if (chairmanID != null)
-                        {
-                            string pic = System.IO.Path.GetFileName(chairmanID.FileName);
-                            string copyofregpath = System.IO.Path.Combine(Server.MapPath(@"/Album/ChairmanID/"), pic);
-                            // file is uploaded
-                            chairmanID.SaveAs(copyofregpath);
-                            //save in model property
-                            objngo.ChairmanID = "/Album/ChairmanID/" + pic;
-                            objngo.ChairmanID = objngo.ChairmanID;
-                        }
-                        if (RegistrationProof != null)
-                        {
-                            string pic = System.IO.Path.GetFileName(RegistrationProof.FileName);
-                            string copyofregpath = System.IO.Path.Combine(Server.MapPath(@"/Album/RegistrationID/"), pic);
-                            // file is uploaded
-                            chairmanID.SaveAs(copyofregpath);
-                            //save in model property
-                            objngo.RegistrationProof = "/Album/RegistrationID/" + pic;
-                            objngo.RegistrationProof = objngo.RegistrationProof;
-                        }
-                        /*first we update user table than NGOUser table to maintain referential integrity */
-                        User obj = new User();
-                        obj.LoginPassword = objngo.NGOPassword;
-                        obj.LoginEmailID = objngo.NGOEmailID.ToLower();
-                        var roleobj = context.RoleTypes.Where(w => w.RoleName == "NGO").FirstOrDefault();
-                        obj.LoginUserType = roleobj.RoleID;
-                        obj.IsActive = false;/*NGO is not active bydefault it will become active after admin verification  */
-                        obj.IsBlock = false;/*default ngo user is not blocked */
-                        obj.ModifiedOn = DateTime.Now;
-                        obj.CreatedOn = DateTime.Now;
-                        context.Users.Add(obj);
-                        context.SaveChanges();
-                        /*to append data in ngoUser object objngo which are not submitted through form */
-                        objngo.LoginID = obj.LoginID;/*reference key from user table */
-                        objngo.IsActive = false;
-                        objngo.NGOEmailID = objngo.NGOEmailID.ToLower();
-                        objngo.IsBlock = false;
-                        context.NGOUsers.Add(objngo);
-
-                        context.SaveChanges();
-                        /*it will redirect ngo user to welcome page after registration*/
-                        return RedirectToAction("Index", "Welcome");
-                    }
+                    var result = Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));
+                  
+                   // return JavaScript("window.location = '" + Url.Action("Index", "Welcome") + "'");
+                    return RedirectToAction("Index", "Welcome");
                 }
-                if (!ModelState.IsValid)
+                catch (Exception ex)
                 {
-                    return View();/*if form is not valid it will return same view with error message*/
+                    throw ex;
                 }
-                return RedirectToAction("CreateNgo", "NgoRegistration");
-
             }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-            {
-                Exception raise = dbEx;
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        string message = string.Format("{0}:{1}",
-                            validationErrors.Entry.Entity.ToString(),
-                            validationError.ErrorMessage);
-                        // raise a new exception nesting  
-                        // the current instance as InnerException  
-                        raise = new InvalidOperationException(message, raise);
-                    }
-                }
-                throw raise;
-            }
-
+            /*the form type is ajaxform  that's why return type should be (return JavaScript) */
+            return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
         }
 
-        /*to check unique email it will return result to model */
-        public JsonResult checkEmail(string NGOEmailID)
+        /*to identify email address uniquely through ajax on registration*/
+        public JsonResult checkEmail(string UserEmail)
         {
             CommonWealEntities context = new CommonWealEntities();
-            return Json(!context.Users.Any(x => x.LoginEmailID == NGOEmailID), JsonRequestBehavior.AllowGet);
+            return Json(!context.Users.Any(x => x.LoginEmailID == UserEmail), JsonRequestBehavior.AllowGet);
         }
+
 
     }
 }
