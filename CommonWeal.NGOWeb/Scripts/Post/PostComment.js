@@ -135,17 +135,17 @@ $(document).ready(function () {
         alert(postid);
         //$("#myModal2-" + postid).css('display', 'block');
 
-      $("#img01-" + postid).attr('src', this.src);
-    //  //$("#caption").html(this.alt);
-    //    console.log(postid);
-    //    var comment = $("#postcommentbox-" + postid).html();
-    //   // $("#comnt-" + postid).html("");
-    //   // $("#comnt-" + postid).append(comment);
-    // console.log(comment);
-    //// alert(comment);
-    //    // $(".topfix").css("z-index", 0);
-    //    // $("#uploadpost").css("display", 'none');
-    //    //$('body').css("filter", "blur(2px)");
+        $("#img01-" + postid).attr('src', this.src);
+        //  //$("#caption").html(this.alt);
+        //    console.log(postid);
+        //    var comment = $("#postcommentbox-" + postid).html();
+        //   // $("#comnt-" + postid).html("");
+        //   // $("#comnt-" + postid).append(comment);
+        // console.log(comment);
+        //// alert(comment);
+        //    // $(".topfix").css("z-index", 0);
+        //    // $("#uploadpost").css("display", 'none');
+        //    //$('body').css("filter", "blur(2px)");
     });
 
     //$(".likemodaldialog").click(function () {
@@ -160,20 +160,20 @@ $(document).ready(function () {
 
     //upload image name in Ngohome
     $("#file").change(function (event) {
-       
+
         var fileName = window.URL.createObjectURL(event.target.files[0])
-            
+
         $("#uploadFileName").html("");
-        $("#uploadFileName").append('<img src="'+fileName+'" style="height:40px;width:40px">');
-       
-      
+        $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px">');
+
+
     });
 
 
 
     //on load more button ajax call
 
-    var loadcount=0;
+    var loadcount = 0;
     $("#btnLoad").click(function () {
         loadcount++;
         //alert('hi');
@@ -185,7 +185,7 @@ $(document).ready(function () {
             //console.log(result);
         });
 
-       
+
     });
 
 
@@ -198,10 +198,10 @@ $(document).ready(function () {
     //    maxDate: '0'
     //});
 
-/*date picked ngo registration page*/
+    /*date picked ngo registration page*/
     /*method for getting checked category*/
     $("#submitcategory").click(function () {
-       
+
         var categorylist = [];
         $.each($(".category:checked"), function () {
             var CategoryID = $(this).val();
@@ -216,12 +216,12 @@ $(document).ready(function () {
             traditional: true,
             data: JSON.stringify(categorylist)
         });
-      //  $.post("/NGOProfile/areaOfIntrest?List=" + list, function (result) {
+        //  $.post("/NGOProfile/areaOfIntrest?List=" + list, function (result) {
 
-           // alert(result);
-            //console.log(result);
-      //  }, 'json');
-       
+        // alert(result);
+        //console.log(result);
+        //  }, 'json');
+
     });
 
 
@@ -229,8 +229,8 @@ $(document).ready(function () {
     /*script for admin page methods (activeUsers)*/
     $(".BlockButton").click(function () {
         var postid = $(this).attr('id').split('-')[1];
-       
-        $.post("/Admin/Block?PostID="+postid, function (result) {
+
+        $.post("/Admin/Block?PostID=" + postid, function (result) {
 
             $('#activeUser-' + postid).remove();
             alert('hi');
@@ -239,10 +239,39 @@ $(document).ready(function () {
 
 
     });
+    //$(window).scroll(function () {
+    //    var stickyNavTop = $('.ngoprofilenavbar').offset().top;
 
-    /*js for select post for categorywise*/
-   
-  
+
+    //        var scrollTop = $(window).scrollTop();
+
+    //        if (scrollTop > stickyNavTop) { 
+    //            $('.ngoprofilenavbar').addClass('sticky');
+    //        } else {
+    //            $('.ngoprofilenavbar').removeClass('sticky');
+    //        }
+
+
+
+    //    });
+
+
+    //$(window).scroll(function () {
+    //    var sticky = $('.sticky'),
+    //        scroll = $(window).scrollTop();
+
+    //    if (scroll >= 500) sticky.addClass('ngoSticky');
+    //    else sticky.removeClass('ngoSticky');
+    //});
+    var stickyOffset = $('.sticky').offset().top;
+
+    $(window).scroll(function () {
+        var sticky = $('.sticky'),
+            scroll = $(window).scrollTop();
+
+        if (scroll >= stickyOffset-130) sticky.addClass('fixed');
+        else sticky.removeClass('fixed');
+    });
 
 });
 
