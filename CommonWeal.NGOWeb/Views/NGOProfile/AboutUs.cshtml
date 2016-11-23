@@ -1,69 +1,81 @@
 ﻿@model CommonWeal.Data.NGOUser
-
 @{
-    ViewBag.Title = "All Rights Reserved";
+    ViewBag.Title = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
- <div class="detailspanel panel panel-default"> 
-
-     <p> Samman,established in 2000 working in the direction to support in areas like child welfare,Women Empowerment,\
-         Health and provides emergenc services.we are continously working to improvise all.
-         Our 500 volunteers are trying to build them up.
-         <br/>
-         <br/>
-         <br/>
-          <br/>
 
 
 
 
 
-     </p>
+
+<script>
+    $(document).ready(function () {
+        $("input").prop('disabled', true);
+        $("#submitbtn").prop('disabled', true);
 
 
+        $("#editbtn").click(function () {
+            $("input").prop('disabled', false);
+            $("#submitbtn").prop('disabled', false);
+        });
+    }
+    );
+</script>
 
 
-     
-
-
-
-<table style="background-color:lightgray;">
-<thead>
-    <tr>
-    <th>UniqueuID</th>
-     <th>Name</th>
-     <th>EmailID</th>
-     <th>Mobile</th>
-     <th>Address</th>
-     <th>Chairman Name</th>
-     <th>Parent Organisation</th>
-     <th>Registered With</th>
-    <th>Registration Number</th>
-    <th>FCRA Number</th>
-        </tr>
-
-</thead>
-    <tbody>   
-        <td>@Model.UniqueuId</td>   
-         <td>@Model.NGOName</td>
-        <td>@Model.NGOEmailID</td>
-        <td>@Model.Mobile</td>
-        <td>@Model.NGOAddress</td>
-        <td>@Model.ChairmanName</td>
-        <td>@Model.ParentOrganisation</td>
-        <td>@Model.RegisteredWith</td>
-         <td>@Model.RegistrationNumber</td>
-         <td>@Model.FCRANumber</td>
-
-       </tbody>
-</table>
-
-     <br/>
-     <br/>
-     <br/>
-     <br/>
+ <div class="col-lg-offset-5"><h3><strong>Your personal info</strong></h3></div>
+<div class="container">
+  
+  <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">NGO Email:</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NGOEmailID" required>
+      </div>
+    </div>
+      <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Mobile:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="Mobile" placeholder="Enter Mobile Number" value="@Model.Mobile"required>
+      </div>
+    </div>
+        <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Address:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="NGOAddress" placeholder="Enter Adderess" value="@Model.NGOAddress"required>
+      </div>
+    </div>
+        <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="NGOName" placeholder="Enter Name" value="@Model.NGOName"required>
+      </div>
+    </div>
       
-        <a href="/NGOProfile/AboutUs/Edit/" class="editbutton btn btn-info pull-right">
-          <span class="glyphicon glyphicon-pencil"> Edit</span>
-        </a>
-        
-     </div>
+   
+        <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Chairman Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.ChairmanName"required>
+      </div>
+    </div>
+        <div class="form-group">
+      <label class="control-label col-sm-2" for="email">Password:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="NGOPassword" placeholder="Enter Password" value="@Model.NGOPassword"required>
+      </div>
+    </div>
+     
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+     <span  id="editbtn" class="btn btn-primary" >Edit</span>
+      </div>
+        &nbsp
+          <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </form>
+</div>
+
