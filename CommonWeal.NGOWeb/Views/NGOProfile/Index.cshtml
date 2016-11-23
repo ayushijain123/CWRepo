@@ -5,43 +5,45 @@
             <div class="panel-heading">
                 <center> <b class="profilesummary"> Profile summary</b></center>
             </div>
-            <div class="panel-body col-md-12 " id="ngoprofilepanelbody" >
-                    <div class="col-md-4 col-md-offset-5" >
-                        <img src="~/Images/usergroupnew.png" class="ngoprofilepic" /><br/>
-                        <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>
-                    </div>
-                 </div>
-            <div class="panel-group navbar-fixed sticky">
+            <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
+                <div class="col-md-4 col-md-offset-5">
+                    <img src="~/Images/usergroupnew.png" class="ngoprofilepic" /><br />
+                    <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>
+                </div>
+            </div>
+            @*NGO Profile header Start*@
+            <div class="panel-group navbar-fixed">
+                <div class="sticky">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#">Post</a></li>
                         <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
-                         <li class="dropdown">
-                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Change Image</a></li>
-                            <li><a href="#">Change background</a></li>
-                            
-                          </ul>
-                        </li>
-                        
-                    </ul>
-                
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Change Image</a></li>
+                                <li><a href="#">Change background</a></li>
 
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
+
+            @*NGO Profile header End*@
         </div>
     </div>
 </div>
 <div>
-  @Html.Partial("../UserHome/_Posts" , Model)
-    </div>
+    @Html.Partial("../UserHome/_Posts", Model)
+</div>
 
 
 @section scripts{
-    <script src="~/Scripts/Post/PostComment.js"></script>
+<script src="~/Scripts/Post/PostComment.js"></script>
 }
 
 
- 
+
 
 
 
