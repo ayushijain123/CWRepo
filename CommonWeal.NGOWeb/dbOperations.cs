@@ -126,12 +126,21 @@ namespace CommonWeal.NGOWeb
 
         }
         /*Getting set of Post in  List form */
-        public List<Post> GetAllPost(int pageNum = 0)
+        public List<Post> GetAllPost(int category=0,int pageNum = 0)
         {
             /*Make List of custom post model type */
             List<Post> ob = new List<Post>();
             /*Getting list from all table */
-            var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5);
+            List<NGOPost> NGOPostlist=new List<NGOPost>();
+            if (category > 1)
+            {
+                NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x=>x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            }
+            else
+            {
+                NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            }
+            
             var RegUserlist = context.RegisteredUsers.ToList();
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
