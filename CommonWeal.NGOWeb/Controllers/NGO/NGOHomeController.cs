@@ -27,7 +27,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var postlist = ob.GetAllPost();
             postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
             var list = ob.GetAllCategory();
-             ViewBag.CategoryListForHome = new SelectList(list,"categoryId","categoryName");
+           // ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
             /*return To view with postList */
             return View(postlist);
         }
