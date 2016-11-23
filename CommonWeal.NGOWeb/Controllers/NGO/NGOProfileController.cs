@@ -22,7 +22,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         /*action for getting ngo details*/
         [HttpGet]
-        public ActionResult AboutUsEditable()
+        public ActionResult AboutUs()
         {
             CommonWealEntities context = new CommonWealEntities();
 
@@ -55,12 +55,6 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
             return View("AboutUsEditable");
         }
-        //public List<NGOUser> GetAllUserBlocked()
-        //{
-        //    CommonWealEntities context = new CommonWealEntities();
-        //    List<NGOUser> userList = new List<NGOUser>();
-        //    userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
-        //    return userList;
-        //}
+
     }
 }
