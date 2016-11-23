@@ -12,11 +12,34 @@
 
 @*  @Html.Partial("_posts", Model);*@
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#selectcategory").change(function () {
+           
+            if ($(this).val() > 0) {
+                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
+                   // $("#loadMoreSection").append(result);
+                    //    console.log(result);
+                    if (result != null) {
+                        $("#postsection").html("");
+                        $("#loadMoreSection").html("");
+                        $("#loadMoreSection").append(result);
+                    }
+                    //    //console.log(result);
+                });
+            }
 
+        });
+
+    });
+  </script>
+  @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory selectcategory" })
     @*//end upload post*@
-    @Html.Partial("../UserHome/_posts", Model)
-    
+ @*   @Html.Partial("../UserHome/_posts", Model)*@
+ <div id="postsection">
+    @Html.Partial("../UserHome/_Posts", Model)
+         </div>   
 
 <div id="loadMoreSection"></div>
 
