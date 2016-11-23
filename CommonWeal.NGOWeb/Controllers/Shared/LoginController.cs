@@ -103,7 +103,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             //Session.Clear();
             Session.Abandon();
             //Response.Cookies.Add(new HttpCookie("ASP.NET_SessionId", ""));
-            APIHelper.LogOut();
+            APIHelper<User>.LogOut();
             return RedirectToAction("Index", "Home");
 
         }
