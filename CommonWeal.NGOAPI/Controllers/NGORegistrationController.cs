@@ -1,6 +1,8 @@
 ﻿using CommonWeal.Data;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,11 +13,38 @@ namespace CommonWeal.NGOAPI.Controllers
     [AllowAnonymous]
     public class NGORegistrationController : BaseController
     {
-        [AllowAnonymous]
-        public IEnumerable<string> Get()
+
+        //public IEnumerable<string> Get()
+        //{
+        //    return new string[] { "ASJ", "AJ" };
+        //}
+
+        public class ImageListResponse
         {
-            return new string[] { "ASJ", "AJ" };
+            //public Bitmap MyImage { get; set; }
+            public string strImage { get; set; }
+            public string ImageId { get; set; }
         }
+
+        [HttpGet]
+        public HttpResponseMessage Get()
+        {
+            var result = new HttpResponseMessage(HttpStatusCode.OK);
+            var content = new MultipartContent();
+            CommonWealEntities context = new CommonWealEntities();
+            var data = context.ImageHandlers.ToList();
+            List<ImageListResponse> imageList = new List<ImageListResponse>();
+            foreach (var item in data)
+            {
+                string imageBase64Data = Convert.ToBase64String(item.Image);
+
+                imageList.Add(new ImageListResponse() { strImage = imageBase64Data });
+            }
+            result = Request.CreateResponse(HttpStatusCode.OK, imageList);
+            return result;
+        }
+
+
         [HttpPost]
         public bool CreateNGO(NGOUser objngo)
         {
