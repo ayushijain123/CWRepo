@@ -1,6 +1,9 @@
 ﻿using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -45,8 +48,23 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     }
                 }
                 return fileData;
-            }
+            }           
         }
+        
+        
+        [HttpGet]
+        public async Task< ActionResult> getImage()
+        {
+            List<string> imageValues = new List<string>();            
+            var result = await APIHelper<List<ImageListResponse>>.GetJsonAsync1("NGORegistration/Get");
+            foreach (var item in result)
+            {              
+                imageValues.Add("data:image/png;base64,"+item.strImage);
+            }
+            ViewBag.ImageList = imageValues;
+            return View();
+        }
+       
         [HttpPost]
         public ActionResult CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
@@ -85,5 +103,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
 
 
+    }
+    public class ImageListResponse
+    {
+        //public Bitmap MyImage { get; set; }
+        public string strImage { get; set; }
+        public string ImageId { get; set; }
     }
 }
