@@ -439,6 +439,7 @@
     </Content>
     <Content Include="Views\Admin\Requests.cshtml" />
     <Content Include="Views\Admin\DisplayGraph.cshtml" />
+    <Content Include="Views\NGORegistration\getImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
