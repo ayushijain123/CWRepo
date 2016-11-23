@@ -37,7 +37,7 @@
             <a class="uploadimage">  <span  onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
             <input type="file" id="file" name="file" data-badge="false" />
             <span id="uploadFileName"></span>
-              @Html.DropDownList("category",(SelectList)ViewBag.categoryList , new { @class = "form-control chosen-select-multiple", @multiple="multiple", })
+              @Html.DropDownList("category",(SelectList)ViewBag.CategoryListForHome , new { @class = "form-control chosen-select-multiple", @multiple="multiple", })
            
         </div>
         <div class="form-horizontal">
