@@ -176,7 +176,9 @@ $(document).ready(function () {
     var loadcount=0;
     $("#btnLoad").click(function () {
         loadcount++;
-        $.post("/post/onLoadPost?count="+loadcount, function (result) {
+        //alert('hi');
+       var category= $("#selectcategory").val();
+        $.post("/post/onLoadPost?count="+loadcount+"&category="+category, function (result) {
          
             console.log(result);
             $("#loadMoreSection").append(result);
@@ -237,6 +239,10 @@ $(document).ready(function () {
 
 
     });
+
+    /*js for select post for categorywise*/
+   
+  
 
 });
 
