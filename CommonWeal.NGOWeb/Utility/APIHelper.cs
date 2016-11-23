@@ -23,7 +23,16 @@ namespace CommonWeal.NGOWeb.Utility
     {
         public static string Access_Token
         {
-            get { return System.Web.HttpContext.Current.Session["Access_Token"] as string; }
+            get
+            {
+
+                if (System.Web.HttpContext.Current != null && System.Web.HttpContext.Current.Session["Access_Token"] != null)
+                {
+                    return System.Web.HttpContext.Current.Session["Access_Token"].ToString();
+                }
+
+                return string.Empty;
+            }
             set { System.Web.HttpContext.Current.Session["Access_Token"] = value; }
         }
         public static string Token_Type
@@ -159,7 +168,8 @@ namespace CommonWeal.NGOWeb.Utility
 
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    throw new Exception("API error");
+                   // throw new Exception("API error");
+                    throw new Exception();
                 }
             }
             return JsonConvert.DeserializeObject<T>(result);
