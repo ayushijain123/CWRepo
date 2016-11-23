@@ -203,9 +203,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bootstrap\css\bootstrap-theme.css" />
+    <Content Include="bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap\css\bootstrap-theme.min.css.map" />
     <Content Include="bootstrap\css\bootstrap.css" />
+    <Content Include="bootstrap\css\bootstrap.css.map" />
     <Content Include="bootstrap\css\bootstrap.min.css" />
+    <Content Include="bootstrap\css\bootstrap.min.css.map" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
@@ -288,10 +292,6 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="bootstrap\css\bootstrap-theme.css.map" />
-    <Content Include="bootstrap\css\bootstrap-theme.min.css.map" />
-    <Content Include="bootstrap\css\bootstrap.css.map" />
-    <Content Include="bootstrap\css\bootstrap.min.css.map" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
@@ -417,14 +417,10 @@
     <Content Include="Views\Reset\update.cshtml" />
     <Content Include="Views\UserRegistration\CreateUser.cshtml" />
     <Content Include="Views\NGORegistration\CreateNgo.cshtml" />
-    <Content Include="Views\Shared\Active_Users.cshtml" />
-    <Content Include="Views\Shared\Admin\Blocked_Users.cshtml" />
-    <Content Include="Views\Shared\Admin\Requests.cshtml" />
     <Content Include="Views\Admin\Settings.cshtml" />
     <Content Include="Views\UserHome\Index.cshtml" />
     <Content Include="Views\UserRegistration\CreateUserPost.cshtml" />
     <Content Include="Views\NGOProfile\AboutUs.cshtml" />
-    <Content Include="Views\NGOProfile\Album.cshtml" />
     <Content Include="Views\NGOProfile\Index.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Home\Setting.cshtml" />
@@ -442,8 +438,6 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Admin\Requests.cshtml" />
-    <Content Include="Views\NGOProfile\AreaOfInterestGET.cshtml" />
-    <Content Include="Views\NGOHome\Test.cshtml" />
     <Content Include="Views\Admin\DisplayGraph.cshtml" />
   </ItemGroup>
   <ItemGroup>
