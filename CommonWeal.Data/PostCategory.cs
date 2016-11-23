@@ -19,5 +19,7 @@ namespace CommonWeal.Data
         public int CategoryID { get; set; }
         public Nullable<System.DateTime> createdOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+    
+        public virtual NGOPost NGOPost { get; set; }
     }
 }

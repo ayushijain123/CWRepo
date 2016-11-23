@@ -14,6 +14,11 @@ namespace CommonWeal.Data
     
     public partial class NGOPost
     {
+        public NGOPost()
+        {
+            this.PostCategories = new HashSet<PostCategory>();
+        }
+    
         public int PostID { get; set; }
         public Nullable<int> LoginID { get; set; }
         public Nullable<System.DateTime> PostDateTime { get; set; }
@@ -25,5 +30,7 @@ namespace CommonWeal.Data
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string CreatedBy { get; set; }
+    
+        public virtual ICollection<PostCategory> PostCategories { get; set; }
     }
 }

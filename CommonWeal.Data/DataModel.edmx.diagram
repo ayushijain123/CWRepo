@@ -5,22 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1f20fc33f3e44cc4a93beb5f2bc9258d" Name="Diagram1">
-        <EntityTypeShape EntityType="CommonWealModel.ForgotPassword" Width="1.5" PointX="0.518552145230841" PointY="10.267607499969941" />
-        <EntityTypeShape EntityType="CommonWealModel.ImageHandler" Width="1.5" PointX="1.9573022266651048" PointY="29.553061901383597" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="11.625" PointY="17" />
-        <EntityTypeShape EntityType="CommonWealModel.PostComment" Width="1.5" PointX="5.8105807703968981" PointY="21.67020835991493" />
-        <EntityTypeShape EntityType="CommonWealModel.PostLike" Width="1.5" PointX="2.6524422683997275" PointY="15.959788851421228" />
-        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="10.694439125570673" PointY="30.921041517947355" />
-        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="10.760211461577661" PointY="25.283361565919297" />
-        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="4.1971473061466344" PointY="17.505629994676276" />
-        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="5.0862261583498807" PointY="29.471581070437832" />
+        <EntityTypeShape EntityType="CommonWealModel.AreaOfInterest" Width="1.5" PointX="9.848802202310786" PointY="2.2399972091615186" />
+        <EntityTypeShape EntityType="CommonWealModel.City" Width="1.5" PointX="8.400778109394377" PointY="23.621511634262983" />
+        <EntityTypeShape EntityType="CommonWealModel.ForgotPassword" Width="1.5" PointX="2.3747401099534424" PointY="17.02323443490231" />
+        <EntityTypeShape EntityType="CommonWealModel.ImageHandler" Width="1.5" PointX="9.6255553353696843" PointY="23.729405101262689" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="0.53360441724471952" PointY="19.290461802524728" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="7.9919761791787929" PointY="27.179556561251896" />
+        <EntityTypeShape EntityType="CommonWealModel.PostCategory" Width="1.5" PointX="2.1437741304485938" PointY="21.898615385358507" />
+        <EntityTypeShape EntityType="CommonWealModel.PostComment" Width="1.5" PointX="2.0307797221610229" PointY="15.336088128078769" />
+        <EntityTypeShape EntityType="CommonWealModel.PostLike" Width="1.5" PointX="8.0898218509228066" PointY="4.4869657626780519" />
+        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="2.4753727030360011" PointY="14.547090686181138" />
+        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="6.3328699145153484" PointY="23.691369172041941" />
+        <EntityTypeShape EntityType="CommonWealModel.Search" Width="1.5" PointX="2.6432447222262829" PointY="27.909417075994153" />
+        <EntityTypeShape EntityType="CommonWealModel.State" Width="1.5" PointX="4.5040457902960691" PointY="4.43013146725955" />
+        <EntityTypeShape EntityType="CommonWealModel.sysdiagram" Width="1.5" PointX="7.6626084165939172" PointY="19.317824849541218" />
+        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="9.3029152347254183" PointY="16.663450174342586" />
+        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="7.9894238561342581" PointY="18.516774186173816" />
+        <EntityTypeShape EntityType="CommonWealModel.WorkingArea" Width="1.5" PointX="4.8680672016311757" PointY="15.394602559224984" />
         <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
         <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_UserLogin" />
-        <EntityTypeShape EntityType="CommonWealModel.WorkingArea" Width="1.5" PointX="13.875" PointY="16.625" />
-        <EntityTypeShape EntityType="CommonWealModel.sysdiagram" Width="1.5" PointX="11.661510614520642" PointY="18.212383785383956" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="2.9049993822840041" PointY="2.4713175010268191" />
-        <EntityTypeShape EntityType="CommonWealModel.PostCategory" Width="1.5" PointX="4.1117123663945643" PointY="16.218139954012884" />
-        <EntityTypeShape EntityType="CommonWealModel.AreaOfInterest" Width="1.5" PointX="5.9970954554141951" PointY="21.005308667665958" />
+        <AssociationConnector Association="CommonWealModel.FK_PostCategories_NGOPost1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

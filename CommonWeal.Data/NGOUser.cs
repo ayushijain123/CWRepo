@@ -33,9 +33,9 @@ namespace CommonWeal.Data
         public string ParentOrganisation { get; set; }
         public string RegisteredWith { get; set; }
         public string RegistrationNumber { get; set; }
+        public string RegistrationProof { get; set; }
         public string CityOfRegistration { get; set; }
         public Nullable<System.DateTime> DateOfRegistration { get; set; }
-        public string RegistrationProof { get; set; }
         public string FCRANumber { get; set; }
         public string AreaOfIntrest { get; set; }
         public string OperationalArea { get; set; }
