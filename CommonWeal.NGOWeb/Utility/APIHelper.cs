@@ -138,6 +138,23 @@ namespace CommonWeal.NGOWeb.Utility
             return JsonConvert.DeserializeObject<T>(result); ;
         }
 
+        public static async Task <T> GetJsonAsync1(string url)
+        {
+            url = APIBaseUrl + url;
+            string result = "";
+            using (HttpClient client = GetHttpClient(url))
+            {
+                // HTTP GET 
+                HttpResponseMessage response =  client.GetAsync(url).ConfigureAwait(false).GetAwaiter().GetResult();
+                result = response.Content.ReadAsStringAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    throw new Exception("API error");
+                }
+            }
+            return JsonConvert.DeserializeObject<T>(result); ;
+        }
+
         /// <summary>
         /// 
         //// create, update and delete 
