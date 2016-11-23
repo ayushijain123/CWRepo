@@ -65,15 +65,17 @@ namespace CommonWeal.NGOWeb.Controllers
 
                     ViewBag.LoginUser = LoginUser;
                     ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
-                   
+               
+    
                 }
+              
             }
-
             using (CommonWealEntities CWContext = new CommonWealEntities())
             {
                 CategoryList = CWContext.AreaOfInterests.ToList();
                 ViewBag.CategoryList = CategoryList;
             }
+          
         }
         /// <summary>
         /// Create Context and set role for authenticated user
