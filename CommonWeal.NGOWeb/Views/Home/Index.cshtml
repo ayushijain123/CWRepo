@@ -1,20 +1,36 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+@{
+    ViewBag.Title = "All Rights Reserved";
+}
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#selectcategory").change(function () {
+           // alert($(this).val());
+            if ($(this).val() > 0) {
+                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
+                    // $("#loadMoreSection").append(result);
+                    //    console.log(result);
+                    if (result != null) {
+                        $("#postsection").html("");
+                        $("#loadMoreSection").html("");
+                        $("#loadMoreSection").append(result);
+                    }
+                    //    //console.log(result);
+                });
+            }
 
-@Html.Partial("../UserHome/_Posts", Model)
+        });
 
- 
-<script>
+    });
+  </script>
+ @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory" })
 
-    //var post = new post();
+<div id="postsection">
+    @Html.Partial("../UserHome/_Posts", Model)
+         </div>   
 
-
-    //post.post='sd'
-
-    //post.submitpost();
-
-</script>
 
 <div id="loadMoreSection"></div>
 
