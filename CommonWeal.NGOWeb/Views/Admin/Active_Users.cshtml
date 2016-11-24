@@ -35,41 +35,28 @@
 @model IEnumerable<CommonWeal.Data.NGOUser>
 
 <div>
-       <div class="row">
+    <div class="row">
         <div class="col-md-12 ">
             <div class="requests ">
-            <table class="tableAdmin col-md-12">
-                          <thead class="tableheader col-md-12">
-                              <th>NGO NAME</th>
-                              
-                              <th >NGO URL</th>
-                              <th >BLOCK</th>
-
-                          </thead>
-                      @foreach (var item in Model)
-                      { 
-                      
-                         <tr>
-
-                              <td class="tableData"> @Html.DisplayFor(modelItem => item.NGOName)</td>
-                              <td class="tableData"><a> @Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-                             
-                              <td class="tableData"><a href="/admin/Block/@item.LoginID"class="fa fa-ban fa-2x"  aria-hidden="true" style="color:red; margin-left:17px;"></a></td>
-                          
-                         </tr>
-              
-
-                      }
-               
-                  <i><a href="/Admin/" style="font-size:16px;">Back to Dashboard</a></i>
-               </table>
-               
-           
+                <table class="tableAdmin col-md-12">
+                    <thead class="tableheader col-md-12">
+                        <tr>
+                            <th class="col-md-4">NGO NAME</th>
+                            <th class="col-md-4">NGO URL</th>
+                            <th class="col-md-4">BLOCK</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {                       
+                        <tr>
+                            <td class="col-md-4 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
+                            <td class="col-md-4 adminTableData"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                            <td class="col-md-4 adminTableData"><a href="/admin/Block/@item.LoginID"class="fa fa-ban fa-2x"  aria-hidden="true" style="color:red"></a></td>
+                        </tr>    
+                    }
+                    <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
+                </table>
             </div>
-               
         </div>
     </div>
-     
-             
-    </div>
- 
+</div>
