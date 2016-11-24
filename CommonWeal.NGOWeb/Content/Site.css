@@ -82,6 +82,7 @@ mark {
 header {
     background-color: #2A3F54;
     display: block;
+    box-shadow: 0px 2px 5px #2A3F54;
 }
 
 #menu {
@@ -1127,6 +1128,13 @@ tr:nth-child(even) {
     margin-top: 100px;
 }
 
+
+/*Added by Neha M.
+NGO registration page css*/
+.panelNGO {
+    margin-top: 8px;
+}
+
 /*Added by Neha M.*/
 /*Admin CSS*/
 
@@ -1142,7 +1150,9 @@ tr:nth-child(even) {
     height: 100px;
 }
 
-
+.top-panel {
+    margin-top: 8px;
+}
 /*.bottom-panel {
     left: 203px;
 }
@@ -1312,3 +1322,5 @@ added by payal*/
 }*/
 
 
+/*Added by Neha M.*/
+/*Login Partial view css*/
