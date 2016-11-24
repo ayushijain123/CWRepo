@@ -71,15 +71,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(request);
         }
 
-
-
         public ActionResult Settings()
         {
             return View();
         }
         public ActionResult Accept(int id)
         {
-
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
@@ -117,7 +114,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
         public ActionResult Block(int id)
         {
-
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
@@ -150,12 +146,9 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 }
                 throw raise;
             }
-
         }
         public ActionResult Unblock(int id)
         {
-
-
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
@@ -170,7 +163,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
         public ActionResult BlockUsers(int id)
         {
-
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
@@ -198,7 +190,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 }
                 throw raise;
             }
-
         }
         public ActionResult unblockUsers(int id)
         {
@@ -211,7 +202,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return RedirectToAction("Blocked_NormalUsers", "Admin");
         }
 
-         //CONTROLLER METHODS   
+        //CONTROLLER METHODS   
         public ActionResult DisplayGraph()
         {
             AdminChart objChart = new AdminChart();
@@ -223,8 +214,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(objChart);
 
         }
-
-
 
         /// <summary>
         /// Code to get the data which we will pass to chart
@@ -242,7 +231,5 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             objChartData.User = user1.ToString();
             return objChartData;
         }
-
-
     }
 }
