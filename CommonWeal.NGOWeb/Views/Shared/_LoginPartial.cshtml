@@ -5,16 +5,16 @@
 
 
 
-    <nav>
-        <div id="menu" class="right">
+    <nav class="navbar-right">
+        <div id="menu">
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
                 if (@ViewBag.LoginUser != null)
                 {
-                <span class="usernav">Hello @ViewBag.LoginUser.UserName</span>  
+                <div class="usernav">Hello @ViewBag.LoginUser.UserName</div>  
                     if (System.Web.HttpContext.Current.User.IsInRole("NGOAdmin"))
                     {
-                <div>
+                <div class="row vdivide">
                     <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
                     <a href="@Url.Action("Index", "NGOProfile")" class="menuitem fa fa-user" title="Profile"></a>
                     <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off" title="Logout"></a>
