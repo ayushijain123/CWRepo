@@ -1,13 +1,15 @@
-﻿<div class="row">
+﻿@*Added by Neha M.*@
+
+<div class="row">
     <div class="top-panel col-md-12">
-        <div class="col-md-4">
+        <div class="top-row col-md-4">
             <a href="/Admin/Requests">
-                <div class="media bg-primary request admin-button">
+                <div class="media bg-primary request">
                     <div class="media-left side-request pull-left">
-                        <i class="icon fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
+                        <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
                     </div>
                     <div class="media-body">
-                        <h3>Total Request
+                        <h3>All Requests
                              <span class="pull-right">@ViewBag.COR</span>
                         </h3>
                     </div>
@@ -15,14 +17,14 @@
             </a>
         </div>
 
-        <div class="col-md-4">
+        <div class="top-row col-md-4">
             <a href="/Admin/Active_Users">
-                <div class="media bg-primary active-ngo admin-button">
+                <div class="media bg-primary active-ngo">
                     <div class="media-left side-active-ngo pull-left">
-                        <i class="icon fa fa-rotate-right fa-spin" aria-hidden="true"></i>
+                        <i class="icon-admin fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
                     </div>
                     <div class="media-body">
-                        <h3>Active NGO
+                        <h3>Active NGOs
                              <span class="pull-right">@ViewBag.COAN</span>
                         </h3>
                     </div>
@@ -30,14 +32,14 @@
             </a>
         </div>
 
-        <div class="col-md-4">
+        <div class="top-row col-md-4">
             <a href="/Admin/Blocked_Users">
-                <div class="media bg-primary blocked-ngo admin-button">
+                <div class="media bg-primary blocked-ngo">
                     <div class="media-left side-blocked-ngo pull-left">
-                        <i class="icon fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
                     </div>
                     <div class="media-body">
-                        <h3>Blocked NGO
+                        <h3>Blocked NGOs
                             <span class="pull-right">@ViewBag.COBN</span>
                         </h3>
                     </div>
@@ -49,11 +51,11 @@
 
 <div class="row">
     <div class="bottom-panel col-md-12">
-        <div class="col-md-4">
+        <div class="top-row col-md-4">
             <a href="/Admin/All_Users">
-                <div class="media bg-primary all-users admin-button">
+                <div class="media bg-primary all-users">
                     <div class="media-left side-all-users pull-left">
-                        <i class="icon fa fa-users fa-spin-hover" aria-hidden="true"></i>
+                        <i class="icon-admin fa fa-users fa-spin-hover" aria-hidden="true"></i>
                     </div>
                     <div class="media-body">
                         <h3>All Users
@@ -64,11 +66,25 @@
             </a>
         </div>
 
-        <div class="col-md-4">
+
+        <div class="top-row col-md-4">
+            <div class="media bg-primary warned-users">
+                <div class="media-left side-warned-users pull-left">
+                    <i class="icon-admin fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
+                </div>
+                <div class="media-body">
+                    <h3>Warned Users
+                        <span class="pull-right">15</span>
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="top-row col-md-4">
             <a href="/Admin/Blocked_NormalUsers">
-                <div class="media bg-primary blocked-users admin-button">
+                <div class="media bg-primary blocked-users">
                     <div class="media-left side-blocked-users pull-left">
-                        <i class="icon fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
                     </div>
                     <div class="media-body">
                         <h3>Blocked Users
@@ -79,18 +95,6 @@
             </a>
         </div>
 
-        <div class="col-md-4">
-            <div class="media bg-primary warned-users">
-                <div class="media-left side-warned-users pull-left">
-                    <i class="icon fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>Warned Users
-                        <span class="pull-right">15</span>
-                    </h3>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
