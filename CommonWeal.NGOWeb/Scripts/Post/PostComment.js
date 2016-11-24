@@ -9,7 +9,7 @@ $(document).ready(function () {
     //    $("#file").filestyle({ badge: false });
 
 
-    $(".btnPost").click(function () {
+    $(".btnPost").live('click',function () {
         var postid = $(this).attr('id').split('-')[1];
         console.log(postid);
         var TextComment = $("#txtComment-" + postid).val().trim();
@@ -54,7 +54,7 @@ $(document).ready(function () {
     });
 
 
-    $(".commentIcon").click(function () {
+    $(".commentIcon").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
         $("#txtComment-" + postid).focus();
         //console.log(result);
@@ -77,7 +77,7 @@ $(document).ready(function () {
     });
 
     //start Likecount and update ajax
-    $(".LikeIcon").click(function () {
+    $(".LikeIcon").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
@@ -273,6 +273,9 @@ $(document).ready(function () {
         else sticky.removeClass('fixed');
     });
 
+
+    /*js for replace category tag on header search bar*/
+   
 });
 
 
