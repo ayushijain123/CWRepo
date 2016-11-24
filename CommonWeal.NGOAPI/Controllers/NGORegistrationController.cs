@@ -66,18 +66,19 @@ namespace CommonWeal.NGOAPI.Controllers
                     obj.IsBlock = false;/*default ngo user is not blocked */
                     obj.ModifiedOn = DateTime.Now;
                     obj.CreatedOn = DateTime.Now;
-                    context.Users.Add(obj);
-                    context.SaveChanges();
+                    context.Users.Add(obj);                    
                     /*to append data in ngoUser object objngo which are not submitted through form */
                     ImageHandler imgobj = new ImageHandler();
-                    byte[] data = Convert.FromBase64String(objngo.ChairmanID);
-                    //byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
-                    imgobj.Image = data;
-                    context.ImageHandlers.Add(imgobj);
-                    context.SaveChanges();
+                    if (objngo.ChairmanID != null && objngo.RegistrationProof != null)
+                    {
+                        byte[] data = Convert.FromBase64String(objngo.ChairmanID);
+                        //byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
+                        imgobj.Image = data;
+                        context.ImageHandlers.Add(imgobj);
+                    }
                     objngo.LoginID = obj.LoginID;/*reference key from user table */
-                    objngo.IsActive = false;
                     objngo.NGOEmailID = objngo.NGOEmailID.ToLower();
+                    objngo.IsActive = false;                   
                     objngo.IsBlock = false;
                     objngo.ChairmanID = null;
                     objngo.RegistrationProof = null;
