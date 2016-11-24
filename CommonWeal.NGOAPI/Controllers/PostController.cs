@@ -7,6 +7,7 @@ using System.Web.Http;
 using CommonWeal.Data;
 namespace CommonWeal.NGOAPI.Controllers
 {
+    [AllowAnonymous]
     public class PostController : BaseController
     {
 
@@ -16,7 +17,7 @@ namespace CommonWeal.NGOAPI.Controllers
         {
 
             CommonWealEntities db = new CommonWealEntities();
-            var response = Request.CreateResponse(HttpStatusCode.OK, db.PostComments);
+            var response = Request.CreateResponse(HttpStatusCode.OK, db.NGOPosts);
             return response;
 
         }
