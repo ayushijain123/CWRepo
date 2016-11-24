@@ -1121,9 +1121,10 @@ tr:nth-child(even) {
     left: 0;
     width: 100%;
 }
+
 .card .description {
-  font-size: 14px;
-  color: #333;
+    font-size: 14px;
+    color: #333;
 }
 /*.card .avatar {
   width: 30px;
@@ -1133,44 +1134,53 @@ tr:nth-child(even) {
   margin-right: 5px;
 }*/
 .card .author {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
 }
+
 .card .title {
-  margin: 0;
-  color: #333333;
-  font-weight: 300;
+    margin: 0;
+    color: #333333;
+    font-weight: 300;
 }
+
 .card .image img {
-  width: 100%;
+    width: 100%;
 }
+
 .card .content {
-  padding: 15px 15px 10px 15px;
+    padding: 15px 15px 10px 15px;
 }
+
 .card-user .author {
-  text-align: center;
-  text-transform: none;
-  margin-top: -70px;
+    text-align: center;
+    text-transform: none;
+    margin-top: -70px;
 }
+
 .card-user .avatar {
-  width: 124px;
-  height: 124px;
-  border: 5px solid #FFFFFF;
-  position: relative;
-  margin-bottom: 15px;
+    width: 124px;
+    height: 124px;
+    border: 5px solid #FFFFFF;
+    position: relative;
+    margin-bottom: 15px;
 }
-.card-user .avatar.border-gray {
-  border-color: #EEEEEE;
-}
+
+    .card-user .avatar.border-gray {
+        border-color: #EEEEEE;
+    }
+
 .card-user .title {
-  line-height: 24px;
+    line-height: 24px;
 }
+
 .card-user .content {
-  min-height: 240px;
+    min-height: 240px;
 }
+
 .editpanel {
-    margin-top:45px;
+    margin-top: 45px;
 }
 
 /*User Registraion CSS*/
@@ -1187,18 +1197,6 @@ NGO registration page css*/
 
 /*Added by Neha M.*/
 /*Admin CSS*/
-
-
-.dash-side-panel {
-    /*width: 96px;*/
-    height: 100px;
-    /*margin-left: 10px;*/
-}
-
-.dash-panel {
-    /*width: 193px;*/
-    height: 100px;
-}
 
 .top-panel {
     margin-top: 8px;
@@ -1220,22 +1218,22 @@ NGO registration page css*/
 }
 
 .blocked-ngo {
-    background-color: #f9a94a;
+    background-color: #EC8D8D;
 }
 
 .all-users {
-    background-color: #2F4F4F;
-}
-
-.blocked-users {
     background-color: #495b79;
 }
 
 .warned-users {
+    background-color: #f9a94a;
+}
+
+.blocked-users {
     background-color: #e45857;
 }
 
-.icon {
+.icon-admin {
     font-size: 25px;
     padding: 20px;
     color: #fff;
@@ -1244,6 +1242,30 @@ NGO registration page css*/
 .bg-primary {
     margin-bottom: 6px;
     border-radius: 4px;
+}
+
+.request:hover {
+    background-color: #29a2d7;
+}
+
+.active-ngo:hover {
+    background-color: #77af3b;
+}
+
+.blocked-ngo:hover {
+    background-color: #8C1717;
+}
+
+.all-users:hover {
+    background-color: #364359;
+}
+
+.warned-users:hover {
+    background-color: #f79219;
+}
+
+.blocked-users:hover {
+    background-color: #dd2c2b;
 }
 
 .media-body {
@@ -1264,28 +1286,25 @@ NGO registration page css*/
 }
 
 .side-blocked-ngo {
-    background-color: #f79219;
+    background-color: #8C1717;
 }
 
 .side-all-users {
-    background-color: #BDB76B;
-}
-
-.side-blocked-users {
     background-color: #364359;
 }
 
 .side-warned-users {
+    background-color: #f79219;
+}
+
+.side-blocked-users {
     background-color: #dd2c2b;
 }
 
-.button:hover {
-    background-color: #3e8e41;
-}
-
-.request {
+.top-row > a:link {
     text-decoration: none;
 }
+
 
 /*search box
 added by payal*/
