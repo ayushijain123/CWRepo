@@ -211,7 +211,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return RedirectToAction("Blocked_NormalUsers", "Admin");
         }
 
-        /// CONTROLLER METHODS   
+         //CONTROLLER METHODS   
         public ActionResult DisplayGraph()
         {
             AdminChart objChart = new AdminChart();
@@ -226,10 +226,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
 
 
-        ///// <summary>
-        ///// Code to get the data which we will pass to chart
-        ///// </summary>
-        ///// <returns></returns>
+        /// <summary>
+        /// Code to get the data which we will pass to chart
+        /// </summary>
+        /// <returns></returns>
         public AdminChartData GetChartData()
         {
             AdminChartData objChartData = new AdminChartData();
