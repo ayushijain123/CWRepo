@@ -25,12 +25,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         public ActionResult AboutUs()
         {
             CommonWealEntities context = new CommonWealEntities();
-
-
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-
             return View(obj);
         }
+
         [HttpPost]
         public ActionResult Edit(NGOUser obj)
         {
@@ -48,12 +46,14 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 User objuser = new User();
-                objuser.LoginEmailID = obj.NGOEmailID;
+                var Userob= context.Users.Where(x=>x.LoginID==LoginUser.LoginID).FirstOrDefault();
+                Userob.LoginEmailID = obj.NGOEmailID;
                 context.SaveChanges();
+
 
             }
 
-            return View("AboutUsEditable");
+            return RedirectToAction("aboutUs", "NGOProfile");
         }
 
     }
