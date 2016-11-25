@@ -733,7 +733,8 @@ tr.pager td {
     border-width:1px;
     padding-left: 0px;
     padding-right: 0px;
-
+    
+    
 }
 
 #images {
@@ -813,6 +814,7 @@ tr.pager td {
 #postcommentbox {
     background-color:#E0E0E0 ;
    border-style:inherit;
+    
 }
 
 #comentpost {
@@ -862,6 +864,7 @@ tr.pager td {
     border-left-width: 5px;
     border-bottom-width: 2px;
     border-top-width: 5px;
+        width: 700px;
  
 }
 
