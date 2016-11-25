@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CommonWeal.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using CommonWeal.Data;
 namespace CommonWeal.NGOAPI.Controllers
 {
     [AllowAnonymous]
@@ -16,18 +14,70 @@ namespace CommonWeal.NGOAPI.Controllers
         public HttpResponseMessage PostAll()
         {
 
-            CommonWealEntities db = new CommonWealEntities();
-            var response = Request.CreateResponse(HttpStatusCode.OK, db.NGOPosts);
+            CommonWealEntities context = new CommonWealEntities();
+            var response = Request.CreateResponse(HttpStatusCode.OK, context.NGOPosts);
             return response;
 
         }
+        [HttpGet]
+        public HttpResponseMessage LikesGET()
+        {
 
+            CommonWealEntities context = new CommonWealEntities();
+            var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
+            return response;
+
+        }
+        [HttpGet]
+        public HttpResponseMessage CommenttGET()
+        {
+
+            CommonWealEntities context = new CommonWealEntities();
+            var response = Request.CreateResponse(HttpStatusCode.OK, context.PostComments);
+            return response;
+
+        }
+        [HttpPost]
+        public HttpResponseMessage CommentsPOST(PostComment objPostComment)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            context.PostComments.Add(objPostComment);
+            context.SaveChanges();
+            var response = Request.CreateResponse(HttpStatusCode.OK, context.PostComments);
+            return response;
+
+        }
+        [HttpPost]
+        public HttpResponseMessage LikePOST(PostLike objPostLike)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var ob = context.PostLikes.Where(x => x.PostID == objPostLike.PostID).FirstOrDefault();
+            if (objPostLike.IsLike != null)
+            {
+                if (ob.IsLike == true)
+                {
+                    ob.IsLike = false;
+                }
+                else
+                {
+                    ob.IsLike = true;
+                }
+            }
+            else
+            { ob.IsLike = true; }
+            context.Configuration.ValidateOnSaveEnabled = false;
+
+            context.SaveChanges();
+            var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
+            return response;
+
+        }
         //[HttpGet]
         //public PostComment Post(PostComment postcmnt)
         //{
 
-        //    CommonWealEntities db = new CommonWealEntities();
-        //    var response = db.PostComments.Find(postcmnt.PostID);
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    var response = context.PostComments.Find(postcmnt.PostID);
         //    if (response == null)
         //    {
 
@@ -39,14 +89,14 @@ namespace CommonWeal.NGOAPI.Controllers
 
         //}
 
-        [HttpPost]
-        public bool PostTest(PostComment objTest)
-        {
-            CommonWealEntities db = new CommonWealEntities();
-            db.PostComments.Add(objTest);
-            db.SaveChanges();
-            return true;
-        }
+        //[HttpPost]
+        //public bool PostTest(PostComment objTest)
+        //{
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    context.PostComments.Add(objTest);
+        //    context.SaveChanges();
+        //    return true;
+        //}
 
 
     }
