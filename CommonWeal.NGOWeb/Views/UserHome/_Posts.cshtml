@@ -6,9 +6,10 @@
 
     @foreach (var item in Model)
     { 
+        <div class="container" id="container">
         <div id="posttemplate ">
             <div class="postuserdetail col-md-12 column12" id="postuserdetail">
-                <div class="form-inline ">
+                <div class="form-inline">
                     <img src="~/Images/usergroupnew.png" id="images" class="col-md-1" />
                     <b class="usernamepost col-md-3" id="usernamepost">@item.userName</b>
                     <span class="posttime col-md-3">@item.postCreateTime</span>
@@ -20,6 +21,7 @@
                     <span>@item.postcontent</span>
                 </div>
             </div>
+         
             @*  <div class="form-group">*@
             <div id="image/video" class="col-md-12 imagepost">
                 @if (item.postImageUrl != null)
@@ -71,12 +73,12 @@
                                   if (preTotalcount == 2)
                                   { <span class="commentlikeuserfont">and</span>}
                                 
-                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont"> this</span>  
+                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">like this</span>  
                               }
                               else if (totalcount == 2)
                               {
                         <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">  and</span>   
-                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">  like this</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">like this</span>   
                               }
                               else if (totalcount >= 3)
                               {        <span class="commentlikeuserfont text-primary"> @item.postlike[0].userName</span><span>,</span>   
@@ -121,7 +123,7 @@
                 <br />
             }
 
-            <div id="@item.postId" class="form-inline col-md-12">
+            <div id="@item.postId" class="form-inline column12">
             </div>
 
             @*///user Comment section*@
@@ -130,10 +132,10 @@
             {
     
                 <div class="form-group col-md-12 column12">
-                    <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
+                    <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />&nbsp;
                     <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
                     @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
-                    <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1   " value="Post" />
+                    <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1 postimage  " value="Post" />
                 </div>
             }
         </div>
@@ -146,7 +148,13 @@
             <div class="modal-dialog likemodaldialog" role="document">
                 <img class="modal-content fullImage" id="img01-@item.postId"/>
             </div>
-        </div>           
+        </div>      
+            </div>  
+        <br/>
+        <br/>
+       
+           
     }
 </div>
+       
 
