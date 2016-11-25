@@ -716,10 +716,24 @@ tr.pager td {
 
 /*POST*/
 .postuserdetail {
-    background-color: #d9edf7;
+    background-color:#F8F8F8 ;
     height: 45px;
     padding-left: 0px;
     padding-right: 0px;
+   border-bottom: solid;
+    border-color: rgba(211, 211, 211, 0.31);
+    border-width: 1px;
+}
+
+#container {
+ 
+    border:medium;
+ 
+    border-color: rgba(211, 211, 211, 0.31);
+    border-width: 4px;
+    padding-left: 0px;
+    padding-right: 0px;
+
 }
 
 #images {
@@ -760,8 +774,7 @@ tr.pager td {
 
 .imageurlpost {
     max-width: 100%;
-    min-width: 100%;
-    min-height: 600px;
+   
     max-height: 600px;
     display: block;
     margin-left: auto;
@@ -779,24 +792,34 @@ tr.pager td {
     background-color: #FFFFFF;
     border-bottom: ridge;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;
+    margin-right: auto;*/
     cursor: pointer;
     font-size: 10px;
+    padding-left:40px;
+ 
+
 }
+#likecommentsign {
+ padding-left: 11px;
+
+}
+
 
 .commentlikeuserfont {
     font-size: 16px;
 }
 
 #postcommentbox {
-    background-color: #EFEFEF;
+    background-color:#E0E0E0 ;
+   border-style:inherit;
 }
 
 #comentpost {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
+
 }
 
 .column12 {
@@ -808,7 +831,7 @@ tr.pager td {
     height: 38px;
     width: auto;
     padding-top: 7px;
-    padding-left: 9px;
+       padding-left: 38px;
     padding-right: 11px;
 }
 
@@ -818,7 +841,12 @@ tr.pager td {
     color: #428bca;
     width: auto;
     padding-right: 8px;
+    top: 4px;
 }
+
+
+
+
 
 .usernav {
     color: #d9f7dd;
@@ -829,12 +857,16 @@ tr.pager td {
     margin-left: 55px;
 }
 
-/*#txtComment- {
-    height: 35px;
-}*/
+.textComment {
+        border-right-width: 0px;
+    border-left-width: 5px;
+    border-bottom-width: 2px;
+    border-top-width: 5px;
+ 
+}
 
 #postform {
-    background-color: #e9eff1;
+    background-color: #E0E0E0;
     padding-top: 5px;
     padding-right: 5px;
     padding-bottom: 40px;
@@ -842,9 +874,16 @@ tr.pager td {
     margin-bottom: 13px;
 }
 
+.postimage {
+top: 7px
+
+}
+
 #postcontent {
     background-color: #FFFFFF;
     font-size: 16px;
+    padding-left: 40px;
+    padding-right: 11px;
 }
 
 #upload {
@@ -891,7 +930,7 @@ tr.pager td {
 .imagepost {
     background-color: #F8F8F8;
     padding-left: 0px;
-    padding-right: 0px;
+    padding-right: 2px;
 }
 
 /*css for pop body*/
@@ -914,7 +953,9 @@ tr.pager td {
     padding-bottom: 5px;
     height: 45px;
     width: auto;
-    padding-right: 9px;
+   padding-left: 37px;
+    padding-right: 0px; 
+    top: 4px;
 }
 
 .textComment {
@@ -1391,5 +1432,15 @@ added by payal*/
 }*/
 
 
-/*Added by Neha M.*/
-/*Login Partial view css*/
+#bodycolor {
+
+background-color:#eeeeee;
+}
+
+#images {
+  padding-left: 40px;
+  padding-right: 11px;
+
+}
+
+
