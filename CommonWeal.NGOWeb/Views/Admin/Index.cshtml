@@ -1,104 +1,135 @@
 ﻿@*Added by Neha M.*@
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}
 
-<div class="row">
-    <div class="top-panel col-md-12">
-        <div class="top-row col-md-4">
-            <a href="/Admin/Requests">
-                <div class="media bg-primary request">
-                    <div class="media-left side-request pull-left">
-                        <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>All Requests
+<script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+<script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="top-panel col-md-12">
+            <div class="top-row col-md-4">
+                <a href="/Admin/Requests">
+                    <div class="media bg-primary request">
+                        <div class="media-left side-request pull-left">
+                            <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>All Requests
                              <span class="pull-right">@ViewBag.COR</span>
-                        </h3>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
-        <div class="top-row col-md-4">
-            <a href="/Admin/Active_Users">
-                <div class="media bg-primary active-ngo">
-                    <div class="media-left side-active-ngo pull-left">
-                        <i class="icon-admin fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Active NGOs
+            <div class="top-row col-md-4">
+                <a href="/Admin/Active_Users">
+                    <div class="media bg-primary active-ngo">
+                        <div class="media-left side-active-ngo pull-left">
+                            <i class="icon-admin fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Active NGOs
                              <span class="pull-right">@ViewBag.COAN</span>
-                        </h3>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
-        <div class="top-row col-md-4">
-            <a href="/Admin/Blocked_Users">
-                <div class="media bg-primary blocked-ngo">
-                    <div class="media-left side-blocked-ngo pull-left">
-                        <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Blocked NGOs
+            <div class="top-row col-md-4">
+                <a href="/Admin/Blocked_Users">
+                    <div class="media bg-primary blocked-ngo">
+                        <div class="media-left side-blocked-ngo pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Blocked NGOs
                             <span class="pull-right">@ViewBag.COBN</span>
-                        </h3>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="bottom-panel col-md-12">
-        <div class="top-row col-md-4">
-            <a href="/Admin/All_Users">
-                <div class="media bg-primary all-users">
-                    <div class="media-left side-all-users pull-left">
-                        <i class="icon-admin fa fa-users fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>All Users
-                            <span class="pull-right">@ViewBag.COAL</span>
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-
-        <div class="top-row col-md-4">
-            <div class="media bg-primary warned-users">
-                <div class="media-left side-warned-users pull-left">
-                    <i class="icon-admin fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
-                </div>
-                <div class="media-body">
-                    <h3>Warned Users
-                        <span class="pull-right">15</span>
-                    </h3>
-                </div>
+                </a>
             </div>
         </div>
+    </div>
 
-        <div class="top-row col-md-4">
-            <a href="/Admin/Blocked_NormalUsers">
-                <div class="media bg-primary blocked-users">
-                    <div class="media-left side-blocked-users pull-left">
-                        <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+    <div class="row">
+        <div class="bottom-panel col-md-12">
+            <div class="top-row col-md-4">
+                <a href="/Admin/All_Users">
+                    <div class="media bg-primary all-users">
+                        <div class="media-left side-all-users pull-left">
+                            <i class="icon-admin fa fa-users fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>All Users
+                            <span class="pull-right">@ViewBag.COAL</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div class="top-row col-md-4">
+                <div class="media bg-primary warned-users">
+                    <div class="media-left side-warned-users pull-left">
+                        <i class="icon-admin fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
                     </div>
                     <div class="media-body">
-                        <h3>Blocked Users
-                            <span class="pull-right">@ViewBag.COBU</span>
+                        <h3>Warned Users
+                        <span class="pull-right">15</span>
                         </h3>
                     </div>
                 </div>
-            </a>
+            </div>
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/Blocked_NormalUsers">
+                    <div class="media bg-primary blocked-users">
+                        <div class="media-left side-blocked-users pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Blocked Users
+                            <span class="pull-right">@ViewBag.COBU</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div id="ornek-donut"></div>
         </div>
 
     </div>
+
 </div>
 
-<div class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
     <div class="col-md-12">
         <script>
 
@@ -128,11 +159,11 @@
            
            
             <button class="btn btn-primary" id="getRequest" type="submit">Graph</button>
-        }
+        }*@
 
 
 
-        @* @using (Ajax.BeginForm("DisplayGraph", "Admin",
+@* @using (Ajax.BeginForm("DisplayGraph", "Admin",
                 null,
                 new AjaxOptions
                 {
@@ -147,11 +178,11 @@
     
         }*@
 
-        @*   <span id="lblResult"></span>*@
+@*   <span id="lblResult"></span>*@
 
-    </div>
+@* </div>
 </div>
-<span id="lblResult"></span>
+<span id="lblResult"></span>*@
 @*<table class="col-md-12 col-md-offset-1" style="border:hidden">
     <tr>
         <td>
@@ -247,4 +278,3 @@
     <span id="lblResult"></span>      
 
 *@
-
