@@ -9,7 +9,7 @@ $(document).ready(function () {
     //    $("#file").filestyle({ badge: false });
 
 
-    $(".btnPost").live('click',function () {
+    $(".btnPost").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
         console.log(postid);
         var TextComment = $("#txtComment-" + postid).val().trim();
@@ -177,9 +177,9 @@ $(document).ready(function () {
     $("#btnLoad").click(function () {
         loadcount++;
         //alert('hi');
-       var category= $("#selectcategory").val();
-        $.post("/post/onLoadPost?count="+loadcount+"&category="+category, function (result) {
-         
+        var category = $("#selectcategory").val();
+        $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category, function (result) {
+
             console.log(result);
             $("#loadMoreSection").append(result);
             //console.log(result);
@@ -269,15 +269,34 @@ $(document).ready(function () {
         var sticky = $('.sticky'),
             scroll = $(window).scrollTop();
 
-        if (scroll >= stickyOffset-130) sticky.addClass('fixed');
+        if (scroll >= stickyOffset - 130) sticky.addClass('fixed');
         else sticky.removeClass('fixed');
     });
 
 
     /*js for replace category tag on header search bar*/
-   
+
 });
 
 
 ///////
 
+//Added by Neha M.
+//Admin Module Script
+
+//Graph Script
+Morris.Donut({
+    element: 'ornek-donut',
+    data: [
+      { label: "Total NGOs", value: 50 },
+      { label: "Active NGOs", value: 30 },
+      { label: "Blocked NGOs", value: 20 }
+    ],
+    labelColor: '#000000',
+    colors: [
+        '#429A3C',
+        '#0068A6',
+        '#E81922'
+    ],
+    formatter: function (x) { return x }
+});
