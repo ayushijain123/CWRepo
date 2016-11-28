@@ -716,7 +716,7 @@ tr.pager td {
 
 /*POST*/
 .postuserdetail {
-    background-color:#eeeeee ;
+    background-color:#FFFFFF ;
     height: 45px;
     padding-left: 0px;
     padding-right: 0px;
@@ -790,8 +790,8 @@ tr.pager td {
 }
 
 .likecommentsign {
-    background-color: #eeeeee;
-    border-bottom: ridge;
+    background-color: #FFFFFF;
+    border-bottom:hidden;
     display: block;
     /*margin-left: auto;
     margin-right: auto;*/
@@ -812,7 +812,7 @@ tr.pager td {
 }
 
 #postcommentbox {
-    background-color:	#E8E8E8 ;
+    background-color:	#F0F0F0 ;
    border-style:inherit;
     
 }
@@ -836,8 +836,9 @@ tr.pager td {
     padding-top: 7px;
        /*padding-left: 38px;
     padding-right: 11px;*/
-        padding-left: 40px;
+   padding-left: 40px;
     padding-right: 0px; 
+      font-size: x-large;
 }
 
 
@@ -880,7 +881,7 @@ tr.pager td {
 }
 
 #postform {
-    background-color:	#E8E8E8;
+    background-color:	#F0F0F0;
     padding-top: 5px;
     padding-right: 5px;
     padding-bottom: 40px;
@@ -890,7 +891,7 @@ tr.pager td {
 
 
 #postcontent {
-    background-color:#eeeeee;
+    background-color:#FFFFFF;
     font-size: 16px;
     padding-left: 40px;
     padding-right: 11px;
@@ -936,13 +937,13 @@ tr.pager td {
 
 
 #posttemplate {
-    border: ridge;
-    background-color:#eeeeee;
+    border:medium;
+    background-color:#F0F0F0;
 }
 
 
 .imagepost {
-    background-color:#eeeeee;
+    background-color:#FFFFFF;
     padding-left: 0px;
 
         padding-top: 8px;
@@ -965,6 +966,7 @@ tr.pager td {
 }
     .likecommenticon img {
      height:40px;
+     padding-left: 13px;
     }
 .profileimagecomment {
       padding-left: 40px;
@@ -973,7 +975,8 @@ tr.pager td {
     width: auto;
 
     padding-right: 0px; 
-    top: 4px;
+    top: 8px;
+    font-size: xx-large;
 }
 .commentboxnew {
 
@@ -1466,7 +1469,7 @@ added by payal*/
 
 #bodycolor {
 
-background-color:#FFFFFF;
+background-color:#ebeff2 ;
 }
 
 
