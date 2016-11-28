@@ -741,8 +741,8 @@ tr.pager td {
     height: 38px;
     width: auto;
     padding-top: 7px;
-    padding-left: 9px;
-    padding-right: 11px;
+   padding-left: 36px;
+  padding-right: 11px;
 }
 
 #Textmessage {
@@ -778,7 +778,7 @@ tr.pager td {
    
     max-height: 600px;
     display: block;
-    margin-left: auto;
+    margin-left: 40px;
     margin-right: auto;
     cursor: pointer;
     overflow: hidden;
@@ -821,6 +821,7 @@ tr.pager td {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
+   
 
 }
 
@@ -833,9 +834,12 @@ tr.pager td {
     height: 38px;
     width: auto;
     padding-top: 7px;
-       padding-left: 38px;
-    padding-right: 11px;
+       /*padding-left: 38px;
+    padding-right: 11px;*/
+        padding-left: 40px;
+    padding-right: 0px; 
 }
+
 
 .commentusername {
     padding-left: 0px;
@@ -865,6 +869,9 @@ tr.pager td {
     border-bottom-width: 2px;
     border-top-width: 5px;
         width: 700px;
+      padding-left: 24px;
+    padding-right: 100px;
+      
  
 }
 
@@ -877,10 +884,6 @@ tr.pager td {
     margin-bottom: 13px;
 }
 
-.postimage {
-top: 7px
-
-}
 
 #postcontent {
     background-color: #FFFFFF;
@@ -919,8 +922,11 @@ top: 7px
     border-radius: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    margin-left: 11px;
+  margin-left: 11px;
     margin-top: 0px !important;
+    top: 10px;
+   
+   
     /*border-color:#225d77;*/
 }
 
@@ -933,7 +939,7 @@ top: 7px
 .imagepost {
     background-color: #F8F8F8;
     padding-left: 0px;
-    padding-right: 2px;
+
         padding-top: 8px;
 }
 
@@ -956,17 +962,29 @@ top: 7px
      height:40px;
     }
 .profileimagecomment {
-    padding-left: 5px;
+      padding-left: 40px;
     padding-bottom: 5px;
     height: 45px;
     width: auto;
-   padding-left: 37px;
+
     padding-right: 0px; 
     top: 4px;
 }
+.commentboxnew {
 
+    padding-left: 9px;
+}
 .textComment {
     margin-top: 0px !important;
+    padding-left: 15px;
+   margin-left: 5px;
+    width: 682px;
+    margin-top: 1px;
+    border-bottom-width: 4px;
+    margin-bottom: 7px;
+    padding-right: 43px;
+    border-top-width: 9px;
+
 }
 /*Added by Rishiraj on 08/11/2016*/
 /*.showmeonhover { text-decoration: none; }*/
@@ -1444,12 +1462,6 @@ added by payal*/
 #bodycolor {
 
 background-color:#eeeeee;
-}
-
-#images {
-  padding-left: 40px;
-  padding-right: 11px;
-
 }
 
 
