@@ -6,7 +6,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#selectcategory").change(function () {
-           // alert($(this).val());
+
             if ($(this).val() > 0) {
                 $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
@@ -23,9 +23,25 @@
 
         });
 
+        $(".chosen-select-multiple").chosen();
+        $('.chosen-select-multiple').change(function () {
+            if ($(this).val() != null && $(this).val().length > 0) {
+                $.each($(this).val(), function (key, value) {
+                    if (value == 1) {
+                        $('.chosen-select-multiple').val('').trigger('chosen:updated');
+                        $('.chosen-select-multiple').val('1').trigger('chosen:updated');
+                    }
+                });
+            }
+            else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
+            console.log($('.chosen-select-multiple').val().length);
+        });
+
+
+
     });
   </script>
- @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory" })
+@* @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory" })*@
 
 <div id="postsection">
     @Html.Partial("../UserHome/_Posts", Model)
@@ -34,7 +50,6 @@
 
 <div id="loadMoreSection"></div>
 
- <input type="button" value="Load more..." id="btnLoad">
 
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
