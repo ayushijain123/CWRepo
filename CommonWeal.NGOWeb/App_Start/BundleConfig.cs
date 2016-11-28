@@ -49,7 +49,9 @@ namespace CommonWeal.NGOWeb
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/multiselect.js"
+                      ));
 
 
             //************************************** datapicker bundle **********************************************
@@ -61,7 +63,8 @@ namespace CommonWeal.NGOWeb
             bundles.Add(new StyleBundle("~/Content/sitecss").Include(
                 "~/Content/bootstrap.css",
                  "~/Content/bootstrap-theme.css",
-                 "~/Content/Site.css"));
+                 "~/Content/Site.css",
+                 "~/Content/multiselect.css" ));
 
 
             //css  
