@@ -59,7 +59,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(request);
         }
 
-
         public ActionResult All_Users()
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -80,6 +79,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             return View();
         }
+
+        public ActionResult Warned_Users()
+        {
+            return View();
+        }
+
         public ActionResult Accept(int id)
         {
             try
@@ -117,6 +122,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             }
 
         }
+
         public ActionResult Block(int id)
         {
             try
@@ -152,6 +158,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
+
         public ActionResult Unblock(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -166,6 +173,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             context.SaveChanges();
             return RedirectToAction("Blocked_Users", "Admin");
         }
+
         public ActionResult BlockUsers(int id)
         {
             try
@@ -196,6 +204,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
+
         public ActionResult unblockUsers(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -207,34 +216,34 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return RedirectToAction("Blocked_NormalUsers", "Admin");
         }
 
-        //CONTROLLER METHODS   
-        public ActionResult DisplayGraph()
-        {
-            AdminChart objChart = new AdminChart();
-            objChart.DataValue = new AdminChartData();
-            objChart.DataValue = GetChartData();
-            objChart.MonthsTitle = "Months";
-            objChart.NGOTitle = "NGO";
-            objChart.UserTitle = "User";
-            return View(objChart);
+        
+        //public ActionResult DisplayGraph()
+        //{
+        //    AdminChart objChart = new AdminChart();
+        //    objChart.DataValue = new AdminChartData();
+        //    objChart.DataValue = GetChartData();
+        //    objChart.MonthsTitle = "Months";
+        //    objChart.NGOTitle = "NGO";
+        //    objChart.UserTitle = "User";
+        //    return View(objChart);
 
-        }
+        //}
 
         /// <summary>
         /// Code to get the data which we will pass to chart
         /// </summary>
         /// <returns></returns>
-        public AdminChartData GetChartData()
-        {
-            AdminChartData objChartData = new AdminChartData();
-            /*Get the data from databse and prepare the chart record data in string form.*/
-            objChartData.Months = "1,2,3,4,5,6,7,8,9,10,11,12";
-            CommonWealEntities obj = new CommonWealEntities();
-            var users = obj.NGOUsers.Where(w => w.IsActive == true && w.IsBlock == false).Count();
-            var user1 = obj.Users.Where(w => w.IsActive == true && w.IsBlock == false && w.LoginUserType == 3).Count();
-            objChartData.NGO = users.ToString();
-            objChartData.User = user1.ToString();
-            return objChartData;
-        }
+        //public AdminChartData GetChartData()
+        //{
+        //    AdminChartData objChartData = new AdminChartData();
+        //    /*Get the data from databse and prepare the chart record data in string form.*/
+        //    objChartData.Months = "1,2,3,4,5,6,7,8,9,10,11,12";
+        //    CommonWealEntities obj = new CommonWealEntities();
+        //    var users = obj.NGOUsers.Where(w => w.IsActive == true && w.IsBlock == false).Count();
+        //    var user1 = obj.Users.Where(w => w.IsActive == true && w.IsBlock == false && w.LoginUserType == 3).Count();
+        //    objChartData.NGO = users.ToString();
+        //    objChartData.User = user1.ToString();
+        //    return objChartData;
+        //}
     }
 }
