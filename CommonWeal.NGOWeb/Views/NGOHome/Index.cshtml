@@ -10,6 +10,23 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#selectcategory").change(function () {
+
+            if ($(this).val() > 0) {
+                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
+
+                    // $("#loadMoreSection").append(result);
+                    //    console.log(result);
+                    if (result != null) {
+                        $("#postsection").html("");
+                        $("#loadMoreSection").html("");
+                        $("#loadMoreSection").append(result);
+                    }
+                    //    //console.log(result);
+                });
+            }
+
+        });
 
         $(".chosen-select-multiple").chosen();
         $('.chosen-select-multiple').change(function () {
@@ -25,30 +42,15 @@
             console.log($('.chosen-select-multiple').val().length);
         });
 
-        $("#selectcategory").change(function () {
-            if ($(this).val() > 0) {
-                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
-
-                   // $("#loadMoreSection").append(result);
-                    //    console.log(result);
-                    if (result != null) {
-                        $("#postsection").html("");
-                        $("#loadMoreSection").html("");
-                        $("#loadMoreSection").append(result);
-                    }
-                    //    //console.log(result);
-                });
-            }
-
-        });
+      
 
     });
   </script>
 <div class="col-md-12">
-    @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory" })
+@*    @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory selectcategory" })*@
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
         <div class="form-inline">
-
+          
             <a href="#" id="uploadbtn ">
                 <span class="fa fa-picture-o fa-3x uploadimage" onclick="fileclick(); return false;"></span>
             </a>
@@ -72,10 +74,11 @@
     </form>
      <div id="postsection">
     @Html.Partial("../UserHome/_Posts", Model)
+   
          </div>
     <div id="loadMoreSection"></div>
-
-    <input type="button" value="load more" id="btnLoad">
+     
+     
 </div>
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
