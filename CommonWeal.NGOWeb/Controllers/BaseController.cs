@@ -73,7 +73,7 @@ namespace CommonWeal.NGOWeb.Controllers
             using (CommonWealEntities CWContext = new CommonWealEntities())
             {
                 CategoryList = CWContext.AreaOfInterests.ToList();
-                ViewBag.CategoryList =new SelectList( CategoryList,"categoryId","categoryName");
+                ViewBag.category =new SelectList( CategoryList,"categoryId","categoryName");
             }
           
         }
