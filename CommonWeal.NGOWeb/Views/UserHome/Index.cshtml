@@ -11,15 +11,16 @@
 @*  //post*@
 
 @*  @Html.Partial("_posts", Model);*@
+<script src="~/Scripts/jquery-1.7.1.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
         $("#selectcategory").change(function () {
-           
+
             if ($(this).val() > 0) {
                 $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
-                   // $("#loadMoreSection").append(result);
+                    // $("#loadMoreSection").append(result);
                     //    console.log(result);
                     if (result != null) {
                         $("#postsection").html("");
@@ -32,9 +33,25 @@
 
         });
 
+        $(".chosen-select-multiple").chosen();
+        $('.chosen-select-multiple').change(function () {
+            if ($(this).val() != null && $(this).val().length > 0) {
+                $.each($(this).val(), function (key, value) {
+                    if (value == 1) {
+                        $('.chosen-select-multiple').val('').trigger('chosen:updated');
+                        $('.chosen-select-multiple').val('1').trigger('chosen:updated');
+                    }
+                });
+            }
+            else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
+            console.log($('.chosen-select-multiple').val().length);
+        });
+
+
+
     });
   </script>
-  @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory selectcategory" })
+@*  @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory selectcategory" })*@
     @*//end upload post*@
  @*   @Html.Partial("../UserHome/_posts", Model)*@
  <div id="postsection">

@@ -6,10 +6,9 @@
 
     @foreach (var item in Model)
     { 
-        <div class="container" id="container">
         <div id="posttemplate ">
             <div class="postuserdetail col-md-12 column12" id="postuserdetail">
-                <div class="form-inline">
+                <div class="form-inline ">
                     <img src="~/Images/usergroupnew.png" id="images" class="col-md-1" />
                     <b class="usernamepost col-md-3" id="usernamepost">@item.userName</b>
                     <span class="posttime col-md-3">@item.postCreateTime</span>
@@ -21,7 +20,6 @@
                     <span>@item.postcontent</span>
                 </div>
             </div>
-         
             @*  <div class="form-group">*@
             <div id="image/video" class="col-md-12 imagepost">
                 @if (item.postImageUrl != null)
@@ -31,8 +29,10 @@
                 <div class="form-inline likecommentsign col-md-12 ">
                     @if (!User.Identity.IsAuthenticated)
                     { 
-                        <span class="fa fa-thumbs-up fa-2x likecommentcolor "></span>                   
-                        <span id="" class=" fa fa-comment fa-2x  likecommentcolor "></span>
+                        <span class=" likecommentcolor likecommenticon ">
+                            <img src="~/Images/newlike1.png" /></span>                   
+                        <span id="" class="likecommentcolor likecommenticon ">
+                            <img src="~/Images/commentnew.png" /></span>
                     }
 
                     @{    int userLoginId = -1, count = 0, preTotalcount = 0;
@@ -51,8 +51,8 @@
                                       currentLikeUserColor = "#4073bf";
                                   }
                               }
-                        <span class="fa fa-thumbs-up fa-2x  LikeIcon ahover"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor"></span>
-                        <span id="commentIcon-@item.postId" class=" fa fa-comment fa-2x ahover likecommentcolor commentIcon   "></span>   
+                        <span class="  LikeIcon ahover likecommenticon"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor"><img src="~/Images/newlike1.png" /></span>
+                        <span id="commentIcon-@item.postId" class="  ahover likecommentcolor commentIcon likecommenticon   "><img src="~/Images/commentnew.png" /></span>   
                               if (likeuser != null)
                               {
                                   preTotalcount = item.postlike.Count;
@@ -73,12 +73,12 @@
                                   if (preTotalcount == 2)
                                   { <span class="commentlikeuserfont">and</span>}
                                 
-                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">like this</span>  
+                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont"> this</span>  
                               }
                               else if (totalcount == 2)
                               {
                         <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">  and</span>   
-                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">like this</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">  like this</span>   
                               }
                               else if (totalcount >= 3)
                               {        <span class="commentlikeuserfont text-primary"> @item.postlike[0].userName</span><span>,</span>   
@@ -123,7 +123,7 @@
                 <br />
             }
 
-            <div id="@item.postId" class="form-inline column12">
+            <div id="@item.postId" class="form-inline col-md-12">
             </div>
 
             @*///user Comment section*@
@@ -132,10 +132,10 @@
             {
     
                 <div class="form-group col-md-12 column12">
-                    <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />&nbsp;
+                    <img src="~/Images/usernew.png" class="float-left profileimagecomment col-md-1" />
                     <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
                     @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
-                    <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1 postimage  " value="Post" />
+                    <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1   " value="Post" />
                 </div>
             }
         </div>
@@ -148,13 +148,9 @@
             <div class="modal-dialog likemodaldialog" role="document">
                 <img class="modal-content fullImage" id="img01-@item.postId"/>
             </div>
-        </div>      
-            </div>  
-        <br/>
-        <br/>
-       
-           
+        </div>           
     }
-</div>
-       
+     
 
+    
+</div>
