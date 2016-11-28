@@ -1,11 +1,17 @@
 ﻿@*Added by Neha M.*@
+
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
 }
 
+<script type="text/javascript" src="/assets/script/canvasjs.min.js"></script>
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.css">
 
 <div class="container-fluid">
     <div class="row">
@@ -106,12 +112,17 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <div id="ornek-donut"></div>
+        <div class="discrete-graph col-md-8">
+            <div id="chart" style="height: 400px;">
+                <svg></svg>
+            </div>
         </div>
 
-    </div>
 
+        <div class="donut-chart col-md-4">
+            <div id="ornek-donut"></div>
+        </div>
+    </div>
 </div>
 
 
