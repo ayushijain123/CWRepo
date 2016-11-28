@@ -1,15 +1,15 @@
-﻿@*@{
+﻿@{
    // var categoryList = new MultiSelectList((List<CommonWeal.Data.AreaOfInterest>)ViewBag.CategoryList, "CategoryID", "CategoryName");
-    var categoryList =(List<CommonWeal.Data.AreaOfInterest>)  ViewBag.CategoryList;
-}*@
+   
+}
 
 <div id="custom-search-input">
     <div class="input-group col-md-4 col-md-offset-2 form-inline">
-        <div class="input-group-btn search-panel">
-            <button type="button" class="dropdownbtn btn-default dropdown-toggle" data-toggle="dropdown">
+     
+           @* <button type="button" class="dropdownbtn btn-default dropdown-toggle" data-toggle="dropdown">
                 <span id="search_concept">Categories</span> <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
+            </button>*@
+      @*      <ul class="dropdown-menu" role="menu">*@
                           @*  
                             @foreach (var items in ViewBag.selectCategory)
                             { 
@@ -31,10 +31,10 @@
                                 </li>
                             }*@
 
-                          <div class="modal-footer">
+                         @* <div class="modal-footer">
                               <button type="submit" class="btn btn-success">Filter</button>
                            </div>
-                        </ul>
+                        </ul>*@
 
             @*<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
@@ -48,38 +48,53 @@
             @* <link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css"
                     rel="stylesheet" type="text/css" />
                 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>*@
-
-
-
-           @* <link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
-            <script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>*@
-            <script type="text/javascript">
-                $(function () {
-                    $('.listbox').multiselect({
-                        includeSelectAllOption: true
-                    });
-                });
-                $(document).
-                $(".areaofinterest").change(function () {
-                    alert('hi');
-                    //var catID = $(this).attr('value');
-                    //var name = $("#"+catID).text();
-                    //$("#search_concept").text(name);
-                });
+            
              
-            </script>
-@*            @Html.ListBox("CategoryList",(SelectList)ViewBag.CategoryList, new { @class = "listbox" })*@
 
-        </div>
-        <input type="text" class="  search-query form-control" placeholder="Search" />
-        <span class="input-group-btn">
-            <button class="btn btn-danger searchbtn" type="button">
-                <span class=" glyphicon glyphicon-search"></span>
-            </button>
-        </span>
+       <script type="text/javascript">
+    $(document).ready(function () {
 
+        $(".chosen-select-multiple").chosen();
+        $('.chosen-select-multiple').change(function () {
+            if ($(this).val() != null && $(this).val().length > 0) {
+                $.each($(this).val(), function (key, value) {
+                    if (value == 1) {
+                        $('.chosen-select-multiple').val('').trigger('chosen:updated');
+                        $('.chosen-select-multiple').val('1').trigger('chosen:updated');
+                    }
+                });
+            }
+            else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
+            console.log($('.chosen-select-multiple').val().length);
+        });
+
+        $("#category").change(function () {
+            if ($(this).val() > 0) {
+                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
+
+                   // $("#loadMoreSection").append(result);
+                    //    console.log(result);
+                    if (result != null) {
+                        $("#postsection").html("");
+                        $("#loadMoreSection").html("");
+                        $("#loadMoreSection").append(result);
+                    }
+                    //    //console.log(result);
+                });
+            }
+
+        });
+
+    });
+  </script>
+         @Html.DropDownList("category", (SelectList)ViewBag.categoryList,new { @class = "form-control chosen-select-multiple", @multiple = "multiple"  } )
+
+   
+      
     </div>
 </div>
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
 }
+
+          
