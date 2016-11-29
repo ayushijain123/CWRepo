@@ -8,7 +8,7 @@
         $("#selectcategory").change(function () {
 
             if ($(this).val() >= 0) {
-                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
+                $.post("/post/GetPostByCategory2?category=" + $(this).val(), function (result) {
 
                     // $("#loadMoreSection").append(result);
                     //    console.log(result);
