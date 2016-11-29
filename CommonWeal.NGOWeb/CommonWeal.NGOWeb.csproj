@@ -334,6 +334,9 @@
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\Chrysanthemum.jpg" />
     <Content Include="Images\commentnew.png" />
+    <Content Include="Images\cw-bg-img.jpg" />
+    <Content Include="Images\cw-bg-img2.jpg" />
+    <Content Include="Images\cw-bg-img3.jpg" />
     <Content Include="Images\Desert.jpg" />
     <Content Include="Images\Hydrangeas.jpg" />
     <Content Include="Images\Image.jpg" />
