@@ -7,7 +7,7 @@
     $(document).ready(function () {
         $("#selectcategory").change(function () {
 
-            if ($(this).val() > 0) {
+            if ($(this).val() >= 0) {
                 $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
                     // $("#loadMoreSection").append(result);
@@ -23,25 +23,25 @@
 
         });
 
-        $(".chosen-select-multiple").chosen();
-        $('.chosen-select-multiple').change(function () {
+        $("#selectcategory").chosen();
+        $('#selectcategory').change(function () {
             if ($(this).val() != null && $(this).val().length > 0) {
                 $.each($(this).val(), function (key, value) {
                     if (value == 1) {
-                        $('.chosen-select-multiple').val('').trigger('chosen:updated');
-                        $('.chosen-select-multiple').val('1').trigger('chosen:updated');
+                        $('#selectcategory').val('').trigger('chosen:updated');
+                        $('#selectcategory').val('1').trigger('chosen:updated');
                     }
                 });
             }
-            else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
-            console.log($('.chosen-select-multiple').val().length);
+            else { $('#selectcategory').val('').trigger('chosen:updated'); }
+            console.log($('#selectcategory').val().length);
         });
 
 
 
     });
   </script>
-@* @Html.DropDownList("selectcategory", (SelectList)ViewBag.categoryList, new { id = "selectcategory", @class = "form-control selectcategory" })*@
+ @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectmultiple" , @multiple = "multiple",})
 
 <div id="postsection">
     @Html.Partial("../UserHome/_Posts", Model)
