@@ -85,8 +85,8 @@ namespace CommonWeal.NGOWeb
             //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
             string activationCode = Guid.NewGuid().ToString();
 
-            var fromAddress = new MailAddress("poojapandey8284@Gmail.com");
-            var fromPassword = "dienotattitude";
+            var fromAddress = new MailAddress("commonweal9@gmail.com");
+            var fromPassword = ".netgroup";
             var toAddress = new MailAddress(UserEmail);
             try
             {
