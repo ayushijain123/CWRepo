@@ -21,9 +21,12 @@ namespace CommonWeal.NGOAPI.Controllers
         public class EnteredEmail
         {
             public string EmailId { get; set; }
+            public string OTP { get; set; }
+            public string NewPassword { get; set; }
+            public string ConfirmPassword { get; set; }
         }
         [HttpPost]
-        public bool ConfirmOTP(EnteredEmail  UserEmail)
+        public bool SendOTP(EnteredEmail  UserEmail)
         {
            // var UserEmail = otp1.EmailId;
             var EnteredEmail = UserEmail.EmailId;
@@ -63,6 +66,99 @@ namespace CommonWeal.NGOAPI.Controllers
             {
                 result = false;
             }
+            return result;
+        }
+        [HttpPost]
+        public bool ConfirmOTP(EnteredEmail UserOTP)
+        {
+            var FinalEmail = UserOTP.EmailId;
+            var FinalOTP = UserOTP.OTP;
+            CommonWealEntities context = new CommonWealEntities();
+            Functions obj = new Functions();
+            bool result = false;
+            var checkOTP = obj.UserDetail(FinalOTP);
+            if (checkOTP != null)
+            {
+                var matchEmail = checkOTP.EmailId;
+                if (matchEmail == FinalEmail)
+                {
+                    result = true;
+                }
+            }
+            else
+            {
+                result = false;
+            }
+            return result;
+        }
+        [HttpPost]
+        public bool UpdatePassword(EnteredEmail changepassword)//,string ConfirmOTP, string OTP
+        {
+
+            var EnteredEmail = changepassword.EmailId;
+            var NewPassword = changepassword.NewPassword;
+            var ConfirmPassword = changepassword.ConfirmPassword;
+            CommonWealEntities context = new CommonWealEntities();
+            Functions obj = new Functions();
+            bool result = false;
+            if (NewPassword == ConfirmPassword)
+            {
+                var request = obj.RegisteredUserIsAccepted();
+                var ob = context.RegisteredUsers.Where(w => w.UserEmail == EnteredEmail).FirstOrDefault();
+                if (ob != null) //.UserEmail
+                {
+                    try
+                    {
+                        ob.UserPassword = NewPassword;
+                        ob.ConfirmPassword = ConfirmPassword;
+                        var LoginId = ob.LoginID;
+                        var NewUserPassword = context.Users.Where(w => w.LoginID == LoginId).FirstOrDefault();
+                        NewUserPassword.LoginPassword = NewPassword;
+                        context.SaveChanges();
+                        result = true;
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting  
+                                // the current instance as InnerException  
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
+
+                }
+
+                var ob1 = context.NGOUsers.Where(w => w.NGOEmailID == EnteredEmail).FirstOrDefault();
+                if (ob1 != null)
+                {
+                    ob1.NGOPassword = NewPassword;
+                    var LoginId = ob1.LoginID;
+                    ob1.ConfirmPassword = ConfirmPassword;
+                    //var LoginId = ob.LoginID;
+                    var ChangePassword = context.Users.Where(w => w.LoginID == LoginId).FirstOrDefault();
+                    ChangePassword.LoginPassword = NewPassword;
+                    context.SaveChanges();
+                    result = true;
+                }
+                
+            }
+            //}
+
+
+            else
+            {
+                result = false;
+            }
+
             return result;
         }
     }
