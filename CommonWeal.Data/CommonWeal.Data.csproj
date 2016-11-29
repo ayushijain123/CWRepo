@@ -55,6 +55,7 @@
     <Compile Include="AreaOfInterest.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Functions.cs" />
     <Compile Include="ImageHandler.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
