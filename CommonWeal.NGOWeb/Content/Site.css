@@ -836,7 +836,7 @@ tr.pager td {
     padding-top: 7px;
        /*padding-left: 38px;
     padding-right: 11px;*/
-   padding-left: 40px;
+      padding-left: 14px;
     padding-right: 0px; 
       font-size: x-large;
 }
@@ -967,10 +967,10 @@ tr.pager td {
 }
     .likecommenticon img {
      height:40px;
-     padding-left: 13px;
+     padding-left: 9px;
     }
 .profileimagecomment {
-      padding-left: 40px;
+      padding-left: 24px;
     padding-bottom: 5px;
     height: 45px;
     width: auto;
