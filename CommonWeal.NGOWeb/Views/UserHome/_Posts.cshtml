@@ -9,7 +9,7 @@
         <div id="posttemplate">
             <div class="postuserdetail col-md-12 " id="postuserdetail">
                 <div class="form-inline">
-                    <img src="~/Images/usergroupnew.png" id="images" class="col-md-1" />
+                    <span id="images" class="col-md-1 fa fa-users" ></span>
                     <b class="usernamepost col-md-3" id="usernamepost">@item.userName</b>
                     <span class="posttime col-md-3">@item.postCreateTime</span>
                 </div>
@@ -111,22 +111,24 @@
             @*///Comment div action*@
 
         </div>
-        <div class="form-inline " id="postcommentbox">
+        <div class="form-inline" id="postcommentbox">
             @foreach (var comment in item.PostComments)
             {
-                <div class="form-group col-md-12 ">
+                <div class="form-group col-md-12">
                     <div class="form-inline col-md-12 " id="comentpost">
                         <span class="col-md-1 fa fa-user commentimage "></span>
-                        <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
+               
+                       <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime</span>
                         <p id="postcommentcontent">@comment.commentContent</p>
+                     
                     </div>
                 </div>
                 <br />
                 
                 
             }
-            <div id="@item.postId" >
+            <div id="@item.postId">
             </div>
 
 
