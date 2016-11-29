@@ -6,18 +6,22 @@
             <table class="tableAdmin col-md-12">
                 <thead class="tableheader col-md-12">
                     <tr>
-                        <th class="col-md-4">USER NAME</th>
-                        <th class="col-md-4">E-MAIL ID</th>
-                        <th class="col-md-4">BLOCK</th>
+                        <th class="col-md-3">USER NAME</th>
+                        <th class="col-md-3">E-MAIL ID</th>
+                        <th class="col-md-2">WARNING</th>
+                        <th class="col-md-2">BLOCK</th>
+                        <th class="col-md-2">RESET PWD</th>
                     </tr>
 
                 </thead>
                 @foreach (var item in Model)
                 {                       
                     <tr class="admintable">
-                        <td class="col-md-4 adminTableData">@Html.DisplayFor(modelItem => item.FirstName)</td>
-                        <td class="col-md-4 adminTableData"><a>@Html.DisplayFor(modelItem => item.UserEmail) </a></td>
-                        <td class="col-md-4 adminTableData"><a href="/admin/BlockUsers/@item.LoginID" class="fa fa-ban fa-2x" aria-hidden="true" style="color:red;"></a></td>
+                        <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.UserEmail) </a></td>
+                        <td class="col-md-2 adminTableData"><a href="#" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>
+                        <td class="col-md-2 adminTableData"><a href="/admin/BlockUsers/@item.LoginID" class="fa fa-ban fa-2x" aria-hidden="true" style="color:red;"></a></td>
+                        <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>
                     </tr>   
                 }
                 <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
