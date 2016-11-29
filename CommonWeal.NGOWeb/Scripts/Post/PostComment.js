@@ -21,8 +21,8 @@ $(document).ready(function () {
                 createdOn = userinfo[1];
 
                 $("#" + postid).append('    <div class="form-group col-md-12 ">' +
-                '<div class="form-inline col-md-12" id="comentpost">' +
-                    '<span class="col-md-1 fa fa-user commentimage " ></span>' +
+                '<div class="form-inline " id="comentpost">' +
+                    '<img src="/Images/usernew.png" class="col-md-1 commentimage profileimagecomment" />' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
                     '<p id="postcommentcontent">' + TextComment + '</p>' +
@@ -95,12 +95,12 @@ $(document).ready(function () {
         console.log('clicked-' + postid);
         $("#likelist-" + postid).html("");
         $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
-       
+            //alert('hi');
             $.each(postlikelist, function (i, value) {
                 console.log(postlikelist);
                 var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
                 '<div class="form-inline">' +
-                '<span class="fa fa-user" id="images" ></span>' +
+                '<img src="/Images/usernew.png" id="images" />' +
                 '  <b id="usernamepost">' + value.userName + '</b>' +
 
                 '</div>' +
@@ -108,7 +108,8 @@ $(document).ready(function () {
 
                 $("#likelist-" + postid).append(content);
 
-             
+                // console.log(value.userName);
+                // console.log(value.ModifiedOn);
             });
         });
 
@@ -128,24 +129,24 @@ $(document).ready(function () {
 
     // Get the modal
 
-    $(".imageurlpost").click(function () {
+    //$(".imageurlpost").click(function () {
 
-        var postid = $(this).attr("id").split('-')[1];
-      
-        //$("#myModal2-" + postid).css('display', 'block');
+    //    var postid = $(this).attr("id").split('-')[1];
+    //    alert(postid);
+    //    //$("#myModal2-" + postid).css('display', 'block');
 
-        $("#img01-" + postid).attr('src', this.src);
-        //  //$("#caption").html(this.alt);
-        //    console.log(postid);
-        //    var comment = $("#postcommentbox-" + postid).html();
-        //   // $("#comnt-" + postid).html("");
-        //   // $("#comnt-" + postid).append(comment);
-        // console.log(comment);
-     
-        //    // $(".topfix").css("z-index", 0);
-        //    // $("#uploadpost").css("display", 'none');
-        //    //$('body').css("filter", "blur(2px)");
-    });
+    //    $("#img01-" + postid).attr('src', this.src);
+    //    //  //$("#caption").html(this.alt);
+    //    //    console.log(postid);
+    //    //    var comment = $("#postcommentbox-" + postid).html();
+    //    //   // $("#comnt-" + postid).html("");
+    //    //   // $("#comnt-" + postid).append(comment);
+    //    // console.log(comment);
+    //    //// alert(comment);
+    //    //    // $(".topfix").css("z-index", 0);
+    //    //    // $("#uploadpost").css("display", 'none');
+    //    //    //$('body').css("filter", "blur(2px)");
+    //});
 
     //$(".likemodaldialog").click(function () {
     //    // $("#uploadpost").css("display", 'block');
@@ -175,7 +176,7 @@ $(document).ready(function () {
     var loadcount = 0;
     $("#btnLoad").click(function () {
         loadcount++;
-     
+        //alert('hi');
         var category = $("#selectcategory").val();
         $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category, function (result) {
 
@@ -199,8 +200,8 @@ $(document).ready(function () {
 
     /*date picked ngo registration page*/
     /*method for getting checked category*/
-    $("#submitcategory").click(function () {
-
+    $("").click(function () {
+        alert('sattu don');
         var categorylist = [];
         $.each($(".category:checked"), function () {
             var CategoryID = $(this).val();
@@ -210,13 +211,14 @@ $(document).ready(function () {
         $.ajax({
             contentType: 'application/json; charset=utf-8',
             type: "POST",
-            url: "/NGOProfile/areaOfIntrest",
+            url: "/NGOHome/PostImage",
             dataType: "json",
             traditional: true,
             data: JSON.stringify(categorylist)
         });
         //  $.post("/NGOProfile/areaOfIntrest?List=" + list, function (result) {
 
+        // alert(result);
         //console.log(result);
         //  }, 'json');
 
@@ -231,7 +233,7 @@ $(document).ready(function () {
         $.post("/Admin/Block?PostID=" + postid, function (result) {
 
             $('#activeUser-' + postid).remove();
-            
+            alert('hi');
             //console.log(result);
         });
 
