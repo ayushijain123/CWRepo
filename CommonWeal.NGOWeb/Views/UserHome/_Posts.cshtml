@@ -5,10 +5,10 @@
 <div id="uploadpost" class="col-md-10 col-md-offset-1">
 
     @foreach (var item in Model)
-    { 
-        <div id="posttemplate ">
+    { <div class="postcontainer">
+        <div id="posttemplate">
             <div class="postuserdetail col-md-12 " id="postuserdetail">
-                <div class="form-inline ">
+                <div class="form-inline">
                     <img src="~/Images/usergroupnew.png" id="images" class="col-md-1" />
                     <b class="usernamepost col-md-3" id="usernamepost">@item.userName</b>
                     <span class="posttime col-md-3">@item.postCreateTime</span>
@@ -39,7 +39,7 @@
                           string currentLikeUserColor = "darkgray";
                           if (User.Identity.IsAuthenticated)
                           {
-                            
+
                               CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
                               userLoginId = Convert.ToInt32(User.Identity.Name);
                               var likeuser = item.postlike.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
@@ -51,8 +51,10 @@
                                       currentLikeUserColor = "#4073bf";
                                   }
                               }
-                        <span class="  LikeIcon ahover likecommenticon"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor"><img src="~/Images/newlike1.png" /></span>
-                        <span id="commentIcon-@item.postId" class="  ahover likecommentcolor commentIcon likecommenticon   "><img src="~/Images/commentnew.png" /></span>   
+                        <span class="  LikeIcon ahover likecommenticon"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
+                            <img src="~/Images/newlike1.png" /></span>
+                        <span id="commentIcon-@item.postId" class="  ahover likecommentcolor commentIcon likecommenticon   ">
+                            <img src="~/Images/commentnew.png" /></span>   
                               if (likeuser != null)
                               {
                                   preTotalcount = item.postlike.Count;
@@ -73,16 +75,16 @@
                                   if (preTotalcount == 2)
                                   { <span class="commentlikeuserfont">and</span>}
                                 
-                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont"> this</span>  
+                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">this</span>  
                               }
                               else if (totalcount == 2)
                               {
-                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">  and</span>   
-                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">  like this</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[0].userName </span><span class="commentlikeuserfont">and</span>   
+                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">like this</span>   
                               }
                               else if (totalcount >= 3)
                               {        <span class="commentlikeuserfont text-primary"> @item.postlike[0].userName</span><span>,</span>   
-                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont"> and</span>
+                        <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">and</span>
                         <span  class="showLikeuser commentlikeuserfont text-primary" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) other</span> <span class="commentlikeuserfont">like this</span>
                                  
                               }
@@ -109,12 +111,12 @@
             @*///Comment div action*@
 
         </div>
-        <div class="form-inline "  id ="postcommentbox">
+        <div class="form-inline " id="postcommentbox">
             @foreach (var comment in item.PostComments)
             {
                 <div class="form-group col-md-12 ">
                     <div class="form-inline col-md-12 " id="comentpost">
-                        <span class="col-md-1 fa fa-user commentimage " ></span>
+                        <span class="col-md-1 fa fa-user commentimage "></span>
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime</span>
                         <p id="postcommentcontent">@comment.commentContent</p>
@@ -124,9 +126,7 @@
                 
                 
             }
-             <div id="@item.postId" >
-                 
-                 
+            <div id="@item.postId" >
             </div>
 
 
@@ -137,7 +137,7 @@
             {
     
                 <div class="form-group col-md-12 ">
-                    <span class="float-left profileimagecomment fa fa-user col-md-1" ></span>
+                    <span class="float-left profileimagecomment fa fa-user col-md-1"></span>
                     <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
                     @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
                     <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-primary  col-md-1   " value="Post" />
@@ -146,16 +146,17 @@
         </div>
 
         <br />
-        <br />  
+        <br />
 
         <div class="modal fade" id="myModal2-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
             <div class="modal-dialog likemodaldialog" role="document">
                 <img class="modal-content fullImage" id="img01-@item.postId"/>
             </div>
-        </div>           
+        </div>
+    </div>          
     }
-     
 
-    
+
+
 </div>
