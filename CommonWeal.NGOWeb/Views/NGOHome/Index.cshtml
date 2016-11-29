@@ -13,7 +13,7 @@
         $("#selectcategory").change(function () {
 
             if ($(this).val() >= 0) {
-                alert('sattu');
+               
                 $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
                     // $("#loadMoreSection").append(result);
