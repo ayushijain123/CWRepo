@@ -93,7 +93,7 @@ namespace CommonWeal.Data
 
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
-        [Url(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_URL", ErrorMessage = null)]
+        [RegularExpression(@"(www\.)?\w+\.(com|net|edu|org|in|co.in)", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_URL", ErrorMessage = null)]
         public string WebsiteUrl { get; set; }
 
 
