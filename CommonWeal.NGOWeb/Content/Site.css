@@ -740,7 +740,7 @@ tr.pager td {
     padding-top: 7px;
     padding-left: 36px;
     padding-right: 11px;
-   font-size: xx-large;
+    font-size: xx-large;
 }
 
 #Textmessage {
@@ -808,8 +808,7 @@ tr.pager td {
 #postcommentbox {
     background-color: #e7e9ec !important;
     border-style: inherit;
-     box-shadow: 2px 1px 7px #888888;
-
+    box-shadow: 2px 1px 7px #888888;
 }
 
 #comentpost {
@@ -844,9 +843,10 @@ tr.pager td {
     padding-left: 15px;
     text-transform: capitalize;
 }
+
 #postContentTextArea {
-resize:none;
-height:100px;
+    resize: none;
+    height: 100px;
 }
 
 
@@ -1455,6 +1455,10 @@ added by payal*/
 }*/
 
 
-#bodycolor {
+/*#bodycolor {
     background-color: #ebeff2;
+}*/
+
+#selectcategory_chosen {
+    margin-bottom: 10px;
 }
