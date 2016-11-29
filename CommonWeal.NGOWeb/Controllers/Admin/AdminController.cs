@@ -80,10 +80,21 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View();
         }
 
-        public ActionResult Warned_Users()
-        {
-            return View();
-        }
+        //public ActionResult Warned_Users(int id)
+        //{
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    //User UL = new User ();
+        //    var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+        //    ob.IsWarn = true;
+        //    context.SaveChanges();
+        //    var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+        //    ob1.IsWarn= true;
+
+        //    context.Configuration.ValidateOnSaveEnabled = false;
+
+        //    context.SaveChanges();
+        //    return RedirectToAction("Warned_Users", "Admin");
+        //}
 
         public ActionResult Accept(int id)
         {
