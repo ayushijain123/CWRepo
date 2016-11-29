@@ -1218,16 +1218,19 @@ tr:nth-child(even) {
 
 .card .image img {
     width: 100%;
+    height: 117px;
 }
 
 .card .content {
     padding: 15px 15px 10px 15px;
+     background-color: #7ac0da;
 }
 
 .card-user .author {
     text-align: center;
     text-transform: none;
     margin-top: -70px;
+      background-color: #7ac0da;
 }
 
 .card-user .avatar {
@@ -1250,10 +1253,32 @@ tr:nth-child(even) {
     min-height: 240px;
 }
 
-.editpanel {
-    margin-top: 45px;
+editpanel {
+    margin-top: 59px;
+    height: -6%;
+    width: 300px;
+    margin-right: 15%;
+  
 }
+.modalbutton 
+{ background-color:azure;
+}
+.showimage
+{ height:250px;
+  width:300px;
+    margin-left: 109px;
 
+}
+/*.aboutushead 
+{
+    text-align:center;
+
+}*/
+.aboutusform {
+    margin-left: 11%;
+    /* padding-right: 0px; */
+    margin-right: -142px;
+}
 /*User Registraion CSS*/
 .user-registration {
     margin-top: 100px;
