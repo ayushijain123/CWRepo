@@ -46,14 +46,16 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 User objuser = new User();
-                var Userob= context.Users.Where(x=>x.LoginID==LoginUser.LoginID).FirstOrDefault();
+                var Userob = context.Users.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
                 Userob.LoginEmailID = obj.NGOEmailID;
                 context.SaveChanges();
 
 
-            }
 
+            }
+            TempData["AlertMessage"] = "records updated successfully";
             return RedirectToAction("aboutUs", "NGOProfile");
+
         }
 
     }
