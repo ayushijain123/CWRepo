@@ -166,7 +166,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         public PartialViewResult GetPostByCategory(int category = 0)
         { var load =new List<Post>();
         load = null;
-            if (category >= 1)
+            if (category >= 0)
             {
                 dbOperations ob = new dbOperations();
                 CommonWealEntities db = new CommonWealEntities();
