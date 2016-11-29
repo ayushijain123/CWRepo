@@ -21,8 +21,8 @@ $(document).ready(function () {
                 createdOn = userinfo[1];
 
                 $("#" + postid).append('    <div class="form-group col-md-12 ">' +
-                '<div class="form-inline " id="comentpost">' +
-                    '<img src="/Images/usernew.png" class="col-md-1 commentimage profileimagecomment" />' +
+                '<div class="form-inline col-md-12" id="comentpost">' +
+                    '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
                     '<p id="postcommentcontent">' + TextComment + '</p>' +
@@ -95,12 +95,12 @@ $(document).ready(function () {
         console.log('clicked-' + postid);
         $("#likelist-" + postid).html("");
         $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
-            //alert('hi');
+       
             $.each(postlikelist, function (i, value) {
                 console.log(postlikelist);
                 var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
                 '<div class="form-inline">' +
-                '<img src="/Images/usernew.png" id="images" />' +
+                '<span class="fa fa-user" id="images" ></span>' +
                 '  <b id="usernamepost">' + value.userName + '</b>' +
 
                 '</div>' +
@@ -108,8 +108,7 @@ $(document).ready(function () {
 
                 $("#likelist-" + postid).append(content);
 
-                // console.log(value.userName);
-                // console.log(value.ModifiedOn);
+             
             });
         });
 
@@ -132,7 +131,7 @@ $(document).ready(function () {
     $(".imageurlpost").click(function () {
 
         var postid = $(this).attr("id").split('-')[1];
-        alert(postid);
+      
         //$("#myModal2-" + postid).css('display', 'block');
 
         $("#img01-" + postid).attr('src', this.src);
@@ -142,7 +141,7 @@ $(document).ready(function () {
         //   // $("#comnt-" + postid).html("");
         //   // $("#comnt-" + postid).append(comment);
         // console.log(comment);
-        //// alert(comment);
+     
         //    // $(".topfix").css("z-index", 0);
         //    // $("#uploadpost").css("display", 'none');
         //    //$('body').css("filter", "blur(2px)");
@@ -176,7 +175,7 @@ $(document).ready(function () {
     var loadcount = 0;
     $("#btnLoad").click(function () {
         loadcount++;
-        //alert('hi');
+     
         var category = $("#selectcategory").val();
         $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category, function (result) {
 
@@ -218,7 +217,6 @@ $(document).ready(function () {
         });
         //  $.post("/NGOProfile/areaOfIntrest?List=" + list, function (result) {
 
-        // alert(result);
         //console.log(result);
         //  }, 'json');
 
@@ -233,7 +231,7 @@ $(document).ready(function () {
         $.post("/Admin/Block?PostID=" + postid, function (result) {
 
             $('#activeUser-' + postid).remove();
-            alert('hi');
+            
             //console.log(result);
         });
 
