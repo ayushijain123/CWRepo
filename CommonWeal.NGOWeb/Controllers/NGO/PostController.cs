@@ -148,7 +148,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             {
                 CommonWealEntities db = new CommonWealEntities();
                 dbOperations ob = new dbOperations();
-                var load = ob.GetAllPost(category,count);
+                var load = ob.GetPostOnSeeMore(count,category);
 
                 /*returing list to  partial view and than partial view is retuned to ajax call  */
                 return PartialView("~/views/userHome/_Posts.cshtml", load);
@@ -163,7 +163,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         /*action for getting  post category wise*/
         [AllowAnonymous]
-        public PartialViewResult GetPostByCategory(int category = 0)
+        public PartialViewResult GetPostByCategory2(int category = 0)
         { var load =new List<Post>();
         load = null;
             if (category >= 0)
@@ -176,7 +176,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 //var query = objEntities.Employee.Join(objEntities.Department, r => r.EmpId, p => p.EmpId, (r,p) => new{r.FirstName, r.LastName, p.DepartmentName});
                 //var query = db.NGOPosts.Join(db.PostCategories, ngoPost => ngoPost.PostID, postCategories => postCategories.PostID, (r, p) => new { r }).ToList();
                // var query1 = db.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).ToList();
-                 load = ob.GetAllPost(category);
+                ob.GetPostByCategory1(category);
                
 
             }
