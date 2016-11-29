@@ -25,7 +25,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
 
             dbOperations ob = new dbOperations();
            /*call method from dboperation class for getting post list*/
-            var postlist = ob.GetAllPost();
+            var postlist = ob.GetPostOnLoad();
             CommonWealEntities db = new CommonWealEntities();
             //var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
             //var s = (from p in db.NGOPosts
