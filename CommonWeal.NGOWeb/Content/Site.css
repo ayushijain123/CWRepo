@@ -716,33 +716,33 @@ tr.pager td {
 
 /*POST*/
 .postuserdetail {
-<<<<<<< .mine
-    background-color: #eeeeee;
-=======
     background-color:#FFFFFF ;
->>>>>>> .r607
     height: 45px;
     padding-left: 0px;
     padding-right: 0px;
-    border-bottom: solid;
+   border-bottom: solid;
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
 
 #container {
-    border: medium;
+ 
+      
+    border:medium;
     border-color: rgba(211, 211, 211, 0.87);
-    border-width: 1px;
+    border-width:1px;
     padding-left: 0px;
     padding-right: 0px;
+    
+    
 }
 
 #images {
     height: 38px;
     width: auto;
     padding-top: 7px;
-    padding-left: 36px;
-    padding-right: 11px;
+   padding-left: 36px;
+  padding-right: 11px;
 }
 
 #Textmessage {
@@ -775,6 +775,7 @@ tr.pager td {
 
 .imageurlpost {
     max-width: 100%;
+   
     max-height: 600px;
     display: block;
     margin-left: 40px;
@@ -796,11 +797,13 @@ tr.pager td {
     margin-right: auto;*/
     cursor: pointer;
     font-size: 10px;
-    padding-left: 40px;
-}
+    padding-left:40px;
+ 
 
+}
 #likecommentsign {
-    padding-left: 11px;
+ padding-left: 11px;
+
 }
 
 
@@ -809,20 +812,17 @@ tr.pager td {
 }
 
 #postcommentbox {
-<<<<<<< .mine
-    background-color: #E8E8E8;
-    border-style: inherit;
-=======
     background-color:	#F0F0F0 ;
    border-style:inherit;
     
->>>>>>> .r607
 }
 
 #comentpost {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
+   
+
 }
 
 .column12 {
@@ -834,26 +834,24 @@ tr.pager td {
     height: 38px;
     width: auto;
     padding-top: 7px;
-    /*padding-left: 38px;
+       /*padding-left: 38px;
     padding-right: 11px;*/
-<<<<<<< .mine
-    padding-left: 40px;
-    padding-right: 0px;
-=======
    padding-left: 40px;
     padding-right: 0px; 
->>>>>>> .r607
       font-size: x-large;
 }
 
 
 .commentusername {
+  
     padding-right: 0px;
     color: #428bca;
     width: auto;
     padding-right: 8px;
     top: 0px;
     padding-left: 15px;
+    text-transform:capitalize;
+    
 }
 
 
@@ -866,26 +864,25 @@ tr.pager td {
 }
 
 #postcommentcontent {
-    padding-left: 11px;
-    margin-left: 73px;
+ 
+      padding-left: 0px;
+            margin-left: 73px;
 }
 
 .textComment {
-    border-right-width: 0px;
+        border-right-width: 0px;
     border-left-width: 5px;
     border-bottom-width: 2px;
     border-top-width: 5px;
-    width: 700px;
-    padding-left: 24px;
+        width: 700px;
+      padding-left: 24px;
     padding-right: 100px;
+      
+ 
 }
 
 #postform {
-<<<<<<< .mine
-    background-color: #E8E8E8;
-=======
     background-color:	#F0F0F0;
->>>>>>> .r607
     padding-top: 5px;
     padding-right: 5px;
     padding-bottom: 40px;
@@ -895,11 +892,7 @@ tr.pager td {
 
 
 #postcontent {
-<<<<<<< .mine
-    background-color: #eeeeee;
-=======
     background-color:#FFFFFF;
->>>>>>> .r607
     font-size: 16px;
     padding-left: 40px;
     padding-right: 11px;
@@ -935,32 +928,26 @@ tr.pager td {
     border-radius: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-    margin-left: 11px;
+  margin-left: 11px;
     margin-top: 0px !important;
     top: 10px;
+   
+   
     /*border-color:#225d77;*/
 }
 
 
 #posttemplate {
-<<<<<<< .mine
-    border: ridge;
-    background-color: #eeeeee;
-=======
     border:medium;
     background-color:#F0F0F0;
->>>>>>> .r607
 }
 
 
 .imagepost {
-<<<<<<< .mine
-    background-color: #eeeeee;
-=======
     background-color:#FFFFFF;
->>>>>>> .r607
     padding-left: 0px;
-    padding-top: 8px;
+
+        padding-top: 8px;
 }
 
 /*css for pop body*/
@@ -976,43 +963,37 @@ tr.pager td {
 
 .likecommentcolor {
     color: darkgray;
+   
 }
-<<<<<<< .mine
-
-.likecommenticon img {
-    height: 40px;
-}
-
-=======
     .likecommenticon img {
      height:40px;
      padding-left: 13px;
     }
->>>>>>> .r607
 .profileimagecomment {
-    padding-left: 40px;
+      padding-left: 40px;
     padding-bottom: 5px;
     height: 45px;
     width: auto;
-    padding-right: 0px;
+
+    padding-right: 0px; 
     top: 8px;
     font-size: xx-large;
 }
-
 .commentboxnew {
+
     padding-left: 9px;
 }
-
 .textComment {
     margin-top: 0px !important;
     padding-left: 15px;
-    margin-left: 5px;
+   margin-left: 5px;
     width: 682px;
     margin-top: 1px;
     border-bottom-width: 4px;
     margin-bottom: 7px;
     padding-right: 43px;
     border-top-width: 9px;
+
 }
 /*Added by Rishiraj on 08/11/2016*/
 /*.showmeonhover { text-decoration: none; }*/
@@ -1399,20 +1380,6 @@ NGO registration page css*/
     text-decoration: none;
 }
 
-.donut-chart {
-    background-color: #ebeff2;
-    top: 25px;
-    height: 500px;
-}
-
-.discrete-graph {
-    background-color: #ebeff2;
-    top: 25px;
-}
-
-svg {
-    top: 30px;
-}
 
 /*search box
 added by payal*/
@@ -1481,7 +1448,6 @@ added by payal*/
     color: black;
     font-weight: bold;
 }
-
 .btnLoad {
     padding-bottom: 56px;
 }
@@ -1503,10 +1469,8 @@ added by payal*/
 
 
 #bodycolor {
-<<<<<<< .mine
-    background-color: #FFFFFF;
-=======
 
 background-color:#ebeff2 ;
->>>>>>> .r607
 }
+
+
