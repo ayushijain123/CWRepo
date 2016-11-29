@@ -4,11 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-
-
-
-
 <script>
     $(document).ready(function () {
         $("input").prop('disabled', true);
@@ -22,9 +17,65 @@
     }
     );
 </script>
+<div class=" ngoprofilenavbar">
+    <div class="col-md-12">
+        <div class="panel panel-default col-md-12 panelNGO column12">
+            <div class="panel-heading">
+                <center> <b class="profilesummary"> Profile summary</b></center>
+            </div>
+            <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
+                <div class="col-md-4 col-md-offset-5">
+                    <div>
+                    <a  href="#">
+          <span class="glyphicon glyphicon-pencil"></span></a>
+                        </div>
+                  @*  <img src="~/Images/sammanlogo.PNG"class="ngoprofilepic" /><br />*@
+
+
+                    <img id="1" data-toggle="modal" data-target="#myModal" src="~/Images/sammanlogo.PNG" class="img-rounded"  />
+
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="imagemodal modal-body">
+                                    <img class="showimage img-responsive" src="~/Images/sammanlogo.PNG" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Change Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
+                </div>
+            </div>
+            @*NGO Profile header Start*@
+            <div class="panel-group navbar-fixed">
+                <div class="sticky">
+                    <ul class="ultext nav nav-tabs">
+                        <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
+                        <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
+                      @*  <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Change Image</a></li>
+                                <li><a href="#">Change background</a></li>
+
+                            </ul>
+                        </li>*@
+                    </ul>
+                </div>
+            </div>
+
+            @*NGO Profile header End*@
+        </div>
+    </div>
+</div>
+<div class="col-md-12">
 <div class="main-panel">
     <div class="row">
-        <div class="col-md-8">
+        <div class="aboutusform col-md-6">
 
             <div class="col-lg-offset-3">
                 <h3><strong>Your Personal Info</strong></h3>
@@ -64,50 +115,53 @@
                             <input type="text" class="form-control" name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.ChairmanName"required>
                         </div>
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label class="control-label col-sm-2" for="email">Password:</label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" name="NGOPassword" placeholder="Enter Password" value="@Model.NGOPassword"required>
                         </div>
-                    </div>
+                    </div>*@
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <span id="editbtn" class="btn btn-primary">Edit</span>
+                            <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
                         </div>
-                        &nbsp
-          <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-          </div>
+                        @* <div class="col-sm-offset-2 col-sm-10">
+              *@
                     </div>
+                    
                 </form>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="editpanel panel panel-default">
-
-                <div class="card card-user">
-                    <div class="image">
-                        <img src="~/Images/bckg.jpg" alt="...">
-                    </div>
-                    <div class="content">
-                        <div class="author">
-                            @*<a href="#">*@
+         <div class="col-md-4">
+        <div class="editpanel panel panel-default">
+            <div class="card card-user">
+                <div class="image">
+                    <img src="~/Images/bckg.jpg" alt="...">
+                </div>
+                <div class="content">
+                    <div class="author">
+                        @*<a href="#">*@
+                        <a href="#">
                             <img class="avatar border-gray" src="~/Images/sammanlogo.PNG" alt="...">
                             <h4 class="title">AboutUs<br>
                             </h4>
-                            @*</a>*@
-                        </div>
-                        <p class="description text-center">
-                           Samman,established in 2005 with a notion of 
+                        </a>
+
+                        @*</a>*@
+                    </div>
+                    <p class="description text-center">
+                        Samman,established in 2005 with a notion of 
                             serving people all over the country.
                             we are there 24*7 with our 100+ volunteers.
-                        </p>
-                        
-                    </div>
-                    <hr>
+                    </p>
+
                 </div>
+                
             </div>
+        </div>
+        </div>
         </div>
     </div>
 </div>
