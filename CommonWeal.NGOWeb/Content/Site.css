@@ -716,34 +716,30 @@ tr.pager td {
 
 /*POST*/
 .postuserdetail {
-    background-color:#FFFFFF ;
+    background-color: #FFFFFF;
     height: 45px;
     padding-left: 0px;
     padding-right: 0px;
-   border-bottom: solid;
+    border-bottom: solid;
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
 
 #container {
- 
-      
-    border:medium;
+    border: medium;
     border-color: rgba(211, 211, 211, 0.87);
-    border-width:1px;
+    border-width: 1px;
     padding-left: 0px;
     padding-right: 0px;
-    
-    
 }
 
 #user-image {
     height: 38px;
     width: auto;
     padding-top: 7px;
-   padding-left: 36px;
-  padding-right: 11px;
-  font-size:xx-large;
+    padding-left: 36px;
+    padding-right: 11px;
+    font-size: xx-large;
 }
 
 #Textmessage {
@@ -776,7 +772,6 @@ tr.pager td {
 
 .imageurlpost {
     max-width: 90%;
-   
     max-height: 600px;
     display: block;
     margin-left: 40px;
@@ -792,19 +787,17 @@ tr.pager td {
 
 .likecommentsign {
     background-color: #FFFFFF;
-    border-bottom:hidden;
+    border-bottom: hidden;
     display: block;
     /*margin-left: auto;
     margin-right: auto;*/
     cursor: pointer;
     font-size: 10px;
-    padding-left:40px;
- 
-
+    padding-left: 40px;
 }
-#likecommentsign {
- padding-left: 11px;
 
+#likecommentsign {
+    padding-left: 11px;
 }
 
 
@@ -813,17 +806,14 @@ tr.pager td {
 }
 
 #postcommentbox {
-    background-color:	#F0F0F0 ;
-   border-style:inherit;
-    
+    background-color: #F0F0F0;
+    border-style: inherit;
 }
 
 #comentpost {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
-   
-
 }
 
 .column12 {
@@ -835,25 +825,22 @@ tr.pager td {
     height: 38px;
     width: auto;
     padding-top: 7px;
-       /*padding-left: 38px;
+    /*padding-left: 38px;
     padding-right: 11px;*/
-        padding-left: 9px;
-    padding-right: 0px; 
-      font-size: x-large;
-
+    padding-left: 9px;
+    padding-right: 0px;
+    font-size: x-large;
 }
 
 
 .commentusername {
-  
     padding-right: 0px;
     color: #428bca;
     width: auto;
     padding-right: 8px;
     top: 0px;
-   padding-left: 14px;
-    text-transform:capitalize;
-    
+    padding-left: 14px;
+    text-transform: capitalize;
 }
 
 
@@ -866,26 +853,23 @@ tr.pager td {
 }
 
 #postcommentcontent {
- 
-      padding-left: 0px;
-            margin-left: 73px;
+    padding-left: 0px;
+    margin-left: 73px;
 }
 
 .textComment {
-        border-right-width: 0px;
+    border-right-width: 0px;
     border-left-width: 5px;
     border-bottom-width: 2px;
     border-top-width: 5px;
-        width: 700px;
-      padding-left: 24px;
+    width: 700px;
+    padding-left: 24px;
     padding-right: 100px;
-    resize:none;
-      
- 
+    resize: none;
 }
 
 #postform {
-    background-color:	#F0F0F0;
+    background-color: #F0F0F0;
     padding-top: 5px;
     padding-right: 5px;
     padding-bottom: 40px;
@@ -895,7 +879,7 @@ tr.pager td {
 
 
 #postcontent {
-    background-color:#FFFFFF;
+    background-color: #FFFFFF;
     font-size: 16px;
     padding-left: 40px;
     padding-right: 11px;
@@ -931,26 +915,24 @@ tr.pager td {
     border-radius: 15px;
     padding-left: 10px !important;
     padding-right: 10px !important;
-  margin-left: 11px;
+    margin-left: 11px;
     margin-top: 0px !important;
     top: 10px;
-   
-   
     /*border-color:#225d77;*/
 }
 
 
 #posttemplate {
-    border:medium;
-    background-color:#F0F0F0;
+    border: medium;
+    background-color: #F0F0F0;
+    box-shadow: 2px 1px 10px #888888;
 }
 
 
 .imagepost {
-    background-color:#FFFFFF;
+    background-color: #FFFFFF;
     padding-left: 0px;
-
-        padding-top: 8px;
+    padding-top: 8px;
 }
 
 /*css for pop body*/
@@ -966,37 +948,37 @@ tr.pager td {
 
 .likecommentcolor {
     color: darkgray;
-   
 }
-    .likecommenticon img {
-     height:40px;
-     padding-left: 9px;
-    }
+
+.likecommenticon img {
+    height: 40px;
+    padding-left: 9px;
+}
+
 .profileimagecomment {
-      padding-left: 24px;
+    padding-left: 24px;
     padding-bottom: 5px;
     height: 45px;
     width: auto;
-
-    padding-right: 0px; 
+    padding-right: 0px;
     top: 8px;
     font-size: xx-large;
 }
-.commentboxnew {
 
+.commentboxnew {
     padding-left: 9px;
 }
+
 .textComment {
     margin-top: 0px !important;
     padding-left: 15px;
-   margin-left: 5px;
+    margin-left: 5px;
     width: 682px;
     margin-top: 1px;
     border-bottom-width: 4px;
     margin-bottom: 7px;
     padding-right: 43px;
     border-top-width: 9px;
-
 }
 /*Added by Rishiraj on 08/11/2016*/
 /*.showmeonhover { text-decoration: none; }*/
@@ -1233,7 +1215,6 @@ tr:nth-child(even) {
     text-align: center;
     text-transform: none;
     margin-top: -153px;
-      
 }
 
 .card-user .avatar {
@@ -1244,11 +1225,11 @@ tr:nth-child(even) {
     margin-bottom: 15px;
 }
 
-.card-user .avatar.border-gray {
-    border-color: #5bc0de;
-    border-radius: 6px;
-    border-width: 2px;
-}
+    .card-user .avatar.border-gray {
+        border-color: #5bc0de;
+        border-radius: 6px;
+        border-width: 2px;
+    }
 
 .card-user .title {
     line-height: 24px;
@@ -1263,16 +1244,16 @@ tr:nth-child(even) {
     height: -6%;
     width: 300px;
     margin-right: 15%;
-  
 }
-.modalbutton 
-{ background-color:azure;
-}
-.showimage
-{ height:250px;
-  width:300px;
-    margin-left: 109px;
 
+.modalbutton {
+    background-color: azure;
+}
+
+.showimage {
+    height: 250px;
+    width: 300px;
+    margin-left: 109px;
 }
 /*.aboutushead 
 {
@@ -1474,6 +1455,7 @@ added by payal*/
     color: black;
     font-weight: bold;
 }
+
 .btnLoad {
     padding-bottom: 56px;
 }
@@ -1495,13 +1477,18 @@ added by payal*/
 
 
 #bodycolor {
-
-background-color:#ebeff2 ;
+    background-color: #ebeff2;
 }
 
 
 #postContentTextArea {
-   resize:none;
-
+    resize: none;
 }
 
+#postcommentbox {
+    box-shadow: 2px 1px 10px #888888;
+}
+
+#selectcategory_chosen {
+    margin-bottom: 10px;
+}
