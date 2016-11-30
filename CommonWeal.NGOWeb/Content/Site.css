@@ -878,6 +878,7 @@ tr.pager td {
         width: 700px;
       padding-left: 24px;
     padding-right: 100px;
+    resize:none;
       
  
 }
