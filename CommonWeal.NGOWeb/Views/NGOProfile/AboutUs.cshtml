@@ -3,7 +3,7 @@
     ViewBag.Title = "AboutUs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $("input").prop('disabled', true);
@@ -16,6 +16,14 @@
         });
     }
     );
+    $('img').on('click', function () {
+        var image = $(this).attr('src');
+        $('#myModal2').on('show.bs.modal', function () {
+            $(".img-responsive").attr("src", image);
+        });
+    });
+
+   
 </script>
 <div class=" ngoprofilenavbar">
     <div class="col-md-12">
@@ -25,16 +33,13 @@
             </div>
             <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
                 <div class="col-md-4 col-md-offset-5">
-                    <div>
-                    <a  href="#">
-          <span class="glyphicon glyphicon-pencil"></span></a>
-                        </div>
+                
                   @*  <img src="~/Images/sammanlogo.PNG"class="ngoprofilepic" /><br />*@
 
 
-                    <img id="1" data-toggle="modal" data-target="#myModal" src="~/Images/sammanlogo.PNG" class="img-rounded"  />
+                    <img id="1" data-toggle="modal" data-target="#myModal2" src="~/Images/sammanlogo.PNG" class="img-rounded"/>
 
-                    <div id="myModal" class="modal fade" role="dialog">
+                    <div id="myModal2" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="imagemodal modal-body">

@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
 
-
-
 <div class=" ngoprofilenavbar">
     <div class="col-md-12">
         <div class="panel panel-default col-md-12 panelNGO column12">
@@ -14,13 +12,13 @@
                     @*<img src="~/Images/sammanlogo.PNG"class="ngoprofilepic" /><br />*@
 
 
-                    <img  id="1" data-toggle="modal" data-target="#myModal" src="~/Images/sammanlogo.PNG" class="img-rounded"/>
-             <div id="myModal" class="modal fade" role="dialog">
+                    <img id="1" data-toggle="modal" data-target="#myModal2" src="~/Images/sammanlogo.PNG" class="img-rounded" />
+                    <div id="myModal2" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="imagemodal modal-body">
-                                    <img class="showimage img-responsive " src="~/Images/sammanlogo.PNG"/>
-                                                                  </div>
+                                    <img class="showimage img-responsive" src="~/Images/sammanlogo.PNG" />
+                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Change Profile</button>
                                 </div>
@@ -28,7 +26,7 @@
                         </div>
                     </div>
 
-                 @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
+                    @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
                 </div>
             </div>
             @*NGO Profile header Start*@
@@ -38,7 +36,7 @@
                         <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
                         @*<li><a href="/NGOProfile/Index/">Post</a></li>*@
                         <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
-                      @*  <li class="dropdown">
+                        @*  <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Change Image</a></li>
@@ -60,6 +58,10 @@
 
 
 @section scripts{
-    <script src="~/Scripts/Post/PostComment.js"></script>
    
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Post/PostComment.js"></script>
+
+
 }
