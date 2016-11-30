@@ -8,9 +8,8 @@
                     <tr>
                         <th class="col-md-3">NGO NAME</th>
                         <th class="col-md-3">NGO Email</th>
-                       
-                        
-                       @* <th class="col-md-2">RESET PWD</th>*@
+                        <th class="col-md-3">UNWARNED</th>
+                        <th class="col-md-3">BLOCK</th>
                     </tr>
                 </thead>
                 @foreach (var item in Model)
@@ -18,8 +17,8 @@
                     <tr>
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
                         <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-                       
-                       @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
+                        <td class="col-md-3 adminTableData"><a href="/admin/WarnNGO/@item.LoginID" class="fa fa-exclamation-triangle fa-2x"  aria-hidden="true" style="color:red"></a></td>
+                        <td class="col-md-3 adminTableData"><a href="/admin/Block/@item.LoginID" class="fa fa-ban fa-2x"  aria-hidden="true" style="color:red"></a></td>
                     </tr>    
                 }
                 <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
