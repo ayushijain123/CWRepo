@@ -22,7 +22,7 @@ $(document).ready(function () {
 
                 $("#" + postid).append('    <div class="form-group col-md-12 ">' +
                 '<div class="form-inline " id="comentpost">' +
-                    '<img src="/Images/usernew.png" class="col-md-1 commentimage profileimagecomment" />' +
+                    '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
                     '<p id="postcommentcontent">' + TextComment + '</p>' +
@@ -100,9 +100,9 @@ $(document).ready(function () {
                 console.log(postlikelist);
                 var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
                 '<div class="form-inline">' +
-                '<img src="/Images/usernew.png" id="images" />' +
+                '<span id="images fa fa-user" ></span>' +
                 '  <b id="usernamepost">' + value.userName + '</b>' +
-
+                
                 '</div>' +
                 '</div>';
 
