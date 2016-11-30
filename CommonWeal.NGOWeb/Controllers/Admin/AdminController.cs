@@ -1,5 +1,4 @@
 ﻿using CommonWeal.Data;
-using CommonWeal.NGOWeb.Models;
 using System;
 using System.Linq;
 using System.Web.Mvc;
@@ -105,43 +104,9 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 context.Configuration.ValidateOnSaveEnabled = false;
 
                 context.SaveChanges();
-                return RedirectToAction("Warned_NGOs", "Admin");
-
-            }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-            {
-                Exception raise = dbEx;
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        string message = string.Format("{0}:{1}",
-                            validationErrors.Entry.Entity.ToString(),
-                            validationError.ErrorMessage);
-                        // raise a new exception nesting  
-                        // the current instance as InnerException  
-                        raise = new InvalidOperationException(message, raise);
-                    }
-                }
-                throw raise;
-            }
-        }
-
-        public ActionResult UnwarnNGO(int id)
-        {
-            try
-            {
-                CommonWealEntities context = new CommonWealEntities();
-
-                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
-                ob.IsWarn = false;
-                context.SaveChanges();
-                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
-                ob1.IsWarn = false;
-
-                context.Configuration.ValidateOnSaveEnabled = false;
-
-                context.SaveChanges();
+                var ob2 = context.Users.Where(w=>w.LoginID==id).Select(w => w.LoginEmailID).FirstOrDefault();
+                var Randomcode = "Warning for suspicious activity";
+                obj.SendActivationEmail(ob2, Randomcode);
                 return RedirectToAction("Active_Users", "Admin");
 
             }
@@ -294,6 +259,30 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return RedirectToAction("Blocked_NormalUsers", "Admin");
         }
 
+
+        //to change password of any user
+        public ActionResult changePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult changePassword(NGOUser obj)
+        {
+            using (CommonWealEntities context = new CommonWealEntities())
+            {
+                var objngo = context.NGOUsers.Where(x => x.NGOEmailID == obj.NGOEmailID).FirstOrDefault();
+                var objuser = context.Users.Where(x => x.LoginEmailID == obj.NGOEmailID).FirstOrDefault();
+
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                objngo.NGOPassword = obj.NGOPassword;
+                objuser.LoginPassword = obj.NGOPassword;
+                context.SaveChanges();
+                TempData["msg"] = "<script>alert('Password Changed succesfully');</script>";
+
+                return RedirectToAction("index", "Admin");
+            }
+        }
 
         //public ActionResult DisplayGraph()
         //{
