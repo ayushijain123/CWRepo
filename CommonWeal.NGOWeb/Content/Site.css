@@ -1383,6 +1383,13 @@ tr:nth-child(even) {
     text-decoration: none;
 }
 
+.discrete-graph {
+    top: 25px;
+}
+
+.donut-chart {
+    top: 10px;
+}
 
 /*search box
 added by payal*/
