@@ -12,14 +12,15 @@
 
 @*  @Html.Partial("_posts", Model);*@
 <script src="~/Scripts/jquery-1.7.1.js"></script>
+<link href="~/Content/chosen.css" rel="stylesheet" />
+<script src="~/Scripts/chosen.jquery.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
         $("#selectcategory").change(function () {
 
             if ($(this).val() >= 0) {
-                
-                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
+                $.post("/post/GetPostByCategory2?category=" + $(this).val(), function (result) {
 
                     // $("#loadMoreSection").append(result);
                     //    console.log(result);
@@ -31,7 +32,6 @@
                     //    //console.log(result);
                 });
             }
-            
 
         });
 
@@ -48,13 +48,9 @@
             else { $('#selectcategory').val('').trigger('chosen:updated'); }
             console.log($('#selectcategory').val().length);
         });
-
-
-
-
     });
   </script>
-  @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory selectcategory" })
+ @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectmultiple" , @multiple = "multiple",})
     @*//end upload post*@
  @*   @Html.Partial("../UserHome/_posts", Model)*@
  <div id="postsection">
