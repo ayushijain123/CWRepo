@@ -15,8 +15,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             dbOperations db = new dbOperations();
             //User UL = new User();
             //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
-            var postList = db.GetPostOnLoad();
-            //var ngoPostList = postList.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
+            var postList = db.GetAllPost(LoginUser.LoginID,0,0);
+            //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
             return View(postList);
         }
 
@@ -25,10 +25,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         public ActionResult AboutUs()
         {
             CommonWealEntities context = new CommonWealEntities();
+
+
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+
             return View(obj);
         }
-
         [HttpPost]
         public ActionResult Edit(NGOUser obj)
         {
@@ -42,20 +44,16 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 ob.Telephone = obj.Telephone;
                 ob.City = obj.City;
                 ob.ChairmanName = obj.ChairmanName;
-                ob.NGOPassword = obj.NGOPassword;
+                //ob.NGOPassword = obj.NGOPassword;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 User objuser = new User();
-                var Userob = context.Users.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-                Userob.LoginEmailID = obj.NGOEmailID;
+                objuser.LoginEmailID = obj.NGOEmailID;
                 context.SaveChanges();
 
-
-
             }
-            TempData["AlertMessage"] = "records updated successfully";
-            return RedirectToAction("aboutUs", "NGOProfile");
 
+            return View("AboutUsEditable");
         }
 
     }
