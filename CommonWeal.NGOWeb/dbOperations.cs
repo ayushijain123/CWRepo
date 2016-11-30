@@ -1,15 +1,11 @@
-﻿using CommonWeal.NGOWeb;
+﻿using CommonWeal.Data;
+using CommonWeal.NGOWeb.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
-using System.Web.Mvc;
-
-using System.Net.Mail;
+using System.Linq;
 using System.Net;
-using CommonWeal.NGOWeb.ViewModel;
-using CommonWeal.Data;
+using System.Net.Mail;
 namespace CommonWeal.NGOWeb
 {
     public class dbOperations
@@ -73,7 +69,7 @@ namespace CommonWeal.NGOWeb
         {
             List<NGOUser> NGOList = new List<NGOUser>();
             // userList = context.RegisteredUsers.ToList();
-            NGOList = context.NGOUsers.Where(w => w.IsWarn==true).ToList();
+            NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
             return NGOList;
         }
         public string GenerateRandomPassword(int length)
@@ -97,7 +93,7 @@ namespace CommonWeal.NGOWeb
             var toAddress = new MailAddress(UserEmail);
             try
             {
-                string subject = "Fassword Change";
+                string subject = "CommonWeal Security Team";
                 string body = Randomcode;
 
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
@@ -126,69 +122,70 @@ namespace CommonWeal.NGOWeb
         }
 
         /*method for getting post by category selection*/
-        public List<Post> GetPostByCategory1(int category=0)
-        { var selectedlist=new List<PostWithCategory>();
- 
-            if(category>1)
+        public List<Post> GetPostByCategory1(int category = 0)
+        {
+            var selectedlist = new List<PostWithCategory>();
+
+            if (category > 1)
             {
-        //var NGOPostList =context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
+                //var NGOPostList =context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
                 var list = getPostwithcategoryList();
                 selectedlist = list.Where(x => x.CategoryID == category).ToList();
             }
             else
             {
-               selectedlist= getPostwithcategoryList().OrderByDescending(x=>x.CreatedOn).ToList();
+                selectedlist = getPostwithcategoryList();
             }
-        var result = GetAllPost(selectedlist);
-           
+            var result = GetAllPost(selectedlist);
 
-         return result;
+
+            return result;
         }
         /*getting post by id*/
         public List<Post> GetPostById(int id)
         {
-          var NGOPostlist = context.NGOPosts.Where(x=>x.LoginID==id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
-          var list = getPostwithcategoryList();
-          var result = GetAllPost(list);
-          return result;
+            var NGOPostlist = context.NGOPosts.Where(x => x.LoginID == id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
+            var list = getPostwithcategoryList();
+            var result = GetAllPost(list);
+            return result;
         }
         /*getting post on see more click*/
-        public List<Post> GetPostOnSeeMore(int pageNum=0, int category=0)
+        public List<Post> GetPostOnSeeMore(int pageNum = 0, int category = 0)
         {
             var selectlist = new List<PostWithCategory>();
-         //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
-         var list = getPostwithcategoryList();
+            //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            var list = getPostwithcategoryList();
 
-         if (category > 1)
-         {
-             selectlist = list.Where(x => x.CategoryID == category).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
-            
-         }
-         else
-         {
-             selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();  
-         }
-         var result = GetAllPost(selectlist);
-         return result;
+            if (category > 1)
+            {
+                selectlist = list.Where(x => x.CategoryID == category).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+
+            }
+            else
+            {
+                selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            }
+            var result = GetAllPost(selectlist);
+            return result;
         }
-        
-        
+
+
         /*getting post category*/
         public List<Post> GetPostCategory(int category)
         {
-            
-            
+
+
             //   var List = from g in context.PostCategories
             //join u in context.NGOPosts on g.PostID equals u.PostID
             //select new { g, u, });
             var list = getPostwithcategoryList();
-                //context.PostCategories.Where(x => x.CategoryID == item).Select(x => x.PostID).ToList();
-               // arrayList.Add(List);
-               // return list;
-           var selectedlist= list.Where(x=>x.CategoryID==category).ToList();
-           var result = GetAllPost(selectedlist);
-           //var cat = list[0].CategoryID;
-          // var pos = list[0].u.PostID;
+            //context.PostCategories.Where(x => x.CategoryID == item).Select(x => x.PostID).ToList();
+            // arrayList.Add(List);
+            // return list;
+            var selectedlist = list.Where(x => x.CategoryID == category).ToList();
+            var result = GetAllPost(selectedlist);
+            //var cat = list[0].CategoryID;
+            // var pos = list[0].u.PostID;
             return result;
         }
         /*getting post on 1st time page loading*/
@@ -196,7 +193,7 @@ namespace CommonWeal.NGOWeb
         {
             var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var list = getPostwithcategoryList();
-            var selectList = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();  
+            var selectList = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var result = GetAllPost(selectList);
             return result;
         }
@@ -236,7 +233,7 @@ namespace CommonWeal.NGOWeb
             //{
             //    NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             //}
-            
+
             var RegUserlist = context.RegisteredUsers.ToList();
             var Commentlist = context.PostComments.ToList();
             var NGOUserlist = context.NGOUsers.ToList();
@@ -418,7 +415,7 @@ namespace CommonWeal.NGOWeb
                     pc.PostID = postid;
                     pc.CategoryID = 1;
                     db.PostCategories.Add(pc);
-                 }
+                }
             }
             catch (Exception ex)
             {
