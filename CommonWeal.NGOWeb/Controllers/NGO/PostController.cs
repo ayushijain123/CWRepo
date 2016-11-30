@@ -164,7 +164,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*action for getting  post category wise*/
         [AllowAnonymous]
         public PartialViewResult GetPostByCategory2(int category = 0)
-        { var load =new List<Post>();
+        { 
+        var load =new List<Post>();
         load = null;
         if (category >= 0)
         {
