@@ -31,6 +31,8 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var CountOfBlockedUsers = users.Where(w => w.IsBlock == true).Count();
             ViewBag.COBU = CountOfBlockedUsers;
 
+            var CountOfWarnedUsers = users.Where(w => w.IsWarn == true).Count();
+            ViewBag.COWU = CountOfWarnedUsers;
             return View();
 
         }
@@ -74,28 +76,56 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var request = obj.Blocked_NormalUsers();
             return View(request);
         }
+        public ActionResult Warned_NGOs()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            dbOperations obj = new dbOperations();
+            var request = obj.WarnedNGOs();
+            return View(request);
+        }
 
         public ActionResult Settings()
         {
             return View();
         }
 
-        //public ActionResult Warned_Users(int id)
-        //{
-        //    CommonWealEntities context = new CommonWealEntities();
-        //    //User UL = new User ();
-        //    var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
-        //    ob.IsWarn = true;
-        //    context.SaveChanges();
-        //    var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
-        //    ob1.IsWarn= true;
+       
+        public ActionResult WarnNGO(int id)
+        {
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+               
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsWarn = true;
+                context.SaveChanges();
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsWarn = true;
 
-        //    context.Configuration.ValidateOnSaveEnabled = false;
+                context.Configuration.ValidateOnSaveEnabled = false;
 
-        //    context.SaveChanges();
-        //    return RedirectToAction("Warned_Users", "Admin");
-        //}
+                context.SaveChanges();
+                return RedirectToAction("Warned_NGOs", "Admin");
 
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+        }
         public ActionResult Accept(int id)
         {
             try
