@@ -154,9 +154,20 @@ namespace CommonWeal.NGOWeb
         /*getting post on see more click*/
         public List<Post> GetPostOnSeeMore(int pageNum=0, int category=0)
         {
-         var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            var selectlist = new List<PostWithCategory>();
+         //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
          var list = getPostwithcategoryList();
-            var result = GetAllPost(list);
+
+         if (category > 1)
+         {
+             selectlist = list.Where(x => x.CategoryID == category).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            
+         }
+         else
+         {
+             selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();  
+         }
+         var result = GetAllPost(selectlist);
          return result;
         }
         
@@ -184,7 +195,8 @@ namespace CommonWeal.NGOWeb
         {
             var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var list = getPostwithcategoryList();
-            var result = GetAllPost(list);
+            var selectList = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();  
+            var result = GetAllPost(selectList);
             return result;
         }
         /*method for join ngopost and postcategories table and select some column*/
