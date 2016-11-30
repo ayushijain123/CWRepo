@@ -166,20 +166,21 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         public PartialViewResult GetPostByCategory2(int category = 0)
         { var load =new List<Post>();
         load = null;
-            if (category >= 0)
-            {
-                dbOperations ob = new dbOperations();
-                CommonWealEntities db = new CommonWealEntities();
-                //var list = db.WorkingAreas.Where(x => x.CategoryID == category).ToList();
-               // var post = db.NGOPosts.Include
+        if (category >= 0)
+        {
+            dbOperations ob = new dbOperations();
+            CommonWealEntities db = new CommonWealEntities();
+            //var list = db.WorkingAreas.Where(x => x.CategoryID == category).ToList();
+            // var post = db.NGOPosts.Include
 
-                //var query = objEntities.Employee.Join(objEntities.Department, r => r.EmpId, p => p.EmpId, (r,p) => new{r.FirstName, r.LastName, p.DepartmentName});
-                //var query = db.NGOPosts.Join(db.PostCategories, ngoPost => ngoPost.PostID, postCategories => postCategories.PostID, (r, p) => new { r }).ToList();
-               // var query1 = db.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).ToList();
-                ob.GetPostByCategory1(category);
-               
+            //var query = objEntities.Employee.Join(objEntities.Department, r => r.EmpId, p => p.EmpId, (r,p) => new{r.FirstName, r.LastName, p.DepartmentName});
+            //var query = db.NGOPosts.Join(db.PostCategories, ngoPost => ngoPost.PostID, postCategories => postCategories.PostID, (r, p) => new { r }).ToList();
+            // var query1 = db.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).ToList();
+            load = ob.GetPostByCategory1(category);
 
-            }
+
+        }
+      
             return PartialView("~/views/userHome/_Posts.cshtml", load);
         }
     }
