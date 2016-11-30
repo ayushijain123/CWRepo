@@ -17,7 +17,7 @@
                     <tr>
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
                         <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
-                        <td class="col-md-3 adminTableData"><a href="/admin/WarnNGO/@item.LoginID" class="fa fa-exclamation-triangle fa-2x"  aria-hidden="true" style="color:red"></a></td>
+                        <td class="col-md-3 adminTableData"><a href="/admin/UnwarnNGO/@item.LoginID" class="fa fa-exclamation-triangle fa-2x"  aria-hidden="true" style="color:red"></a></td>
                         <td class="col-md-3 adminTableData"><a href="/admin/Block/@item.LoginID" class="fa fa-ban fa-2x"  aria-hidden="true" style="color:red"></a></td>
                     </tr>    
                 }
