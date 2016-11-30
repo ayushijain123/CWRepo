@@ -132,11 +132,12 @@ namespace CommonWeal.NGOWeb
             if(category>1)
             {
         //var NGOPostList =context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
-        var list = getPostwithcategoryList();
-          selectedlist = list.Where(x => x.CategoryID == category).ToList();
+                var list = getPostwithcategoryList();
+                selectedlist = list.Where(x => x.CategoryID == category).ToList();
             }
-            else{
-               selectedlist= getPostwithcategoryList();
+            else
+            {
+               selectedlist= getPostwithcategoryList().OrderByDescending(x=>x.CreatedOn).ToList();
             }
         var result = GetAllPost(selectedlist);
            
