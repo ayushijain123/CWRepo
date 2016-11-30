@@ -774,7 +774,7 @@ tr.pager td {
 }
 
 .imageurlpost {
-    max-width: 100%;
+    max-width: 90%;
    
     max-height: 600px;
     display: block;
