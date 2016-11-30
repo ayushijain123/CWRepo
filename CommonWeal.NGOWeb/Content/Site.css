@@ -88,9 +88,9 @@ header {
 }
 
 #menu {
-    padding-right: 17px;
-    margin-top: 0px;
-    padding-top: 5px;
+    /*padding-right: 17px;*/
+    margin-top: 20px;
+    /*padding-top: 5px;*/
 }
 
 .menuitem {
@@ -849,9 +849,16 @@ tr.pager td {
 
 
 
+.usernav-guest {
+    color: #d9f7dd;
+    font-size: 20px;
+    padding: 5px;
+}
+
 .usernav {
     color: #d9f7dd;
-    font-size: 16px;
+    font-size: 20px;
+    padding: 5px;
 }
 
 #postcommentcontent {
@@ -1040,6 +1047,9 @@ tr:nth-child(even) {
     margin-left: 130px;
 }
 
+.requests {
+    box-shadow: 2px 2px 5px #888888;
+}
 
 /*full image modal*/
 
@@ -1320,6 +1330,7 @@ tr:nth-child(even) {
 .bg-primary {
     margin-bottom: 6px;
     border-radius: 4px;
+    box-shadow: 2px 2px 5px #888888;
 }
 
 .request:hover {
@@ -1384,11 +1395,15 @@ tr:nth-child(even) {
 }
 
 .discrete-graph {
-    top: 25px;
+    top: 50px;
 }
 
 .donut-chart {
-    top: 10px;
+    top: 35px;
+}
+
+.bottom-panel {
+    margin-top: 5px;
 }
 
 /*search box
