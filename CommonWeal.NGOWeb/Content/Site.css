@@ -1498,3 +1498,8 @@ background-color:#ebeff2 ;
 }
 
 
+#postContentTextArea {
+   resize:none;
+
+}
+
