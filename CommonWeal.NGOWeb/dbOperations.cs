@@ -120,10 +120,17 @@ namespace CommonWeal.NGOWeb
 
         /*method for getting post by category selection*/
         public List<Post> GetPostByCategory1(int category=0)
-        {
-        var NGOPostList =context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
+        { var selectedlist=new List<PostWithCategory>();
+ 
+            if(category>1)
+            {
+        //var NGOPostList =context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
         var list = getPostwithcategoryList();
-        var selectedlist = list.Where(x => x.CategoryID == category).ToList();
+          selectedlist = list.Where(x => x.CategoryID == category).ToList();
+            }
+            else{
+               selectedlist= getPostwithcategoryList();
+            }
         var result = GetAllPost(selectedlist);
            
 
