@@ -57,11 +57,11 @@
     @Html.Partial("../UserHome/_Posts", Model)
          </div>   
 
-<div id="loadMoreSection"></div>
+<div id="loadMoreSection" ></div>
+<div  style="text-align:center">
+ <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px" value="load more" id="btnLoad" align="center"> @*type="button"*@
 
- <input type="button" value="load more" id="btnLoad">
-
-
+  </div>
 
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
