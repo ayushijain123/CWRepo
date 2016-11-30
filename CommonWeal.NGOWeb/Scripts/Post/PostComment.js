@@ -276,10 +276,29 @@ $(document).ready(function () {
 
     /*js for replace category tag on header search bar*/
 
+    $('img').on('click', function () {
+        var image = $(this).attr('src');
+        $('#myModal2').on('show.bs.modal', function () {
+            $(".img-responsive").attr("src", image);
+        });
+    });
+
+
 });
+$('img').on('click', function () {
+    var image = $(this).attr('src');
+    $('#myModal2').on('show.bs.modal', function () {
+        $(".img-responsive").attr("src", image);
+    });
+});
+     
 
 
-///////
+    
+
+
+
+
 
 //Added by Neha M. on 25-11-16
 //Admin Module Script
