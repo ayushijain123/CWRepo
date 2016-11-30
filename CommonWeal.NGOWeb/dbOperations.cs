@@ -69,6 +69,13 @@ namespace CommonWeal.NGOWeb
             userList = context.Users.Where(w => w.IsActive == true).ToList();
             return userList;
         }
+        public List<NGOUser> WarnedNGOs()
+        {
+            List<NGOUser> NGOList = new List<NGOUser>();
+            // userList = context.RegisteredUsers.ToList();
+            NGOList = context.NGOUsers.Where(w => w.IsWarn==true).ToList();
+            return NGOList;
+        }
         public string GenerateRandomPassword(int length)
         {
             string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-*&#+";
