@@ -77,7 +77,7 @@
 
     });
   </script>
-<div class="col-sm-10 col-sm-push-1">
+@*<div class="col-sm-10 col-sm-push-1">*@
    @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory",@multiple = "multiple" })
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
         <div class="form-inline">
@@ -103,17 +103,18 @@
                 <input type="submit" class="btn-primary right" id="post" value="Post" />
             </div>
         </form>
-        </div>
+       @* </div>*@
    
      <div id="postsection">
     @Html.Partial("../UserHome/_Posts", Model)
     </div>
-    <div id="loadMoreSection"></div>
-    <button class="yj-featured-feed-seller yj-btn yj-btn-alt yj-btn-wide"  id="btnLoad">
-        <span class="yamicon-yam-spittle yamicon">See more conversations </span>
+    
 
-</button>
-@*<span class="yamicon yamicon-yam-spittle yamicon-regular yj-header-img">See more conversation</span>*@
+<div id="loadMoreSection"></div>
+    <div  style="text-align:center">
+     <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; color:red; text-decoration:underline;" value="See more post" id="btnLoad" align="center">
+  </div>
+
 <br/>
 <br/>
 <br/>
