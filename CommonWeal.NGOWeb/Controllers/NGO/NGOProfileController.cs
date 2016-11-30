@@ -15,7 +15,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             dbOperations db = new dbOperations();
             //User UL = new User();
             //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
-            var postList = db.GetAllPost(LoginUser.LoginID,0,0);
+            var postList = db.GetPostOnLoad();
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
             return View(postList);
         }
