@@ -16,8 +16,8 @@ namespace CommonWeal.Data
     {
         public User()
         {
-            this.NGOUsers = new HashSet<NGOUser>();
             this.RegisteredUsers = new HashSet<RegisteredUser>();
+            this.NGOUsers = new HashSet<NGOUser>();
         }
     
         public int LoginID { get; set; }
@@ -28,8 +28,9 @@ namespace CommonWeal.Data
         public bool IsBlock { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public Nullable<bool> IsWarn { get; set; }
     
-        public virtual ICollection<NGOUser> NGOUsers { get; set; }
         public virtual ICollection<RegisteredUser> RegisteredUsers { get; set; }
+        public virtual ICollection<NGOUser> NGOUsers { get; set; }
     }
 }

@@ -452,7 +452,7 @@
     <Content Include="Views\Admin\Blocked_NormalUsers.cshtml" />
     <Content Include="Views\AreaOfInterest\Index.cshtml" />
     <Content Include="Views\Shared\_filter.cshtml" />
-    <Content Include="Views\Admin\Warned_Users.cshtml" />
+    <Content Include="Views\Admin\Warned_NGOs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />

@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="CommonWealModel.ForgotPassword" Width="1.5" PointX="2.3747401099534424" PointY="17.02323443490231" />
         <EntityTypeShape EntityType="CommonWealModel.ImageHandler" Width="1.5" PointX="9.6255553353696843" PointY="23.729405101262689" />
         <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="0.53360441724471952" PointY="19.290461802524728" />
-        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="7.9919761791787929" PointY="27.179556561251896" />
         <EntityTypeShape EntityType="CommonWealModel.PostCategory" Width="1.5" PointX="2.1437741304485938" PointY="21.898615385358507" />
         <EntityTypeShape EntityType="CommonWealModel.PostComment" Width="1.5" PointX="2.0307797221610229" PointY="15.336088128078769" />
         <EntityTypeShape EntityType="CommonWealModel.PostLike" Width="1.5" PointX="8.0898218509228066" PointY="4.4869657626780519" />
@@ -22,9 +21,10 @@
         <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="9.3029152347254183" PointY="16.663450174342586" />
         <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="7.9894238561342581" PointY="18.516774186173816" />
         <EntityTypeShape EntityType="CommonWealModel.WorkingArea" Width="1.5" PointX="4.8680672016311757" PointY="15.394602559224984" />
-        <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
         <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_UserLogin" />
         <AssociationConnector Association="CommonWealModel.FK_PostCategories_NGOPost1" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="7.8493286426408808" PointY="6.7737046362709741" />
+        <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

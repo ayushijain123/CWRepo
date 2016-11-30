@@ -27,7 +27,7 @@
             <End Role="User" EntitySet="User" />
             <End Role="NGOUser" EntitySet="NGOUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_PostCategories_NGOPost1" Association="CommonWealModel.Store.FK_PostCategories_NGOPost1">
+          <AssociationSet Name="FK_PostCategories_NGOPost" Association="CommonWealModel.Store.FK_PostCategories_NGOPost">
             <End Role="NGOPost" EntitySet="NGOPost" />
             <End Role="PostCategories" EntitySet="PostCategories" />
           </AssociationSet>
@@ -106,11 +106,11 @@
           <Property Name="LoginUserType" Type="int" />
           <Property Name="NGOAddress" Type="varchar" MaxLength="100" />
           <Property Name="ChairmanName" Type="varchar" MaxLength="50" />
-          <Property Name="ChairmanID" Type="varchar" MaxLength="50" />
+          <Property Name="ChairmanID" Type="varchar(max)" />
           <Property Name="ParentOrganisation" Type="varchar" MaxLength="50" />
           <Property Name="RegisteredWith" Type="varchar" MaxLength="50" />
           <Property Name="RegistrationNumber" Type="varchar" MaxLength="50" />
-          <Property Name="RegistrationProof" Type="varchar" MaxLength="50" />
+          <Property Name="RegistrationProof" Type="varchar(max)" />
           <Property Name="CityOfRegistration" Type="varchar" MaxLength="50" />
           <Property Name="DateOfRegistration" Type="date" />
           <Property Name="FCRANumber" Type="varchar" MaxLength="50" />
@@ -122,6 +122,7 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="IsWarn" Type="bit" />
         </EntityType>
         <EntityType Name="PostCategories">
           <Key>
@@ -226,6 +227,7 @@
           <Property Name="IsBlock" Type="bit" Nullable="false" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="IsWarn" Type="bit" />
         </EntityType>
         <EntityType Name="WorkingArea">
           <Key>
@@ -247,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PostCategories_NGOPost1">
+        <Association Name="FK_PostCategories_NGOPost">
           <End Role="NGOPost" Type="CommonWealModel.Store.NGOPost" Multiplicity="1" />
           <End Role="PostCategories" Type="CommonWealModel.Store.PostCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -287,7 +289,6 @@
           <EntitySet Name="ForgotPasswords" EntityType="CommonWealModel.ForgotPassword" />
           <EntitySet Name="ImageHandlers" EntityType="CommonWealModel.ImageHandler" />
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
-          <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
           <EntitySet Name="PostCategories" EntityType="CommonWealModel.PostCategory" />
           <EntitySet Name="PostComments" EntityType="CommonWealModel.PostComment" />
           <EntitySet Name="PostLikes" EntityType="CommonWealModel.PostLike" />
@@ -299,10 +300,6 @@
           <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
           <EntitySet Name="Users" EntityType="CommonWealModel.User" />
           <EntitySet Name="WorkingAreas" EntityType="CommonWealModel.WorkingArea" />
-          <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
-            <End Role="User" EntitySet="Users" />
-            <End Role="NGOUser" EntitySet="NGOUsers" />
-          </AssociationSet>
           <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
             <End Role="User" EntitySet="Users" />
             <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
@@ -310,6 +307,11 @@
           <AssociationSet Name="FK_PostCategories_NGOPost1" Association="CommonWealModel.FK_PostCategories_NGOPost1">
             <End Role="NGOPost" EntitySet="NGOPosts" />
             <End Role="PostCategory" EntitySet="PostCategories" />
+          </AssociationSet>
+          <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
+          <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
+            <End Role="User" EntitySet="Users" />
+            <End Role="NGOUser" EntitySet="NGOUsers" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AreaOfInterest">
@@ -363,43 +365,6 @@
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PostCategories" Relationship="CommonWealModel.FK_PostCategories_NGOPost1" FromRole="NGOPost" ToRole="PostCategory" />
-        </EntityType>
-        <EntityType Name="NGOUser">
-          <Key>
-            <PropertyRef Name="NGOUserId" />
-          </Key>
-          <Property Type="Int32" Name="NGOUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="UniqueuId" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOEmailID" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOPassword" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="LoginID" />
-          <Property Type="String" Name="NGOKey" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOProfilePic" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mobile" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="City" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="State" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="LoginUserType" />
-          <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ChairmanID" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RegistrationProof" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
-          <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActive" Nullable="false" />
-          <Property Type="Boolean" Name="IsBlock" Nullable="false" />
-          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
-          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
         </EntityType>
         <EntityType Name="PostCategory">
           <Key>
@@ -506,8 +471,9 @@
           <Property Type="Boolean" Name="IsBlock" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
           <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="User" ToRole="RegisteredUser" />
+          <Property Type="Boolean" Name="IsWarn" />
+          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
         </EntityType>
         <EntityType Name="WorkingArea">
           <Key>
@@ -517,18 +483,6 @@
           <Property Type="Int32" Name="LoginID" Nullable="false" />
           <Property Type="Int32" Name="CategoryID" />
         </EntityType>
-        <Association Name="FK_NGOUser_UserLogin">
-          <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="LoginID" />
-            </Principal>
-            <Dependent Role="NGOUser">
-              <PropertyRef Name="LoginID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RegisteredUser_UserLogin">
           <End Type="CommonWealModel.User" Role="User" Multiplicity="1" />
           <End Type="CommonWealModel.RegisteredUser" Role="RegisteredUser" Multiplicity="*" />
@@ -550,6 +504,56 @@
             </Principal>
             <Dependent Role="PostCategory">
               <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NGOUser">
+          <Key>
+            <PropertyRef Name="NGOUserId" />
+          </Key>
+          <Property Type="Int32" Name="NGOUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UniqueuId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOEmailID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOPassword" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginID" />
+          <Property Type="String" Name="NGOKey" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOProfilePic" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mobile" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="City" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginUserType" />
+          <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanID" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegistrationProof" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
+          <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Boolean" Name="IsBlock" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsWarn" />
+          <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_NGOUser_UserLogin">
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="NGOUser">
+              <PropertyRef Name="LoginID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -613,43 +617,6 @@
                 <ScalarProperty Name="PostDateTime" ColumnName="PostDateTime" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NGOUsers">
-            <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
-              <MappingFragment StoreEntitySet="NGOUser">
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
-                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
-                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
-                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
-                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
-                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
-                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
-                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
-                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
-                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
-                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
-                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
-                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
-                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
-                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
-                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -756,6 +723,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CommonWealModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
@@ -773,6 +741,44 @@
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="WorkingAreaID" ColumnName="WorkingAreaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGOUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
+              <MappingFragment StoreEntitySet="NGOUser">
+                <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
+                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
+                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
+                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
+                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
+                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
+                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
+                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
+                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
+                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
+                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
+                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
+                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
