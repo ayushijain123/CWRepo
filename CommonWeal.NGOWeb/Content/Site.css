@@ -837,7 +837,7 @@ tr.pager td {
     padding-top: 7px;
        /*padding-left: 38px;
     padding-right: 11px;*/
-         padding-left: 14px;
+        padding-left: 9px;
     padding-right: 0px; 
       font-size: x-large;
 
@@ -851,7 +851,7 @@ tr.pager td {
     width: auto;
     padding-right: 8px;
     top: 0px;
-    padding-left: 15px;
+   padding-left: 14px;
     text-transform:capitalize;
     
 }
