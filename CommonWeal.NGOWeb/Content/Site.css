@@ -749,12 +749,14 @@ tr.pager td {
 
 .usernamepost {
     font-size: 17px;
-    color: #476a87 !important;
+    color: #428bca; 
     cursor: pointer;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 8px;
     width: auto;
+    text-transform:capitalize;
+   
 }
 
 .commentdate {
