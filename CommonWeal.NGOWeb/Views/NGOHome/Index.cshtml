@@ -10,24 +10,24 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#selectcategory").change(function () {
+        //$("#selectcategory").change(function () {
 
-            if ($(this).val() >= 0) {
+        //    if ($(this).val() >= 0) {
                
-                $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
+        //        $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
-                    // $("#loadMoreSection").append(result);
-                    //    console.log(result);
-                    if (result != null) {
-                        $("#postsection").html("");
-                        $("#loadMoreSection").html("");
-                        $("#loadMoreSection").append(result);
-                    }
-                    //    //console.log(result);
-                });
-            }
+        //            // $("#loadMoreSection").append(result);
+        //            //    console.log(result);
+        //            if (result != null) {
+        //                $("#postsection").html("");
+        //                $("#loadMoreSection").html("");
+        //                $("#loadMoreSection").append(result);
+        //            }
+        //            //    //console.log(result);
+        //        });
+        //    }
 
-        });
+        //});
 
         $(".chosen-select-multiple").chosen();
         $('.chosen-select-multiple').change(function () {
@@ -74,7 +74,31 @@
             console.log($('#selectcategory').val().length);
         });
 
+        $("#selectcategory").change(function () {
+            var categoryList = $(this).val();
+            if (categoryList.length >= 0) {
+                // console.log('inside');
+                var things = JSON.stringify({ 'category': categoryList });
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
 
+                    type: 'POST',
+                    url: '/post/GetPostByCategory2',
+                    data: things,
+                    success: function (result) {
+                        // console.log(result);
+                        if (result != null) {
+                            $("#postsection").html("");
+                            $("#loadMoreSection").html("");
+                            $("#loadMoreSection").append(result);
+                        }
+                    },
+                    failure: function (response) {
+                        $('#result').html(response);
+                    }
+                });
+            }
+        });
     });
   </script>
 @*<div class="col-sm-10 col-sm-push-1">*@
