@@ -438,7 +438,9 @@ button {
     font-weight: 600;
     padding: 7px;
     margin-right: 8px;
-    width: auto;
+    width: 70px;
+      margin-left: 44px;
+
 }
 
 td input[type="submit"],
@@ -724,6 +726,16 @@ tr.pager td {
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
+.iconLine {
+    background-color: #FFFFFF;
+     height: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-bottom: solid;
+    border-color: rgba(211, 211, 211, 0.87);
+    border-width: 1px;
+}
+
 
 #container {
     border: medium;
@@ -874,7 +886,7 @@ tr.pager td {
 }
 
 #postform {
-    background-color: #F0F0F0;
+    /*background-color: #F0F0F0;*/
     padding-top: 5px;
     padding-right: 5px;
     padding-bottom: 40px;
@@ -903,15 +915,17 @@ tr.pager td {
 }
 
 #post {
-    padding-top: 3px;
+    /*padding-top: 3px;
     padding-bottom: 4px;
     margin-right: 0px;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 0px;
+    margin-top: 0px;*/
     /*border-color:#225d77;*/
+    width:70px;
 }
+
 
 .btnPost {
     padding-top: 3px !important;
