@@ -9,7 +9,7 @@
         <div id="posttemplate">
             <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
-                <span class="usernamepost col-md-3" id="usernamepost">@item.userName</span>
+                <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span>
                 <span class="posttime col-md-3">@item.postCreateTime</span>
                 <span class="posttag col-md-5 float-right">#@item.categoryName</span>
             </div>
@@ -115,7 +115,7 @@
             {
                 <div class="form-group col-md-12">
                     <div class="form-inline col-md-12 " id="comentpost">
-                        <span class="col-md-1 fa fa-user commentimage "></span>
+                        <span class="col-md-1 fa fa-user commentimage"></span>
 
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime</span>
