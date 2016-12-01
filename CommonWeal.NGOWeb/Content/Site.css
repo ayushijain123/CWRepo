@@ -822,7 +822,7 @@ tr.pager td {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
-    padding:8px 0px 5px 11px;
+    padding:4px 0px 0px 11px;
    
 
 }
@@ -864,9 +864,11 @@ tr.pager td {
 
 #postcommentcontent {
  
-      padding-left: 0px;
-            margin-left: 73px;
-}
+      padding-left: 14px;
+      margin-left: 73px;
+       padding-right: 8px;
+           margin-left: 28px;
+    }
 
 .textComment {
         border-right-width: 0px;
