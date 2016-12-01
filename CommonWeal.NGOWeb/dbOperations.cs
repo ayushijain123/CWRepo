@@ -299,7 +299,12 @@ namespace CommonWeal.NGOWeb
                             break;
 
                     }
-                    //pm.categoryName = context.AreaOfInterests.Where(a => a.CategoryID == item.CategoryID).FirstOrDefault().CategoryName;
+
+                    pm.categoryName = "";
+                    foreach(var cat in item.CategoryList){
+                        pm.categoryName = pm.categoryName+ ""+cat;
+                    }
+                   // pm.categoryName = context.AreaOfInterests.Where(a => a.CategoryID == item.CategoryID).FirstOrDefault().CategoryName;
                     pm.postcontent = item.PostContent;
                     pm.postImageUrl = item.PostUrl;
                     //pm.postCreateTime = item.CreatedOn;
