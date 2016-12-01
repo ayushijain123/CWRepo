@@ -163,11 +163,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         /*action for getting  post category wise*/
         [AllowAnonymous]
-        public PartialViewResult GetPostByCategory2(int category = 0)
+        public PartialViewResult GetPostByCategory2(int[] category )
         { 
         var load =new List<Post>();
         load = null;
-        if (category >= 0)
+        if (category!=null && category.Count() >= 0)
         {
             dbOperations ob = new dbOperations();
             CommonWealEntities db = new CommonWealEntities();
