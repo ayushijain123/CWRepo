@@ -966,6 +966,11 @@ tr.pager td {
     width:70px;
 }
 
+#profileupdate {
+    bottom: 14px;
+
+}
+
 
 .btnPost {
     padding-top: 3px !important;
