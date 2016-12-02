@@ -259,12 +259,9 @@ namespace CommonWeal.NGOAPI.Controllers
             else
             { ob.IsLike = true; }
             context.Configuration.ValidateOnSaveEnabled = false;
-
             context.SaveChanges();
-            string reponse1 = "nhi dena";
-            var response = Request.CreateResponse(HttpStatusCode.OK, reponse1);
+            var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
             return response;
-
         }
         //public HttpResponseMessage PostData()
         //{

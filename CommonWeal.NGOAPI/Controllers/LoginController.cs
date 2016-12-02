@@ -8,9 +8,10 @@ using CommonWeal.Data;
 
 namespace CommonWeal.NGOAPI.Controllers
 {
+    
     public class LoginController :BaseController
     {
-        
+        [AllowAnonymous]     
         [HttpGet]
         public HttpResponseMessage loginget()
         {
@@ -41,14 +42,10 @@ namespace CommonWeal.NGOAPI.Controllers
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, usr);
                 return response;
             }
-            else {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            
+            else 
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest);           
             }
- 
-        
         }
-
-
     }
 }

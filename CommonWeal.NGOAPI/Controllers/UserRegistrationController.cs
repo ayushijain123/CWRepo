@@ -18,7 +18,15 @@ namespace CommonWeal.NGOAPI.Controllers
         {
             return new string[] { "ASJ", "AJ" };
         }
-   
+
+        [HttpGet]
+        public HttpResponseMessage loginget()
+        {
+            CommonWealEntities db = new CommonWealEntities();
+            var response = Request.CreateResponse(HttpStatusCode.OK, db.Users);
+            return response;
+        }
+  
         [HttpPost]
         public bool CreateUser(RegisteredUser ru)
         {
