@@ -26,9 +26,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             CommonWealEntities context = new CommonWealEntities();
 
-
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-
             return View(obj);
         }
         [HttpPost]
