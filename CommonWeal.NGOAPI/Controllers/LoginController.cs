@@ -8,32 +8,62 @@ using CommonWeal.Data;
 
 namespace CommonWeal.NGOAPI.Controllers
 {
-    
-    public class LoginController :BaseController
+    public class LoginController : ApiController
     {
-        [AllowAnonymous]     
+        [AllowAnonymous]
         [HttpGet]
         public HttpResponseMessage loginget()
         {
             CommonWealEntities db = new CommonWealEntities();
-            var response = Request.CreateResponse(HttpStatusCode.OK,db.Users);
+            var response = Request.CreateResponse(HttpStatusCode.OK, db.Users);
             return response;
         }
 
-        [HttpGet]
-        public User userlogin(string userid)
+        public class UserDetails
+        {
+            public int LoginID { get; set; }
+            public int LoginUserType { get; set; }
+            public bool IsActive { get; set; }
+            public bool IsBlock { get; set; }
+            public string ProfileName { get; set; }
+            public string EmailID { get; set; }
+            public string UserPassword { get; set; }
+        }
+
+        [AllowAnonymous]
+        //[Route("api/Login/userlogin")]
+        [HttpPost]
+        public HttpResponseMessage userlogin(UserDetails objUserDetail)
         {
             CommonWealEntities db = new CommonWealEntities();
-            var response = db.Users.Find( Convert.ToInt32( userid));
+            var response = db.Users.Where(a => a.LoginEmailID == objUserDetail.EmailID && a.LoginPassword==objUserDetail.UserPassword).FirstOrDefault();
             if (response == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound)); ;
-
+                HttpResponseMessage resp = Request.CreateResponse(HttpStatusCode.NotFound,"Invalid UserID");
+                return resp;
             }
-            return response;
+            User objuser = new User();
+            RegisteredUser objres = new RegisteredUser();
+            NGOUser objngo = new NGOUser();
+            objUserDetail.LoginID = response.LoginID;
+            objUserDetail.LoginUserType = response.LoginUserType;
+            objUserDetail.IsActive = response.IsActive;
+            objUserDetail.IsBlock = response.IsBlock;
+            if (objUserDetail.LoginUserType == 1)
+            {
+                objUserDetail.ProfileName = response.NGOUsers.Where(a => a.LoginID == response.LoginID).FirstOrDefault().NGOName;
+            }
+            else if (objUserDetail.LoginUserType == 3)
+            {
+                objUserDetail.ProfileName = response.RegisteredUsers.Where(a => a.LoginID == response.LoginID).FirstOrDefault().FirstName;
+            }
+            HttpResponseMessage res = Request.CreateResponse(HttpStatusCode.OK, objUserDetail);
+            return res;
         }
+
         [HttpPost]
-        public HttpResponseMessage loginpost(User usr) {
+        public HttpResponseMessage loginpost(User usr)
+        {
             CommonWealEntities db = new CommonWealEntities();
             if (ModelState.IsValid)
             {
@@ -42,9 +72,9 @@ namespace CommonWeal.NGOAPI.Controllers
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, usr);
                 return response;
             }
-            else 
+            else
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);           
+                return Request.CreateResponse(HttpStatusCode.BadRequest);
             }
         }
     }
