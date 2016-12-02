@@ -51,7 +51,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 objuser.LoginEmailID = obj.NGOEmailID;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
-
+                TempData["US"] = "<script>alert('Updated successfully!');</script>";
             }
 
             return RedirectToAction("AboutUs", "NGOProfile");
