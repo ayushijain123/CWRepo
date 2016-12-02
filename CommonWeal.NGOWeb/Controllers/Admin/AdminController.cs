@@ -104,9 +104,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 context.Configuration.ValidateOnSaveEnabled = false;
 
                 context.SaveChanges();
-                var ob2 = context.Users.Where(w=>w.LoginID==id).Select(w => w.LoginEmailID).FirstOrDefault();
+                var ob2 = context.Users.Where(w => w.LoginID == id).Select(w => w.LoginEmailID).FirstOrDefault();
                 var Randomcode = "Warning for suspicious activity";
                 obj.SendActivationEmail(ob2, Randomcode);
+                TempData["WS"] = "<script>alert('Warning send!');</script>";
                 return RedirectToAction("Active_Users", "Admin");
 
             }
