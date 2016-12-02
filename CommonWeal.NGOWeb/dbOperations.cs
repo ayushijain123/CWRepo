@@ -307,7 +307,7 @@ namespace CommonWeal.NGOWeb
                    // pm.categoryName = context.AreaOfInterests.Where(a => a.CategoryID == item.CategoryID).FirstOrDefault().CategoryName;
                     pm.postcontent = item.PostContent;
                     pm.postImageUrl = item.PostUrl;
-                    //pm.postCreateTime = item.CreatedOn;
+                    pm.postCreateTime = item.CreatedOn.Value;
                     pm.likeCount = item.PostLikeCount;
                     pm.commentCount = item.PostCommentCount.Value;
                     pm.postId = item.PostID;
