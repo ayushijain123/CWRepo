@@ -45,8 +45,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 //ob.NGOPassword = obj.NGOPassword;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
-                User objuser = new User();
-                objuser.LoginEmailID = obj.NGOEmailID;
+                var ob1 = context.Users.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                ob1.LoginEmailID = obj.NGOEmailID;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 TempData["US"] = "<script>alert('Updated successfully!');</script>";
