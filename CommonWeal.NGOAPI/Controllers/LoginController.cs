@@ -42,9 +42,6 @@ namespace CommonWeal.NGOAPI.Controllers
                 HttpResponseMessage resp = Request.CreateResponse(HttpStatusCode.NotFound,"Invalid UserID");
                 return resp;
             }
-            User objuser = new User();
-            RegisteredUser objres = new RegisteredUser();
-            NGOUser objngo = new NGOUser();
             objUserDetail.LoginID = response.LoginID;
             objUserDetail.LoginUserType = response.LoginUserType;
             objUserDetail.IsActive = response.IsActive;
