@@ -14,6 +14,10 @@
             $("input").prop('disabled', false);
             $("#submitbtn").prop('disabled', false);
         });
+        $("#Canclebtn").click(function () {
+            $("input").prop('disabled', true);
+            $("#submitbtn").prop('disabled', true);
+        });
     }
     );
     $('img').on('click', function () {
@@ -131,6 +135,7 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <span id="editbtn" class="btn btn-primary">Edit</span>
                             <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+                            <span id="Canclebtn" class="btn btn-primary">Cancel</span>
                         </div>
                         @* <div class="col-sm-offset-2 col-sm-10">
               *@
