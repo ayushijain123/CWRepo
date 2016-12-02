@@ -49,11 +49,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 context.SaveChanges();
                 User objuser = new User();
                 objuser.LoginEmailID = obj.NGOEmailID;
+                context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
 
             }
 
-            return View("AboutUsEditable");
+            return RedirectToAction("AboutUs", "NGOProfile");
         }
 
     }
