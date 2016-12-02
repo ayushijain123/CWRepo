@@ -972,6 +972,8 @@ tr.pager td {
 }
 
 
+
+
 .btnPost {
     padding-top: 3px !important;
     padding-bottom: 3px !important;
@@ -984,7 +986,10 @@ tr.pager td {
     top: 10px;
     /*border-color:#225d77;*/
 }
+.posttag {
+text-align:right;
 
+}
 
 #posttemplate {
     border: medium;
