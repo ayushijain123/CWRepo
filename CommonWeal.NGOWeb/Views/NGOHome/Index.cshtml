@@ -13,7 +13,7 @@
         //$("#selectcategory").change(function () {
 
         //    if ($(this).val() >= 0) {
-               
+
         //        $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
 
         //            // $("#loadMoreSection").append(result);
@@ -100,52 +100,61 @@
             }
         });
     });
-  </script>
-@*<div class="col-sm-10 col-sm-push-1">*@
-   @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory",@multiple = "multiple" })
+</script>
+<div class="container">
+
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
-        <div class="form-inline">
-          
+        <div class="row form-inline col-sm-10 col-sm-push-1">
+        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory", @multiple = "multiple" })
+        </div>
+        <div class="row form-inline col-sm-10 col-sm-push-1">
             <a href="#" id="uploadbtn ">
-                <span class="fa fa-picture-o fa-3x uploadimage" onclick="fileclick(); return false;"></span>
+               <span class="fa fa-picture-o fa-3x uploadimage" onclick="fileclick(); return false;"></span>
             </a>
             <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
             <input type="file" id="file" name="file" data-badge="false" />
             <span id="uploadFileName"></span>
             @Html.DropDownList("category", (SelectList)ViewBag.categoryList, new { @class = "form-control chosen-select-multiple", @multiple = "multiple" })
-
         </div>
+        <div class="row form-inline col-sm-10 col-sm-push-1 ">
+
            
-        <div class="form-horizontal">
+                @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Write message for post" })
+                <br />
+             <input type="submit" class="btn btn-primary btn-lg right btnPost" id="post" value="Post" />
+            
+        </div>
 
-            <div>
-                @Html.TextArea("PostContent", null, new { id ="postContentTextArea", @class = "form-control", placeholder = "Write message for post" })
-            </div>
-              </div>
 
-            <div id="menupost">
-                <input type="submit" class="btn-primary right" id="post" value="Post" />
-            </div>
-        </form>
-       @* </div>*@
-   
-     <div id="postsection">
+    </form>
+</div>
+<div class="col-sm-12 col-xs-12">
+    <p style="padding:5px;"></p>
+</div>
+
+
+
+
+
+<div id="postsection  " class="row  col-md-12 ">
     @Html.Partial("../UserHome/_Posts", Model)
-    </div>
-    
+</div>
 
-<div id="loadMoreSection"></div>
-    <div  style="text-align:center">
-     <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; color:red; text-decoration:underline;" value="See more post" id="btnLoad" align="center">
-  </div>
 
-<br/>
-<br/>
-<br/>
-     
-     
+<div id="loadMoreSection "></div>
+<div style="text-align: center" class="row col-sm-12">
+    <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoad;" align="center"> 
+</div>
 
-           
+</div>
+
+<br />
+<br />
+<br />
+
+
+
+
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
 }
