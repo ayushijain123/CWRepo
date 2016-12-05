@@ -90,7 +90,7 @@ $(document).ready(function () {
     });
 
     $(".showLikeuser").click(function () {
-        console.log('clicked');
+        console.log('clickedtest');
         var postid = $(this).attr("id").split('-')[1];
         console.log('clicked-' + postid);
         $("#likelist-" + postid).html("");
@@ -107,7 +107,7 @@ $(document).ready(function () {
                 '</div>';
 
                 $("#likelist-" + postid).append(content);
-
+                $('#myModal-' + postid).modal('show');
                 // console.log(value.userName);
                 // console.log(value.ModifiedOn);
             });
@@ -263,15 +263,15 @@ $(document).ready(function () {
     //    if (scroll >= 500) sticky.addClass('ngoSticky');
     //    else sticky.removeClass('ngoSticky');
     //});
-    var stickyOffset = $('.sticky').offset().top;
+   // var stickyOffset = $('.sticky').offset().top;
 
-    $(window).scroll(function () {
-        var sticky = $('.sticky'),
-            scroll = $(window).scrollTop();
+    //$(window).scroll(function () {
+    //    var sticky = $('.sticky'),
+    //        scroll = $(window).scrollTop();
 
-        if (scroll >= stickyOffset - 130) sticky.addClass('fixed');
-        else sticky.removeClass('fixed');
-    });
+    //    if (scroll >= stickyOffset - 130) sticky.addClass('fixed');
+    //    else sticky.removeClass('fixed');
+    //});
 
 
     /*js for replace category tag on header search bar*/
@@ -304,68 +304,68 @@ $('img').on('click', function () {
 //Admin Module Script
 
 //Donut Chart Graph Script
-Morris.Donut({
-    element: 'ornek-donut',
-    data: [
-      { label: "Active NGOs", value: 50 },
-      { label: "Blocked NGOs", value: 30 },
-      { label: "Active Users", value: 20 },
-      { label: "Warned NGOs/Users", value: 30 },
-      { label: "Blocked Users", value: 20 }
-    ],
-    labelColor: '#000000',
-    colors: [
-        '#77af3b',
-        '#8C1717',
-        '#364359',
-        '#f79219',
-        '#dd2c2b'
-    ],
-    formatter: function (x) { return x }
-});
+//Morris.Donut({
+//    element: 'ornek-donut',
+//    data: [
+//      { label: "Active NGOs", value: 50 },
+//      { label: "Blocked NGOs", value: 30 },
+//      { label: "Active Users", value: 20 },
+//      { label: "Warned NGOs/Users", value: 30 },
+//      { label: "Blocked Users", value: 20 }
+//    ],
+//    labelColor: '#000000',
+//    colors: [
+//        '#77af3b',
+//        '#8C1717',
+//        '#364359',
+//        '#f79219',
+//        '#dd2c2b'
+//    ],
+//    formatter: function (x) { return x }
+//});
 
 
 
 //Added by Neha M. on 28-11-16
 //Discrete bar graph script
-var chart = nv.models.multiBarChart();
-d3.select('#chart svg').datum([
-  {
-      key: "NGOs",
-      color: "#77af3b",
-      values:
-      [
-        { x: "Jan", y: 40 },
-        { x: "Feb", y: 30 },
-        { x: "Mar", y: 20 },
-        { x: "Apr", y: 40 },
-        { x: "May", y: 30 },
-        { x: "Jun", y: 20 },
-        { x: "Jul", y: 40 },
-        { x: "Aug", y: 30 },
-        { x: "Sep", y: 20 },
-        { x: "Oct", y: 40 },
-        { x: "Nov", y: 30 },
-        { x: "Dec", y: 20 }
-      ]
-  },
-{
-    key: "Users",
-    color: "#364359",
-    values:
-    [
-        { x: "Jan", y: 30 },
-        { x: "Feb", y: 30 },
-        { x: "Mar", y: 10 },
-        { x: "Apr", y: 40 },
-        { x: "May", y: 50 },
-        { x: "Jun", y: 20 },
-        { x: "Jul", y: 40 },
-        { x: "Aug", y: 30 },
-        { x: "Sep", y: 50 },
-        { x: "Oct", y: 40 },
-        { x: "Nov", y: 60 },
-        { x: "Dec", y: 20 }
-    ]
-}
-]).transition().duration(500).call(chart);
+//var chart = nv.models.multiBarChart();
+//d3.select('#chart svg').datum([
+//  {
+//      key: "NGOs",
+//      color: "#77af3b",
+//      values:
+//      [
+//        { x: "Jan", y: 40 },
+//        { x: "Feb", y: 30 },
+//        { x: "Mar", y: 20 },
+//        { x: "Apr", y: 40 },
+//        { x: "May", y: 30 },
+//        { x: "Jun", y: 20 },
+//        { x: "Jul", y: 40 },
+//        { x: "Aug", y: 30 },
+//        { x: "Sep", y: 20 },
+//        { x: "Oct", y: 40 },
+//        { x: "Nov", y: 30 },
+//        { x: "Dec", y: 20 }
+//      ]
+//  },
+//{
+//    key: "Users",
+//    color: "#364359",
+//    values:
+//    [
+//        { x: "Jan", y: 30 },
+//        { x: "Feb", y: 30 },
+//        { x: "Mar", y: 10 },
+//        { x: "Apr", y: 40 },
+//        { x: "May", y: 50 },
+//        { x: "Jun", y: 20 },
+//        { x: "Jul", y: 40 },
+//        { x: "Aug", y: 30 },
+//        { x: "Sep", y: 50 },
+//        { x: "Oct", y: 40 },
+//        { x: "Nov", y: 60 },
+//        { x: "Dec", y: 20 }
+//    ]
+//}
+//]).transition().duration(500).call(chart);
