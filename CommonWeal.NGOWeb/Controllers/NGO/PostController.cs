@@ -94,8 +94,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 {/*if already liked by user than remove like row of user for unlike */
                     var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
                     db.PostLikes.Remove(removeLike);
-                    db.SaveChanges();
-                }
+                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+                    var count = db.PostLikes.Where(x => x.PostID == PostID).Count();
+                    count--;
+                    post.PostLikeCount = count;
+                    db.SaveChanges();               
+                 }
             }
 
 
