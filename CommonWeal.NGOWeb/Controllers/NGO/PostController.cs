@@ -142,13 +142,21 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*method for getting next slot of posts on click of load more button*/
         //[HttpPost]
         [AllowAnonymous]
-        public PartialViewResult onLoadPost(int count=0,int category=0)
+        public PartialViewResult onLoadPost(int count=0,int category=0 ,int NgoID=0)
         {
             try
             {
+                var load = new List<Post>();
                 CommonWealEntities db = new CommonWealEntities();
                 dbOperations ob = new dbOperations();
-                var load = ob.GetPostOnSeeMore(count,category);
+                if (NgoID == 1)
+                {
+                    NgoID = LoginUser.LoginID;
+                    load = ob.GetPostOnSeeMore(count, category, NgoID);
+                }
+                else {
+                    load = ob.GetPostOnSeeMore(count, category, NgoID);
+                }
 
                 /*returing list to  partial view and than partial view is retuned to ajax call  */
                 return PartialView("~/views/userHome/_Posts.cshtml", load);
