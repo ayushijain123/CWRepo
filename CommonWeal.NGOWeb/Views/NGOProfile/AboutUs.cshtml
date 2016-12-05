@@ -27,7 +27,10 @@
         });
     });
 
-
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+  
 </script>
 <div class="container">
     <div class=" ngoprofilenavbar row">
@@ -38,12 +41,20 @@
                     <center> <b class="profilesummary"> Profile summary</b></center>
                 </div>
                 <div class="panel-body" id="ngoprofilepanelbody">
-                    @*<div class=" author col-md-4 col-md-offset-5">
-                            <img class="avatar border-gray">
-                            
-                        </div>*@
-                    
-                   
+                    <div class="col-md-4 col-md-offset-5">
+                    <div class="row form-inline col-sm-10 col-sm-push-12">
+                       
+                        <a href="#" id="uploadbtn ">
+                            <span   data-toggle="tooltip" title="change Profile" class="glyphicon glyphicon-pencil" onclick="fileclick(); return false;"></span>
+                        </a>
+                        <a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>
+                        <input type="file" id="file" name="file" data-badge="false" />
+                        <span id="uploadFileName"></span>
+
+
+                        @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
+                    </div>
+                </div>
                 </div>
                 @*NGO Profile header Start*@
                 <div class="panel-group navbar-fixed">
@@ -187,4 +198,3 @@
 {
     @Html.Raw(TempData["US"])
 }
-
