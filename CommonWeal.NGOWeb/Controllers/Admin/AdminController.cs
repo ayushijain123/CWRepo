@@ -153,6 +153,43 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
+        public ActionResult UnWarnNGO(int id)
+        {
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsWarn = false;
+                context.SaveChanges();
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsWarn = false;
+
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                context.SaveChanges();
+
+                return RedirectToAction("Warned_NGOs", "Admin");
+
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+        }
         public ActionResult Accept(int id)
         {
             try
