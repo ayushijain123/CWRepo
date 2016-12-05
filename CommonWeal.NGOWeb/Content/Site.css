@@ -439,7 +439,7 @@ button {
     padding: 7px;
     margin-right: 8px;
     width: 70px;
-     margin-left: 44px;
+    margin-left: 44px;
     /*padding: 9px 18px;
    border: 1px solid #2A3F54;
    background: -webkit-gradient(linear, left top, left bottom, from(#7799BB), to(#4D7399));
@@ -464,9 +464,8 @@ button {
    -moz-transition: 0.1s;
    -o-transition: 0.1s;
    cursor: pointer;*/
-
 }
-    /*input[type="submit"],
+/*input[type="submit"],
     input[type="button"],
     button:hover {
    background:none;
@@ -486,9 +485,8 @@ td button {
     font-size: 1em;
     padding: 4px;
     margin-right: 4px;
-    
 }
-   
+
 
 
 /* info and errors */
@@ -766,9 +764,10 @@ tr.pager td {
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
+
 .iconLine {
     background-color: #FFFFFF;
-     height: 20px;
+    height: 20px;
     padding-left: 0px;
     padding-right: 0px;
     border-bottom: solid;
@@ -801,14 +800,13 @@ tr.pager td {
 
 .usernamepost {
     font-size: 17px;
-    color: #428bca; 
+    color: #428bca;
     cursor: pointer;
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 8px;
     width: auto;
-    text-transform:capitalize;
-   
+    text-transform: capitalize;
 }
 
 .commentdate {
@@ -963,12 +961,11 @@ tr.pager td {
     padding-right: 10px;
     margin-top: 0px;*/
     /*border-color:#225d77;*/
-    width:70px;
+    width: 70px;
 }
 
 #profileupdate {
     bottom: 14px;
-
 }
 
 
@@ -986,9 +983,10 @@ tr.pager td {
     top: 10px;
     /*border-color:#225d77;*/
 }
-.posttag {
-text-align:right;
 
+.posttag {
+    text-align: right;
+    padding: 10px;
 }
 
 #posttemplate {
@@ -1543,7 +1541,7 @@ added by payal*/
 
 .btnLoad {
     padding-bottom: 56px;
-    width:70PX;
+    width: 70PX;
 }
 /*.sticky {
     position: fixed;
