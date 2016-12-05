@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.Web.Mvc;
-
 using System.Net.Mail;
 using System.Net;
 using CommonWeal.NGOWeb.ViewModel;
@@ -38,14 +37,12 @@ namespace CommonWeal.NGOWeb
         {
             NGOUser ob = new NGOUser();
             ob = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
-
             return ob;
         }
         public ForgotPassword UserDetail(string FinalOTP)
         {
             ForgotPassword ob = new ForgotPassword();
             ob = context.ForgotPasswords.Where(w => w.OTP == FinalOTP).FirstOrDefault();
-
             return ob;
         }
         public List<RegisteredUser> RegisteredUserIsAccepted()
@@ -76,6 +73,22 @@ namespace CommonWeal.NGOWeb
             NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
             return NGOList;
         }
+        //User Table
+        public List<RegisteredUser> AllUsers()
+        {
+            List<RegisteredUser> userList = new List<RegisteredUser>();
+            // userList = context.RegisteredUsers.ToList();
+            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true && w.User.LoginUserType == 3).ToList();
+            return userList;
+        }
+        public List<RegisteredUser> BlockedNormalUsers()
+        {
+            List<RegisteredUser> userList = new List<RegisteredUser>();
+            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsBlock == true && w.User.LoginUserType == 3).ToList();
+            return userList;
+        }
+
+
         public string GenerateRandomPassword(int length)
         {
             string allowedChars = "abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ0123456789!@$?_-*&#+";
@@ -134,9 +147,9 @@ namespace CommonWeal.NGOWeb
             {
                 //var NGOPostList =context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
                 var list = getPostwithcategoryList();
-//foreach (var res in list )
+                //foreach (var res in list )
                 {
-                    selectedlist = list.Where(x => x.CategoryIdList.Where(w=>category.Contains(w)).Any()).ToList();
+                    selectedlist = list.Where(x => x.CategoryIdList.Where(w => category.Contains(w)).Any()).ToList();
                 }
             }
             else
@@ -218,7 +231,7 @@ namespace CommonWeal.NGOWeb
                 post.PostUrl = item.PostUrl;
                 post.PostContent = item.PostContent;
                 post.PostID = item.PostID;
-                
+
                 List<string> categoryNames = new List<string>();
                 post.CategoryIdList = new List<int>();
                 foreach (var category in item.PostCategories)
@@ -301,10 +314,11 @@ namespace CommonWeal.NGOWeb
                     }
 
                     pm.categoryName = "";
-                    foreach(var cat in item.CategoryList){
-                        pm.categoryName = pm.categoryName+ ""+cat;
+                    foreach (var cat in item.CategoryList)
+                    {
+                        pm.categoryName = pm.categoryName + "" + cat;
                     }
-                   // pm.categoryName = context.AreaOfInterests.Where(a => a.CategoryID == item.CategoryID).FirstOrDefault().CategoryName;
+                    // pm.categoryName = context.AreaOfInterests.Where(a => a.CategoryID == item.CategoryID).FirstOrDefault().CategoryName;
                     pm.postcontent = item.PostContent;
                     pm.postImageUrl = item.PostUrl;
                     pm.postCreateTime = item.CreatedOn.Value;
@@ -378,32 +392,13 @@ namespace CommonWeal.NGOWeb
                     //end all comment of  particular post
                     pm.PostComments = imagecommentlist;
 
-                    pm.postCategoryNameList=item.CategoryList;
+                    pm.postCategoryNameList = item.CategoryList;
 
                     ob.Add(pm);
-                    
                 }
             }
             return (ob);
         }
-
-
-        public List<RegisteredUser> All_Users()
-        {
-            List<RegisteredUser> userList = new List<RegisteredUser>();
-            // userList = context.RegisteredUsers.ToList();
-            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true).ToList();
-            return userList;
-        }
-        public List<RegisteredUser> Blocked_NormalUsers()
-        {
-            List<RegisteredUser> userList = new List<RegisteredUser>();
-            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsBlock == true).ToList();
-            return userList;
-        }
-
-
-
 
 
         /*getting all categoryname from areaofintrest table*/
@@ -420,10 +415,7 @@ namespace CommonWeal.NGOWeb
             CommonWealEntities db = new CommonWealEntities();
             foreach (var item in WAlist)
             {
-
-
                 db.WorkingAreas.Add(item);
-
             }
 
             db.SaveChanges();
