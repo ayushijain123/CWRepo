@@ -27,6 +27,9 @@ namespace CommonWeal.NGOAPI.Controllers
             public string userName { get; set; }
             public string userImageUrl { get; set; }
             public int UserID { get; set; }
+            public int LoginID{get;set;}
+            public int PostID{get;set;}
+            public bool like { get;set;}
         }
         public class Post
         {
@@ -241,28 +244,81 @@ namespace CommonWeal.NGOAPI.Controllers
 
         }
         [HttpPost]
-        public HttpResponseMessage LikePOST(PostLike objPostLike)
+        public HttpResponseMessage SubmitLike(PostLikeModel objpostlike)
         {
-            CommonWealEntities context = new CommonWealEntities();
-            var ob = context.PostLikes.Where(x => x.PostID == objPostLike.PostID).FirstOrDefault();
-            if (objPostLike.IsLike != null)
+           // bool like;
+           int PostID = -1;
+            PostID = objpostlike.PostID;
+           
+            if (PostID != -1)
             {
-                if (ob.IsLike == true)
+                CommonWealEntities db = new CommonWealEntities();
+
+                /*login user property defined in base controller*/
+                /*checking is current login user already liked the image or not */
+                var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
+
+                if (currentLikeUser == null)
                 {
-                    ob.IsLike = false;
+                    /*if not like than add row in post  */
+                    PostLike pl = new PostLike();
+                    pl.CreatedOn = DateTime.Now;
+                    pl.ModifiedOn = DateTime.Now;
+                    pl.IsLike = true;
+                    /*login user property defined in base controller*/
+                    pl.LoginID = objpostlike.LoginID;
+                    pl.PostID = PostID;
+
+                    db.PostLikes.Add(pl);
+
+                    db.SaveChanges();
+                    /*update like count */
+                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+                    post.PostLikeCount = db.PostLikes.Where(x => x.PostID == PostID).Count();
+                    db.SaveChanges();
                 }
                 else
-                {
-                    ob.IsLike = true;
+                {/*if already liked by user than remove like row of user for unlike */
+                    var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
+                    db.PostLikes.Remove(removeLike);
+                  
+                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+                      var count = db.PostLikes.Where(x => x.PostID == PostID).Count();
+                       count--;
+                        post.PostLikeCount = count;
+                       db.SaveChanges();
                 }
             }
-            else
-            { ob.IsLike = true; }
-            context.Configuration.ValidateOnSaveEnabled = false;
-            context.SaveChanges();
             var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
             return response;
+
         }
+
+
+        //[HttpPost]
+        //public HttpResponseMessage LikePOST(PostLike objPostLike)
+        //{
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    var ob =context.NGOPosts.Include(x => x.PostLikes).Where(w => w.PostLikes.Where(m => m.PostID == objPostLike.PostID)).ToList();
+        //    var ob = context.PostLikes.Where(x => x.PostID == objPostLike.PostID).FirstOrDefault();
+        //    if (objPostLike.IsLike != null)
+        //    {
+        //        if (ob.IsLike == true)
+        //        {
+        //            ob.IsLike = false;
+        //        }
+        //        else
+        //        {
+        //            ob.IsLike = true;
+        //        }
+        //    }
+        //    else
+        //    { ob.IsLike = true; }
+        //    context.Configuration.ValidateOnSaveEnabled = false;
+        //    context.SaveChanges();
+        //    var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
+        //    return response;
+        //}
         //public HttpResponseMessage PostData()
         //{
 
