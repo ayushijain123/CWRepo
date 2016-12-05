@@ -43,20 +43,31 @@
             console.log($('.chosen-select-multiple').val().length);
         });
         $("#selectcategory").change(function () {
+            var categoryList = $(this).val();
+            //console.log(categoryList);
+            if (categoryList == null) {
+                categoryList = ['1'];
+            }
+            // console.log('inside');
+            var things = JSON.stringify({ 'category': categoryList });
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
 
-            if ($(this).val() >= 0) {
-                $.post("/post/GetPostByCategory2?category=" + $(this).val(), function (result) {
-
-                    // $("#loadMoreSection").append(result);
-                    //    console.log(result);
+                type: 'POST',
+                url: '/post/GetPostByCategory2',
+                data: things,
+                success: function (result) {
+                    // console.log(result);
                     if (result != null) {
                         $("#postsection").html("");
                         $("#loadMoreSection").html("");
                         $("#loadMoreSection").append(result);
                     }
-                    //    //console.log(result);
-                });
-            }
+                },
+                failure: function (response) {
+                    $('#result').html(response);
+                }
+            });
 
         });
 
@@ -68,37 +79,13 @@
                         $('#selectcategory').val('').trigger('chosen:updated');
                         $('#selectcategory').val('1').trigger('chosen:updated');
                     }
+
                 });
             }
             else { $('#selectcategory').val('').trigger('chosen:updated'); }
-            console.log($('#selectcategory').val().length);
+            //console.log($('#selectcategory').val().length);
         });
 
-        $("#selectcategory").change(function () {
-            var categoryList = $(this).val();
-            if (categoryList.length >= 0) {
-                // console.log('inside');
-                var things = JSON.stringify({ 'category': categoryList });
-                $.ajax({
-                    contentType: 'application/json; charset=utf-8',
-
-                    type: 'POST',
-                    url: '/post/GetPostByCategory2',
-                    data: things,
-                    success: function (result) {
-                        // console.log(result);
-                        if (result != null) {
-                            $("#postsection").html("");
-                            $("#loadMoreSection").html("");
-                            $("#loadMoreSection").append(result);
-                        }
-                    },
-                    failure: function (response) {
-                        $('#result').html(response);
-                    }
-                });
-            }
-        });
     });
 </script>
 <div class="container">
@@ -136,7 +123,7 @@
 
 
 
-<div id="postsection  " class="row  col-md-12 ">
+<div id="postsection" class="row  col-md-12 ">
     @Html.Partial("../UserHome/_Posts", Model)
 </div>
 
