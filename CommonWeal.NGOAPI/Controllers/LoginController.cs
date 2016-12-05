@@ -10,7 +10,7 @@ namespace CommonWeal.NGOAPI.Controllers
 {
     public class LoginController : ApiController
     {
-        [AllowAnonymous]
+        
         [HttpGet]
         public HttpResponseMessage loginget()
         {
