@@ -192,5 +192,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
       
             return PartialView("~/views/userHome/_Posts.cshtml", load);
         }
+
+        [AllowAnonymous]
+        public JsonResult getpostCount()
+        {
+
+            return Json(BaseController.pageleft, JsonRequestBehavior.AllowGet);
+        }
     }
 }
