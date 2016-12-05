@@ -9,6 +9,8 @@ using System.Net.Mail;
 using System.Net;
 using CommonWeal.NGOWeb.ViewModel;
 using CommonWeal.Data;
+using CommonWeal.NGOWeb.Controllers;
+
 namespace CommonWeal.NGOWeb
 {
     public class dbOperations
@@ -150,23 +152,29 @@ namespace CommonWeal.NGOWeb
                 //foreach (var res in list )
                 {
                     selectedlist = list.Where(x => x.CategoryIdList.Where(w => category.Contains(w)).Any()).ToList();
+                    
                 }
             }
             else
             {
                 selectedlist = getPostwithcategoryList().OrderByDescending(x => x.CreatedOn).ToList();
             }
+            BaseController.pageleft = selectedlist.Count();
+            selectedlist = selectedlist.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var result = GetAllPost(selectedlist);
-            return result.OrderByDescending(x => x.postCreateTime).Distinct().ToList();
+            return result.OrderByDescending(x => x.postCreateTime).ToList();
         }
         /*getting post by id*/
         public List<Post> GetPostById(int id)
         {
             //var NGOPostlist = context.NGOPosts.Where(x => x.LoginID == id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
-            var list = getPostwithcategoryList().Where(x=>x.LoginID==id).OrderByDescending(x => x.CreatedOn).Take(5).ToList().ToList();
+            var list = getPostwithcategoryList().Where(x=>x.LoginID==id).ToList();
+             BaseController.pageleft = list.Count();
+             list = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var result = GetAllPost(list);
             return result;
         }
+       
         /*getting post on see more click*/
         public List<Post> GetPostOnSeeMore(int pageNum = 0, int category = 0,int NgoID=0)
         {
@@ -177,16 +185,22 @@ namespace CommonWeal.NGOWeb
             {
                 if (category > 1)
                 {
-                    selectlist = list.Where(x => x.CategoryID == category).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+                    selectlist = list.Where(x => x.CategoryID == category).ToList();
+                    BaseController.pageleft = selectlist.Count();
+                    selectlist = selectlist.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
 
                 }
                 else
                 {
+                  
+                    BaseController.pageleft =list.Count();
                     selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
                 }
             }
             else {
-                selectlist = list.Where(x => x.LoginID == NgoID).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+                selectlist = list.Where(x => x.LoginID == NgoID).ToList();
+                BaseController.pageleft = list.Count();
+                selectlist = selectlist.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             }
             var result = GetAllPost(selectlist);
             return result;
@@ -216,6 +230,7 @@ namespace CommonWeal.NGOWeb
         {
             var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var list = getPostwithcategoryList();
+            BaseController.pageleft = list.Count();
             var selectList = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var result = GetAllPost(selectList);
             return result;
