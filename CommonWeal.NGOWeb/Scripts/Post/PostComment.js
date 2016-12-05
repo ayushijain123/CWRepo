@@ -177,8 +177,9 @@ $(document).ready(function () {
     $("#btnLoad").click(function () {
         loadcount++;
         //alert('hi');
+        var id = 0;
         var category = $("#selectcategory").val();
-        $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category, function (result) {
+        $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category+"&NgoID="+id, function (result) {
 
             console.log(result);
             $("#loadMoreSection").append(result);
@@ -186,6 +187,23 @@ $(document).ready(function () {
         });
 
 
+    });
+    //on seemore from ngoprofile ajax call
+    var loadcnt = 0;
+    $("#btnLoadNGOPfrofile").click(function () {
+        //console.log('clicked');
+        loadcnt++;
+        //alert('hi');
+        var id = 1;
+        var category = $("#selectcategory").val();
+        if (category == null)
+        { category = 0;}
+        $.post("/post/onLoadPost?count=" + loadcnt + "&category=" + category + "&NgoID=" + id, function (result) {
+
+            console.log(result);
+            $("#loadMoreSection").append(result);
+            //console.log(result);
+        });
     });
 
 
@@ -201,7 +219,7 @@ $(document).ready(function () {
     /*date picked ngo registration page*/
     /*method for getting checked category*/
     $("").click(function () {
-        alert('sattu don');
+       
         var categorylist = [];
         $.each($(".category:checked"), function () {
             var CategoryID = $(this).val();
@@ -263,15 +281,15 @@ $(document).ready(function () {
     //    if (scroll >= 500) sticky.addClass('ngoSticky');
     //    else sticky.removeClass('ngoSticky');
     //});
-    var stickyOffset = $('.sticky').offset().top;
+ ////   var stickyOffset = $('.sticky').offset().top;
 
-    $(window).scroll(function () {
-        var sticky = $('.sticky'),
-            scroll = $(window).scrollTop();
+ //   $(window).scroll(function () {
+ //       var sticky = $('.sticky'),
+ //           scroll = $(window).scrollTop();
 
-        if (scroll >= stickyOffset - 130) sticky.addClass('fixed');
-        else sticky.removeClass('fixed');
-    });
+ //       if (scroll >= stickyOffset - 130) sticky.addClass('fixed');
+ //       else sticky.removeClass('fixed');
+ //   });
 
 
     /*js for replace category tag on header search bar*/
@@ -285,12 +303,6 @@ $(document).ready(function () {
 
 
 });
-$('img').on('click', function () {
-    var image = $(this).attr('src');
-    $('#myModal2').on('show.bs.modal', function () {
-        $(".img-responsive").attr("src", image);
-    });
-});
      
 
 
@@ -300,7 +312,32 @@ $('img').on('click', function () {
 
 
 
+//Added by Neha M. on 25-11-16
 //Admin Module Script
+
+//Donut Chart Graph Script
+//Morris.Donut({
+//    element: 'ornek-donut',
+//    data: [
+//      { label: "Active NGOs", value: 50 },
+//      { label: "Blocked NGOs", value: 30 },
+//      { label: "Active Users", value: 20 },
+//      { label: "Warned NGOs/Users", value: 30 },
+//      { label: "Blocked Users", value: 20 }
+//    ],
+//    labelColor: '#000000',
+//    colors: [
+//        '#77af3b',
+//        '#8C1717',
+//        '#364359',
+//        '#f79219',
+//        '#dd2c2b'
+//    ],
+//    formatter: function (x) { return x }
+//});
+
+
+
 //Added by Neha M. on 28-11-16
 //Discrete bar graph script
 //var chart = nv.models.multiBarChart();
@@ -344,75 +381,3 @@ $('img').on('click', function () {
 //    ]
 //}
 //]).transition().duration(500).call(chart);
-
-
-//Graph
-$(function () {
-    Highcharts.chart('container', {
-        data: {
-            table: 'graph-datatable'
-
-        },
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'NGOs Vs Registered Users'
-        },
-        xAxis: {
-            allowDecimals: false,
-            title: {
-                text: 'Months'
-            }
-        },
-        yAxis: {
-            allowDecimals: false,
-
-            title: {
-                text: 'Units'
-            }
-        },
-        tips: {
-            trackMouse: true,
-            width: 80,
-            height: 40,
-            renderer: function (storeItem, item) {
-                this.setTitle(storeItem.get('name') + '<br />' + storeItem.get('data1'));
-            }
-        }
-    });
-});
-
-//Added by Neha M. on 30-12-16
-//Donut chart
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ["Active NGOs", "Blocked NGOs", "Active Users", "Warned Users/NGOs", "Blocked Users"],
-        datasets: [
-        {
-            data: [12, 22, 39, 8, 3],
-            backgroundColor: [
-                "#90c657",
-                "#EC8D8D",
-                "#495b79",
-                "#f9a94a",
-                "#e45857"
-            ],
-            hoverBackgroundColor: [
-                "#77af3b",
-                "#8C1717",
-                "#364359",
-                "#f79219",
-                "#dd2c2b"
-
-            ]
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: false
-        }
-    }
-});
