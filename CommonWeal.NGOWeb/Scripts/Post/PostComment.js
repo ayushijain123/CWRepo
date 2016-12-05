@@ -186,7 +186,15 @@ $(document).ready(function () {
             //console.log(result);
         });
 
-
+        $.post("/post/getpostCount", function (result) {
+            var total = result-(loadcount + 1) * 5;
+            if (total<= 0)
+            {
+                alert(total);
+                $("#btnLoad").remove();
+            }
+           // alert(result);
+        });
     });
     //on seemore from ngoprofile ajax call
     var loadcnt = 0;
@@ -202,9 +210,14 @@ $(document).ready(function () {
 
             console.log(result);
             $("#loadMoreSection").append(result);
+            /*hide see more  when no post*/
+
             //console.log(result);
         });
     });
+
+
+  
 
 
     /*date picked ngo registration page*/
