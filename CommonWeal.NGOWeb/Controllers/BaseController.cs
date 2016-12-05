@@ -16,6 +16,7 @@ namespace CommonWeal.NGOWeb.Controllers
     [Authorize]
     public class BaseController : Controller
     {
+        public static int pageleft { get; set; }
         public List<AreaOfInterest> CategoryList { get; set; }
         public LoggedInUser LoginUser { get; set; }
 
