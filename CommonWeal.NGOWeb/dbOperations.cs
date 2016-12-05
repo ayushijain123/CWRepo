@@ -162,26 +162,31 @@ namespace CommonWeal.NGOWeb
         /*getting post by id*/
         public List<Post> GetPostById(int id)
         {
-            var NGOPostlist = context.NGOPosts.Where(x => x.LoginID == id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
-            var list = getPostwithcategoryList();
+            //var NGOPostlist = context.NGOPosts.Where(x => x.LoginID == id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
+            var list = getPostwithcategoryList().Where(x=>x.LoginID==id).OrderByDescending(x => x.CreatedOn).Take(5).ToList().ToList();
             var result = GetAllPost(list);
             return result;
         }
         /*getting post on see more click*/
-        public List<Post> GetPostOnSeeMore(int pageNum = 0, int category = 0)
+        public List<Post> GetPostOnSeeMore(int pageNum = 0, int category = 0,int NgoID=0)
         {
             var selectlist = new List<PostWithCategory>();
             //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             var list = getPostwithcategoryList();
-
-            if (category > 1)
+            if (NgoID == 0)
             {
-                selectlist = list.Where(x => x.CategoryID == category).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+                if (category > 1)
+                {
+                    selectlist = list.Where(x => x.CategoryID == category).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
 
+                }
+                else
+                {
+                    selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+                }
             }
-            else
-            {
-                selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+            else {
+                selectlist = list.Where(x => x.LoginID == NgoID).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             }
             var result = GetAllPost(selectlist);
             return result;
