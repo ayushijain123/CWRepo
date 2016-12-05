@@ -1462,16 +1462,17 @@ NGO registration page css*/
 }
 
 .discrete-graph {
-    margin-top: 50px;
 }
 
 .donut-chart {
-    margin-top: 35px;
+    margin-bottom: 35px;
+    /*top: 5px;*/
 }
 
 .ornek-donut {
     top: 35px;
 }
+
 /*search box
 added by payal*/
 
