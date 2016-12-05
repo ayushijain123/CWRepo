@@ -3,7 +3,7 @@
     ViewBag.Title = "AboutUs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $("input").prop('disabled', true);
@@ -27,156 +27,163 @@
         });
     });
 
-   
+
 </script>
-<div class=" ngoprofilenavbar">
-    <div class="col-md-12">
-        <div class="panel panel-default col-md-12 panelNGO column12">
-            <div class="panel-heading">
-                <center> <b class="profilesummary"> Profile summary</b></center>
-            </div>
-            <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
-                <div class="col-md-4 col-md-offset-5">
-                
-                  @*  <img src="~/Images/sammanlogo.PNG"class="ngoprofilepic" /><br />*@
-
-
-                    <img id="1" data-toggle="modal" data-target="#myModal2" src="~/Images/sammanlogo.PNG" class="img-rounded"/>
-
-                    <div id="myModal2" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="imagemodal modal-body">
-                                    <img class="showimage img-responsive" src="~/Images/sammanlogo.PNG" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Change Profile</button>
-                                </div>
-                            </div>
+<div class="container">
+    <div class=" ngoprofilenavbar row">
+        <div class="col-md-12 ">
+           
+               <div class="panel panel-default panelNGO">
+                    <div class="panel-heading">
+                        <center> <b class="profilesummary"> Profile summary</b></center>
+                    </div>
+                    <div class="panel-body" id="ngoprofilepanelbody">
+                        <div class=" author col-md-4 col-md-offset-5">
+                            <img class="avatar border-gray">
+                            
                         </div>
                     </div>
-
-                    @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
-                </div>
-            </div>
-            @*NGO Profile header Start*@
-            <div class="panel-group navbar-fixed">
-                <div class="sticky">
-                    <ul class="ultext nav nav-tabs">
-                        <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
-                        <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
-                      @*  <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Change Image</a></li>
-                                <li><a href="#">Change background</a></li>
+                    @*NGO Profile header Start*@
+                    <div class="panel-group navbar-fixed">
+                        <div class="sticky">
+                            <ul class="ultext nav nav-tabs">
+                                <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
+                                <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
 
                             </ul>
-                        </li>*@
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                    @*NGO Profile header End*@
+                
 
-            @*NGO Profile header End*@
         </div>
     </div>
-</div>
-<div class="col-md-12">
-<div class="main-panel">
     <div class="row">
-        <div class="aboutusform col-md-6">
+        <div class="main-panel">
+            
+                <div class="aboutusform row">
 
-            <div class="col-lg-offset-3">
-                <h3><strong>Your Personal Info</strong></h3>
-            </div>
-            <div class="container">
-
-                <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">NGO Email:</label>
-                        <div class="col-sm-6">
-                            <input type="email" class="form-control" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NGOEmailID" required>
+                    <div class="row">
+                        <div class="col-md-6 col-md-push-2">
+                            <h3 ><strong>Your Personal Info</strong></h3>
+                    
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Mobile:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="Mobile" placeholder="Enter Mobile Number" value="@Model.Mobile"required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Address:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="NGOAddress" placeholder="Enter Adderess" value="@Model.NGOAddress"required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Name:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="NGOName" placeholder="Enter Name" value="@Model.NGOName"required>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Chairman Name:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.ChairmanName"required>
-                        </div>
-                    </div>
-                    @*<div class="form-group">
-                        <label class="control-label col-sm-2" for="email">Password:</label>
-                        <div class="col-sm-6">
-                            <input type="text" class="form-control" name="NGOPassword" placeholder="Enter Password" value="@Model.NGOPassword"required>
-                        </div>
-                    </div>*@
-
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10" id="profileupdate">
-                            <span id="editbtn" class="btn btn-primary">Edit</span>
-                            <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                            <span id="Canclebtn" class="btn btn-primary">Cancel</span>
-                        </div>
-                        @* <div class="col-sm-offset-2 col-sm-10">
-              *@
                     </div>
                     
-                </form>
-            </div>
-        </div>
-         <div class="col-md-4">
-        <div class="editpanel panel panel-default">
-            <div class="card card-user">
-                <div class="image">
-                    <img src="~/Images/bckg.jpg" alt="...">
-                </div>
-                <div class="content">
-                    <div class="author">
-                        @*<a href="#">*@
-                        <a href="#">
-                            <img class="avatar border-gray" src="~/Images/sammanlogo.PNG" alt="...">
-                            <h4 class="title">AboutUs<br>
-                            </h4>
-                        </a>
+                        <div class="col-md-6 col-md-pull-1">
+                            
+                            <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="email">NGO Email:</label>
+                                    </div>
+                                    <div class="col-md-6"> 
+                                           
+                                            <input type="email" class="form-control" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NGOEmailID" required>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="email">Mobile:</label>
 
-                        @*</a>*@
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="Mobile" placeholder="Enter Mobile Number" value="@Model.Mobile"required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="email">Address:</label>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="NGOAddress" placeholder="Enter Adderess" value="@Model.NGOAddress"required>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="email">Name:</label>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="NGOName" placeholder="Enter Name" value="@Model.NGOName"required>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label class="control-label" for="email">Chairman Name:</label>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.ChairmanName"required>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+                                    <div class="col-md-4 col-xs-4 col-md-push-6">
+                                        <div id="profileupdate">
+                                            <span id="editbtn" class="btn btn-primary">Edit</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xs-4 col-md-push-3">
+                                        <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+                                    </div>
+                                    <div class="col-md-4 col-xs-4 col-md-push-2">    
+                                        <span id="Canclebtn" class="btn btn-primary">Cancel</span>
+                                    </div>
+                                    
+                                </div>
+                                <p style="padding-bottom:10px;"></p>
+                            </form>
+                            </div>
+
+                    
+                    <div class="col-md-6 col-md-push-1">
+                        
+                            <p style="padding-top:60px;"></p>
+                            <div class="editpanel panel panel-default">
+                                <div class="card card-user">
+                                   @* <div class="image">
+                                        <img src="~/Images/bckg.jpg" style="align" alt="...">
+                                    </div>*@
+
+                                    <div class="content">
+                                        <div class="author">
+                                            @*<a href="#">*@
+                                            
+@*                                            <a href="#">*@
+                                                
+                                                <img  class="avatar border-gray" @*src="~/Images/sammanlogo.PNG" alt="..."*@>
+                                                <h4 class="title">AboutUs<br>
+                                                </h4>
+                                            </a>
+
+                                            @*</a>*@
+                                        </div>
+                                        <p class="description text-center">
+                                            Samman,established in 2005 with a notion of 
+                                             serving people all over the country.
+                                             we are there 24*7 with our 100+ volunteers.
+                                        </p>
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        
                     </div>
-                    <p class="description text-center">
-                        Samman,established in 2005 with a notion of 
-                            serving people all over the country.
-                            we are there 24*7 with our 100+ volunteers.
-                    </p>
-
                 </div>
-                
-            </div>
-        </div>
-        </div>
+            
         </div>
     </div>
 </div>
 @if (TempData["US"] != null)
 {
-  @Html.Raw(TempData["US"])
-} 
+    @Html.Raw(TempData["US"])
+}
 
