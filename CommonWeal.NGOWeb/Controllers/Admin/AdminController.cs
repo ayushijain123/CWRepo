@@ -14,24 +14,48 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         public ActionResult Index()
         {
             CommonWealEntities obj = new CommonWealEntities();
-            var users = obj.NGOUsers;
-            var CountOfRequests = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
+            var ngo = obj.NGOUsers;
+            var users = obj.Users;
+
+            //NGOs Table
+            var CountOfRequests = ngo.Where(w => w.IsActive == false && w.IsBlock == false).Count();
             ViewBag.COR = CountOfRequests;
 
-            var CountOfActiveNGO = users.Where(w => w.IsActive == true && w.IsBlock == false).Count();
+            var CountOfActiveNGO = ngo.Where(w => w.IsActive == true && w.IsBlock == false).Count();
             ViewBag.COAN = CountOfActiveNGO;
 
-            var CountOfBlockedNGO = users.Where(w => w.IsBlock == true).Count();
+            var CountOfBlockedNGO = ngo.Where(w => w.IsBlock == true).Count();
             ViewBag.COBN = CountOfBlockedNGO;
 
-            var CountOfAllUsers = users.Where(w => w.IsActive == false && w.IsBlock == false).Count();
-            ViewBag.COAL = CountOfRequests;
+            //Users Table
+            var CountOfAllUsers = users.Where(w => w.IsActive == true && w.IsBlock == false && w.LoginUserType == 3).Count();
+            ViewBag.COAL = CountOfAllUsers;
 
-            var CountOfBlockedUsers = users.Where(w => w.IsBlock == true).Count();
+            var CountOfBlockedUsers = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
             ViewBag.COBU = CountOfBlockedUsers;
 
             var CountOfWarnedUsers = users.Where(w => w.IsWarn == true).Count();
             ViewBag.COWU = CountOfWarnedUsers;
+
+            //Total NGOs Count
+            var CountOfTotalActiveNGO = ngo.Where(w => w.IsActive == true).Count();
+            ViewBag.COTAN = CountOfTotalActiveNGO;
+
+            var CountOfTotalBlockNGO = ngo.Where(w => w.IsBlock == true).Count();
+            ViewBag.COTBN = CountOfTotalBlockNGO;
+
+            var CountOfTotalNGO = CountOfTotalActiveNGO + CountOfTotalBlockNGO;
+            ViewBag.COTN = CountOfTotalNGO;
+
+            //Total Users Count
+            var CountOfTotalActiveUsers = users.Where(w => w.IsActive == true && w.LoginUserType == 3).Count();
+            ViewBag.COTAU = CountOfTotalActiveUsers;
+
+            var CountOfTotalBlockUsers = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
+            ViewBag.COTBU = CountOfTotalBlockUsers;
+
+            var CountOfTotalUsers = CountOfTotalActiveUsers + CountOfTotalBlockUsers;
+            ViewBag.COTU = CountOfTotalUsers;
             return View();
 
         }
@@ -64,7 +88,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
-            var request = obj.All_Users();
+            var request = obj.AllUsers();
             return View(request);
         }
 
@@ -72,7 +96,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
-            var request = obj.Blocked_NormalUsers();
+            var request = obj.BlockedNormalUsers();
             return View(request);
         }
         public ActionResult Warned_NGOs()
