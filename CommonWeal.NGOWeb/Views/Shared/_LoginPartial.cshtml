@@ -3,7 +3,7 @@
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/chosen.jquery.min.js"></script>
 
-<div class="col-md-12 ">
+<div>
 
     @* <a class="navbar-brand" href="http://disputebills.com"><img src="http://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png" alt="Dispute Bills">
         </a>*@
@@ -21,7 +21,7 @@
             {
                 if (@ViewBag.LoginUser != null)
                 {
-                <div class="usernav">Hello @ViewBag.LoginUser.UserName</div>  
+                <div class=" usernav ">Hello @ViewBag.LoginUser.UserName</div>  
                     if (System.Web.HttpContext.Current.User.IsInRole("NGOAdmin"))
                     {
                 <div class="row vdivide">
