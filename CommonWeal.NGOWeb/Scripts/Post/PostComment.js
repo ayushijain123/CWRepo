@@ -190,14 +190,14 @@ $(document).ready(function () {
                 if (total <= 0 && result>0) {
                     $(".btnLoad").val('No More Post');
                     $(".btnLoad").attr('disabled', true);
-                    alert(result + "" + total);
+                    //alert(result + "" + total);
                     loadcount = 0;
                 }
                 if (result <=0)
                 {
                     $(".btnLoad").val('No Post Found');
                     $(".btnLoad").attr('disabled', true);
-                    alert(result + "" + total);
+                   // alert(result + "" + total);
                     loadcount = 0;
                 }
                
@@ -223,7 +223,7 @@ $(document).ready(function () {
             $("#loadMoreSection").append(result);
             $.post("/post/getpostCount", function (result1) {
                 var total = result1 - (loadcnt + 1) * 5;
-                alert(total);
+               // alert(total);
                 if (total <= 0 && result1 > 0) {
                     $(".btnLoadNGOPfrofile").val('No More Post');
                     $(".btnLoadNGOPfrofile").attr('disabled', true);
@@ -233,7 +233,7 @@ $(document).ready(function () {
                 if (result1 <= 0) {
                     $(".btnLoadNGOPfrofile").val('No Post Found');
                     $(".btnLoadNGOPfrofile").attr('disabled', true);
-                    alert(result1 + "" + total);
+                  //  alert(result1 + "" + total);
                     loadcnt = 0;
                 }
 
