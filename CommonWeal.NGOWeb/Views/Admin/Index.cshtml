@@ -1,6 +1,6 @@
 ﻿@*Added by Neha M.*@
 
-@section scripts{   
+@section scripts{
     <script src="~/Scripts/Admin/Admin%20Script.js"></script>
 }
 
@@ -15,8 +15,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>
 
-
-<div class="container"></div>
 <div class="row">
     <div class="top-panel col-md-12">
         <div class="top-row col-md-4">
@@ -83,7 +81,6 @@
             </a>
         </div>
 
-
         <div class="top-row col-md-4">
             <a href="/Admin/Warned_NGOs">
                 <div class="media bg-primary warned-users">
@@ -115,11 +112,19 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="donut-chart col-md-6">
+        <center><h2>NGOs Update:</h2></center>
+        <canvas id="myChart1" style="height: 50px;"></canvas>
+    </div>
+     <div class="donut-chart col-md-6">
+        <center><h2>Users Update:</h2></center>
+        <canvas id="myChart2" style="height: 50px;"></canvas>
+    </div>
+</div>
 
 <div class="row">
     <div class="discrete-graph col-md-12">
-        <h2>NGOs Vs Users Graph:</h2>
-
         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
         <table style="visibility: hidden; display: none;" id="graph-datatable">
@@ -194,18 +199,6 @@
             </tbody>
         </table>
     </div>
-</div>
-
-<div class="row">
-    <div class="donut-chart col-md-6">
-        <h2>NGOs and Users Update:</h2>
-        <canvas id="myChart" style="height: 50px;"></canvas>
-    </div>
-   <a href="/Admin/changePassword/">
-     <div class="reset-password col-md-6">
-        <h2>Reset Password:</h2>        
-    </div>
-       </a>
 </div>
 
 
