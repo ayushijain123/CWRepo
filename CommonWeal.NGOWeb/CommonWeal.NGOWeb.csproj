@@ -454,6 +454,7 @@
     <Content Include="Views\AreaOfInterest\Index.cshtml" />
     <Content Include="Views\Shared\_filter.cshtml" />
     <Content Include="Views\Admin\Warned_NGOs.cshtml" />
+    <Content Include="Views\UserHome\_LikePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
