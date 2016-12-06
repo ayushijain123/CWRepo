@@ -48,9 +48,9 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 //save new record in database
                 obpost.PostUrl = "/Images/Post/" + ImageName;
                 obpost.PostType = "Image";
-                obpost.PostDateTime = DateTime.Now;
-                obpost.ModifiedOn = DateTime.Now;
-                obpost.CreatedOn = DateTime.Now;
+                obpost.PostDateTime = System.DateTime.Now;
+                obpost.ModifiedOn = System.DateTime.Now;
+                obpost.CreatedOn = System.DateTime.Now;
                 obpost.PostCommentCount = 0;
                 obpost.PostLikeCount = 0;
                 /*login user login id is a property in base controller
