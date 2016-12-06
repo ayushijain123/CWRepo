@@ -199,7 +199,7 @@ namespace CommonWeal.NGOWeb
             }
             else {
                 selectlist = list.Where(x => x.LoginID == NgoID).ToList();
-                BaseController.pageleft = list.Count();
+                BaseController.pageleft = selectlist.Count();
                 selectlist = selectlist.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             }
             var result = GetAllPost(selectlist);
