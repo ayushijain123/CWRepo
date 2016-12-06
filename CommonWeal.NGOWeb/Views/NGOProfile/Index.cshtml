@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
-
+  <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
 <div class=" ngoprofilenavbar">
     <div class="col-md-12">
         <div class="panel panel-default col-md-12 panelNGO column12">
@@ -18,12 +18,17 @@
                         <a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>
                         <input type="file" id="file" name="file" data-badge="false" />
                         <span id="uploadFileName"></span>
-
+                        <button type="submit" value="submit">
+                         @if (ViewBag.imageurl != null) { 
+                          <img src="@ViewBag.imageurl"/>
+                         }
+                           
 
                         @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
                     </div>
                 </div>
             </div>
+            </form>
             @*NGO Profile header Start*@
             <div class="panel-group navbar-fixed">
                 <div class="sticky">
