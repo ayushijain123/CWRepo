@@ -3,46 +3,8 @@
   
  @* <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
 
-@*<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  
-</head>
-<body>
-
-<div class="container">
-  <h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-        <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</body>
-</html>*@
-
+@if(Model!=null && Model.Count()>0)
+{
 <div id="uploadpost" class="col-md-10 col-md-offset-1">
 
     @foreach (var item in Model)
@@ -51,18 +13,18 @@
             <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
                 <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span>
-                 <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy hh:mm")</span>
+                <span class="posttime col-md-3">@item.postCreateTime</span>
                 <span class="posttag col-md-5 float-right" >
                    @*method for multi #*@
                  @{
                 var Count = 1;
                 foreach (var res in item.postCategoryNameList)
                 {
-                    <span>#</span>                       
-                 @res
+                    <span>#@res</span>                       
+          
                      
                     if (item.postCategoryNameList.Count() != Count)
-                    { <span>,</span>}
+                    { <span>&nbsp</span>}
                     Count++;                                                        
                 }
                     }
@@ -122,11 +84,9 @@
                                       currentLikeUserColor = "#4073bf";
                                   }
                               }
-                      @item.likeCount 
-                           <span class="  LikeIcon ahover likecommenticon"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
+                        <span class="  LikeIcon ahover likecommenticon"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
                             <img src="~/Images/newlike1.png" /></span>
-                       
-                          <span id="commentIcon-@item.postId" class="  ahover likecommentcolor commentIcon likecommenticon   ">
+                        <span id="commentIcon-@item.postId" class="  ahover likecommentcolor commentIcon likecommenticon   ">
                             <img src="~/Images/commentnew.png" /></span>   
                               if (likeuser != null)
                               {
@@ -215,7 +175,7 @@
                     <span class="float-left profileimagecomment fa fa-user col-md-1"></span>
                     <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
                     @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
-                    <input type="button" id="postimage-@item.postId" name="button" class=" btn-primary btnPost col-md-1   " value="Post" />
+                    <input type="button" id="postimage-@item.postId" name="button" class=" btnPost btn-default btnPost col-md-1   " value="Post" />
                 </div>
             }
         </div>
@@ -234,3 +194,4 @@
 
 
 </div>
+}

@@ -8,33 +8,60 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#selectcategory").change(function () {
+        $("#selectcategory").live("change", function () {
             var categoryList = $(this).val();
             //console.log(categoryList);
-            if (categoryList==null ) {
+            if (categoryList == null) {
                 categoryList = ['1'];
             }
-                // console.log('inside');
-                var things = JSON.stringify({ 'category': categoryList });
-                $.ajax({
-                    contentType: 'application/json; charset=utf-8',
+            // console.log('inside');
+            var things = JSON.stringify({ 'category': categoryList });
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
 
-                    type: 'POST',
-                    url: '/post/GetPostByCategory2',
-                    data: things,
-                    success: function (result) {
-                        // console.log(result);
-                        if (result != null) {
-                            $("#postsection").html("");
-                            $("#loadMoreSection").html("");
-                            $("#loadMoreSection").append(result);
-                        }
-                    },
-                    failure: function (response) {
-                        $('#result').html(response);
+                type: 'POST',
+                url: '/post/GetPostByCategory2',
+                data: things,
+                success: function (result) {
+                    // console.log(result);
+                    if (result != null) {
+                        $("#postsection").html("");
+                        $("#loadMoreSection").html("");
+                        $("#loadMoreSection").append(result);
                     }
-                });
-             
+                    $.post("/post/getpostCount", function (result1) {
+                        // alert(result1);
+                        var total = result1 - 5;
+
+                        if (total <= 0) {
+                            //alert(result1 + "" + total)
+
+                            if (result1 <= 5 && result1 > 0) {
+                                $(".btnLoad").val('No More Post');
+                                $(".btnLoad").attr('disabled', true);
+                            }
+                            if (result1 <= 0) {
+                                $(".btnLoad").val('No Post Found');
+                                $(".btnLoad").attr('disabled', true);
+                            }
+                        }
+                        else {
+                            $(".btnLoad").prop("disabled", false);
+                            $(".btnLoad").val("See More Posts");
+                            //  alert("clickable");
+
+                        }
+
+
+                        // alert(result);
+                    });
+                },
+                failure: function (response) {
+                    $('#result').html(response);
+                }
+            });
+
+
         });
 
         $("#selectcategory").chosen();
@@ -45,7 +72,7 @@
                         $('#selectcategory').val('').trigger('chosen:updated');
                         $('#selectcategory').val('1').trigger('chosen:updated');
                     }
-                    
+
                 });
             }
             else { $('#selectcategory').val('').trigger('chosen:updated'); }
@@ -55,7 +82,7 @@
 
 
     });
-    
+
   </script>
 <div class="col-md-10 col-md-push-1">
    @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory", @multiple = "multiple" })
@@ -69,8 +96,9 @@
 
 
 <div id="loadMoreSection"></div>
-<div  style="text-align:center">
- <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;" value="See more posts" id="btnLoad" align="center"> @*type="button"*@
+
+<div  style="text-align:center"id="morePost">
+ <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center"> @*type="button"*@
 
   </div>
 

@@ -4,7 +4,6 @@
     ViewBag.Title = "Index";
 }
 <script src="~/Scripts/jquery-1.7.1.js"></script>
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>*@
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/chosen.jquery.min.js"></script>
 
@@ -42,7 +41,7 @@
             else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
             console.log($('.chosen-select-multiple').val().length);
         });
-        $("#selectcategory").change(function () {
+        $("#selectcategory").live("change", function () {
             var categoryList = $(this).val();
             //console.log(categoryList);
             if (categoryList == null) {
@@ -59,15 +58,43 @@
                 success: function (result) {
                     // console.log(result);
                     if (result != null) {
+                       // alert(result);
                         $("#postsection").html("");
                         $("#loadMoreSection").html("");
                         $("#loadMoreSection").append(result);
                     }
+                    $.post("/post/getpostCount", function (result1) {
+                        // alert(result1);
+                        var total = result1 - 5;
+
+                        if (total <= 0) {
+                            //alert(result1 + "" + total)
+
+                            if (result1 <= 5 && result1 > 0) {
+                                $(".btnLoad").val('No More Post');
+                                $(".btnLoad").attr('disabled', true);
+                            }
+                            if (result1 <= 0) {
+                                $(".btnLoad").val('No Post Found');
+                                $(".btnLoad").attr('disabled', true);
+                            }
+                        }
+                        else {
+                            $(".btnLoad").prop("disabled", false);
+                            $(".btnLoad").val("See More Posts");
+                            //  alert("clickable");
+
+                        }
+
+
+                        // alert(result);
+                    });
                 },
                 failure: function (response) {
                     $('#result').html(response);
                 }
             });
+
 
         });
 
@@ -91,9 +118,9 @@
 <div class="container">
 
     <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
-        <div class="row form-inline col-sm-10 col-sm-push-1">
-        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory", @multiple = "multiple" })
-        </div>
+        <div class="col-sm-10 col-sm-push-1">
+   @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory", @multiple = "multiple" })
+</div>
         <div class="row form-inline col-sm-10 col-sm-push-1">
             <a href="#" id="uploadbtn ">
                <span class="fa fa-picture-o fa-3x uploadimage" onclick="fileclick(); return false;"></span>
@@ -130,7 +157,7 @@
 
 <div id="loadMoreSection"></div>
 <div  style="text-align:center">
- <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;" value="See more posts" id="btnLoad" align="center"> @*type="button"*@
+ <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;"class="btnLoad" value="See more posts" id="btnLoad" align="center"> @*type="button"*@
 
   </div>
 
