@@ -437,7 +437,6 @@ input[type="checkbox"] {
 input[type="submit"],
 input[type="button"],
 button {
-   
     border: 1px solid #787878;
     cursor: pointer;
     font-size: 1.2em;
@@ -445,23 +444,18 @@ button {
     padding: 7px;
     margin-right: 8px;
     width: 70px;
-     margin-left: 44px;
-  
-
+    margin-left: 44px;
 }
 
-/*input[type="submit"],
+    input[type="submit"],
     input[type="button"],
     button:hover {
-   background:none;
-   background-color: #4D7399;
-   box-shadow: 0px 0px 5px 0px #AAAAAA;
-   -webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
-   -moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
-   border: 1px solid #ffffff;
-
-    
-    }*/
+        background: none;
+        box-shadow: 0px 0px 5px 0px #AAAAAA;
+        -webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
+        -moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
+        border: 1px solid #ffffff;
+    }
 
 
 td input[type="submit"],
@@ -1089,6 +1083,7 @@ tr:nth-child(even) {
 
 .tableAdmin {
     margin-bottom: 50px;
+    box-shadow: 2px 1px 10px #888888;
 }
 
 .adminLinks {
@@ -1448,16 +1443,32 @@ NGO registration page css*/
 }
 
 .discrete-graph {
+    background-color: #fff;
+    box-shadow: 2px 1px 10px #888888;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .donut-chart {
-    margin-bottom: 35px;
-    /*top: 5px;*/
+    /*margin-bottom: 45px;
+    background-color: #fff;
+    box-shadow: 2px 1px 10px #888888;*/
+    /*top: 15px;*/
+    margin-top: 10px;
+}
+
+#myChart {
+    margin-bottom: 5px;
 }
 
 .ornek-donut {
     top: 35px;
 }
+
+/*Reset Password CSS*/
+/*Added by Neha M. on 6-12-16*/
+
+
 
 /*search box
 added by payal*/
