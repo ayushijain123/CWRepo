@@ -357,12 +357,11 @@
     <Content Include="Images\Post\Koala.jpg" />
     <Content Include="Images\Post\Lighthouse.jpg" />
     <Content Include="Images\Post\Penguins.jpg" />
-    <Content Include="Images\Post\tree.jpg" />
     <Content Include="Images\Post\Tulips.jpg" />
     <Content Include="Images\Tulips.jpg" />
     <Content Include="Images\usergroupnew.png" />
     <Content Include="Images\usernew.png" />
-    <Content Include="Scripts\Admin\Test.js" />
+    <Content Include="Scripts\Admin\Admin Script.js" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -454,7 +453,7 @@
     <Content Include="Views\AreaOfInterest\Index.cshtml" />
     <Content Include="Views\Shared\_filter.cshtml" />
     <Content Include="Views\Admin\Warned_NGOs.cshtml" />
-    <Content Include="Views\UserHome\_LikePartial.cshtml" />
+    <Content Include="Views\Admin\changePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
