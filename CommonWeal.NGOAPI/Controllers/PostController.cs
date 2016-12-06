@@ -268,30 +268,24 @@ namespace CommonWeal.NGOAPI.Controllers
                     /*login user property defined in base controller*/
                     pl.LoginID = objpostlike.LoginID;
                     pl.PostID = PostID;
-
                     db.PostLikes.Add(pl);
-
                     db.SaveChanges();
                     /*update like count */
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                    post.PostLikeCount = db.PostLikes.Where(x => x.PostID == PostID).Count();
+                    post.PostLikeCount++;
                     db.SaveChanges();
                 }
                 else
                 {/*if already liked by user than remove like row of user for unlike */
                     var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
-                    db.PostLikes.Remove(removeLike);
-                  
+                    db.PostLikes.Remove(removeLike);                 
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                      var count = db.PostLikes.Where(x => x.PostID == PostID).Count();
-                       count--;
-                        post.PostLikeCount = count;
-                       db.SaveChanges();
+                    post.PostLikeCount--;                     
+                    db.SaveChanges();
                 }
             }
             var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
             return response;
-
         }
 
 
