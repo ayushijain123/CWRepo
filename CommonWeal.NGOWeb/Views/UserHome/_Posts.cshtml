@@ -13,7 +13,7 @@
             <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
                 <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span>
-                <span class="posttime col-md-3">@item.postCreateTime</span>
+                <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
                 <span class="posttag col-md-5 float-right" >
                    @*method for multi #*@
                  @{
