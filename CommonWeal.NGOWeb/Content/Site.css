@@ -88,9 +88,15 @@ header {
 #menu {
     padding-right: 17px;
     margin-top: 0px;
-    padding-top: 5px;
+    padding-top:30px;
 }
-
+.main-nav {
+background-color: #5b6c88;
+border:ridge;
+border-color:#364c6f;
+padding-right: 5px;
+    padding-left: 5px;
+}
 .menuitem {
     font-size: 25px;
     padding: 5px;
@@ -876,6 +882,8 @@ tr.pager td {
     color: #fff;
     font-size: 20px;
     padding: 5px;
+    border-right-style: ridge;
+    border-right-color: #5b6c88;
 }
 
 .usernav-guest {
