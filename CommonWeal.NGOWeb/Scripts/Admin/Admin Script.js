@@ -37,29 +37,52 @@ $(function () {
 });
 
 //Added by Neha M. on 30-12-16
-//Donut chart
-var ctx = document.getElementById("myChart");
+//NGO Donut chart
+var ctx = document.getElementById("myChart1");
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ["Active NGOs", "Blocked NGOs", "Active Users", "Warned Users/NGOs", "Blocked Users"],
+        labels: ["Active NGOs", "Warned NGOs", "Blocked NGOs"],
         datasets: [
         {
-            data: [12, 22, 39, 8, 3],
+            data: [12, 22, 39],
             backgroundColor: [
                 "#90c657",
-                "#EC8D8D",
+                "#f9a94a",
+                "#EC8D8D"
+            ],
+            hoverBackgroundColor: [
+                "#77af3b",
+                "#f79219",
+                "#8C1717"
+            ]
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: false
+        }
+    }
+});
+
+//Users Donut Chart
+var ctx = document.getElementById("myChart2");
+var myChart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+        labels: ["Active Users", "Warned Users", "Blocked Users"],
+        datasets: [
+        {
+            data: [12, 22, 21],
+            backgroundColor: [
                 "#495b79",
                 "#f9a94a",
                 "#e45857"
             ],
             hoverBackgroundColor: [
-                "#77af3b",
-                "#8C1717",
                 "#364359",
                 "#f79219",
                 "#dd2c2b"
-
             ]
         }]
     },
