@@ -447,7 +447,7 @@ button {
     margin-left: 44px;
 }
 
-    input[type="submit"],
+    /*input[type="submit"],
     input[type="button"],
     button:hover {
         background: none;
@@ -455,7 +455,7 @@ button {
         -webkit-box-shadow: 0px 0px 5px 0px #AAAAAA;
         -moz-box-shadow: 0px 0px 5px 0px #AAAAAA;
         border: 1px solid #ffffff;
-    }
+    }*/
 
 
 td input[type="submit"],
@@ -951,8 +951,6 @@ tr.pager td {
 }
 
 
-
-
 .btnPost {
     padding-top: 3px !important;
     padding-bottom: 3px !important;
@@ -965,6 +963,7 @@ tr.pager td {
     top: 10px;
     /*border-color:#225d77;*/
 }
+
 
 .posttag {
     text-align: right;
