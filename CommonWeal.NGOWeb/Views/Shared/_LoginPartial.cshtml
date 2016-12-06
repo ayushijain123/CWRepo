@@ -3,32 +3,35 @@
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/chosen.jquery.min.js"></script>
 
-<div>
+<div >
 
     @* <a class="navbar-brand" href="http://disputebills.com"><img src="http://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png" alt="Dispute Bills">
         </a>*@
 
 
 
-    <nav class="navbar-right">
+   
         @*          @Html.DropDownList("category", (SelectList)ViewBag.categoryList, new { @class = "form-control chosen-select-multiple selectcategory",id = "selectcategory", @multiple = "multiple", })*@
 
 
 
         @*@Html.DropDownList("category", (SelectList)ViewBag.category, new { @class = "form-control chosen-select-multiple", id="category", @multiple = "multiple",})*@
         <div id="menu">
+            <div class="main-nav">
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
+               
                 if (@ViewBag.LoginUser != null)
                 {
-                <div class=" usernav ">Hello @ViewBag.LoginUser.UserName</div>  
+                    
+                <span class=" usernav ">Hello @ViewBag.LoginUser.UserName</span>  
                     if (System.Web.HttpContext.Current.User.IsInRole("NGOAdmin"))
                     {
-                <div class="row vdivide">
+               
                     <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
                     <a href="@Url.Action("Index", "NGOProfile")" class="menuitem fa fa-user" title="Profile"></a>
                     <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off" title="Logout"></a>
-                </div>      
+           
                     }
 
                     else
@@ -36,21 +39,21 @@
 
                         if (System.Web.HttpContext.Current.User.IsInRole("Admin"))
                         {
-                <div>
+       
                     @*<a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>*@
                     <a href="@Url.Action("Index", "Admin")" class="menuitem fa fa-tachometer" title="Dashboard"></a>
                     <a  href="@Url.Action("ChangePassword", "Admin")"  class="menuitem fa fa-retweet" title="Reset Password"></a>
                     <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>
 
-                </div>      
+               
                         }
 
                         else
                         {
-                <div>
+                
                     <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>
                     <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>
-                </div>  
+             
                         }
                     }
                 
@@ -59,20 +62,21 @@
                     userName = '@HttpContext.Current.User.Identity.Name';
                 </script>
                 }
+              
             }
 
             else
             {
                 <span class="usernav">Hello Guest</span> 
-                <div>
+               
                     <a href="@Url.Action("Index", "Home")" class="menuitem fa fa-home" title="Home"></a>
                     <a href="@Url.Action("Index", "Login")" class="menuitem fa fa-sign-in" title="Sign In"></a>
                     <a href="@Url.Action("CreateNGO", "NGORegistration")" class="menuitem fa fa-group" title="Sign Up as NGO"></a>
                     <a href="@Url.Action("CreateUserPost", "UserRegistration")" class="menuitem fa fa-user-plus" title="Sign Up as User"></a>
-                </div>          
+                      
             }
         </div>
-    </nav>
+    </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
