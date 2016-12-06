@@ -197,8 +197,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [AllowAnonymous]
         public JsonResult getpostCount()
         {
-
-            return Json(BaseController.pageleft, JsonRequestBehavior.AllowGet);
+            var result1=BaseController.pageleft;
+            return Json(result1, JsonRequestBehavior.AllowGet);
         }
     }
 }
