@@ -179,29 +179,40 @@ $(document).ready(function () {
         //alert('hi');
         var id = 0;
         var category = $("#selectcategory").val();
+        console.log(category);
         $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category+"&NgoID="+id, function (result) {
 
             console.log(result);
             $("#loadMoreSection").append(result);
+            $.post("/post/getpostCount", function (result) {
+                var total = result - (loadcount + 1) * 5;
+
+                if (total <= 0 && result>0) {
+                    $(".btnLoad").val('No More Post');
+                    $(".btnLoad").attr('disabled', true);
+                    alert(result + "" + total);
+                    loadcount = 0;
+                }
+                if (result <=0)
+                {
+                    $(".btnLoad").val('No Post Found');
+                    $(".btnLoad").attr('disabled', true);
+                    alert(result + "" + total);
+                    loadcount = 0;
+                }
+               
+            });
             //console.log(result);
         });
 
-        $.post("/post/getpostCount", function (result) {
-            var total = result-(loadcount + 1) * 5;
-            if (total<= 0)
-            {
-                alert(total);
-                $("#btnLoad").remove();
-            }
-           // alert(result);
-        });
+       
     });
     //on seemore from ngoprofile ajax call
     var loadcnt = 0;
     $("#btnLoadNGOPfrofile").click(function () {
         //console.log('clicked');
         loadcnt++;
-        //alert('hi');
+       // alert('hi');
         var id = 1;
         var category = $("#selectcategory").val();
         if (category == null)
@@ -210,6 +221,23 @@ $(document).ready(function () {
 
             console.log(result);
             $("#loadMoreSection").append(result);
+            $.post("/post/getpostCount", function (result1) {
+                var total = result1 - (loadcnt + 1) * 5;
+                alert(total);
+                if (total <= 0 && result1 > 0) {
+                    $(".btnLoadNGOPfrofile").val('No More Post');
+                    $(".btnLoadNGOPfrofile").attr('disabled', true);
+                    alert(result1 + "h" + total);
+                    loadcnt = 0;
+                }
+                if (result1 <= 0) {
+                    $(".btnLoadNGOPfrofile").val('No Post Found');
+                    $(".btnLoadNGOPfrofile").attr('disabled', true);
+                    alert(result1 + "" + total);
+                    loadcnt = 0;
+                }
+
+            });
             /*hide see more  when no post*/
 
             //console.log(result);
