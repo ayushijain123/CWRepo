@@ -1,7 +1,14 @@
 ﻿using CommonWeal.Data;
 using System.Linq;
 using System.Web.Mvc;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CommonWeal.Data;
+using CommonWeal.NGOWeb.Utility;
+using Newtonsoft.Json;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -16,6 +23,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             //User UL = new User();
             //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
             var postList = db.GetPostById(LoginUser.LoginID);
+            var image= context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+            ViewBag.imageurl=image;
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
             return View(postList);
         }
@@ -54,6 +63,25 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
             return RedirectToAction("AboutUs", "NGOProfile");
         }
+        [HttpPost]
+        public ActionResult PostImage(HttpPostedFileBase file, NGOUser obj)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            if (file != null)
+            {
+                string ImageName = System.IO.Path.GetFileName(file.FileName);
+                string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
+                // save image in folder
+                file.SaveAs(physicalPath);
+                var objngo = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                objngo.NGOProfilePic = "/Images/Post/" + ImageName;
+                
+                context.Configuration.ValidateOnSaveEnabled = false;
+                context.SaveChanges();
 
+
+            }
+            return RedirectToAction("Index", "NgoProfile");
+        }
     }
 }
