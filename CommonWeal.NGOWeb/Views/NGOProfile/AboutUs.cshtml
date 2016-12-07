@@ -8,16 +8,26 @@
     $(document).ready(function () {
         $("input").prop('disabled', true);
         $("#submitbtn").prop('disabled', true);
+        $("#Canclebtn").hide();
+        $("#submitbtn").hide();
 
 
         $("#editbtn").click(function () {
+            $(this).prop('disabled', true);
+            $("#Canclebtn").show();
+            $("#submitbtn").show();
             $("input").prop('disabled', false);
             $("#submitbtn").prop('disabled', false);
+            
         });
         $("#Canclebtn").click(function () {
             $("input").prop('disabled', true);
-            $("#submitbtn").prop('disabled', true);
+            $("#submitbtn").hide();
+            $(this).hide();
+            $("#editbtn").prop('disabled', false);
+            //$("#submitbtn").prop('disabled', true);
         });
+        
     }
     );
     $('img').on('click', function () {
@@ -139,10 +149,10 @@
                         <div class="form-group row">
                             <div class="col-md-4 col-xs-4 col-md-push-6">
                                 <div id="profileupdate">
-                                    <span id="editbtn" class="btn btn-primary">Edit</span>
+                                    <button id="editbtn" class="btn btn-primary">Edit</button>
                                 </div>
                             </div>
-                            <div class="col-md-4 col-xs-4 col-md-push-3">
+                            <div class="col-md-4 col-xs-4 col-md-push-4">
                                 <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
                             </div>
                             <div class="col-md-4 col-xs-4 col-md-push-2">
