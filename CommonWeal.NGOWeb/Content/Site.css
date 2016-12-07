@@ -825,6 +825,9 @@ tr.pager td {
     cursor: pointer;
     font-size: 10px;
    padding-left: 29px;
+   border-top: solid;
+    border-color: rgba(211, 211, 211, 0.87);
+    border-width: 1px;
 }
 
 #likecommentsign {
@@ -985,6 +988,7 @@ tr.pager td {
     background-color: #FFFFFF;
     padding-left: 0px;
     padding-top: 8px;
+  
 }
 
 /*css for pop body*/
