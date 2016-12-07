@@ -57,7 +57,7 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
 
                     var res = Task.Run(() => APIHelper<string>.PostJson("UserRegistration/CreateUser", ru));
 
-                    return JavaScript("window.location = '" + Url.Action("Index", "Welcome") + "'");
+                    return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
 
                 }
                 catch (Exception ex)
