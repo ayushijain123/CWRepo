@@ -824,7 +824,7 @@ tr.pager td {
     margin-right: auto;*/
     cursor: pointer;
     font-size: 10px;
-    padding-left: 40px;
+   padding-left: 29px;
 }
 
 #likecommentsign {
@@ -879,6 +879,7 @@ tr.pager td {
         margin-right: 5px;
     border-right-style: ridge;
     border-right-color: #5b6c88;
+    text-transform: capitalize;
 }
 
 .usernav-guest {
