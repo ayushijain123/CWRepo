@@ -256,8 +256,8 @@ namespace CommonWeal.NGOWeb
                 post.CategoryIdList = new List<int>();
                 foreach (var category in item.PostCategories)
                 {
-                    //post.CategoryIdList.Add(category.AreaOfInterest.CategoryID);
-                    //categoryNames.Add(category.AreaOfInterest.CategoryName);
+                    post.CategoryIdList.Add(category.AreaOfInterest.CategoryID);
+                    categoryNames.Add(category.AreaOfInterest.CategoryName);
                 }
                 post.CategoryList = categoryNames;
                 finalPostList.Add(post);
