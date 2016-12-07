@@ -5,6 +5,9 @@
 }
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
+    $("#editbtn").click(function () {
+        $(this).hide();
+    });
     $(document).ready(function () {
         $("input").prop('disabled', true);
         $("#submitbtn").prop('disabled', true);
@@ -13,7 +16,7 @@
 
 
         $("#editbtn").click(function () {
-            $(this).prop('disabled', true);
+            $(this).hide();
             $("#Canclebtn").show();
             $("#submitbtn").show();
             $("input").prop('disabled', false);
@@ -24,7 +27,7 @@
             $("input").prop('disabled', true);
             $("#submitbtn").hide();
             $(this).hide();
-            $("#editbtn").prop('disabled', false);
+            $("#editbtn").show();
             //$("#submitbtn").prop('disabled', true);
         });
         
@@ -149,7 +152,7 @@
                         <div class="form-group row">
                             <div class="col-md-4 col-xs-4 col-md-push-6">
                                 <div id="profileupdate">
-                                    <button id="editbtn" class="btn btn-primary">Edit</button>
+                                    <span id="editbtn" class="btn btn-primary">Edit</span>
                                 </div>
                             </div>
                             <div class="col-md-4 col-xs-4 col-md-push-4">
