@@ -6,12 +6,12 @@
 .dropdown-content {
     display: none;
     color: white;
-    
+    padding:7px;
     position: absolute;
     background-color:rgba(44, 67, 90, 0.7);
-    min-width: 160px;
+    width: auto;
     font-size:15px;
-     text-align:center;
+     text-align:left;
      z-index:1;
     width:auto;
     
