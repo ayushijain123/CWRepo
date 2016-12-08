@@ -134,7 +134,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 var ob2 = context.Users.Where(w => w.LoginID == id).Select(w => w.LoginEmailID).FirstOrDefault();
                 var Randomcode = "Warning for suspicious activity";
                 obj.SendActivationEmail(ob2, Randomcode);
-                TempData["WS"] = "<script>alert('Warning send!');</script>";
+                TempData["WS"] = "<script>alert('Warning sent!');</script>";
                 return RedirectToAction("Active_Users", "Admin");
 
             }
@@ -173,16 +173,16 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
               
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
-                TempData["WS"] = "<script>alert('Warning send!');</script>";
+                TempData["WS"] = "<script>alert('Warning sent!');</script>";
                 return RedirectToAction("Active_Users", "Admin");
             }
             else if (ob.LoginUserType == 3)
             {
-                TempData["WS"] = "<script>alert('Warning send!');</script>";
+                TempData["WS"] = "<script>alert('Warning sent!');</script>";
                 return RedirectToAction("All_Users", "Admin");
             }
             context.Configuration.ValidateOnSaveEnabled = false;
-            TempData["WS"] = "<script>alert('Warning send!');</script>";
+            TempData["WS"] = "<script>alert('Warning sent!');</script>";
             return View();
 
 
