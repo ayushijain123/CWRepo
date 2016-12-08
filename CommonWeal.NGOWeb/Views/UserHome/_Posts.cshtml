@@ -2,7 +2,7 @@
 @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
   
  @* <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
-
+<link href="~/Content/dyanamiclist.css" rel="stylesheet" />
 @if(Model!=null && Model.Count()>0)
 {
 <div id="uploadpost" class="col-md-10 col-md-offset-1">
@@ -16,18 +16,27 @@
                 <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
                 <span class="posttag col-md-5 float-right" >
                    @*method for multi #*@
-                 @{
+                
+                      <span class="dropdown">
+                          @if (item.postCategoryNameList.Count() > 0)
+                          { 
+                          <span class="showcategory"id="showcategory-@item.postId"style="cursor:pointer;">View Category</span>
+                          }
+                     <span class="dropdown-content" style=""id="categorylist-@item.postId">
+       @{
                 var Count = 1;
                 foreach (var res in item.postCategoryNameList)
                 {
-                    <span class="text-primary">#@res</span>                       
+                    <span class="">#@res</span>                       
           
                      
                     if (item.postCategoryNameList.Count() != Count)
-                    { <span>&nbsp</span>}
+                    { <span><br/></span>}
                     Count++;                                                        
                 }
                     }
+                            </span>
+                        </span>  
                 </span>
 
             </div>
@@ -119,8 +128,14 @@
                               else if (totalcount >= 3)
                               {        <span class="commentlikeuserfont text-primary"> @item.postlike[0].userName</span><span>,</span>   
                         <span class="commentlikeuserfont text-primary">@item.postlike[1].userName  </span><span class="commentlikeuserfont">and</span>
-                        <span  class="showLikeuser commentlikeuserfont text-primary" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) other</span> <span class="commentlikeuserfont">like this</span>
-                                 
+                        <div class="dropdown">
+                         <span  class="showLikeuser commentlikeuserfont text-primary" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@item.postId"  id="showLikeuser-@item.postId">@(totalcount - 2) other</span> <span class="commentlikeuserfont">like this</span>
+                              
+                        
+                        <div class="dropdown-content" style=""id="catlist-@item.postId">
+      
+                            </div>
+                        </div>  
                               }
                           }
                     }
