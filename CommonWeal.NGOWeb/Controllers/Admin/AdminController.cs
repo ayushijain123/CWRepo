@@ -263,6 +263,41 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
+        public ActionResult BlockWarned(int id)
+        {
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                User UL = new User();
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsActive = false;
+                ob.IsBlock = true;
+                context.SaveChanges();
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsActive = false;
+                ob1.IsBlock = true;
+                context.Configuration.ValidateOnSaveEnabled = false;
+                context.SaveChanges();
+                return RedirectToAction("Warned_NGOs", "Admin");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
+        }
 
         public ActionResult Unblock(int id)
         {
