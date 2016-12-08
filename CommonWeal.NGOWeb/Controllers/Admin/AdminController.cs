@@ -34,7 +34,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var CountOfBlockedUsers = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
             ViewBag.COBU = CountOfBlockedUsers;
 
-            var CountOfWarnedUsers = users.Where(w => w.IsWarn == true).Count();
+            var CountOfWarnedUsers = users.Where(w => w.IsWarn == true && w.IsBlock==false).Count();
             ViewBag.COWU = CountOfWarnedUsers;
 
             //Total NGOs Count
