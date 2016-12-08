@@ -46,6 +46,7 @@ namespace CommonWeal.Data
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<bool> IsWarn { get; set; }
+        public string AboutUs { get; set; }
     
         public virtual User User { get; set; }
     }

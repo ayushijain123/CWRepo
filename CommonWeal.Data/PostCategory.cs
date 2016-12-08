@@ -21,5 +21,6 @@ namespace CommonWeal.Data
         public Nullable<System.DateTime> ModifiedOn { get; set; }
     
         public virtual NGOPost NGOPost { get; set; }
+        public virtual AreaOfInterest AreaOfInterest { get; set; }
     }
 }

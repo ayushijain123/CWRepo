@@ -14,7 +14,14 @@ namespace CommonWeal.Data
     
     public partial class AreaOfInterest
     {
+        public AreaOfInterest()
+        {
+            this.PostCategories = new HashSet<PostCategory>();
+        }
+    
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
+    
+        public virtual ICollection<PostCategory> PostCategories { get; set; }
     }
 }

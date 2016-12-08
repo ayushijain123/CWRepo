@@ -27,9 +27,17 @@
             <End Role="User" EntitySet="User" />
             <End Role="NGOUser" EntitySet="NGOUser" />
           </AssociationSet>
-          <AssociationSet Name="FK_PostCategories_NGOPost" Association="CommonWealModel.Store.FK_PostCategories_NGOPost">
+          <AssociationSet Name="FK_PostCategories_AreaOfInterest" Association="CommonWealModel.Store.FK_PostCategories_AreaOfInterest">
+            <End Role="AreaOfInterest" EntitySet="AreaOfInterest" />
+            <End Role="PostCategories" EntitySet="PostCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostCategories_NGOPost1" Association="CommonWealModel.Store.FK_PostCategories_NGOPost1">
             <End Role="NGOPost" EntitySet="NGOPost" />
             <End Role="PostCategories" EntitySet="PostCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostLike_NGOPost" Association="CommonWealModel.Store.FK_PostLike_NGOPost">
+            <End Role="NGOPost" EntitySet="NGOPost" />
+            <End Role="PostLike" EntitySet="PostLike" />
           </AssociationSet>
           <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.Store.FK_RegisteredUser_UserLogin">
             <End Role="User" EntitySet="User" />
@@ -123,6 +131,7 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="IsWarn" Type="bit" />
+          <Property Name="AboutUs" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="PostCategories">
           <Key>
@@ -249,7 +258,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PostCategories_NGOPost">
+        <Association Name="FK_PostCategories_AreaOfInterest">
+          <End Role="AreaOfInterest" Type="CommonWealModel.Store.AreaOfInterest" Multiplicity="1" />
+          <End Role="PostCategories" Type="CommonWealModel.Store.PostCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AreaOfInterest">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PostCategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostCategories_NGOPost1">
           <End Role="NGOPost" Type="CommonWealModel.Store.NGOPost" Multiplicity="1" />
           <End Role="PostCategories" Type="CommonWealModel.Store.PostCategories" Multiplicity="*" />
           <ReferentialConstraint>
@@ -257,6 +278,18 @@
               <PropertyRef Name="PostID" />
             </Principal>
             <Dependent Role="PostCategories">
+              <PropertyRef Name="PostID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostLike_NGOPost">
+          <End Role="NGOPost" Type="CommonWealModel.Store.NGOPost" Multiplicity="0..1" />
+          <End Role="PostLike" Type="CommonWealModel.Store.PostLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGOPost">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostLike">
               <PropertyRef Name="PostID" />
             </Dependent>
           </ReferentialConstraint>
@@ -313,6 +346,14 @@
             <End Role="User" EntitySet="Users" />
             <End Role="NGOUser" EntitySet="NGOUsers" />
           </AssociationSet>
+          <AssociationSet Name="FK_PostCategories_AreaOfInterest" Association="CommonWealModel.FK_PostCategories_AreaOfInterest">
+            <End Role="AreaOfInterest" EntitySet="AreaOfInterests" />
+            <End Role="PostCategory" EntitySet="PostCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostLike_NGOPost" Association="CommonWealModel.FK_PostLike_NGOPost">
+            <End Role="NGOPost" EntitySet="NGOPosts" />
+            <End Role="PostLike" EntitySet="PostLikes" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AreaOfInterest">
           <Key>
@@ -320,6 +361,7 @@
           </Key>
           <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PostCategories" Relationship="CommonWealModel.FK_PostCategories_AreaOfInterest" FromRole="AreaOfInterest" ToRole="PostCategory" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -365,6 +407,7 @@
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PostCategories" Relationship="CommonWealModel.FK_PostCategories_NGOPost1" FromRole="NGOPost" ToRole="PostCategory" />
+          <NavigationProperty Name="PostLikes" Relationship="CommonWealModel.FK_PostLike_NGOPost" FromRole="NGOPost" ToRole="PostLike" />
         </EntityType>
         <EntityType Name="PostCategory">
           <Key>
@@ -376,6 +419,7 @@
           <Property Type="DateTime" Name="createdOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <NavigationProperty Name="NGOPost" Relationship="CommonWealModel.FK_PostCategories_NGOPost1" FromRole="PostCategory" ToRole="NGOPost" />
+          <NavigationProperty Name="AreaOfInterest" Relationship="CommonWealModel.FK_PostCategories_AreaOfInterest" FromRole="PostCategory" ToRole="AreaOfInterest" />
         </EntityType>
         <EntityType Name="PostComment">
           <Key>
@@ -399,6 +443,7 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="Int32" Name="PostID" />
+          <NavigationProperty Name="NGOPost" Relationship="CommonWealModel.FK_PostLike_NGOPost" FromRole="PostLike" ToRole="NGOPost" />
         </EntityType>
         <EntityType Name="RegisteredUser">
           <Key>
@@ -544,6 +589,7 @@
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsWarn" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
+          <Property Type="String" Name="AboutUs" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_NGOUser_UserLogin">
           <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
@@ -554,6 +600,30 @@
             </Principal>
             <Dependent Role="NGOUser">
               <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostCategories_AreaOfInterest">
+          <End Type="CommonWealModel.AreaOfInterest" Role="AreaOfInterest" Multiplicity="1" />
+          <End Type="CommonWealModel.PostCategory" Role="PostCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AreaOfInterest">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="PostCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostLike_NGOPost">
+          <End Type="CommonWealModel.NGOPost" Role="NGOPost" Multiplicity="0..1" />
+          <End Type="CommonWealModel.PostLike" Role="PostLike" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NGOPost">
+              <PropertyRef Name="PostID" />
+            </Principal>
+            <Dependent Role="PostLike">
+              <PropertyRef Name="PostID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -747,6 +817,7 @@
           <EntitySetMapping Name="NGOUsers">
             <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
               <MappingFragment StoreEntitySet="NGOUser">
+                <ScalarProperty Name="AboutUs" ColumnName="AboutUs" />
                 <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />

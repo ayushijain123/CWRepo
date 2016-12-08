@@ -17,6 +17,7 @@ namespace CommonWeal.Data
         public NGOPost()
         {
             this.PostCategories = new HashSet<PostCategory>();
+            this.PostLikes = new HashSet<PostLike>();
         }
     
         public int PostID { get; set; }
@@ -32,5 +33,6 @@ namespace CommonWeal.Data
         public string CreatedBy { get; set; }
     
         public virtual ICollection<PostCategory> PostCategories { get; set; }
+        public virtual ICollection<PostLike> PostLikes { get; set; }
     }
 }

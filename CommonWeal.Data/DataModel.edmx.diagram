@@ -25,6 +25,8 @@
         <AssociationConnector Association="CommonWealModel.FK_PostCategories_NGOPost1" />
         <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="7.8493286426408808" PointY="6.7737046362709741" />
         <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
+        <AssociationConnector Association="CommonWealModel.FK_PostCategories_AreaOfInterest" />
+        <AssociationConnector Association="CommonWealModel.FK_PostLike_NGOPost" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
