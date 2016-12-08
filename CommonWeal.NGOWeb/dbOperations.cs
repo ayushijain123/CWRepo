@@ -72,7 +72,7 @@ namespace CommonWeal.NGOWeb
         {
             List<NGOUser> NGOList = new List<NGOUser>();
             // userList = context.RegisteredUsers.ToList();
-            NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
+            NGOList = context.NGOUsers.Where(w => w.IsWarn == true && w.IsBlock==false).ToList();
             return NGOList;
         }
         //User Table
@@ -112,7 +112,7 @@ namespace CommonWeal.NGOWeb
             var toAddress = new MailAddress(UserEmail);
             try
             {
-                string subject = "Fassword Change";
+                string subject = "CommonWeal Security Team";
                 string body = Randomcode;
 
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
