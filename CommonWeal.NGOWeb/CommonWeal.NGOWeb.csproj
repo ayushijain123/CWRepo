@@ -220,9 +220,13 @@
     <Content Include="Content\chosen-sprite.png" />
     <Content Include="Content\chosen.css" />
     <Content Include="Content\Commonweal.css" />
+<<<<<<< .mine
+    <Content Include="Content\dyanamiclist.css" />
+=======
     <Content Include="Content\DataPlugIn\jquery-1.11.2-jquery.min.js" />
     <Content Include="Content\DataPlugIn\jquery.dataTables.min.css" />
     <Content Include="Content\DataPlugIn\jquery.dataTables.min.js" />
+>>>>>>> .r881
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\font-awesome\css\font-awesome.css" />
     <Content Include="Content\font-awesome\css\font-awesome.min.css" />
