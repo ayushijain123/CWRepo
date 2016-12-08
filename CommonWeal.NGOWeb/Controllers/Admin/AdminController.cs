@@ -173,10 +173,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
               
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
+                TempData["WS"] = "<script>alert('Warning send!');</script>";
                 return RedirectToAction("Active_Users", "Admin");
             }
             else if (ob.LoginUserType == 3)
             {
+                TempData["WS"] = "<script>alert('Warning send!');</script>";
                 return RedirectToAction("All_Users", "Admin");
             }
             context.Configuration.ValidateOnSaveEnabled = false;
