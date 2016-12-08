@@ -27,3 +27,8 @@
         </div>
     </div>
 </div>
+@if (TempData["WS"] != null)
+{
+  @Html.Raw(TempData["WS"])
+} 
+
