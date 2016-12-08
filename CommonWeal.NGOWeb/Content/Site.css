@@ -400,6 +400,7 @@ fieldset {
         }
 
 label {
+    padding-top:15px;
     display: block;
     font-size: 1.2em;
     font-weight: 600;
@@ -1004,7 +1005,7 @@ tr.pager td {
 }
 
 .likecommenticon img {
-    height: 40px;
+    height: 30px;
     padding-left: 9px;
 }
 .commentmainbox {
@@ -1059,6 +1060,8 @@ tr.pager td {
     overflow: auto;
     max-height: 600px;
     border: solid thin;
+    padding-right:0px;
+    padding-left:0px;
 }
 
 th {
@@ -1087,6 +1090,8 @@ tr:nth-child(even) {
 .tableAdmin {
     margin-bottom: 50px;
     box-shadow: 2px 1px 10px #888888;
+    padding-left:0px;
+    padding-right:0px;
 }
 
 .adminLinks {
@@ -1564,6 +1569,7 @@ added by payal*/
 
 #bodycolor {
     background-color: #ebeff2;
+   padding-bottom:50px;
 }
 
 
