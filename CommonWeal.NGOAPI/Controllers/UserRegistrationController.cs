@@ -18,7 +18,24 @@ namespace CommonWeal.NGOAPI.Controllers
         {
             return new string[] { "ASJ", "AJ" };
         }
+        public class checkEmail
+        {
+            public string EmailId { get; set; }
+        }
+        [HttpPost]
+        public bool CheckEmail(checkEmail email)
+        {
+            var EmailId = email.EmailId;
+            CommonWealEntities context = new CommonWealEntities();
 
+            var user = context.Users.Where(w => w.LoginEmailID == EmailId).FirstOrDefault();
+            if (user == null)
+            { return true; }
+            else
+                return false;
+
+        }
+       
         [HttpGet]
         public HttpResponseMessage loginget()
         {
