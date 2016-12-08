@@ -803,11 +803,13 @@ tr.pager td {
 }
 
 .imageurlpost {
+        margin: 0 auto;
+
     max-width: 90%;
     max-height: 600px;
     display: block;
-    margin-left: 40px;
-    margin-right: auto;
+    /*margin-left: 40px;
+    margin-right: auto;*/
     cursor: pointer;
     overflow: hidden;
 }
