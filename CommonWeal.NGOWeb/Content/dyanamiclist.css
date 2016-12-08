@@ -1,0 +1,36 @@
+﻿.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    color: white;
+    
+    position: absolute;
+    background-color:rgba(44, 67, 90, 0.7);
+    min-width: 160px;
+    font-size:15px;
+     text-align:center;
+     z-index:1;
+    width:auto;
+    
+   
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    
+}
+
+.showLikeuser a:hover {background-color: #f1f1f1;
+                       
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+     
+}
