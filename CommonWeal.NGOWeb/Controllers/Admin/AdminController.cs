@@ -34,7 +34,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var CountOfBlockedUsers = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
             ViewBag.COBU = CountOfBlockedUsers;
 
-            var CountOfWarnedUsers = users.Where(w => w.IsWarn == true && w.IsBlock==false).Count();
+            var CountOfWarnedUsers = ngo.Where(w => w.IsWarn == true && w.IsBlock==false).Count();
             ViewBag.COWU = CountOfWarnedUsers;
 
             //Total NGOs Count
@@ -103,7 +103,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
+           var  User = context.Users.Where(w => w.IsWarn == true && w.IsBlock == false).ToList();
+           
             var request = obj.WarnedNGOs();
+           
             return View(request);
         }
 
@@ -152,6 +155,50 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 }
                 throw raise;
             }
+        }
+        public ActionResult Warn(int id) 
+        {
+            CommonWealEntities context = new CommonWealEntities();
+
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsWarn = true;
+            context.SaveChanges();
+            var ob2 = context.Users.Where(w => w.LoginID == id).Select(w => w.LoginEmailID).FirstOrDefault();
+            var Randomcode = "Warning for suspicious activity";
+            obj.SendActivationEmail(ob2, Randomcode);
+            if (ob.LoginUserType == 1)
+            {
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsWarn = true;
+              
+                context.Configuration.ValidateOnSaveEnabled = false;
+                context.SaveChanges();
+                return RedirectToAction("Active_Users", "Admin");
+            }
+            else if (ob.LoginUserType == 3)
+            {
+                return RedirectToAction("All_Users", "Admin");
+            }
+            context.Configuration.ValidateOnSaveEnabled = false;
+            TempData["WS"] = "<script>alert('Warning send!');</script>";
+            return View();
+
+
+        }
+        public ActionResult UnWarn(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsWarn = false;
+            if (ob.LoginUserType == 1)
+            {
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsWarn = false;
+            }
+            context.Configuration.ValidateOnSaveEnabled = false;
+
+            context.SaveChanges();
+            return RedirectToAction("Warned_NGOs", "Admin");
         }
         public ActionResult UnWarnNGO(int id)
         {
