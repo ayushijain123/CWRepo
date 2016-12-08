@@ -89,7 +89,7 @@ $(document).ready(function () {
 
     });
 
-    $(".showLikeuser").click(function () {
+    $(".showLikeuser2").click(function () {
         console.log('clicked');
         var postid = $(this).attr("id").split('-')[1];
         console.log('clicked-' + postid);
@@ -118,6 +118,27 @@ $(document).ready(function () {
 
     //end Likecount
 
+    $(".showLikeuser").mouseover(function () {
+        console.log('clicked');
+        var postid = $(this).attr("id").split('-')[1];
+        console.log('clicked-' + postid);
+        $("#likelist-" + postid).html("");
+        $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
+            //alert('hi'); 
+            $("#catlist-" + postid).html("");
+            $.each(postlikelist, function (i, value) {
+                console.log(postlikelist);
+
+                var content = value.userName + '<br>';
+
+                $("#catlist-" + postid).append(content);
+
+                // console.log(value.userName);
+                // console.log(value.ModifiedOn);
+            });
+        });
+
+    });
 
 
 
