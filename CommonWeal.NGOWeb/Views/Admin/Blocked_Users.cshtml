@@ -1,9 +1,17 @@
 ﻿@model IEnumerable<CommonWeal.Data.NGOUser>
+<script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
+<link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
+ <script type="text/javascript">
+       $(document).ready(function () {
+           $('#myTable').DataTable();
+       });
+    </script> 
 
 <div class="row">
     <div class="col-md-12 ">
         <div class="requests">
-            <table class="tableAdmin col-md-12">
+            <table id="myTable" class="tableAdmin col-md-12">
                 <thead class="tableheader col-md-12">
                     <tr>
                         <th class="col-md-4">NGO NAME</th>
