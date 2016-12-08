@@ -1,57 +1,75 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+<script>
+    $(document).ready(function () {
+        $("#uploadimage").hide();
+        $("#pencil").click(function () {
+            $("#uploadimage").show();
+        });
+    });
+</script>
+<form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
+    <div class=" ngoprofilenavbar">
+        <div class="col-md-12">
+            <div class="panel panel-default col-md-12 panelNGO column12">
+                <div class="panel-heading">
+                    <center> <b class="profilesummary"> Profile summary</b></center>
+                </div>
+                <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
 
-  <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
-<div class=" ngoprofilenavbar">
-    <div class="col-md-12">
-        <div class="panel panel-default col-md-12 panelNGO column12">
-            <div class="panel-heading">
-                <center> <b class="profilesummary"> Profile summary</b></center>
-            </div>
-            <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
-
-                <div class="col-md-4 col-md-offset-5">
-                    <div class="row form-inline col-sm-10 col-sm-push-12">
-                       
-                        <a href="#" id="uploadbtn ">
-                            <span   data-toggle="tooltip" title="change Profile" class="glyphicon glyphicon-pencil" onclick="fileclick(); return false;"></span>
-                        </a>
-                        <a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>
-                        <input type="file" id="file" name="file" data-badge="false" />
-                        <span id="uploadFileName"></span>
-                        <button type="submit" value="submit">
-                         @if (ViewBag.imageurl != null) { 
-                          <img src="@ViewBag.imageurl"/>
-                         }
-                           
-
-                        @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
+                    <div class="col-md-4 col-md-offset-5">
+                        <div class="row ">
+                            <div class="form-inline col-sm-10 col-sm-push-12">
+                               <div class="container" style="background-color:lightgray; border:solid;"><br/>
+                                        @if (ViewBag.imageurl != null)
+                                        { 
+                                            <img src="@ViewBag.imageurl" style="height:150px; width:240px;"/>
+                                        }
+                                   <div class="form-inline">
+                                <span data-toggle="tooltip" title="change Profile" id="pencil" class="glyphicon glyphicon-pencil" onclick="fileclick(); return false;"></span>
+                                   <input type="file" id="file" name="file" data-badge="false" />
+                                    <input type="submit" id="uploadimage" value="upload image" style="width:117px"/>
+                                       </div>
+                               @*a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>*@
+                                
+                                @*<span id="uploadFileName"></span>*@
+                               
+                                
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            </form>
-            @*NGO Profile header Start*@
-            <div class="panel-group navbar-fixed">
-                <div class="sticky">
-                    <ul class="ultext nav nav-tabs">
-                        <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
+               
+          <div class="panel-group navbar-fixed">
+    <div class="sticky">
+        <ul class="ultext nav nav-tabs">
+            <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
 
-                        <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
+            <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
 
-                    </ul>
-                </div>
-            </div>
-
-            @*NGO Profile header End*@
-        </div>
+        </ul>
+         </div>
     </div>
 </div>
+</div>
+        </div>
+                           
+
+@*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
+                            
+</form>
+@*NGO Profile header Start*@
+
+  
+
+@*NGO Profile header End*@
 <div>
     @Html.Partial("../UserHome/_Posts", Model)
 </div>
 
 <div id="loadMoreSection"></div>
 <div style="text-align: center" class="row col-sm-12">
-    <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoadNGOPfrofile" class="btnLoadNGOPfrofile"align="center">
+    <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoadNGOPfrofile" class="btnLoadNGOPfrofile" align="center">
 </div>
 <br />
 <br />
