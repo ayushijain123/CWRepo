@@ -68,11 +68,18 @@ namespace CommonWeal.NGOWeb
             userList = context.Users.Where(w => w.IsActive == true).ToList();
             return userList;
         }
+        public List<User> Warned()
+        {
+            List<User> NGOList = new List<User>();
+            // userList = context.RegisteredUsers.ToList();
+            NGOList = context.Users.Where(w => w.IsWarn == true && w.IsBlock == false).ToList();
+            return NGOList;
+        }
         public List<NGOUser> WarnedNGOs()
         {
             List<NGOUser> NGOList = new List<NGOUser>();
             // userList = context.RegisteredUsers.ToList();
-            NGOList = context.NGOUsers.Where(w => w.IsWarn == true && w.IsBlock==false).ToList();
+            NGOList = context.NGOUsers.Where(w => w.IsWarn == true && w.IsBlock == false).ToList();
             return NGOList;
         }
         //User Table
