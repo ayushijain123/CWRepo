@@ -51,7 +51,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 }
 
                 userinfo.Add(userName);
-                userinfo.Add(postcmnt.CreatedOn.ToString());
+                userinfo.Add(postcmnt.CreatedOn.Value.ToString("MM/dd/yyyy HH:mm"));
             }
             return Json(userinfo, JsonRequestBehavior.AllowGet);
         }
