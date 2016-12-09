@@ -729,9 +729,15 @@ tr.pager td {
     }
 }
 
+.uploadpanel {
+width:900px;
+}
 
-
-
+.uploadpheadingcolor {
+    background-color: rgba(80, 93, 113, 0.91);
+    color:white;
+   
+}
 
 
 /*POST*/
@@ -911,9 +917,9 @@ tr.pager td {
 
 #postform {
     /*background-color: #F0F0F0;*/
-    padding-top: 5px;
+      padding-top: 25px;
     padding-right: 5px;
-    padding-bottom: 40px;
+  
     padding-left: 5px;
     margin-bottom: 13px;
 }
@@ -1146,7 +1152,9 @@ tr:nth-child(even) {
     padding: 10px 0;
     height: 150px;
 }
-
+.uploadimagesection {
+    
+}
 /* Add Animation */
 .fullImage, #caption {
     -webkit-animation-name: zoom;
@@ -1568,7 +1576,9 @@ added by payal*/
     width: 100%;
 }*/
 
-
+.uploadpanelbody {
+    background-color: #F0F0F0;
+}
 #bodycolor {
     background-color: #ebeff2;
    padding-bottom:50px;
@@ -1579,3 +1589,12 @@ added by payal*/
     resize: none;
 }
 
+.selectcategory {
+    padding-top: 93px;
+   
+  
+}
+#selectcategory {
+  
+        border-radius: 11px;
+}
