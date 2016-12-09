@@ -45,7 +45,8 @@ var myChart = new Chart(ctx, {
         labels: ["Active NGOs", "Warned NGOs", "Blocked NGOs"],
         datasets: [
         {
-            data: [12, 22, 39],
+            data: [parseInt($("#COAN").html()), parseInt($("#COWU").html()), parseInt($("#COBN").html())],
+      
             backgroundColor: [
                 "#90c657",
                 "#f9a94a",
@@ -73,7 +74,7 @@ var myChart = new Chart(ctx, {
         labels: ["Active Users", "Warned Users", "Blocked Users"],
         datasets: [
         {
-            data: [12, 22, 21],
+            data: [parseInt($("#COAL").html()), 0, parseInt($("#COBU").html())],
             backgroundColor: [
                 "#495b79",
                 "#f9a94a",
