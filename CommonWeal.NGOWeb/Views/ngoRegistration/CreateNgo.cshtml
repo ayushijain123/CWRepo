@@ -16,7 +16,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                @*     <h2>User Deatils <small>different form elements</small></h2>*@
+               
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -25,8 +25,7 @@
                                  
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="NGO Name">
-                            NGO Name
-                            @* <span class="required">*</span>*@
+                            NGO Name                      
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.NGOName, new { placeholder = "NGO Name", @class = "form-control col-md-7 col-xs-12" })
@@ -36,8 +35,7 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Unique Id">
-                            Unique Id 
-                            @*<span class="required">*</span>*@
+                            Unique Id                           
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.UniqueuId, new { placeholder = "Unique Id", @class = "form-control col-md-7 col-xs-12" })
@@ -103,8 +101,7 @@
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Address">
-                            Address
-                            @* <span class="required">*</span>*@
+                            Address                        
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.NGOAddress, new { placeholder = "Address", @class = "form-control col-md-7 col-xs-12" })
@@ -114,8 +111,7 @@
 
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Chairman Name">
-                            Chairman Name
-                            @* <span class="required">*</span>*@
+                            Chairman Name                         
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.ChairmanName, new { placeholder = "Chairman Name", @class = "form-control col-md-7 col-xs-12" })
@@ -125,8 +121,7 @@
 
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Photo Id Of Chairman">
-                           Photo Id Of Chairman
-                            @* <span class="required">*</span>*@
+                           Photo Id Of Chairman                           
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.ChairmanID,  new { type = "file", @class = "form-control col-md-7 col-xs-12"  })
@@ -136,8 +131,7 @@
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Parent Organization">
-                           Parent Organization
-                            @* <span class="required">*</span>*@
+                           Parent Organization                        
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.ParentOrganisation, new { placeholder = "Parent Organization", @class = "form-control col-md-7 col-xs-12" })
@@ -147,8 +141,7 @@
                      
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Register with">
-                          Register with
-                            @* <span class="required">*</span>*@
+                          Register with                         
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
@@ -158,8 +151,7 @@
 
                      <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Registration Number">
-                           Registration No
-                            @* <span class="required">*</span>*@
+                           Registration No                          
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             @Html.TextBoxFor(a => a.RegistrationNumber, new { placeholder = "Registration Number", @class = "form-control col-md-7 col-xs-12" })
@@ -169,11 +161,9 @@
                      
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Date Of Registration">
-                          Date Of Registration
-                            @* <span class="required">*</span>*@
+                          Date Of Registration                          
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           @* @Html.TextBoxFor(a => a.DateOfRegistration, new { placeholder = "Registration Number", @class = "form-control col-md-7 col-xs-12" })*@
+                        <div class="col-md-6 col-sm-6 col-xs-12">                          
                               @Html.EditorFor(model => model.DateOfRegistration, new {@class = "form-control col-md-7 col-xs-12"} )
                             @Html.ValidationMessageFor(a => a.DateOfRegistration, string.Empty, new { @class = "Validation-Message" })
                         </div>
@@ -181,11 +171,9 @@
 
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Copy Of Registration">
-                         Copy Of Registration
-                            @* <span class="required">*</span>*@
+                         Copy Of Registration                        
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           @* @Html.TextBoxFor(a => a.DateOfRegistration, new { placeholder = "Registration Number", @class = "form-control col-md-7 col-xs-12" })*@
+                        <div class="col-md-6 col-sm-6 col-xs-12">                        
                               @Html.TextBoxFor(a => a.RegistrationProof,  new { type = "file", @class = "form-control col-md-7 col-xs-12"  })
                             @Html.ValidationMessageFor(a => a.RegistrationProof, string.Empty, new { @class = "Validation-Message" })
                         </div>
@@ -193,22 +181,18 @@
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="FCRA Registration No">
-                         FCRA Registration No
-                            @* <span class="required">*</span>*@
+                         FCRA Registration No                       
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           @* @Html.TextBoxFor(a => a.DateOfRegistration, new { placeholder = "Registration Number", @class = "form-control col-md-7 col-xs-12" })*@
+                        <div class="col-md-6 col-sm-6 col-xs-12">                    
                               @Html.TextBoxFor(a => a.FCRANumber, new { placeholder = "FCRA Number",@class = "form-control col-md-7 col-xs-12"  })                       
                         </div>
                     </div>
 
                    <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Website URL">
-                         Website URL
-                            @* <span class="required">*</span>*@
+                         Website URL                           
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                           @* @Html.TextBoxFor(a => a.DateOfRegistration, new { placeholder = "Registration Number", @class = "form-control col-md-7 col-xs-12" })*@
+                        <div class="col-md-6 col-sm-6 col-xs-12">                       
                               @Html.TextBoxFor(a => a.WebsiteUrl, new { placeholder = "Website URL",@class = "form-control col-md-7 col-xs-12" })   
                              @Html.ValidationMessageFor(a => a.WebsiteUrl, string.Empty, new { @class = "Validation-Message" })                    
                         </div>
