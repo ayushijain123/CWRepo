@@ -400,6 +400,8 @@ fieldset {
         }
 
 label {
+    padding-left:15px;
+    float:left;
     padding-top:15px;
     display: block;
     font-size: 1.2em;
