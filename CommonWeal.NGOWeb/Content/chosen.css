@@ -447,6 +447,5 @@ select.chosen-with-icon + .chosen-container-multi .chosen-choices:before {
     position    : absolute;
     text-align  : center;
     width   : 23px;
-   
         color: silver;
 }
