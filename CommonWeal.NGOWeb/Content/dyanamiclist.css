@@ -9,12 +9,11 @@
     padding:7px;
     position: absolute;
     background-color:rgba(44, 67, 90, 0.7);
-    width: auto;
+    width: 160px;
     font-size:15px;
      text-align:left;
      z-index:1;
-    width:auto;
-    
+     
    
 }
 
