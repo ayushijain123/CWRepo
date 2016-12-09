@@ -39,6 +39,23 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return View(obj);
         }
         [HttpPost]
+        public JsonResult SubmitSummary(string  summary, int Loginid)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            try
+            {
+                var obj = context.NGOUsers.Where(x => x.LoginID == Loginid).FirstOrDefault();
+                obj.AboutUs = summary;
+                context.Configuration.ValidateOnSaveEnabled = false;
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            { throw ex;
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+                
+        }
+        [HttpPost]
         public ActionResult Edit(NGOUser obj)
         {
             using (CommonWealEntities context = new CommonWealEntities())
