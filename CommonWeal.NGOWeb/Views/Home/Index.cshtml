@@ -6,6 +6,7 @@
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/chosen.jquery.min.js"></script>
 
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#selectcategory").live("change", function () {
@@ -83,24 +84,29 @@
 
     });
 
-  </script>
-<div class="col-md-10 col-md-push-1">
-   @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @class = "form-control selectcategory", @multiple = "multiple" })
-</div>
-<br/>
-<br/>
+</script>
+<div class="container-fluid">
+     <div class="dsqd" style="background-color:azure;">
+ <div class="row col-xs-6 col-xs-offset-6 col-sm-1 col-sm-offset-10  navbar-fixed-top selectcategory">
+    
+        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search By Categories", @class="chosen-with-icon ", @multiple = "multiple" })
+            </div>
+        </div>
+  </div>
+<br />
 
-<div id="postsection" >
+<div id="postsection">
     @Html.Partial("../UserHome/_Posts", Model)
-      </div>   
+</div>
 
 
 <div id="loadMoreSection"></div>
 
-<div  style="text-align:center"id="morePost">
- <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center"> @*type="button"*@
+<div style="text-align: center" id="morePost">
+    <input type="button" style="background: transparent; border: none; outline: none; margin-bottom: 20px; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
+    @*type="button"*@
 
-  </div>
+</div>
 
 
 @section scripts{
