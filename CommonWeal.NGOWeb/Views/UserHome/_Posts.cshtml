@@ -94,7 +94,7 @@
                                       currentLikeUserColor = "#4073bf";
                                   }
                               }
-                        <span class="  LikeIcon ahover likecommenticon"  id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
+                        <span class="  LikeIcon ahover likecommenticon userid-@userLoginId" id="LikeIcon-@item.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
                             <img src="~/Images/newlike1.png" /></span>
                         <span id="commentIcon-@item.postId" class="  ahover likecommentcolor commentIcon likecommenticon   ">
                             <img src="~/Images/commentnew.png" /></span>   
@@ -140,6 +140,8 @@
                           }
                     }
                 </div>
+            @*     @Html.Partial("../UserHome/_LikePartial", Model)*@
+             @* @Html.Partial("../Views/UserHome/_LikePartial",Model) *@
             </div>
 
             <!--Like Modal Start -->
@@ -168,7 +170,7 @@
                         <span class="col-md-1 fa fa-user commentimage"></span>
 
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
-                        <span class="commentdate">@comment.CreatedDateTime</span>
+                        <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm")</span>
                         <p id="postcommentcontent">@comment.commentContent</p>
 
                     </div>
