@@ -85,14 +85,14 @@
     });
 
 </script>
-<div class="container-fluid">
-    
- <div class="row col-xs-6 col-xs-offset-6 col-sm-1 col-sm-offset-9  navbar-fixed-top selectcategory">
-     <div class="row col-xs-12  col-sm-12 selectcategorybackground">
-        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search By Categories", @class="chosen-with-icon ", @multiple = "multiple" })
-            </div>
-        </div>
-  </div>
+
+    <div class="container">
+ <div class="row col-sm-10 col-sm-push-1  selectcategory">
+  
+        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search By Categories", @class="form-control chosen-with-icon ", @multiple = "multiple" })
+         </div>  
+     
+
 <br />
 
 <div id="postsection">
@@ -107,7 +107,7 @@
     @*type="button"*@
 
 </div>
-
+</div>
 
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
