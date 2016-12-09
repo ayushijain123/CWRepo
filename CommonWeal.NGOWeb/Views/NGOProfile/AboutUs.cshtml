@@ -21,7 +21,7 @@
             $("#submitbtn").show();
             $("input").prop('disabled', false);
             $("#submitbtn").prop('disabled', false);
-            
+
         });
         $("#Canclebtn").click(function () {
             $("input").prop('disabled', true);
@@ -30,9 +30,46 @@
             $("#editbtn").show();
             //$("#submitbtn").prop('disabled', true);
         });
-        
-    }
-    );
+
+
+
+
+
+        $("textarea").prop('disabled', true);
+        $(".SaveSummaryId").hide();
+        $("#Cancel").hide();
+        $("#edit").click(function () {
+            $(this).hide();
+            $("#Cancel").show();
+            $(".SaveSummaryId").show();
+            $("textarea").prop('disabled', false);
+        });
+
+
+        $("#Cancel").click(function () {
+            $("textarea").prop('disabled', true);
+            $(".SaveSummaryId").hide();
+            $(this).hide();
+            $("#edit").show();
+            //$("#submitbtn").prop('disabled', true);
+        });
+
+        $(".SaveSummaryId").live('click', function () {
+            var Loginid = $(this).attr('id').split('-')[1];
+            var summary = $('#textSumamry').val();
+            $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
+
+                alert("summary saved successfully");
+                $("#Cancel").hide();
+                $(".SaveSummaryId").hide();
+                $("#edit").show();
+                //console.log(result);
+            });
+
+
+        });
+       
+    });
     $('img').on('click', function () {
         var image = $(this).attr('src');
         $('#myModal2').on('show.bs.modal', function () {
@@ -191,9 +228,15 @@
                                             @*</a>*@
                                 </div>
                                 <p class="description text-center">
-                                  @ViewBag.LoginUser.UserName,established in 2005 with a notion of 
-                                             serving people all over the country.
-                                             we are there 24*7 with our 100+ volunteers.
+                                  @ViewBag.LoginUser.UserName,
+                                    <textarea style="width:232px; resize:none;" id="textSumamry">@Model.AboutUs</textarea>
+                                    <div class="form-inline">
+                                    <div id="EditAboutUs">
+                                    <span id="edit" class="btn btn-primary">Edit</span>
+                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                      <span id="Cancel" class="btn btn-primary">Cancel</span>
+                                        </div>
+
                                 </p>
 
                             </div>
