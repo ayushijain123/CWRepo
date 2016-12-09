@@ -118,7 +118,7 @@ $(document).ready(function () {
 
     //end Likecount
 
-    $(".showLikeuser").mouseover(function () {
+    $(".showLikeuser").live('mouseover',function () {
         console.log('clicked');
         var postid = $(this).attr("id").split('-')[1];
         console.log('clicked-' + postid);
