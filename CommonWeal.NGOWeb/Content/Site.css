@@ -1593,10 +1593,19 @@ added by payal*/
 
 .selectcategory {
     padding-top: 93px;
-   
+ width: 285px;
+     padding-left: 93px;
   
 }
 #selectcategory {
-  
+
+       
         border-radius: 11px;
+}
+.selectcategorybackground {
+    height:50px;  
+        border-radius: 20px; 
+           background-color: rgba(80, 93, 113, 0.78);
+            border:12px;   
+             width: 314px;
 }
