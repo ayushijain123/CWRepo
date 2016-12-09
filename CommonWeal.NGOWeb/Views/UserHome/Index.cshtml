@@ -92,9 +92,10 @@
 
   </script>
    <div class="container-fluid">
- <div class="row col-xs-6 col-xs-offset-6 col-sm-1 col-sm-offset-10  navbar-fixed-top selectcategory">
+ <div class="row col-xs-6 col-xs-offset-6 col-sm-1 col-sm-offset-9  navbar-fixed-top selectcategory">
+       <div class="row col-xs-12  col-sm-12 selectcategorybackground">
         @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search By Categories", @class="chosen-with-icon ", @multiple = "multiple" })
-            
+            </div>
         </div>
   </div>    
 <br/>
