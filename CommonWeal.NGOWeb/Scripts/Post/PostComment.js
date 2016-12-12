@@ -81,8 +81,15 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
+            if (result != null)
+            {
+                alert(result);
+                $("#liketemplate-" + postid).html("");
 
-            window.location.reload();
+                $("#liketemplate-" + postid).append(result);
+            }
+
+          //  window.location.reload();
             //console.log(result);
         });
 
