@@ -70,7 +70,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 /*login user property defined in base controller*/
                 /*checking is current login user already liked the image or not */
                 var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
-
+                db.Configuration.ValidateOnSaveEnabled = false;
                 if (currentLikeUser == null)
                 {
                     /*if not like than add row in post  */
