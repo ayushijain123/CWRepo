@@ -83,7 +83,7 @@ $(document).ready(function () {
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
             if (result != null)
             {
-                alert(result);
+                //alert(result);
                 $("#liketemplate-" + postid).html("");
 
                 $("#liketemplate-" + postid).append(result);
@@ -130,7 +130,7 @@ $(document).ready(function () {
         var postid = $(this).attr("id").split('-')[1];
         console.log('clicked-' + postid);
         $("#likelist-" + postid).html("");
-        $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
+        $.post("/Post/getLikeListAjax?postid=" + postid, function (postlikelist) {
             //alert('hi'); 
             $("#catlist-" + postid).html("");
             $.each(postlikelist, function (i, value) {
