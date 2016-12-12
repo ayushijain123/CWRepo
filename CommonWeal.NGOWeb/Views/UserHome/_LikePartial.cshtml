@@ -1,0 +1,74 @@
+﻿@model IList<CommonWeal.NGOWeb.ViewModel.PostLikeModel>
+
+ 
+<div class="form-inline likecommentsign col-md-12 ">
+                    @if (!User.Identity.IsAuthenticated)
+                    { 
+                        <span class=" likecommentcolor likecommenticon ">
+                            <img src="~/Images/newlike1.png" /></span>                   
+                        <span id="" class="likecommentcolor likecommenticon ">
+                            <img src="~/Images/commentnew.png" /></span>
+                    }
+
+                    @{    int userLoginId = -1, count = 0, preTotalcount = 0;
+                          string currentLikeUserColor = "darkgray";
+                          if (User.Identity.IsAuthenticated)
+                          {
+
+                              // CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
+                              userLoginId = Convert.ToInt32(User.Identity.Name);
+                              var likeuser = Model.Where(pstlike => pstlike.UserID == userLoginId).FirstOrDefault();
+
+                              if (likeuser != null)
+                              {
+                                  if (likeuser.UserID == userLoginId)
+                                  {
+                                      currentLikeUserColor = "#4073bf";
+                                  }
+                              }
+                        <span class="  LikeIcon ahover likecommenticon userid-@userLoginId" id="LikeIcon-@Model[0].postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
+                            <img src="~/Images/newlike1.png" /></span>
+                        <span id="commentIcon-@Model[0].postId" class="  ahover likecommentcolor commentIcon likecommenticon">
+                            <img src="~/Images/commentnew.png" /></span>   
+                              if (likeuser != null)
+                              {
+                                  preTotalcount = Model.Count;
+                                  if (likeuser.UserID == userLoginId)
+                                  {<span class="commentlikeuserfont">You</span>
+                                      if (preTotalcount == 1)
+                                      { <span class="commentlikeuserfont">like this</span>}
+                                      else if (preTotalcount > 2)
+                                      {<span>,</span>}
+                                      Model.Remove(likeuser);
+                                  }
+                              }
+
+                              int totalcount = Model.Count;
+                              var likelist = Model.Take(2);
+                              if (totalcount == 1)
+                              {
+                                  if (preTotalcount == 2)
+                                  { <span class="commentlikeuserfont">and</span>}
+                                
+                        <span class="commentlikeuserfont text-primary">@Model[0].userName </span><span class="commentlikeuserfont">like this</span>  
+                              }
+                              else if (totalcount == 2)
+                              {
+                        <span class="commentlikeuserfont text-primary">@Model[0].userName </span><span class="commentlikeuserfont">and</span>   
+                        <span class="commentlikeuserfont text-primary">@Model[1].userName  </span><span class="commentlikeuserfont">like this</span>   
+                              }
+                              else if (totalcount >= 3)
+                              {        <span class="commentlikeuserfont text-primary"> @Model[0].userName</span><span>,</span>   
+                        <span class="commentlikeuserfont text-primary">@Model[1].userName  </span><span class="commentlikeuserfont">and</span>
+                        <div class="dropdown">
+                         <span  class="showLikeuser commentlikeuserfont text-primary" style="cursor: pointer;" data-toggle="modal" data-target="#myModal-@Model[0].postId"  id="showLikeuser-@Model[0].postId">@(totalcount - 2) other</span> <span class="commentlikeuserfont">like this</span>
+                              
+                        
+                        <div class="dropdown-content" style=""id="catlist-@Model[0].postId">
+      
+                            </div>
+                        </div>  
+                              }
+                          }
+                    }
+                </div>
