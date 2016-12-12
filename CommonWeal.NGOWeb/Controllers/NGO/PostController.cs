@@ -61,7 +61,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*action for submit like through ajax*/
         [HttpPost]
 
-        public void SubmitLike(bool like, int PostID = -1)
+        public PartialViewResult SubmitLike(bool like, int PostID = -1)
         {
             if (PostID != -1)
             {
@@ -99,13 +99,13 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                  }
             }
 
-
+            return PartialView("../UserHome/_LikePartial", getLikeList(PostID));
         }
 
         /*action for getting like list of particular post*/
         [AllowAnonymous]
         [HttpPost]
-        public JsonResult getLikeList(int postid)
+        public List<PostLikeModel> getLikeList(int postid)
         {
             CommonWealEntities db = new CommonWealEntities();
 
@@ -128,6 +128,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                         break;
 
                 }
+                plm.postId = postid;
                 plm.userImageUrl = "";
                 plm.UserID = item.LoginID;
                 postlikelist.Add(plm);
@@ -135,7 +136,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             }
 
 
-            return Json(postlikelist, JsonRequestBehavior.AllowGet);
+            return postlikelist;
         }
 
 
