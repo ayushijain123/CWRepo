@@ -139,6 +139,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return postlikelist;
         }
 
+        /*like list throgh ajax*/
+        public JsonResult getLikeListAjax(int postid=-1)
+        {
+            return Json(getLikeList(postid), JsonRequestBehavior.AllowGet);
+        }
 
 
         /*method for getting next slot of posts on click of load more button*/
