@@ -208,13 +208,13 @@ $(document).ready(function () {
         var id = 0;
         var categorylist = $("#selectcategory").val();
         console.log(category);
-        var category = JSON.stringify({ 'category': categorylist });
+        var category = JSON.stringify({ 'category': categorylist ,'count': loadcount,'NgoID':id});
       
         $.ajax({
             contentType: 'application/json; charset=utf-8',
 
             type: 'POST',
-            url: "/post/onLoadPost?count=" + loadcount +"&NgoID="+id,
+            url: "/post/onLoadPost",
             data: category,
             success: function (result) {
 
