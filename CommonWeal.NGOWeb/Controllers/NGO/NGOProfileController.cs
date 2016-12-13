@@ -26,6 +26,19 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var image= context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
             ViewBag.imageurl=image;
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
+          
+            return View(postList);
+        }
+        public ActionResult Post()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            dbOperations db = new dbOperations();
+            //User UL = new User();
+            //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
+            var postList = db.GetPostById(LoginUser.LoginID);
+            var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+            ViewBag.imageurl = image;
+            //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
             return View(postList);
         }
 
@@ -36,8 +49,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             CommonWealEntities context = new CommonWealEntities();
 
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+            return PartialView("AboutUsNGO",obj);
             return View(obj);
         }
+       
         [HttpPost]
         public JsonResult SubmitSummary(string  summary, int Loginid)
         {
