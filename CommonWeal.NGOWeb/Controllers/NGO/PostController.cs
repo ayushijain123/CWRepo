@@ -59,14 +59,14 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
 
         /*action for submit like through ajax*/
-        [HttpPost]
+       // [HttpPost]
 
         public PartialViewResult SubmitLike(bool like, int PostID = -1)
         {
             if (PostID != -1)
             {
                 CommonWealEntities db = new CommonWealEntities();
-
+                
                 /*login user property defined in base controller*/
                 /*checking is current login user already liked the image or not */
                 var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
@@ -82,7 +82,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     pl.LoginID = LoginUser.LoginID;
                     pl.PostID = PostID;
                     db.PostLikes.Add(pl);
-                    db.SaveChanges();
+                   
+                   // db.SaveChanges();
                     /*update like count */
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
                   //  post.PostLikeCount = db.PostLikes.Where(x => x.PostID == PostID).Count();
@@ -95,11 +96,14 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     db.PostLikes.Remove(removeLike);
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
                     post.PostLikeCount--;
+                    
                     db.SaveChanges();               
                  }
             }
-
-            return PartialView("../UserHome/_LikePartial", getLikeList(PostID));
+            var postlikelist = new Post();
+             postlikelist.postlike=getLikeList(PostID);
+             postlikelist.postId = PostID;
+            return PartialView("../UserHome/_LikePartial",postlikelist);
         }
 
         /*action for getting like list of particular post*/
