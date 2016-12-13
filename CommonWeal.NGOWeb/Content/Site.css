@@ -35,10 +35,10 @@ mark {
 
 /* main layout
 ----------------------------------------------------------*/
-.content-wrapper {
+/*.content-wrapper {
     margin: 0 auto;
     max-width: 100%;
-}
+}*/
 
 #body {
     clear: both;
@@ -731,9 +731,9 @@ tr.pager td {
     }
 }
 
-/*.uploadpanel {
+.uploadpanel {
 width:900px;
-}*/
+}
 
 .uploadpheadingcolor {
     background-color: rgba(80, 93, 113, 0.91);
