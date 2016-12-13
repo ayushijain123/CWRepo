@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+
+@{
+    ViewBag.Title = "Post";
+}
+
+
+<div>
+    @Html.Partial("../UserHome/_Posts", Model)
+    <div id="loadMoreSection"></div>
+<div style="text-align: center" class="row col-sm-12">
+    <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoadNGOPfrofile" class="btnLoadNGOPfrofile" align="center">
+</div>
+    @section scripts{
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/Post/PostComment.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+   
+
+}
