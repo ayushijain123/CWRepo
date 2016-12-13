@@ -17,12 +17,16 @@
                 <span class="posttag col-md-5 float-right" >
                    @*method for multi #*@
                 
-                      <span class="dropdown">
+                      
                           @if (item.postCategoryNameList.Count() > 0)
-                          { 
-                          <span class="showcategory"id="showcategory-@item.postId"style="cursor:pointer;">View Category</span>
-                          }
-                     <span class="dropdown-content" style=""id="categorylist-@item.postId">
+                          {
+                              if (item.postCategoryNameList.Count()==1)
+                              {<span class="text-primary">#@item.postCategoryNameList[0]</span>}
+                              else 
+                              {<span class="text-primary">#@item.postCategoryNameList[0] </span><span>and</span>
+                              <span class="dropdown">
+<span class="showcategory text-primary "id="showcategory-@item.postId"style="cursor:pointer;text-decoration:underline">@(item.postCategoryNameList.Count()-1) Other</span>
+                               <span class="dropdown-content" style=""id="categorylist-@item.postId">
        @{
                 var Count = 1;
                 foreach (var res in item.postCategoryNameList)
@@ -37,7 +41,15 @@
                     }
                             </span>
                         </span>  
-                </span>
+               
+                                   if(item.postCategoryNameList.Count()==2)
+                                {<span> Category</span>}
+                                else
+                                {<span> Categories</span>}
+                              }
+                          
+                          }
+                     
 
             </div>
 
@@ -70,7 +82,7 @@
                 }
                 <br/>
                 <div id="liketemplate-@item.postId">   
-                @Html.Partial("../UserHome/_LikePartial", item.postlike)
+                @Html.Partial("../UserHome/_LikePartial", item)
                     </div>
              @* @Html.Partial("../Views/UserHome/_LikePartial",Model) *@
             </div>
