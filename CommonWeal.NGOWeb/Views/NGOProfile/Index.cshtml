@@ -1,17 +1,12 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
-<script>
-    $(document).ready(function () {
-        $("#uploadimage").hide();
-        $("#pencil").click(function () {
-            $("#uploadimage").show();
-        });
-    });
-</script>
-<form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
+
+@*<form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">*@
     <div class=" ngoprofilenavbar">
         <div class="col-md-12">
             <div class="panel panel-default col-md-12 panelNGO column12">
                 <div class="panel-heading">
+                  
+ 
                     <center> <b class="profilesummary"> Profile summary</b></center>
                 </div>
                 <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
@@ -43,36 +38,79 @@
           <div class="panel-group navbar-fixed">
     <div class="sticky">
         <ul class="ultext nav nav-tabs">
-            <li id="profilepost"><a href="/NGOProfile/Index/">Post</a></li>
-
-            <li><a href="/NGOProfile/AboutUs/">About Us</a></li>
-
+           @* <li id="profilepost"><a href="/NGOProfile/AboutUs1/">Post</a></li>*@
+            <table>
+                <tr>
+                    <td>
+             @using (Ajax.BeginForm("post", "NGOProfile",
+                null, 
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblpost",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                }
+               
+                ))
+            {     
+    @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
+     <button type="submit" style=" background: transparent; border: none;outline:none">Post</button>
+            }
+</td>
+           @* <li><a href="/NGOProfile/AboutUs/">About Us</a></li>*@
+                    <td>
+       @using (Ajax.BeginForm("AboutUs", "NGOProfile",
+                null, 
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblpost",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "GET",
+                }
+               
+                ))
+            {     
+    @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
+     <button type="submit" style=" background: transparent; border: none;outline:none">AboutUs</button>
+            }
+                        </td>
+                    </tr>
+   </table>
+  
         </ul>
          </div>
     </div>
-</div>
+                
+</div>     
+          @*  <div>
+            <span id="lblResult"></span>
+            </div>
+            <br />*@
 </div>
         </div>
                            
 
 @*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
                             
-</form>
+@*</form>*@
+  
 @*NGO Profile header Start*@
-
+   
   
 
 @*NGO Profile header End*@
-<div>
-    @Html.Partial("../UserHome/_Posts", Model)
-</div>
 
-<div id="loadMoreSection"></div>
+<div id="lblpost">
+    @Html.Partial("../UserHome/_Posts", Model)
+    <div id="loadMoreSection"></div>
 <div style="text-align: center" class="row col-sm-12">
     <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoadNGOPfrofile" class="btnLoadNGOPfrofile" align="center">
 </div>
-<br />
-<br />
+@*<br />
+<br />*@
+
+</div>
+
 
 @section scripts{
 
@@ -84,6 +122,21 @@
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
-
+   
 
 }
+
+
+ <script src="~/Content/AjaxPostBack/jquery-2.1.4.min.js"></script>
+<script src="~/Content/AjaxPostBack/jquery-migrate-1.2.1.min.js"></script>
+<script src="~/Content/AjaxPostBack/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Content/AjaxPostBack/jquery.validate.min.js"></script>
+<script src="~/Content/AjaxPostBack/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#uploadimage").hide();
+        $("#pencil").click(function () {
+            $("#uploadimage").show();
+        });
+    });
+</script>
