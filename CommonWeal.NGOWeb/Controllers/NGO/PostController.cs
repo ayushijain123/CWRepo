@@ -153,7 +153,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*method for getting next slot of posts on click of load more button*/
         //[HttpPost]
         [AllowAnonymous]
-        public PartialViewResult onLoadPost(int count=0,int category=0 ,int NgoID=0)
+        public PartialViewResult onLoadPost(int []category , int count = 0, int NgoID = 0)
         {
             try
             {
@@ -163,10 +163,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 if (NgoID == 1)
                 {
                     NgoID = LoginUser.LoginID;
-                    load = ob.GetPostOnSeeMore(count, category, NgoID);
+                    load = ob.GetPostOnSeeMore(category, count, NgoID);
                 }
                 else {
-                    load = ob.GetPostOnSeeMore(count, category, NgoID);
+                    load = ob.GetPostOnSeeMore(category, count, NgoID);
                 }
 
                 /*returing list to  partial view and than partial view is retuned to ajax call  */
