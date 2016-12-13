@@ -119,17 +119,19 @@
 </script>
 
 <div class="container">
- 
-  <div class="row col-sm-10 col-sm-push-1  selectcategory">
+ <div class="row col-sm-10 col-sm-push-1">
+  <div class="selectcategory" >
   
         @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search by Category", @class="form-control chosen-with-icon ", @multiple = "multiple" })
          </div>  
-   
-      <div class="row col-sm-10 col-sm-push-1">
-    <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
+
+   </div>
+
       
-    <div class="row panel panel-info uploadpanel">
-      <div class="uploadpheadingcolor">
+    <div class="row col-sm-10 col-sm-push-1">
+            <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
+                <div id="posttemplate" >
+      <div class="uploadpheadingcolor" >
         <div class="panel-heading"><b>Upload Post</b></div>
           </div>
             <div class="panel-body uploadpanelbody">
@@ -150,24 +152,26 @@
              <input type="submit" class="btn btn-primary btn-lg right btnPost" id="post" value="Post" />
             
         </div>
+                </div>
             </div>
 
+                    </form>
+        <div class="row col-sm-12 col-xs-12">
+ <div class="row col-sm-12 col-xs-12">
+    <p style="padding:10px;"></p>
+</div>
+</div>
           </div>
  
 
-    </form>
       
-</div>
-  
-<div class="col-sm-12 col-xs-12">
-    <p style="padding:5px;"></p>
-</div>
 
 
-      </div>
+
+   
 
 
-<div id="postsection" class="row  col-md-12 ">
+<div id="postsection" >
     @Html.Partial("../UserHome/_Posts", Model)
 </div>
 
@@ -178,7 +182,7 @@
  <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;"class="btnLoad" value="See more posts" id="btnLoad" align="center"> @*type="button"*@
 
   </div>
-
+    </div>
     
   
 
