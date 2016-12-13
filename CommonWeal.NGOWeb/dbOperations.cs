@@ -68,18 +68,11 @@ namespace CommonWeal.NGOWeb
             userList = context.Users.Where(w => w.IsActive == true).ToList();
             return userList;
         }
-        public List<User> Warned()
-        {
-            List<User> NGOList = new List<User>();
-            // userList = context.RegisteredUsers.ToList();
-            NGOList = context.Users.Where(w => w.IsWarn == true && w.IsBlock == false).ToList();
-            return NGOList;
-        }
         public List<NGOUser> WarnedNGOs()
         {
             List<NGOUser> NGOList = new List<NGOUser>();
             // userList = context.RegisteredUsers.ToList();
-            NGOList = context.NGOUsers.Where(w => w.IsWarn == true && w.IsBlock == false).ToList();
+            NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
             return NGOList;
         }
         //User Table
@@ -119,7 +112,7 @@ namespace CommonWeal.NGOWeb
             var toAddress = new MailAddress(UserEmail);
             try
             {
-                string subject = "CommonWeal Security Team";
+                string subject = "Fassword Change";
                 string body = Randomcode;
 
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
@@ -183,19 +176,20 @@ namespace CommonWeal.NGOWeb
         }
        
         /*getting post on see more click*/
-        public List<Post> GetPostOnSeeMore(int pageNum = 0, int category = 0,int NgoID=0)
+        public List<Post> GetPostOnSeeMore( int []category,int pageNum = 0,int NgoID=0)
         {
             var selectlist = new List<PostWithCategory>();
             //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             var list = getPostwithcategoryList();
             if (NgoID == 0)
             {
-                if (category > 1)
+                if (category != null && category.Count() > 0 && !category.Contains(1))
                 {
-                    selectlist = list.Where(x => x.CategoryID == category).ToList();
-                    BaseController.pageleft = selectlist.Count();
-                    selectlist = selectlist.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
 
+
+                    selectlist = list.Where(x => x.CategoryIdList.Where(w => category.Contains(w)).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
+                    BaseController.pageleft = list.Count();
+                   
                 }
                 else
                 {
@@ -376,6 +370,7 @@ namespace CommonWeal.NGOWeb
                                 break;
 
                         }
+                        pl.postId = item.PostID;
                         pl.userImageUrl = "";
                         pl.UserID = like.LoginID;
 
