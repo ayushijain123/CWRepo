@@ -206,31 +206,40 @@ $(document).ready(function () {
         loadcount++;
         //alert('hi');
         var id = 0;
-        var category = $("#selectcategory").val();
+        var categorylist = $("#selectcategory").val();
         console.log(category);
-        $.post("/post/onLoadPost?count=" + loadcount + "&category=" + category+"&NgoID="+id, function (result) {
+        var category = JSON.stringify({ 'category': categorylist });
+      
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
 
-            console.log(result);
-            $("#loadMoreSection").append(result);
-            $.post("/post/getpostCount", function (result) {
-                var total = result - (loadcount + 1) * 5;
+            type: 'POST',
+            url: "/post/onLoadPost?count=" + loadcount +"&NgoID="+id,
+            data: category,
+            success: function (result) {
 
-                if (total <= 0 && result>0) {
-                    $(".btnLoad").val('No More Post');
-                    $(".btnLoad").attr('disabled', true);
-                    //alert(result + "" + total);
-                    loadcount = 0;
-                }
-                if (result <=0)
-                {
-                    $(".btnLoad").val('No Post Found');
-                    $(".btnLoad").attr('disabled', true);
-                   // alert(result + "" + total);
-                    loadcount = 0;
-                }
-               
-            });
-            //console.log(result);
+
+                console.log(result);
+                $("#loadMoreSection").append(result);
+                $.post("/post/getpostCount", function (result) {
+                    var total = result - (loadcount + 1) * 5;
+
+                    if (total <= 0 && result > 0) {
+                        $(".btnLoad").val('No More Post');
+                        $(".btnLoad").attr('disabled', true);
+                        //alert(result + "" + total);
+                        loadcount = 0;
+                    }
+                    if (result <= 0) {
+                        $(".btnLoad").val('No Post Found');
+                        $(".btnLoad").attr('disabled', true);
+                        // alert(result + "" + total);
+                        loadcount = 0;
+                    }
+
+                });
+                //console.log(result);
+            }
         });
 
        
