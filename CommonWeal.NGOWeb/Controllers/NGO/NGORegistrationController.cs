@@ -96,10 +96,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
 
         /*to identify email address uniquely through ajax on registration*/
-        public JsonResult checkEmail(string UserEmail)
+        public JsonResult checkEmail(NGOUser email)
         {
             CommonWealEntities context = new CommonWealEntities();
-            return Json(!context.Users.Any(x => x.LoginEmailID == UserEmail), JsonRequestBehavior.AllowGet);
+            return Json(!context.Users.Any(x => x.LoginEmailID == email.NGOEmailID), JsonRequestBehavior.AllowGet);
         }
 
 
