@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
-
-@*<form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">*@
+ <script src="~/Scripts/Post/PostComment.js"></script>
 <div class=" ngoprofilenavbar">
     <div class="col-md-12">
         <div class="panel panel-default col-md-12 panelNGO column12">
             <div class="panel-heading">
-               @*form post*@
+
 
                 <center> <b class="profilesummary"> Profile summary</b></center>
             </div>
@@ -17,7 +16,7 @@
                             <div class="container" style="background-color: lightgray; border: solid;">
                                 <br />
                                 @if (ViewBag.imageurl != null)
-                                { 
+                                {
                                     <img src="@ViewBag.imageurl" style="height:150px; width:240px;"/>
                                 }
                                 <div class="form-inline">
@@ -38,45 +37,21 @@
 
             <div class="panel-group navbar-fixed">
                 <div class="sticky">
-                    <ul class="ultext nav nav-tabs">
-                        @* <li id="profilepost"><a href="/NGOProfile/AboutUs1/">Post</a></li>*@
-                        <table>
-                            <tr>
-                                <td>
-                                    @using (Ajax.BeginForm("Post", "NGOProfile",
-                null,
-                new AjaxOptions
-                {
-                    UpdateTargetId = "lblpost",
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "GET",
-                }
-
-                ))
-                                    {     
+                    <ul class="ultext nav nav-tabs" >
+                         <li id="profilepost"><span id="NGOProfilepost">Post</span></li>
+                        
+                                   
 @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
-                                        <button type="submit" style="background: transparent; border: none; outline: none">Post</button>
-                                    }
-                                </td>
-                                @* <li><a href="/NGOProfile/AboutUs/">About Us</a></li>*@
-                                <td>
-                                    @using (Ajax.BeginForm("AboutUs", "NGOProfile",
-                null,
-                new AjaxOptions
-                {
-                    UpdateTargetId = "lblpost",
-                    InsertionMode = InsertionMode.Replace,
-                    HttpMethod = "GET",
-                }
-
-                ))
-                                    {     
+                                     &nbsp  
+                                
+                                
+                                 <li><span id="aboutus" >About Us</span></li>
+                                
+                                    
 @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
-                                        <button type="submit" style="background: transparent; border: none; outline: none">AboutUs</button>
-                                    }
-                                </td>
-                            </tr>
-                        </table>
+                                       
+                                 
+                               
 
                     </ul>
                 </div>
@@ -90,58 +65,13 @@
     </div>
 </div>
 
-
-@*   <b class="col-md- col-md-offset-2">@ViewBag.LoginUser.UserName</b>*@
-
-@*</form>*@
-
-@*NGO Profile header Start*@
+<div id="NGOProfilecontent">
 
 
+    @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
 
-@*NGO Profile header End*@
 
-<div id="lblpost">
-    @Html.Partial("../UserHome/_Posts", Model)
-    <div id="loadMoreSection"></div>
-    <div style="text-align: center" class="row col-sm-12">
-        <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoadNGOPfrofile" class="btnLoadNGOPfrofile" align="center">
+  
+
+
     </div>
-    @*<br />
-<br />*@
-
-</div>
-@if (TempData["US"] != null)
-{
-    @Html.Raw(TempData["US"])
-}
-
-
-@section scripts{
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/Post/PostComment.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-
-
-}
-
-
-<script src="~/Content/AjaxPostBack/jquery-2.1.4.min.js"></script>
-<script src="~/Content/AjaxPostBack/jquery-migrate-1.2.1.min.js"></script>
-<script src="~/Content/AjaxPostBack/jquery.unobtrusive-ajax.min.js"></script>
-<script src="~/Content/AjaxPostBack/jquery.validate.min.js"></script>
-<script src="~/Content/AjaxPostBack/jquery.validate.unobtrusive.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $("#uploadimage").hide();
-        $("#pencil").click(function () {
-            $("#uploadimage").show();
-        });
-    });
-</script>

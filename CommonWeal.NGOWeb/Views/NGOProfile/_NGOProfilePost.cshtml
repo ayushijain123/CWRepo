@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+<div id="postsection" class="row  col-md-12 ">
+    @Html.Partial("../UserHome/_Posts", Model)
+</div>
+
+
+
+<div id="loadMoreSection"></div>
+<div  style="text-align:center">
+ <input type="button" style=" background: transparent; border: none;outline:none;margin-bottom:20px; width:200px;"class="btnLoadNGOPfrofile" value="See more posts" id="btnLoadNGOPfrofile" align="center"> @*type="button"*@
+
+  </div>
+
+    @if (TempData["US"] != null)
+{
+    @Html.Raw(TempData["US"])
+}
+
+
+  
+@*<div id="lblpost">*@
+   @* @Html.Partial("../UserHome/_Posts", Model)
+    <div id="loadMoreSection"></div>*@
+@*<div style="text-align: center" class="row col-sm-12">
+    <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoad" class="btnLoadNGOPfrofile" align="center">
+</div>*@
+
+@*</div>*@
+
+
+@section scripts{
+    
+     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#uploadimage").hide();
+            $("#pencil").click(function () {
+                $("#uploadimage").show();
+            });
+        });
+</script>
+
+    <!-- Latest compiled and minified JavaScript -->
+   @* <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+    
+   @* <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+   *@
+
+}
+
