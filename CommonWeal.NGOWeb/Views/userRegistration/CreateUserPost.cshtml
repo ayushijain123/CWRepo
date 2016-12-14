@@ -9,16 +9,10 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 <h2 style="padding-left:401px";>User Registration</h2>
-<div class="clearfix">
-</div>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-               
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
+<div class="CONTAINER">
+    <div class="ROW">
+        <div >           
+            <div style="width:600px;">
                 <br />
                 @using (Ajax.BeginForm("CreateUser", "UserRegistration", new AjaxOptions { HttpMethod = "POST", OnSuccess = "createsuccess" }, new { @class = "form-horizontal" }))
                 {
