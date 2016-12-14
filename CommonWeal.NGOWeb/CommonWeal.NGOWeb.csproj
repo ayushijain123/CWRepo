@@ -466,6 +466,8 @@
     <Content Include="Views\UserHome\_LikePartial.cshtml" />
     <Content Include="Views\NGOProfile\Post.cshtml" />
     <Content Include="Views\NGOProfile\AboutUsNGO.cshtml" />
+    <Content Include="Views\NGOProfile\_AboutUs.cshtml" />
+    <Content Include="Views\NGOProfile\_NGOProfilePost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
