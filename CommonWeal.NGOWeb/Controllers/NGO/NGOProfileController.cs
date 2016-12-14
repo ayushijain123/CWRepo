@@ -51,6 +51,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
             return PartialView("AboutUsNGO", obj);
            // return View(obj);
+            //return PartialView("AboutUsNGO",obj);
+            return View(obj);
         }
 
         [HttpPost]
@@ -121,11 +123,48 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return RedirectToAction("Index", "NgoProfile");
         }
 
-        public PartialViewResult AboutUsNGO()
+
+        [AllowAnonymous]
+        public PartialViewResult AboutUsPartial()
         {
-            CommonWealEntities context = new CommonWealEntities();
-            var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-            return PartialView("AboutUsNGO", obj);
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+
+                var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                //return PartialView("AboutUsNGO",obj);
+              
+                /*returing list to  partial view and than partial view is retuned to ajax call  */
+                return PartialView("~/views/NGOProfile/_AboutUs.cshtml",obj);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        [AllowAnonymous]
+        public PartialViewResult NGOProfilePost()
+        {
+            try
+            {
+               
+                dbOperations db = new dbOperations();
+                //User UL = new User();
+                //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
+                var obj = db.GetPostById(LoginUser.LoginID);
+                //return PartialView("AboutUsNGO",obj);
+
+                /*returing list to  partial view and than partial view is retuned to ajax call  */
+                return PartialView("~/views/NGOProfile/_NGOProfilePost.cshtml", obj);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
     }
 }
