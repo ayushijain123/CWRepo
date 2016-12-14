@@ -978,6 +978,7 @@ width:900px;
 .posttag {
     text-align: right;
     padding: 10px;
+    width:auto;
 }
 
 #posttemplate {
