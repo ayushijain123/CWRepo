@@ -27,7 +27,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
             ViewBag.imageurl = image;
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
-
+            
             return View(postList);
         }
         public ActionResult Post()
@@ -49,7 +49,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             CommonWealEntities context = new CommonWealEntities();
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-            return View(obj);
+            return PartialView("AboutUsNGO", obj);
+           // return View(obj);
         }
 
         [HttpPost]
@@ -93,10 +94,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 TempData["US"] = "<script>alert('Updated successfully!');</script>";
             }
 
-            //return RedirectToAction("Index", "NGOProfile");//, new AjaxOptions { UpdateTargetId = "lblpost" }
-            CommonWealEntities mycontext = new CommonWealEntities();
-            var myobj = mycontext.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-            return PartialView("AboutUsNGO", myobj);
+            return RedirectToAction("Index", "NGOProfile");//, new AjaxOptions { UpdateTargetId = "lblpost" }
+            //CommonWealEntities mycontext = new CommonWealEntities();
+            //var myobj = mycontext.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+            //return PartialView("AboutUsNGO", myobj);
 
         }
         [HttpPost]
