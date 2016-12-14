@@ -14,6 +14,10 @@
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
                 <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span>
                 <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
+                @if(this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile"))
+                {
+                <span><a href="/Post/deletePost/@item.postId">delete</a></span>
+                }
                 <span class="posttag col-md-5 float-right" >
                    @*method for multi #*@
                 
