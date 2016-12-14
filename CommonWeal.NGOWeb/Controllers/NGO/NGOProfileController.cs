@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
+using System.Web.Mvc.Ajax;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -23,10 +24,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             //User UL = new User();
             //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
             var postList = db.GetPostById(LoginUser.LoginID);
-            var image= context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
-            ViewBag.imageurl=image;
+            var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+            ViewBag.imageurl = image;
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
-          
+
             return View(postList);
         }
         public ActionResult Post()
@@ -47,14 +48,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         public ActionResult AboutUs()
         {
             CommonWealEntities context = new CommonWealEntities();
-
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-            return PartialView("AboutUsNGO",obj);
             return View(obj);
         }
-       
+
         [HttpPost]
-        public JsonResult SubmitSummary(string  summary, int Loginid)
+        public JsonResult SubmitSummary(string summary, int Loginid)
         {
             CommonWealEntities context = new CommonWealEntities();
             try
@@ -65,10 +64,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 context.SaveChanges();
             }
             catch (Exception ex)
-            { throw ex;
+            {
+                throw ex;
             }
             return Json(true, JsonRequestBehavior.AllowGet);
-                
+
         }
         [HttpPost]
         public ActionResult Edit(NGOUser obj)
@@ -93,7 +93,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 TempData["US"] = "<script>alert('Updated successfully!');</script>";
             }
 
-            return RedirectToAction("AboutUs", "NGOProfile");
+            //return RedirectToAction("Index", "NGOProfile");//, new AjaxOptions { UpdateTargetId = "lblpost" }
+            CommonWealEntities mycontext = new CommonWealEntities();
+            var myobj = mycontext.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+            return PartialView("AboutUsNGO", myobj);
+
         }
         [HttpPost]
         public ActionResult PostImage(HttpPostedFileBase file, NGOUser obj)
@@ -107,13 +111,20 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 file.SaveAs(physicalPath);
                 var objngo = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
                 objngo.NGOProfilePic = "/Images/Post/" + ImageName;
-                
+
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
 
 
             }
             return RedirectToAction("Index", "NgoProfile");
+        }
+
+        public PartialViewResult AboutUsNGO()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+            return PartialView("AboutUsNGO", obj);
         }
     }
 }
