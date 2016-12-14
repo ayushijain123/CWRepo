@@ -25,7 +25,7 @@ namespace CommonWeal.NGOWeb
         public List<NGOUser> GetAllUserAccepted()
         {
             List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == true).ToList();
+            userList = context.NGOUsers.Where(w => w.IsActive == true && w.IsWarn==false).ToList();
             //userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive== false).ToList();
             return userList;
         }
