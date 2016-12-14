@@ -71,18 +71,16 @@ var ctx = document.getElementById("myChart2");
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ["Active Users", "Warned Users", "Blocked Users"],
+        labels: ["Active Users","Blocked Users"],
         datasets: [
         {
-            data: [parseInt($("#COAL").html()), 0, parseInt($("#COBU").html())],
+            data: [parseInt($("#COAL").html()), parseInt($("#COBU").html())],
             backgroundColor: [
-                "#495b79",
-                "#f9a94a",
+                "#495b79",              
                 "#e45857"
             ],
             hoverBackgroundColor: [
-                "#364359",
-                "#f79219",
+                "#364359",               
                 "#dd2c2b"
             ]
         }]
