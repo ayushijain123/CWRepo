@@ -210,5 +210,55 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var result1=BaseController.pageleft;
             return Json(result1, JsonRequestBehavior.AllowGet);
         }
+
+
+     
+        public ActionResult deletePost(int ID)
+        {
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                context.Configuration.ValidateOnSaveEnabled = false;
+                var res1 = context.PostLikes.Where(a => a.PostID == ID).ToList();
+                if (res1 != null)
+                {
+                    foreach (var item in res1)
+                    {
+                        context.PostLikes.Remove(item);
+                    }
+                   
+                }
+                var res2 = context.PostComments.Where(a => a.PostID == ID).ToList();
+                if (res2 != null)
+                {
+                    foreach (var item in res2)
+                    {
+                        context.PostComments.Remove(item);
+                    }
+                }
+                var res3 = context.PostCategories.Where(a => a.PostID == ID).ToList();
+                if (res3 != null)
+                {
+                    foreach (var item in res3)
+                    {
+                        context.PostCategories.Remove(item);
+                    }
+                  
+                }
+                var res = context.NGOPosts.Where(a => a.PostID == ID).ToList();
+                foreach (var item in res)
+                {
+                    context.NGOPosts.Remove(item);
+                }
+                context.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return RedirectToAction("Index", "NGOProfile");
+        }
     }
 }
