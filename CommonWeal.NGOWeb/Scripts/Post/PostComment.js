@@ -204,7 +204,7 @@ $(document).ready(function () {
     var loadcount = 0;
     $("#btnLoad").click(function () {
         loadcount++;
-        //alert('hi');
+       // alert('hbtnload');
         var id = 0;
         var categorylist = $("#selectcategory").val();
         console.log(category);
@@ -249,34 +249,41 @@ $(document).ready(function () {
     $("#btnLoadNGOPfrofile").click(function () {
         //console.log('clicked');
         loadcnt++;
-       // alert('hi');
+        //alert('hi');
         var id = 1;
-        var category = $("#selectcategory").val();
-        if (category == null)
-        { category = 0;}
-        $.post("/post/onLoadPost?count=" + loadcnt + "&category=" + category + "&NgoID=" + id, function (result) {
+        var categorylist = $("#selectcategory").val();
+        if (categorylist == null)
+        { categorylist = null; }
+        var category = JSON.stringify({ 'category': categorylist, 'count': loadcnt, 'NgoID': id });
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
 
-            console.log(result);
-            $("#loadMoreSection").append(result);
-            $.post("/post/getpostCount", function (result1) {
-                var total = result1 - (loadcnt + 1) * 5;
-               // alert(total);
-                if (total <= 0 && result1 > 0) {
-                    $(".btnLoadNGOPfrofile").val('No More Post');
-                    $(".btnLoadNGOPfrofile").attr('disabled', true);
-                    alert(result1 + "h" + total);
-                    loadcnt = 0;
-                }
-                if (result1 <= 0) {
-                    $(".btnLoadNGOPfrofile").val('No Post Found');
-                    $(".btnLoadNGOPfrofile").attr('disabled', true);
-                  //  alert(result1 + "" + total);
-                    loadcnt = 0;
-                }
+            type: 'POST',
+            url: "/post/onLoadPost",
+            data: category,
+            success: function (result) {
 
-            });
-            /*hide see more  when no post*/
+                console.log(result);
+                $("#loadMoreSection").append(result);
+                $.post("/post/getpostCount", function (result1) {
+                    var total = result1 - (loadcnt + 1) * 5;
+                    // alert(total);
+                    if (total <= 0 && result1 > 0) {
+                        $(".btnLoadNGOPfrofile").val('No More Post');
+                        $(".btnLoadNGOPfrofile").attr('disabled', true);
+                       // alert(result1 + "h" + total);
+                        loadcnt = 0;
+                    }
+                    if (result1 <= 0) {
+                        $(".btnLoadNGOPfrofile").val('No Post Found');
+                        $(".btnLoadNGOPfrofile").attr('disabled', true);
+                        //  alert(result1 + "" + total);
+                        loadcnt = 0;
+                    }
 
+                });
+                /*hide see more  when no post*/
+            }
             //console.log(result);
         });
     });
@@ -319,8 +326,36 @@ $(document).ready(function () {
         //  }, 'json');
 
     });
+    /*start ajax for  NGOProfilePOST partial*/
+    $("#NGOProfilepost").live('click',function () {
+       
+
+        $.post("/NGOProfile/NGOProfilePost", function (result) {
+           
+            $('#NGOProfilecontent').html("");
+            $('#NGOProfilecontent').append(result);
+          
+        });
 
 
+    });
+    /*end ajax for NGOProfilePOST partial*/
+
+
+    /*start ajax for about us partial*/
+    $("#aboutus").live('click', function () {
+
+       
+        $.post("/NGOProfile/AboutUsPartial", function (result) {
+
+            $('#NGOProfilecontent').html("");
+            $('#NGOProfilecontent').append(result);
+            
+        });
+
+
+    });
+    /*end ajax for about us partial*/
 
     /*script for admin page methods (activeUsers)*/
     $(".BlockButton").click(function () {
