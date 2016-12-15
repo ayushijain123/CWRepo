@@ -7,12 +7,12 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using CommonWeal.NGOWeb;
+
 namespace CommonWeal.NGOAPI.Controllers
 {
     [AllowAnonymous]
     public class PostController : BaseController
     {
-
         public class Comment
         {
 
@@ -29,9 +29,9 @@ namespace CommonWeal.NGOAPI.Controllers
             public string userName { get; set; }
             public string userImageUrl { get; set; }
             public int UserID { get; set; }
-            public int LoginID { get; set; }
-            public int PostID { get; set; }
-            public bool like { get; set; }
+            public int LoginID{get;set;}
+            public int PostID{get;set;}
+            public bool like { get;set;}
         }
         public class Post
         {
@@ -52,155 +52,127 @@ namespace CommonWeal.NGOAPI.Controllers
         //{ 
         //   public List<Post> value=new List<Post>(); 
         //}
-        [HttpGet]
-        public HttpResponseMessage AreaOfInterest()
-        {
-            CommonWealEntities context = new CommonWealEntities();
-            context.Configuration.LazyLoadingEnabled = false;
-            var res = context.AreaOfInterests.ToList();
-            var response = Request.CreateResponse(HttpStatusCode.OK, res);
-            return response;
-        }
-        //[HttpPost]
-        //public HttpResponseMessage SearchPost(int[] category)
-        //{     
-        //    var res = context.AreaOfInterests.ToList();
-        //    var response = Request.CreateResponse(HttpStatusCode.OK, res);
+        //[HttpGet]
+        //public HttpResponseMessage GetAllPost()
+        //{
+        //    /*Make List of custom post model type */
+        //    List<Post> ob = new List<Post>();
+        //    /*Getting list from all table */
+        //    var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).ToList();
+        //    var RegUserlist = context.RegisteredUsers.ToList();
+        //    var Commentlist = context.PostComments.ToList();
+        //    var NGOUserlist = context.NGOUsers.ToList();
+        //    var LoginUserlist = context.Users.ToList();
+        //    var PostLikeListmain = context.PostLikes.ToList();
+        //    if (NGOPostlist != null)
+        //    {
+
+
+        //        foreach (var item in NGOPostlist)
+        //        {
+
+        //            // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
+        //            var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
+
+
+        //            Post pm = new Post();
+        //            pm.userId = item.LoginID.Value;
+
+        //            int UserRole = LoginUserlist.Where(user => user.LoginID == item.LoginID).Select(x => x.LoginUserType).FirstOrDefault();
+
+        //            switch (UserRole)
+        //            {
+        //                case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == item.LoginID).FirstOrDefault().NGOName.ToString();
+        //                    pm.userName = NGOUser;
+        //                    break;
+        //                case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == item.LoginID).FirstOrDefault();
+        //                    pm.userName = RegUser.FirstName + " " + RegUser.LastName;
+        //                    break;
+
+        //            }
+        //            pm.postcontent = item.PostContent;
+        //            pm.postImageUrl = item.PostUrl;
+        //            pm.postCreateTime = item.CreatedOn.Value;
+        //            pm.likeCount = item.PostLikeCount.Value;
+        //            pm.commentCount = item.PostCommentCount.Value;
+        //            pm.postId = item.PostID;
+        //            /*getting list of like user of curent post*/
+        //            var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
+
+        //            //start like list
+        //            List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
+        //            var PostLikeList = PostLikeListmain.Where(pstlike => pstlike.PostID == item.PostID).ToList();
+
+        //            int likecount = 0;
+        //            foreach (var like in PostLikeList)
+        //            {
+
+        //                PostLikeModel pl = new PostLikeModel();
+        //                int userType = LoginUserlist.Where(user => user.LoginID == like.LoginID).FirstOrDefault().LoginUserType;
+
+        //                switch (userType)
+        //                {
+        //                    case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == like.LoginID).FirstOrDefault().NGOName.ToString();
+        //                        pl.userName = NGOUser;
+        //                        break;
+        //                    case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == like.LoginID).FirstOrDefault();
+        //                        pl.userName = RegUser.FirstName + " " + RegUser.LastName;
+        //                        break;
+
+        //                }
+        //                pl.userImageUrl = "";
+        //                pl.UserID = like.LoginID;
+
+        //                imageLikeList.Add(pl);
+        //                likecount++;
+
+        //            }
+        //            pm.likeCount = item.PostLikeCount.Value;
+        //            pm.postlike = imageLikeList;
+        //            //end like list
+
+        //            // start all comment of  particular post
+        //            List<Comment> imagecommentlist = new List<Comment>();
+        //            pm.commentCount = postcomment.Count();
+        //            int commentcount = 0;
+        //            foreach (var a in postcomment)
+        //            {
+        //                Comment cmnt = new Comment();
+        //                cmnt.commentId = a.CommentID;
+        //                cmnt.commentContent = a.CommentText;
+        //                cmnt.commentLike = 0;
+        //                cmnt.commentUserImage = "";
+        //                cmnt.CreatedDateTime = a.CreatedOn.Value;
+        //                int userType = LoginUserlist.Where(user => user.LoginID == a.LoginID).FirstOrDefault().LoginUserType;
+
+        //                switch (userType)
+        //                {
+        //                    case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == a.LoginID).FirstOrDefault().NGOName.ToString();
+        //                        cmnt.Username = NGOUser;
+        //                        break;
+        //                    case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == a.LoginID).FirstOrDefault();
+        //                        cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
+        //                        break;
+
+        //                }
+
+        //                imagecommentlist.Add(cmnt);
+        //                commentcount++;
+        //            }
+        //            pm.commentCount = item.PostCommentCount.Value;
+        //            //end all comment of  particular post
+        //            pm.PostComments = imagecommentlist;
+        //            ob.Add(pm);
+
+        //        }
+        //    }
+        //    //List<data> imageList = new List<data>();
+            
+        //    //imageList.Add(new data { value = ob });
+        //    var response = Request.CreateResponse(HttpStatusCode.OK, ob);
         //    return response;
+        //    //return (ob);
         //}
-       
-        [HttpPost]
-        public HttpResponseMessage SearchByCategory(int category)
-        {
-            dbOperations db = new dbOperations();
-            int[] value = new int[] { 1, 2 };
-            var list = db.GetPostByCategory1(value);
-            var response = Request.CreateResponse(HttpStatusCode.OK, list);
-            return response;
-        }
-        [HttpGet]
-        public HttpResponseMessage GetAllPost()
-        {
-            /*Make List of custom post model type */
-            List<Post> ob = new List<Post>();
-            /*Getting list from all table */
-            var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).ToList();
-            var RegUserlist = context.RegisteredUsers.ToList();
-            var Commentlist = context.PostComments.ToList();
-            var NGOUserlist = context.NGOUsers.ToList();
-            var LoginUserlist = context.Users.ToList();
-            var PostLikeListmain = context.PostLikes.ToList();
-            if (NGOPostlist != null)
-            {
-
-
-                foreach (var item in NGOPostlist)
-                {
-
-                    // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
-                    var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
-
-
-                    Post pm = new Post();
-                    pm.userId = item.LoginID.Value;
-
-                    int UserRole = LoginUserlist.Where(user => user.LoginID == item.LoginID).Select(x => x.LoginUserType).FirstOrDefault();
-
-                    switch (UserRole)
-                    {
-                        case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == item.LoginID).FirstOrDefault().NGOName.ToString();
-                            pm.userName = NGOUser;
-                            break;
-                        case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == item.LoginID).FirstOrDefault();
-                            pm.userName = RegUser.FirstName + " " + RegUser.LastName;
-                            break;
-
-                    }
-                    pm.postcontent = item.PostContent;
-                    pm.postImageUrl = item.PostUrl;
-                    pm.postCreateTime = item.CreatedOn.Value;
-                    pm.likeCount = item.PostLikeCount.Value;
-                    pm.commentCount = item.PostCommentCount.Value;
-                    pm.postId = item.PostID;
-                    /*getting list of like user of curent post*/
-                    var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
-
-                    //start like list
-                    List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
-                    var PostLikeList = PostLikeListmain.Where(pstlike => pstlike.PostID == item.PostID).ToList();
-
-                    int likecount = 0;
-                    foreach (var like in PostLikeList)
-                    {
-
-                        PostLikeModel pl = new PostLikeModel();
-                        int userType = LoginUserlist.Where(user => user.LoginID == like.LoginID).FirstOrDefault().LoginUserType;
-
-                        switch (userType)
-                        {
-                            case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == like.LoginID).FirstOrDefault().NGOName.ToString();
-                                pl.userName = NGOUser;
-                                break;
-                            case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == like.LoginID).FirstOrDefault();
-                                pl.userName = RegUser.FirstName + " " + RegUser.LastName;
-                                break;
-
-                        }
-                        pl.userImageUrl = "";
-                        pl.UserID = like.LoginID;
-
-                        imageLikeList.Add(pl);
-                        likecount++;
-
-                    }
-                    pm.likeCount = item.PostLikeCount.Value;
-                    pm.postlike = imageLikeList;
-                    //end like list
-
-                    // start all comment of  particular post
-                    List<Comment> imagecommentlist = new List<Comment>();
-                    pm.commentCount = postcomment.Count();
-                    int commentcount = 0;
-                    foreach (var a in postcomment)
-                    {
-                        Comment cmnt = new Comment();
-                        cmnt.commentId = a.CommentID;
-                        cmnt.commentContent = a.CommentText;
-                        cmnt.commentLike = 0;
-                        cmnt.commentUserImage = "";
-                        cmnt.CreatedDateTime = a.CreatedOn.Value;
-                        int userType = LoginUserlist.Where(user => user.LoginID == a.LoginID).FirstOrDefault().LoginUserType;
-
-                        switch (userType)
-                        {
-                            case 1: string NGOUser = NGOUserlist.Where(ngusr => ngusr.LoginID == a.LoginID).FirstOrDefault().NGOName.ToString();
-                                cmnt.Username = NGOUser;
-                                break;
-                            case 3: var RegUser = RegUserlist.Where(lgnuser => lgnuser.LoginID == a.LoginID).FirstOrDefault();
-                                cmnt.Username = RegUser.FirstName + " " + RegUser.LastName;
-                                break;
-
-                        }
-
-                        imagecommentlist.Add(cmnt);
-                        commentcount++;
-                    }
-                    pm.commentCount = item.PostCommentCount.Value;
-                    //end all comment of  particular post
-                    pm.PostComments = imagecommentlist;
-                    ob.Add(pm);
-
-                }
-            }
-            //List<data> imageList = new List<data>();
-
-            //imageList.Add(new data { value = ob });
-            var response = Request.CreateResponse(HttpStatusCode.OK, ob);
-            return response;
-            //return (ob);
-        }
-
-
 
         //public class UserNamesResponse
         //{
@@ -243,14 +215,60 @@ namespace CommonWeal.NGOAPI.Controllers
         //    return response;
 
         //}
-        [HttpGet]
-        public HttpResponseMessage LikesGET()
-        {
+       
+        //[HttpGet]
+        //public HttpResponseMessage ShowCategory(int cat)
+        //{
+        //   dbOperations db = new dbOperations();
+        //   int[] arr = new int[] { 1,2 };
+        //  var res= db.GetPostByCategory1(arr);
+        //  HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, res);
+        //  return response;
+        //}
+        
+        //[HttpGet]
+        //public HttpResponseMessage LikesGET()
+        //{
 
-            CommonWealEntities context = new CommonWealEntities();
-            var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
+        //    return response;
+
+        //}
+        [HttpGet]
+        public HttpResponseMessage GetOnLoad()
+        {
+            dbOperations db = new dbOperations();
+            var res = db.GetPostOnLoad();
+            var response = Request.CreateResponse(HttpStatusCode.OK, res);
             return response;
 
+        }
+        public class showCat
+        {
+            public int[] cat { get; set; }
+        }
+        [HttpPost]
+        public HttpResponseMessage ShowCategory(showCat objcat)
+        {
+            dbOperations db = new dbOperations();
+            var res = db.GetPostByCategory1(objcat.cat);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created,res);
+            return response;
+        }
+        public class postOnSeeMore
+        {
+            public int[] category { get; set; }
+            public int pageNum { get; set; }
+            public int NgoID { get; set; }
+        }
+        [HttpPost]
+        public HttpResponseMessage GetPostOnSeeMore(postOnSeeMore objsee)
+        {
+            dbOperations db = new dbOperations();
+            var res = db.GetPostOnSeeMore(objsee.category,objsee.pageNum,objsee.NgoID);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, res);
+            return response;       
         }
         [HttpGet]
         public HttpResponseMessage CommenttGET()
@@ -264,20 +282,21 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public HttpResponseMessage CommentsPOST(PostComment objPostComment)
         {
+            
             CommonWealEntities context = new CommonWealEntities();
             context.PostComments.Add(objPostComment);
             context.SaveChanges();
             var response = Request.CreateResponse(HttpStatusCode.OK, context.PostComments);
             return response;
-
+                
         }
         [HttpPost]
         public HttpResponseMessage SubmitLike(PostLikeModel objpostlike)
         {
-            // bool like;
-            int PostID = -1;
+           // bool like;
+           int PostID = -1;
             PostID = objpostlike.PostID;
-
+           
             if (PostID != -1)
             {
                 CommonWealEntities db = new CommonWealEntities();
@@ -306,9 +325,9 @@ namespace CommonWeal.NGOAPI.Controllers
                 else
                 {/*if already liked by user than remove like row of user for unlike */
                     var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
-                    db.PostLikes.Remove(removeLike);
+                    db.PostLikes.Remove(removeLike);                 
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                    post.PostLikeCount--;
+                    post.PostLikeCount--;                     
                     db.SaveChanges();
                 }
             }
