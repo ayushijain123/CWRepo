@@ -168,6 +168,7 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ArrayList.cs" />
     <Compile Include="Controllers\NGORegistrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -204,6 +205,10 @@
     <ProjectReference Include="..\CommonWeal.Data\CommonWeal.Data.csproj">
       <Project>{c1d90102-fbf4-4f85-9f08-38a72f86d472}</Project>
       <Name>CommonWeal.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonWeal.NGOWeb\CommonWeal.NGOWeb.csproj">
+      <Project>{de1fff27-ef28-4935-a7de-d07a40906da4}</Project>
+      <Name>CommonWeal.NGOWeb</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
