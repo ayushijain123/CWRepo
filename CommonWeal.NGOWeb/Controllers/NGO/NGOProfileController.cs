@@ -120,7 +120,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
 
             }
-            return RedirectToAction("Index", "NgoProfile");
+            return RedirectToAction("Index", "NGOProfile");
         }
 
 
