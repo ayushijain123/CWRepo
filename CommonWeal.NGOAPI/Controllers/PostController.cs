@@ -6,11 +6,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
+using CommonWeal.NGOWeb;
 namespace CommonWeal.NGOAPI.Controllers
 {
     [AllowAnonymous]
     public class PostController : BaseController
     {
+
         public class Comment
         {
 
@@ -27,9 +29,9 @@ namespace CommonWeal.NGOAPI.Controllers
             public string userName { get; set; }
             public string userImageUrl { get; set; }
             public int UserID { get; set; }
-            public int LoginID{get;set;}
-            public int PostID{get;set;}
-            public bool like { get;set;}
+            public int LoginID { get; set; }
+            public int PostID { get; set; }
+            public bool like { get; set; }
         }
         public class Post
         {
@@ -50,6 +52,32 @@ namespace CommonWeal.NGOAPI.Controllers
         //{ 
         //   public List<Post> value=new List<Post>(); 
         //}
+        [HttpGet]
+        public HttpResponseMessage AreaOfInterest()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.LazyLoadingEnabled = false;
+            var res = context.AreaOfInterests.ToList();
+            var response = Request.CreateResponse(HttpStatusCode.OK, res);
+            return response;
+        }
+        //[HttpPost]
+        //public HttpResponseMessage SearchPost(int[] category)
+        //{     
+        //    var res = context.AreaOfInterests.ToList();
+        //    var response = Request.CreateResponse(HttpStatusCode.OK, res);
+        //    return response;
+        //}
+       
+        [HttpPost]
+        public HttpResponseMessage SearchByCategory(int category)
+        {
+            dbOperations db = new dbOperations();
+            int[] value = new int[] { 1, 2 };
+            var list = db.GetPostByCategory1(value);
+            var response = Request.CreateResponse(HttpStatusCode.OK, list);
+            return response;
+        }
         [HttpGet]
         public HttpResponseMessage GetAllPost()
         {
@@ -165,7 +193,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 }
             }
             //List<data> imageList = new List<data>();
-            
+
             //imageList.Add(new data { value = ob });
             var response = Request.CreateResponse(HttpStatusCode.OK, ob);
             return response;
@@ -173,7 +201,7 @@ namespace CommonWeal.NGOAPI.Controllers
         }
 
 
-       
+
         //public class UserNamesResponse
         //{
         //     "postID": 2,
@@ -246,10 +274,10 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public HttpResponseMessage SubmitLike(PostLikeModel objpostlike)
         {
-           // bool like;
-           int PostID = -1;
+            // bool like;
+            int PostID = -1;
             PostID = objpostlike.PostID;
-           
+
             if (PostID != -1)
             {
                 CommonWealEntities db = new CommonWealEntities();
@@ -278,9 +306,9 @@ namespace CommonWeal.NGOAPI.Controllers
                 else
                 {/*if already liked by user than remove like row of user for unlike */
                     var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
-                    db.PostLikes.Remove(removeLike);                 
+                    db.PostLikes.Remove(removeLike);
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                    post.PostLikeCount--;                     
+                    post.PostLikeCount--;
                     db.SaveChanges();
                 }
             }
