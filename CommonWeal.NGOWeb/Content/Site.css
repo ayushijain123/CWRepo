@@ -1623,10 +1623,7 @@ color:white;
     min-width: 350px;
 }
 .profileimageborder {
-    border-style: outset;
-   background-color:rgba(111, 145, 175, 0.43);
-   border-color: rgba(105, 105, 105, 0.13);
-       padding-left: 25px;
+  
 }
 .profileimagepadding {
     padding-left:7px;
@@ -1637,9 +1634,9 @@ background: none;
     width:auto;
 }
 #pencil {
-    padding-top: 18px;
+   
     cursor:pointer;
-        padding-bottom: 10px;
+       
 }
     #pencil:hover {
     color:white;
