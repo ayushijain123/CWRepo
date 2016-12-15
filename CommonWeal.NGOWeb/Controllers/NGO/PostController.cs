@@ -52,6 +52,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
                 userinfo.Add(userName);
                 userinfo.Add(postcmnt.CreatedOn.Value.ToString("MM/dd/yyyy HH:mm"));
+
             }
             return Json(userinfo, JsonRequestBehavior.AllowGet);
         }
@@ -259,6 +260,33 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 throw;
             }
             return RedirectToAction("Index", "NGOProfile");
+        
         }
+
+        /*method for submit abused users on comment */
+        //[HttpPost]
+        [AllowAnonymous]
+        public JsonResult AbuseUser(int CommentId= 0)
+        {
+            try
+            {
+
+                bool result=false; 
+                dbOperations ob = new dbOperations();
+                if (CommentId > 0)
+                {
+                    result = ob.abuseUser(CommentId);
+                }
+               
+                return Json(result,JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
     }
 }
