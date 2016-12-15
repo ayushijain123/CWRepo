@@ -118,7 +118,11 @@
 
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm")</span>
-                        <p id="postcommentcontent">@comment.commentContent</p>
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
+                        {
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="float:right"><span class="glyphicons glyphicons-more"></span>Report abuse</span>
+                        }
+                        <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
 
                     </div>
                 </div>
