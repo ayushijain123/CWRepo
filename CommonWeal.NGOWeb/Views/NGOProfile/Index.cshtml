@@ -1,77 +1,97 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
- <script src="~/Scripts/Post/PostComment.js"></script>
-<div class=" ngoprofilenavbar">
-    <div class="col-md-12">
-        <div class="panel panel-default col-md-12 panelNGO column12">
-            <div class="panel-heading">
+<script src="~/Scripts/Post/PostComment.js"></script>
+<div class="container">
+<div class="row col-md-12 col-sm-12 col-xs-12 ngoprofilenavbar">
+   
+        <div class="panel panel-default  panelNGO ">
+            <div class="profileheadingcolor">
+            <div class="panel-heading ">
 
 
-                <center> <b class="profilesummary"> Profile summary</b></center>
+                <center> <b class="profilesummary"> Profile Summary</b></center>
             </div>
-            <div class="panel-body col-md-12 " id="ngoprofilepanelbody">
+                </div>
+             <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
 
-                <div class="col-md-4 col-md-offset-5">
-                    <div class="row ">
-                        <div class="form-inline col-sm-10 col-sm-push-12">
-                            <div class="container" style="background-color: lightgray; border: solid;">
+
+
+            <div class="panel-body" id="ngoprofilepanelbody">
+                <div class=" row col-md-12">
+                  
+                <div class="row col-md-5 col-md-push-4 profileimageborder">
+                  
+                        <div class="form-inline profileimagepadding">
+                            <div class="row col-md-12">
                                 <br />
                                 @if (ViewBag.imageurl != null)
                                 {
-                                    <img src="@ViewBag.imageurl" style="height:150px; width:240px;"/>
+                                    <img class="profileimage" src="@ViewBag.imageurl" />
                                 }
-                                <div class="form-inline">
-                                    <span data-toggle="tooltip" title="change Profile" id="pencil" class="glyphicon glyphicon-pencil" onclick="fileclick(); return false;"></span>
+                                </div>
+                                <div class="row">
+                                    <span  title="Change profile picture" id="pencil" class="glyphicon glyphicon-pencil col-md-1" onclick="fileclick(); return false;"></span>
                                     <input type="file" id="file" name="file" data-badge="false" />
-                                    <input type="submit" id="uploadimage" value="upload image" style="width: 117px" />
+                                    <input type="submit" class="col-md-2" id="uploadimage" value="upload image" />
                                 </div>
                                 @*a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>*@
 
                                 @*<span id="uploadFileName"></span>*@
 
 
-                            </div>
                         </div>
+                     
                     </div>
-                </div>
+                    </div>
+             
             </div>
-
+                 </form>
             <div class="panel-group navbar-fixed">
-                <div class="sticky">
-                    <ul class="ultext nav nav-tabs" >
-                         <li id="profilepost"><span id="NGOProfilepost">Post</span></li>
-                        
-                                   
-@*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
-                                     &nbsp  
-                                
-                                
-                                 <li><span id="aboutus" >About Us</span></li>
-                                
-                                    
-@*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
-                                       
-                                 
-                               
-
-                    </ul>
-                </div>
-            </div>
-
-        </div>
+                <ul class="ultext nav nav-tabs">
+                    <li id="profilepost"><span id="NGOProfilepost">Post</span></li>
+                     @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
+                    <li><span id="aboutus">About Us</span></li>
+                    @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
+                </ul>
+          </div>
+       </div>
         @*  <div>
             <span id="lblResult"></span>
             </div>
             <br />*@
     </div>
-</div>
 
+    </div>
 <div id="NGOProfilecontent">
 
 
     @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
 
 
-  
 
 
-    </div>
+
+</div>
+@section scripts{
+    
+     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#uploadimage").hide();
+            $("#pencil").click(function () {
+                $("#uploadimage").show();
+            });
+        });
+</script>
+
+    <!-- Latest compiled and minified JavaScript -->
+   @* <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+    
+   @* <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+   *@
+
+}
+
