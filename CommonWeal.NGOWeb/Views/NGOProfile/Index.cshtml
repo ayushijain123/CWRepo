@@ -18,27 +18,25 @@
             <div class="panel-body" id="ngoprofilepanelbody">
                 <div class=" row col-md-12">
                   
-                <div class="row col-md-5 col-md-push-4 profileimageborder">
+                <div class="row col-md-4 col-md-push-4 profileimageborder">
                   
-                        <div class="form-inline profileimagepadding">
+                       
                             <div class="row col-md-12">
-                                <br />
+                               
                                 @if (ViewBag.imageurl != null)
                                 {
-                                    <img class="profileimage" src="@ViewBag.imageurl" />
-                                }
-                                </div>
-                                <div class="row">
-                                    <span  title="Change profile picture" id="pencil" class="glyphicon glyphicon-pencil col-md-1" onclick="fileclick(); return false;"></span>
+                                    <img class="profileimage" id="profileimage" src="@ViewBag.imageurl"/>
+                                     <span  title="Change profile picture" id="pencil" class="glyphicon glyphicon-pencil " onclick="fileclick(); return false;"></span>
                                     <input type="file" id="file" name="file" data-badge="false" />
-                                    <input type="submit" class="col-md-2" id="uploadimage" value="upload image" />
+                                    }
                                 </div>
+                              
                                 @*a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>*@
 
                                 @*<span id="uploadFileName"></span>*@
 
 
-                        </div>
+                      
                      
                     </div>
                     </div>
@@ -76,6 +74,14 @@
      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
+            $("#pencil").hide();
+            $("#profileimage").hover(function () {
+                $("#pencil").show();
+            })
+            $("#profileimage").mouseout(function () {
+                $("#pencil").hide();
+            })
+            
             $("#uploadimage").hide();
             $("#pencil").click(function () {
                 $("#uploadimage").show();
