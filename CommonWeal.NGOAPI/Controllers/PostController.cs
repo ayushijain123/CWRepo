@@ -236,6 +236,15 @@ namespace CommonWeal.NGOAPI.Controllers
 
         //}
         [HttpGet]
+        public HttpResponseMessage AreaOfInterest()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.LazyLoadingEnabled = false;
+            var res = context.AreaOfInterests.ToList();
+            var response = Request.CreateResponse(HttpStatusCode.OK, res);
+            return response;
+        }
+        [HttpGet]
         public HttpResponseMessage GetOnLoad()
         {
             dbOperations db = new dbOperations();
