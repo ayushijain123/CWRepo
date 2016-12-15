@@ -25,7 +25,8 @@ $(document).ready(function () {
                     '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
-                    '<p id="postcommentcontent">' + TextComment + '</p>' +
+
+                    '<p id="postcommentcontent"class="postcommentcontent">' + TextComment + '</p>' +
 
                 '</div>' +
             '</div>');
@@ -150,8 +151,29 @@ $(document).ready(function () {
 
 
 
+    /*submit abuse user*/
+    $(".reportAbuse").live('click', function () {
+        var commentId = $(this).attr('id').split('-')[1];
+        var like = true;
+        $.post("/Post/AbuseUser?CommentId=" + commentId, function (result) {
+            if (result != null) {
+                //alert(result);
+
+                if (result == true) {
+                    $("#reportAbuse-" + commentId).html("Reported");
+                }
+                else { alert("Already Reported");}
+               
+
+               
+            }
+
+            //  window.location.reload();
+            //console.log(result);
+        });
 
 
+    });
 
     //full image script
 
@@ -327,7 +349,7 @@ $(document).ready(function () {
 
     });
     /*start ajax for  NGOProfilePOST partial*/
-    $("#NGOProfilepost").live('click',function () {
+    $(".NGOProfilepost").live('click',function () {
        
 
         $.post("/NGOProfile/NGOProfilePost", function (result) {
@@ -343,7 +365,7 @@ $(document).ready(function () {
 
 
     /*start ajax for about us partial*/
-    $("#aboutus").live('click', function () {
+    $(".aboutus").live('click', function () {
 
        
         $.post("/NGOProfile/AboutUsPartial", function (result) {
