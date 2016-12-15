@@ -348,6 +348,16 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             }
         }
 
+        /*method for spam users*/
+
+        public ActionResult SpamUsers()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var ob = context.SpamUsers.ToList();
+            return View(ob);
+           
+        }
+
         public ActionResult Unblock(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
