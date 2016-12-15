@@ -902,7 +902,7 @@ width:900px;
     padding: 5px;
 }
 
-#postcommentcontent {
+.postcommentcontent {
     padding-left: 14px;
     margin-left: 73px;
     padding-right: 8px;
