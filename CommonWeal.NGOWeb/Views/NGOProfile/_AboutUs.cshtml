@@ -38,16 +38,16 @@
 
         $("textarea").prop('disabled', true);
         $(".SaveSummaryId").hide();
-        $("#Cancel").hide();
+        $(".Cancel").hide();
         $("#edit").click(function () {
             $(this).hide();
-            $("#Cancel").show();
+            $(".Cancel").show();
             $(".SaveSummaryId").show();
             $("textarea").prop('disabled', false);
         });
 
 
-        $("#Cancel").click(function () {
+        $(".Cancel").click(function () {
             $("textarea").prop('disabled', true);
             $(".SaveSummaryId").hide();
             $(this).hide();
@@ -61,7 +61,7 @@
             $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
 
                 alert("summary saved successfully");
-                $("#Cancel").hide();
+                $(".Cancel").hide();
                 $(".SaveSummaryId").hide();
                 $("#edit").show();
                 //console.log(result);
@@ -153,7 +153,7 @@
                           <div id="profileupdate">
                                     <span id="editbtn" class="btn btn-primary">Edit</span>
                                     <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                                     <a href="/NGOProfile/AboutUs"><span id="Canclebtn" class="btn btn-primary">Cancel</span></a>
+                                     <span id="Canclebtn" class="btn btn-primary aboutus">Cancel</span>
                                 </div>
                             </div>
                       
@@ -191,7 +191,7 @@
                                     <div id="EditAboutUs">
                                     <span id="edit" class="btn btn-primary">Edit</span>
                                      <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                      <a href="/NGOProfile/AboutUs"><span id="Cancel" class="btn btn-primary">Cancel</span>
+                                      <span  id="aboutus"class="btn btn-primary Cancel aboutus">Cancel</span>
                                         </div>
                                         </div>
 
