@@ -7,7 +7,6 @@
     <Schema Namespace="CommonWealModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CommonWealModelStoreContainer">
           <EntitySet Name="AreaOfInterest" EntityType="CommonWealModel.Store.AreaOfInterest" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="City" EntityType="CommonWealModel.Store.City" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ForgotPassword" EntityType="CommonWealModel.Store.ForgotPassword" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ImageHandler" EntityType="CommonWealModel.Store.ImageHandler" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPost" EntityType="CommonWealModel.Store.NGOPost" store:Type="Tables" Schema="dbo" />
@@ -17,9 +16,7 @@
           <EntitySet Name="PostLike" EntityType="CommonWealModel.Store.PostLike" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Search" EntityType="CommonWealModel.Store.Search" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SpamUser" EntityType="CommonWealModel.Store.SpamUser" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="State" EntityType="CommonWealModel.Store.State" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="CommonWealModel.Store.User" store:Type="Tables" Schema="dbo" />
@@ -51,14 +48,6 @@
           </Key>
           <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="City">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="City" Type="varchar" MaxLength="50" />
-          <Property Name="State" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ForgotPassword">
           <Key>
@@ -193,14 +182,6 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
-        <EntityType Name="Search">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="StateName" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="CityName" Type="varchar" Nullable="false" MaxLength="50" />
-        </EntityType>
         <EntityType Name="SpamUser">
           <Key>
             <PropertyRef Name="SpamUserId" />
@@ -211,13 +192,6 @@
           <Property Name="ReportedBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="AbuseedUserName" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="State">
-          <Key>
-            <PropertyRef Name="StateID" />
-          </Key>
-          <Property Name="StateID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="State" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -330,7 +304,6 @@
           <Parameter Name="PostID" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="AreaOfInterests" EntityType="CommonWealModel.AreaOfInterest" />
-          <EntitySet Name="Cities" EntityType="CommonWealModel.City" />
           <EntitySet Name="ForgotPasswords" EntityType="CommonWealModel.ForgotPassword" />
           <EntitySet Name="ImageHandlers" EntityType="CommonWealModel.ImageHandler" />
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
@@ -339,8 +312,6 @@
           <EntitySet Name="PostLikes" EntityType="CommonWealModel.PostLike" />
           <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
           <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
-          <EntitySet Name="Searches" EntityType="CommonWealModel.Search" />
-          <EntitySet Name="States" EntityType="CommonWealModel.State" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.sysdiagram" />
           <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
           <EntitySet Name="Users" EntityType="CommonWealModel.User" />
@@ -375,14 +346,6 @@
           <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PostCategories" Relationship="CommonWealModel.FK_PostCategories_AreaOfInterest" FromRole="AreaOfInterest" ToRole="PostCategory" />
-        </EntityType>
-        <EntityType Name="City">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="City1" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="State" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ForgotPassword">
           <Key>
@@ -484,21 +447,6 @@
           <Property Type="String" Name="RoleName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-        </EntityType>
-        <EntityType Name="Search">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CityName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="State">
-          <Key>
-            <PropertyRef Name="StateID" />
-          </Key>
-          <Property Type="Int32" Name="StateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="State1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -666,15 +614,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cities">
-            <EntityTypeMapping TypeName="CommonWealModel.City">
-              <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City1" ColumnName="City" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ForgotPasswords">
             <EntityTypeMapping TypeName="CommonWealModel.ForgotPassword">
               <MappingFragment StoreEntitySet="ForgotPassword">
@@ -775,23 +714,6 @@
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Searches">
-            <EntityTypeMapping TypeName="CommonWealModel.Search">
-              <MappingFragment StoreEntitySet="Search">
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="StateName" ColumnName="StateName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="States">
-            <EntityTypeMapping TypeName="CommonWealModel.State">
-              <MappingFragment StoreEntitySet="State">
-                <ScalarProperty Name="State1" ColumnName="State" />
-                <ScalarProperty Name="StateID" ColumnName="StateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
