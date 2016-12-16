@@ -855,7 +855,7 @@ width:900px;
     border-style: inherit;
 }
 
-#comentpost {
+.comentpost {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
