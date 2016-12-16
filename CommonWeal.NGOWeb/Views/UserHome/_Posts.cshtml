@@ -30,7 +30,7 @@
                               {<span class="text-primary">#@item.postCategoryNameList[0] </span><span>and</span>
                               <span class="dropdown">
 <span class="showcategory text-primary "id="showcategory-@item.postId"style="cursor:pointer;text-decoration:underline">@(item.postCategoryNameList.Count()-1) Other</span>
-                               <span class="dropdown-content" style=""id="categorylist-@item.postId">
+                               <span class="dropdown-content" style="cursor:pointer"id="categorylist-@item.postId">
        @{
                 var Count = 1;
                 foreach (var res in item.postCategoryNameList)
@@ -53,6 +53,7 @@
                               }
                           
                           }
+                    </span>
                      
 
             </div>
@@ -120,7 +121,16 @@
                         <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm")</span>
                         @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
                         {
-                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="float:right"><span class="glyphicons glyphicons-more"></span>Report abuse</span>
+     <span class="posttag col-md-5 float-right">
+             <span class="dropdown">
+<span class="showcategory text-primary "id=""style="cursor:pointer"><b>...</b></span>
+                               <span class="dropdown-content" style=""id="">
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="cursor:pointer; text-decoration:underline;"><span class="glyphicons glyphicons-more"></span>Report abuse</span><br/>
+                                      <span id="" class="deletecomment" style="cursor:pointer;text-decoration:underline"><span class="glyphicons glyphicons-more"></span>Delete</span>
+           
+                               </span>
+           </span>
+         </span>
                         }
                         <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
 
