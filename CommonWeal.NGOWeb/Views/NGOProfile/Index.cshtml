@@ -31,7 +31,7 @@
                                     }
                                 </div>
                               
-                                @*a class="uploadimage"><span onclick="fileclick(); return false;"></span></a>*@
+                               <input type="submit" id="uploadimage"><span onclick="fileclick(); return false;"></span></input>
 
                                 @*<span id="uploadFileName"></span>*@
 
@@ -74,13 +74,13 @@
      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#pencil").hide();
-            $("#profileimage").hover(function () {
-                $("#pencil").show();
-            })
-            $("#profileimage").mouseout(function () {
-                $("#pencil").hide();
-            })
+            //$("#pencil").hide();
+            //$("#profileimage").hover(function () {
+            //    $("#pencil").show();
+            //})
+            //$("#profileimage").mouseout(function () {
+            //    $("#pencil").hide();
+            //})
             
             $("#uploadimage").hide();
             $("#pencil").click(function () {
