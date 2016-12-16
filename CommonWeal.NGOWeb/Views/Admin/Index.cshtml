@@ -1,4 +1,4 @@
-﻿
+﻿@model CommonWeal.Data.ModelExtension.Count
 
 @*Added by Neha M.*@
 
@@ -27,7 +27,7 @@
                     </div>
                     <div class="media-body">
                         <h3>NGOs Request
-                             <span class="pull-right"id="COR">@ViewBag.COR</span>
+                             <span class="pull-right"id="COR">@Model.CountOfRequests</span>
                         </h3>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Active NGOs
-                             <span class="pull-right"id="COAN">@ViewBag.COAN</span>
+                             <span class="pull-right"id="COAN">@Model.CountOfActiveNGO</span>
                         </h3>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Blocked NGOs
-                            <span class="pull-right"id="COBN">@ViewBag.COBN</span>
+                            <span class="pull-right"id="COBN">@Model.CountOfBlockedNGO</span>
                         </h3>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Active Users
-                            <span class="pull-right"id="COAL">@ViewBag.COAL</span>
+                            <span class="pull-right"id="COAL">@Model.CountOfAllUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Warned NGOs
-                        <span class="pull-right"id="COWU">@ViewBag.COWU</span>
+                        <span class="pull-right"id="COWU">@Model.CountOfWarnedUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Blocked Users
-                            <span class="pull-right"id="COBU">@ViewBag.COBU</span>
+                            <span class="pull-right"id="COBU"> @Model.CountOfBlockedUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -207,8 +207,8 @@
                 </tr>
                 <tr>
                     <th>Nov</th>
-                    <td>@ViewBag.COTN</td>
-                    <td>@ViewBag.COTU</td>
+                    <td>@Model.CountOfTotalNGO</td>
+                    <td>@Model.CountOfTotalUsers</td>
                 </tr>
                 <tr>
                     <th>Dec</th>
