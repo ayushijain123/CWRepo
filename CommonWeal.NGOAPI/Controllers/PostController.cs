@@ -197,10 +197,12 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public HttpResponseMessage CommentsPOST(PostComment objPostComment)
         {
-            
             CommonWealEntities context = new CommonWealEntities();
+            if (objPostComment.LoginID > 0)
+            {           
             context.PostComments.Add(objPostComment);
             context.SaveChanges();
+            }
             var response = Request.CreateResponse(HttpStatusCode.OK, context.PostComments);
             return response;
                 
@@ -208,42 +210,44 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public HttpResponseMessage SubmitLike(PostLikeModel objpostlike)
         {
-           // bool like;
-           int PostID = -1;
-            PostID = objpostlike.PostID;
-           
-            if (PostID != -1)
+            if (objpostlike.LoginID > 0)
             {
-                CommonWealEntities db = new CommonWealEntities();
+                int PostID = -1;
+                PostID = objpostlike.PostID;
 
-                /*login user property defined in base controller*/
-                /*checking is current login user already liked the image or not */
-                var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
-
-                if (currentLikeUser == null)
+                if (PostID != -1)
                 {
-                    /*if not like than add row in post  */
-                    PostLike pl = new PostLike();
-                    pl.CreatedOn = DateTime.Now;
-                    pl.ModifiedOn = DateTime.Now;
-                    pl.IsLike = true;
+                    CommonWealEntities db = new CommonWealEntities();
+
                     /*login user property defined in base controller*/
-                    pl.LoginID = objpostlike.LoginID;
-                    pl.PostID = PostID;
-                    db.PostLikes.Add(pl);
-                    db.SaveChanges();
-                    /*update like count */
-                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                    post.PostLikeCount++;
-                    db.SaveChanges();
-                }
-                else
-                {/*if already liked by user than remove like row of user for unlike */
-                    var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
-                    db.PostLikes.Remove(removeLike);                 
-                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                    post.PostLikeCount--;                     
-                    db.SaveChanges();
+                    /*checking is current login user already liked the image or not */
+                    var currentLikeUser = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
+
+                    if (currentLikeUser == null)
+                    {
+                        /*if not like than add row in post  */
+                        PostLike pl = new PostLike();
+                        pl.CreatedOn = DateTime.Now;
+                        pl.ModifiedOn = DateTime.Now;
+                        pl.IsLike = true;
+                        /*login user property defined in base controller*/
+                        pl.LoginID = objpostlike.LoginID;
+                        pl.PostID = PostID;
+                        db.PostLikes.Add(pl);
+                        db.SaveChanges();
+                        /*update like count */
+                        var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+                        post.PostLikeCount++;
+                        db.SaveChanges();
+                    }
+                    else
+                    {/*if already liked by user than remove like row of user for unlike */
+                        var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == objpostlike.LoginID).FirstOrDefault();
+                        db.PostLikes.Remove(removeLike);
+                        var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
+                        post.PostLikeCount--;
+                        db.SaveChanges();
+                    }
                 }
             }
             var response = Request.CreateResponse(HttpStatusCode.OK, context.PostLikes);
