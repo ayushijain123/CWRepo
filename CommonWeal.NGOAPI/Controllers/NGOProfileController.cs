@@ -39,6 +39,7 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public HttpResponseMessage AboutNGO(AboutUs loginid)
         {
+            //jfsdklfjklj
             CommonWealEntities context = new CommonWealEntities();
             var res = context.NGOUsers.Where(w => w.LoginID==loginid.LoginID).FirstOrDefault();
             loginid.NGOEmail = res.NGOEmailID;
