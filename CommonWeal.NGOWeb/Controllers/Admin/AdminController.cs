@@ -55,6 +55,14 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var request = obj.GetAllUserNotAccepted();
             return View(request);
         }
+        //public ActionResult Index()
+        //{
+
+        //    var result = Task.Run(() => APIHelper<Count>.GetJsonAsync1("Admin/GetRequest"));
+
+        //    return View(result.Result);
+
+        //}
 
 
 
@@ -475,12 +483,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View();
 
         }
-        public JsonResult GetData()
-        {
-            CommonWealEntities context = new CommonWealEntities();
-            var list = context.usp_GetAllData().AsEnumerable();
-            return Json(list, JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult GetData()
+        //{
+        //    CommonWealEntities context = new CommonWealEntities();
+        //    var list = context.usp_GetAllData().AsEnumerable();
+        //    return Json(list, JsonRequestBehavior.AllowGet);
+        //}
 
 
     }
