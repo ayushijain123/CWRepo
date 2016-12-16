@@ -1,8 +1,11 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
-@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">*@
-
- @* <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
 <link href="~/Content/dyanamiclist.css" rel="stylesheet" />
+<script src="~/Scripts/jquery3.1.1-jquery.min.js"></script>
+<script>
+$.noConflict();
+// Code that uses other library's $ can follow here.
+</script>
+
 @if(Model!=null && Model.Count()>0)
 {
 <div id="uploadpost" class="row col-sm-10 col-sm-push-1">
@@ -14,10 +17,7 @@
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
                 <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span>
                 <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
-                @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
-                {
-                <span><a href="/Post/deletePost/@item.postId">delete</a></span>
-                }
+              
                 <span class="posttag col-md-5 float-right" >
                    @*method for multi #*@
                 
@@ -88,7 +88,9 @@
                 <br/>
                 <div id="liketemplate-@item.postId">   
                 @Html.Partial("../UserHome/_LikePartial", item)
+
                     </div>
+                 
              @* @Html.Partial("../Views/UserHome/_LikePartial",Model) *@
             </div>
 
@@ -111,10 +113,12 @@
 
         </div>
         <div class="form-inline" id="postcommentbox">
-            @foreach (var comment in item.PostComments)
+            @if(item.PostComments.Count()>0)
+            {
+               foreach (var comment in item.PostComments.Take(2))
             {
                 <div class="form-group col-md-12">
-                    <div class="form-inline col-md-12 " id="comentpost">
+                    <div class="form-inline col-md-12 comentpost">
                         <span class="col-md-1 fa fa-user commentimage"></span>
 
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
@@ -125,8 +129,8 @@
              <span class="dropdown">
 <span class="showcategory text-primary "id=""style="cursor:pointer"><b>...</b></span>
                                <span class="dropdown-content" style=""id="">
-                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="cursor:pointer; text-decoration:underline;"><span class="glyphicons glyphicons-more"></span>Report abuse</span><br/>
-                                      <span id="" class="deletecomment" style="cursor:pointer;text-decoration:underline"><span class="glyphicons glyphicons-more"></span>Delete</span>
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="cursor:pointer; text-decoration:underline;">Report abuse</span><br/>
+                                     
            
                                </span>
            </span>
@@ -141,6 +145,47 @@
                 
                 
             }
+            }
+             
+            @if(item.PostComments.Count()>2)
+            {  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2-@item.postId">Collapsible Group 2</a>
+        </h4>
+      </div>
+      <div id="collapse2-@item.postId" class="panel-collapse collapse">
+        <div class="panel-body">
+   
+            
+           
+            @foreach (var comment in item.PostComments.Skip(2))
+            {
+                <div class="form-group col-md-12">
+                    <div class="form-inline col-md-12 comentpost">
+                        <span class="col-md-1 fa fa-user commentimage"></span>
+
+                        <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
+                        <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm")</span>
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
+                        {
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="float:right"><span class="glyphicons glyphicons-more"></span>Report abuse</span>
+                        }
+                        <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
+
+                    </div>
+                </div>
+                <br />
+           
+                
+                
+            }
+            </div>
+      </div>
+    </div>
+    
+          
+          }  
             <div id="@item.postId">
             </div>
 
