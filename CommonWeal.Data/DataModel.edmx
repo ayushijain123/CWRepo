@@ -18,6 +18,7 @@
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Search" EntityType="CommonWealModel.Store.Search" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SpamUser" EntityType="CommonWealModel.Store.SpamUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="State" EntityType="CommonWealModel.Store.State" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
@@ -200,6 +201,17 @@
           <Property Name="StateName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="CityName" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="SpamUser">
+          <Key>
+            <PropertyRef Name="SpamUserId" />
+          </Key>
+          <Property Name="SpamUserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginId" Type="int" Nullable="false" />
+          <Property Name="CommentContent" Type="varchar(max)" />
+          <Property Name="ReportedBy" Type="varchar" MaxLength="50" />
+          <Property Name="ModifiedOn" Type="datetime" />
+          <Property Name="AbuseedUserName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="State">
           <Key>
             <PropertyRef Name="StateID" />
@@ -354,6 +366,7 @@
             <End Role="NGOPost" EntitySet="NGOPosts" />
             <End Role="PostLike" EntitySet="PostLikes" />
           </AssociationSet>
+          <EntitySet Name="SpamUsers" EntityType="CommonWealModel.SpamUser" />
           </EntityContainer>
         <EntityType Name="AreaOfInterest">
           <Key>
@@ -627,6 +640,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SpamUser">
+          <Key>
+            <PropertyRef Name="SpamUserId" />
+          </Key>
+          <Property Type="Int32" Name="SpamUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LoginId" Nullable="false" />
+          <Property Type="String" Name="CommentContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ReportedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="AbuseedUserName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -850,6 +874,18 @@
                 <ScalarProperty Name="NGOName" ColumnName="NGOName" />
                 <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
                 <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpamUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.SpamUser">
+              <MappingFragment StoreEntitySet="SpamUser">
+                <ScalarProperty Name="AbuseedUserName" ColumnName="AbuseedUserName" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
+                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="SpamUserId" ColumnName="SpamUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

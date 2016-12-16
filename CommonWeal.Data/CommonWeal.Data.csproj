@@ -113,6 +113,9 @@
     <Compile Include="Search.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SpamUser.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="State.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
