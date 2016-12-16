@@ -1607,11 +1607,11 @@ height: 33px;
     color:#2a6496;
     cursor:pointer;
     }
-#aboutus {
+.aboutus {
      font-weight: bold;
      cursor:pointer;
 }
-#aboutus:hover {
+.aboutus:hover {
     color:#2a6496;
     }
 .profileheadingcolor {
