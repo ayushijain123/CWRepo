@@ -31,7 +31,7 @@ namespace CommonWeal.NGOAPI.Controllers
          
         public HttpResponseMessage GetCount()
         {
-
+            /*added on 16-12-2016*/
             CommonWealEntities obj = new CommonWealEntities();
             var ngo = obj.NGOUsers;
             var users = obj.Users;
