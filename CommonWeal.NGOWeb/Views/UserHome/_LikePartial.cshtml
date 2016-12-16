@@ -80,4 +80,17 @@
                               }
                           }
     }
-</div>
+
+      @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
+                {
+                
+               
+ <span class="posttag col-md-5 float-right">
+             <span class="dropdown">
+<span class="showcategory text-primary "id=""style="cursor:pointer"><b>....</b></span>
+   <span id="" class="deletecomment dropdown-content" style="cursor:pointer;text-decoration:underline"><a href="/Post/deletePost/@Model.postId">delete Post</a></span>                                    
+                             
+           </span>
+         </span>
+      }
+    </div>
