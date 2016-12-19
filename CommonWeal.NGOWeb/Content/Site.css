@@ -854,7 +854,7 @@ tr.pager td {
     border-style: inherit;
 }
 
-#comentpost {
+.comentpost {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
@@ -901,7 +901,7 @@ tr.pager td {
     padding: 5px;
 }
 
-#postcommentcontent {
+.postcommentcontent {
     padding-left: 14px;
     margin-left: 73px;
     padding-right: 8px;
