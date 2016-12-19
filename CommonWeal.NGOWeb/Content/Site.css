@@ -1592,7 +1592,7 @@ added by payal*/
 
 .ultext {
     height: 33px;
-    padding-top: 8px;
+     font-size:18px;
     padding-left: 20px;
     text-decoration: underline;
     cursor: pointer;
@@ -1602,6 +1602,7 @@ added by payal*/
     padding-right: 36px;
     font-weight: bold;
     cursor: pointer;
+
 }
 
     #profilepost:hover {
