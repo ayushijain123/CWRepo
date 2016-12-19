@@ -7,8 +7,10 @@
 }
 
 @*High charts*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 @*Donut chart*@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
@@ -74,7 +76,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Active Users
-                            <span class="pull-right"id="COAL">@Model.CountOfTotalActiveUsers</span>
+                            <span class="pull-right"id="COAL">@Model.CountOfAllUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -104,23 +106,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Blocked Users
-                            <span class="pull-right"id="COBU"> @Model.CountOfBlockedUsers</span>
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="row">
-    <div class="top-panel col-md-12">
-        <div class="top-row col-md-4">
-            <a href="/Admin/SpamUsers">
-                <div class="media bg-primary request">
-                    <div class="media-left side-request pull-left">
-                        <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Spam Users
-                             <span class="pull-right"id="COR">@ViewBag.COR</span>
+                            <span class="pull-right"id="COBU">@Model.CountOfBlockedUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -128,7 +114,6 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="donut-chart col-md-6">
         <center><h2>NGOs Update:</h2></center>
@@ -142,7 +127,79 @@
 
 <div class="row">
     <div class="discrete-graph col-md-12">
-        <div id="container"></div>     
+        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+        <table style="visibility: hidden; display: none;" id="graph-datatable">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>NGOs</th>
+                    <th>Users</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Jan</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Feb</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Mar</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Apr</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>May</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Jun</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Jul</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Aug</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Sep</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Oct</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Nov</th>
+                    <td>@Model.CountOfTotalNGO</td>
+                    <td>@Model.CountOfTotalUsers</td>
+                </tr>
+                <tr>
+                    <th>Dec</th>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
