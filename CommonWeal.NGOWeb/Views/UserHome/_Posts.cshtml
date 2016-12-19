@@ -5,6 +5,7 @@
 $.noConflict();
 // Code that uses other library's $ can follow here.
 </script>*@
+<p id="controllername" hidden>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</p>
 
 @if(Model!=null && Model.Count()>0)
 {
@@ -167,8 +168,8 @@ $.noConflict();
                         <span class="col-md-1 fa fa-user commentimage"></span>
 
                         <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
-                        <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm")</span>
-                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
+                        <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")))
                         {
                             <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle" title="Report abuse"></span>
                         }

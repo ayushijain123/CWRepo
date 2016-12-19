@@ -32,7 +32,7 @@
                   }
 
               }  
-        <span class="  LikeIcon ahover likecommenticon cursor userid-@userLoginId" id="LikeIcon-@Model.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
+        <span class="LikeIcon ahover likecommenticon cursor userid-@userLoginId" id="LikeIcon-@Model.postId"  onmouseover='this.style.color="#4073bf"'onmouseout='this.style.color="@currentLikeUserColor"'  style="color:@currentLikeUserColor">
             <img src="~/Images/newlike1.png" /></span>
         <span id="commentIcon-@Model.postId" class="  ahover likecommentcolor commentIcon likecommenticon cursor">
             <img src="~/Images/commentnew.png" /></span>   
@@ -82,7 +82,7 @@
           }
     }
 
-    @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
+    @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.controllername.Equals("NGOProfile")))
     {
                 
                
