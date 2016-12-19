@@ -5,14 +5,10 @@
 }
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
-
+    $("#editbtn").click(function () {
+        $(this).hide();
+    });
     $(document).ready(function () {
-
-        $("#editbtn").click(function () {
-            $(this).hide();
-        });
-
-
         $("input").prop('disabled', true);
         $("#submitbtn").prop('disabled', true);
         $("#Canclebtn").hide();
@@ -42,16 +38,16 @@
 
         $("textarea").prop('disabled', true);
         $(".SaveSummaryId").hide();
-        $(".Cancel").hide();
+        $("#Cancel").hide();
         $("#edit").click(function () {
             $(this).hide();
-            $(".Cancel").show();
+            $("#Cancel").show();
             $(".SaveSummaryId").show();
             $("textarea").prop('disabled', false);
         });
 
 
-        $(".Cancel").click(function () {
+        $("#Cancel").click(function () {
             $("textarea").prop('disabled', true);
             $(".SaveSummaryId").hide();
             $(this).hide();
@@ -65,29 +61,19 @@
             $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
 
                 alert("summary saved successfully");
-                $(".Cancel").hide();
+                $("#Cancel").hide();
                 $(".SaveSummaryId").hide();
                 $("#edit").show();
                 //console.log(result);
             });
 
 
+    //    });
+        $("#uploadimage").hide();
+        $("#pencil").click(function () {
+            $("#uploadimage").show();
         });
-
-
-
-        $('img').on('click', function () {
-            var image = $(this).attr('src');
-            $('#myModal2').on('show.bs.modal', function () {
-                $(".img-responsive").attr("src", image);
-            });
-        });
-
-
-        $('[data-toggle="tooltip"]').tooltip();
-
     });
-
 
 
 
@@ -162,7 +148,7 @@
                             <div id="profileupdate">
                                 <span id="editbtn" class="btn btn-primary">Edit</span>
                                 <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                                <span id="Canclebtn" class="btn btn-primary aboutus">Cancel</span>
+                                <a href="/NGOProfile/AboutUs"><span id="Canclebtn" class="btn btn-primary">Cancel</span></a>
                             </div>
                         </div>
 
@@ -170,45 +156,25 @@
                     </form>
                 </div>
 
-
+                <div class="row">
                 <div class="col-md-6 col-md-push-1">
 
                     <p style="padding-top: 60px;"></p>
                     <div class="editpanel panel panel-default">
-                        <div class="card card-user">
-                            @* <div class="image">
-                                        <img src="~/Images/bckg.jpg" style="align" alt="...">
-                                    </div>*@
+                        
+                        <p> uedhfhye78fhjsdhc<br/>
+                            chgsdgygchsdvcfh<br/>
+                            chgeygdvchvdghv<br/>
+                            ggh sdhvf yeveded<br/>
+                        </p>
 
-                            <div class="content">
-                                <div class="author">
-                                    @*<a href="#">*@
 
-                                    @*                                            <a href="#">*@
 
-                                    <img  class="avatar border-gray" @*src="~/Images/sammanlogo.PNG*@" alt="...">
-                                    <h4 class="title">AboutUs<br>
-                                    </h4>
-                                    </a>
 
-                                            @*</a>*@
-                                </div>
-                                <p class="description text-center">
-                                    @ViewBag.LoginUser.UserName,
-                                    <textarea style="width: 232px; resize: none;" id="textSumamry">@Model.AboutUs</textarea>
-                                    <div class="form-inline">
-                                        <div id="EditAboutUs">
-                                            <span id="edit" class="btn btn-primary">Edit</span>
-                                            <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                            <span id="aboutus" class="btn btn-primary Cancel aboutus">Cancel</span>
-                                        </div>
-                                    </div>
 
-                                </p>
 
-                            </div>
-
-                        </div>
+                        
+                    </div>
                     </div>
 
                 </div>
@@ -216,6 +182,9 @@
 
         </div>
     </div>
+
+</div>
+</div>
 </div>
 @if (TempData["US"] != null)
 {
