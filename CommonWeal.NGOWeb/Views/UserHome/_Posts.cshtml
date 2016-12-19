@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 <link href="~/Content/dyanamiclist.css" rel="stylesheet" />
-<script src="~/Scripts/jquery3.1.1-jquery.min.js"></script>
+@*<script src="~/Scripts/jquery3.1.1-jquery.min.js"></script>
 <script>
 $.noConflict();
 // Code that uses other library's $ can follow here.
-</script>
+</script>*@
 
 @if(Model!=null && Model.Count()>0)
 {
@@ -30,7 +30,7 @@ $.noConflict();
                               {<span class="text-primary">#@item.postCategoryNameList[0] </span><span>and</span>
                               <span class="dropdown">
 <span class="showcategory text-primary "id="showcategory-@item.postId"style="cursor:pointer;text-decoration:underline">@(item.postCategoryNameList.Count()-1) Other</span>
-                               <span class="dropdown-content" style="cursor:pointer"id="categorylist-@item.postId">
+                               <span class="dropdown-content" id="categorylist-@item.postId">
        @{
                 var Count = 1;
                 foreach (var res in item.postCategoryNameList)
