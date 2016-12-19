@@ -12,19 +12,26 @@ $(document).ready(function () {
     $(".btnPost").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
         console.log(postid);
+        var controller = $("#controllername").html();
         var TextComment = $("#txtComment-" + postid).val().trim();
         var userName = "";
         var createdOn = "";
+        var spamicon = "";
+        var commentid = 0;
         if (TextComment != "") {
             $.post("/Post/SumitComment?strComment=" + TextComment + "&postId=" + postid, function (userinfo) {
                 userName = userinfo[0];
                 createdOn = userinfo[1];
-
+                commentid = parseInt(userinfo[2]);
+                if (controller == "NGOProfile")
+                {spamicon= '<span id="reportAbuse-'+commentid+'" class="reportAbuse fa fa-exclamation-circle" title="Report abuse"></span>'; 
+                }
                 $("#" + postid).append('    <div class="form-group col-md-12 ">' +
                 '<div class="form-inline col-md-12 comentpost ">' +
                     '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
+                    spamicon+
 
                     '<p id="postcommentcontent"class="postcommentcontent">' + TextComment + '</p>' +
 
@@ -80,6 +87,7 @@ $(document).ready(function () {
 
     //start Likecount and update ajax
     $(".LikeIcon").live('click', function () {
+        console.log('clicked');
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
         $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
@@ -227,11 +235,13 @@ $(document).ready(function () {
     var loadcount = 0;
     $("#btnLoad").click(function () {
         loadcount++;
-       // alert('hbtnload');
+        // alert('hbtnload');
+        var controller = $("#controllername").html();
+        //alert(controller);
         var id = 0;
         var categorylist = $("#selectcategory").val();
         console.log(category);
-        var category = JSON.stringify({ 'category': categorylist ,'count': loadcount,'NgoID':id});
+        var category = JSON.stringify({ 'category': categorylist, 'controller': controller, 'count': loadcount, 'NgoID': id });
       
         $.ajax({
             contentType: 'application/json; charset=utf-8',
@@ -272,12 +282,13 @@ $(document).ready(function () {
     $("#btnLoadNGOPfrofile").click(function () {
         //console.log('clicked');
         loadcnt++;
+        var controller = $("#controllername").html();
         //alert('hi');
         var id = 1;
         var categorylist = $("#selectcategory").val();
         if (categorylist == null)
         { categorylist = null; }
-        var category = JSON.stringify({ 'category': categorylist, 'count': loadcnt, 'NgoID': id });
+        var category = JSON.stringify({ 'category': categorylist,'controller': controller, 'count': loadcnt, 'NgoID': id });
         $.ajax({
             contentType: 'application/json; charset=utf-8',
 
