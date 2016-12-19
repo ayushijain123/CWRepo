@@ -15,22 +15,9 @@ namespace CommonWeal.NGOAPI.Controllers
         // GET api/<controller>
         [AllowAnonymous]
         [HttpGet]
-        //public HttpResponseMessage listdata()
-        //{
-
-        //    //List<NGOUser> list = new List<NGOUser>();
-        //    DoNut obj = new DoNut();
-        //    CommonWealEntities context = new CommonWealEntities();
-        //    var obj2 = (ObjectResult<string>)context.usp_GetAllData() ;
-        //    obj.Total = obj2.ToList();
-        //    var response = Request.CreateResponse(HttpStatusCode.OK, obj.Total);
-        //    return response;
-
-        //}
-        
-         
-        public HttpResponseMessage GetCount()
-        {
+       
+         public HttpResponseMessage GetCount()
+            {
             /*added on 16-12-2016*/
             CommonWealEntities obj = new CommonWealEntities();
             var ngo = obj.NGOUsers;
