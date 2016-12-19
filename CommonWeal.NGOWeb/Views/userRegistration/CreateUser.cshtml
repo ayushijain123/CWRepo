@@ -87,7 +87,7 @@
                     <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            @Html.TextBoxFor(a => a.UserPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12" })
+                            @Html.PasswordFor(a => a.UserPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.UserPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="form-group">
                         <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            @Html.TextBoxFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control col-md-7 col-xs-12" })
+                            @Html.PasswordFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.ConfirmPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
