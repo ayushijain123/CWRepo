@@ -55,7 +55,9 @@ $(document).ready(function () {
     });
 
 
-    $(".commentIcon").live('click', function () {
+    $(".commentIcon").on('click', function () {
+
+        alert('test click');
         var postid = $(this).attr('id').split('-')[1];
         $("#txtComment-" + postid).focus();
         //console.log(result);
@@ -247,13 +249,13 @@ $(document).ready(function () {
                     var total = result - (loadcount + 1) * 5;
 
                     if (total <= 0 && result > 0) {
-                        $(".btnLoad").val('No More Post');
+                        $(".btnLoad").val('No more post');
                         $(".btnLoad").attr('disabled', true);
                         //alert(result + "" + total);
                         loadcount = 0;
                     }
                     if (result <= 0) {
-                        $(".btnLoad").val('No Post Found');
+                        $(".btnLoad").val('No post found');
                         $(".btnLoad").attr('disabled', true);
                         // alert(result + "" + total);
                         loadcount = 0;
@@ -291,13 +293,13 @@ $(document).ready(function () {
                     var total = result1 - (loadcnt + 1) * 5;
                     // alert(total);
                     if (total <= 0 && result1 > 0) {
-                        $(".btnLoadNGOPfrofile").val('No More Post');
+                        $(".btnLoadNGOPfrofile").val('No more post');
                         $(".btnLoadNGOPfrofile").attr('disabled', true);
                        // alert(result1 + "h" + total);
                         loadcnt = 0;
                     }
                     if (result1 <= 0) {
-                        $(".btnLoadNGOPfrofile").val('No Post Found');
+                        $(".btnLoadNGOPfrofile").val('No post found');
                         $(".btnLoadNGOPfrofile").attr('disabled', true);
                         //  alert(result1 + "" + total);
                         loadcnt = 0;
