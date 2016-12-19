@@ -113,11 +113,12 @@ $.noConflict();
 
         </div>
         <div class="form-inline" id="postcommentbox">
-            @if(item.PostComments.Count()>0)
+           @* @if(item.PostComments.Count()>0)
             {
                foreach (var comment in item.PostComments.Take(2))
             {
-                <div class="form-group col-md-12">
+                
+            <div class="form-group col-md-12">
                     <div class="form-inline col-md-12 comentpost">
                         <span class="col-md-1 fa fa-user commentimage"></span>
 
@@ -145,9 +146,9 @@ $.noConflict();
                 
                 
             }
-            }
+            }*@
              
-            @if(item.PostComments.Count()>2)
+         @*   @if(item.PostComments.Count()>2)
             {  <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -155,11 +156,11 @@ $.noConflict();
         </h4>
       </div>
       <div id="collapse2-@item.postId" class="panel-collapse collapse">
-        <div class="panel-body">
+        <div class="panel-body">*@
    
             
            
-            @foreach (var comment in item.PostComments.Skip(2))
+            @foreach (var comment in item.PostComments)
             {
                 <div class="form-group col-md-12">
                     <div class="form-inline col-md-12 comentpost">
@@ -180,12 +181,12 @@ $.noConflict();
                 
                 
             }
-            </div>
+      @*      </div>
       </div>
     </div>
     
           
-          }  
+          }  *@
             <div id="@item.postId">
             </div>
 
