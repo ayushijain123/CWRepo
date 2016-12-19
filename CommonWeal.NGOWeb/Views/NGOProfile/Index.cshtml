@@ -16,23 +16,26 @@
 
 
             <div class="panel-body" id="ngoprofilepanelbody">
-                <div class=" row col-md-12">
+              
              
                       </div>
                 <div class="row col-md-4 col-md-push-4 profileimageborder">
                   
-                       
-                            <div class="row col-md-12">
+                            <div class="row  col-md-12 profile-img-container">
                                
                                 @if (ViewBag.imageurl != null)
                                 {
-                                    <img class="profileimage" id="profileimage" src="@ViewBag.imageurl"/>
-                                     <span  title="Change profile picture" id="pencil" class="glyphicon glyphicon-pencil " onclick="fileclick(); return false;"></span>
-                                    <input type="file" id="file" name="file" data-badge="false" />
-                                    }
+                                   <img class="profileimage img-thumbnail img-responsive" id="profileimage" src="@ViewBag.imageurl"/>
+                                      <div class="profile-img-i-container">
+        <i class="glyphicon glyphicon-camera fa-2x"  id="pencil" onclick="fileclick(); return false;"></i>
+        <input type="file" id="file" name="file" data-badge="false" />
+                         </div>
+                                 }
+        
+                             
                                 </div>
-                              
-                               <input type="submit" id="uploadimage"><span onclick="fileclick(); return false;"></span></input>
+                                   <input type="submit" id="uploadimage" value="Upload"><span onclick="fileclick(); return false;"></span></input>
+                         
 
                                 @*<span id="uploadFileName"></span>*@
 
@@ -40,8 +43,7 @@
                       
                      
                     </div>
-                    </div>
-             
+                    
           
                  </form>
             <div class="panel-group navbar-fixed">
