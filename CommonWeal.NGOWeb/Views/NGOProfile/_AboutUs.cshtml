@@ -5,10 +5,14 @@
 }
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script>
-    $("#editbtn").click(function () {
-        $(this).hide();
-    });
+
     $(document).ready(function () {
+
+        $("#editbtn").click(function () {
+            $(this).hide();
+        });
+
+
         $("input").prop('disabled', true);
         $("#submitbtn").prop('disabled', true);
         $("#Canclebtn").hide();
@@ -24,7 +28,7 @@
 
         });
         $("#Canclebtn").click(function () {
-           
+
             $("input").prop('disabled', true);
             $("#submitbtn").hide();
             $(this).hide();
@@ -69,22 +73,27 @@
 
 
         });
-       
-    });
-    $('img').on('click', function () {
-        var image = $(this).attr('src');
-        $('#myModal2').on('show.bs.modal', function () {
-            $(".img-responsive").attr("src", image);
+
+
+
+        $('img').on('click', function () {
+            var image = $(this).attr('src');
+            $('#myModal2').on('show.bs.modal', function () {
+                $(".img-responsive").attr("src", image);
+            });
         });
+
+
+        $('[data-toggle="tooltip"]').tooltip();
+
     });
 
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-  
+
+
+
 </script>
 <div class="container">
- 
+
     <div class="row">
         <div class="main-panel">
 
@@ -150,13 +159,13 @@
 
 
                         <div class="form-inline col-md-6 col-md-push-6">
-                          <div id="profileupdate">
-                                    <span id="editbtn" class="btn btn-primary">Edit</span>
-                                    <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                                     <span id="Canclebtn" class="btn btn-primary aboutus">Cancel</span>
-                                </div>
+                            <div id="profileupdate">
+                                <span id="editbtn" class="btn btn-primary">Edit</span>
+                                <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+                                <span id="Canclebtn" class="btn btn-primary aboutus">Cancel</span>
                             </div>
-                      
+                        </div>
+
                         <p style="padding-bottom: 10px;"></p>
                     </form>
                 </div>
@@ -179,22 +188,21 @@
 
                                     <img  class="avatar border-gray" @*src="~/Images/sammanlogo.PNG*@" alt="...">
                                     <h4 class="title">AboutUs<br>
-                                        
                                     </h4>
                                     </a>
 
                                             @*</a>*@
                                 </div>
                                 <p class="description text-center">
-                                  @ViewBag.LoginUser.UserName,
-                                    <textarea style="width:232px; resize:none;" id="textSumamry">@Model.AboutUs</textarea>
+                                    @ViewBag.LoginUser.UserName,
+                                    <textarea style="width: 232px; resize: none;" id="textSumamry">@Model.AboutUs</textarea>
                                     <div class="form-inline">
-                                    <div id="EditAboutUs">
-                                    <span id="edit" class="btn btn-primary">Edit</span>
-                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                      <span  id="aboutus"class="btn btn-primary Cancel aboutus">Cancel</span>
+                                        <div id="EditAboutUs">
+                                            <span id="edit" class="btn btn-primary">Edit</span>
+                                            <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                            <span id="aboutus" class="btn btn-primary Cancel aboutus">Cancel</span>
                                         </div>
-                                        </div>
+                                    </div>
 
                                 </p>
 
