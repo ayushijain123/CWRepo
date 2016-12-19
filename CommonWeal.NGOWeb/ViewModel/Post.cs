@@ -20,5 +20,6 @@ namespace CommonWeal.NGOWeb.ViewModel
         public List<Comment> PostComments { get; set; }
         public string categoryName { get; set; }
         public List<string> postCategoryNameList { get; set; }
+        public string controllername { get; set; }
     } 
 }
