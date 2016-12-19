@@ -430,13 +430,15 @@ $(document).ready(function () {
 
     /*js for replace category tag on header search bar*/
 
-    $('img').on('click', function () {
-        var image = $(this).attr('src');
-        $('#myModal2').on('show.bs.modal', function () {
-            $(".img-responsive").attr("src", image);
-        });
-    });
+    //$('img').on('click', function () {
+    //    var image = $(this).attr('src');
+    //    $('#myModal2').on('show.bs.modal', function () {
+    //        $(".img-responsive").attr("src", image);
+    //    });
+    //});
 
 
 });   
 
+/* added by neha b*/
+s
