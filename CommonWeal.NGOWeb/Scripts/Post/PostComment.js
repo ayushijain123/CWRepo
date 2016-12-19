@@ -377,7 +377,7 @@ $(document).ready(function () {
 
 
     /*start ajax for about us partial*/
-    $(".aboutus").live('click', function () {
+    $("#aboutus").live('click', function () {
 
        
         $.post("/NGOProfile/AboutUsPartial", function (result) {
