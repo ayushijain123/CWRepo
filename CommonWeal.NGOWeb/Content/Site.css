@@ -425,8 +425,7 @@ input, textarea {
 }
 
 textarea {
-    font-family: inherit;
-    width: 500px;
+    font-family: inherit;    
 }
 
     input:focus, textarea:focus {
@@ -1327,7 +1326,7 @@ tr:nth-child(even) {
 /*NGO Profile CSS*/
 
 textarea {
-    width: 232px;
+    /*width: 232px;*/
     resize: none;
     background-color: #F0F0F0;
 }
@@ -1345,13 +1344,17 @@ textarea {
     font-size: 20px;
     text-align: center;
 }
+
+/*#textSumamry{
+    margin-left: 32px;
+}*/
 /*.aboutushead 
 {
     text-align:center;
 
 }*/
 .aboutusform {
-    margin-left: 11%;
+    /*margin-left: 11%;*/
     /* padding-right: 0px; */
     margin-right: -142px;
 }
@@ -1675,23 +1678,25 @@ added by payal*/
     #pencil:hover {
         color: white;
     }
-     .profile-img-container {
+
+.profile-img-container {
     position: relative;
 }
+
 .profile-img-container {
     height: 300px;
     width: 300px;
     line-height: 300px;
-    position:relative;
+    position: relative;
 }
 
-.profile-img-container:hover img {
-    opacity: 0.5;
-}
+    .profile-img-container:hover img {
+        opacity: 0.5;
+    }
 
-.profile-img-container:not(:hover) .profile-img-i-container {
-    display: none;
-}
+    .profile-img-container:not(:hover) .profile-img-i-container {
+        display: none;
+    }
 
 .profile-img-i-container {
     position: absolute;
@@ -1701,39 +1706,13 @@ added by payal*/
     height: 100%;
     width: 100%;
     z-index: 400;
-    text-align:center;
-}
-
-.profile-img-i-container i {
-    display:block;
-    line-height: inherit;
-}
-
-
-
-/*textarea {
-    width: 232px;
-    resize: none;
-    background-color: #F0F0F0;
-}
-
-.ngo-image {
-    background-color: #888888;
-}
-
-.info-header {
-    font-size: 30px;
     text-align: center;
 }
 
-.about-us-header, .info-header {
-    font-size: 20px;
-    text-align: center;
-}*/
-
-
-
-
+    .profile-img-i-container i {
+        display: block;
+        line-height: inherit;
+    }
 
 
 
