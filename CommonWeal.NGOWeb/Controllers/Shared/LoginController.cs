@@ -46,7 +46,12 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                         /*if email is valid and user is blocked or not active*/
                     else if (!result.IsActive || result.IsBlock)
                     {
-                        ModelState.AddModelError("", "Your request status is pending or blocked");
+                        if (result.IsBlock == true)
+                        {
+                            ModelState.AddModelError("", "You are blocked by admin");
+                        }
+                        else                 
+                        ModelState.AddModelError("", "Your request status is pending");
                     }
                         /*email and password are valid and user is no active and not blocked*/
                     else if (result.LoginEmailID.ToLower().Equals(user.LoginEmailID) && result.LoginPassword.Equals(user.LoginPassword))
