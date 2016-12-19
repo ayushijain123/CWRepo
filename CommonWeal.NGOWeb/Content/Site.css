@@ -823,6 +823,9 @@ tr.pager td {
 }
 
 
+.text-primary {
+    cursor: pointer;
+}
 
 .likecommentsign {
     background-color: #FFFFFF;
@@ -830,15 +833,12 @@ tr.pager td {
     display: block;
     /*margin-left: auto;
     margin-right: auto;*/
-   
+    cursor: pointer;
     font-size: 10px;
     padding-left: 29px;
     border-top: solid;
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
-}
-.cursor {
-  cursor:pointer;
 }
 
 #likecommentsign {
@@ -855,7 +855,7 @@ tr.pager td {
     border-style: inherit;
 }
 
-.comentpost {
+#comentpost {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
@@ -902,7 +902,7 @@ tr.pager td {
     padding: 5px;
 }
 
-.postcommentcontent {
+#postcommentcontent {
     padding-left: 14px;
     margin-left: 73px;
     padding-right: 8px;
@@ -973,7 +973,7 @@ tr.pager td {
 
 .posttag {
     text-align: right;
-    padding: 6px;
+    padding: 10px;
     width: auto;
 }
 
@@ -1011,7 +1011,6 @@ tr.pager td {
 .likecommenticon img {
     height: 30px;
     padding-left: 9px;
-  
 }
 
 .commentmainbox {
@@ -1219,6 +1218,10 @@ tr:nth-child(even) {
 
 /*ngo profile-----------------------------------------------------------------------------------------------*/
 /*added by payal*/
+/*.aboutuspanel {
+    background-color:azure;
+}*/
+
 .profilesummary {
     font-size: 18px;
 }
@@ -1272,21 +1275,22 @@ tr:nth-child(even) {
 
 .card .content {
     padding: 15px 15px 20px 15px;
-    background-color: #7ac0da;
+    background-color: #c7dbec;
 }
 
 .card-user .author {
     text-align: center;
     text-transform: none;
-    margin-top: -153px;
+    /*margin-top: -153px;*/
 }
 
 .card-user .avatar {
     width: 124px;
     height: 124px;
-    border: 5px solid #FFFFFF;
+    /*border: 5px solid #FFFFFF;*/
     position: relative;
     margin-bottom: 15px;
+    background-color: #888888;
 }
 
     .card-user .avatar.border-gray {
@@ -1318,6 +1322,28 @@ tr:nth-child(even) {
     height: 250px;
     width: 300px;
     margin-left: 109px;
+}
+
+/*NGO Profile CSS*/
+
+textarea {
+    width: 232px;
+    resize: none;
+    background-color: #F0F0F0;
+}
+
+.ngo-image {
+    background-color: #888888;
+}
+
+.info-header {
+    font-size: 30px;
+    text-align: center;
+}
+
+.about-us-header, .info-header {
+    font-size: 20px;
+    text-align: center;
 }
 /*.aboutushead 
 {
@@ -1476,10 +1502,6 @@ NGO registration page css*/
     top: 35px;
 }
 
-.year-dropdown {
-    padding: 5px;
-}
-
 /*Reset Password CSS*/
 /*Added by Neha M. on 6-12-16*/
 
@@ -1555,7 +1577,7 @@ added by payal*/
 
 .btnLoad {
     padding-bottom: 56px;
-    width: 50PX;
+    width: 70PX;
 }
 /*.sticky {
     position: fixed;
@@ -1593,7 +1615,7 @@ added by payal*/
 
 .ultext {
     height: 33px;
-     font-size:18px;
+    padding-top: 8px;
     padding-left: 20px;
     text-decoration: underline;
     cursor: pointer;
@@ -1603,7 +1625,6 @@ added by payal*/
     padding-right: 36px;
     font-weight: bold;
     cursor: pointer;
-
 }
 
     #profilepost:hover {
@@ -1611,12 +1632,12 @@ added by payal*/
         cursor: pointer;
     }
 
-.aboutus {
+#aboutus {
     font-weight: bold;
     cursor: pointer;
 }
 
-    .aboutus:hover {
+    #aboutus:hover {
         color: #2a6496;
     }
 
@@ -1629,10 +1650,12 @@ added by payal*/
     height: 169px;
     min-width: 350px;
 }
-
-.profileimageborder {
-}
-
+/*.profileimageborder {
+    border-style: outset;
+   background-color:rgba(111, 145, 175, 0.43);
+   border-color: rgba(105, 105, 105, 0.13);
+       padding-left: 25px;
+}*/
 .profileimagepadding {
     padding-left: 7px;
 }
@@ -1644,28 +1667,73 @@ added by payal*/
 }
 
 #pencil {
+    padding-top: 18px;
     cursor: pointer;
+    padding-bottom: 10px;
 }
 
     #pencil:hover {
         color: white;
     }
-
-.reportAbuse {
-    float: right;
-    color: #908282;
-    padding-right: 6px;
-    cursor: pointer;
+     .profile-img-container {
+    position: relative;
 }
-    .reportAbuse:hover {
-     color:red !Important;
-    }
-
-.deletecomment {
-    cursor: pointer;
-    font-size: 18px;
-    color: #2f2a2a;
+.profile-img-container {
+    height: 300px;
+    width: 300px;
+    line-height: 300px;
+    position:relative;
 }
-    .deletecomment a:hover {
-    color:red !Important;
-    }
+
+.profile-img-container:hover img {
+    opacity: 0.5;
+}
+
+.profile-img-container:not(:hover) .profile-img-i-container {
+    display: none;
+}
+
+.profile-img-i-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    z-index: 400;
+    text-align:center;
+}
+
+.profile-img-i-container i {
+    display:block;
+    line-height: inherit;
+}
+
+
+
+textarea {
+    width: 232px;
+    resize: none;
+    background-color: #F0F0F0;
+}
+
+.ngo-image {
+    background-color: #888888;
+}
+
+.info-header {
+    font-size: 30px;
+    text-align: center;
+}
+
+.about-us-header, .info-header {
+    font-size: 20px;
+    text-align: center;
+}
+
+
+
+
+
+
+
