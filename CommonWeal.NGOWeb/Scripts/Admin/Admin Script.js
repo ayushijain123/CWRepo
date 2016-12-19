@@ -99,10 +99,6 @@ $(function () {
 
 
 
-
-
-
-
 //Added by Neha M. on 30-12-16
 //NGO Donut chart
 var ctx = document.getElementById("myChart1");
@@ -138,17 +134,19 @@ var ctx = document.getElementById("myChart2");
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ["Active Users", "Blocked Users"],
+        labels: ["Active Users", "Blocked Users","Spam Users"],
         datasets: [
         {
             data: [parseInt($("#COAL").html()), parseInt($("#COBU").html())],
             backgroundColor: [
                 "#495b79",
-                "#e45857"
+                "#e45857",
+                "#ffae1a"
             ],
             hoverBackgroundColor: [
                 "#364359",
-                "#dd2c2b"
+                "#dd2c2b",
+                "#e69500"
             ]
         }]
     },
