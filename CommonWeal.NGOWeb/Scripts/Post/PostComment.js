@@ -21,7 +21,7 @@ $(document).ready(function () {
                 createdOn = userinfo[1];
 
                 $("#" + postid).append('    <div class="form-group col-md-12 ">' +
-                '<div class="form-inline " id="comentpost">' +
+                '<div class="form-inline col-md-12 comentpost ">' +
                     '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
