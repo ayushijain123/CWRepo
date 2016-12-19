@@ -1,111 +1,61 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 <script src="~/Scripts/Post/PostComment.js"></script>
-
 <div class="container">
-<div class="row col-md-12 col-sm-12 col-xs-12 ngoprofilenavbar">
-   
-        <div class="panel panel-default  panelNGO ">
-            <div class="profileheadingcolor">
-            <div class="panel-heading ">
 
-
-                <center> <b class="profilesummary"> Profile Summary</b></center>
-            </div>
+    <div class="row">
+        <div class="col-md-12 ngoprofilenavbar">
+            <div class="panel panel-default  panelNGO ">
+                <div class="panel-heading profileheadingcolor">
+                    <center> <b class="profilesummary"> Profile Summary</b></center>
                 </div>
-             <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
-
-
-
-            <div class="panel-body" id="ngoprofilepanelbody">
-              
-             
-                     
-                <div class="row col-md-4 col-md-push-4 profileimageborder">
-                  
-                            <div class="row  col-md-12 profile-img-container">
-                               
-                                @if (ViewBag.imageurl != null)
-                                {
-                                   <img class="profileimage img-thumbnail img-responsive" id="profileimage" src="@ViewBag.imageurl"/>
-                                      <div class="profile-img-i-container">
-        <i class="glyphicon glyphicon-camera fa-2x"  id="pencil" onclick="fileclick(); return false;"></i>
-        <input type="file" id="file" name="file" data-badge="false" />
-                         </div>
-                                 }
-        
-                             
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-body" id="ngoprofilepanelbody">
+                            <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
+                                <div class="row">
+                                    <div class="col-md-4 col-md-push-4">
+                                        @if (ViewBag.imageurl != null)
+                                        {
+                                            <img class="profileimage" id="profileimage" src="@ViewBag.imageurl"/>
+                                            <span title="Change profile picture" id="pencil" class="glyphicon glyphicon-pencil " onclick="fileclick(); return false;"></span>
+                                            <input type="file" id="file" name="file" data-badge="false" />
+                                        }
+                                    </div>
                                 </div>
-                                   <input type="submit" id="uploadimage" value="Upload"><span onclick="fileclick(); return false;"></span></input>
-                         
-
-                                @*<span id="uploadFileName"></span>*@
-
-                     </div>
-                      
-                     
+                            </form>
+                        </div>
                     </div>
-                    
-          
-                 </form>
-            <div class="panel-group navbar-fixed">
-                <ul class="ultext nav nav-tabs">
-                    <li id="profilepost"><span class="NGOProfilepost">Post</span></li>
-                     @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
-                    <li><span class="aboutus">About Us</span></li>
-                    @*<a href="/NGOProfile/AboutUs"><button  type="submit" >AboutUs</button></a>*@
-                </ul>
-          </div>
-       </div>
-        @*  <div>
-            <span id="lblResult"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-group navbar-fixed">
+                            <ul class="ultext nav nav-tabs">
+                                <li id="profilepost"><span id="NGOProfilepost">Post</span></li>
+                                <li><span id="aboutus">About Us</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br />*@
+        </div>
     </div>
-
-    </div>
-<div id="NGOProfilecontent">
-
-
-    @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
-
-
-
-
-
 </div>
-@section scripts{
-    
+<div id="NGOProfilecontent">
+    @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
+</div>
 
-    <script>
-        $(document).ready(function () {
-            //$("#pencil").hide();
-            //$("#profileimage").hover(function () {
-            //    $("#pencil").show();
-            //})
-            //$("#profileimage").mouseout(function () {
-            //    $("#pencil").hide();
-            //})
-            
-            $("#uploadimage").hide();
-            $("#pencil").click(function () {
-                $("#uploadimage").show();
-            });
-        });
-     
-</script>
-    
 
-      
 
-    <!-- Latest compiled and minified JavaScript -->
-   @* <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
-    
-   @* <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
-   *@
 
-}
+
+
+
+
+
+
+
+
+
+
+
 
