@@ -52,7 +52,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
                 userinfo.Add(userName);
                 userinfo.Add(postcmnt.CreatedOn.Value.ToString("MM/dd/yyyy HH:mm"));
-
+                userinfo.Add(postcmnt.CommentID.ToString());
             }
             return Json(userinfo, JsonRequestBehavior.AllowGet);
         }
@@ -152,7 +152,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*method for getting next slot of posts on click of load more button*/
         //[HttpPost]
         [AllowAnonymous]
-        public PartialViewResult onLoadPost(int []category , int count = 0, int NgoID = 0)
+        public PartialViewResult onLoadPost(int[] category, string controller, int count = 0, int NgoID = 0)
         {
             try
             {
@@ -167,7 +167,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 else {
                     load = ob.GetPostOnSeeMore(category, count, NgoID);
                 }
-
+                if (load.Count() > 0) {
+                    for (int i = 0; i < load.Count(); i++ )
+                        load[i].controllername = controller;
+                }
                 /*returing list to  partial view and than partial view is retuned to ajax call  */
                 return PartialView("~/views/userHome/_Posts.cshtml", load);
             }
