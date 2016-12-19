@@ -82,17 +82,15 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     /*login user property defined in base controller*/
                     pl.LoginID = LoginUser.LoginID;
                     pl.PostID = PostID;
-                    db.PostLikes.Add(pl);
-                   
-                   // db.SaveChanges();
+                    db.PostLikes.Add(pl);                   
                     /*update like count */
-                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
-                  //  post.PostLikeCount = db.PostLikes.Where(x => x.PostID == PostID).Count();
+                    var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();                 
                     post.PostLikeCount++;
                     db.SaveChanges();
                 }
+                /*if already liked by user than remove like row of user for unlike */
                 else
-                {/*if already liked by user than remove like row of user for unlike */
+                {                    
                     var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
                     db.PostLikes.Remove(removeLike);
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
