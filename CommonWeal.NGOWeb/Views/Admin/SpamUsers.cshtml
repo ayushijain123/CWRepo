@@ -6,11 +6,11 @@
 <script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
 <link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
- <script type="text/javascript">
-       $(document).ready(function () {
-           $('#myTable').DataTable();
-       });
-    </script> 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
 <h2>Spam Users</h2>
 <div class="row">
     <div class="col-md-12 ">
@@ -31,13 +31,15 @@
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.AbuseedUserName)</td>
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.CommentContent) </td>
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.ReportedBy) </td>
-                     @* <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
-                  @*    <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
-                      <td class="col-md-3 adminTableData"><a href="/admin/BlockUsers/@item.LoginId" class="fa fa-ban fa-2x" aria-hidden="true" style="color:red;"></a></td>
+                        @* <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
+                        @*    <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
+                        <td class="col-md-3 adminTableData"><a href="/admin/BlockUsers/@item.LoginId" class="fa fa-ban fa-2x" aria-hidden="true" style="color:red;"></a></td>
                     </tr>   
                 }
                 <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
-                 <h3> <strong>Spam Users </strong></h3>
+                <h3>
+                    <center><strong>Spam Users </strong></center>
+                </h3>
             </table>
         </div>
     </div>
