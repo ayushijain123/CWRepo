@@ -1656,8 +1656,15 @@ added by payal*/
     padding-right: 6px;
     cursor: pointer;
 }
+    .reportAbuse:hover {
+     color:red !Important;
+    }
 
 .deletecomment {
     cursor: pointer;
     font-size: 18px;
+    color: #2f2a2a;
 }
+    .deletecomment a:hover {
+    color:red !Important;
+    }
