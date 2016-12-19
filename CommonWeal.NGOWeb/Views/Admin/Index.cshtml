@@ -27,7 +27,7 @@
                     </div>
                     <div class="media-body">
                         <h3>NGOs Request
-                             <span class="pull-right"id="COR">@Model.CountOfRequests</span>
+                             <span class="pull-right" id="COR">@Model.CountOfRequests</span>
                         </h3>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Active NGOs
-                             <span class="pull-right"id="COAN">@Model.CountOfActiveNGO</span>
+                             <span class="pull-right" id="COAN">@Model.CountOfActiveNGO</span>
                         </h3>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Blocked NGOs
-                            <span class="pull-right"id="COBN">@Model.CountOfBlockedNGO</span>
+                            <span class="pull-right" id="COBN">@Model.CountOfBlockedNGO</span>
                         </h3>
                     </div>
                 </div>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Active Users
-                            <span class="pull-right"id="COAL">@Model.CountOfTotalActiveUsers</span>
+                            <span class="pull-right" id="COAL">@Model.CountOfTotalActiveUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Warned NGOs
-                        <span class="pull-right"id="COWU">@Model.CountOfWarnedUsers</span>
+                        <span class="pull-right" id="COWU">@Model.CountOfWarnedUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="media-body">
                         <h3>Blocked Users
-                            <span class="pull-right"id="COBU">@Model.CountOfBlockedUsers</span>
+                            <span class="pull-right" id="COBU">@Model.CountOfBlockedUsers</span>
                         </h3>
                     </div>
                 </div>
@@ -119,7 +119,7 @@
         <center><h2>NGOs Update:</h2></center>
         <canvas id="myChart1" style="height: 50px;"></canvas>
     </div>
-     <div class="donut-chart col-md-6">
+    <div class="donut-chart col-md-6">
         <center><h2>Users Update:</h2></center>
         <canvas id="myChart2" style="height: 50px;"></canvas>
     </div>
@@ -127,79 +127,17 @@
 
 <div class="row">
     <div class="discrete-graph col-md-12">
-        <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-
-        <table style="visibility: hidden; display: none;" id="graph-datatable">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>NGOs</th>
-                    <th>Users</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>Jan</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Feb</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Mar</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Apr</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>May</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Jun</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Jul</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Aug</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Sep</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Oct</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <th>Nov</th>
-                    <td>@Model.CountOfTotalNGO</td>
-                    <td>@Model.CountOfTotalUsers</td>
-                </tr>
-                <tr>
-                    <th>Dec</th>
-                    <td>0</td>
-                    <td>0</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row year-dropdown pull-right">
+            <div class="col-md-12">
+                <form>
+                    <strong>Year:</strong>
+                    <select name="year">
+                        <option>2016</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div id="container"></div>
     </div>
 </div>
 
