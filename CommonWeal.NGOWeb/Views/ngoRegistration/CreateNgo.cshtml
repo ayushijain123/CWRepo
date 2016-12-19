@@ -74,7 +74,7 @@
                     <div class="form-group row">
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label for="middle-name" class="control-label">Mobile Number</label></div>
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
-                            @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number", @class = "form-control col-md-7 col-xs-12" })
+                            @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number", @class = "form-control col-md-7 col-xs-12" ,type="Number"})
                             @Html.ValidationMessageFor(a => a.Mobile, string.Empty, new { @class = "Validation-Message" })
                         </div>
 
@@ -82,7 +82,7 @@
                     <div class="form-group row">
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label for="middle-name" class="control-label">Password</label></div>
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
-                            @Html.TextBoxFor(a => a.NGOPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12" })
+                            @Html.PasswordFor(a => a.NGOPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.NGOPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     <div class="form-group row">
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label for="middle-name" class="control-label">Confirm Password</label></div>
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
-                            @Html.TextBoxFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control col-md-7 col-xs-12" })
+                            @Html.PasswordFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.ConfirmPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
