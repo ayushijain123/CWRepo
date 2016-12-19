@@ -913,6 +913,7 @@ tr.pager td {
     padding-left: 24px;
     padding-right: 100px;
     resize: none;
+        background-color: white;
 }
 
 #postform {
