@@ -88,15 +88,17 @@ header {
 #menu {
     padding-right: 17px;
     margin-top: 0px;
-    padding-top:30px;
+    padding-top: 30px;
 }
+
 .main-nav {
-background-color: #505d71;
-border:ridge;
-border-color:#364c6f;
-padding-right: 5px;
+    background-color: #505d71;
+    border: ridge;
+    border-color: #364c6f;
+    padding-right: 5px;
     padding-left: 5px;
 }
+
 .menuitem {
     font-size: 25px;
     padding: 5px;
@@ -400,9 +402,9 @@ fieldset {
         }
 
 label {
-    padding-left:15px;
-    float:left;
-    padding-top:15px;
+    padding-left: 15px;
+    float: left;
+    padding-top: 15px;
     display: block;
     font-size: 1.2em;
     font-weight: 600;
@@ -450,7 +452,7 @@ button {
     margin-left: 17px;
 }
 
-    /*input[type="submit"],
+/*input[type="submit"],
     input[type="button"],
     button:hover {
         background: none;
@@ -732,13 +734,12 @@ tr.pager td {
 }
 
 .uploadpanel {
-width:900px;
+    width: 900px;
 }
 
 .uploadpheadingcolor {
     background-color: rgba(80, 93, 113, 0.91);
-    color:white;
-   
+    color: white;
 }
 
 
@@ -811,8 +812,7 @@ width:900px;
 }
 
 .imageurlpost {
-        margin: 0 auto;
-
+    margin: 0 auto;
     max-width: 90%;
     max-height: 600px;
     display: block;
@@ -835,8 +835,8 @@ width:900px;
     margin-right: auto;*/
     cursor: pointer;
     font-size: 10px;
-   padding-left: 29px;
-   border-top: solid;
+    padding-left: 29px;
+    border-top: solid;
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
@@ -890,7 +890,7 @@ width:900px;
     color: #fff;
     font-size: 20px;
     padding: 5px;
-        margin-right: 5px;
+    margin-right: 5px;
     border-right-style: ridge;
     border-right-color: #5b6c88;
     text-transform: capitalize;
@@ -910,7 +910,6 @@ width:900px;
 }
 
 .textComment {
-  
     width: 700px;
     padding-left: 24px;
     padding-right: 100px;
@@ -919,8 +918,6 @@ width:900px;
 
 #postform {
     /*background-color: #F0F0F0;*/
-   
-    
     margin-bottom: 13px;
 }
 
@@ -970,15 +967,14 @@ width:900px;
     padding-right: 10px !important;
     margin-left: 11px;
     margin-top: 0px !important;
-  
     /*border-color:#225d77;*/
 }
 
 
 .posttag {
     text-align: right;
-    padding:6px;
-    width:auto;
+    padding: 6px;
+    width: auto;
 }
 
 #posttemplate {
@@ -995,7 +991,6 @@ width:900px;
     background-color: #FFFFFF;
     padding-left: 0px;
     padding-top: 8px;
-  
 }
 
 /*css for pop body*/
@@ -1017,16 +1012,17 @@ width:900px;
     height: 30px;
     padding-left: 9px;
 }
+
 .commentmainbox {
     padding-top: 9px;
 }
+
 .profileimagecomment {
     padding-left: 19px;
     padding-bottom: 5px;
     height: 45px;
     width: auto;
     padding-right: 0px;
-     
     font-size: xx-large;
 }
 
@@ -1040,10 +1036,8 @@ width:900px;
     margin-left: 5px;
     width: 682px;
     margin-top: 1px;
-   
     margin-bottom: 7px;
     padding-right: 43px;
-  
 }
 /*Added by Rishiraj on 08/11/2016*/
 /*.showmeonhover { text-decoration: none; }*/
@@ -1069,8 +1063,8 @@ width:900px;
     overflow: auto;
     max-height: 600px;
     border: solid thin;
-    padding-right:0px;
-    padding-left:0px;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 th {
@@ -1099,8 +1093,8 @@ tr:nth-child(even) {
 .tableAdmin {
     margin-bottom: 50px;
     box-shadow: 2px 1px 10px #888888;
-    padding-left:0px;
-    padding-right:0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .adminLinks {
@@ -1153,8 +1147,8 @@ tr:nth-child(even) {
     padding: 10px 0;
     height: 150px;
 }
+
 .uploadimagesection {
-    
 }
 /* Add Animation */
 .fullImage, #caption {
@@ -1235,12 +1229,11 @@ tr:nth-child(even) {
 }
 
 #ngoprofilepanelbody {
-  
     background-color: #c7dbec;
 }
 
 .ngoprofilenavbar {
-    }
+}
 
 .fixed {
     position: fixed;
@@ -1482,6 +1475,10 @@ NGO registration page css*/
     top: 35px;
 }
 
+.year-dropdown {
+    padding: 5px;
+}
+
 /*Reset Password CSS*/
 /*Added by Neha M. on 6-12-16*/
 
@@ -1578,9 +1575,10 @@ added by payal*/
 .uploadpanelbody {
     background-color: #F0F0F0;
 }
+
 #bodycolor {
     background-color: #ebeff2;
-   padding-bottom:50px;
+    padding-bottom: 50px;
 }
 
 
@@ -1591,64 +1589,74 @@ added by payal*/
 .selectcategory {
     padding-bottom: 9px;
 }
+
 .ultext {
-height: 33px;
+    height: 33px;
     padding-top: 8px;
     padding-left: 20px;
     text-decoration: underline;
-    cursor:pointer;
+    cursor: pointer;
 }
+
 #profilepost {
-        padding-right: 36px;
-         font-weight: bold;
- cursor:pointer;
+    padding-right: 36px;
+    font-weight: bold;
+    cursor: pointer;
 }
+
     #profilepost:hover {
-    color:#2a6496;
-    cursor:pointer;
+        color: #2a6496;
+        cursor: pointer;
     }
+
 .aboutus {
-     font-weight: bold;
-     cursor:pointer;
+    font-weight: bold;
+    cursor: pointer;
 }
-.aboutus:hover {
-    color:#2a6496;
+
+    .aboutus:hover {
+        color: #2a6496;
     }
+
 .profileheadingcolor {
-background-color: rgba(80, 93, 113, 0.91);
-color:white;
+    background-color: rgba(80, 93, 113, 0.91);
+    color: white;
 }
-.profileimage{
-       height: 169px;
+
+.profileimage {
+    height: 169px;
     min-width: 350px;
 }
+
 .profileimageborder {
-  
 }
+
 .profileimagepadding {
-    padding-left:7px;
+    padding-left: 7px;
 }
+
 #uploadimage {
-background: none;
+    background: none;
     border-style: hidden;
-    width:auto;
+    width: auto;
 }
+
 #pencil {
-   
-    cursor:pointer;
-       
+    cursor: pointer;
 }
+
     #pencil:hover {
-    color:white;
+        color: white;
     }
 
 .reportAbuse {
-float:right; 
-color:#908282; 
-padding-right:6px;
-cursor:pointer;
+    float: right;
+    color: #908282;
+    padding-right: 6px;
+    cursor: pointer;
 }
+
 .deletecomment {
-cursor:pointer;
- font-size:18px;
+    cursor: pointer;
+    font-size: 18px;
 }
