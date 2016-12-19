@@ -78,22 +78,26 @@
                     </div>
                     <div class="panel panel-body">
                         <div class="row">
-                            <div class="col-md-4 col-md-push-4 ngo-image" style="height: 120px">
-                                <img src="@ViewBag.imageurl"/>
-                                @*<img src="#" height="30" width="40" />*@
+                            <div class="col-md-12">
+                                <div class="col-md-4 col-md-push-4 ngo-image" style="height: 120px">
+                                    <img src="@ViewBag.imageurl"/>
+                                    @*<img src="#" height="30" width="40" />*@
+                                </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="text-area col-md-6" style="margin-left: 104px;">
-                                <textarea id="textSumamry">@Model.AboutUs</textarea>
+                            <div class="col-md-12">
+                                <div class="text-area col-md-8 col-md-push-2">
+                                    <textarea id="textSumamry">@Model.AboutUs</textarea>
+                                </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-inline">
                                 <div id="editAboutUs">
-                                    <span id="edit" class="btn btn-primary" style="margin-left: 206px;">Edit</span>
-                                    <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" style="margin-left: 160px;" hidden>Save</button>
-                                    <a href="#"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
+                                    <center><span id="edit" class="btn btn-primary">Edit</span></center>
+                                    <center><button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" @*style="margin-left: 160px;*@ hidden>Save</button>
+                                    <a href="#"><span id="Cancel" class="btn btn-primary">Cancel</span></a></center>
                                 </div>
                             </div>
                         </div>
