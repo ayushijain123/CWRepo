@@ -823,9 +823,6 @@ tr.pager td {
 }
 
 
-.text-primary {
-    cursor: pointer;
-}
 
 .likecommentsign {
     background-color: #FFFFFF;
@@ -833,12 +830,15 @@ tr.pager td {
     display: block;
     /*margin-left: auto;
     margin-right: auto;*/
-    cursor: pointer;
+   
     font-size: 10px;
     padding-left: 29px;
     border-top: solid;
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
+}
+.cursor {
+  cursor:pointer;
 }
 
 #likecommentsign {
@@ -1011,6 +1011,7 @@ tr.pager td {
 .likecommenticon img {
     height: 30px;
     padding-left: 9px;
+  
 }
 
 .commentmainbox {
@@ -1554,7 +1555,7 @@ added by payal*/
 
 .btnLoad {
     padding-bottom: 56px;
-    width: 70PX;
+    width: 50PX;
 }
 /*.sticky {
     position: fixed;
