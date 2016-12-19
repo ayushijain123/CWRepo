@@ -55,9 +55,8 @@ $(document).ready(function () {
     });
 
 
-    $(".commentIcon").on('click', function () {
+    $(".commentIcon").live('click', function () {
 
-        alert('test click');
         var postid = $(this).attr('id').split('-')[1];
         $("#txtComment-" + postid).focus();
         //console.log(result);
