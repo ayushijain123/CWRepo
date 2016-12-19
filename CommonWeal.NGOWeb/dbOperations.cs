@@ -413,7 +413,7 @@ namespace CommonWeal.NGOWeb
                     pm.commentCount = item.PostCommentCount.Value;
                     //end all comment of  particular post
                     pm.PostComments = imagecommentlist;
-
+                    pm.controllername = "";
                     pm.postCategoryNameList = item.CategoryList;
 
                     ob.Add(pm);
