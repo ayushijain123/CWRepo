@@ -832,7 +832,7 @@ tr.pager td {
     display: block;
     /*margin-left: auto;
     margin-right: auto;*/
-    cursor: pointer;
+   
     font-size: 10px;
     padding-left: 29px;
     border-top: solid;
@@ -969,7 +969,9 @@ tr.pager td {
     margin-top: 0px !important;
     /*border-color:#225d77;*/
 }
-
+.cursor {
+cursor:pointer;
+}
 
 .posttag {
     text-align: right;
