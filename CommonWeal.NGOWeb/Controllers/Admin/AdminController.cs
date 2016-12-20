@@ -25,11 +25,11 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         dbOperations obj = new dbOperations();
         public ActionResult Index()
         {
-            
-         var result = Task.Run(() => APIHelper<Count>.GetJsonAsync1("Donut/GetCount"));
-            
-               return View(result.Result);
-    
+
+            var result = Task.Run(() => APIHelper<Count>.GetJsonAsync1("Donut/GetCount"));
+
+            return View(result.Result);
+
         }
 
         public ActionResult Active_Users()
@@ -338,7 +338,40 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             CommonWealEntities context = new CommonWealEntities();
             var ob = context.SpamUsers.ToList();
             return View(ob);
-           
+
+        }
+        /*get dat monthly basis for graph*/
+        public JsonResult GetDataByMonth(int year=0)
+        {
+            if (year == 0)
+            {
+                year = DateTime.Now.Year; 
+            }
+            CommonWealEntities context = new CommonWealEntities();
+              List<int> ngo = new List<int>();
+            List<int> user = new List<int>();
+          
+            for (int i = 1; i <= 12; i++)
+            {
+                ngo.Add(context.Users.Where(x => x.LoginUserType == 1 && x.CreatedOn.Value.Month == i && x.CreatedOn.Value.Year == year).Count());
+                user.Add(context.Users.Where(x => x.LoginUserType == 3 && x.CreatedOn.Value.Month == i && x.CreatedOn.Value.Year == year).Count());
+
+            }
+            List<BarChartModel> barChartData = new List<BarChartModel>();
+            barChartData.Add(new BarChartModel() { 
+            name="NGO",
+            data= ngo
+            });
+
+            barChartData.Add(new BarChartModel()
+            {
+                name = "User",
+                data = user
+            });
+
+
+
+            return Json(barChartData, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Unblock(int id)
@@ -493,6 +526,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
     }
 
-
+    public class BarChartModel
+    {
+        public string name { get; set; }
+        public List<int> data { get; set; }
+    }
 
 }
