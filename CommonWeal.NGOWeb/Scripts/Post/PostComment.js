@@ -24,7 +24,8 @@ $(document).ready(function () {
                 createdOn = userinfo[1];
                 commentid = parseInt(userinfo[2]);
                 if (controller == "NGOProfile")
-                {spamicon= '<span id="reportAbuse-'+commentid+'" class="reportAbuse fa fa-exclamation-circle" title="Report abuse"></span>'; 
+                {
+                    spamicon = '<span id="reportAbuse-' + commentid + '" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>';
                 }
                 $("#" + postid).append('    <div class="form-group col-md-12 ">' +
                 '<div class="form-inline col-md-12 comentpost ">' +
@@ -88,9 +89,11 @@ $(document).ready(function () {
     //start Likecount and update ajax
     $(".LikeIcon").live('click', function () {
         console.log('clicked');
+        var controllerNAME = $("#controllername").html();
+      //  alert(controllerNAME);
         var postid = $(this).attr('id').split('-')[1];
         var like = true;
-        $.post("/Post/SubmitLike?Like=" + like + "&postId=" + postid, function (result) {
+        $.post("/Post/SubmitLike?Like=" + like + "&controllerNAME="+controllerNAME+"&postId=" + postid, function (result) {
             if (result != null)
             {
                 //alert(result);
