@@ -36,9 +36,7 @@
 //    });
 //});
 
-//Added by Neha M.
-//High Charts 
-$(function () {
+function GetBarChart(graphData) {
     Highcharts.chart('container', {
         chart: {
             type: 'column'
@@ -85,16 +83,51 @@ $(function () {
                 borderWidth: 0
             }
         },
-        series: [{
-            name: 'NGOs',
-            data: [49, 71, 106, 129, 144, 176, 135, 148, 216, 194, 95, 54]
-
-        }, {
-            name: 'Users',
-            data: [83, 78, 98, 93, 106, 84, 105, 104, 91, 83, 106, 92]
-
-        }]
+        series: graphData
     });
+
+}
+
+
+
+$(".BarGraph").on('change', function () {
+    //var postid = $(this).attr('id').split('-')[1];
+    //var like = true;
+    var year = $(this).val();
+    var graphData;
+    $.post("/Admin/GetDataByMonth?year="+ year, function (result) {
+        if (result != null) {
+            //alert(result);
+            graphData = result;
+            GetBarChart(graphData)
+            //$("#liketemplate-" + postid).html("");
+
+            //$("#liketemplate-" + postid).append(result);
+        }
+
+        //  window.location.reload();
+        //console.log(result);
+    });
+
+
+});
+//Added by Neha M.
+//High Charts 
+$(function () {
+    var graphData;
+   
+    var year =0;
+    $.post("/Admin/GetDataByMonth?year=" + year, function (result) {
+        if (result != null) {
+            graphData = result;
+            GetBarChart(graphData);
+            
+        }
+    });
+   
+ 
+  
+    
 });
 
 
@@ -137,7 +170,7 @@ var myChart = new Chart(ctx, {
         labels: ["Active Users", "Blocked Users","Spam Users"],
         datasets: [
         {
-            data: [parseInt($("#COAL").html()), parseInt($("#COBU").html())],
+            data: [parseInt($("#COAL").html()), parseInt($("#COBU").html()),0],
             backgroundColor: [
                 "#495b79",
                 "#e45857",
