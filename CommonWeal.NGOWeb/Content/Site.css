@@ -975,7 +975,24 @@ tr.pager td {
     text-align: right;
     padding: 10px;
     width: auto;
+        padding-top: 4px;
 }
+.deletecomment {
+font-size:18px;
+
+}
+    .deletecomment a:hover {
+    color:red;
+    }
+
+.reportAbuse {
+padding-right:10px;
+font-size:14px;
+cursor:pointer;
+}
+    .reportAbuse:hover {
+    color:red;
+    } 
 
 #posttemplate {
     border: medium;
@@ -1674,6 +1691,7 @@ added by payal*/
     padding-top: 18px;
     cursor: pointer;
     padding-bottom: 10px;
+
 }
 
     #pencil:hover {
