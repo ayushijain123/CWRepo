@@ -168,6 +168,13 @@ footer {
     font-size: 12px;
 }
 
+.forgot-password, .confirm-otp, .confirm-password {
+    margin-top: 100px;
+}
+
+.pass-fields {
+    padding-left: 25px;
+}
 
 /* menu
 ----------------------------------------------------------
@@ -425,7 +432,7 @@ input, textarea {
 }
 
 textarea {
-    font-family: inherit;    
+    font-family: inherit;
 }
 
     input:focus, textarea:focus {
@@ -909,7 +916,7 @@ tr.pager td {
     padding-left: 24px;
     padding-right: 100px;
     resize: none;
-        background-color: white;
+    background-color: white;
 }
 
 #postform {
@@ -1730,6 +1737,3 @@ added by payal*/
         display: block;
         line-height: inherit;
     }
-
-
-
