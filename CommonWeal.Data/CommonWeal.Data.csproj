@@ -105,6 +105,9 @@
     <Compile Include="RegisteredUser.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RegistrationYear.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="RoleType.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
