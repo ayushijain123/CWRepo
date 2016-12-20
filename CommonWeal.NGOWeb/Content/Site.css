@@ -1507,6 +1507,7 @@ NGO registration page css*/
     box-shadow: 2px 1px 10px #888888;
     margin-top: 20px;
     margin-bottom: 40px;
+    min-height: 450px;
 }
 
 .donut-chart {
