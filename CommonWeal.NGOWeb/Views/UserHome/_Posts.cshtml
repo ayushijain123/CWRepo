@@ -171,7 +171,7 @@ $.noConflict();
                         <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
                         @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")))
                         {
-                            <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle" title="Report abuse"></span>
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>
                         }
                         <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
 
@@ -223,4 +223,5 @@ $.noConflict();
 
 </div>
 }
+
     
