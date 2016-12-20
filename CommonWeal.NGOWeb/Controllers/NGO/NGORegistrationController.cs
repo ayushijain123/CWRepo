@@ -64,7 +64,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             ViewBag.ImageList = imageValues;
             return View();
         }
-       /*edited by abhijeet*/
+
+       
         [HttpPost]
         public ActionResult CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
@@ -81,9 +82,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                         objngo.ChairmanID = Convert.ToBase64String(res);
                         objngo.RegistrationProof = Convert.ToBase64String(res1);
                     }
-                    var result = Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));
-                  
-                   // return JavaScript("window.location = '" + Url.Action("Index", "Welcome") + "'");
+                    var result = Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));                                 
                     return RedirectToAction("Index", "Welcome");
                 }
                 catch (Exception ex)
