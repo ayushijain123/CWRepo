@@ -104,6 +104,14 @@ namespace CommonWeal.NGOAPI.Controllers
                     objngo.ChairmanID = null;
                     objngo.RegistrationProof = null;
                     context.NGOUsers.Add(objngo);
+                    var year = DateTime.Now.Year;
+                    var objresyear = context.RegistrationYears.Where(x => x.year == year).FirstOrDefault();
+                    if (objresyear == null)
+                    {
+                        RegistrationYear objres = new RegistrationYear();
+                        objres.year = year;
+                        context.RegistrationYears.Add(objres);
+                    }
                     context.SaveChanges();
                     /*it will redirect ngo user to welcome page after registration*/
                     HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
