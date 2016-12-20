@@ -22,6 +22,6 @@ namespace CommonWeal.Data.ModelExtension
         public int CountOfTotalActiveUsers { get; set; }
         public int CountOfTotalBlockUsers { get; set; }
         public int CountOfTotalUsers { get; set; }
-
+        public List<int> YearList { get; set; }
     }
 }
