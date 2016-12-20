@@ -131,8 +131,15 @@
             <div class="col-md-12">
                 <form>
                     <strong>Year:</strong>
-                    <select name="year">
-                        <option>2016</option>
+                    <select name="year" id=""class="BarGraph">
+                       
+                        @foreach(var year in Model.YearList )
+                        {
+                            if (year == DateTime.Now.Year)
+                            { <option selected>@year</option>}
+                            else{ <option >@year</option>}
+                        }
+                        
                     </select>
                 </form>
             </div>
