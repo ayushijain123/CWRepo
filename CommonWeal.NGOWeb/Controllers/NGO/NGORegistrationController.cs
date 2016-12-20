@@ -64,7 +64,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             ViewBag.ImageList = imageValues;
             return View();
         }
-       
+       /*edited by abhijeet*/
         [HttpPost]
         public ActionResult CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
