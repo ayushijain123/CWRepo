@@ -120,7 +120,7 @@
                            Photo Id Of Chairman                           
                         </label></div>
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
-                            @Html.TextBoxFor(a => a.ChairmanID,  new { type = "file", @class = "form-control col-md-7 col-xs-12"  })
+                            @Html.TextBoxFor(a => a.ChairmanID,  new { type = "file", @class = "form-control col-md-7 col-xs-12" ,accept="image/jpeg,image/png,jpg|png" })
                             @Html.ValidationMessageFor(a => a.ChairmanID, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                          Copy Of Registration                        
                         </label></div>
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">                        
-                              @Html.TextBoxFor(a => a.RegistrationProof,  new { type = "file", @class = "form-control col-md-7 col-xs-12"  })
+                              @Html.TextBoxFor(a => a.RegistrationProof,  new { type = "file", @class = "form-control col-md-7 col-xs-12" ,accept="image/jpeg,image/png,application/pdf,jpg|png|pdf" })
                             @Html.ValidationMessageFor(a => a.RegistrationProof, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
