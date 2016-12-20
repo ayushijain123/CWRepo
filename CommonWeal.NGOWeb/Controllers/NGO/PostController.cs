@@ -65,7 +65,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*action for submit like through ajax*/
        // [HttpPost]
 
-        public PartialViewResult SubmitLike(bool like, int PostID = -1)
+        public PartialViewResult SubmitLike(bool like, string controllerNAME="default", int PostID = -1)
         {
             if (PostID != -1)
             {
@@ -94,8 +94,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 /*if already liked by user than remove like row of user for unlike */
                 else
                 {                    
-                    var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
-                    db.PostLikes.Remove(removeLike);
+                  //  var removeLike = db.PostLikes.Where(pstlike => pstlike.PostID == PostID & pstlike.LoginID == LoginUser.LoginID).FirstOrDefault();
+                    db.PostLikes.Remove(currentLikeUser);
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
                     post.PostLikeCount--;
                     
@@ -105,7 +105,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var postlikelist = new Post();
              postlikelist.postlike=getLikeList(PostID);
              postlikelist.postId = PostID;
-             postlikelist.controllername = "default";
+             postlikelist.controllername = controllerNAME;
             return PartialView("../UserHome/_LikePartial",postlikelist);
         }
 
