@@ -105,6 +105,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var postlikelist = new Post();
              postlikelist.postlike=getLikeList(PostID);
              postlikelist.postId = PostID;
+             postlikelist.controllername = "default";
             return PartialView("../UserHome/_LikePartial",postlikelist);
         }
 
@@ -155,7 +156,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*method for getting next slot of posts on click of load more button*/
         //[HttpPost]
         [AllowAnonymous]
-        public PartialViewResult onLoadPost(int[] category, string controller, int count = 0, int NgoID = 0)
+        public PartialViewResult onLoadPost(int[] category, string controller="", int count = 0, int NgoID = 0)
         {
             try
             {
