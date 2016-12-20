@@ -67,6 +67,14 @@ namespace CommonWeal.NGOAPI.Controllers
                 //conn.RegisteredUsers.Add(ru);
                 //conn.Configuration.ValidateOnSaveEnabled = false;
                 conn.RegisteredUsers.Add(ru);
+                var year = DateTime.Now.Year;
+                var objresyear = conn.RegistrationYears.Where(x => x.year == year).FirstOrDefault();
+                if (objresyear == null)
+                {
+                    RegistrationYear objres = new RegistrationYear();
+                    objres.year = year;
+                    conn.RegistrationYears.Add(objres);
+                }
                 conn.SaveChanges();
                 //HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, ru);
                 return true;
