@@ -1354,9 +1354,6 @@ textarea {
     background-color: #F0F0F0;
 }
 
-.ngo-image {
-    background-color: #888888;
-}
 
 .info-header {
     font-size: 30px;
@@ -1670,6 +1667,14 @@ added by payal*/
 .profileheadingcolor {
     background-color: rgba(93, 112, 141, 0.91);
     color: white;
+}
+.tooltipsy
+{
+    padding: 10px;
+    max-width: 200px;
+    color: #303030;
+    background-color: #f5f5b5;
+    border: 1px solid #deca7e;
 }
 
 .profileimage {
