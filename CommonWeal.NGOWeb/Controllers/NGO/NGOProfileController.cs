@@ -3,10 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using System;
 using System.Collections.Generic;
-
 using System.Web;
-
-
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.Web.Mvc.Ajax;
@@ -73,19 +70,22 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [HttpPost]
         public JsonResult SubmitSummary(string summary, int Loginid)
         {
+            string summery;
             CommonWealEntities context = new CommonWealEntities();
             try
             {
                 var obj = context.NGOUsers.Where(x => x.LoginID == Loginid).FirstOrDefault();
                 obj.AboutUs = summary;
                 context.Configuration.ValidateOnSaveEnabled = false;
+
                 context.SaveChanges();
+                summary = obj.AboutUs;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(summary, JsonRequestBehavior.AllowGet);
 
         }
         [HttpPost]
