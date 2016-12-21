@@ -1,71 +1,124 @@
-﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfileCustom
+﻿@model CommonWeal.Data.NGOUser
 @{
     ViewBag.Title = "AboutUs";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+@section scripts{
+    <script src="~/Scripts/NGOProfile%20Script/NGOScript.js"></script>
+}
 <script>
     $("#editbtn").click(function () {
         $(this).hide();
     });
+    //$(document).ready(function () {
+    //    $('#textSumamry').focus(function () {
+    //        $(".SaveSummaryId").prop('disabled',false);
+    //});
+
     $(document).ready(function () {
-        $("input").prop('disabled', true);
-        $("#submitbtn").prop('disabled', true);
-        $("#Canclebtn").hide();
-        $("#submitbtn").hide();
 
-
-        $("#editbtn").click(function () {
-            $(this).hide();
-            $("#Canclebtn").show();
-            $("#submitbtn").show();
-            $("input").prop('disabled', false);
+        $('.fieldchange').focus(function () {
             $("#submitbtn").prop('disabled', false);
 
         });
-        $("#Canclebtn").click(function () {
+            $('#textSumamry').focus(function () {
+                $(".SaveSummaryId").prop('disabled',false);
+       
+            
            
-            $("input").prop('disabled', true);
-            $("#submitbtn").hide();
-            $(this).hide();
-            $("#editbtn").show();
-            //$("#submitbtn").prop('disabled', true);
-        });
-
-
-        $("textarea").prop('disabled', true);
-        $(".SaveSummaryId").hide();
-        $(".Cancel").hide();
-        $("#edit").click(function () {
-            $(this).hide();
-            $(".Cancel").show();
-            $(".SaveSummaryId").show();
-            $("textarea").prop('disabled', false);
-        });
-
-
-        $(".Cancel").click(function () {
-            $("textarea").prop('disabled', true);
-            $(".SaveSummaryId").hide();
-            $(this).hide();
-            $("#edit").show();
-            //$("#submitbtn").prop('disabled', true);
-        });
-
-        $(".SaveSummaryId").live('click', function () {
-            var Loginid = $(this).attr('id').split('-')[1];
-            var summary = $('#textSumamry').val();
-            $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
-
-                alert("summary saved successfully");
-                $(".Cancel").hide();
-                $(".SaveSummaryId").hide();
-                $("#edit").show();
-                //console.log(result);
+     
             });
 
 
+    var email = "a";
+    var mobile = "b";
+    var NgoAdress = "c";
+    var Ngoname = "d";
+    var chairman = "e";
+    var textSumamry="f"
+    $("input").prop('disabled', true);
+    $("#submitbtn").prop('disabled', true);
+    $("#Canclebtn").hide();
+    $("#submitbtn").hide();
+
+       
+    $("#editbtn").click(function () {
+          
+        email= $("#email").val();
+        mobile=$("#mobile").val();
+        NgoAdress= $("#NgoAdress").val();
+        Ngoname=$("#Ngoname").val();
+        chairman=$("#chairman").val();
+           
+        $(this).hide();
+        $("#Canclebtn").show();
+        $("#submitbtn").show();
+        $("input").prop('disabled', false);
+        $("#submitbtn").prop('disabled', true);
+
+    });
+    $("#Canclebtn").click(function () {
+           
+        $("#email").val(email);
+        $("#mobile").val( mobile);
+        $("#NgoAdress").val(NgoAdress);
+        $("#Ngoname").val(Ngoname);
+        $("#chairman").val(chairman);
+        $("input").prop('disabled', true);
+        $("#submitbtn").hide();
+        $(this).hide();
+        $("#editbtn").show();
+        //$("#submitbtn").prop('disabled', true);
+    });
+
+
+
+
+
+    $("textarea").prop('disabled', true);
+    $(".SaveSummaryId").hide();
+    $("#Cancel").hide();
+    $("#edit").click(function () {
+        summary = $("#textSumamry").val();
+           
+        $(this).hide();
+        $("#Cancel").show();
+        //$(".SaveSummaryId").prop('disabled', true);
+        $(".SaveSummaryId").show();
+        $("textarea").prop('disabled', false);
+    });
+
+
+    $("#Cancel").click(function () {
+        $("#textSumamry").val(summary);
+
+        $("textarea").prop('disabled', true);
+        $(".SaveSummaryId").hide();
+        $(this).hide();
+        $("#edit").show();
+        //$("#submitbtn").prop('disabled', true);
+    });
+
+    $(".SaveSummaryId").live('click', function () {
+        var Loginid = $(this).attr('id').split('-')[1];
+        var summary = $('#textSumamry').val();
+        // alert("hi")
+        $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
+
+            alert("summary saved successfully");
+            if (result != null)
+            {
+                $("#textSumamry").html(result);
+            }
+            $("#Cancel").hide();
+            $(".SaveSummaryId").hide();
+            $("#edit").show();
+            //console.log(result);
         });
+
+
+    });
        
     });
     $('img').on('click', function () {
@@ -75,143 +128,217 @@
         });
     });
 
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
   
 </script>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <div class="container">
- 
     <div class="row">
-        <div class="main-panel">
-
-            <div class="aboutusform row">
-
-                <div class="row">
-                    <div class="col-md-6 col-md-push-2">
-                        <h3><strong>Your Personal Info</strong></h3>
-
+        <div class="AboutUs Info col-md-12">
+            <div class="ngo-info col-md-6">
+                <div class="panel panel-default">
+                    <div class="info-header panel-heading">
+                        <strong>Your Personal Info.</strong>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-md-pull-1">
-
-                    <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="email">NGO Email:</label>
+                    <div class="panel panel-body">
+                        <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
+                            <div class="form-group row ">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="email">NGO Email:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control fieldchange" id="email" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NGOEmailID" required>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-
-                                <input type="email" class="form-control" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NgoUser.NGOEmailID" required>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="email">Mobile:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control fieldchange" name="Mobile" id="mobile" placeholder="Enter Mobile Number" value="@Model.Mobile"required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="email">Mobile:</label>
-
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="email">Address:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control fieldchange" id="NgoAdress"  name="NGOAddress" placeholder="Enter Adderess" value="@Model.NGOAddress"required>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="Mobile" placeholder="Enter Mobile Number" value="@Model.NgoUser.Mobile"required>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="email">Name:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control fieldchange"  id="Ngoname"name="NGOName" placeholder="Enter Name" value="@Model.NGOName"required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="email">Address:</label>
-
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="email">Chairman Name:</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control fieldchange" id="chairman"name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.ChairmanName"required>
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="NGOAddress" placeholder="Enter Adderess" value="@Model.NgoUser.NGOAddress"required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="email">Name:</label>
-
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="NGOName" placeholder="Enter Name" value="@Model.NgoUser.NGOName"required>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <div class="col-md-6">
-                                <label class="control-label" for="email">Chairman Name:</label>
-
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.NgoUser.ChairmanName"required>
-                            </div>
-                        </div>
-                     
-                        @if(Model.UserID==Model.NgoUser.LoginID)
-                        {
-                        <div class="form-inline col-md-6 col-md-push-6">
-                          <div id="profileupdate">
-                                    <span id="editbtn" class="btn btn-primary">Edit</span>
+                            <div class="form-inline col-md-6">
+                                <div id="profileupdate">
+                                    <span id="editbtn" class="btn btn-primary" style="margin-left: 176px;">Edit</span>
                                     <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                                     
+                                    <span id="Canclebtn" class="btn btn-primary">Cancel</span>
                                 </div>
                             </div>
-                      }
-                        <p style="padding-bottom: 10px;"></p>
-                    </form>
-                    <span id="Canclebtn" class="btn btn-primary aboutus">Cancel</span>
-                </div>
-                 
-
-                <div class="col-md-6 col-md-push-1">
-
-                    <p style="padding-top: 60px;"></p>
-                    <div class="editpanel panel panel-default">
-                        <div class="card card-user">
-                            @* <div class="image">
-                                        <img src="~/Images/bckg.jpg" style="align" alt="...">
-                                    </div>*@
-
-                            <div class="content">
-                                <div class="author">
-                                    @*<a href="#">*@
-
-                                    @*                                            <a href="#">*@
-
-                                    <img  class="avatar border-gray" @*src="~/Images/sammanlogo.PNG" alt="..."*@>
-                                    <h4 class="title">AboutUs<br>
-                                    </h4>
-                                    </a>
-
-                                            @*</a>*@
-                                </div>
-                                <div class="form-inline">
-                                     <div id="EditAboutUs">
-                                <p class="description text-center">
-                                  @ViewBag.LoginUser.UserName,
-                                    <textarea style="width:232px; resize:none;" id="textSumamry">@Model.NgoUser.AboutUs</textarea>
-                                    @if (Model.UserID == Model.NgoUser.LoginID)
-                                    { 
-                                    <span id="edit" class="btn btn-primary">Edit</span>
-                                    }                         
-                                     <button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                      <span  id="aboutus"class="btn btn-primary Cancel aboutus">Cancel</span>
-                                        </div>
-                                        </div>
-
-                                </p>
-
-                            </div>
-
-                        </div>
+                            <p style="padding-bottom: 10px;"></p>
+                        </form>
                     </div>
-
                 </div>
             </div>
-
+            <div class="form-inline col-md-6 ngo-about-us">
+                <div class="about-us-panel panel panel-default">
+                    <div class="about-us-header panel-heading">
+                        <strong>About Us</strong>
+                    </div>
+                    <div class="panel panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-4 col-md-push-4">
+                                    <img src="@Model.NGOProfilePic" style="height: 110px; width: 110px;"/>
+                                    @*<img src="#" height="30" width="40" />*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="text-area col-md-8 col-md-push-2">
+                                    <textarea id="textSumamry">@Model.AboutUs</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-inline">
+                                <div id="editAboutUs">
+                                    <center><span id="edit" class="btn btn-primary">Edit</span></center>
+                                    <center><button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" @*style="margin-left: 160px;*@ hidden>Save</button>
+                                    <span id="Cancel" class="btn btn-primary">Cancel</span></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+@*  <div class="col-md-6 col-md-push-1">
+                <div class="editpanel panel panel-default">
+                    <div class="card card-user">
+                        <div class="content">
+                            <div class="author">
+                                <img class="avatar" src="#">
+                                <h4 class="title">About Us<br>
+                                </h4>
+                            </div>
+                            <div class="description text-center">                     
+                                    <textarea style="width: 232px; resize: none;" id="textSumamry">@Model.AboutUs</textarea>
+                                <div class="form-inline">
+                                    <div id="EditAboutUs">
+                                        <span id="edit" class="btn btn-primary">Edit</span>
+                                        <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                        <a href="#"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+@*  <div class="ngo-about-us col-md-6">                 
+                    <p style="padding-top: 60px;"></p>
+                    <div class="editpanel panel panel-default">
+                           <div class="panel-heading">
+                                    <h4 class="title" style="text-align:center;">About Us<br></h4>
+                                </div>
+                        <div class=" panel panel-body">
+                            <div class="row">                                
+                              <div class="col-md-6 panel panel-body" style="background-color:lightpink;">
+                                   
+                              </div> 
+                            </div>    
+                             <div class="description text-center">
+                                    <textarea id="textSumamry">@Model.AboutUs</textarea>
+                                    <div class="form-inline">
+                                    <div id="EditAboutUs">
+                                    <span id="edit" class="btn btn-primary">Edit</span>
+                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                      <a href="/NGOProfile/AboutUs"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
+                                        </div>
+                                        </div>
+                                </div>   
+                            
+                            </div>
+                        </div>
+                    </div>*@
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*             
+                            </div>                      
+                        <p style="padding-bottom: 10px;"></p>
+                    </form>
+                </div>
+                <div class="col-md-6 ">
+                    <p style="padding-top: 60px;"></p>
+                    <div class="editpanel panel panel-default">
+                        <div class="card card-user">                          
+                            <div class="content">
+                                <div class="author"> 
+                                    <img  class="avatar border-gray" src="#">
+                                    <h4 class="title">About Us<br></h4>
+                                </div>
+                                <div class="description text-center">
+                                  @ViewBag.LoginUser.UserName
+                                    <textarea style="width:232px; resize:none;" id="textSumamry" background-color:"azure">@Model.AboutUs</textarea>
+                                    <div class="form-inline">
+                                    <div id="EditAboutUs">
+                                    <span id="edit" class="btn btn-primary">Edit</span>
+                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                      <a href="/NGOProfile/AboutUs"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
+                                        </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+
 @if (TempData["US"] != null)
 {
     @Html.Raw(TempData["US"])
 }
-
