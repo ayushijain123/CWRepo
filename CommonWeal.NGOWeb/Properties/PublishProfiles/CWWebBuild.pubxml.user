@@ -11,134 +11,311 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:03</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/CommonWeal.Data.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 18:34:48</publishTime>
+=======
       <publishTime>12/20/2016 17:02:37</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/CommonWeal.NGOWeb.dll">
+<<<<<<< .mine
+      <publishTime>12/21/2016 11:52:34</publishTime>
+=======
       <publishTime>12/20/2016 17:02:37</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/DotNetOpenAuth.AspNet.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:04</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/DotNetOpenAuth.Core.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.Consumer.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:08</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/DotNetOpenAuth.OAuth.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:07</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:07</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/DotNetOpenAuth.OpenId.RelyingParty.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:05</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/EntityFramework.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:01</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:01</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/Microsoft.Web.WebPages.OAuth.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:09</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:08</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.Helpers.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:01</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.Http.dll">
       <publishTime>07/10/2012 21:51:54</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.Mvc.dll">
       <publishTime>07/10/2012 21:51:54</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.Razor.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.WebPages.Deployment.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:01</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.WebPages.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:01</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/System.Web.WebPages.Razor.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:01</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/WebGrease.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:03</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/WebMatrix.Data.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bin/WebMatrix.WebData.dll">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:06</publishTime>
+=======
       <publishTime>12/20/2016 16:56:48</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap-theme.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap-theme.css.map">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap-theme.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap-theme.min.css.map">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap.css.map">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/css/bootstrap.min.css.map">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/fonts/glyphicons-halflings-regular.eot">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/fonts/glyphicons-halflings-regular.svg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/fonts/glyphicons-halflings-regular.ttf">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/fonts/glyphicons-halflings-regular.woff">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/fonts/glyphicons-halflings-regular.woff2">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/js/bootstrap.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="bootstrap/js/bootstrap.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/Admin.css">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
+<<<<<<< .mine
+    <File Include="Content/AjaxPostBack/jquery-2.1.4.min.js">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/AjaxPostBack/jquery-migrate-1.2.1.min.js">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/AjaxPostBack/jquery.unobtrusive-ajax.min.js">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/AjaxPostBack/jquery.validate.min.js">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/AjaxPostBack/jquery.validate.unobtrusive.min.js">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+=======
     <File Include="Content/AjaxPostBack/jquery-2.1.4.min.js">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
@@ -154,12 +331,32 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/AjaxPostBack/jquery.validate.unobtrusive.min.js">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Content/bootstrap.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:54</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/bootstrap.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Content/chosen-sprite%402x.png">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/chosen-sprite.png">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/chosen.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+=======
     <File Include="Content/chosen-sprite%402x.png">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
@@ -169,9 +366,142 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/chosen.css">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Content/Commonweal.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Content/DataPlugIn/jquery-1.11.2-jquery.min.js">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+    <File Include="Content/DataPlugIn/jquery.dataTables.min.css">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+    <File Include="Content/DataPlugIn/jquery.dataTables.min.js">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+    <File Include="Content/dyanamiclist.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/font-awesome.min.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/font-awesome/css/font-awesome.css">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/css/font-awesome.min.css">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/fonts/fontawesome-webfont.eot">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/fonts/fontawesome-webfont.svg">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/fonts/fontawesome-webfont.ttf">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/fonts/fontawesome-webfont.woff">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/fonts/fontawesome-webfont.woff2">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/fonts/FontAwesome.otf">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/HELP-US-OUT.txt">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/animated.less">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/bordered-pulled.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/core.less">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/fixed-width.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/font-awesome.less">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/icons.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/larger.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/list.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/mixins.less">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/path.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/rotated-flipped.less">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/screen-reader.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/stacked.less">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/less/variables.less">
+      <publishTime>12/20/2016 12:51:54</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/font-awesome.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_animated.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_bordered-pulled.scss">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_core.scss">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_fixed-width.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_icons.scss">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_larger.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_list.scss">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_mixins.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_path.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_rotated-flipped.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_screen-reader.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_stacked.scss">
+      <publishTime>12/20/2016 12:51:55</publishTime>
+    </File>
+    <File Include="Content/font-awesome/scss/_variables.scss">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+=======
     <File Include="Content/DataPlugIn/jquery-1.11.2-jquery.min.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
@@ -298,18 +628,60 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/font-awesome/scss/_variables.scss">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Content/jquery-ui.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/NGOProfile.css">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
     <File Include="Content/Register.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/Site.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 15:38:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Content/themes/base/accordion.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/all.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/autocomplete.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/base.css">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+    <File Include="Content/themes/base/button.css">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+    <File Include="Content/themes/base/core.css">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+    <File Include="Content/themes/base/datepicker.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/dialog.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/draggable.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+=======
     <File Include="Content/themes/base/accordion.css">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
@@ -337,96 +709,221 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/base/draggable.css">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_75_ffffff_40x100.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_55_fbf9ee_1x400.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_65_ffffff_1x400.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_75_dadada_1x400.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_75_e6e6e6_1x400.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_glass_95_fef1ec_1x400.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-bg_highlight-soft_75_cccccc_1x100.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-icons_222222_256x240.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-icons_2e83ff_256x240.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-icons_454545_256x240.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-icons_888888_256x240.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/images/ui-icons_cd0a0a_256x240.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery-ui.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Content/themes/base/jquery-ui.min.css">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+=======
     <File Include="Content/themes/base/jquery-ui.min.css">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Content/themes/base/jquery.ui.accordion.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.all.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.autocomplete.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.base.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.button.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.core.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.datepicker.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.dialog.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.progressbar.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.resizable.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.selectable.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.slider.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.tabs.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/jquery.ui.theme.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Content/themes/base/menu.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+=======
     <File Include="Content/themes/base/menu.css">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Content/themes/base/minified/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
@@ -467,44 +964,128 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
     <File Include="Content/themes/base/minified/jquery-ui.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.accordion.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.autocomplete.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.button.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.core.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.datepicker.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.dialog.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.progressbar.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.resizable.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.selectable.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.slider.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.tabs.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Content/themes/base/minified/jquery.ui.theme.min.css">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:56</publishTime>
+=======
       <publishTime>12/20/2016 16:56:49</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Content/themes/base/progressbar.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/resizable.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectable.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/selectmenu.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/slider.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/sortable.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/spinner.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/tabs.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/theme.css">
+      <publishTime>12/20/2016 12:51:56</publishTime>
+    </File>
+    <File Include="Content/themes/base/tooltip.css">
+      <publishTime>12/20/2016 12:51:57</publishTime>
+    </File>
+=======
     <File Include="Content/themes/base/progressbar.css">
       <publishTime>12/20/2016 16:56:49</publishTime>
     </File>
@@ -535,165 +1116,383 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/base/tooltip.css">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="favicon.ico">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:49</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Global.asax">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:47</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/accent.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/bullet.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Chrysanthemum.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:51</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Images/commentnew.png">
+      <publishTime>12/20/2016 12:51:50</publishTime>
+    </File>
+=======
     <File Include="Images/commentnew.png">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Images/Desert.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:51</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/heroAccent.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Hydrangeas.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Image.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:51</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/images1.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Jellyfish.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:51</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Koala.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Images/lg.png">
+      <publishTime>12/20/2016 12:51:51</publishTime>
+    </File>
+=======
     <File Include="Images/lg.png">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Images/Lighthouse.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Images/newlike1.png">
+      <publishTime>12/20/2016 12:51:51</publishTime>
+    </File>
+=======
     <File Include="Images/newlike1.png">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Images/orderedList0.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList1.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList2.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList3.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList4.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList5.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList6.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList7.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList8.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/orderedList9.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Penguins.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/accent.png">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:51</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Chrysanthemum.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Desert.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:52</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Hydrangeas.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Jellyfish.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Koala.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:52</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Lighthouse.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:52</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Images/Post/ntrl_disaster.jpg">
+      <publishTime>12/20/2016 12:51:53</publishTime>
+    </File>
+=======
     <File Include="Images/Post/ntrl_disaster.jpg">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Images/Post/Penguins.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:53</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Post/Tulips.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:52</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/Tulips.jpg">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:50</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Images/user.jpg">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
+<<<<<<< .mine
+    <File Include="Images/usergroupnew.png">
+      <publishTime>12/20/2016 12:51:53</publishTime>
+    </File>
+    <File Include="Images/usernew.png">
+      <publishTime>12/20/2016 12:51:53</publishTime>
+    </File>
+=======
     <File Include="Images/usergroupnew.png">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
     <File Include="Images/usernew.png">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="packages.config">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:57</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Scripts/Admin/Admin Script.js">
+      <publishTime>12/20/2016 15:38:48</publishTime>
+    </File>
+=======
     <File Include="Scripts/Admin/Admin Script.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Scripts/Admin/Test.js">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
     <File Include="Scripts/Admin_Script.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/bootstrap-datepicker.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/bootstrap-datepicker.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Scripts/chosen.jquery.js">
+      <publishTime>12/20/2016 12:51:59</publishTime>
+    </File>
+    <File Include="Scripts/chosen.jquery.min.js">
+      <publishTime>12/20/2016 12:51:58</publishTime>
+    </File>
+=======
     <File Include="Scripts/chosen.jquery.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
     <File Include="Scripts/chosen.jquery.min.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Scripts/jquery-1.7.1.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery-1.7.1.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Scripts/jquery-ui-1.12.1.js">
+      <publishTime>12/20/2016 12:51:58</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui-1.12.1.min.js">
+      <publishTime>12/20/2016 12:51:58</publishTime>
+    </File>
+=======
     <File Include="Scripts/jquery-ui-1.12.1.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.12.1.min.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Scripts/jquery-ui-1.8.20.js">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
@@ -701,80 +1500,195 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
     <File Include="Scripts/jquery-ui.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery-ui.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery.validate.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery.validate.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Scripts/jquery3.1.1-jquery.min.js">
+      <publishTime>12/20/2016 12:51:58</publishTime>
+    </File>
+=======
     <File Include="Scripts/jquery3.1.1-jquery.min.js">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Scripts/knockout-2.1.0.debug.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/knockout-2.1.0.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/modernizr-2.5.3.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/NGOAdmin/Profile/Test.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/NGOProfile.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:58</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/Post/PostComment.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 18:30:19</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Scripts/_references.js">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:59</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Admin/Active_Users.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/Admin/All_Users.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+    <File Include="Views/Admin/Blocked_NormalUsers.cshtml">
+      <publishTime>12/20/2016 12:51:49</publishTime>
+    </File>
+=======
     <File Include="Views/Admin/All_Users.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
     <File Include="Views/Admin/Blocked_NormalUsers.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/Admin/Blocked_Users.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/Admin/changePassword.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+    <File Include="Views/Admin/DisplayGraph.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+=======
     <File Include="Views/Admin/changePassword.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
     <File Include="Views/Admin/DisplayGraph.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/Admin/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 15:38:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Admin/Requests.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Admin/Settings.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:49</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/Admin/SpamUsers.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+    <File Include="Views/Admin/Warned_NGOs.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+    <File Include="Views/AreaOfInterest/Index.cshtml">
+      <publishTime>12/20/2016 12:51:49</publishTime>
+    </File>
+=======
     <File Include="Views/Admin/SpamUsers.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
@@ -784,30 +1698,72 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/AreaOfInterest/Index.cshtml">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/Home/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:49</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Home/Setting.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:49</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Login/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/21/2016 11:21:46</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/NGOHome/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:47</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/NGOProfile/AboutUs.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 18:29:27</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/NGOProfile/AboutUsNGO.cshtml">
+      <publishTime>12/21/2016 10:32:31</publishTime>
+    </File>
+=======
     <File Include="Views/NGOProfile/AboutUsNGO.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/NGOProfile/Album.cshtml">
       <publishTime>11/03/2016 19:09:19</publishTime>
     </File>
     <File Include="Views/NGOProfile/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 18:30:19</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/NGOProfile/Post.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+    <File Include="Views/NGOProfile/_AboutUs.cshtml">
+      <publishTime>12/21/2016 10:32:18</publishTime>
+    </File>
+    <File Include="Views/NGOProfile/_NGOProfilePost.cshtml">
+      <publishTime>12/20/2016 18:30:19</publishTime>
+    </File>
+=======
     <File Include="Views/NGOProfile/Post.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
@@ -817,71 +1773,166 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/NGOProfile/_NGOProfilePost.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/NGORegistration/CreateNgo.cshtml">
+<<<<<<< .mine
+      <publishTime>12/21/2016 11:24:08</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/NGORegistration/getImage.cshtml">
+      <publishTime>12/20/2016 12:51:47</publishTime>
+    </File>
+=======
     <File Include="Views/NGORegistration/getImage.cshtml">
       <publishTime>12/20/2016 16:56:51</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/Password/ConfirmOTP.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:16</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Password/ConfirmPassword.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:52:16</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Password/ForgotPassword.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 18:30:19</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Reset/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:47</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Reset/update.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Reset/VerifyPassword.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Shared/DisplayTemplates/Post.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Shared/Error.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/Shared/_filter.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+=======
     <File Include="Views/Shared/_filter.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/Shared/_Layout.cshtml">
+<<<<<<< .mine
+      <publishTime>12/21/2016 10:55:40</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/UserHome/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
+<<<<<<< .mine
+    <File Include="Views/UserHome/_LikePartial.cshtml">
+      <publishTime>12/20/2016 12:51:48</publishTime>
+    </File>
+=======
     <File Include="Views/UserHome/_LikePartial.cshtml">
       <publishTime>12/20/2016 16:56:50</publishTime>
     </File>
+>>>>>>> .r1188
     <File Include="Views/UserHome/_Posts.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:48</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/UserRegistration/CreateUser.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:49</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/UserRegistration/CreateUserPost.cshtml">
+<<<<<<< .mine
+      <publishTime>12/21/2016 11:24:12</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Web.config">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:47</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/Welcome/Index.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:49</publishTime>
+=======
       <publishTime>12/20/2016 16:56:51</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Views/_ViewStart.cshtml">
+<<<<<<< .mine
+      <publishTime>12/20/2016 12:51:47</publishTime>
+=======
       <publishTime>12/20/2016 16:56:50</publishTime>
+>>>>>>> .r1188
     </File>
     <File Include="Web.config">
+<<<<<<< .mine
+      <publishTime>12/21/2016 11:52:34</publishTime>
+=======
       <publishTime>12/20/2016 17:18:50</publishTime>
+>>>>>>> .r1188
     </File>
   </ItemGroup>
 </Project>
