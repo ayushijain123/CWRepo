@@ -16,7 +16,7 @@ $.noConflict();
         <div id="posttemplate">
             <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
-                <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span>
+              <a href="/NGOProfile/Index/@item.userId"> <span class="usernamepost col-md-3" id="usernamepost"><b>@item.userName</b></span></a>
                 <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
               
                 <span class="posttag col-md-5 float-right" >
