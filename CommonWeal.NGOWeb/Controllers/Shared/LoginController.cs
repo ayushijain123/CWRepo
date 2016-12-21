@@ -106,8 +106,6 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
 
         }
 
-
-
         [Authorize]
         public ActionResult LogOut()
         {
