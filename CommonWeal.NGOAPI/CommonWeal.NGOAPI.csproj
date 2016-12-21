@@ -168,6 +168,8 @@
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\demoController.cs" />
+    <Compile Include="Controllers\DonutController.cs" />
     <Compile Include="Controllers\NGOProfileController.cs" />
     <Compile Include="Controllers\NGORegistrationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
