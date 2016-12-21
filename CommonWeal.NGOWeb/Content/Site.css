@@ -92,11 +92,11 @@ header {
 }
 
 .main-nav {
-    background-color: #505d71;
-    border: ridge;
+     background-color: #505d71;
+
     border-color: #364c6f;
     padding-right: 5px;
-    padding-left: 5px;
+    
 }
 
 .menuitem {
@@ -890,17 +890,17 @@ tr.pager td {
 
 .usernav {
     color: #fff;
-    font-size: 20px;
+     background-color: #2A3F54;
+    font-size: 16px;
     padding: 5px;
     margin-right: 5px;
-    border-right-style: ridge;
-    border-right-color: #5b6c88;
+     padding-top: 10px;
     text-transform: capitalize;
 }
 
 .usernav-guest {
     color: #fff;
-    font-size: 20px;
+    font-size: 17px;
     padding: 5px;
 }
 
