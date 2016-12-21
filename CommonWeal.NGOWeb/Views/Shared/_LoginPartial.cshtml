@@ -27,7 +27,7 @@
                 <span class=" usernav ">Hello @ViewBag.LoginUser.UserName</span>  
                     if (System.Web.HttpContext.Current.User.IsInRole("NGOAdmin"))
                     {
-               
+              
                     <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
                     <a href="/NGOProfile/Index" class="menuitem fa fa-user" title="Profile"></a>
                     <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off" title="Logout"></a>
