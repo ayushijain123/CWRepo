@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 <link href="~/Content/dyanamiclist.css" rel="stylesheet" />
-@*<script src="~/Scripts/jquery3.1.1-jquery.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ 
+@*<script src="~/Scripts/jquery3.1.1-jquery.min.js"></script>*@
 <script>
 $.noConflict();
 // Code that uses other library's $ can follow here.
-</script>*@
+</script>
 <p id="controllername" hidden>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</p>
 
 @if(Model!=null && Model.Count()>0)
@@ -210,10 +213,10 @@ $.noConflict();
       <br/>
       
 
-        <div class="modal fade" id="myModal2-" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="myModal2-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
             <div class="modal-dialog likemodaldialog" role="document">
-                <img class="modal-content fullImage" id="img01-@item.postId"/>
+                <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@item.postId"/>
             </div>
         </div>
     </div>          
