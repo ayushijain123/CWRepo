@@ -193,24 +193,25 @@ $(document).ready(function () {
 
     // Get the modal
 
-    //$(".imageurlpost").click(function () {
+    $(".imageurlpost").live('click',function () {
 
-    //    var postid = $(this).attr("id").split('-')[1];
-    //    alert(postid);
-    //    //$("#myModal2-" + postid).css('display', 'block');
+        var postid = $(this).attr("id").split('-')[1];
+        
+      //  $("#myModal2-" + postid).css('display', 'block');
 
-    //    $("#img01-" + postid).attr('src', this.src);
-    //    //  //$("#caption").html(this.alt);
-    //    //    console.log(postid);
-    //    //    var comment = $("#postcommentbox-" + postid).html();
-    //    //   // $("#comnt-" + postid).html("");
-    //    //   // $("#comnt-" + postid).append(comment);
-    //    // console.log(comment);
-    //    //// alert(comment);
-    //    //    // $(".topfix").css("z-index", 0);
-    //    //    // $("#uploadpost").css("display", 'none');
-    //    //    //$('body').css("filter", "blur(2px)");
-    //});
+        $("#img01-" + postid).attr('src', this.src);
+        
+          //$("#caption").html(this.alt);
+            //console.log(postid);
+           // var comment = $("#postcommentbox-" + postid).html();
+           // $("#comnt-" + postid).html("");
+           // $("#comnt-" + postid).append(comment);
+         //console.log(comment);
+        // alert(comment);
+             //$(".topfix").css("z-index", 0);
+            //$("#uploadpost").css("display", 'none');
+            //$('body').css("filter", "blur(2px)");
+    });
 
     //$(".likemodaldialog").click(function () {
     //    // $("#uploadpost").css("display", 'block');
