@@ -299,7 +299,6 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
-    <Content Include="Content\multiselect.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -341,12 +340,8 @@
     <Content Include="Content\font-awesome\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\Commonweal.pubxml" />
     <None Include="Properties\PublishProfiles\CWBuild.pubxml" />
-    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\Chrysanthemum.jpg" />
     <Content Include="Images\commentnew.png" />
-    <Content Include="Images\cw-bg-img.jpg" />
-    <Content Include="Images\cw-bg-img2.jpg" />
-    <Content Include="Images\cw-bg-img3.jpg" />
     <Content Include="Images\Desert.jpg" />
     <Content Include="Images\Hydrangeas.jpg" />
     <Content Include="Images\Image.jpg" />
@@ -355,7 +350,6 @@
     <Content Include="Images\Koala.jpg" />
     <Content Include="Images\lg.png" />
     <Content Include="Images\Lighthouse.jpg" />
-    <Content Include="Images\newlike icon.png" />
     <Content Include="Images\newlike1.png" />
     <Content Include="Images\Penguins.jpg" />
     <Content Include="Images\Post\accent.png" />
@@ -372,6 +366,13 @@
     <Content Include="Images\usergroupnew.png" />
     <Content Include="Images\usernew.png" />
     <Content Include="Scripts\Admin\Admin Script.js" />
+    <Content Include="Scripts\Admin\CloudFlare\Chart.bundle.min.js" />
+    <Content Include="Scripts\Admin\CloudFlare\d3.min.js" />
+    <Content Include="Scripts\Admin\Highcharts\data.js" />
+    <Content Include="Scripts\Admin\Highcharts\exporting.js" />
+    <Content Include="Scripts\Admin\Highcharts\highcharts.js" />
+    <Content Include="Scripts\Admin\Highcharts\jquery.min.js" />
+    <Content Include="Scripts\Admin\CloudFlare\nv.d3.min.js" />
     <Content Include="Scripts\Admin_Script.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -383,8 +384,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.js" />
-    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -397,7 +396,6 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Scripts\multiselect.js" />
     <Content Include="Scripts\NGOAdmin\Profile\Test.js" />
     <Content Include="Scripts\NGOProfile.js" />
     <Content Include="Scripts\Post\PostComment.js" />
