@@ -167,14 +167,16 @@ $(document).ready(function () {
     $(".reportAbuse").live('click', function () {
         var commentId = $(this).attr('id').split('-')[1];
         var like = true;
+        var commentusername = $("#commentusername-" + commentId).text();
         $.post("/Post/AbuseUser?CommentId=" + commentId, function (result) {
             if (result != null) {
                 //alert(result);
 
                 if (result == true) {
-                    $("#reportAbuse-" + commentId).html("Reported");
+                    //$("#reportAbuse-" + commentId).html("Reported");
+                    alert(commentusername+"reported abuse");
                 }
-                else { alert("Already Reported");}
+                else { alert(commentusername + "already reported abuse"); }
                
 
                
