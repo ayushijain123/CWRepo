@@ -9,48 +9,67 @@
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 
+
+@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@
+
+
+
+<script>
+    $(document).ready(function () {
+        //called when key is pressed in textbox
+        $("#quantity").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+        });
+       
+    });
+</script>
+
 <div class="container">
    
                  
             <div style="min-width:AUTO;">
                 <br />
-                <div class="row"><div style="text-align:center" class="col-xs-12 col-md-12 col-sm-12 col-lg-12"><h2>User Registration</h2></div></div>
+                <div class="row"><div class="col-xs-8 col-xs-offset-4 col-md-6 col-sm-6 col-md-push-5 col-sm-push-5 "><h2>User Registration</h2></div></div>
                 <br />
                 @using (Ajax.BeginForm("CreateUser", "UserRegistration", new AjaxOptions { HttpMethod = "POST", OnSuccess = "createsuccess" }, new { @class = "form-horizontal" }))
                 {
                     
                         <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
-                        <div style="text-align:right" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-push-2 col-sm-push-2 col-lg-6">
                                 <label class="control-label" for="first-name">
-                                First Name
+                                First Name*
                           
                                 </label>
 
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12   col-lg-6">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-pull-2 col-sm-pull-2 col-lg-6">
                                 @Html.TextBoxFor(a => a.FirstName, new { placeholder = "First Name", @class = "form-control col-md-7 col-xs-12" })
                                 @Html.ValidationMessageFor(a => a.FirstName, string.Empty, new { @class = "Validation-Message" })
                             </div>
                         </div>
                     
-                   <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
-                        <div style="text-align:right" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12">
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-push-2 col-sm-push-2 col-lg-6">
                             <label class="control-label" for="last-name">
-                            Last Name 
+                            Last Name* 
                            
                             </label>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12   col-lg-6">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-pull-2 col-sm-pull-2 col-lg-6">
                             @Html.TextBoxFor(a => a.LastName, new { placeholder = "Last Name", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.LastName, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
-                        <div style="text-align:right" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Email</label></div>
-                        <div class="col-md-6 col-sm-6 col-xs-12   col-lg-6">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-push-2 col-sm-push-2 col-lg-6"><label for="middle-name" class="control-label">Email*</label></div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-pull-2 col-sm-pull-2 col-lg-6">
                             @Html.TextBoxFor(a => a.UserEmail, new { placeholder = "Email", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.UserEmail, string.Empty, new { @class = "Validation-Message" })
                         </div>
@@ -80,28 +99,25 @@
                     </div>>*@
                     
                     
-                   <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
-                        <div style="text-align:right" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Mobile</label></div>
-                        <div class="col-md-6 col-sm-6 col-xs-12   col-lg-6">
-                            @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number", @class = "form-control col-md-7 col-xs-12" })
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-push-2 col-sm-push-2 col-lg-6"><label for="middle-name" class="control-label">Mobile*</label></div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-pull-2 col-sm-pull-2 col-lg-6">
+                            @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number", @class = "form-control col-md-7 col-xs-12" ,id="quantity",title="Enter numbers only" })
                             @Html.ValidationMessageFor(a => a.Mobile, string.Empty, new { @class = "Validation-Message" })
                         </div>
 
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
-                        <div style="text-align:right" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Password</label></div>
-                        <div class="col-md-6 col-sm-6 col-xs-12   col-lg-6">
-                            @Html.TextBoxFor(a => a.UserPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12" })
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-push-2 col-sm-push-2 col-lg-6"><label for="middle-name" class="control-label">Password*</label></div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-pull-2 col-sm-pull-2 col-lg-6">
+                            @Html.TextBoxFor(a => a.UserPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12", title="Password length should be minimum 8 characters with uppercase lowercase and special character."})
                             @Html.ValidationMessageFor(a => a.UserPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
                     
                     <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
-                        <div style="text-align:right" class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Confirm Password</label></div>
-                        <div class="col-md-6 col-sm-6 col-xs-12   col-lg-6">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-push-2 col-sm-push-2 col-lg-6"><label for="middle-name" class="control-label">Confirm Password*</label></div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-pull-2 col-sm-pull-2 col-lg-6">
                             @Html.TextBoxFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.ConfirmPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
@@ -109,7 +125,6 @@
                    
                     <div class="ln_solid"></div>
                     <div class="form-group row">
-                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
                         <div class="col-md-2 col-sm-2 col-md-push-4 col-sm-push-4 col-xs-push-5 col-xs-6">
                             <button type="submit" class="btn btn-success">Submit</button>
                             
