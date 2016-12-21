@@ -3,32 +3,46 @@ using System.Linq;
 using System.Web.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
 using System.Web;
-using System.Web.Mvc;
-using CommonWeal.Data;
+
+
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.Web.Mvc.Ajax;
-
+using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
     //[Authorize]
     [Authorize(Roles = "NGOAdmin")]
     public class NGOProfileController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Index(int id=0)
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations db = new dbOperations();
-            //User UL = new User();
-            //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
-            var postList = db.GetPostById(LoginUser.LoginID);
-            var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
-            ViewBag.imageurl = image;
-            //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
             
-            return View(postList);
+
+            //User UL = new User();
+            //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;           
+            if (id == 0 )
+            {
+                ViewBag.userID = LoginUser.LoginID;
+                var postList = db.GetPostById(LoginUser.LoginID);
+                var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+                ViewBag.imageurl = image;
+                return View(postList);
+            }
+            else
+            {
+                ViewBag.userID = id;
+                var postList = db.GetPostById(id);
+                var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
+                ViewBag.imageurl = image;
+                return View(postList);
+            }
+            //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
+         
         }
         public ActionResult Post()
         {
@@ -47,6 +61,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [HttpGet]
         public ActionResult AboutUs()
         {
+           // LoginUser.LoginID = id;
             CommonWealEntities context = new CommonWealEntities();
             var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
             return PartialView("AboutUsNGO", obj);
@@ -125,17 +140,33 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
 
         [AllowAnonymous]
-        public PartialViewResult AboutUsPartial()
+        public PartialViewResult AboutUsPartial(int id=0)
         {
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
+                NGOProfileCustom NgoInfo = new NGOProfileCustom();
+                if (id == 0)
+                {
+                    NgoInfo.UserID = LoginUser.LoginID;
+                    var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                    NgoInfo.NgoUser = obj;
+                    var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+                    NgoInfo.imageurl = image;
+                    //return PartialView("AboutUsNGO",obj);
 
-                var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-                //return PartialView("AboutUsNGO",obj);
-              
-                /*returing list to  partial view and than partial view is retuned to ajax call  */
-                return PartialView("~/views/NGOProfile/_AboutUs.cshtml",obj);
+                    /*returing list to  partial view and than partial view is retuned to ajax call  */
+                    return PartialView("~/views/NGOProfile/_AboutUs.cshtml", NgoInfo);
+                }
+                else
+                {
+                    NgoInfo.UserID = LoginUser.LoginID;
+                    var obj = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault();
+                    NgoInfo.NgoUser = obj;
+                    var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
+                    NgoInfo.imageurl = image;
+                    return PartialView("~/views/NGOProfile/_AboutUs.cshtml", NgoInfo);
+                }
             }
             catch (Exception ex)
             {
@@ -145,7 +176,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         }
         [AllowAnonymous]
-        public PartialViewResult NGOProfilePost()
+        public PartialViewResult NGOProfilePost(int id=0)
         {
             try
             {
@@ -153,11 +184,22 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 dbOperations db = new dbOperations();
                 //User UL = new User();
                 //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
-                var obj = db.GetPostById(LoginUser.LoginID);
-                //return PartialView("AboutUsNGO",obj);
+                if (id == 0)
+                {
+                    var obj = db.GetPostById(LoginUser.LoginID);
+                    //return PartialView("AboutUsNGO",obj);
 
-                /*returing list to  partial view and than partial view is retuned to ajax call  */
-                return PartialView("~/views/NGOProfile/_NGOProfilePost.cshtml", obj);
+                    /*returing list to  partial view and than partial view is retuned to ajax call  */
+                    return PartialView("~/views/NGOProfile/_NGOProfilePost.cshtml", obj);
+                }
+                else
+                {
+                    var obj = db.GetPostById(id);
+                    //return PartialView("AboutUsNGO",obj);
+
+                    /*returing list to  partial view and than partial view is retuned to ajax call  */
+                    return PartialView("~/views/NGOProfile/_NGOProfilePost.cshtml", obj);
+                }
             }
             catch (Exception ex)
             {
