@@ -167,7 +167,7 @@ $.noConflict();
                     <div class="form-inline col-md-12 comentpost">
                         <span class="col-md-1 fa fa-user commentimage"></span>
 
-                        <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
+                        <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
                         @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")))
                         {
