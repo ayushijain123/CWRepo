@@ -15,7 +15,7 @@ namespace CommonWeal.NGOAPI.Controllers
         // GET api/<controller>
         [AllowAnonymous]
         [HttpGet]
-	/*added*/
+	/*added by ayushi*/
        
          public HttpResponseMessage GetCount()
             {
