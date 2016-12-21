@@ -972,6 +972,12 @@ tr.pager td {
     margin-top: 0px !important;
     /*border-color:#225d77;*/
 }
+    .btnLoad:hover {
+    text-decoration:underline;
+    }
+.btnLoadNGOPfrofile:hover {
+     text-decoration:underline;
+}
 .cursor {
 cursor:pointer;
 }
