@@ -27,7 +27,15 @@
                                                     <input type="file" id="file" name="file" data-badge="false" />
                                                 </div>
                                             }
-
+                                            else
+                                            {
+                                                 <img class="profileimage img-thumbnail img-responsive" id="profileimage" src="~/Images/usergroupnew.png" />
+                                            <div class="profile-img-i-container">
+                                                   
+                                                    <i class="glyphicon glyphicon-camera fa-2x" id="pencil" onclick="fileclick(); return false;"></i>
+                                                    <input type="file" id="file" name="file" data-badge="false" />
+                                                </div>
+                                            }
 
                                         </div>
                                         <input type="submit" id="uploadimage" value="Upload"><span onclick="fileclick(); return false;"></span></input>
