@@ -19,18 +19,18 @@
                 {  
                         
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="fn">Email:</label>
+                        <label class="control-label col-xs-4" for="fn">Email*</label>
                         <div class="col-xs-8">
-                            @Html.TextBoxFor(a => a.LoginEmailID, new { placeholder = "Email ID" })
+                            @Html.TextBoxFor(a => a.LoginEmailID, new { placeholder = "Email ID" })<br/>
                             @Html.ValidationMessageFor(a => a.LoginEmailID)
                             @*  <input type="text" class="form-control" id="email/mobno" placeholder="Email/Mobile Number" name="login_Email">*@
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-xs-4" for="ln">Password:</label>
+                        <label class="control-label col-xs-4" for="ln">Password*</label>
                         <div class="col-xs-8">
-                            @Html.PasswordFor(a => a.LoginPassword, new { placeholder = "Password" })
+                            @Html.PasswordFor(a => a.LoginPassword, new { placeholder = "Password" })<br/>
                             @Html.ValidationMessageFor(a => a.LoginPassword)
                             @*@Html.EditorFor(a => a.LoginPassword)*@
                         </div>
