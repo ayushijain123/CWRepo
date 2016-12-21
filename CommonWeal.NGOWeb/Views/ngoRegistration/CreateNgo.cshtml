@@ -35,152 +35,168 @@
                <form name="NGO" class="form-horizontal" action="/NGORegistration/CreateNGO" method="post" enctype="multipart/form-data">
                                 
                     <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-2 col-sm-push-2"><label class="control-label" for="NGO Name">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="NGO Name">
                             NGO Name*                      
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.NGOName, new { placeholder = "NGO Name", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.NGOName, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-2 col-sm-push-2"><label class="control-label" for="Unique Id">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Unique Id">
                             Unique Id                           
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.UniqueuId, new { placeholder = "Unique Id", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.UniqueuId, string.Empty, new { @class = "Validation-Message" })
                         </div>
 
                     </div>
                     <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-2 col-sm-push-2"><label for="middle-name" class="control-label">Email*</label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Email*</label></div>
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.NGOEmailID, new { placeholder = "Email", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.NGOEmailID, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
                        
                     
-                    <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label for="middle-name" class="control-label">Mobile Number*</label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                   <div class="form-group row">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Mobile Number*</label></div>
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                            @Html.TextBoxFor(a => a.Mobile, new { placeholder = "Mobile Number", @class = "form-control col-md-7 col-xs-12" ,id="quantity",title="Enter numbers only"})
                            @Html.ValidationMessageFor(a => a.Mobile, string.Empty, new { @class = "Validation-Message" })
                         </div>
 
                     </div>
-                    <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label for="middle-name" class="control-label">Password*</label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                   <div class="form-group row">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Password*</label></div>
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.PasswordFor(a => a.NGOPassword, new { placeholder = "Password", @class = "form-control col-md-7 col-xs-12", title="Password length should be minimum 8 characters with uppercase lowercase and special character."})
                             @Html.ValidationMessageFor(a => a.NGOPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
                     
-                    <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label for="middle-name" class="control-label">Confirm Password*</label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                   <div class="form-group row">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label for="middle-name" class="control-label">Confirm Password*</label></div>
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.PasswordFor(a => a.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.ConfirmPassword, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
                    <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Address">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Address">
                             Address*                        
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.NGOAddress, new { placeholder = "Address", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.NGOAddress, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
                      <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Chairman Name">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Chairman Name">
                             Chairman Name*                         
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.ChairmanName, new { placeholder = "Chairman Name", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.ChairmanName, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
-                     <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Photo Id Of Chairman">
+                    <div class="form-group row">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Photo Id Of Chairman">
                            Photo Id Of Chairman                           
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.ChairmanID,  new { type = "file", @class = "form-control col-md-7 col-xs-12" ,accept="image/jpeg,image/png,jpg|png" })
                             @Html.ValidationMessageFor(a => a.ChairmanID, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
-                   <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Parent Organization">
+                  <div class="form-group row">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Parent Organization">
                            Parent Organization*                        
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.ParentOrganisation, new { placeholder = "Parent Organization", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.ParentOrganisation, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
                      
                    <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Register with">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Register with">
                           Register with*                         
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                           @Html.DropDownList("RegisteredWith", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
                             @Html.ValidationMessageFor(a => a.RegisteredWith, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
                      <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Registration Number">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Registration Number">
                            Registration No*                          
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                             @Html.TextBoxFor(a => a.RegistrationNumber, new { placeholder = "Registration Number", @class = "form-control col-md-7 col-xs-12" })
                             @Html.ValidationMessageFor(a => a.RegistrationNumber, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
                      
                     <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Date Of Registration">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Date Of Registration">
                           Date of Registration*                          
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">                          
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">                          
                               @Html.TextBoxFor(model => model.DateOfRegistration, new {placeholder = "Date of Registration", @class = "form-control col-md-7 col-xs-12"} )
                             @Html.ValidationMessageFor(a => a.DateOfRegistration, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="Copy Of Registration">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="Copy Of Registration">
                          Copy Of Registration                        
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">                        
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">                        
                               @Html.TextBoxFor(a => a.RegistrationProof,  new { type = "file", @class = "form-control col-md-7 col-xs-12" ,accept="image/jpeg,image/png,application/pdf,jpg|png|pdf" })
                             @Html.ValidationMessageFor(a => a.RegistrationProof, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     </div>
 
                    <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label" for="FCRA Registration No">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label" for="FCRA Registration No">
                          FCRA Registration No                       
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">                    
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">                    
                               @Html.TextBoxFor(a => a.FCRANumber, new { placeholder = "FCRA Number",@class = "form-control col-md-7 col-xs-12"  })                       
                         </div>
                     </div>
 
                   <div class="form-group row">
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-push-2 col-lr-push-1 col-sm-push-2"><label class="control-label " for="Website URL">
+                        <div class="col-md-3 col-xs-3 col-sm-3 col-lg-3"></div>
+                        <div  class="col-md-3 col-xs-3 col-sm-3 col-lg-3 col-xs-12"><label class="control-label " for="Website URL">
                          Website URL*                           
                         </label></div>
-                        <div class="col-md-6 col-xs-6 col-sm-6 col-lr-6 col-xs-12 col-md-pull-2 col-pull-lr-1 col-sm-pull-2">                       
+                        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">                       
                               @Html.TextBoxFor(a => a.WebsiteUrl, new { placeholder = "Website URL",@class = "form-control col-md-7 col-xs-12" })   
                              @Html.ValidationMessageFor(a => a.WebsiteUrl, string.Empty, new { @class = "Validation-Message" })                    
                         </div>
