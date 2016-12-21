@@ -369,9 +369,9 @@ $(document).ready(function () {
     /*start ajax for  NGOProfilePOST partial*/
     $(".NGOProfilepost").live('click',function () {
         var userid = $(this).attr('id').split('-')[1];
-
+        alert(userid);
         $.post("/NGOProfile/NGOProfilePost?id="+userid, function (result) {
-           
+           alert(result);
             $('#NGOProfilecontent').html("");
             $('#NGOProfilecontent').append(result);
           
@@ -383,9 +383,9 @@ $(document).ready(function () {
 
 
     /*start ajax for about us partial*/
-    $("#aboutus").live('click', function () {
+    $(".aboutus").live('click', function () {
         var userid = $(this).attr('id').split('-')[1];  
-        
+        alert(userid);
         $.post("/NGOProfile/AboutUsPartial?id="+userid, function (result) {
           
             $('#NGOProfilecontent').html("");
