@@ -251,10 +251,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     }
                   
                 }
-                var res = context.NGOPosts.Where(a => a.PostID == ID).ToList();
-                foreach (var item in res)
+                var res = context.NGOPosts.Where(a => a.PostID == ID).FirstOrDefault();
+                if (res != null)
                 {
-                    context.NGOPosts.Remove(item);
+                    context.NGOPosts.Remove(res);
                 }
                 context.SaveChanges();
 
@@ -266,6 +266,26 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             }
             return RedirectToAction("Index", "NGOProfile");
         
+        }
+
+
+        /*action for delete comment through ajax*/
+        public JsonResult DeleteCommentOnPost(int id=0)
+        {
+            bool result = false;
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.ValidateOnSaveEnabled = false;
+            var res2 = context.PostComments.Where(a => a.CommentID== id).FirstOrDefault();
+            if (res2 != null)
+            {
+                
+                    context.PostComments.Remove(res2);
+                    context.SaveChanges();
+                    result = true;
+            }
+
+            return Json(result,JsonRequestBehavior.AllowGet);
+
         }
 
         /*method for submit abused users on comment */
