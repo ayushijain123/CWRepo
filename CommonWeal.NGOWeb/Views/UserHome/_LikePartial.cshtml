@@ -81,8 +81,8 @@
               }
           }
     }
-
-    @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.controllername.Equals("NGOProfile")))
+  
+    @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(Model.userId.ToString()))
     {
                 
                
