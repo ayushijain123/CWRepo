@@ -10,8 +10,8 @@ using System.Web.Mvc.Ajax;
 using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
-    //[Authorize]
-    [Authorize(Roles = "NGOAdmin")]
+    //[AuthorizeRoles = "NGOAdmin")]]
+    [Authorize]
     public class NGOProfileController : BaseController
     {
         public ActionResult Index(int id=0)
