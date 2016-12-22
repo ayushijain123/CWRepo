@@ -12,29 +12,33 @@ $(document).ready(function () {
     $(".btnPost").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
         console.log(postid);
-        var controller = $("#controllername").html();
+        var controller = $("#controllername").html().trim();
         var TextComment = $("#txtComment-" + postid).val().trim();
-        var IsCurrentNgoProfile = $("#IeThisCurrentNgoProfile").html();
+        var IsCurrentNgoProfile = $("#IeThisCurrentNgoProfile").html().trim();
        
         var userName = "";
         var createdOn = "";
         var spamicon = "";
         var commentid = 0;
+        var DeleteComment = "s";
         if (TextComment != "") {
             $.post("/Post/SumitComment?strComment=" + TextComment + "&postId=" + postid, function (userinfo) {
                 userName = userinfo[0];
                 createdOn = userinfo[1];
                 commentid = parseInt(userinfo[2]);
-                if (controller == "NGOProfile" && IsCurrentNgoProfile==true)
-                {
-                    spamicon = '<span id="reportAbuse-' + commentid + '" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>';
+                if (controller == "NGOProfile"){
+                    if(IsCurrentNgoProfile == "True") {
+                  
+                           spamicon = '<span id="reportAbuse-' + commentid + '" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>';
+                            DeleteComment ='<span id="deleteComment-'+ commentid+'" class="deleteComment float-right fa fa-remove" title="Delete comment"></span>';
+                        }
                 }
-                $("#" + postid).append('    <div class="form-group col-md-12 ">' +
+                $("#" + postid).append('<div class="form-group col-md-12 "id="CommentBox-'+commentid+'">' +
                 '<div class="form-inline col-md-12 comentpost ">' +
                     '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
-                    spamicon+
+                    spamicon+DeleteComment+
 
                     '<p id="postcommentcontent"class="postcommentcontent">' + TextComment + '</p>' +
 
@@ -386,7 +390,19 @@ $(document).ready(function () {
         });
     });
 
+    /*start ajax for delete Post*/
+    $(".deletePost").live('click', function () {
+        var postid = $(this).attr('id').split('-')[1];
+        if (postid == null)
+        { postid = 0; }
+        $.post("/Post/DeleteCommentOnPost?ID=" + postid, function (result) {
+            if (result != null) {
+                $('#Post-' + postid).remove();
 
+            }
+
+        });
+    });
 
     /*start ajax for  NGOProfilePOST partial*/
     $(".NGOProfilepost").live('click',function () {
