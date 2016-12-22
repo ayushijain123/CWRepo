@@ -219,8 +219,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
 
      
-        public ActionResult deletePost(int ID)
-        {
+        public JsonResult deletePost(int ID)
+        {bool result=false;
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
@@ -257,14 +257,14 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     context.NGOPosts.Remove(res);
                 }
                 context.SaveChanges();
-
+                result = true;
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return RedirectToAction("Index", "NGOProfile");
+            return Json(result,JsonRequestBehavior.AllowGet);
         
         }
 
