@@ -1253,7 +1253,10 @@ tr:nth-child(even) {
 .profilesummary {
     font-size: 18px;
 }
-
+.aboutus {
+font-weight: bold;
+cursor:pointer;
+}
 .ngoprofilepic {
     max-height: 100px;
     max-width: 100px;
