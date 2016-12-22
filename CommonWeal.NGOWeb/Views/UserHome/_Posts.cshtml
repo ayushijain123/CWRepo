@@ -15,7 +15,7 @@ $.noConflict();
 <div id="uploadpost" class="row col-sm-10 col-sm-push-1">
 
     @foreach (var item in Model)
-    { <div class="postcontainer">
+    { <div class="postcontainer" id="Post-@item.postId">
         <div id="posttemplate">
             <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
@@ -178,14 +178,14 @@ $.noConflict();
                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile"))&&this.User.Identity.Name.Equals(item.userId.ToString()))
                         {
                             <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>
-                            <span id="deleteComment-@comment.commentId" class="deleteComment float-right">x</span>
+                            <span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete comment"></span>
                         }
                         <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
 
                     </div>
                      
                 </div>
-               <br />
+              
            
                 
                 
