@@ -14,6 +14,8 @@ $(document).ready(function () {
         console.log(postid);
         var controller = $("#controllername").html();
         var TextComment = $("#txtComment-" + postid).val().trim();
+        var IsCurrentNgoProfile = $("#IeThisCurrentNgoProfile").html();
+       
         var userName = "";
         var createdOn = "";
         var spamicon = "";
@@ -23,7 +25,7 @@ $(document).ready(function () {
                 userName = userinfo[0];
                 createdOn = userinfo[1];
                 commentid = parseInt(userinfo[2]);
-                if (controller == "NGOProfile")
+                if (controller == "NGOProfile" && IsCurrentNgoProfile==true)
                 {
                     spamicon = '<span id="reportAbuse-' + commentid + '" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>';
                 }
@@ -114,6 +116,7 @@ $(document).ready(function () {
         var postid = $(this).attr("id").split('-')[1];
         console.log('clicked-' + postid);
         $("#likelist-" + postid).html("");
+       
         $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
             //alert('hi');
             $.each(postlikelist, function (i, value) {
@@ -366,6 +369,25 @@ $(document).ready(function () {
         //  }, 'json');
 
     });
+
+
+
+    /*start ajax for delete comment on post*/
+    $(".deleteComment").live('click', function () {
+        var commentid = $(this).attr('id').split('-')[1];
+        if (commentid == null)
+        { commentid = 0;}
+        $.post("/Post/DeleteCommentOnPost?id=" + commentid, function (result) {
+            if (result != null) {
+                $('#CommentBox-' + commentid).remove();
+
+            }
+
+        });
+    });
+
+
+
     /*start ajax for  NGOProfilePOST partial*/
     $(".NGOProfilepost").live('click',function () {
         var userid = $(this).attr('id').split('-')[1];
