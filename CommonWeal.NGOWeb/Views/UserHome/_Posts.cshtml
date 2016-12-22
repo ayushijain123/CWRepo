@@ -168,11 +168,13 @@ $.noConflict();
             {
                 <div class="form-group col-md-12">
                     <div class="form-inline col-md-12 comentpost">
-                        <span class="col-md-1 fa fa-user commentimage"></span>
 
+
+                        <span class="col-md-1 fa fa-user commentimage"></span>
+                      
                         <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
-                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")))
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile"))&&this.User.Identity.Name.Equals(item.userId.ToString()))
                         {
                             <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>
                         }
