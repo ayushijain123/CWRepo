@@ -7,6 +7,9 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using CommonWeal.NGOWeb;
+using System.Threading.Tasks;
+using System.IO;
+using System.Web;
 
 namespace CommonWeal.NGOAPI.Controllers
 {
@@ -63,6 +66,46 @@ namespace CommonWeal.NGOAPI.Controllers
         //    var res3= context.PostLikes.Where(x=>x.PostID==res.PostID).FirstOrDefault().
         //}
 
+        [HttpPost]
+        public async Task<HttpResponseMessage> AddFile()
+        {
+
+            if (!Request.Content.IsMimeMultipartContent())
+            {
+                this.Request.CreateResponse(HttpStatusCode.UnsupportedMediaType);
+            }
+
+            if (Request.Content.IsMimeMultipartContent())
+            {
+
+                string StoragePath = HttpContext.Current.Server.MapPath("~/Images");
+                var streamProvider = new MultipartFormDataStreamProvider(Path.Combine(StoragePath, "Post"));
+                await Request.Content.ReadAsMultipartAsync(streamProvider);
+                foreach (MultipartFileData fileData in streamProvider.FileData)
+                {
+                    if (string.IsNullOrEmpty(fileData.Headers.ContentDisposition.FileName))
+                    {
+                        return Request.CreateResponse(HttpStatusCode.NotAcceptable, "This request is not properly formatted");
+                    }
+                    string fileName = fileData.Headers.ContentDisposition.FileName;
+                    if (fileName.StartsWith("\"") && fileName.EndsWith("\""))
+                    {
+                        fileName = fileName.Trim('"');
+                    }
+                    if (fileName.Contains(@"/") || fileName.Contains(@"\"))
+                    {
+                        fileName = Path.GetFileName(fileName);
+                    }
+                    File.Move(fileData.LocalFileName, Path.Combine(StoragePath, fileName));
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, StoragePath);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotAcceptable, "This request is not properly formatted");
+            }
+        }
+    
 
         [HttpGet]
         public HttpResponseMessage AreaOfInterest()
