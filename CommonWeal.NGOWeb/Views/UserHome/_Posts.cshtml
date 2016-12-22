@@ -163,10 +163,10 @@ $.noConflict();
         <div class="panel-body">*@
    
             
-           
+             <span id="IeThisCurrentNgoProfile"hidden> @(this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile"))&&this.User.Identity.Name.Equals(item.userId.ToString()))</span>
             @foreach (var comment in item.PostComments)
             {
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12" id="CommentBox-@comment.commentId">
                     <div class="form-inline col-md-12 comentpost">
 
 
@@ -174,15 +174,18 @@ $.noConflict();
                       
                         <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
                         <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
-                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile"))&&this.User.Identity.Name.Equals(item.userId.ToString()))
+                      
+                       @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile"))&&this.User.Identity.Name.Equals(item.userId.ToString()))
                         {
                             <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>
+                            <span id="deleteComment-@comment.commentId" class="deleteComment float-right">x</span>
                         }
                         <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
 
                     </div>
+                     
                 </div>
-                <br />
+               <br />
            
                 
                 
