@@ -759,6 +759,13 @@ tr.pager td {
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
+.deleteComment {
+    padding-right: 8px;
+    cursor:pointer;
+}
+    .deleteComment:hover {
+    color:red;
+    }
 
 .iconLine {
     background-color: #FFFFFF;
@@ -993,6 +1000,13 @@ font-size:18px;
 
 }
     .deletecomment a:hover {
+    color:red;
+    }
+    .deletePost {
+font-size:18px;
+
+}
+    .deletePost a:hover {
     color:red;
     }
 
@@ -1611,6 +1625,12 @@ added by payal*/
 .btnLoad {
     padding-bottom: 56px;
     width: 70PX;
+}
+    .btnLoad:hover {
+    text-decoration:underline;
+    }
+.btnLoadNGOPfrofile:hover {
+    text-decoration:underline;
 }
 /*.sticky {
     position: fixed;
