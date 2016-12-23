@@ -67,9 +67,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         public PartialViewResult SubmitLike(bool like, string controllerNAME="default", int PostID = -1)
         {
+            CommonWealEntities db = new CommonWealEntities();
             if (PostID != -1)
             {
-                CommonWealEntities db = new CommonWealEntities();
+              
                 
                 /*login user property defined in base controller*/
                 /*checking is current login user already liked the image or not */
@@ -98,14 +99,19 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     db.PostLikes.Remove(currentLikeUser);
                     var post = db.NGOPosts.Where(ngpost => ngpost.PostID == PostID).FirstOrDefault();
                     post.PostLikeCount--;
-                    
+                   
                     db.SaveChanges();               
                  }
             }
             var postlikelist = new Post();
              postlikelist.postlike=getLikeList(PostID);
+             var postUser = db.NGOPosts.Where(x => x.PostID == PostID).FirstOrDefault().LoginID;
+             if (postUser != null)
+             {
+                 postlikelist.userId = postUser.Value;
+             }
              postlikelist.postId = PostID;
-             postlikelist.userId = LoginUser.LoginID;
+            
              postlikelist.controllername = controllerNAME;
             return PartialView("../UserHome/_LikePartial",postlikelist);
         }
