@@ -292,16 +292,20 @@ $(document).ready(function () {
     });
     //on seemore from ngoprofile ajax call
     var loadcnt = 0;
-    $("#btnLoadNGOPfrofile").click(function () {
+    $(".btnLoadNGOPfrofile").click(function () {
         //console.log('clicked');
         loadcnt++;
         var controller = $("#controllername").html();
         //alert('hi');
-        var id = 1;
+        var currentId = $('.btnLoadNGOPfrofile').attr('id').split('-')[1];
+        if (currentId == null) {
+            currentId = 1;
+        }
+        
         var categorylist = $("#selectcategory").val();
         if (categorylist == null)
         { categorylist = null; }
-        var category = JSON.stringify({ 'category': categorylist,'controller': controller, 'count': loadcnt, 'NgoID': id });
+        var category = JSON.stringify({ 'category': categorylist,'controller': controller, 'count': loadcnt, 'NgoID': currentId });
         $.ajax({
             contentType: 'application/json; charset=utf-8',
 
