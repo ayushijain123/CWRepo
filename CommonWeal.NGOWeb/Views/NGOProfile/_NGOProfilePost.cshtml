@@ -1,15 +1,15 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
 
 <div class="container">
 <div id="postsection" >
-    @Html.Partial("../UserHome/_Posts", Model)
+    @Html.Partial("../UserHome/_Posts", Model.PostModel)
 </div>
 
 
 
 <div  id="loadMoreSection" ></div>
 <div  style="text-align:center">
- <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="See more posts" id="btnLoadNGOPfrofile" align="center"> @*type="button"*@
+ <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="See more posts" id="btnLoadNGOPfrofile-@Model.CurrentUserID" align="center"> @*type="button"*@
 
   </div>
     </div>
