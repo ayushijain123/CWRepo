@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
 <script src="~/Scripts/Post/PostComment.js"></script>
 <div class="container">
 
@@ -18,9 +18,9 @@
                                     <div class="row col-md-4 col-md-push-4 profileimageborder">
                                         <div class="row  col-md-12 profile-img-container">
 
-                                            @if (ViewBag.imageurl != null)
+                                            @if (Model.imageurl!=null)
                                             {
-                                                <img class="profileimage img-thumbnail img-responsive" id="profileimage" src="@ViewBag.imageurl"/>
+                                                <img class="profileimage img-thumbnail img-responsive" id="profileimage" src="@Model.imageurl"/>
                                                 <div class="profile-img-i-container">
                                                   
                                                     <i class="glyphicon glyphicon-camera fa-2x" id="pencil" onclick="fileclick(); return false;"></i>
@@ -52,8 +52,8 @@
                     <div class="col-md-12">
                         <div class="panel-group navbar-fixed profileheadingcolor">
                             <ul class="ultext nav nav-tabs">
-                                <li id="profilepost"><span id="NGOProfilepost-@ViewBag.userID" class="NGOProfilepost">Post</span></li>
-                                <li><span id="aboutus-@ViewBag.userID"class="aboutus">About Us</span></li>
+                                <li id="profilepost"><span id="NGOProfilepost-@Model.CurrentUserID" class="NGOProfilepost">Post</span></li>
+                                <li><span id="aboutus-@Model.CurrentUserID"class="aboutus">About Us</span></li>
                             </ul>
                         </div>
                     </div>
