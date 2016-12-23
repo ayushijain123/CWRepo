@@ -18,25 +18,27 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations db = new dbOperations();
-            
 
+            NGOProfilePostCustom NGpost = new NGOProfilePostCustom();
             //User UL = new User();
             //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;           
             if (id == 0 )
             {
-                ViewBag.userID = LoginUser.LoginID;
+                NGpost.CurrentUserID = LoginUser.LoginID;
                 var postList = db.GetPostById(LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
-                ViewBag.imageurl = image;
-                return View(postList);
+               NGpost.imageurl = image;
+               NGpost.PostModel = postList;
+                return View(NGpost);
             }
             else
             {
-                ViewBag.userID = id;
+                NGpost.CurrentUserID = id;
                 var postList = db.GetPostById(id);
                 var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
-                ViewBag.imageurl = image;
-                return View(postList);
+                NGpost.imageurl = image;
+                NGpost.PostModel = postList;
+                return View(NGpost);
             }
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
          
