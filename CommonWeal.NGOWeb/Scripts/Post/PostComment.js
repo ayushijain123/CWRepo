@@ -292,7 +292,7 @@ $(document).ready(function () {
     });
     //on seemore from ngoprofile ajax call
     var loadcnt = 0;
-    $(".btnLoadNGOPfrofile").click(function () {
+    $(".btnLoadNGOPfrofile").live('click',function () {
         //console.log('clicked');
         loadcnt++;
         var controller = $("#controllername").html();
@@ -411,7 +411,7 @@ $(document).ready(function () {
     /*start ajax for  NGOProfilePOST partial*/
     $(".NGOProfilepost").live('click',function () {
         var userid = $(this).attr('id').split('-')[1];
-       
+        
         $.post("/NGOProfile/NGOProfilePost?id="+userid, function (result) {
           
             $('#NGOProfilecontent').html("");
