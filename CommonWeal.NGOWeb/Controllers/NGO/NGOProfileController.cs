@@ -182,13 +182,15 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             try
             {
-               
+                NGOProfilePostCustom NGpostlist = new NGOProfilePostCustom();
                 dbOperations db = new dbOperations();
                 //User UL = new User();
                 //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
                 if (id == 0)
                 {
                     var obj = db.GetPostById(LoginUser.LoginID);
+                    NGpostlist.PostModel = obj;
+                    NGpostlist.CurrentUserID = LoginUser.LoginID;
                     //return PartialView("AboutUsNGO",obj);
 
                     /*returing list to  partial view and than partial view is retuned to ajax call  */
@@ -197,10 +199,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 else
                 {
                     var obj = db.GetPostById(id);
+                    NGpostlist.PostModel = obj;
+                    NGpostlist.CurrentUserID =id;
                     //return PartialView("AboutUsNGO",obj);
 
                     /*returing list to  partial view and than partial view is retuned to ajax call  */
-                    return PartialView("~/views/NGOProfile/_NGOProfilePost.cshtml", obj);
+                    return PartialView("~/views/NGOProfile/_NGOProfilePost.cshtml", NGpostlist);
                 }
             }
             catch (Exception ex)
