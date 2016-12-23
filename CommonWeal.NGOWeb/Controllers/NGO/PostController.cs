@@ -105,6 +105,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var postlikelist = new Post();
              postlikelist.postlike=getLikeList(PostID);
              postlikelist.postId = PostID;
+             postlikelist.userId = LoginUser.LoginID;
              postlikelist.controllername = controllerNAME;
             return PartialView("../UserHome/_LikePartial",postlikelist);
         }
