@@ -195,6 +195,7 @@
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="ViewModel\NGOProfileCustom.cs" />
+    <Compile Include="ViewModel\NGOProfilePostCustom.cs" />
     <Compile Include="ViewModel\PostWithCategory.cs" />
     <Compile Include="ViewModel\Comment.cs" />
     <Compile Include="ViewModel\LoggedInUser.cs" />
