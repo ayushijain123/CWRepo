@@ -13,7 +13,7 @@ using System.Web.Security;
 using CommonWeal.Data.ModelExtension;
 using System.Net;
 using System.Collections;
-
+using CommonWeal.NGOWeb.ViewModel;
 
 
 namespace CommonWeal.NGOWeb.Controllers.Admin
@@ -333,13 +333,72 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
         /*method for spam users*/
 
-        public ActionResult SpamUsers()
+        public ActionResult SpamUser()
         {
             CommonWealEntities context = new CommonWealEntities();
-            var ob = context.SpamUsers.ToList();
-            return View(ob);
-
+            //var ob = context.SpamUsers.ToList();
+            //return View(ob);
+            User UL = new User();
+            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock==true)&&w.LoginUserType==3).ToList();
+            List<SpamAndBlockUser> listOfSpamAndBlockUsers = new List<SpamAndBlockUser>();
+            foreach (var item in ob)
+            {
+                SpamAndBlockUser objSpamAndBlock = new SpamAndBlockUser();
+                objSpamAndBlock.UserID = item.LoginID;
+                objSpamAndBlock.UserName = context.RegisteredUsers.Single(w => w.LoginID == item.LoginID).FirstName;
+                if (item.IsBlock)
+                {                    
+                    objSpamAndBlock.Status = "Block";
+                    objSpamAndBlock.IsSpam = false;
+                    objSpamAndBlock.IsBlock = true;
+                }
+                else
+                {
+                    objSpamAndBlock.IsSpam = true;
+                    objSpamAndBlock.IsBlock = false;
+                    objSpamAndBlock.Status = "Spam";
+                }
+                listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+            }
+            return View(listOfSpamAndBlockUsers);
         }
+
+        /*method for Unspam*/
+       
+        public ActionResult UnSpam(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsSpam = false;            
+            context.SaveChanges();
+            return RedirectToAction("SpamUser", "Admin");
+        }
+
+        /*method for block user from SpamUser*/
+       
+        public ActionResult BlockFromSpamUser(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsBlock = true;
+            context.SaveChanges();
+            return RedirectToAction("SpamUser", "Admin");
+        }
+
+        /*method for unblock user from SpamUser*/
+
+        public ActionResult UnBlockFromSpamUser(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsBlock = false;
+            context.SaveChanges();
+            return RedirectToAction("SpamUser", "Admin");
+        }
+
         /*get dat monthly basis for graph*/
         public JsonResult GetDataByMonth(int year=0)
         {
@@ -455,6 +514,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 return RedirectToAction("index", "Admin");
             }
         }
+       
 
         //public ActionResult DisplayGraph()
         //{
@@ -499,23 +559,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         //    return RedirectToAction("Index", "Admin");
         //}
 
-        public ActionResult WelcomeNote()
-        {
-            //string test = "http://localhost:61504/api/Donut/listdata";
-            //var json = "";
-            //using (WebClient wc = new WebClient())
-            //{
-            //    json = wc.DownloadString(test);
-            //}
-            ////var chartsdata = "http://localhost:61504/api/Donut/listdata"; // calling method Listdata
-
-            //return Json(json, JsonRequestBehavior.AllowGet); // returning list from here.3
-
-
-
-            return View();
-
-        }
+     
         //public JsonResult GetData()
         //{
         //    CommonWealEntities context = new CommonWealEntities();
