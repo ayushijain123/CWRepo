@@ -21,7 +21,7 @@
         $("#selectcategory").live("change", function () {
             var categoryList = $(this).val();
             //console.log(categoryList);
-            if (categoryList == null) {
+            if (categoryList.length == 0) {
                 categoryList = ['1'];
             }
             // console.log('inside');
