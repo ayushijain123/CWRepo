@@ -308,6 +308,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 if (CommentId > 0)
                 {
                     result = ob.abuseUser(CommentId);
+
                 }
                
                 return Json(result,JsonRequestBehavior.AllowGet);
