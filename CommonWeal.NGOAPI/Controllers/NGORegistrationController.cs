@@ -98,7 +98,7 @@ namespace CommonWeal.NGOAPI.Controllers
                         context.ImageHandlers.Add(imgobj);
                     }
                     objngo.LoginID = obj.LoginID;/*reference key from user table */
-                    objngo.NGOEmailID = objngo.NGOEmailID.ToLower();
+                    objngo.NGOEmailID = obj.LoginEmailID;
                     objngo.IsActive = false;                   
                     objngo.IsBlock = false;
                     objngo.ChairmanID = null;
