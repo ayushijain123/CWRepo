@@ -60,7 +60,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                                 ModelState.AddModelError("", "Your request status is pending");
                         }
                         /*email and password are valid and user is no active and not blocked*/
-                        else if (result.LoginEmailID.Equals(user.LoginEmailID) && result.LoginPassword == user.LoginPassword)
+                        else if (result.LoginEmailID.ToLower()==user.LoginEmailID && result.LoginPassword == user.LoginPassword)
                         {
                             /*controller name will set dynamically based on usertype  */
                             string controllerName = "";
