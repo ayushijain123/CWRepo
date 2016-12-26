@@ -25,17 +25,17 @@
                 {                       
                     <tr>
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.UserName)</td>
-                        <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.Status) </a>                       
-                        </td>
+                        <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>                                      
                         <td class="col-md-3 adminTableData">
                         @if (item.IsSpam == true)
                         { 
-                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle fa-2x"  aria-hidden="true"  title="Unspam" style="color:red; padding-top:8px;"></a></span>
-                        <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; padding-left:1px;"></a></span>
+                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unspam" style="color:red; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a></span>
+                        <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; "></a></span>
                         }                        
                         @if (item.IsBlock == true)
                         { 
                              <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:red"></a></span>
+                            
                         }  
                         </td>                   
                         @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
