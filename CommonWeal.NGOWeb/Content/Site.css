@@ -1002,11 +1002,11 @@ font-size:18px;
     .deletecomment a:hover {
     color:red;
     }
-    .deletePost {
+.deletePost {
 font-size:18px;
-
+cursor:pointer;
 }
-    .deletePost a:hover {
+    .deletePost:hover {
     color:red;
     }
 
