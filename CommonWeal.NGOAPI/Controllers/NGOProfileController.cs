@@ -27,6 +27,86 @@ namespace CommonWeal.NGOAPI.Controllers
             public string AboutNGO { get; set; }
 
         }
+        public class Delete
+        {
+            public int PostID { get; set; }
+            public int CommentID { get; set; }
+        }
+
+    [HttpPost]
+        public HttpResponseMessage DeleteCommentOnPost(Delete delete)
+        {
+            int id = delete.CommentID;
+            bool result = false;
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.ValidateOnSaveEnabled = false;
+            var res2 = context.PostComments.Where(a => a.CommentID == id).FirstOrDefault();
+            if (res2 != null)
+            {
+
+                context.PostComments.Remove(res2);
+                context.SaveChanges();
+                result = true;
+            }
+
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
+
+        }
+
+        [HttpPost]
+        public HttpResponseMessage deletePost(Delete delete)
+        {
+            int ID = delete.PostID;
+            bool result = false;
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                context.Configuration.ValidateOnSaveEnabled = false;
+                var res1 = context.PostLikes.Where(a => a.PostID == ID).ToList();
+                if (res1 != null)
+                {
+                    foreach (var item in res1)
+                    {
+                        context.PostLikes.Remove(item);
+                    }
+
+                }
+                var res2 = context.PostComments.Where(a => a.PostID == ID).ToList();
+                if (res2 != null)
+                {
+                    foreach (var item in res2)
+                    {
+                        context.PostComments.Remove(item);
+                    }
+                }
+                var res3 = context.PostCategories.Where(a => a.PostID == ID).ToList();
+                if (res3 != null)
+                {
+                    foreach (var item in res3)
+                    {
+                        context.PostCategories.Remove(item);
+                    }
+
+                }
+                var res = context.NGOPosts.Where(a => a.PostID == ID).FirstOrDefault();
+                if (res != null)
+                {
+                    context.NGOPosts.Remove(res);
+                }
+                context.SaveChanges();
+                result = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
+
+
         [HttpPost]
         public HttpResponseMessage NGOPost(AboutUs loginid)
         {
