@@ -34,7 +34,7 @@ namespace CommonWeal.NGOAPI.Controllers
         }
 
     [HttpPost]
-        public HttpResponseMessage DeleteCommentOnPost(Delete delete)
+        public bool DeleteCommentOnPost(Delete delete)
         {
             int id = delete.CommentID;
             bool result = false;
@@ -47,15 +47,16 @@ namespace CommonWeal.NGOAPI.Controllers
                 context.PostComments.Remove(res2);
                 context.SaveChanges();
                 result = true;
+                return result;
             }
 
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
+           
+            return result;
 
         }
 
         [HttpPost]
-        public HttpResponseMessage deletePost(Delete delete)
+        public bool deletePost(Delete delete)
         {
             int ID = delete.PostID;
             bool result = false;
@@ -96,14 +97,15 @@ namespace CommonWeal.NGOAPI.Controllers
                 }
                 context.SaveChanges();
                 result = true;
+                return result;
             }
             catch (Exception)
             {
 
                 throw;
             }
-            var response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
+         
+            return result;
         }
 
 
