@@ -53,7 +53,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 //conn.Tests.Add(objTest);
                 User objusr = new User();
                 objusr.LoginPassword = ru.UserPassword;
-                objusr.LoginEmailID = ru.UserEmail;
+                objusr.LoginEmailID = ru.UserEmail.ToLower();
                 var roleobj = conn.RoleTypes.Where(w => w.RoleName == "USER").FirstOrDefault();
                 objusr.LoginUserType = roleobj.RoleID;
                 objusr.IsActive = true;
@@ -63,6 +63,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 conn.Users.Add(objusr);
                 //conn.SaveChanges();
                 ru.LoginID = objusr.LoginID;
+                ru.UserEmail = objusr.LoginEmailID;
                 ru.LoginUserType = 3;
                 //conn.RegisteredUsers.Add(ru);
                 //conn.Configuration.ValidateOnSaveEnabled = false;
