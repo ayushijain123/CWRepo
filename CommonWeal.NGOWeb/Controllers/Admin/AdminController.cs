@@ -383,6 +383,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsBlock = true;
+            ob.IsSpam = false;
             context.SaveChanges();
             return RedirectToAction("SpamUser", "Admin");
         }
