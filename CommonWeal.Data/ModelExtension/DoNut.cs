@@ -23,5 +23,6 @@ namespace CommonWeal.Data.ModelExtension
         public int CountOfTotalBlockUsers { get; set; }
         public int CountOfTotalUsers { get; set; }
         public List<int> YearList { get; set; }
+        public int IsBlockSpam { get; set; }
     }
 }
