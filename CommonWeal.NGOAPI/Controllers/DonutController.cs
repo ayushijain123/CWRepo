@@ -43,6 +43,7 @@ namespace CommonWeal.NGOAPI.Controllers
          // var COTBU = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
             //var COTU = cnt.CountOfTotalActiveUsers + cnt.CountOfTotalBlockUsers;
             var yearList = obj1.RegistrationYears.Select(x=>x.year).ToList();
+            var IsBlockSpam = users.Where(w => (w.IsBlock == true || w.IsSpam == true) && w.LoginUserType == 3).Count();
 
             cnt.CountOfRequests = COR;
             cnt.CountOfActiveNGO = COA;
@@ -52,7 +53,7 @@ namespace CommonWeal.NGOAPI.Controllers
             cnt.CountOfWarnedUsers =COWU;
             cnt.CountOfTotalActiveNGO = COTAN;
             cnt.CountOfTotalBlockNGO=COTBN;
-            
+            cnt.IsBlockSpam = IsBlockSpam;
             cnt.YearList = yearList;
             HttpResponseMessage res=Request.CreateResponse(HttpStatusCode.OK, cnt);
             return res;
