@@ -62,7 +62,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             else
             {
                 //TempData["EmailID"] = "<script>alert('EmailId doesnot exist please register');</script>";
-                TempData["EmailID"] = "Email-id does not exist. Please register first.";
+                TempData["EmailID"] = "Email-id does not exist. Please, register first.";
                 return RedirectToAction("ForgotPassword", "Password");
 
             }
@@ -90,7 +90,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             }
             else
             {
-                TempData["wrongOTP"] = "<script>alert('You have Entered Wrong OTP Please Enter Your Email');</script>";
+                TempData["wrongOTP"] = "<script>alert('Invalid OTP');</script>";
                 return RedirectToAction("ForgotPassword", "Password");
             }
             return View();
@@ -153,7 +153,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
                 //Session["FinalEmail"] = null;
                 Session.Remove("FinalEmail");
                 //return Content("Password Changed Successfully please Login");
-                TempData["PasswordChange"] = "<script>alert('Password Changed Successfully please Login');</script>";
+                TempData["PasswordChange"] = "<script>alert('Password changed successfully. Please, login');</script>";
                 return RedirectToAction("Index", "Login");
                 
             }
@@ -162,7 +162,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
 
             else
             {
-                TempData["Wrong"] = "<script>alert('Please Enter Correct OTP');</script>";
+                TempData["Wrong"] = "<script>alert('Enter valid OTP');</script>";
                 return RedirectToAction("ForgotPassword", "Password", new { iid = FinalEmail });
             }
             return View();
