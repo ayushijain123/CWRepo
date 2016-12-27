@@ -15,6 +15,7 @@ namespace CommonWeal.NGOWeb.ViewModel
         public int commentLike { get; set; }
         public string commentUserImage { get; set; }
         public int commentId { get; set; }
+        public int commentUserId { get; set; }
 
     }
 }
