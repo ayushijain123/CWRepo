@@ -29,12 +29,12 @@
                         <td class="col-md-3 adminTableData">
                         @if (item.IsSpam == true)
                         { 
-                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unspam" style="color:red; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a></span>
+                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unabuse" style="color:red; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a></span>
                         <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; "></a></span>
                         }                        
                         @if (item.IsBlock == true)
                         { 
-                             <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:red"></a></span>
+                             <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:green"></a></span>
                             
                         }  
                         </td>                   
