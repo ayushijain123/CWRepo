@@ -40,6 +40,10 @@ namespace CommonWeal.NGOWeb.Controllers
                     return RedirectToAction("Index", "NGOHome");
                 }
 
+                else if (this.User.IsInRole(EnumHelper.UserType.Admin.ToString()))
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
                 else
                 {
                     return RedirectToAction("Index", "UserHome");
