@@ -14,9 +14,10 @@
             <table id="myTable" class="tableAdmin col-md-12">
                 <thead class="tableheader col-md-12">
                     <tr>
-                        <th class="col-md-3">Username</th>
-                        <th class="col-md-3">Status</th>
-                        <th class="col-md-3">Action</th>  
+                        <th class="col-md-3">USERNAME</th>
+                        <th class="col-md-3">STATUS</th>
+                        <th class="col-md-3">ACTION</th>  
+                      
                                                 
                         @* <th class="col-md-2">RESET PWD</th>*@
                     </tr>
@@ -29,7 +30,7 @@
                         <td class="col-md-3 adminTableData">
                         @if (item.IsSpam == true)
                         { 
-                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unabuse" style="color:red; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a></span>
+                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unabuse" style="color:green; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a>&nbsp&nbsp</span>
                         <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; "></a></span>
                         }                        
                         @if (item.IsBlock == true)
@@ -37,7 +38,8 @@
                              <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:green"></a></span>
                             
                         }  
-                        </td>                   
+                        </td>               
+						
                         @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
                     </tr>    
                 }  
