@@ -399,7 +399,7 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         if (postid == null)
         { postid = 0; }
-        $.post("/Post/DeleteCommentOnPost?ID=" + postid, function (result) {
+        $.post("/Post/deletePost?ID=" + postid, function (result) {
             if (result != null) {
                 $('#Post-' + postid).remove();
 
