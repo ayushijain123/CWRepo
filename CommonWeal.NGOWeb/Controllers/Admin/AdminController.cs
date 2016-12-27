@@ -86,7 +86,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
-            var User = context.Users.Where(w => w.IsWarn == true && w.IsBlock == false).ToList();
+            var User = context.Users.Where(w => w.IsWarn == true).ToList();
 
             var request = obj.WarnedNGOs();
 
@@ -348,7 +348,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 objSpamAndBlock.UserName = context.RegisteredUsers.Single(w => w.LoginID == item.LoginID).FirstName;
                 if (item.IsBlock)
                 {                    
-                    objSpamAndBlock.Status = "Block";
+                    objSpamAndBlock.Status = "Blocked";
                     objSpamAndBlock.IsSpam = false;
                     objSpamAndBlock.IsBlock = true;
                 }
@@ -402,16 +402,33 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
 
         /*get dat monthly basis for graph*/
-        public JsonResult GetDataByMonth(int year=0)
+
+
+        //public async Task<ActionResult> GetDataByMonth(int year = 0)
+        //{
+
+        //    var result = await Task.Run(() => APIHelper<Count>.PostJson("demo/Get", year));
+
+        //    return View(result);
+
+        //}
+
+
+
+
+
+
+
+        public JsonResult GetDataByMonth(int year = 0)
         {
             if (year == 0)
             {
-                year = DateTime.Now.Year; 
+                year = DateTime.Now.Year;
             }
             CommonWealEntities context = new CommonWealEntities();
-              List<int> ngo = new List<int>();
+            List<int> ngo = new List<int>();
             List<int> user = new List<int>();
-          
+
             for (int i = 1; i <= 12; i++)
             {
                 ngo.Add(context.Users.Where(x => x.LoginUserType == 1 && x.CreatedOn.Value.Month == i && x.CreatedOn.Value.Year == year).Count());
@@ -419,9 +436,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
             }
             List<BarChartModel> barChartData = new List<BarChartModel>();
-            barChartData.Add(new BarChartModel() { 
-            name="NGO",
-            data= ngo
+            barChartData.Add(new BarChartModel()
+            {
+                name = "NGO",
+                data = ngo
             });
 
             barChartData.Add(new BarChartModel()
@@ -429,8 +447,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 name = "User",
                 data = user
             });
-
-
 
             return Json(barChartData, JsonRequestBehavior.AllowGet);
         }
