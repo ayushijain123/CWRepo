@@ -356,7 +356,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 {
                     objSpamAndBlock.IsSpam = true;
                     objSpamAndBlock.IsBlock = false;
-                    objSpamAndBlock.Status = "Spam";
+                    objSpamAndBlock.Status = "Report Abuse";
                 }
                 listOfSpamAndBlockUsers.Add(objSpamAndBlock);
             }
