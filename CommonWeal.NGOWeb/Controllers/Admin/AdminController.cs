@@ -370,7 +370,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
-            ob.IsSpam = false;            
+            ob.IsSpam = false;
+            var unspam = context.SpamUsers.Where(x => x.LoginId == id).FirstOrDefault();
+            if (unspam!=null)
+            {
+                context.SpamUsers.Remove(unspam);
+            }
             context.SaveChanges();
             return RedirectToAction("SpamUser", "Admin");
         }
