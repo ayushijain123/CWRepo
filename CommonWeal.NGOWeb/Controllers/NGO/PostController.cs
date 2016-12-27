@@ -199,7 +199,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         { 
         var load =new List<Post>();
         load = null;
-        if (category!=null && category.Count() >= 0)
+        if (category!=null && category.Count() > 0)
         {
             dbOperations ob = new dbOperations();
             CommonWealEntities db = new CommonWealEntities();
