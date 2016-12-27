@@ -394,6 +394,7 @@ namespace CommonWeal.NGOWeb
                         cmnt.commentLike = 0;
                         cmnt.commentUserImage = "";
                         cmnt.CreatedDateTime = a.CreatedOn.Value;
+                        cmnt.commentUserId = a.LoginID.Value;
                         int userType = LoginUserlist.Where(user => user.LoginID == a.LoginID).FirstOrDefault().LoginUserType;
 
                         switch (userType)
