@@ -19,12 +19,10 @@ $.noConflict();
         <div id="posttemplate">
             <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
                 <span id="user-image" class="col-md-1 fa fa-users"></span>
-                @if(this.User.Identity.IsAuthenticated){
+              
               <a href="/NGOProfile/Index/@item.userId"> <span class="usernamepost col-md-3 cursor" id="usernamepost"><b>@item.userName</b></span></a>
-                }
-                else{
-                    <span class="usernamepost col-md-3" ><b>@item.userName</b></span>
-                }
+             
+               
                      <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
               
                 <span class="posttag col-md-5 float-right" >
@@ -212,7 +210,7 @@ $.noConflict();
 
             @*///user Comment section*@
 
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
             {
     
                 <div class="form-group col-md-12 commentmainbox">
