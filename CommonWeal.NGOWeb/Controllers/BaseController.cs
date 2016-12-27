@@ -32,9 +32,9 @@ namespace CommonWeal.NGOWeb.Controllers
             {
                 using (CommonWealEntities CWContext = new CommonWealEntities())
                 {
-                    var userId =  Convert.ToInt32(HttpContext.User.Identity.Name);
-                    var usr = CWContext.Users.Where(user => user.LoginID ==userId && user.IsActive && !user.IsBlock).FirstOrDefault();
-                  
+                    var userId = Convert.ToInt32(HttpContext.User.Identity.Name);
+                    var usr = CWContext.Users.Where(user => user.LoginID == userId && user.IsActive && !user.IsBlock).FirstOrDefault();
+
 
                     this.LoginUser = new LoggedInUser()
                     {
@@ -66,10 +66,19 @@ namespace CommonWeal.NGOWeb.Controllers
 
                     ViewBag.LoginUser = LoginUser;
                     ViewBag.UserType = LoginUser.LoginUserType; // Added on 07/11/2016 by Rishiraj
-               
-    
+
+
                 }
-              
+
+            }
+            else
+            {
+                this.LoginUser = new LoggedInUser()
+                {
+                    LoginID = 0,
+                    LoginEmailID = "default",
+                    LoginUserType =0,
+                };
             }
             using (CommonWealEntities CWContext = new CommonWealEntities())
             {
