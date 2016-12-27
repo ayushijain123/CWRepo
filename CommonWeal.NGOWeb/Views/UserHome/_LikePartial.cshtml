@@ -2,7 +2,7 @@
 
 
 <div class="form-inline likecommentsign col-md-12 ">
-    @if (!User.Identity.IsAuthenticated)
+    @if (!User.Identity.IsAuthenticated || User.IsInRole("Admin"))
     { 
         <span class=" likecommentcolor likecommenticon ">
             <img src="~/Images/newlike1.png" /></span>                   
@@ -12,7 +12,7 @@
 
     @{    int userLoginId = -1, count = 0, preTotalcount = 0;
           string currentLikeUserColor = "darkgray";
-          if (User.Identity.IsAuthenticated)
+          if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
           {
 
               // CommonWeal.Data.CommonWealEntities context = new CommonWeal.Data.CommonWealEntities();
