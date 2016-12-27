@@ -175,23 +175,26 @@ $(document).ready(function () {
         var commentId = $(this).attr('id').split('-')[1];
         var like = true;
         var commentusername = $("#commentusername-" + commentId).text();
-        $.post("/Post/AbuseUser?CommentId=" + commentId, function (result) {
-            if (result != null) {
-                //alert(result);
+        var response = confirm("Are you sure you want to Report abuse to "+commentusername+"?");
+        if (response) {
+            $.post("/Post/AbuseUser?CommentId=" + commentId, function (result) {
+                if (result != null) {
+                    //alert(result);
 
-                if (result == true) {
-                    //$("#reportAbuse-" + commentId).html("Reported");
-                    alert(commentusername+"reported abuse");
+                    if (result == true) {
+                        //$("#reportAbuse-" + commentId).html("Reported");
+                        alert(commentusername + "reported abuse");
+                    }
+                    else { alert(commentusername + "already reported abuse"); }
+
+
+
                 }
-                else { alert(commentusername + "already reported abuse"); }
-               
 
-               
-            }
-
-            //  window.location.reload();
-            //console.log(result);
-        });
+                //  window.location.reload();
+                //console.log(result);
+            });
+        }
 
 
     });
@@ -384,14 +387,17 @@ $(document).ready(function () {
     $(".deleteComment").live('click', function () {
         var commentid = $(this).attr('id').split('-')[1];
         if (commentid == null)
-        { commentid = 0;}
-        $.post("/Post/DeleteCommentOnPost?id=" + commentid, function (result) {
-            if (result != null) {
-                $('#CommentBox-' + commentid).remove();
+        { commentid = 0; }
+        var response = confirm("Are you sure you want to delete this Comment?");
+        if (response) {
+            $.post("/Post/DeleteCommentOnPost?id=" + commentid, function (result) {
+                if (result != null) {
+                    $('#CommentBox-' + commentid).remove();
 
-            }
+                }
 
-        });
+            });
+        }
     });
 
     /*start ajax for delete Post*/
@@ -399,13 +405,16 @@ $(document).ready(function () {
         var postid = $(this).attr('id').split('-')[1];
         if (postid == null)
         { postid = 0; }
-        $.post("/Post/deletePost?ID=" + postid, function (result) {
-            if (result != null) {
-                $('#Post-' + postid).remove();
+        var response = confirm("Are you sure you want to delete this Post?");
+        if (response) {
+            $.post("/Post/deletePost?ID=" + postid, function (result) {
+                if (result != null) {
+                    $('#Post-' + postid).remove();
 
-            }
+                }
 
-        });
+            });
+        }
     });
 
     /*start ajax for  NGOProfilePOST partial*/
