@@ -165,7 +165,7 @@ footer {
 
 #forgatpassword {
     float: right;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .forgot-password, .confirm-otp, .confirm-password {
@@ -1174,7 +1174,7 @@ tr:nth-child(even) {
 .fullImage {
     margin: auto;
     display: block;
-    width: 80%;
+    width: 100%;
     max-width: 700px;
 }
 
