@@ -4,20 +4,17 @@
 }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
+ 
 
-<<<<<<< .mine
 <script type="text/javascript">
-
-=======
-<script type="text/javascript">
->>>>>>> .r1276
     $(document).ready(function () {
         //called when key is pressed in textbox
         $("#quantity").keypress(function (e) {
@@ -28,17 +25,8 @@
                 return false;
             }
         });
-        $('#DateOfRegistration').datepicker({
-            dateFormat: "yy-mm-dd",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "-60:+0",
-            maxDate: '0'
-        });
+		/*added by vilas*/
       
-<<<<<<< .mine
-        //$(document).tooltip();
-=======
         $('INPUT[type="file"]').change(function () {
             var ext = this.value.match(/\.(.+)$/)[1];
             switch (ext) {
@@ -64,10 +52,8 @@
         });
 
        
->>>>>>> .r1276
     });
 </script>
-
 
 <div class="clearfix">
 </div>
@@ -220,7 +206,7 @@
                           Date of Registration*                          
                         </label></div>
                         <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">                          
-                              @Html.TextBoxFor(model => model.DateOfRegistration, new {placeholder = "Date of Registration", @class = "form-control col-md-7 col-xs-12", id="DateOfRegistration"} )
+                              @Html.TextBoxFor(model => model.DateOfRegistration, new {placeholder = "Date of Registration", @class = "form-control col-md-7 col-xs-12"} )
                             @Html.ValidationMessageFor(a => a.DateOfRegistration, string.Empty, new { @class = "Validation-Message" })
                         </div>
                     
@@ -277,9 +263,19 @@
 
 @section Scripts {
    @* @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryui")
-    @Styles.Render("~/Content/cssjqryUi")
+    @Scripts.Render("~/bundles/jqueryui")*@
+   @* @Styles.Render("~/Content/cssjqryUi")
     @Styles.Render("~/bundles/jqueryval")*@
 
-    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DateOfRegistration').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0",
+                maxDate: '0'
+            });
+        });
+    </script>
 }
