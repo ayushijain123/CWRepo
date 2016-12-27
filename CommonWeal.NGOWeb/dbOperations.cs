@@ -454,14 +454,10 @@ namespace CommonWeal.NGOWeb
                 {
                     foreach (var item in category)
                     {
-
                         PostCategory pc = new PostCategory();
                         pc.PostID = postid;
                         pc.CategoryID = item;
                         db.PostCategories.Add(pc);
-
-
-
                     }
                     db.SaveChanges();
                 }
@@ -475,7 +471,6 @@ namespace CommonWeal.NGOWeb
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex);
             }
 
@@ -490,12 +485,8 @@ namespace CommonWeal.NGOWeb
             su.LoginId= ob.LoginID.Value;
             su.CommentContent = ob.CommentText;
             su.ModifiedOn = DateTime.Now;
-            var post = context1.NGOPosts.Where(x=>x.PostID==ob.PostID).FirstOrDefault();
-            
-            su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();
-            
-            
-            
+            var post = context1.NGOPosts.Where(x=>x.PostID==ob.PostID).FirstOrDefault();            
+            su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();     
             int userType = context1.Users.Where(user => user.LoginID == su.LoginId).FirstOrDefault().LoginUserType;
 
             switch (userType)
@@ -512,6 +503,8 @@ namespace CommonWeal.NGOWeb
             if (checkUser == null)
             {
                 context1.SpamUsers.Add(su);
+                var res= context1.Users.Where(a => a.LoginID == su.LoginId).FirstOrDefault();
+                res.IsSpam = true;
                 context1.SaveChanges();
                 return true;
             }
