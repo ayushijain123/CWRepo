@@ -527,7 +527,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 objngo.NGOPassword = obj.NGOPassword;
                 objuser.LoginPassword = obj.NGOPassword;
                 context.SaveChanges();
-                TempData["msg"] = "<script>alert('Password Changed succesfully');</script>";
+                TempData["msg"] = "<script>alert('Password changed succesfully');</script>";
 
                 return RedirectToAction("index", "Admin");
             }
