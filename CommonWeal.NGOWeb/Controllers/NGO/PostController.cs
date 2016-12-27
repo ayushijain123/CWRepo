@@ -56,6 +56,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 userinfo.Add(userName);
                 userinfo.Add(postcmnt.CreatedOn.Value.ToString("MM/dd/yyyy HH:mm"));
                 userinfo.Add(postcmnt.CommentID.ToString());
+                userinfo.Add(LoginUser.LoginID.ToString());
             }
             return Json(userinfo, JsonRequestBehavior.AllowGet);
         }
