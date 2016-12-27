@@ -7,7 +7,10 @@ function fileclick() {
 
 $(document).ready(function () {
     //    $("#file").filestyle({ badge: false });
-
+    $("#uploadimage").hide();
+    $("#pencil").live('click', function () {
+        $("#uploadimage").show();
+    });
 
     $(".btnPost").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
@@ -15,7 +18,7 @@ $(document).ready(function () {
         var controller = $("#controllername").html().trim();
         var TextComment = $("#txtComment-" + postid).val().trim();
         var IsCurrentNgoProfile = $("#IeThisCurrentNgoProfile").html().trim();
-       
+        var currentUserId=0;
         var userName = "";
         var createdOn = "";
         var spamicon = "";
@@ -26,19 +29,24 @@ $(document).ready(function () {
                 userName = userinfo[0];
                 createdOn = userinfo[1];
                 commentid = parseInt(userinfo[2]);
+                currentUserId= parseInt(userinfo[3]);
                 if (controller == "NGOProfile"){
-                    if(IsCurrentNgoProfile == "True") {
+                    if(IsCurrentNgoProfile == "True" && commentid== currentUserId) {
                   
-                           spamicon = '<span id="reportAbuse-' + commentid + '" class="reportAbuse fa fa-exclamation-circle float-right" title="Report abuse"></span>';
-                            DeleteComment ='<span id="deleteComment-'+ commentid+'" class="deleteComment float-right fa fa-remove" title="Delete comment"></span>';
-                        }
+                           spamicon = '<span id="reportAbuse-' + commentid + '" class="reportAbuse fa fa-exclamation-circle float-left" title="Report abuse"></span>';
+                           
+                    }
+                    else if (IsCurrentNgoProfile == "True")
+                    {
+                     DeleteComment ='<span id="deleteComment-'+ commentid+'" class="deleteComment float-right fa fa-remove" title="Delete comment"></span>';
+                    }
                 }
                 $("#" + postid).append('<div class="form-group col-md-12 "id="CommentBox-'+commentid+'">' +
-                '<div class="form-inline col-md-12 comentpost ">' +
+                '<div class="form-inline col-md-12 comentpost ">' + spamicon +
                     '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
-                    spamicon+DeleteComment+
+                  DeleteComment+
 
                     '<p id="postcommentcontent"class="postcommentcontent">' + TextComment + '</p>' +
 
@@ -393,7 +401,7 @@ $(document).ready(function () {
             $.post("/Post/DeleteCommentOnPost?id=" + commentid, function (result) {
                 if (result != null) {
                     $('#CommentBox-' + commentid).remove();
-
+                
                 }
 
             });
@@ -401,7 +409,7 @@ $(document).ready(function () {
     });
 
     /*start ajax for delete Post*/
-    $(".deletePost").live('click', function () {
+    $(".deletePost").on('click', function () {
         var postid = $(this).attr('id').split('-')[1];
         if (postid == null)
         { postid = 0; }
