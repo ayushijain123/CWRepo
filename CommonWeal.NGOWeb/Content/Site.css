@@ -1016,6 +1016,10 @@ cursor:pointer;
 font-size:14px;
 cursor:pointer;
       padding-top: 6px;
+      
+}
+.reportwidth {
+width:20px;
 }
     .reportAbuse:hover {
     color:red;
