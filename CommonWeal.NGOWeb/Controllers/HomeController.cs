@@ -17,7 +17,7 @@ namespace CommonWeal.NGOWeb.Controllers
 
         public ActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated ||this.User.IsInRole("Admin"))
             {
              
                 dbOperations ob = new dbOperations();
@@ -40,10 +40,10 @@ namespace CommonWeal.NGOWeb.Controllers
                     return RedirectToAction("Index", "NGOHome");
                 }
 
-                //else if (this.User.IsInRole(EnumHelper.UserType.Admin.ToString()))
-                //{
-                //    return RedirectToAction("Index", "Admin");
-                //}
+                else if (this.User.IsInRole(EnumHelper.UserType.Admin.ToString()))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
                 else
                 {
                     return RedirectToAction("Index", "UserHome");
