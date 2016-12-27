@@ -17,7 +17,7 @@
                         <th class="col-md-3">NGO NAME</th>
                         <th class="col-md-3">NGO Email</th>
                         <th class="col-md-3">UNWARN</th>
-                        <th class="col-md-3">BLOCK</th>
+                       
                     </tr>
                 </thead>
                 @foreach (var item in Model)
@@ -26,7 +26,7 @@
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
                         <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOEmailID)</td>
                         <td class="col-md-3 adminTableData"><a href="/admin/UnwarnNGO/@item.LoginID" class="fa fa-exclamation-triangle fa-2x"  aria-hidden="true" style="color:green"></a></td>
-                        <td class="col-md-3 adminTableData"><a href="/admin/BlockWarned/@item.LoginID" class="fa fa-ban fa-2x"  aria-hidden="true" style="color:red"></a></td>
+                       
                     </tr>    
                 }
                 <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
