@@ -167,19 +167,19 @@ var ctx = document.getElementById("myChart2");
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ["Active Users", "Blocked Users","Spam Users"],
+        labels: ["Active Users", "Blocked/Abused Users"],
         datasets: [
         {
-            data: [parseInt($("#COAL").html()), parseInt($("#COBU").html()),0],
+            data: [parseInt($("#COAL").html()), parseInt($("#COBS").html()),0],
             backgroundColor: [
                 "#495b79",
-                "#e45857",
-                "#ffae1a"
+                "#e45857"
+                
             ],
             hoverBackgroundColor: [
                 "#364359",
-                "#dd2c2b",
-                "#e69500"
+                "#dd2c2b"
+                
             ]
         }]
     },
