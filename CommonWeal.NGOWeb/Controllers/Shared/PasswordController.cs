@@ -62,7 +62,7 @@ namespace CommonWeal.NGOWeb.Controllers.Shared
             else
             {
                 //TempData["EmailID"] = "<script>alert('EmailId doesnot exist please register');</script>";
-                TempData["EmailID"] = "Email-id does not exist. Please, register first.";
+                TempData["EmailID"] = "Email-id does not exist. Please, Enter registered email-Id";
                 return RedirectToAction("ForgotPassword", "Password");
 
             }
