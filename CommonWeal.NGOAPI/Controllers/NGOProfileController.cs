@@ -117,13 +117,18 @@ namespace CommonWeal.NGOAPI.Controllers
         public bool ImageGet(ImageIOS objImage)
         {
             CommonWealEntities context = new CommonWealEntities();
-            byte[] data = Convert.FromBase64String(objImage.Image);
-            //byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
-            ImageHandler imgobj = new ImageHandler();
-            imgobj.Image = data;
-            context.ImageHandlers.Add(imgobj);
-            var res = objImage.Image;
-            return true;
+            if (objImage != null)
+            {
+                byte[] data = Convert.FromBase64String(objImage.Image);
+                //byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
+                ImageHandler imgobj = new ImageHandler();
+                imgobj.Image = data;
+                context.ImageHandlers.Add(imgobj);
+                var res = objImage.Image;
+                return true;
+            }
+            else
+                return false;
         }
 
         [HttpPost]
