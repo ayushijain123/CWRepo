@@ -170,13 +170,12 @@ $.noConflict();
             @foreach (var comment in item.PostComments)
             {
                 <div class="col-md-12" id="CommentBox-@comment.commentId">
-                    <div>
+                
                           @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile"))&&this.User.Identity.Name.Equals(item.userId.ToString())&& !this.User.Identity.Name.Equals(comment.commentUserId.ToString()))
                         {
                                   <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-left" title="Report Abuse"></span>
                         }
-                        </div>
-                      <div class="form-inline col-md-12 comentpost">
+                       <div class="form-inline col-md-12 comentpost">
                         <span class="col-md-1 fa fa-user commentimage"></span>
                       
                         <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
