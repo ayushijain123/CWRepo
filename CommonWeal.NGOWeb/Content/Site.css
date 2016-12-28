@@ -99,6 +99,13 @@ header {
     
 }
 
+#NgoName {
+
+padding-bottom: 29px;
+}
+
+
+
 .menuitem {
     font-size: 25px;
     padding: 5px;
@@ -957,8 +964,11 @@ tr.pager td {
 
 #profileupdate {
     bottom: 14px;
+       
 }
-
+.ngoviewdetails {
+        padding-top: 15px;
+}
 
 .btnPost {
     padding-top: 3px !important;
