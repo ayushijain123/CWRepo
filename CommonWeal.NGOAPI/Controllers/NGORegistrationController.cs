@@ -65,7 +65,7 @@ namespace CommonWeal.NGOAPI.Controllers
 
 
         [HttpPost]
-      //  public bool CreateNGO(NGOUser objngo)
+    
        public HttpResponseMessage CreateNGO(NGOUser objngo)
         {
            
@@ -85,6 +85,7 @@ namespace CommonWeal.NGOAPI.Controllers
                     obj.LoginUserType = roleobj.RoleID;
                     obj.IsActive = false;/*NGO is not active bydefault it will become active after admin verification  */
                     obj.IsBlock = false;/*default ngo user is not blocked */
+                    obj.IsSpam = false;/*default ngo user is spam*/
                     obj.ModifiedOn = DateTime.Now;
                     obj.CreatedOn = DateTime.Now;
                     context.Users.Add(obj);                    
