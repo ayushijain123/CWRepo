@@ -58,6 +58,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 objusr.LoginUserType = roleobj.RoleID;
                 objusr.IsActive = true;
                 objusr.IsBlock = false;
+                objusr.IsSpam = false;/*default user is spam*/
                 objusr.ModifiedOn = DateTime.Now;
                 objusr.CreatedOn = DateTime.Now;
                 conn.Users.Add(objusr);
