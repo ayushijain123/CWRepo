@@ -11,7 +11,7 @@ using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
     //[AuthorizeRoles = "NGOAdmin")]]
-    [Authorize]
+    [AllowAnonymous]
     public class NGOProfileController : BaseController
     {
         public ActionResult Index(int id=0)
@@ -69,6 +69,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return View(obj);
         }
 
+        [Authorize]
         [HttpPost]
         public JsonResult SubmitSummary(string summary, int Loginid)
         {
@@ -90,6 +91,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return Json(summary, JsonRequestBehavior.AllowGet);
 
         }
+        [Authorize]
         [HttpPost]
         public ActionResult Edit(NGOUser obj)
         {
@@ -119,6 +121,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             //return PartialView("AboutUsNGO", myobj);
 
         }
+        [Authorize]
         [HttpPost]
         public ActionResult PostImage(HttpPostedFileBase file, NGOUser obj)
         {
@@ -140,8 +143,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return RedirectToAction("Index", "NGOProfile");
         }
 
-
         [AllowAnonymous]
+        [HttpPost]
         public PartialViewResult AboutUsPartial(int id=0)
         {
             try
