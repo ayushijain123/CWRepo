@@ -16,8 +16,8 @@ namespace CommonWeal.Data
     {
         public int NGOUserId { get; set; }
 
+        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [RegularExpression("[a-zA-Z0-9]+$", ErrorMessage = "Enter Alphanumeric only")]
-        //[RegularExpression("^[0-9]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyNumbers"), MaxLength(30)]
         public string UniqueuId { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
@@ -62,17 +62,17 @@ namespace CommonWeal.Data
         [StringLength(100, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string NGOAddress { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        //[Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
         [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string ChairmanName { get; set; }
 
-
+         //[Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         public string ChairmanID { get; set; }
 
-        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
-        [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
-        [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
+       
+        //[RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
+        //[StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string ParentOrganisation { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
@@ -84,15 +84,21 @@ namespace CommonWeal.Data
         [StringLength(15, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string RegistrationNumber { get; set; }
 
+       [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [RegularExpression("[a-zA-Z ]*$", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_OnlyAlphabets")]
         [StringLength(50, ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_StringLength")]
         public string CityOfRegistration { get; set; }
+
+
+       [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+       public string RegistrationProof { get; set; }
+
 
         [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         public DateTime DateOfRegistration { get; set; }
 
 
-        [Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
+        //[Required(ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_Required")]
         [RegularExpression(@"(www\.)?\w+\.(com|net|edu|org|in|co.in)", ErrorMessageResourceType = typeof(ModelMessages), ErrorMessageResourceName = "Generic_URL", ErrorMessage = null)]
         public string WebsiteUrl { get; set; }
 
