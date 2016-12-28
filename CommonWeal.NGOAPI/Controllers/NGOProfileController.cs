@@ -25,6 +25,7 @@ namespace CommonWeal.NGOAPI.Controllers
             public string NGOName { get; set; }
             public string ChairmanName { get; set; }
             public string AboutNGO { get; set; }
+            public string profilepic { get; set; }
 
         }
         public class Delete
@@ -121,7 +122,6 @@ namespace CommonWeal.NGOAPI.Controllers
         [HttpPost]
         public HttpResponseMessage AboutNGO(AboutUs loginid)
         {
-            //jfsdklfjklj
             CommonWealEntities context = new CommonWealEntities();
             var res = context.NGOUsers.Where(w => w.LoginID==loginid.LoginID).FirstOrDefault();
             loginid.NGOEmail = res.NGOEmailID;
@@ -130,6 +130,7 @@ namespace CommonWeal.NGOAPI.Controllers
             loginid.NGOName = res.NGOName;
             loginid.ChairmanName = res.ChairmanName;
             loginid.AboutNGO = res.AboutUs;
+            loginid.profilepic = res.NGOProfilePic;
             var response = Request.CreateResponse(HttpStatusCode.OK, loginid);
             return response;
         }
