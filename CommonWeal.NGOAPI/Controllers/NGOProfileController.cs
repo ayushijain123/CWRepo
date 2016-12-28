@@ -108,7 +108,23 @@ namespace CommonWeal.NGOAPI.Controllers
          
             return result;
         }
+        public class ImageIOS
+        {
+            public string Image { get; set; }
+        }
 
+        [HttpPost]
+        public bool ImageGet(ImageIOS objImage)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            byte[] data = Convert.FromBase64String(objImage.Image);
+            //byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
+            ImageHandler imgobj = new ImageHandler();
+            imgobj.Image = data;
+            context.ImageHandlers.Add(imgobj);
+            var res = objImage.Image;
+            return true;
+        }
 
         [HttpPost]
         public HttpResponseMessage NGOPost(AboutUs loginid)
