@@ -759,13 +759,7 @@ tr.pager td {
     border-color: rgba(211, 211, 211, 0.87);
     border-width: 1px;
 }
-.deleteComment {
-    padding-right: 12px;
-    cursor:pointer;
-}
-    .deleteComment:hover {
-    color:red;
-    }
+
 
 .iconLine {
     background-color: #FFFFFF;
@@ -869,8 +863,7 @@ tr.pager td {
     border-color: lightgray;
     border-width: 1px;
       margin-left: 15px;
-    padding-left: 7px;
-    padding-top:2px;
+    padding:2px 0px 0px 7px;
 }
 
 .column12 {
@@ -881,21 +874,19 @@ tr.pager td {
 .commentimage {
     height: 38px;
     width: auto;
-       padding-right: 0px;
-    padding-left: 9px;
+       
     font-size: x-large;
-    padding-top:6px;
+  
+    padding:6px 0px 0px 9px;
 }
 
 
 .commentusername {
-    padding-right: 0px;
+    
     color: #428bca;
     width: auto;
-    padding-right: 8px;
-    top: 0px;
-    padding-left: 14px;
     text-transform: capitalize;
+    padding:0px 10px 0px 14px;
 }
 
 
@@ -903,10 +894,10 @@ tr.pager td {
     color: #fff;
      background-color: #2A3F54;
     font-size: 16px;
-    padding: 5px;
-    margin-right: 5px;
-     padding-top: 10px;
+  
+ 
     text-transform: capitalize;
+    padding:19px 5px 11px 5px;
 }
 
 .usernav-guest {
@@ -916,10 +907,7 @@ tr.pager td {
 }
 
 .postcommentcontent {
-      padding-left: 13px;
-   
-    padding-right: 8px;
-    margin-left: 28px;
+    padding: 0px 8px 0px 42px;
 }
 
 .textComment {
@@ -999,11 +987,13 @@ cursor:pointer;
     width: auto;
         padding-top: 4px;
 }
-.deletecomment {
-font-size:18px;
+.deleteComment {
+font-size:15px;
+cursor:pointer;
+padding:15px 28px 0px 0px;
 
 }
-    .deletecomment a:hover {
+    .deleteComment:hover {
     color:red;
     }
 .deletePost {
@@ -1017,7 +1007,8 @@ cursor:pointer;
 .reportAbuse {
 font-size:14px;
 cursor:pointer;
-padding-top: 12px;
+
+padding:12px 0px 0px 0px;
       
 }
 .reportwidth {
