@@ -330,7 +330,18 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
-
+        /*method for ngo details*/
+        public ActionResult ViewDetails(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var viewdetails = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+            TempData["ViewDetails"] = viewdetails;
+            return RedirectToAction("NGODetails", "Admin");
+        }
+        public ActionResult NGODetails()
+        {        
+           return View(TempData["ViewDetails"]);
+        }
         /*method for spam users*/
 
         public ActionResult SpamUser()
