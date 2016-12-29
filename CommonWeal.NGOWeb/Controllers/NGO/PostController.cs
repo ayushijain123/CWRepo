@@ -321,6 +321,22 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             }
 
         }
+         [AllowAnonymous]
+        /*action for search ngo  through ajax*/
+        public JsonResult SearchNGO(string name)
+        {  
+            
+            CommonWealEntities context = new CommonWealEntities();
+            var result=context.NGOUsers.Where(x=>x.NGOName.ToLower().Contains(name.ToLower())).Select (x=>new NGoSearchModal{loginID=x.LoginID.Value,name=x.NGOName}).ToList();
+            return Json(result,JsonRequestBehavior.AllowGet);
+        
+        }
+        /*modal for ngo search key value*/
+      public class NGoSearchModal{
 
+      public int loginID{get; set;}
+       public string name{get;set;}
+
+       }
     }
 }
