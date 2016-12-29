@@ -5,14 +5,16 @@
         @Html.Partial("../UserHome/_Posts", Model.PostModel)
     </div>
 
-
-
+    @{var poststatus="See more posts";
+    if (Model.PostModel.Count() == 0)
+    { poststatus = "No post found"; }
     <div id="loadMoreSection"></div>
     <div style="text-align: center">
-        <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="See more posts" id="btnLoadNGOPfrofile-@Model.CurrentUserID" align="center">
+        <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="@poststatus" id="btnLoadNGOPfrofile-@Model.CurrentUserID" align="center">
         @*type="button"*@
 
     </div>
+    } 
 </div>
 
 @if (TempData["US"] != null)
