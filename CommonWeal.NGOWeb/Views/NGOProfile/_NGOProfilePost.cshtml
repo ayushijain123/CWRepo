@@ -1,25 +1,26 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
 
 <div class="container">
-<div id="postsection" >
-    @Html.Partial("../UserHome/_Posts", Model.PostModel)
-</div>
-
-
-
-<div  id="loadMoreSection" ></div>
-<div  style="text-align:center">
- <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="See more posts" id="btnLoadNGOPfrofile-@Model.CurrentUserID" align="center"> @*type="button"*@
-
-  </div>
+    <div id="postsection">
+        @Html.Partial("../UserHome/_Posts", Model.PostModel)
     </div>
 
-    @if (TempData["US"] != null)
+
+
+    <div id="loadMoreSection"></div>
+    <div style="text-align: center">
+        <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="See more posts" id="btnLoadNGOPfrofile-@Model.CurrentUserID" align="center">
+        @*type="button"*@
+
+    </div>
+</div>
+
+@if (TempData["US"] != null)
 {
     @Html.Raw(TempData["US"])
 }
 @*<div id="lblpost">*@
-   @* @Html.Partial("../UserHome/_Posts", Model)
+@* @Html.Partial("../UserHome/_Posts", Model)
     <div id="loadMoreSection"></div>*@
 @*<div style="text-align: center" class="row col-sm-12">
     <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoad" class="btnLoadNGOPfrofile" align="center">
@@ -29,8 +30,8 @@
 
 
 @section scripts{
-    
-     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#uploadimage").hide();
@@ -38,12 +39,12 @@
                 $("#uploadimage").show();
             });
         });
-</script>
+    </script>
 
     <!-- Latest compiled and minified JavaScript -->
-   @* <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
-    
-   @* <script>
+    @* <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+
+    @* <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
         });
