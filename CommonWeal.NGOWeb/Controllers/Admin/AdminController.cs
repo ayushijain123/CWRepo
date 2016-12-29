@@ -223,7 +223,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             }
         }
         public ActionResult Accept(int id)
-        {
+            {
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
@@ -257,7 +257,42 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 }
                 throw raise;
             }
+        }
 
+       /*method for reject request from view details page*/
+        public ActionResult Decline(int id)
+        {
+            try
+            {
+                CommonWealEntities context = new CommonWealEntities();
+                context.Configuration.ValidateOnSaveEnabled = false;
+                var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+                ob.IsActive = false;
+                ob.IsDecline = true;
+                context.SaveChanges();
+                var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+                ob1.IsActive = false;
+                ob1.IsDecline = true;                
+                context.SaveChanges();
+                return RedirectToAction("Requests", "Admin");
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}",
+                            validationErrors.Entry.Entity.ToString(),
+                            validationError.ErrorMessage);
+                        // raise a new exception nesting  
+                        // the current instance as InnerException  
+                        raise = new InvalidOperationException(message, raise);
+                    }
+                }
+                throw raise;
+            }
         }
 
         public ActionResult Block(int id)
@@ -342,8 +377,29 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {        
            return View(TempData["ViewDetails"]);
         }
-        /*method for spam users*/
 
+        /*method for More Info*/
+        public ActionResult MoreInfo(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var viewdetails = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            return View(viewdetails);
+        }
+        public class MoreInformation
+        {
+            public string NGOEmailID { get; set; }
+            public string Message { get; set; }
+        }
+        /*method for SendMailFromAdmin*/
+        public ActionResult SendMailFromAdmin(MoreInformation objMoreInfo)
+        {
+            dbOperations objdb = new dbOperations();
+            var res = objdb.SendActivationEmail(objMoreInfo.NGOEmailID, objMoreInfo.Message);
+            ViewData["MoreInfo"] = "Mail Sent";
+            return RedirectToAction("Index", "Admin");
+        }
+
+        /*method for spam users*/
         public ActionResult SpamUser()
         {
             CommonWealEntities context = new CommonWealEntities();
