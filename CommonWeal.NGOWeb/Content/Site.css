@@ -137,7 +137,8 @@ header {
 }
 
 #NgoName {
-    padding-bottom: 29px;
+        margin-top: 35px;
+
 }
 
 
@@ -996,8 +997,17 @@ tr.pager td {
 }
 
 .ngoviewdetails {
-    padding-top: 15px;
+   
+    margin-bottom: 15px;
+    margin-top: 0px;
+    bottom: 33px;
+
 }
+
+/*#details {
+    bottom: 50px;
+
+}*/
 
 .btnPost {
     padding-top: 3px !important;
