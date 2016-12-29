@@ -101,7 +101,7 @@ namespace CommonWeal.NGOAPI.Controllers
                             string path = "~/Images/Post/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            objngo.ChairmanID =filepath;
+                            objngo.ChairmanID =path;
                         }
                         if (objngo.RegistrationProof != null) 
                         {
@@ -113,7 +113,7 @@ namespace CommonWeal.NGOAPI.Controllers
                             string path = "~/Images/Post/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            objngo.RegistrationProof = filepath;
+                            objngo.RegistrationProof = path;
                         }
 
                         //byte[] data = Convert.FromBase64String(objngo.ChairmanID);
