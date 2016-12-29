@@ -3,50 +3,53 @@
 <script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
 <link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
- <script type="text/javascript">
-       $(document).ready(function () {
-           $('#myTable').DataTable();
-       });
-    </script> 
-<div class="row">
-    <div class="col-md-12">
-        <div class="requests">
-            <table id="myTable" class="tableAdmin col-md-12">
-                <thead class="tableheader col-md-12">
-                    <tr>
-                        <th class="col-md-3">USERNAME</th>
-                        <th class="col-md-3">STATUS</th>
-                        <th class="col-md-3">ACTION</th>  
-                      
-                                                
-                        @* <th class="col-md-2">RESET PWD</th>*@
-                    </tr>
-                </thead>
-                @foreach (var item in Model)
-                {                       
-                    <tr>
-                        <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.UserName)</td>
-                        <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>                                      
-                        <td class="col-md-3 adminTableData">
-                        @if (item.IsSpam == true)
-                        { 
-                        <span ><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unabuse" style="color:green; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a>&nbsp&nbsp</span>
-                        <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; "></a></span>
-                        }                        
-                        @if (item.IsBlock == true)
-                        { 
-                             <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:green"></a></span>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="requests">
+                <table id="myTable" class="tableAdmin col-md-12">
+                    <thead class="tableheader col-md-12">
+                        <tr>
+                            <th class="col-md-3">USERNAME</th>
+                            <th class="col-md-3">STATUS</th>
+                            <th class="col-md-3">ACTION</th>
+
+
+                            @* <th class="col-md-2">RESET PWD</th>*@
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {                       
+                        <tr>
+                            <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.UserName)</td>
+                            <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td class="col-md-3 adminTableData">
+                                @if (item.IsSpam == true)
+                                { 
+                                    <span><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unabuse" style="color:green; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a>&nbsp&nbsp</span>
+                                    <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; "></a></span>
+                                }
+                                @if (item.IsBlock == true)
+                                { 
+                                    <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:green"></a></span>
                             
-                        }  
-                        </td>               
-						
-                        @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
-                    </tr>    
-                }  
-                <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
-                <h3><center><strong>Blocked/Abused Users</strong></center></h3>           
-            </table>
+                                }
+                            </td>
+
+                            @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
+                        </tr>    
+                    }
+                    <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
+                    <h3>
+                        <center><strong>Blocked/Abused Users</strong></center>
+                    </h3>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-

@@ -13,149 +13,139 @@
 <script src="~/Scripts/Admin/CloudFlare/d3.min.js"></script>
 <script src="~/Scripts/Admin/CloudFlare/nv.d3.min.js"></script>
 
-
-@*High charts*@
-@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>*@
-
-@*Donut chart*@
-@*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.1/nv.d3.min.js"></script>*@
-
-<div class="row">
-    <div class="top-panel col-md-12">
-        <div class="top-row col-md-4">
-            <a href="/Admin/Requests">
-                <div class="media bg-primary request">
-                    <div class="media-left side-request pull-left">
-                        <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>NGOs Request
+<div class="container">
+    <div class="row">
+        <div class="top-panel col-md-12">
+            <div class="top-row col-md-4">
+                <a href="/Admin/Requests">
+                    <div class="media bg-primary request">
+                        <div class="media-left side-request pull-left">
+                            <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>NGOs Request
                              <span class="pull-right" id="COR">@Model.CountOfRequests</span>
-                        </h3>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
-        <div class="top-row col-md-4">
-            <a href="/Admin/Active_Users">
-                <div class="media bg-primary active-ngo">
-                    <div class="media-left side-active-ngo pull-left">
-                        <i class="icon-admin fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Active NGOs
+            <div class="top-row col-md-4">
+                <a href="/Admin/Active_Users">
+                    <div class="media bg-primary active-ngo">
+                        <div class="media-left side-active-ngo pull-left">
+                            <i class="icon-admin fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Active NGOs
                              <span class="pull-right" id="COAN">@Model.CountOfActiveNGO</span>
-                        </h3>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
+                </a>
+            </div>
 
-        <div class="top-row col-md-4">
-            <a href="/Admin/Blocked_Users">
-                <div class="media bg-primary blocked-ngo">
-                    <div class="media-left side-blocked-ngo pull-left">
-                        <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Blocked NGOs
+            <div class="top-row col-md-4">
+                <a href="/Admin/Blocked_Users">
+                    <div class="media bg-primary blocked-ngo">
+                        <div class="media-left side-blocked-ngo pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Blocked NGOs
                             <span class="pull-right" id="COBN">@Model.CountOfBlockedNGO</span>
-                        </h3>
+                            </h3>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="bottom-panel col-md-12">
-        <div class="top-row col-md-4">
-            <a href="/Admin/All_Users">
-                <div class="media bg-primary all-users">
-                    <div class="media-left side-all-users pull-left">
-                        <i class="icon-admin fa fa-users fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Active Users
-                            <span class="pull-right" id="COAL">@Model.CountOfTotalActiveUsers</span>
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="top-row col-md-4">
-            <a href="/Admin/Warned_NGOs">
-                <div class="media bg-primary warned-users">
-                    <div class="media-left side-warned-users pull-left">
-                        <i class="icon-admin fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Warned NGOs
-                        <span class="pull-right" id="COWU">@Model.CountOfWarnedUsers</span>
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="top-row col-md-4">
-            <a href="/Admin/SpamUser">
-                <div class="media bg-primary blocked-users">
-                    <div class="media-left side-blocked-users pull-left">
-                        <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
-                    </div>
-                    <div class="media-body">
-                        <h3>Blocked/Abused Users  
-                            <span class="pull-right" id="COBS">@Model.IsBlockSpam</span>                       
-                        </h3>
-                    </div>
-                </div>
-            </a>
-        </div>              
-    </div>
-</div>
-<div class="row">
-    <div class="donut-chart col-md-6">
-        <center><h2>NGOs Update:</h2></center>
-        <canvas id="myChart1" style="height: 50px;"></canvas>
-    </div>
-    <div class="donut-chart col-md-6">
-        <center><h2>Users Update:</h2></center>
-        <canvas id="myChart2" style="height: 50px;"></canvas>
-    </div>
-</div>
-
-<div class="row">
-    <div class="discrete-graph col-md-12">
-        <div class="row year-dropdown pull-right">
-            <div class="col-md-12">
-                <form>
-                    <strong>Year:</strong>
-                    <select name="year" id=""class="BarGraph">
-                       
-                        @foreach(var year in Model.YearList )
-                        {
-                            if (year == DateTime.Now.Year)
-                            { <option selected>@year</option>}
-                            else{ <option >@year</option>}
-                        }
-                        
-                    </select>
-                </form>
+                </a>
             </div>
         </div>
-        <div id="container"></div>
+    </div>
+
+    <div class="row">
+        <div class="bottom-panel col-md-12">
+            <div class="top-row col-md-4">
+                <a href="/Admin/All_Users">
+                    <div class="media bg-primary all-users">
+                        <div class="media-left side-all-users pull-left">
+                            <i class="icon-admin fa fa-users fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Active Users
+                            <span class="pull-right" id="COAL">@Model.CountOfTotalActiveUsers</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/Warned_NGOs">
+                    <div class="media bg-primary warned-users">
+                        <div class="media-left side-warned-users pull-left">
+                            <i class="icon-admin fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Warned NGOs
+                        <span class="pull-right" id="COWU">@Model.CountOfWarnedUsers</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/SpamUser">
+                    <div class="media bg-primary blocked-users">
+                        <div class="media-left side-blocked-users pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Blocked/Abused Users  
+                            <span class="pull-right" id="COBS">@Model.IsBlockSpam</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="donut-chart col-md-6">
+            <center><h2>NGO's Information:</h2></center>
+            <canvas id="myChart1" style="height: 50px;"></canvas>
+        </div>
+        <div class="donut-chart col-md-6">
+            <center><h2>User's Information:</h2></center>
+            <canvas id="myChart2" style="height: 50px;"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="discrete-graph col-md-12">
+            <div class="row year-dropdown pull-right">
+                <div class="col-md-12">
+                    <form>
+                        <strong>Year:</strong>
+                        <select name="year" id="" class="BarGraph">
+
+                            @foreach (var year in Model.YearList)
+                            {
+                                if (year == DateTime.Now.Year)
+                                { <option selected>@year</option>}
+                                else
+                                { <option>@year</option>}
+                            }
+
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div id="container"></div>
+        </div>
     </div>
 </div>
-
 
 @if (TempData["msg"] != null)
 {
