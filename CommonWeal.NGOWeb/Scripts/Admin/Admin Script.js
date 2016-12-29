@@ -64,6 +64,7 @@ function GetBarChart(graphData) {
         },
         yAxis: {
             min: 0,
+            allowDecimals: false,
             title: {
                 text: 'No. of NGOs/Users'
             }
@@ -95,7 +96,7 @@ $(".BarGraph").on('change', function () {
     //var like = true;
     var year = $(this).val();
     var graphData;
-    $.post("/Admin/GetDataByMonth?year="+ year, function (result) {
+    $.post("/Admin/GetDataByMonth?year=" + year, function (result) {
         if (result != null) {
             //alert(result);
             graphData = result;
@@ -115,19 +116,19 @@ $(".BarGraph").on('change', function () {
 //High Charts 
 $(function () {
     var graphData;
-   
-    var year =0;
+
+    var year = 0;
     $.post("/Admin/GetDataByMonth?year=" + year, function (result) {
         if (result != null) {
             graphData = result;
             GetBarChart(graphData);
-            
+
         }
     });
-   
- 
-  
-    
+
+
+
+
 });
 
 
@@ -170,16 +171,16 @@ var myChart = new Chart(ctx, {
         labels: ["Active Users", "Blocked/Abused Users"],
         datasets: [
         {
-            data: [parseInt($("#COAL").html()), parseInt($("#COBS").html()),0],
+            data: [parseInt($("#COAL").html()), parseInt($("#COBS").html()), 0],
             backgroundColor: [
                 "#495b79",
                 "#e45857"
-                
+
             ],
             hoverBackgroundColor: [
                 "#364359",
                 "#dd2c2b"
-                
+
             ]
         }]
     },
