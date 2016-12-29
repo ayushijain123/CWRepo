@@ -98,7 +98,7 @@ namespace CommonWeal.NGOAPI.Controllers
                             ms.Write(imageBytes, 0, imageBytes.Length);
                             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
                             var abc = Guid.NewGuid();
-                            string path = "~/Images/Post/" + abc + ".jpg";
+                            string path = "~/Images/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             objngo.ChairmanID =path;
@@ -110,17 +110,13 @@ namespace CommonWeal.NGOAPI.Controllers
                             ms.Write(imageBytes, 0, imageBytes.Length);
                             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
                             var abc = Guid.NewGuid();
-                            string path = "~/Images/Post/" + abc + ".jpg";
+                            string path = "~/Images/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             objngo.RegistrationProof = path;
                         }
 
-                        //byte[] data = Convert.FromBase64String(objngo.ChairmanID);
-                        ////byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
-                        //imgobj.Image = data;
-                        //context.ImageHandlers.Add(imgobj);
-                 
+                       
                     objngo.LoginID = obj.LoginID;/*reference key from user table */
                     objngo.NGOEmailID = obj.LoginEmailID;
                     objngo.IsActive = false;                   
