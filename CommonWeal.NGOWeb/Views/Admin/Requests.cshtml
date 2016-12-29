@@ -21,8 +21,21 @@
                 @foreach (var item in Model)
                 {                       
                     <tr>
-                        <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>                        
+                        <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>                                               
                         <td class="col-md-2 adminTableData"><a href="/admin/ViewDetails/@item.LoginID" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large;"></a>
+                            @if (item.IsDecline == true)
+                            { 
+                             <td class="col-md-3 adminTableData">Declined</td>
+                            }
+                            else if(item.IsActive==false)
+                            {
+                            <td class="col-md-3 adminTableData">Request</td>
+                            }
+                            else
+                            {
+                            <td class="col-md-3 adminTableData">Pending</td>
+                            }
+                                
                     </tr>   
                 }
                 <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
