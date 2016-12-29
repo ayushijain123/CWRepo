@@ -92,16 +92,13 @@ header {
 }
 
 .main-nav {
-     background-color: #505d71;
-
+    background-color: #505d71;
     border-color: #364c6f;
     padding-right: 5px;
-    
 }
 
 #NgoName {
-
-padding-bottom: 29px;
+    padding-bottom: 29px;
 }
 
 
@@ -804,7 +801,6 @@ tr.pager td {
 .usernamepost {
     font-size: 17px;
     color: #428bca;
-  
     padding-left: 0px;
     padding-right: 0px;
     padding-top: 8px;
@@ -843,7 +839,6 @@ tr.pager td {
     display: block;
     /*margin-left: auto;
     margin-right: auto;*/
-   
     font-size: 10px;
     padding-left: 29px;
     border-top: solid;
@@ -869,8 +864,8 @@ tr.pager td {
     border-bottom: solid;
     border-color: lightgray;
     border-width: 1px;
-      margin-left: 15px;
-    padding:2px 0px 0px 7px;
+    margin-left: 15px;
+    padding: 2px 0px 0px 7px;
 }
 
 .column12 {
@@ -881,30 +876,25 @@ tr.pager td {
 .commentimage {
     height: 38px;
     width: auto;
-       
     font-size: x-large;
-  
-    padding:6px 0px 0px 9px;
+    padding: 6px 0px 0px 9px;
 }
 
 
 .commentusername {
-    
     color: #428bca;
     width: auto;
     text-transform: capitalize;
-    padding:0px 10px 0px 14px;
+    padding: 0px 10px 0px 14px;
 }
 
 
 .usernav {
     color: #fff;
-     background-color: #2A3F54;
+    background-color: #2A3F54;
     font-size: 16px;
-  
- 
     text-transform: capitalize;
-    padding:19px 5px 11px 5px;
+    padding: 19px 5px 11px 5px;
 }
 
 .usernav-guest {
@@ -964,10 +954,10 @@ tr.pager td {
 
 #profileupdate {
     bottom: 14px;
-       
 }
+
 .ngoviewdetails {
-        padding-top: 15px;
+    padding-top: 15px;
 }
 
 .btnPost {
@@ -981,52 +971,58 @@ tr.pager td {
     margin-top: 0px !important;
     /*border-color:#225d77;*/
 }
-    .btnLoad:hover {
-    text-decoration:underline;
-    }
-.btnLoadNGOPfrofile:hover {
-     text-decoration:underline;
+
+.btnLoad:hover {
+    text-decoration: underline;
 }
+
+.btnLoadNGOPfrofile:hover {
+    text-decoration: underline;
+}
+
 .cursor {
-cursor:pointer;
+    cursor: pointer;
 }
 
 .posttag {
     text-align: right;
     padding: 10px;
     width: auto;
-        padding-top: 4px;
+    padding-top: 4px;
 }
-.deleteComment {
-font-size:15px;
-cursor:pointer;
-padding:15px 28px 0px 0px;
 
+.deleteComment {
+    font-size: 15px;
+    cursor: pointer;
+    padding: 15px 28px 0px 0px;
 }
+
     .deleteComment:hover {
-    color:red;
+        color: red;
     }
+
 .deletePost {
-font-size:18px;
-cursor:pointer;
+    font-size: 18px;
+    cursor: pointer;
 }
+
     .deletePost:hover {
-    color:red;
+        color: red;
     }
 
 .reportAbuse {
-font-size:14px;
-cursor:pointer;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 12px 0px 0px 0px;
+}
 
-padding:12px 0px 0px 0px;
-      
-}
 .reportwidth {
-width:20px;
+    width: 20px;
 }
-    .reportAbuse:hover {
-    color:red;
-    } 
+
+.reportAbuse:hover {
+    color: red;
+}
 
 #posttemplate {
     border: medium;
@@ -1276,10 +1272,12 @@ tr:nth-child(even) {
 .profilesummary {
     font-size: 18px;
 }
+
 .aboutus {
-font-weight: bold;
-cursor:pointer;
+    font-weight: bold;
+    cursor: pointer;
 }
+
 .ngoprofilepic {
     max-height: 100px;
     max-width: 100px;
@@ -1558,6 +1556,10 @@ NGO registration page css*/
     top: 35px;
 }
 
+.year-dropdown {
+    margin-top: 5px;
+}
+
 /*Reset Password CSS*/
 /*Added by Neha M. on 6-12-16*/
 
@@ -1635,11 +1637,13 @@ added by payal*/
     padding-bottom: 56px;
     width: 70PX;
 }
+
     .btnLoad:hover {
-    text-decoration:underline;
+        text-decoration: underline;
     }
+
 .btnLoadNGOPfrofile:hover {
-    text-decoration:underline;
+    text-decoration: underline;
 }
 /*.sticky {
     position: fixed;
@@ -1680,7 +1684,6 @@ added by payal*/
     padding-top: 8px;
     padding-left: 20px;
     text-decoration: underline;
-   
 }
 
 #profilepost {
@@ -1707,8 +1710,8 @@ added by payal*/
     background-color: rgba(93, 112, 141, 0.91);
     color: white;
 }
-.tooltipsy
-{
+
+.tooltipsy {
     padding: 10px;
     max-width: 200px;
     color: #303030;
@@ -1740,7 +1743,6 @@ added by payal*/
     padding-top: 18px;
     cursor: pointer;
     padding-bottom: 10px;
-
 }
 
     #pencil:hover {
