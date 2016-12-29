@@ -12,7 +12,7 @@
         $("#selectcategory").live("change", function () {
             var categoryList = $(this).val();
             //console.log(categoryList);
-            if (categoryList.length==0) {
+            if (categoryList.length == 0) {
                 categoryList = ['1'];
             }
             // console.log('inside');
@@ -86,27 +86,71 @@
 
 </script>
 
-    <div class="container">
- <div class="row col-sm-10 col-sm-push-1  selectcategory">
-  
-        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search by Category", @class="form-control chosen-with-icon ", @multiple = "multiple" })
-         </div>  
-     
+<style>
+    /*SEARCH FORM*/
+    .search-form {
+        border-radius: 10px 0px 0px 10px;
+        /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
+    }
+    /*to cange only one form and not all give unique class name like  class="search-form" */
+    .search-btn {
+        border-radius: 0px 10px 10px 0px;
+        cursor: pointer;
+        margin-left: 0px;
+    }
 
-<br />
+    .input-group-btn {
+        top: 3px;
+    }
 
-<div id="postsection">
-    @Html.Partial("../UserHome/_Posts", Model)
+    .side-nav {
+        height: 100%;
+        position: fixed;
+        top: 80px;
+        left: 0px;
+        /*background-color:#D3D3D3;*/
+        box-shadow: 2px 1px 5px #A9A9A9;
+    }
+
+    .search-box {
+        top: 20px;
+    }
+
+    /*.navbar {
+        background-color: yellow;
+    }*/
+</style>
+
+<div class="container-fluid">
+    <div class="side-nav  nav-list col-md-2">
+        <form id="search-form" class="form-inline">
+            <div class="input-group search-box">
+                <input type="text" class="form-control search-form" placeholder="Search NGO by Name">
+                <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary search-btn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </span>
+            </div>
+        </form>
+    </div>
 </div>
 
 
-<div id="loadMoreSection"></div>
-
-<div style="text-align: center" id="morePost">
-    <input type="button" style="background: transparent; border: none; outline: none;     color: #0f66f1; margin-bottom: 20px; font-weight:400; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
-    @*type="button"*@
-
-</div>
+<div class="container">
+    <div class="row col-sm-10 col-sm-push-1  selectcategory">
+        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon ", @multiple = "multiple" })
+    </div>
+    <br />
+    <div id="postsection">
+        @Html.Partial("../UserHome/_Posts", Model)
+    </div>
+    <div id="loadMoreSection"></div>
+    <div style="text-align: center" id="morePost">
+        <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; font-weight: 400; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
+        @*type="button"*@
+    </div>
 </div>
 
 @section scripts{
