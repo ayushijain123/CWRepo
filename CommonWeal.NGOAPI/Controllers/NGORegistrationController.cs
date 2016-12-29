@@ -62,8 +62,6 @@ namespace CommonWeal.NGOAPI.Controllers
             result = Request.CreateResponse(HttpStatusCode.OK, imageList);
             return result;
         }
-
-
         [HttpPost]
     
        public HttpResponseMessage CreateNGO(NGOUser objngo)
@@ -86,24 +84,48 @@ namespace CommonWeal.NGOAPI.Controllers
                     obj.IsActive = false;/*NGO is not active bydefault it will become active after admin verification  */
                     obj.IsBlock = false;/*default ngo user is not blocked */
                     obj.IsSpam = false;/*default ngo user is spam*/
+                    obj.IsDecline = false;
                     obj.ModifiedOn = DateTime.Now;
                     obj.CreatedOn = DateTime.Now;
                     context.Users.Add(obj);                    
                     /*to append data in ngoUser object objngo which are not submitted through form */
                     ImageHandler imgobj = new ImageHandler();
-                    if (objngo.ChairmanID != null && objngo.RegistrationProof != null)
-                    {
-                        byte[] data = Convert.FromBase64String(objngo.ChairmanID);
-                        //byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
-                        imgobj.Image = data;
-                        context.ImageHandlers.Add(imgobj);
-                    }
+                    
+                        if (objngo.ChairmanID != null)
+                        {
+                            byte[] imageBytes = Convert.FromBase64String(objngo.ChairmanID);
+                            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                            ms.Write(imageBytes, 0, imageBytes.Length);
+                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                            var abc = Guid.NewGuid();
+                            string path = "~/Images/Post/" + abc + ".jpg";
+                            string filepath = HttpContext.Current.Server.MapPath(path);
+                            image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            objngo.ChairmanID =filepath;
+                        }
+                        if (objngo.RegistrationProof != null) 
+                        {
+                            byte[] imageBytes = Convert.FromBase64String(objngo.RegistrationProof);
+                            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                            ms.Write(imageBytes, 0, imageBytes.Length);
+                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                            var abc = Guid.NewGuid();
+                            string path = "~/Images/Post/" + abc + ".jpg";
+                            string filepath = HttpContext.Current.Server.MapPath(path);
+                            image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                            objngo.RegistrationProof = filepath;
+                        }
+
+                        //byte[] data = Convert.FromBase64String(objngo.ChairmanID);
+                        ////byte[] data = Encoding.ASCII.GetBytes(objngo.ChairmanID);
+                        //imgobj.Image = data;
+                        //context.ImageHandlers.Add(imgobj);
+                 
                     objngo.LoginID = obj.LoginID;/*reference key from user table */
                     objngo.NGOEmailID = obj.LoginEmailID;
                     objngo.IsActive = false;                   
                     objngo.IsBlock = false;
-                    objngo.ChairmanID = null;
-                    objngo.RegistrationProof = null;
+                    objngo.IsDecline = false;                 
                     context.NGOUsers.Add(objngo);
                     var year = DateTime.Now.Year;
                     var objresyear = context.RegistrationYears.Where(x => x.year == year).FirstOrDefault();
