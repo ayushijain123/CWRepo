@@ -6,7 +6,58 @@ function fileclick() {
 }
 
 $(document).ready(function () {
-    //    $("#file").filestyle({ badge: false });
+    /*Implementation search ngo by ajax */
+    $(".searchNGO").keyup(function () {
+        var name = $(".searchNGO").val();
+        
+            $('.searchNGO').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Post/SearchNGO?name=" + name,
+                        dataType: "json",
+                       // data:name,
+                        success: function (data) {
+                            
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.name,
+                                    value: item.loginID
+                                }
+                            }));
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $(".searchNGO").val(ui.item.label);
+                    $(".searchNGO").attr('name',ui.item.value);
+
+                    return false;
+                },
+                focus: function (event, ui) {
+                    this.value = ui.item.label;
+                    
+                    event.preventDefault();
+                    // or return false;
+                }
+            });
+
+
+
+    });
+    $(".submitSelectedNGO").click(function () {
+        
+        var value = $(".searchNGO").attr('name');
+       
+        if (value!=undefined)
+        {
+            window.location.href = "/NGOProfile/index?id=" + value;
+        }
+      
+     
+        //alert(value);
+        //$.post("/NGOProfile/index?id=" + value, function (result) { });
+    });
+   
     $("#uploadimage").hide();
     $("#pencil").live('click', function () {
         $("#uploadimage").show();
