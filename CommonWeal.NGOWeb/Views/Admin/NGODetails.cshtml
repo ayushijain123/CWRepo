@@ -14,11 +14,8 @@
 <br>
 <br>
 <div class="container">
- 
-    <div class="row">
-      
-
-                <div class="col-md-12">
+ <div class="row">
+     <div class="col-md-12">
 
                     <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
                         <div class="form-group row">
@@ -135,16 +132,33 @@
                         <br>
                         <br>
                         <br>
-                        <div class="form-inline col-md-6 col-md-push-5">
-                          <div class="ngoviewdetails">
-                                   <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>                                    
-                                   @if (Model.IsDecline == false && Model.IsActive == false)
-                                   {                                 
-                                    <a href="/admin/Decline/@Model.LoginID"><span id="decline2" class="btn btn-primary">Decline</span></a> 
-                                    }                                        
+                       @* <div class="form-group col-md-6 col-md-push-5">
+                          <div class="ngoviewdetails" id="details">
+                                   <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>&nbsp
+                                     @if (Model.IsDecline == true && Model.IsActive == false)
+                                   { 
+                                   <a href="/admin/Decline/@Model.LoginID"><span id="decline" class="btn btn-primary">Decline</span></a>    
+                                   }                                          
                                    <span id="SendMail" class="btn btn-primary">Request for more info</span>
                                 </div>
+                            </div>*@
+                        <div class="form-group row col-md-6 col-md-push-5 ngoviewdetails">
+                            <div class="col-md-2">
+                                <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>
+                                </div>
+                              <div class="col-md-2">
+                                     @if (Model.IsDecline == true && Model.IsActive == false)
+                                   { 
+                                   <a href="/admin/Decline/@Model.LoginID"><span id="decline" class="btn btn-primary">Decline</span></a>    
+                                   }  
+                                        </div> 
+                                    <div class="col-md-2">                                       
+                                   <span id="SendMail" class="btn btn-primary">Request for more info</span>
+                                        </div>
+                                </div>
                             </div>
+                            </div>
+    </div>
                       
                         
                     </form>
