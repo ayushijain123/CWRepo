@@ -22,10 +22,9 @@
     
 <body id="bodycolor">
   
-    <header class="navbar-fixed-top" role="navigation">
-
-        <div class=" content-wrapper">
-            <div class=" float-left ">
+    <header class="navbar-fixed-top" role="navigation">       
+        <div class="content-wrapper">
+            <div class="float-left ">
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand">
                     <img src="~/Images/lg.png" id="logoimage" class="col-md-offset-2" />
                     <br />
@@ -40,14 +39,11 @@
             <div class="float-right">
                 @Html.Partial("_LoginPartial")
             </div>
-
-        </div>
-   
-
+        </div>   
     </header>
    
 
-    <div id="body" class="container">
+    <div id="body" class="container-fluid">
         @RenderSection("featured", required: false)
        <section class="content-wrapper main-content clear-fix">
             @RenderBody()

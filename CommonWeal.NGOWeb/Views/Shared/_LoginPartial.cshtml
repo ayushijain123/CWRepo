@@ -3,57 +3,39 @@
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/chosen.jquery.min.js"></script>
 
-<div >
-
+<div>
     @* <a class="navbar-brand" href="http://disputebills.com"><img src="http://res.cloudinary.com/candidbusiness/image/upload/v1455406304/dispute-bills-chicago.png" alt="Dispute Bills">
         </a>*@
-
-
-
-   
-        @*          @Html.DropDownList("category", (SelectList)ViewBag.categoryList, new { @class = "form-control chosen-select-multiple selectcategory",id = "selectcategory", @multiple = "multiple", })*@
-
-
-
-        @*@Html.DropDownList("category", (SelectList)ViewBag.category, new { @class = "form-control chosen-select-multiple", id="category", @multiple = "multiple",})*@
-        <div id="menu">
-            <div class="main-nav">
+    @*          @Html.DropDownList("category", (SelectList)ViewBag.categoryList, new { @class = "form-control chosen-select-multiple selectcategory",id = "selectcategory", @multiple = "multiple", })*@
+    @*@Html.DropDownList("category", (SelectList)ViewBag.category, new { @class = "form-control chosen-select-multiple", id="category", @multiple = "multiple",})*@
+    <div id="menu">
+        <div class="main-nav">
             @if (System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-               
                 if (@ViewBag.LoginUser != null)
-                {
-                    
+                {                    
                 <span class=" usernav ">Hello @ViewBag.LoginUser.UserName</span>  
                     if (System.Web.HttpContext.Current.User.IsInRole("NGOAdmin"))
-                    {
-              
-                    <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
-                    <a href="/NGOProfile/Index" class="menuitem fa fa-user" title="Profile"></a>
-                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off" title="Logout"></a>
-           
+                    {     
+                <a href="@Url.Action("Index", "NGOHome")" class="menuitem fa fa-home" title="Home"></a>
+                <a href="/NGOProfile/Index" class="menuitem fa fa-user" title="Profile"></a>
+                <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off" title="Logout"></a>
                     }
 
                     else
                     {
-
                         if (System.Web.HttpContext.Current.User.IsInRole("Admin"))
-                        {
-       
-                    @*<a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>*@
-                    <a href="@Url.Action("Index", "Admin")" class="menuitem fa fa-tachometer" title="Dashboard"></a>
-                    <a  href="@Url.Action("ChangePassword", "Admin")"  class="menuitem fa fa-key" title="Reset Password"></a>
-                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>
-
-               
+                        {       
+@*<a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>*@
+                <a href="@Url.Action("Index", "Admin")" class="menuitem fa fa-tachometer" title="Dashboard"></a>
+                <a  href="@Url.Action("ChangePassword", "Admin")"  class="menuitem fa fa-key" title="Reset Password"></a>
+                <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>               
                         }
-                        
+
                         else
-                        {
-                
-                    <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>
-                    <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>
-             
+                        {                
+                <a href="@Url.Action("Index", "UserHome")" class="menuitem fa fa-home" title="Home"></a>
+                <a  href="@Url.Action("LogOut", "Login")"  class="menuitem fa fa-power-off"  title="Logout"></a>             
                         }
                     }
                 
@@ -62,25 +44,21 @@
                     userName = '@HttpContext.Current.User.Identity.Name';
                 </script>
                 }
-              
             }
 
             else
             {
-                <span class="usernav">Hello Guest</span> 
-               
-                    <a href="@Url.Action("Index", "Home")" class="menuitem fa fa-home" title="Home"></a>
-                    <a href="@Url.Action("Index", "Login")" class="menuitem fa fa-sign-in" title="Sign In"></a>
-                    <a href="@Url.Action("CreateNGO", "NGORegistration")" class="menuitem fa fa-group" title="Sign Up as NGO"></a>
-                    <a href="@Url.Action("CreateUserPost", "UserRegistration")" class="menuitem fa fa-user-plus" title="Sign Up as User"></a>
-                      
+                <span class="usernav">Hello Guest</span>                
+                <a href="@Url.Action("Index", "Home")" class="menuitem fa fa-home" title="Home"></a>
+                <a href="@Url.Action("Index", "Login")" class="menuitem fa fa-sign-in" title="Sign In"></a>
+                <a href="@Url.Action("CreateNGO", "NGORegistration")" class="menuitem fa fa-group" title="Sign Up as NGO"></a>
+                <a href="@Url.Action("CreateUserPost", "UserRegistration")" class="menuitem fa fa-user-plus" title="Sign Up as User"></a>
             }
         </div>
     </div>
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-
         $(".chosen-select-multiple").chosen();
         $('.chosen-select-multiple').change(function () {
             if ($(this).val() != null && $(this).val().length > 0) {
@@ -98,7 +76,6 @@
         $("#category").change(function () {
             if ($(this).val() > 0) {
                 $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
-
                     // $("#loadMoreSection").append(result);
                     //    console.log(result);
                     if (result != null) {
@@ -109,9 +86,7 @@
                     //    //console.log(result);
                 });
             }
-
         });
-
     });
 </script>
 @section scripts{
