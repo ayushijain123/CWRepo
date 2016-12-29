@@ -33,6 +33,26 @@ namespace CommonWeal.NGOAPI.Controllers
             public int PostID { get; set; }
             public int CommentID { get; set; }
         }
+        public class Abuse
+        {
+         
+            public int CommentID { get; set; }
+        }
+
+[HttpPost]
+        public bool AbuseUser(Abuse abuse)
+    {
+        int id = abuse.CommentID;
+        bool result = false;
+        dbOperations ob = new dbOperations();
+        if ( id> 0)
+        {
+           result= ob.abuseUser(id);
+            
+
+        }
+        return result;
+    }
 
     [HttpPost]
         public bool DeleteCommentOnPost(Delete delete)
