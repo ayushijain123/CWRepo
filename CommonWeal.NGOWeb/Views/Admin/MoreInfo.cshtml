@@ -1,48 +1,46 @@
 ﻿@model CommonWeal.Data.User
 
 
-<h2>MoreInfo</h2>
+<h2 id="Moreinfo">More Information</h2>
+<br/>
+<br/>
 <div class="container">
-
     <div class="row">
-
-
+         <div class="main-panel">
         <div class="col-md-12">
-
-            <form class="form-horizontal" action="/Admin/SendMailFromAdmin/" method="post">
+           <form class="form-horizontal" action="/Admin/SendMailFromAdmin/" method="post">
 
                 <div class="form-group row">
-                    <div class="col-md-3">
+                    <div class="col-md-4 col-md-push-3">
                         <label class="control-label" for="email">Email:</label>
 
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <input type="email" class="form-control" name="NGOEmailID" value="@Model.LoginEmailID"required>
                     </div>
 
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-3">
+                    <div class="col-md-4  col-md-push-3">
                         <label class="control-label" for="email">Message:</label>
 
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <textarea class="form-control" rows="4" cols="50" name="Message"></textarea>
                     </div>
 
                 </div>
-                <br>
-                <br>
-                <br>
-                <div class="form-inline col-md-6 col-md-push-5">
-                    <div class="ngoviewdetails">
-                        <button type="submit" class="btn-primary">Send</button>
+               
+                <div class="form-group row col-md-6 col-md-push-4">
+                    <div class="#">
+                        <input type="submit" value="Submit" class="btn btn-primary"/>
 
                     </div>
                 </div>
 
 
             </form>
+            </div>
 
         </div>
 
