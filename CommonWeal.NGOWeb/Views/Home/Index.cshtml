@@ -5,8 +5,8 @@
 <script src="~/Scripts/jquery-1.7.1.js"></script>
 <link href="~/Content/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/chosen.jquery.min.js"></script>
-
-
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#selectcategory").live("change", function () {
@@ -123,7 +123,7 @@
         font-weight: bold;
         padding-left: 10px;
     }
-
+    
     .ngo-list {
         list-style-type: none;
     }
@@ -134,10 +134,10 @@
     <div class="side-nav  nav-list col-md-2">
         <div class="form-inline col-md-12">
             <div class="input-group search-box">
-                <input type="text" class="form-control search-form" placeholder="Search NGO by Name">
+                <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name" style="font-size:18px">
                 <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
                 <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary search-btn">
+                    <button type="button" class="btn btn-primary search-btn submitSelectedNGO">
                         <i class="fa fa-search"></i>
                     </button>
                 </span>
