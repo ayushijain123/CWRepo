@@ -86,9 +86,53 @@
 
 </script>
 
+<style>
+    .top-ngo {
+        top: 70px;
+        font-size: 20px;
+        padding: 5px;
+    }
+
+    .list-top-ngo {
+        padding-left: 10px;
+    }
+
+    /*.ngo 
+
+    {
+        position: absolute;
+        padding-top: 85px;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #00506b;
+    }*/
+
+    .ngo {
+        color: #000000;
+        text-decoration: none!important;
+    }
+
+    .ngo-list:hover {
+        background-color: #D3D3D3;
+    }
+
+    .top-text {
+        font-size: 20px;
+        font-weight: bold;
+        padding-left: 10px;
+    }
+
+    .ngo-list {
+        list-style-type: none;
+    }
+</style>
+
+
 <div class="container-fluid">
     <div class="side-nav  nav-list col-md-2">
-        <form id="search-form" class="form-inline">
+        <div class="form-inline col-md-12">
             <div class="input-group search-box">
                 <input type="text" class="form-control search-form" placeholder="Search NGO by Name">
                 <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
@@ -98,7 +142,19 @@
                     </button>
                 </span>
             </div>
-        </form>
+        </div>
+        <div class="top-ngo col-md-12 list-inline">
+            <div id="mySidenav" class="sidenav">
+                <p class="top-text">Top Five NGOs</p>
+                <ul class="list-top-ngo">
+                    <li class="ngo-list"><a class="ngo" href="/NGOProfile/Index/7175">Samman</a></li>
+                    <li class="ngo-list"><a class="ngo" href="/NGOProfile/Index/7173">Being Human</a></li>
+                    <li class="ngo-list"><a class="ngo" href="/NGOProfile/Index/7245">Literacy India</a></li>
+                    <li class="ngo-list"><a class="ngo" href="/NGOProfile/Index/7314">Sarthak Prayas</a></li>
+                    <li class="ngo-list"><a class="ngo" href="/NGOProfile/Index/7314">Manav Lok</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
