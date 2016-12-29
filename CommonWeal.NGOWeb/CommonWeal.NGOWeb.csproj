@@ -343,6 +343,7 @@
     <Content Include="Content\font-awesome\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\Commonweal.pubxml" />
     <None Include="Properties\PublishProfiles\CWBuild.pubxml" />
+    <Content Include="Images\422d78ed-65c4-4858-982d-f55439b8af8a.jpg" />
     <Content Include="Images\Chrysanthemum.jpg" />
     <Content Include="Images\commentnew.png" />
     <Content Include="Images\Desert.jpg" />
@@ -473,7 +474,8 @@
     <Content Include="Views\NGOProfile\_NGOProfilePost.cshtml" />
     <Content Include="Views\Admin\SpamUsers.cshtml" />
     <Content Include="Views\Admin\SpamUser.cshtml" />
-    <Content Include="Views\Shared\_SideNav.cshtml" />
+    <Content Include="Views\Admin\NGODetails.cshtml" />
+    <Content Include="Views\Admin\MoreInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
