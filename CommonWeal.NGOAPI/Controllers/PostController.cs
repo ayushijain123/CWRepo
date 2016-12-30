@@ -65,6 +65,77 @@ namespace CommonWeal.NGOAPI.Controllers
         //    var res2=context.RegisteredUsers.Where(x=>x.LoginID==res1)
         //    var res3= context.PostLikes.Where(x=>x.PostID==res.PostID).FirstOrDefault().
         //}
+        public class postData
+        {
+            public string content { get; set; }
+            public string file { get; set; }
+            public int loginid { get; set; }
+            public int[] cat { get; set; }
+        }
+      
+        [HttpPost]
+        public bool NGOPost(postData postvalue )
+        {
+            NGOPost obpost = new NGOPost();
+            
+            dbOperations ob = new dbOperations();
+            CommonWealEntities db = new CommonWealEntities();
+            if (postvalue.file != null)
+            {
+                byte[] imageBytes = Convert.FromBase64String(postvalue.file);
+                MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                var abc = Guid.NewGuid();
+                string path = "~/Images/" + abc + ".jpg";
+                string filepath = HttpContext.Current.Server.MapPath(path);
+                image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                obpost.PostUrl = path;               
+                //string ImageName = System.IO.Path.GetFileName(file.FileName);
+                //string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
+                //// save image in folder
+                //file.SaveAs(physicalPath);
+                //save new record in database
+                //obpost.PostUrl = "/Images/Post/" + ImageName;
+              //  obpost.PostID = postvalue.content;
+                obpost.LoginID = postvalue.loginid;
+                obpost.PostType = "Image";
+                obpost.PostDateTime = System.DateTime.Now;
+                obpost.ModifiedOn = System.DateTime.Now;
+                obpost.CreatedOn = System.DateTime.Now;
+                obpost.PostCommentCount = 0;
+                obpost.PostLikeCount = 0;
+                obpost.PostContent = postvalue.content;
+               // obpost.CreatedBy = null;
+                /*login user login id is a property in base controller
+                 which contain current user information from user table*/
+                //this.User.Identity.Name;
+               
+                db.NGOPosts.Add(obpost);
+                db.SaveChanges();
+                ob.SubmitPostCategory(obpost.PostID, postvalue.cat);
+                return true;
+            }
+            /*if only content is posted without any image*/
+            else if (postvalue.content != null)
+            {
+                /*login user login id is a property in base controller
+                which contain current user information from user table*/
+                obpost.LoginID = postvalue.loginid;
+                //this.User.Identity.Name;
+                obpost.PostType = "Text";
+                obpost.PostDateTime = DateTime.Now;
+                obpost.ModifiedOn = DateTime.Now;
+                obpost.CreatedOn = DateTime.Now;
+                obpost.PostCommentCount = 0;
+                obpost.PostLikeCount = 0;
+                db.NGOPosts.Add(obpost);
+                db.SaveChanges();
+                ob.SubmitPostCategory(obpost.PostID,postvalue.cat);
+                return true;
+            }
+            return false;
+        }
 
         [HttpPost]
         public async Task<HttpResponseMessage> AddFile()
