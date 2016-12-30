@@ -119,6 +119,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 obpost.CreatedOn = DateTime.Now;
                 obpost.PostCommentCount = 0;
                 obpost.PostLikeCount = 0;
+                obpost.PostContent = postvalue.content;
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
                 ob.SubmitPostCategory(obpost.PostID,postvalue.cat);
