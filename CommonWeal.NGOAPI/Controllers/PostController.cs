@@ -69,15 +69,15 @@ namespace CommonWeal.NGOAPI.Controllers
         {
             public string content { get; set; }
             public string file { get; set; }
-            public int loginid { get; set; }
+            public int loginID { get; set; }
             public int[] cat { get; set; }
         }
-      
+        
+        /*post for mobile/IOS*/
         [HttpPost]
         public bool NGOPost(postData postvalue )
         {
             NGOPost obpost = new NGOPost();
-            
             dbOperations ob = new dbOperations();
             CommonWealEntities db = new CommonWealEntities();
             if (postvalue.file != null)
@@ -90,15 +90,8 @@ namespace CommonWeal.NGOAPI.Controllers
                 string path = "/Images/Post/" + abc + ".jpg";
                 string filepath = HttpContext.Current.Server.MapPath(path);
                 image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                obpost.PostUrl = path;               
-                //string ImageName = System.IO.Path.GetFileName(file.FileName);
-                //string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
-                //// save image in folder
-                //file.SaveAs(physicalPath);
-                //save new record in database
-                //obpost.PostUrl = "/Images/Post/" + ImageName;
-              //  obpost.PostID = postvalue.content;
-                obpost.LoginID = postvalue.loginid;
+                obpost.PostUrl = path;                             
+                obpost.LoginID = postvalue.loginID;
                 obpost.PostType = "Image";
                 obpost.PostDateTime = System.DateTime.Now;
                 obpost.ModifiedOn = System.DateTime.Now;
@@ -106,10 +99,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 obpost.PostCommentCount = 0;
                 obpost.PostLikeCount = 0;
                 obpost.PostContent = postvalue.content;
-               // obpost.CreatedBy = null;
-                /*login user login id is a property in base controller
-                 which contain current user information from user table*/
-                //this.User.Identity.Name;
+              
                
                 db.NGOPosts.Add(obpost);
                 db.SaveChanges();
@@ -121,7 +111,7 @@ namespace CommonWeal.NGOAPI.Controllers
             {
                 /*login user login id is a property in base controller
                 which contain current user information from user table*/
-                obpost.LoginID = postvalue.loginid;
+                obpost.LoginID = postvalue.loginID;
                 //this.User.Identity.Name;
                 obpost.PostType = "Text";
                 obpost.PostDateTime = DateTime.Now;
