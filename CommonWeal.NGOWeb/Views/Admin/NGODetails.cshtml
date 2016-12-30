@@ -9,173 +9,155 @@
 
 
 </script>
-<center><h2 id="NgoName">NGO Details</h2></center>
-<br>
-<br>
-<br>
-<div class="container">
- 
-     
-    <div class="row">
-                    <form class="form-horizontal">
-                        @*colum1start*@
-                        
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-6 col-md-push-2">
+
+
+
+        <div class="container">
+            <div class="MoreInfo panel panel-default">
+
+                <div class="panel-heading">
+                    <center><h3>NGO Details</h3></center>
+                </div>
+              
+    <form class="form-horizontal">
+         
+                    <div class="form-group row panel-body">
+                       
+                              <div class="col-md-2">
                                             <label class="control-label" for="email">NGO Name:</label>
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-2">
 
                                             <input type="text" class="form-control" name="NGOName"  value="@Model.NGOName" required>
                                         </div>
-                                    </div>
-                                </div>
-                       @* </div>
-                        <div class="form-group row">*@
-                               <div class="col-md-6">
-                                   <div class="row">
-                                        <div class="col-md-6 col-md-push-2">
-                                            <label class="control-label" for="email">Unique Id:</label>
-
-                                        </div>
-                                        <div class="col-md-5">
-                                            <input type="text" class="form-control" name="UniqueuId"  value="@Model.UniqueuId"required>
-                                        </div>
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-3 col-md-push-1">
+                              <div class="col-md-2">
                                 <label class="control-label" for="email">Email:</label>
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="email" class="form-control" name="NGOEmailID" value="@Model.NGOEmailID"required>
-                            </div>
-                        
-                            <div class="col-md-3  col-md-push-1">
-                                <label class="control-label" for="email">Mobile Number:</label>
-
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" name="Mobile"  value="@Model.Mobile"required>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group row">
-                            <div class="col-md-3  col-md-push-1">
-                                <label class="control-label" for="email">Address:</label>
-
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" name="NGOAddress" value="@Model.NGOAddress"required>
-                            </div>
-                       
-                            <div class="col-md-3  col-md-push-1">
-                                <label class="control-label" for="email">Chairman Name:</label>
-
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" name="ChairmanName" value="@Model.ChairmanName"required>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-md-3  col-md-push-1">
+                            </div>        
+                        <div class="col-md-3">
                                 <label class="control-label" for="email">Registration Proof:</label>
 
                             </div>
-                            <div class="col-md-3">
+                                 <div class="#">
+                                   
                                  @if (Model.RegistrationProof != null)
                                 { 
-                             <img src="@Url.Content(Model.RegistrationProof)" height="100px" width="100px"/>      
+                             <img src="@Url.Content(Model.RegistrationProof)" height="50px" width="50px"/>      
                                 }         
                                 @*<input type="text" class="form-control" name="RegistrationProof" value="@Model.RegistrationProof"required>*@
+                         
+                                     </div>
+                        </div>
+          
+                                   
+                              
+                 
+                   
+                  
+                 
+             
+                        <div class="form-group row">
+                            
+                        
+                            <div class="col-md-2">
+                                <label class="control-label" for="email">Mobile Number:</label>
+
                             </div>
-                       
-                            <div class="col-md-3  col-md-push-1">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" name="Mobile"  value="@Model.Mobile"required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label" for="email">Address:</label>
+
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" name="NGOAddress" value="@Model.NGOAddress"required>
+                            </div>
+                            <div class="col-md-3">
                                 <label class="control-label" for="email">Photo Id Of Chairman:</label>
 
                             </div>
-                            <div class="col-md-3">                                
+                            <div class="#">                                
                                 @if (Model.ChairmanID != null)
                                 { 
-                             <img src="@Url.Content(Model.ChairmanID)" height="100px" width="100px"/>      
+                             <img src="@Url.Content(Model.ChairmanID)" height="50px" width="50px"/>      
                                 }                         
                             </div>
-                        </div>
+                            </div>
+                             
+                        <br>
+                    
+
+
                         <div class="form-group row">
-                            <div class="col-md-3  col-md-push-1">
+                            
+                       
+                            <div class="col-md-2">
+                                <label class="control-label" for="email">Chairman Name:</label>
+
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" name="ChairmanName" value="@Model.ChairmanName"required>
+                            </div>
+                            <div class="col-md-2">
                                 <label class="control-label" for="email">Register with:</label>
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 @Html.DropDownListFor(m => m.RegisteredWith, CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" ,@disabled="disabled" })
                                @* <input type="text" class="form-control" name="RegisteredWith"  value="@Model.RegisteredWith"required>*@
                             </div>
                       
-                            <div class="col-md-3  col-md-push-1">
-                                <label class="control-label" for="email">Registration No:</label>
-
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" name="RegistrationNumber"  value="@Model.RegistrationNumber"required>
-                            </div>
                         </div>
-
-                         <div class="form-group row">
-                            <div class="col-md-3  col-md-push-1">
-                                <label class="control-label" for="email">Date of Registration:</label>
+                        <br>
+                       
+                       
+                  
+                            <div class="form-group row">
+                            <div class="col-md-2">
+                                <label class="control-label" for="email">Date of Reg.:</label>
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="text" class="form-control" name="DateOfRegistration" value="@Model.DateOfRegistration"required>
                             </div>
                       
-                            <div class="col-md-3  col-md-push-1">
+                            <div class="col-md-2">
                                 <label class="control-label" for="email">Website URL:</label>
 
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="text" class="form-control" name="WebsiteUrl" value="@Model.WebsiteUrl"required>
                             </div>
-                        </div>
+                         
                         
-                        
-                        <br>
-                        <br>
-                        <br>
-                        
-                       <div class="form-group col-md-6 col-md-push-5">
+                                 <br/>
+                                    <br/>
+               
+                    
+                        <br/>
+                       <div class="form-group col-md-6 col-md-push-4">
                           <div class="ngoviewdetails" id="details">
                                    <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>&nbsp
-                                     @if (Model.IsDecline == false && Model.IsActive == false)
+                                     @if (Model.IsDecline == true && Model.IsActive == false)
                                    { 
                                    <a href="/admin/Decline/@Model.LoginID"><span id="decline" class="btn btn-primary">Decline</span></a>    
                                    }                                          
-                                  <a href="/Admin/MoreInfo/@Model.LoginID"><span id="SendMail" class="btn btn-primary">Request for more info</span></a>
+                                  <a href="/Admin/MoreInfo/@Model.LoginID" <span id="SendMail" class="btn btn-primary">Request for more info</span></a>
                                 </div>
                             </div>
-                        @*<div class="form-group row col-md-6 col-md-push-5 ngoviewdetails">
-                            <div class="col-md-2">
-                                <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>
-                                </div>
-                              <div class="col-md-2">
-                                     @if (Model.IsDecline == false && Model.IsActive == false)
-                                   { 
-                                   <a href="/admin/Decline/@Model.LoginID"><span id="decline" class="btn btn-primary">Decline</span></a>    
-                                   }  
-                                   <a href="/Admin/MoreInfo/@Model.LoginID" <span id="SendMail" class="btn btn-primary">Request for more info</span></a>
-                                        </div> 
-                                    <div class="col-md-2">                                       
-                                   <span id="SendMail" class="btn btn-primary">Request for more info</span>
-                                        </div>
-                                </div>*@
-                        </form>  
-        </div> 
-                         </div>
+                        
+                             
+             </div>
+                        </form> 
+         </div>
+          
+          </div>
+         
+     
                           
   
                       
