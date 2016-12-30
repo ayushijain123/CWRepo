@@ -1,39 +1,40 @@
 ﻿@model CommonWeal.Data.User
 
-
-<h2 id="Moreinfo">More Information</h2>
-<br/>
-<br/>
 <div class="container">
-    <div class="row">
-         <div class="main-panel">
-        <div class="col-md-12">
-           <form class="form-horizontal" action="/Admin/SendMailFromAdmin/" method="post">
+    <div id="main" class="col-md-12">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="MoreInfo panel panel-default">
+                <div class="panel-heading">
+                    <h3>More Information</h3>
+                </div>
+                <div class="panel-body">
+                     <div class="col-md-12">
+                <form class="form-horizontal" action="/Admin/SendMailFromAdmin/" method="post">
 
                 <div class="form-group row">
-                    <div class="col-md-4 col-md-push-3">
+                    <div class="col-md-4 col-md-push-1">
                         <label class="control-label" for="email">Email:</label>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <input type="email" class="form-control" name="NGOEmailID" value="@Model.LoginEmailID"required>
                     </div>
 
                 </div>
                 <div class="form-group row">
-                    <div class="col-md-4  col-md-push-3">
+                    <div class="col-md-4 col-md-push-1">
                         <label class="control-label" for="email">Message:</label>
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <textarea class="form-control" rows="4" cols="50" name="Message"></textarea>
                     </div>
 
                 </div>
                
-                <div class="form-group row col-md-6 col-md-push-4">
-                    <div class="#">
-                        <input type="submit" value="Submit" class="btn btn-primary"/>
+                <div class="form-group row ">
+                    <div class="col-md-6 col-md-push-4">
+                        <input type="submit" value="Submit" class="btn btn-primary" style="font-size:small"/>
 
                     </div>
                 </div>
@@ -41,11 +42,8 @@
 
             </form>
             </div>
-
+                </div>
+            </div>
         </div>
-
-
-
     </div>
-
 </div>
