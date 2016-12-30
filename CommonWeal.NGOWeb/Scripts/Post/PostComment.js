@@ -74,7 +74,7 @@ $(document).ready(function () {
         var createdOn = "";
         var spamicon = "";
         var commentid = 0;
-        var DeleteComment = "s";
+        var DeleteComment = "";
         if (TextComment != "") {
             $.post("/Post/SumitComment?strComment=" + TextComment + "&postId=" + postid, function (userinfo) {
                 userName = userinfo[0];
@@ -501,6 +501,28 @@ $(document).ready(function () {
             $('#NGOProfilecontent').html("");
             $('#NGOProfilecontent').append(result);
             
+        });
+
+
+    });
+    /*ajax for editing information of ngo*/
+    $("#submitbtn").live('click', function () {
+
+        var NgoEmail = $("#email").val();
+        var NgoMobile = $("#mobile").val();
+        var address = $("#NgoAdress").val();
+        var Name = $("#Ngoname").val();
+        var Chairman_name = $("#chairman").val();
+      
+        $.post("/NGOProfile/edit?NGOEmailID=" + NgoEmail + "&Mobile=" + NgoMobile + "&NGOAddress=" + address + "&NGOName=" + Name + "&ChairmanName=" + Chairman_name, function (result) {
+            if (result == true)
+            {
+                $("input").prop('disabled', true);
+                $("#Canclebtn").hide();
+                $("#submitbtn").hide();
+                $("#editbtn").show();
+                alert("Successfully updated");
+            }
         });
 
 
