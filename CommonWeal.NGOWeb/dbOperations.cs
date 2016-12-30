@@ -25,7 +25,7 @@ namespace CommonWeal.NGOWeb
         public List<NGOUser> GetAllUserAccepted()
         {
             List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == true).ToList();
+            userList = context.NGOUsers.Where(w => w.IsActive == true && w.IsDecline==false).ToList();
             //userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive== false).ToList();
             return userList;
         }
@@ -112,7 +112,7 @@ namespace CommonWeal.NGOWeb
             var toAddress = new MailAddress(UserEmail);
             try
             {
-                string subject = "Fassword Change";
+                string subject = "Password Change";
                 string body = Randomcode;
 
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient
