@@ -93,10 +93,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(NGOUser obj)
-        {
+        public JsonResult Edit(NGOUser obj)
+        {bool result=false;
             using (CommonWealEntities context = new CommonWealEntities())
             {
+                if(obj!=null)
+                {
                 var ob = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
                 ob.NGOEmailID = obj.NGOEmailID;
                 ob.Mobile = obj.Mobile;
@@ -112,10 +114,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 ob1.LoginEmailID = obj.NGOEmailID;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
-                TempData["US"] = "<script>alert('Updated successfully!');</script>";
+                result=true;
+
+                }
             }
 
-            return RedirectToAction("Index", "NGOProfile");//, new AjaxOptions { UpdateTargetId = "lblpost" }
+            return Json(result, JsonRequestBehavior.AllowGet);//, new AjaxOptions { UpdateTargetId = "lblpost" }
             //CommonWealEntities mycontext = new CommonWealEntities();
             //var myobj = mycontext.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
             //return PartialView("AboutUsNGO", myobj);
