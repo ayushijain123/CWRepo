@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
     <script src="~/Scripts/Post/PostComment.js"></script>
-
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.min.js"></script>
+<link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
 
 
 @{
@@ -94,6 +96,7 @@
     });
 
   </script>
+@Html.Partial("../UserHome/_SearchNGOPartial")
      <div class="container">
  <div class="row col-sm-10 col-sm-push-1  selectcategory">
   
