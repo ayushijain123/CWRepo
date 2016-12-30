@@ -230,10 +230,11 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 //User UL = new User ();
                 var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
                 ob.IsActive = true;
+                ob.IsDecline = false;
                 context.SaveChanges();
                 var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
                 ob1.IsActive = true;
-
+                ob1.IsDecline = false;
                 context.Configuration.ValidateOnSaveEnabled = false;
 
                 context.SaveChanges();
@@ -304,10 +305,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
                 ob.IsActive = false;
                 ob.IsBlock = true;
+                ob.IsDecline = false;
                 context.SaveChanges();
                 var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
                 ob1.IsActive = false;
                 ob1.IsBlock = true;
+                ob1.IsDecline = false;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 return RedirectToAction("Active_Users", "Admin");
@@ -339,10 +342,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
                 ob.IsActive = false;
                 ob.IsBlock = true;
+                ob.IsDecline = false;
                 context.SaveChanges();
                 var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
                 ob1.IsActive = false;
                 ob1.IsBlock = true;
+                ob1.IsDecline = false;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 return RedirectToAction("Warned_NGOs", "Admin");
@@ -398,14 +403,91 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             ViewData["MoreInfo"] = "Mail Sent";
             return RedirectToAction("Index", "Admin");
         }
-
-        /*method for spam users*/
-        public ActionResult SpamUser()
+        /*method for spam ngo*/
+        public ActionResult SpamNGO()
         {
             CommonWealEntities context = new CommonWealEntities();
             //var ob = context.SpamUsers.ToList();
             //return View(ob);
             User UL = new User();
+            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock == true) && w.LoginUserType == 1).ToList();
+            List<SpamAndBlockUser> listOfSpamAndBlockUsers = new List<SpamAndBlockUser>();
+            foreach (var item in ob)
+            {
+                SpamAndBlockUser objSpamAndBlock = new SpamAndBlockUser();
+                objSpamAndBlock.UserID = item.LoginID;
+                objSpamAndBlock.UserName = context.NGOUsers.Single(w => w.LoginID == item.LoginID).NGOName;
+                if (item.IsBlock)
+                {
+                    objSpamAndBlock.Status = "Blocked";
+                    objSpamAndBlock.IsSpam = false;
+                    objSpamAndBlock.IsBlock = true;
+                }
+                else
+                {
+                    objSpamAndBlock.IsSpam = true;
+                    objSpamAndBlock.IsBlock = false;
+                    objSpamAndBlock.Status = "Report Abuse";
+                }
+                listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+            }
+            return View(listOfSpamAndBlockUsers);
+        }
+        /*method for unspam ngo*/
+        public ActionResult UnSpamNGO(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            User UL = new User();
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsSpam = false;
+            var unspam = context.SpamUsers.Where(x => x.LoginId == id).FirstOrDefault();
+            if (unspam != null)
+            {
+                context.SpamUsers.Remove(unspam);
+            }
+            context.SaveChanges();
+            return RedirectToAction("SpamNGO", "Admin");
+        }
+        /*method for BlockFromSpamNGO*/
+        public ActionResult BlockFromSpamNGO(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            User UL = new User(); 
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            var objngo = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsBlock = true;
+            ob.IsSpam = false;
+            ob.IsActive = false;
+            objngo.IsBlock = true;
+            objngo.IsActive = false;
+            objngo.IsDecline = false;
+            context.Configuration.ValidateOnSaveEnabled = false;
+            context.SaveChanges();
+            return RedirectToAction("SpamNGO", "Admin");
+        }
+        /*method for UnBlockFromSpamNGO*/
+        public ActionResult UnBlockFromSpamNGO(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            User UL = new User();            
+            var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            var objngo = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsBlock = false;
+            ob.IsActive = true;
+            ob.IsDecline = false;
+            objngo.IsBlock = false;
+            objngo.IsActive = true;
+            objngo.IsDecline = false;
+            context.Configuration.ValidateOnSaveEnabled = false;
+            context.SaveChanges();
+            return RedirectToAction("SpamNGO", "Admin");
+        }
+        /*method for spam users*/
+        public ActionResult SpamUser()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            //var ob = context.SpamUsers.ToList();
+            //return View(ob);          
             var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock==true)&&w.LoginUserType==3).ToList();
             List<SpamAndBlockUser> listOfSpamAndBlockUsers = new List<SpamAndBlockUser>();
             foreach (var item in ob)
@@ -430,8 +512,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(listOfSpamAndBlockUsers);
         }
 
-        /*method for Unspam*/
-       
+        /*method for Unspam*/      
         public ActionResult UnSpam(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -454,6 +535,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
+            ob.IsActive = false;
             ob.IsBlock = true;
             ob.IsSpam = false;
             context.SaveChanges();
@@ -484,13 +566,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         //    return View(result);
 
         //}
-
-
-
-
-
-
-
         public JsonResult GetDataByMonth(int year = 0)
         {
             if (year == 0)
