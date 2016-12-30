@@ -238,6 +238,7 @@
     <Content Include="Content\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\font-awesome\HELP-US-OUT.txt" />
     <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\NgoSearchBox\NgoSearch.css" />
     <Content Include="Content\Register.css" />
     <Content Include="Content\site.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -302,6 +303,12 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\ui-icons_444444_256x240.png" />
+    <Content Include="Content\ui-icons_555555_256x240.png" />
+    <Content Include="Content\ui-icons_777620_256x240.png" />
+    <Content Include="Content\ui-icons_777777_256x240.png" />
+    <Content Include="Content\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\ui-icons_ffffff_256x240.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.eot" />
@@ -476,6 +483,7 @@
     <Content Include="Views\Admin\SpamUser.cshtml" />
     <Content Include="Views\Admin\NGODetails.cshtml" />
     <Content Include="Views\Admin\MoreInfo.cshtml" />
+    <Content Include="Views\UserHome\_SearchNGOPartial.cshtml" />
     <Content Include="Views\Admin\SpamNGO.cshtml" />
   </ItemGroup>
   <ItemGroup>
