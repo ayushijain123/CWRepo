@@ -87,7 +87,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 ms.Write(imageBytes, 0, imageBytes.Length);
                 System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
                 var abc = Guid.NewGuid();
-                string path = "~/Images/Post/" + abc + ".jpg";
+                string path = "/Images/Post/" + abc + ".jpg";
                 string filepath = HttpContext.Current.Server.MapPath(path);
                 image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
                 obpost.PostUrl = path;               
@@ -222,11 +222,14 @@ namespace CommonWeal.NGOAPI.Controllers
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, res);
             return response;       
         }
+
         public class GetLikeComment
         {
             public int postID { get; set; }
             public List<string> commentContent { get; set; }
         }
+
+        /*method for getting like on particular post*/
         [HttpPost]
         public HttpResponseMessage LikePost(PostLikeModel objLike)
         {
@@ -263,6 +266,7 @@ namespace CommonWeal.NGOAPI.Controllers
             return response;
         
     }
+        /*method for getting comment on particular post*/
         [HttpPost]
          public HttpResponseMessage CommentPost(Comment objcomment)
         {
