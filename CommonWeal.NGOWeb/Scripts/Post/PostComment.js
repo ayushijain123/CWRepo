@@ -234,6 +234,7 @@ $(document).ready(function () {
         var commentId = $(this).attr('id').split('-')[1];
         var like = true;
         var commentusername = $("#commentusername-" + commentId).text();
+   
         var response = confirm("Are you sure you want to report abuse to "+commentusername+"?");
         if (response) {
             $.post("/Post/AbuseUser?CommentId=" + commentId, function (result) {
