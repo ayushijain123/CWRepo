@@ -14,27 +14,37 @@
 <br>
 <br>
 <div class="container">
- <div class="row">
-     <div class="col-md-12">
-
+ 
+     
+    <div class="row">
                     <form class="form-horizontal">
-                        <div class="form-group row">
-                            <div class="col-md-3 col-md-push-1">
-                                <label class="control-label" for="email">NGO Name:</label>
-                            </div>
-                            <div class="col-md-3">
+                        @*colum1start*@
+                        
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-push-2">
+                                            <label class="control-label" for="email">NGO Name:</label>
+                                        </div>
+                                        <div class="col-md-5">
 
-                                <input type="text" class="form-control" name="NGOName"  value="@Model.NGOName" required>
-                            </div>
+                                            <input type="text" class="form-control" name="NGOName"  value="@Model.NGOName" required>
+                                        </div>
+                                    </div>
+                                </div>
                        @* </div>
                         <div class="form-group row">*@
-                            <div class="col-md-3 col-md-push-1">
-                                <label class="control-label" for="email">Unique Id:</label>
+                               <div class="col-md-6">
+                                   <div class="row">
+                                        <div class="col-md-6 col-md-push-2">
+                                            <label class="control-label" for="email">Unique Id:</label>
 
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" name="UniqueuId"  value="@Model.UniqueuId"required>
-                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control" name="UniqueuId"  value="@Model.UniqueuId"required>
+                                        </div>
+                                    </div>
+                              </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-3 col-md-push-1">
@@ -132,11 +142,12 @@
                                 <input type="text" class="form-control" name="WebsiteUrl" value="@Model.WebsiteUrl"required>
                             </div>
                         </div>
-
-
+                        
+                        
                         <br>
                         <br>
                         <br>
+                        
                        <div class="form-group col-md-6 col-md-push-5">
                           <div class="ngoviewdetails" id="details">
                                    <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>&nbsp
@@ -162,17 +173,18 @@
                                    <span id="SendMail" class="btn btn-primary">Request for more info</span>
                                         </div>
                                 </div>*@
-                            </div>
-                            </div>
-    </div>
+                        </form>  
+        </div> 
+                         </div>
+                          
+  
                       
                         
-                    </form>
+                  
                       
-                </div>
+                
 
 
                 
-            </div>
+           
 
-</div>
