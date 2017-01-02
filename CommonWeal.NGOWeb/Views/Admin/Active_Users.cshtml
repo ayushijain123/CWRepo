@@ -4,11 +4,7 @@
 <script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
 <link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-    });
-</script>
+<script src="~/Scripts/Admin/All_User.js"></script>
 
 <div class="container">
     <div class="row">
@@ -27,13 +23,13 @@
                     </thead>
                     @foreach (var item in Model)
                     {                       
-                        <tr>
+                        <tr id="BlockNGO-@item.LoginID">
                             <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
                             <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
 
                             <td class="col-md-2 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x"  aria-hidden="true" style="color:red"></a></td>
 
-                            <td class="col-md-2 adminTableData"><a href="/admin/Block/@item.LoginID" class="fa fa-ban fa-2x"  aria-hidden="true" style="color:red"></a></td>
+                            <td class="col-md-2 adminTableData"><span id="blockngo-@item.LoginID" class="fa fa-ban fa-2x blockngo"  aria-hidden="true" style="color:red"></span></td>
                             @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
                         </tr>    
                     }

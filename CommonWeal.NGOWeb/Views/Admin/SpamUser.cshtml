@@ -3,11 +3,8 @@
 <script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
 <link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-    });
-</script>
+<script src="~/Scripts/Admin/All_User.js"></script>
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -25,19 +22,18 @@
                     </thead>
                     @foreach (var item in Model)
                     {                       
-                        <tr>
+                        <tr id="SpamUser-@item.UserID">
                             <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.UserName)</td>
-                            <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
-                            <td class="col-md-3 adminTableData">
+                            <td id="status-@item.UserID" class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td id="iconcoluser-@item.UserID" class="col-md-3 adminTableData">
                                 @if (item.IsSpam == true)
                                 { 
-                                    <span><a href="/admin/UnSpam/@item.UserID" class="fa fa-exclamation-triangle"  aria-hidden="true"  title="Unabuse" style="color:green; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;"></a>&nbsp&nbsp</span>
-                                    <span><a href="/admin/BlockFromSpamUser/@item.UserID" class="fa fa-lock fa-2x adminTableData"  title="Block" aria-hidden="true" style="color:red; "></a></span>
+                                    <span id="UnspamUser-@item.UserID" class="fa fa-exclamation-triangle UnspamUser"  aria-hidden="true"  title="Unabuse" style="color:green; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
+                                    <span id="BlockSpamUser-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamUser"  title="Block" aria-hidden="true" style="color:red; "></span>
                                 }
                                 @if (item.IsBlock == true)
                                 { 
-                                    <span><a href="/admin/UnBlockFromSpamUser/@item.UserID" class="fa fa-unlock fa-2x" title="Unblock" aria-hidden="true" style="color:green"></a></span>
-                            
+                                    <span id="UnblockSpamUser-@item.UserID" class="fa fa-unlock fa-2x UnblockSpamUser" title="Unblock" aria-hidden="true" style="color:green"></span>                     
                                 }
                             </td>
 
