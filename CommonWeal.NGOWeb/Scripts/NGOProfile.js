@@ -20,6 +20,8 @@
         var id = $('.item.active').data('slide-number');
         $('#carousel-text').html($('#slide-content-' + id).html());
     });
+
+   
 });
 
 
