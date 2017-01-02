@@ -48,6 +48,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(request);
         }
 
+ 
         public ActionResult Requests()
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -296,7 +297,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             }
         }
 
-        public ActionResult Block(int id)
+        public JsonResult Block(int id)
         {
             try
             {
@@ -313,7 +314,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 ob1.IsDecline = false;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
-                return RedirectToAction("Active_Users", "Admin");
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -330,6 +331,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                         raise = new InvalidOperationException(message, raise);
                     }
                 }
+                return Json(false, JsonRequestBehavior.AllowGet);
                 throw raise;
             }
         }
@@ -434,7 +436,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(listOfSpamAndBlockUsers);
         }
         /*method for unspam ngo*/
-        public ActionResult UnSpamNGO(int id)
+        public JsonResult UnSpamNGO(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
@@ -446,10 +448,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 context.SpamUsers.Remove(unspam);
             }
             context.SaveChanges();
-            return RedirectToAction("SpamNGO", "Admin");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         /*method for BlockFromSpamNGO*/
-        public ActionResult BlockFromSpamNGO(int id)
+        public JsonResult BlockFromSpamNGO(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User(); 
@@ -463,10 +465,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             objngo.IsDecline = false;
             context.Configuration.ValidateOnSaveEnabled = false;
             context.SaveChanges();
-            return RedirectToAction("SpamNGO", "Admin");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         /*method for UnBlockFromSpamNGO*/
-        public ActionResult UnBlockFromSpamNGO(int id)
+        public JsonResult UnBlockFromSpamNGO(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();            
@@ -475,12 +477,30 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             ob.IsBlock = false;
             ob.IsActive = true;
             ob.IsDecline = false;
+            ob.IsSpam = false;
             objngo.IsBlock = false;
             objngo.IsActive = true;
-            objngo.IsDecline = false;
+            objngo.IsDecline = false;            
             context.Configuration.ValidateOnSaveEnabled = false;
+            UnSpamFromTable(id);
             context.SaveChanges();
-            return RedirectToAction("SpamNGO", "Admin");
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+        public bool UnSpamFromTable(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();    
+            if(id!=null && id!=0)
+            {
+                var ob = context.SpamUsers.Where(w => w.LoginId == id).FirstOrDefault();
+                if (ob != null)
+                {
+                    context.Configuration.ValidateOnSaveEnabled = false;
+                    context.SpamUsers.Remove(ob);
+                    context.SaveChanges();
+                    return true;            
+                }
+                }
+            return false;           
         }
         /*method for spam users*/
         public ActionResult SpamUser()
@@ -513,7 +533,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
 
         /*method for Unspam*/      
-        public ActionResult UnSpam(int id)
+        public JsonResult UnSpam(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
@@ -525,12 +545,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 context.SpamUsers.Remove(unspam);
             }
             context.SaveChanges();
-            return RedirectToAction("SpamUser", "Admin");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         /*method for block user from SpamUser*/
        
-        public ActionResult BlockFromSpamUser(int id)
+        public JsonResult BlockFromSpamUser(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
@@ -539,20 +559,21 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             ob.IsBlock = true;
             ob.IsSpam = false;
             context.SaveChanges();
-            return RedirectToAction("SpamUser", "Admin");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         /*method for unblock user from SpamUser*/
 
-        public ActionResult UnBlockFromSpamUser(int id)
+        public JsonResult UnBlockFromSpamUser(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
             User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsBlock = false;
             ob.IsActive = true;
+            UnSpamFromTable(id);
             context.SaveChanges();
-            return RedirectToAction("SpamUser", "Admin");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         /*get dat monthly basis for graph*/
@@ -613,7 +634,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return RedirectToAction("Blocked_Users", "Admin");
         }
 
-        public ActionResult BlockUsers(int id)
+        public JsonResult BlockUsers(int id)
         {
             try
             {
@@ -623,7 +644,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 ob.IsActive = false;
                 ob.IsBlock = true;
                 context.SaveChanges();
-                return RedirectToAction("All_Users", "Admin");
+                return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
@@ -640,6 +661,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                         raise = new InvalidOperationException(message, raise);
                     }
                 }
+                return Json(false, JsonRequestBehavior.AllowGet);
                 throw raise;
             }
         }
