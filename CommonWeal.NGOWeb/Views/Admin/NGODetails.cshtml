@@ -37,25 +37,10 @@
                     <input type="email" class="form-control" name="NGOEmailID" value="@Model.NGOEmailID"required>
                 </div>
                 <div class="col-md-3">
-                    <label class="control-label" for="email">Registration Proof:</label>
+                    <label class="control-label" for="email">   Registration Proof:</label>
 
                 </div>
-                <div class="col-md-1">
-
-                    @if (Model.RegistrationProof != null)
-                    { 
-                        <img src="@Url.Content(Model.RegistrationProof)" data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />      
-                    }         
-@*<input type="text" class="form-control" name="RegistrationProof" value="@Model.RegistrationProof"required>*@
-
-                </div>
-
-                <div class="modal fade" id="Registrationphoto" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-            <div class="modal-dialog likemodaldialog" role="document">
-                <img src="@Url.Content(Model.RegistrationProof) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
-            </div>
-        </div>
+                
             </div>
 
 
@@ -81,21 +66,20 @@
                 <div class="col-md-2">
                     <input type="text" class="form-control" name="NGOAddress" value="@Model.NGOAddress"required>
                 </div>
-                <div class="col-md-3">
-                    <label class="control-label" for="email">Photo Id of Chairman:</label>
+                <div class="col-md-2 col-md-push-1">
 
-                </div>
-
-                <div class="col-md-1" id="pop">
-                    @if (Model.ChairmanID != null)
+                    @if (Model.RegistrationProof != null)
                     { 
-                        <img src="@Url.Content(Model.ChairmanID)"data-toggle="modal" data-target="#chairmanphoto" height="50px" width="50px"/>      
-                    }
+                        <img src="@Url.Content(Model.RegistrationProof)" data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />      
+                    }         
+@*<input type="text" class="form-control" name="RegistrationProof" value="@Model.RegistrationProof"required>*@
+
                 </div>
-               <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+
+                <div class="modal fade" id="Registrationphoto" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
             <div class="modal-dialog likemodaldialog" role="document">
-                <img src="@Url.Content(Model.ChairmanID) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
+                <img src="@Url.Content(Model.RegistrationProof) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
             </div>
         </div>
                
@@ -126,7 +110,13 @@
                     @Html.DropDownListFor(m => m.RegisteredWith, CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control", @disabled = "disabled" })
                     @* <input type="text" class="form-control" name="RegisteredWith"  value="@Model.RegisteredWith"required>*@
                 </div>
+                @*inserthere*@
+                <div class="col-md-3">
+                    <label class="control-label" for="email">   Photo Id of Chairman:</label>
 
+                </div>
+
+                
             </div>
             <br>
 
@@ -148,7 +138,18 @@
                 <div class="col-md-2">
                     <input type="text" class="form-control" name="WebsiteUrl" value="@Model.WebsiteUrl"required>
                 </div>
-
+                <div class="col-md-2 col-md-push-1" id="pop">
+                    @if (Model.ChairmanID != null)
+                    { 
+                        <img src="@Url.Content(Model.ChairmanID)"data-toggle="modal" data-target="#chairmanphoto" height="50px" width="50px"/>      
+                    }
+                </div>
+               <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <div class="modal-dialog likemodaldialog" role="document">
+                <img src="@Url.Content(Model.ChairmanID) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
+            </div>
+        </div>
 
                 <br />
                 <br />
