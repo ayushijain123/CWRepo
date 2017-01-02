@@ -3,10 +3,10 @@
 <link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
 <link href="~/Content/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-ui.min.js"></script>
- <script>
-        $(document).ready(function () {
-         
-        });
+<script>
+    $(document).ready(function () {
+
+    });
 </script>
 @Html.Partial("../UserHome/_SearchNGOPartial")
 
@@ -16,10 +16,10 @@
         <div class="col-md-12 ngoprofilenavbar">
             <div class="panel panel-default  panelNGO ">
                 <div class="profileheadingcolor">
-                <div class="panel-heading">
-                    <center> <b class="profilesummary"> Profile Summary</b></center>
-                </div>
+                    <div class="panel-heading">
+                        <center> <b class="profilesummary"> Profile Summary</b></center>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="panel-body" id="ngoprofilepanelbody">
@@ -28,32 +28,24 @@
                                     <div class="row col-md-4 col-md-push-4 profileimageborder">
                                         <div class="row  col-md-12 profile-img-container">
 
-                                            @{
-                                                var src="";
-                                                if (Model.imageurl==null)
+                                                                                    @{
+                                                var src = "";
+                                                if (Model.imageurl == null)
                                                 { src = "~/Images/usergroupnew.png"; }
-                                                else{
+                                                else
+                                                {
                                                     src = Model.imageurl;
                                                 }
-                                                <img class="profileimage img-thumbnail img-responsive" id="profileimage" src="@src"/>
-                                                <div class="profile-img-i-container">
-                                                  @if(this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.CurrentUserID.ToString())){ 
-                                                      <i class="glyphicon glyphicon-camera fa-2x" id="pencil" onclick="fileclick(); return false;"></i>
-                                                     <input type="file" id="file" name="file" data-badge="false" />
-                                                    }
-                                                 
-                                                   
-                                                </div>
-                                            }
-                                            
+                                                <img class="profileimage img-thumbnail img-responsive" id="profileimage1" src="@src"/>
+                                                                                    }  
 
                                         </div>
-                                        <input type="submit" id="uploadimage" value="Upload"><span onclick="fileclick(); return false;"></span></input>
+                                       
 
-                                        @*<span id="uploadFileName"></span>*@
+                                           
 
+                                        </div>
                                     </div>
-                                </div>
                             </form>
                         </div>
                     </div>
@@ -75,17 +67,3 @@
 <div id="NGOProfilecontent">
     @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
