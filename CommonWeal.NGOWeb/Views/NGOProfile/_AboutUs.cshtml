@@ -6,7 +6,6 @@
 
 @section scripts{
     <script src="~/Scripts/NGOProfile%20Script/NGOScript.js"></script>
-    
 }
 <script>
     $("#editbtn").click(function () {
@@ -16,9 +15,52 @@
     //    $('#textSumamry').focus(function () {
     //        $(".SaveSummaryId").prop('disabled',false);
     //});
-
+    //change profile
     $(document).ready(function () {
+        $(".clickProfile").click(function () {
+            $("#profilefile").click();
 
+        });
+        $(".uploadprofile").click(function () {
+
+
+            if (window.FormData !== undefined) {
+
+                var fileUpload = $("#profilefile").get(0);
+                var files = fileUpload.files;
+
+                // Create FormData object  
+                var fileData = new FormData();
+
+                // Looping over all files and add it to FormData object  
+                for (var i = 0; i < files.length; i++) {
+                    fileData.append(files[i].name, files[i]);
+                }
+
+                // Adding one more key to FormData object  
+                fileData.append('username', 'manas');
+
+                $.ajax({
+                    url: '/NGOProfile/PostImage',
+                    type: "POST",
+                    contentType: false, // Not to set any content header  
+                    processData: false, // Not to process data  
+                    data: fileData,
+                    success: function (result) {
+
+                        $(".profileimage").attr('src', result[0]);
+                        $("#profileimage1").attr('src', result[0])
+
+                    },
+                    error: function (err) {
+                        alert(err.statusText);
+                    }
+                });
+            } else {
+                alert("FormData is not supported.");
+              
+            }
+        });
         $('.fieldchange').focus(function () {
             $("#submitbtn").prop('disabled', false);
 
@@ -39,6 +81,8 @@
         var chairman = "e";
         var textSumamry = "f"
         $("input").prop('disabled', true);
+        $("#uploadprofile").prop('disabled', false);
+        $("#profilefile").prop('disabled', false);
         $("#submitbtn").prop('disabled', true);
         $("#Canclebtn").hide();
         $("#submitbtn").hide();
@@ -56,6 +100,7 @@
             $("#Canclebtn").show();
             $("#submitbtn").show();
             $("input").prop('disabled', false);
+
             $("#submitbtn").prop('disabled', true);
 
         });
@@ -143,7 +188,7 @@
                         <strong>Personal Information</strong>
                     </div>
                     <div class="panel panel-body">
-                        <div class="form-horizontal NGOInfoEdit"id="NGOInfoEdit">
+                        <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
                             <div class="form-group row ">
                                 <div class="col-md-6">
                                     <label class="control-label" for="email">NGO Email:</label>
@@ -188,14 +233,14 @@
                             {
                                 <div class="form-inline">
                                     <div id="profileupdate">
-                                        <center><span id="editbtn" class="btn btn-primary" >Edit</span></center>
+                                        <center><span id="editbtn" class="btn btn-primary">Edit</span></center>
                                         <center> <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
                                         <span id="Canclebtn" class="btn btn-primary">Cancel</span></center>
                                     </div>
                                 </div>
                             }
                             <p style="padding-bottom: 10px;"></p>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -207,29 +252,38 @@
                     <div class="panel panel-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="col-md-4 col-md-push-4">
-                                    <img src="@Model.NgoUser.NGOProfilePic" style="height: 110px; width: 110px;"/>
-                                    @*<img src="#" height="30" width="40" />*@
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="text-area col-md-8 col-md-push-2">
-                                    <textarea id="textSumamry">@Model.NgoUser.AboutUs</textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-inline">
-                                @if (Model.NgoUser.LoginID == Model.UserID)
-                                {
-                                    <div id="editAboutUs">
-                                        <center><span id="edit" class="btn btn-primary">Edit</span></center>
-                                        <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" @*style="margin-left: 160px;*@ hidden>Save</button>
-                                    <span id="Cancel" class="btn btn-primary">Cancel</span></center>
-                                    </div>
+                                <img class="profileimage img-thumbnail img-responsive " id="profileimage" src="@Model.imageurl"/>
+                                @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.UserID.ToString()))
+                                { <input type="file" id="profilefile" class="profilefile" name="profilefile" />
+                                    <input type="button" id="uploadprofile" class="uploadprofile" value="Upload" />
                                 }
+@* <div class="col-md-4 col-md-push-2 profile-img-container ">
+                                    *@
+@*<div class="profile-img-i-container">
+                                        <i class="glyphicon glyphicon-camera fa-2x " id="pencil" ></i>
+                                        <input type="file" id="profilefile"class="profilefile" name="file" data-badge="false" />
+                                        <input type="button" id="uploadprofile" class="uploadprofile"value="Upload"></input>
+                                    </div>*@
+@* </div>*@
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="text-area col-md-8 col-md-push-2">
+                                        <textarea id="textSumamry">@Model.NgoUser.AboutUs</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-inline">
+                                    @if (Model.NgoUser.LoginID == Model.UserID)
+                                    {
+                                        <div id="editAboutUs">
+                                            <center><span id="edit" class="btn btn-primary">Edit</span></center>
+                                            <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" @*style="margin-left: 160px;*@ hidden>Save</button>
+                                    <span id="Cancel" class="btn btn-primary">Cancel</span></center>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -237,108 +291,7 @@
             </div>
         </div>
     </div>
-</div>
-
-
-
-@*  <div class="col-md-6 col-md-push-1">
-                <div class="editpanel panel panel-default">
-                    <div class="card card-user">
-                        <div class="content">
-                            <div class="author">
-                                <img class="avatar" src="#">
-                                <h4 class="title">About Us<br>
-                                </h4>
-                            </div>
-                            <div class="description text-center">                     
-                                    <textarea style="width: 232px; resize: none;" id="textSumamry">@Model.AboutUs</textarea>
-                                <div class="form-inline">
-                                    <div id="EditAboutUs">
-                                        <span id="edit" class="btn btn-primary">Edit</span>
-                                        <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                        <a href="#"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>*@
-
-@*  <div class="ngo-about-us col-md-6">                 
-                    <p style="padding-top: 60px;"></p>
-                    <div class="editpanel panel panel-default">
-                           <div class="panel-heading">
-                                    <h4 class="title" style="text-align:center;">About Us<br></h4>
-                                </div>
-                        <div class=" panel panel-body">
-                            <div class="row">                                
-                              <div class="col-md-6 panel panel-body" style="background-color:lightpink;">
-                                   
-                              </div> 
-                            </div>    
-                             <div class="description text-center">
-                                    <textarea id="textSumamry">@Model.AboutUs</textarea>
-                                    <div class="form-inline">
-                                    <div id="EditAboutUs">
-                                    <span id="edit" class="btn btn-primary">Edit</span>
-                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                      <a href="/NGOProfile/AboutUs"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
-                                        </div>
-                                        </div>
-                                </div>   
-                            
-                            </div>
-                        </div>
-                    </div>*@
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*             
-                            </div>                      
-                        <p style="padding-bottom: 10px;"></p>
-                    </form>
-                </div>
-                <div class="col-md-6 ">
-                    <p style="padding-top: 60px;"></p>
-                    <div class="editpanel panel panel-default">
-                        <div class="card card-user">                          
-                            <div class="content">
-                                <div class="author"> 
-                                    <img  class="avatar border-gray" src="#">
-                                    <h4 class="title">About Us<br></h4>
-                                </div>
-                                <div class="description text-center">
-                                  @ViewBag.LoginUser.UserName
-                                    <textarea style="width:232px; resize:none;" id="textSumamry" background-color:"azure">@Model.AboutUs</textarea>
-                                    <div class="form-inline">
-                                    <div id="EditAboutUs">
-                                    <span id="edit" class="btn btn-primary">Edit</span>
-                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                      <a href="/NGOProfile/AboutUs"><span id="Cancel" class="btn btn-primary">Cancel</span></a>
-                                        </div>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>*@
-
-
+@if (TempData["US"] != null)
+{
+    @Html.Raw(TempData["US"])
+}
