@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+﻿@model CommonWeal.NGOWeb.ViewModel.PostWithTopNgo
 
 @{
     ViewBag.Title = "Index";
@@ -120,7 +120,7 @@
 
     });
 </script>
-@Html.Partial("../UserHome/_SearchNGOPartial")
+@Html.Partial("../UserHome/_SearchNGOPartial",Model.ngouser)
 <div class="container">
     <div class="row col-sm-10 col-sm-push-1">
         <div class="selectcategory">
@@ -175,7 +175,7 @@
 
 
     <div id="postsection">
-        @Html.Partial("../UserHome/_Posts", Model)
+        @Html.Partial("../UserHome/_Posts", Model.post)
     </div>
 
 
