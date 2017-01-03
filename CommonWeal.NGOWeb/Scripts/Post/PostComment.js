@@ -65,7 +65,7 @@ $(document).ready(function () {
 
     $(".btnPost").live('click', function () {
         var postid = $(this).attr('id').split('-')[1];
-        console.log(postid);
+        
         var controller = $("#controllername").html().trim();
         var TextComment = $("#txtComment-" + postid).val().trim();
         var IsCurrentNgoProfile = $("#IeThisCurrentNgoProfile").html().trim();
@@ -136,7 +136,7 @@ $(document).ready(function () {
     });
 
     $(".textComment").on("keydown", function (e) {
-        console.log(e.type, e);
+       
         var text = e.type;
         var code = e.which ? e.which : e.keyCode;
         if (13 === code) {
@@ -153,7 +153,7 @@ $(document).ready(function () {
 
     //start Likecount and update ajax
     $(".LikeIcon").live('click', function () {
-        console.log('clicked');
+        
         var controllerNAME = $("#controllername").html();
       //  alert(controllerNAME);
         var postid = $(this).attr('id').split('-')[1];
@@ -175,15 +175,15 @@ $(document).ready(function () {
     });
 
     $(".showLikeuser2").click(function () {
-        console.log('clicked');
+        
         var postid = $(this).attr("id").split('-')[1];
-        console.log('clicked-' + postid);
+        
         $("#likelist-" + postid).html("");
        
         $.post("/Post/getLikeList?postid=" + postid, function (postlikelist) {
             //alert('hi');
             $.each(postlikelist, function (i, value) {
-                console.log(postlikelist);
+                
                 var content = '<div id="userlist" style="margin-bottom:5px;border-bottom:ridge">' +
                 '<div class="form-inline">' +
                 '<span id="images fa fa-user" ></span>' +
@@ -205,18 +205,15 @@ $(document).ready(function () {
     //end Likecount
 
     $(".showLikeuser").live('mouseover',function () {
-        console.log('clicked');
+        
         var postid = $(this).attr("id").split('-')[1];
-        console.log('clicked-' + postid);
+       
         $("#likelist-" + postid).html("");
         $.post("/Post/getLikeListAjax?postid=" + postid, function (postlikelist) {
             //alert('hi'); 
             $("#catlist-" + postid).html("");
             $.each(postlikelist, function (i, value) {
-                console.log(postlikelist);
-
                 var content = value.userName + '<br>';
-
                 $("#catlist-" + postid).append(content);
 
                 // console.log(value.userName);
@@ -316,7 +313,7 @@ $(document).ready(function () {
         //alert(controller);
         var id = 0;
         var categorylist = $("#selectcategory").val();
-        console.log(category);
+     
         var category = JSON.stringify({ 'category': categorylist, 'controller': controller, 'count': loadcount, 'NgoID': id });
       
         $.ajax({
@@ -328,7 +325,7 @@ $(document).ready(function () {
             success: function (result) {
 
 
-                console.log(result);
+               
                 $("#loadMoreSection").append(result);
                 $.post("/post/getpostCount", function (result) {
                     var total = result - (loadcount + 1) * 5;
@@ -376,8 +373,7 @@ $(document).ready(function () {
             url: "/post/onLoadPost",
             data: category,
             success: function (result) {
-
-                console.log(result);
+ 
                 $("#loadMoreSection").append(result);
                 $.post("/post/getpostCount", function (result1) {
                     var total = result1 - (loadcnt + 1) * 5;
@@ -506,28 +502,7 @@ $(document).ready(function () {
 
 
     });
-    /*ajax for editing information of ngo*/
-    $("#submitbtn").live('click', function () {
-
-        var NgoEmail = $("#email").val();
-        var NgoMobile = $("#mobile").val();
-        var address = $("#NgoAdress").val();
-        var Name = $("#Ngoname").val();
-        var Chairman_name = $("#chairman").val();
-      
-        $.post("/NGOProfile/edit?NGOEmailID=" + NgoEmail + "&Mobile=" + NgoMobile + "&NGOAddress=" + address + "&NGOName=" + Name + "&ChairmanName=" + Chairman_name, function (result) {
-            if (result == true)
-            {
-                $("input").prop('disabled', true);
-                $("#Canclebtn").hide();
-                $("#submitbtn").hide();
-                $("#editbtn").show();
-                alert("Successfully updated");
-            }
-        });
-
-
-    });
+   
     /*end ajax for about us partial*/
 
     /*script for admin page methods (activeUsers)*/
