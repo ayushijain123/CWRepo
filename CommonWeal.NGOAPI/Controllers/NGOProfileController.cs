@@ -2,9 +2,11 @@
 using CommonWeal.NGOWeb;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace CommonWeal.NGOAPI.Controllers
@@ -188,6 +190,18 @@ namespace CommonWeal.NGOAPI.Controllers
                 ngodata.NGOName = loginid.NGOName;
                 ngodata.ChairmanName = loginid.ChairmanName;
                 ngodata.AboutUs = loginid.AboutNGO;
+                if (loginid.profilepic != null)
+                {
+                    byte[] imageBytes = Convert.FromBase64String(loginid.profilepic);
+                    MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                    ms.Write(imageBytes, 0, imageBytes.Length);
+                    System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                    var abc = Guid.NewGuid();
+                    string path = "/Images/" + abc + ".jpg";
+                    string filepath = HttpContext.Current.Server.MapPath(path);
+                    image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    ngodata.NGOProfilePic = path;               
+                }
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
                 var res = context.NGOUsers.Where(w => w.LoginID == loginid.LoginID).FirstOrDefault();
@@ -197,6 +211,8 @@ namespace CommonWeal.NGOAPI.Controllers
                 loginid.NGOName = res.NGOName;
                 loginid.ChairmanName = res.ChairmanName;
                 loginid.AboutNGO = res.AboutUs;
+                loginid.profilepic = res.NGOProfilePic;
+               
                 var response = Request.CreateResponse(HttpStatusCode.OK, loginid);
                 return response;
             }
