@@ -16,6 +16,7 @@ namespace CommonWeal.NGOWeb.Controllers
     [Authorize]
     public class BaseController : Controller
     {
+        public List<NGOUser> GetTopNgo { get; set; }
         public static int pageleft { get; set; }
         public List<AreaOfInterest> CategoryList { get; set; }
         public LoggedInUser LoginUser { get; set; }
@@ -77,15 +78,20 @@ namespace CommonWeal.NGOWeb.Controllers
                 {
                     LoginID = 0,
                     LoginEmailID = "default",
-                    LoginUserType =0,
+                    LoginUserType = 0,
                 };
             }
             using (CommonWealEntities CWContext = new CommonWealEntities())
             {
                 CategoryList = CWContext.AreaOfInterests.ToList();
-                ViewBag.category =new SelectList( CategoryList,"categoryId","categoryName");
+                ViewBag.category = new SelectList(CategoryList, "categoryId", "categoryName");
+                //GetTopNgo = (System.Collections.Generic.List<int>)CWContext.NGOUsers.OrderByDescending(x => x.PostCount)
+                //    .Select(x => Convert.ToInt32(x.LoginID)).Take(5);
+                var TopNGo = CWContext.NGOUsers.OrderByDescending(x => x.PostCount).Take(5);
+                GetTopNgo = TopNGo.Take(5).ToList();
+
             }
-          
+
         }
         /// <summary>
         /// Create Context and set role for authenticated user
