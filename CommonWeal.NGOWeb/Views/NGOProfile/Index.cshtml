@@ -2,13 +2,9 @@
 <script src="~/Scripts/Post/PostComment.js"></script>
 <link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
 <link href="~/Content/jquery-ui.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-ui.min.js"></script>
-<script>
-    $(document).ready(function () {
+@*<script src="~/Scripts/jquery-ui.min.js"></script>*@
 
-    });
-</script>
-@Html.Partial("../UserHome/_SearchNGOPartial")
+@Html.Partial("../UserHome/_SearchNGOPartial",Model.PostWithtopNgoModel.ngouser)
 
 
 <div class="container">
