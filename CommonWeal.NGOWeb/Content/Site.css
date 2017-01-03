@@ -1545,8 +1545,12 @@ NGO registration page css*/
 }
 
 .media-body {
-    padding-right: 0px;
+    
     color: #fff;
+}
+
+.count-of-users {
+    margin-right: 7px;
 }
 
 .fa-spin-hover:hover {
