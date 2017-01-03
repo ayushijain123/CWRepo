@@ -2,11 +2,11 @@
 
 <div class="container">
     <div id="postsection">
-        @Html.Partial("../UserHome/_Posts", Model.PostModel)
+        @Html.Partial("../UserHome/_Posts", Model.PostWithtopNgoModel.post)
     </div>
 
     @{var poststatus="See more posts";
-    if (Model.PostModel.Count() == 0)
+    if (Model.PostWithtopNgoModel.post.Count() == 0)
     { poststatus = "No post found"; }
     <div id="loadMoreSection"></div>
     <div style="text-align: center">
