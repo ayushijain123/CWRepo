@@ -47,6 +47,7 @@
         @RenderSection("featured", required: false)
        <section class="content-wrapper main-content clear-fix">
             @RenderBody()
+
         </section>
     </div>
 
@@ -58,14 +59,13 @@
         </div>
     </footer>
 
-
-
-
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryui")
-
+ 
+    
         @RenderSection("scripts", required: false)
+
 </body>
 </html>
