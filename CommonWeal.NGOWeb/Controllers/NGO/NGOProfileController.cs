@@ -16,19 +16,26 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
     {
         public ActionResult Index(int id=0)
         {
+            try
+            {
+
+           
             CommonWealEntities context = new CommonWealEntities();
             dbOperations db = new dbOperations();
 
             NGOProfilePostCustom NGpost = new NGOProfilePostCustom();
+            NGpost.PostWithtopNgoModel = new PostWithTopNgo();
             //User UL = new User();
-            //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;           
+            //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;          
             if (id == 0 )
             {
                 NGpost.CurrentUserID = LoginUser.LoginID;
                 var postList = db.GetPostById(LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
                NGpost.imageurl = image;
-               NGpost.PostModel = postList;
+
+               NGpost.PostWithtopNgoModel.post = postList;
+               NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
                 return View(NGpost);
             }
             else
@@ -36,12 +43,21 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 NGpost.CurrentUserID = id;
                 var postList = db.GetPostById(id);
                 var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
+
                 NGpost.imageurl = image;
-                NGpost.PostModel = postList;
+                NGpost.PostWithtopNgoModel.post = postList;
+               
+                NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
                 return View(NGpost);
             }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
-         
+        
         }
         public ActionResult Post()
         {
@@ -127,24 +143,67 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
         [Authorize]
         [HttpPost]
-        public ActionResult PostImage(HttpPostedFileBase file, NGOUser obj)
+        public JsonResult PostImage()
         {
             CommonWealEntities context = new CommonWealEntities();
-            if (file != null)
+            List<string> imginfo = new List<string>();
+            if (Request.Files.Count > 0)
             {
-                string ImageName = System.IO.Path.GetFileName(file.FileName);
-                string physicalPath = Server.MapPath("/Images/Post/" + ImageName);
-                // save image in folder
-                file.SaveAs(physicalPath);
-                var objngo = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-                objngo.NGOProfilePic = "/Images/Post/" + ImageName;
+                try
+                {
+                    //  Get all files from Request object  
+                    HttpFileCollectionBase files = Request.Files;
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+                        //string filename = Path.GetFileName(Request.Files[i].FileName);  
 
-                context.Configuration.ValidateOnSaveEnabled = false;
-                context.SaveChanges();
+                        HttpPostedFileBase file = files[i];
+                        string fname;
 
+                        // Checking for Internet Explorer  
+                        if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                        {
+                            string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                            fname = testfiles[testfiles.Length - 1];
+                        }
+                        else
+                        {
+                            fname = file.FileName;
+                        }
 
+                        // Get the complete folder path and store the file inside it.  
+                      var  physicalPath = Server.MapPath("/Images/Post/" + fname);
+                        file.SaveAs(physicalPath);
+                        var objngo = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                        objngo.NGOProfilePic = "/Images/Post/" + fname;
+
+                        context.Configuration.ValidateOnSaveEnabled = false;
+                        context.SaveChanges();
+
+                        imginfo.Add("/Images/Post/"+fname);
+
+                    }
+                    // Returns message that successfully uploaded
+                    imginfo.Add("File Uploaded Successfully!");
+                    return Json(imginfo,JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    imginfo.Add("");
+                    imginfo.Add("Error occurred. Error details: " + ex.Message);
+                    return Json(imginfo,JsonRequestBehavior.AllowGet);
+                }
             }
-            return RedirectToAction("Index", "NGOProfile");
+            else
+            {
+                imginfo.Add("");
+                imginfo.Add("No files selected.");
+                return Json(imginfo,JsonRequestBehavior.AllowGet);
+            }  
+            
+          
+            
         }
 
         [AllowAnonymous]
@@ -190,13 +249,14 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             try
             {
                 NGOProfilePostCustom NGpostlist = new NGOProfilePostCustom();
+                NGpostlist.PostWithtopNgoModel = new PostWithTopNgo();
                 dbOperations db = new dbOperations();
                 //User UL = new User();
                 //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
                 if (id == 0)
                 {
                     var obj = db.GetPostById(LoginUser.LoginID);
-                    NGpostlist.PostModel = obj;
+                    NGpostlist.PostWithtopNgoModel.post = obj;
                     NGpostlist.CurrentUserID = LoginUser.LoginID;
                     //return PartialView("AboutUsNGO",obj);
 
@@ -206,7 +266,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 else
                 {
                     var obj = db.GetPostById(id);
-                    NGpostlist.PostModel = obj;
+                    NGpostlist.PostWithtopNgoModel.post = obj;
                     NGpostlist.CurrentUserID =id;
                     //return PartialView("AboutUsNGO",obj);
 
@@ -223,3 +283,6 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
     }
 }
+
+
+
