@@ -8,6 +8,7 @@ namespace CommonWeal.NGOWeb.ViewModel
 {
     public class NGOProfileCustom
     {
+        public int WatchNgoID { get; set; }
         public int UserID { get; set; }
         public string imageurl { get; set; }
         public NGOUser NgoUser { get; set; }
