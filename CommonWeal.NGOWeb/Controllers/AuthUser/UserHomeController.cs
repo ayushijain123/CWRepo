@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
-
+using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb.Controllers.AuthUser
 {
     [Authorize]
@@ -35,7 +35,11 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
             
             postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
             /*return to view with post list*/
-            return View(postlist);
+            PostWithTopNgo pwtn = new PostWithTopNgo();
+            pwtn.post = postlist;
+            pwtn.ngouser = GetTopNgo;
+            return View(pwtn);
+           
             //return View();
         }
         //      public ActionResult FileUpload(HttpPostedFileBase file)
