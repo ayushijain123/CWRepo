@@ -87,26 +87,29 @@
 
 </script>
 
-
-
-
-@Html.Partial("../UserHome/_SearchNGOPartial",Model.ngouser)
-
-<div class="container">
-    <div class="row col-sm-10 col-sm-push-1  selectcategory">
-        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon ", @multiple = "multiple" })
+<div class="container-fluid">
+    <div class="col-md-2">
+        @Html.Partial("../UserHome/_SearchNGOPartial", Model.ngouser)
     </div>
-    <br />
-    <div id="postsection">
-        @Html.Partial("../UserHome/_Posts", Model.post)
+    <div class="col-md-8">
+        <div class="container">
+            <div class="row col-sm-10 col-sm-push-1  selectcategory">
+                @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon ", @multiple = "multiple" })
+            </div>
+            <br />
+            <div id="postsection">
+                @Html.Partial("../UserHome/_Posts", Model.post)
+            </div>
+            <div id="loadMoreSection"></div>
+            <div style="text-align: center" id="morePost">
+                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; font-weight: 400; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
+                @*type="button"*@
+            </div>
+        </div>
     </div>
-    <div id="loadMoreSection"></div>
-    <div style="text-align: center" id="morePost">
-        <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; font-weight: 400; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
-        @*type="button"*@
+    <div class="col-md-2">
     </div>
 </div>
-
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
 }
