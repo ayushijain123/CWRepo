@@ -1,5 +1,5 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.PostWithTopNgo
-    <script src="~/Scripts/Post/PostComment.js"></script>
+<script src="~/Scripts/Post/PostComment.js"></script>
 <link href="~/Content/jquery-ui.css" rel="stylesheet" />
 <script src="~/Scripts/jquery-ui.min.js"></script>
 <link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
@@ -44,27 +44,27 @@
                     $.post("/post/getpostCount", function (result1) {
                         // alert(result1);
                         var total = result1 - 5;
-                        
+
                         if (total <= 0) {
                             //alert(result1 + "" + total)
-                          
-                            if (result1 <= 5 && result1>0) {
-                                $(".btnLoad").val( 'No more post');
-                               $(".btnLoad").attr('disabled', true);
+
+                            if (result1 <= 5 && result1 > 0) {
+                                $(".btnLoad").val('No more post');
+                                $(".btnLoad").attr('disabled', true);
                             }
                             if (result1 <= 0) {
                                 $(".btnLoad").val('No post found');
-                               $(".btnLoad").attr('disabled', true);
+                                $(".btnLoad").attr('disabled', true);
                             }
                         }
                         else {
-                            $(".btnLoad").prop("disabled", false); 
+                            $(".btnLoad").prop("disabled", false);
                             $(".btnLoad").val("See more posts");
-                          //  alert("clickable");
-                           
+                            //  alert("clickable");
+
                         }
 
-                        
+
                         // alert(result);
                     });
                 },
@@ -95,30 +95,28 @@
 
     });
 
-  </script>
-@Html.Partial("../UserHome/_SearchNGOPartial",Model.ngouser)
-     <div class="container">
- <div class="row col-sm-10 col-sm-push-1  selectcategory">
-  
-        @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder="Search by Category", @class="form-control chosen-with-icon ", @multiple = "multiple" })
-         </div>  
-     
+</script>
 
-   
-<br/>
-<br/>
+<div class="container-fluid">
+    <div class="col-md-2">
+        @Html.Partial("../UserHome/_SearchNGOPartial", Model.ngouser)
+    </div>
 
-<div id="postsection">
-    @Html.Partial("../UserHome/_Posts", Model.post)
-         </div>   
-        
-
-<div id="loadMoreSection"></div>
-
-<div  style="text-align:center"id="morePost">
- <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoad" value="See more posts" id="btnLoad" align="center"> @*type="button"*@
-
-  </div>
-  </div>  
-
-
+    <div class="col-md-8">
+        <div class="container">
+            <div class="row col-sm-10 col-sm-push-1  selectcategory">
+                @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon ", @multiple = "multiple" })
+            </div>
+            <br />
+            <br />
+            <div id="postsection">
+                @Html.Partial("../UserHome/_Posts", Model.post)
+            </div>
+            <div id="loadMoreSection"></div>
+            <div style="text-align: center" id="morePost">
+                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; margin-bottom: 20px; font-weight: 400; width: 200px;" class="btnLoad" value="See more posts" id="btnLoad" align="center">
+                @*type="button"*@
+            </div>
+        </div>
+    </div>
+</div>
