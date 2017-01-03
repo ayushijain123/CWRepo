@@ -1,4 +1,6 @@
-﻿<div class="container-fluid">
+﻿@model IEnumerable<CommonWeal.Data.NGOUser>
+
+<div class="container-fluid">
     <div class="side-nav  nav-list col-md-2">
         <div class="form-inline col-md-12">
             <div class="input-group search-box">
@@ -15,11 +17,11 @@
             <div id="mySidenav" class="sidenav">
                 <p class="top-text">Top NGOs</p>
                 <ul class="list-top-ngo">
-                    <a class="ngo" href="/NGOProfile/Index/7175"><div class="ngo-list"><li>Samman</li></div></a>
-                    <a class="ngo" href="/NGOProfile/Index/7173"><div class="ngo-list"><li>Being Human</li></div></a>
-                    <a class="ngo" href="/NGOProfile/Index/7245"><div class="ngo-list"><li>Literacy India</li></div></a>
-                    <a class="ngo" href="/NGOProfile/Index/7314"><div class="ngo-list"><li>Sarthak Prayas</li></div></a>
-                    <a class="ngo" href="/NGOProfile/Index/7314"><div class="ngo-list"><li>Manav Lok</li></div></a>
+                    @foreach(var ngo in Model)
+                    {
+                    <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID"><div class="ngo-list"><li>@ngo.NGOName</li></div></a>
+                    
+                    }
                 </ul>
             </div>
         </div>
