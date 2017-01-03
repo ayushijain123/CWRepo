@@ -1,4 +1,5 @@
 ﻿using CommonWeal.Data;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,7 +16,7 @@ namespace CommonWeal.NGOAPI.Controllers
     [AllowAnonymous]
     public class NGORegistrationController : BaseController
     {
-
+        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         //public IEnumerable<string> Get()
         //{
         //    return new string[] { "ASJ", "AJ" };
@@ -98,7 +99,7 @@ namespace CommonWeal.NGOAPI.Controllers
                             ms.Write(imageBytes, 0, imageBytes.Length);
                             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
                             var abc = Guid.NewGuid();
-                            string path = "/Images/Post/" + abc + ".jpg";
+                            string path = "/Images/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             objngo.ChairmanID =path;
@@ -110,12 +111,12 @@ namespace CommonWeal.NGOAPI.Controllers
                             ms.Write(imageBytes, 0, imageBytes.Length);
                             System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
                             var abc = Guid.NewGuid();
-                            string path = "/Images/Post/" + abc + ".jpg";
+                            string path = "/Images/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
                             objngo.RegistrationProof = path;
                         }
-
+                                                                                                   
                        
                     objngo.LoginID = obj.LoginID;/*reference key from user table */
                     objngo.NGOEmailID = obj.LoginEmailID;
@@ -133,30 +134,18 @@ namespace CommonWeal.NGOAPI.Controllers
                     }
                     context.SaveChanges();
                     /*it will redirect ngo user to welcome page after registration*/
-                    HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
-                    return response;
+                   
                 }
 
-            }
-
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            }             
+ 
+            catch (Exception ex)
             {
-                Exception raise = dbEx;
-                foreach (var validationErrors in dbEx.EntityValidationErrors)
-                {
-                    foreach (var validationError in validationErrors.ValidationErrors)
-                    {
-                        string message = string.Format("{0}:{1}",
-                            validationErrors.Entry.Entity.ToString(),
-                            validationError.ErrorMessage);
-                        // raise a new exception nesting  
-                        // the current instance as InnerException  
-                        raise = new InvalidOperationException(message, raise);
-                    }
-                }
-                throw raise;
+                Log.Error(ex);                
             }
 
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
         }
     }
 }
