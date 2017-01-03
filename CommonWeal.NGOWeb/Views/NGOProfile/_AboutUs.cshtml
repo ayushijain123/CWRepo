@@ -1,5 +1,4 @@
-﻿
-@model CommonWeal.NGOWeb.ViewModel.NGOProfileCustom
+﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfileCustom
 @{
     ViewBag.Title = "AboutUs";
     //Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,18 +8,15 @@
     <script src="~/Scripts/NGOProfile%20Script/NGOScript.js"></script>
 }
 <script>
-    $("#editbtn").click(function () {
-        $(this).hide();
-    });
-    //$(document).ready(function () {
-    //    $('#textSumamry').focus(function () {
-    //        $(".SaveSummaryId").prop('disabled',false);
-    //});
-    //change profile
+   
+   
     $(document).ready(function () {
         $(".clickProfile").click(function () {
             $("#profilefile").click();
 
+        });
+        $("#editbtn").click(function () {
+            $(this).hide();
         });
 
         /*about us hide and show*/
@@ -109,7 +105,7 @@
         var Ngoname = "d";
         var chairman = "e";
         var textSumamry = "f"
-        $("input").prop('disabled', true);
+        $(".fieldchange").prop('disabled', true);
         $("#uploadprofile").prop('disabled', false);
         $("#profilefile").prop('disabled', false);
         $("#submitbtn").prop('disabled', true);
@@ -128,7 +124,7 @@
             $(this).hide();
             $("#Canclebtn").show();
             $("#submitbtn").show();
-            $("input").prop('disabled', false);
+            $(".fieldchange").prop('disabled', false);
 
             $("#submitbtn").prop('disabled', true);
 
@@ -140,7 +136,7 @@
             $("#NgoAdress").val(NgoAdress);
             $("#Ngoname").val(Ngoname);
             $("#chairman").val(chairman);
-            $("input").prop('disabled', true);
+            $(".fieldchange").prop('disabled', true);
             $("#submitbtn").hide();
             $(this).hide();
             $("#editbtn").show();
@@ -191,19 +187,38 @@
 
 
         });
+        /*ajax for editing information of ngo*/
+        $("#submitbtn").live('click', function () {
+           // console.log('hello');
+            var NgoEmail = $("#email").val();
+            var NgoMobile = $("#mobile").val();
+            var address = $("#NgoAdress").val();
+            var Name = $("#Ngoname").val();
+            var Chairman_name = $("#chairman").val();
 
-    });
-    $('img').on('click', function () {
-        var image = $(this).attr('src');
-        $('#myModal2').on('show.bs.modal', function () {
-            $(".img-responsive").attr("src", image);
+            $.post("/NGOProfile/edit?NGOEmailID=" + NgoEmail + "&Mobile=" + NgoMobile + "&NGOAddress=" + address + "&NGOName=" + Name + "&ChairmanName=" + Chairman_name, function (result1) {
+                if (result1 == true) {
+                    $(".fieldchange").prop('disabled', true);
+                    $("#Canclebtn").hide();
+                    $("#submitbtn").hide();
+                    $("#editbtn").show();
+                   // alert("Successfully updated");
+                }
+            });
+
+
         });
-    });
-
-    $(document).ready(function () {
+        $('img').on('click', function () {
+            var image = $(this).attr('src');
+            $('#myModal2').on('show.bs.modal', function () {
+                $(".img-responsive").attr("src", image);
+            });
+        });
         $('[data-toggle="tooltip"]').tooltip();
     });
+ 
 
+    
 </script>
 
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -217,7 +232,7 @@
                         <strong>Personal Information</strong>
                     </div>
                     <div class="panel panel-body">
-                        <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
+                       @* <form class="form-horizontal" action="/NGOProfile/Edit" method="post">*@
                             <div class="form-group row ">
                                 <div class="col-md-6">
                                     <label class="control-label" for="email">NGO Email:</label>
@@ -264,12 +279,12 @@
                                     <div id="profileupdate">
                                         <center><span id="editbtn" class="btn btn-primary">Edit</span></center>
                                         <center> <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                                        <span id="Canclebtn" class="btn btn-primary">Cancel</span></center>
+                                        <span id="Canclebtn" class="btn btn-primary" >Cancel</span></center>
                                     </div>
                                 </div>
                             }
                             <p style="padding-bottom: 10px;"></p>
-                        </form>
+                @*        </form>*@
                     </div>
                 </div>
             </div>
@@ -281,9 +296,9 @@
                     <div class="panel panel-body ">
                         <div class="row">
                             <div class="col-md-6">
-                                <img class="profileimage img-thumbnail img-responsives profile-img-container " id="profileimage" src="@Model.imageurl " style="margin-left:78px" />
+                                <img class="profileimage img-thumbnail img-responsives " id="profileimage" src="@Model.imageurl " style="margin-left:78px" />
                                
-                                @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.UserID.ToString()))
+                                @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
                                 { 
                                     <input type="file" id="profilefile" class="profilefile" name="profilefile" style="margin-left: 80px;" />
                                     <input type="button" id="uploadprofile" class="uploadprofile" value="Upload" style="margin-left: 80px;" />
@@ -304,8 +319,8 @@
                                     {
                                         <div id="editAboutUs">
                                             <center><span id="edit" class="btn btn-primary">Edit</span></center>
-                                            <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" @*style="margin-left: 160px;*@ hidden>Save</button>
-                                    <span id="Cancel" class="btn btn-primary">Cancel</span></center>
+                                            <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                    <span id="Cancel" class="btn btn-primary"hidden>Cancel</span></center>
                                         </div>
                                     }
                                 </div>
@@ -316,6 +331,7 @@
             </div>
         </div>
     </div>
+</div>
 @if (TempData["US"] != null)
 {
     @Html.Raw(TempData["US"])
