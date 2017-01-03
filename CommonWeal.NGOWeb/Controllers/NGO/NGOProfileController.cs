@@ -82,7 +82,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return PartialView("AboutUsNGO", obj);
            // return View(obj);
             //return PartialView("AboutUsNGO",obj);
-            return View(obj);
+           
         }
 
         [Authorize]
@@ -110,7 +110,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [Authorize]
         [HttpPost]
         public JsonResult Edit(NGOUser obj)
-        {bool result=false;
+        {bool result1=false;
             using (CommonWealEntities context = new CommonWealEntities())
             {
                 if(obj!=null)
@@ -130,16 +130,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 ob1.LoginEmailID = obj.NGOEmailID;
                 context.Configuration.ValidateOnSaveEnabled = false;
                 context.SaveChanges();
-                result=true;
+                result1=true;
 
                 }
             }
 
-            return Json(result, JsonRequestBehavior.AllowGet);//, new AjaxOptions { UpdateTargetId = "lblpost" }
-            //CommonWealEntities mycontext = new CommonWealEntities();
-            //var myobj = mycontext.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-            //return PartialView("AboutUsNGO", myobj);
-
+            return Json(result1, JsonRequestBehavior.AllowGet);
         }
         [Authorize]
         [HttpPost]
@@ -216,6 +212,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 NGOProfileCustom NgoInfo = new NGOProfileCustom();
                 if (id == 0)
                 {
+                    NgoInfo.WatchNgoID = LoginUser.LoginID;
                     NgoInfo.UserID = LoginUser.LoginID;
                     var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
                     NgoInfo.NgoUser = obj;
@@ -228,6 +225,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 }
                 else
                 {
+                    NgoInfo.WatchNgoID = id;
                     NgoInfo.UserID = LoginUser.LoginID;
                     var obj = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault();
                     NgoInfo.NgoUser = obj;
