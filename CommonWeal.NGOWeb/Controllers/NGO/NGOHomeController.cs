@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
-
+using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {   /*entry for authorized user and whose role is NGOAdmin*/
     [Authorize(Roles = "NGOAdmin")]
@@ -29,7 +29,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var list = ob.GetAllCategory();
            // ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
             /*return To view with postList */
-            return View(postlist);
+            PostWithTopNgo pwtn = new PostWithTopNgo();
+            pwtn.post = postlist;
+            pwtn.ngouser = GetTopNgo;
+            return View(pwtn);
         }
 
         /*method for upload image*/
