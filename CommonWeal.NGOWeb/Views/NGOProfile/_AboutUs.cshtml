@@ -87,7 +87,7 @@
                 });
             } else {
                 alert("FormData is not supported.");
-              
+
             }
         });
         $('.fieldchange').focus(function () {
@@ -278,26 +278,22 @@
                     <div class="about-us-header panel-heading">
                         <strong>About Us</strong>
                     </div>
-                    <div class="panel panel-body">
+                    <div class="panel panel-body ">
                         <div class="row">
-                            <div class="col-md-12">
-                                <img class="profileimage img-thumbnail img-responsive " id="profileimage" src="@Model.imageurl"/>
+                            <div class="col-md-6">
+                                <img class="profileimage img-thumbnail img-responsives profile-img-container " id="profileimage" src="@Model.imageurl " style="margin-left:78px" />
+                               
                                 @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.UserID.ToString()))
-                                { <input type="file" id="profilefile" class="profilefile" name="profilefile" />
-                                    <input type="button" id="uploadprofile" class="uploadprofile" value="Upload" />
+                                { 
+                                    <input type="file" id="profilefile" class="profilefile" name="profilefile" style="margin-left: 80px;" />
+                                    <input type="button" id="uploadprofile" class="uploadprofile" value="Upload" style="margin-left: 80px;" />
                                 }
-@* <div class="col-md-4 col-md-push-2 profile-img-container ">
-                                    *@
-@*<div class="profile-img-i-container">
-                                        <i class="glyphicon glyphicon-camera fa-2x " id="pencil" ></i>
-                                        <input type="file" id="profilefile"class="profilefile" name="file" data-badge="false" />
-                                        <input type="button" id="uploadprofile" class="uploadprofile"value="Upload"></input>
-                                    </div>*@
-@* </div>*@
+
                             </div>
+
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="text-area col-md-8 col-md-push-2">
+                                    <div class="text-area col-md-8 col-md-push-2 " style="margin-left: 15px;">
                                         <textarea id="textSumamry">@Model.NgoUser.AboutUs</textarea>
                                     </div>
                                 </div>
