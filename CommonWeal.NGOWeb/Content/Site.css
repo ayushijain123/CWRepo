@@ -835,6 +835,7 @@ tr.pager td {
 
 #Textmessage {
     background-color: #7ac0da;
+    overflow-wrap:break-word;
 }
 
 
