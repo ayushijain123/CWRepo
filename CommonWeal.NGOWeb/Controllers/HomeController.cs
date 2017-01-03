@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
-
+using CommonWeal.NGOWeb.ViewModel;
 namespace CommonWeal.NGOWeb.Controllers
 {
 
@@ -17,9 +17,26 @@ namespace CommonWeal.NGOWeb.Controllers
 
         public ActionResult Index()
         {
+
+            CommonWealEntities context = new CommonWealEntities();
+            PostWithTopNgo pwtn = new PostWithTopNgo();
+            var ngolist = context.NGOUsers.ToList();
+            var ngopostlist = context.NGOPosts.ToList();
+            foreach (var obj in ngolist)
+            {
+
+
+
+                int count = ngopostlist.Where(x => x.LoginID == obj.LoginID).Count();
+                obj.PostCount = count;
+                context.Configuration.ValidateOnSaveEnabled = false;
+
+                context.SaveChanges();
+
+            }
             if (!User.Identity.IsAuthenticated ||this.User.IsInRole("Admin"))
             {
-             
+                
                 dbOperations ob = new dbOperations();
                 var postlist = ob.GetPostOnLoad();
                 CommonWealEntities db = new CommonWealEntities();
@@ -27,8 +44,9 @@ namespace CommonWeal.NGOWeb.Controllers
 
                 var t = UIHelper.GetDropDownListFromEnum(typeof(EnumHelper.UserType));
                 postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
-
-                return View(postlist);
+                pwtn.post = postlist;
+                pwtn.ngouser = GetTopNgo;
+                return View(pwtn);
                 //return View();
 
             }
