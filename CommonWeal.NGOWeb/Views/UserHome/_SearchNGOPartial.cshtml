@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<CommonWeal.Data.NGOUser>
 
     <div class="side-nav  nav-list col-md-2">
-        <div class="form-inline col-md-12">
-            <div class="input-group search-box">
+        <div class="form-inline">
+            <div class="input-group search-box col-md-12">
                 <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name" style="font-size:15px">
                 <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
                 <span class="input-group-btn">
@@ -18,8 +18,10 @@
                 <ul class="list-top-ngo">
                     @foreach(var ngo in Model)
                     {
-                    <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID"><div class="ngo-list"><li>@ngo.NGOName</li></div></a>
-                    
+                    <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID">
+                        <div class="ngo-list">
+                            <li>@ngo.NGOName</li>
+                        </div></a>                    
                     }
                 </ul>
             </div>
