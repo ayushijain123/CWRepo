@@ -24,7 +24,7 @@
                         </div>
                         <div class="media-body">
                             <h3>NGOs Request
-                             <span class="pull-right" id="COR">@Model.CountOfRequests</span>
+                             <span class="pull-right count-of-users" id="COR">@Model.CountOfRequests</span>
                             </h3>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="media-body">
                             <h3>Active NGOs
-                             <span class="pull-right" id="COAN">@Model.CountOfActiveNGO</span>
+                             <span class="pull-right count-of-users" id="COAN">@Model.CountOfActiveNGO</span>
                             </h3>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                         </div>
                         <div class="media-body">
                             <h3>Blocked/Abused NGOs
-                            <span class="pull-right" id="COBN">@Model.CountOfTotalBlockNGO</span>
+                            <span class="pull-right count-of-users" id="COBN">@Model.CountOfTotalBlockNGO</span>
                             </h3>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
                         </div>
                         <div class="media-body">
                             <h3>Active Users
-                            <span class="pull-right" id="COAL">@Model.CountOfTotalActiveUsers</span>
+                            <span class="pull-right count-of-users" id="COAL">@Model.CountOfTotalActiveUsers</span>
                             </h3>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                         </div>
                         <div class="media-body">
                             <h3>Warned NGOs
-                        <span class="pull-right" id="COWU">@Model.CountOfWarnedUsers</span>
+                                <span class="pull-right count-of-users" id="COWU">@Model.CountOfWarnedUsers</span>
                             </h3>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="media-body">
                             <h3>Blocked/Abused Users  
-                            <span class="pull-right" id="COBS">@Model.IsBlockSpam</span>
+                            <span class="pull-right count-of-users" id="COBS">@Model.IsBlockSpam</span>
                             </h3>
                         </div>
                     </div>
@@ -150,9 +150,9 @@
 @if (TempData["msg"] != null)
 {
     @Html.Raw(TempData["msg"])
-} 
+}
 
- @ViewData["MoreInfo"]
+@ViewData["MoreInfo"]
 
 
 
