@@ -206,6 +206,7 @@
     <Compile Include="ViewModel\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\PostLikeModel.cs" />
+    <Compile Include="ViewModel\PostWithTopNgo.cs" />
     <Compile Include="ViewModel\SpamAndBlockUser.cs" />
     <Compile Include="ViewModel\TestModel.cs" />
   </ItemGroup>
