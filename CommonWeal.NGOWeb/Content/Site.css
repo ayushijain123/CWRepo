@@ -1769,3 +1769,9 @@ added by payal*/
     color: rgba(255,255,255,.85);
     font-size: 30px;
 }*/
+
+
+#profileimage:hover {
+    opacity:0.6;
+    cursor:pointer;
+}
