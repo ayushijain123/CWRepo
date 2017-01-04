@@ -25,6 +25,7 @@
         <AssociationConnector Association="CommonWealModel.FK_PostCategories_AreaOfInterest" />
         <AssociationConnector Association="CommonWealModel.FK_PostLike_NGOPost" />
         <EntityTypeShape EntityType="CommonWealModel.SpamUser" Width="1.5" PointX="12.125" PointY="23.125" />
+        <EntityTypeShape EntityType="CommonWealModel.RegistrationYear" Width="1.5" PointX="1.9638330144639282" PointY="31.621723040762227" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

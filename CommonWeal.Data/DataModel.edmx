@@ -15,6 +15,7 @@
           <EntitySet Name="PostComment" EntityType="CommonWealModel.Store.PostComment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PostLike" EntityType="CommonWealModel.Store.PostLike" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegistrationYear" EntityType="CommonWealModel.Store.RegistrationYear" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SpamUser" EntityType="CommonWealModel.Store.SpamUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
@@ -115,13 +116,15 @@
           <Property Name="AreaOfIntrest" Type="varchar" MaxLength="500" />
           <Property Name="OperationalArea" Type="varchar" MaxLength="50" />
           <Property Name="WebsiteUrl" Type="varchar" MaxLength="500" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="IsBlock" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsBlock" Type="bit" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
           <Property Name="IsWarn" Type="bit" />
           <Property Name="AboutUs" Type="varchar(max)" />
+          <Property Name="IsDecline" Type="bit" />
+          <Property Name="PostCount" Type="int" />
         </EntityType>
         <EntityType Name="PostCategories">
           <Key>
@@ -173,6 +176,13 @@
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="RegistrationYear">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="year" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="RoleType">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -223,6 +233,8 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="IsWarn" Type="bit" />
+          <Property Name="IsSpam" Type="bit" />
+          <Property Name="IsDecline" Type="bit" />
         </EntityType>
         <EntityType Name="WorkingArea">
           <Key>
@@ -338,6 +350,7 @@
             <End Role="PostLike" EntitySet="PostLikes" />
           </AssociationSet>
           <EntitySet Name="SpamUsers" EntityType="CommonWealModel.SpamUser" />
+          <EntitySet Name="RegistrationYears" EntityType="CommonWealModel.RegistrationYear" />
           </EntityContainer>
         <EntityType Name="AreaOfInterest">
           <Key>
@@ -480,6 +493,8 @@
           <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="User" ToRole="RegisteredUser" />
           <Property Type="Boolean" Name="IsWarn" />
           <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
+          <Property Type="Boolean" Name="IsSpam" />
+          <Property Type="Boolean" Name="IsDecline" />
         </EntityType>
         <EntityType Name="WorkingArea">
           <Key>
@@ -543,14 +558,16 @@
           <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActive" Nullable="false" />
-          <Property Type="Boolean" Name="IsBlock" Nullable="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Boolean" Name="IsBlock" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="IsWarn" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
           <Property Type="String" Name="AboutUs" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsDecline" />
+          <Property Type="Int32" Name="PostCount" />
         </EntityType>
         <Association Name="FK_NGOUser_UserLogin">
           <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
@@ -598,6 +615,13 @@
           <Property Type="String" Name="ReportedBy" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="AbuseedUserName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RegistrationYear">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="year" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -739,6 +763,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="CommonWealModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsDecline" ColumnName="IsDecline" />
+                <ScalarProperty Name="IsSpam" ColumnName="IsSpam" />
                 <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -763,6 +789,8 @@
           <EntitySetMapping Name="NGOUsers">
             <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
               <MappingFragment StoreEntitySet="NGOUser">
+                <ScalarProperty Name="PostCount" ColumnName="PostCount" />
+                <ScalarProperty Name="IsDecline" ColumnName="IsDecline" />
                 <ScalarProperty Name="AboutUs" ColumnName="AboutUs" />
                 <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
@@ -808,6 +836,14 @@
                 <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
                 <ScalarProperty Name="SpamUserId" ColumnName="SpamUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationYears">
+            <EntityTypeMapping TypeName="CommonWealModel.RegistrationYear">
+              <MappingFragment StoreEntitySet="RegistrationYear">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

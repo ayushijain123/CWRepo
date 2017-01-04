@@ -40,13 +40,15 @@ namespace CommonWeal.Data
         public string AreaOfIntrest { get; set; }
         public string OperationalArea { get; set; }
         public string WebsiteUrl { get; set; }
-        public bool IsActive { get; set; }
-        public bool IsBlock { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+        public Nullable<bool> IsBlock { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<bool> IsWarn { get; set; }
         public string AboutUs { get; set; }
+        public Nullable<bool> IsDecline { get; set; }
+        public Nullable<int> PostCount { get; set; }
     
         public virtual User User { get; set; }
     }

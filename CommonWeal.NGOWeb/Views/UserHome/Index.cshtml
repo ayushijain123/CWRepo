@@ -1,122 +1,111 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.PostWithTopNgo
-<script src="~/Scripts/Post/PostComment.js"></script>
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-ui.min.js"></script>
-<link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
-
-
 @{
     ViewBag.Title = "All Rights Reserved";
-}
+} 
 
 
-@*<div  style="background-color:gray;"></div>*@
-
-
-@*  //post*@
-
-@*  @Html.Partial("_posts", Model);*@
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#selectcategory").live("change", function () {
-            var categoryList = $(this).val();
-            //console.log(categoryList);
-            if (categoryList.length == 0) {
-                categoryList = ['1'];
-            }
-            // console.log('inside');
-            var things = JSON.stringify({ 'category': categoryList });
-            $.ajax({
-                contentType: 'application/json; charset=utf-8',
-
-                type: 'POST',
-                url: '/post/GetPostByCategory2',
-                data: things,
-                success: function (result) {
-                    // console.log(result);
-                    if (result != null) {
-                        $("#postsection").html("");
-                        $("#loadMoreSection").html("");
-                        $("#loadMoreSection").append(result);
-                    }
-                    $.post("/post/getpostCount", function (result1) {
-                        // alert(result1);
-                        var total = result1 - 5;
-
-                        if (total <= 0) {
-                            //alert(result1 + "" + total)
-
-                            if (result1 <= 5 && result1 > 0) {
-                                $(".btnLoad").val('No more post');
-                                $(".btnLoad").attr('disabled', true);
-                            }
-                            if (result1 <= 0) {
-                                $(".btnLoad").val('No post found');
-                                $(".btnLoad").attr('disabled', true);
-                            }
-                        }
-                        else {
-                            $(".btnLoad").prop("disabled", false);
-                            $(".btnLoad").val("See more posts");
-                            //  alert("clickable");
-
-                        }
-
-
-                        // alert(result);
-                    });
-                },
-                failure: function (response) {
-                    $('#result').html(response);
-                }
-            });
-
-
-        });
-
-        $("#selectcategory").chosen();
-        $('#selectcategory').change(function () {
-            if ($(this).val() != null && $(this).val().length > 0) {
-                $.each($(this).val(), function (key, value) {
-                    if (value == 1) {
-                        $('#selectcategory').val('').trigger('chosen:updated');
-                        $('#selectcategory').val('1').trigger('chosen:updated');
-                    }
-
-                });
-            }
-            else { $('#selectcategory').val('').trigger('chosen:updated'); }
-            //console.log($('#selectcategory').val().length);
-        });
-
-
-
-    });
-
-</script>
 
 <div class="container-fluid">
     <div class="col-md-2">
         @Html.Partial("../UserHome/_SearchNGOPartial", Model.ngouser)
     </div>
-
     <div class="col-md-8">
         <div class="container">
             <div class="row col-sm-10 col-sm-push-1  selectcategory">
                 @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon ", @multiple = "multiple" })
             </div>
             <br />
-            <br />
             <div id="postsection">
                 @Html.Partial("../UserHome/_Posts", Model.post)
             </div>
             <div id="loadMoreSection"></div>
             <div style="text-align: center" id="morePost">
-                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; margin-bottom: 20px; font-weight: 400; width: 200px;" class="btnLoad" value="See more posts" id="btnLoad" align="center">
+                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; font-weight: 400; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
                 @*type="button"*@
             </div>
         </div>
     </div>
+    <div class="col-md-2">
+    </div>
 </div>
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on("change", "#selectcategory", function () {
+                var categoryList = $(this).val();
+                //console.log(categoryList);
+                if (categoryList == null || categoryList.length == 0) {
+                    categoryList = ['1'];
+                }
+                // console.log('inside');
+                var things = JSON.stringify({ 'category': categoryList });
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+
+                    type: 'POST',
+                    url: '/post/GetPostByCategory2',
+                    data: things,
+                    success: function (result) {
+                        // console.log(result);
+                        if (result != null) {
+                            $("#postsection").html("");
+                            $("#loadMoreSection").html("");
+                            $("#loadMoreSection").append(result);
+                        }
+                        $.post("/post/getpostCount", function (result1) {
+                            // alert(result1);
+                            var total = result1 - 5;
+
+                            if (total <= 0) {
+                                //alert(result1 + "" + total)
+
+                                if (result1 <= 5 && result1 > 0) {
+                                    $(".btnLoad").val('No more post');
+                                    $(".btnLoad").attr('disabled', true);
+                                }
+                                if (result1 <= 0) {
+                                    $(".btnLoad").val('No post found');
+                                    $(".btnLoad").attr('disabled', true);
+                                }
+                            }
+                            else {
+                                $(".btnLoad").prop("disabled", false);
+                                $(".btnLoad").val("See more posts");
+                                //  alert("clickable");
+
+                            }
+
+
+                            // alert(result);
+                        });
+                    },
+                    failure: function (response) {
+                        $('#result').html(response);
+                    }
+                });
+
+
+            });
+
+            $("#selectcategory").chosen();
+            $('#selectcategory').change(function () {
+                if ($(this).val() != null && $(this).val().length > 0) {
+                    $.each($(this).val(), function (key, value) {
+                        if (value == 1) {
+                            $('#selectcategory').val('').trigger('chosen:updated');
+                            $('#selectcategory').val('1').trigger('chosen:updated');
+                        }
+
+                    });
+                }
+                else { $('#selectcategory').val('').trigger('chosen:updated'); }
+                //console.log($('#selectcategory').val().length);
+            });
+
+
+
+        });
+
+</script>
+}

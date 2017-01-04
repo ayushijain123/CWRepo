@@ -1,11 +1,9 @@
 ﻿
-
-function fileclick() {
-    $("#file").click();
-
-}
-
 $(document).ready(function () {
+    function fileclick() {
+        $("#file").click();
+
+    }
     /*Implementation search ngo by ajax */
     $(document).on('keyup', '.searchNGO', function () {
         var name = $(".searchNGO").val();
@@ -59,11 +57,12 @@ $(document).ready(function () {
     });
    
     $("#uploadimage").hide();
-    $("#pencil").live('click', function () {
+    $("#pencil").on('click', function () {
         $("#uploadimage").show();
     });
 
-    $(".btnPost").live('click', function () {
+    $(document).on('click', ".btnPost", function () {
+       
         var postid = $(this).attr('id').split('-')[1];
         
         var controller = $("#controllername").html().trim();
@@ -92,8 +91,8 @@ $(document).ready(function () {
                      DeleteComment ='<span id="deleteComment-'+ commentid+'" class="deleteComment float-right fa fa-remove" title="Delete comment"></span>';
                     }
                 }
-                $("#" + postid).append('<div class="form-group col-md-12 "id="CommentBox-'+commentid+'">' +
-                '<div class="form-inline col-md-12 comentpost ">' + spamicon +
+                $("#" + postid).append('<div class="form-group col-md-12 "id="CommentBox-'+commentid+'">'  + spamicon  +
+                '<div class="form-inline col-md-12 comentpost ">'+
                     '<span class="col-md-1 fa fa-user commentimage " ></span>' +
                     '<span class="commentusername "><b>' + userName + ' </b></span>' +
                     '<span class="commentdate">' + createdOn + '</span>' +
@@ -128,7 +127,7 @@ $(document).ready(function () {
     });
 
 
-    $(".commentIcon").live('click', function () {
+    $(document).on('click', ".commentIcon", function () {
 
         var postid = $(this).attr('id').split('-')[1];
         $("#txtComment-" + postid).focus();
@@ -152,7 +151,7 @@ $(document).ready(function () {
     });
 
     //start Likecount and update ajax
-    $(".LikeIcon").live('click', function () {
+    $(document).on('click', '.LikeIcon', function () {
         
         var controllerNAME = $("#controllername").html();
       //  alert(controllerNAME);
@@ -204,7 +203,7 @@ $(document).ready(function () {
 
     //end Likecount
 
-    $(".showLikeuser").live('mouseover',function () {
+    $(document).on('mouseover', ".showLikeuser", function () {
         
         var postid = $(this).attr("id").split('-')[1];
        
@@ -227,7 +226,7 @@ $(document).ready(function () {
 
 
     /*submit abuse user*/
-    $(".reportAbuse").live('click', function () {
+    $(document).on('click', ".reportAbuse", function () {
         var commentId = $(this).attr('id').split('-')[1];
         var like = true;
         var commentusername = $("#commentusername-" + commentId).text();
@@ -260,7 +259,7 @@ $(document).ready(function () {
 
     // Get the modal
 
-    $(".imageurlpost").live('click',function () {
+    $(document).on('click', ".imageurlpost", function () {
 
         var postid = $(this).attr("id").split('-')[1];
         
@@ -352,7 +351,7 @@ $(document).ready(function () {
     });
     //on seemore from ngoprofile ajax call
     var loadcnt = 0;
-    $(".btnLoadNGOPfrofile").live('click',function () {
+    $(document).on('click',".btnLoadNGOPfrofile",function () {
         //console.log('clicked');
         loadcnt++;
         var controller = $("#controllername").html();
@@ -440,7 +439,7 @@ $(document).ready(function () {
 
 
     /*start ajax for delete comment on post*/
-    $(".deleteComment").live('click', function () {
+    $(document).on('click', ".deleteComment", function () {
         var commentid = $(this).attr('id').split('-')[1];
         if (commentid == null)
         { commentid = 0; }
@@ -457,7 +456,7 @@ $(document).ready(function () {
     });
 
     /*start ajax for delete Post*/
-    $(".deletePost").on('click', function () {
+    $(document).on('click', ".deletePost", function () {
         var postid = $(this).attr('id').split('-')[1];
         if (postid == null)
         { postid = 0; }
@@ -474,7 +473,7 @@ $(document).ready(function () {
     });
 
     /*start ajax for  NGOProfilePOST partial*/
-    $(".NGOProfilepost").live('click',function () {
+    $(document).on('click',".NGOProfilepost",function () {
         var userid = $(this).attr('id').split('-')[1];
         
         $.post("/NGOProfile/NGOProfilePost?id="+userid, function (result) {
@@ -490,7 +489,7 @@ $(document).ready(function () {
 
 
     /*start ajax for about us partial*/
-    $(".aboutus").live('click', function () {
+    $(document).on('click', ".aboutus",function () {
         var userid = $(this).attr('id').split('-')[1];  
        
         $.post("/NGOProfile/AboutUsPartial?id="+userid, function (result) {

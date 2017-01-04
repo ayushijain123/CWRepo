@@ -29,6 +29,8 @@ namespace CommonWeal.Data
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public Nullable<bool> IsWarn { get; set; }
+        public Nullable<bool> IsSpam { get; set; }
+        public Nullable<bool> IsDecline { get; set; }
     
         public virtual ICollection<RegisteredUser> RegisteredUsers { get; set; }
         public virtual ICollection<NGOUser> NGOUsers { get; set; }

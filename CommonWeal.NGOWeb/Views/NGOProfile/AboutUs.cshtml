@@ -3,7 +3,7 @@
     ViewBag.Title = "AboutUs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <script>
     $("#editbtn").click(function () {
         $(this).hide();
@@ -51,7 +51,7 @@
             //$("#submitbtn").prop('disabled', true);
         });
 
-        $(".SaveSummaryId").live('click', function () {
+        $(document).on('click',".SaveSummaryId", function () {
             var Loginid = $(this).attr('id').split('-')[1];
             var summary = $('#textSumamry').val();
             $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
@@ -67,7 +67,7 @@
         });
        
     });
-    $('img').on('click', function () {
+    $(document).on('click','img', function () {
         var image = $(this).attr('src');
         $('#myModal2').on('show.bs.modal', function () {
             $(".img-responsive").attr("src", image);

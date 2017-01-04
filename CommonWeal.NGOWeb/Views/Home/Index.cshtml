@@ -1,91 +1,9 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.PostWithTopNgo
 @{
     ViewBag.Title = "All Rights Reserved";
-}
-<link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-1.7.1.js"></script>
-<link href="~/Content/chosen.css" rel="stylesheet" />
-<script src="~/Scripts/chosen.jquery.min.js"></script>
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-ui.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#selectcategory").live("change", function () {
-            var categoryList = $(this).val();
-            //console.log(categoryList);
-            if (categoryList.length == 0) {
-                categoryList = ['1'];
-            }
-            // console.log('inside');
-            var things = JSON.stringify({ 'category': categoryList });
-            $.ajax({
-                contentType: 'application/json; charset=utf-8',
-
-                type: 'POST',
-                url: '/post/GetPostByCategory2',
-                data: things,
-                success: function (result) {
-                    // console.log(result);
-                    if (result != null) {
-                        $("#postsection").html("");
-                        $("#loadMoreSection").html("");
-                        $("#loadMoreSection").append(result);
-                    }
-                    $.post("/post/getpostCount", function (result1) {
-                        // alert(result1);
-                        var total = result1 - 5;
-
-                        if (total <= 0) {
-                            //alert(result1 + "" + total)
-
-                            if (result1 <= 5 && result1 > 0) {
-                                $(".btnLoad").val('No more post');
-                                $(".btnLoad").attr('disabled', true);
-                            }
-                            if (result1 <= 0) {
-                                $(".btnLoad").val('No post found');
-                                $(".btnLoad").attr('disabled', true);
-                            }
-                        }
-                        else {
-                            $(".btnLoad").prop("disabled", false);
-                            $(".btnLoad").val("See more posts");
-                            //  alert("clickable");
-
-                        }
+} 
 
 
-                        // alert(result);
-                    });
-                },
-                failure: function (response) {
-                    $('#result').html(response);
-                }
-            });
-
-
-        });
-
-        $("#selectcategory").chosen();
-        $('#selectcategory').change(function () {
-            if ($(this).val() != null && $(this).val().length > 0) {
-                $.each($(this).val(), function (key, value) {
-                    if (value == 1) {
-                        $('#selectcategory').val('').trigger('chosen:updated');
-                        $('#selectcategory').val('1').trigger('chosen:updated');
-                    }
-
-                });
-            }
-            else { $('#selectcategory').val('').trigger('chosen:updated'); }
-            //console.log($('#selectcategory').val().length);
-        });
-
-
-
-    });
-
-</script>
 
 <div class="container-fluid">
     <div class="col-md-2">
@@ -112,4 +30,82 @@
 </div>
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on("change", "#selectcategory", function () {
+                var categoryList = $(this).val();
+                //console.log(categoryList);
+                if (categoryList == null || categoryList.length == 0) {
+                    categoryList = ['1'];
+                }
+                // console.log('inside');
+                var things = JSON.stringify({ 'category': categoryList });
+                $.ajax({
+                    contentType: 'application/json; charset=utf-8',
+
+                    type: 'POST',
+                    url: '/post/GetPostByCategory2',
+                    data: things,
+                    success: function (result) {
+                        // console.log(result);
+                        if (result != null) {
+                            $("#postsection").html("");
+                            $("#loadMoreSection").html("");
+                            $("#loadMoreSection").append(result);
+                        }
+                        $.post("/post/getpostCount", function (result1) {
+                            // alert(result1);
+                            var total = result1 - 5;
+
+                            if (total <= 0) {
+                                //alert(result1 + "" + total)
+
+                                if (result1 <= 5 && result1 > 0) {
+                                    $(".btnLoad").val('No more post');
+                                    $(".btnLoad").attr('disabled', true);
+                                }
+                                if (result1 <= 0) {
+                                    $(".btnLoad").val('No post found');
+                                    $(".btnLoad").attr('disabled', true);
+                                }
+                            }
+                            else {
+                                $(".btnLoad").prop("disabled", false);
+                                $(".btnLoad").val("See more posts");
+                                //  alert("clickable");
+
+                            }
+
+
+                            // alert(result);
+                        });
+                    },
+                    failure: function (response) {
+                        $('#result').html(response);
+                    }
+                });
+
+
+            });
+
+            $("#selectcategory").chosen();
+            $('#selectcategory').change(function () {
+                if ($(this).val() != null && $(this).val().length > 0) {
+                    $.each($(this).val(), function (key, value) {
+                        if (value == 1) {
+                            $('#selectcategory').val('').trigger('chosen:updated');
+                            $('#selectcategory').val('1').trigger('chosen:updated');
+                        }
+
+                    });
+                }
+                else { $('#selectcategory').val('').trigger('chosen:updated'); }
+                //console.log($('#selectcategory').val().length);
+            });
+
+
+
+        });
+
+</script>
 }

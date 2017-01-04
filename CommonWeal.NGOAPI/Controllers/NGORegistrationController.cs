@@ -1,5 +1,5 @@
 ﻿using CommonWeal.Data;
-using log4net;
+//using log4net;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,7 +16,7 @@ namespace CommonWeal.NGOAPI.Controllers
     [AllowAnonymous]
     public class NGORegistrationController : BaseController
     {
-        private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly ILog Log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         //public IEnumerable<string> Get()
         //{
         //    return new string[] { "ASJ", "AJ" };
@@ -141,7 +141,7 @@ namespace CommonWeal.NGOAPI.Controllers
  
             catch (Exception ex)
             {
-                Log.Error(ex);                
+                //Log.Error(ex);                
             }
 
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);

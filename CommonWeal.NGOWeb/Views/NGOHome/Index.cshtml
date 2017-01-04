@@ -4,12 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>
 <script src="~/Scripts/chosen.jquery.js"></script>
-<script src="~/Scripts/chosen.jquery.min.js"></script>
-<link href="~/Content/NgoSearchBox/NgoSearch.css" rel="stylesheet" />
-<link href="~/Content/jquery-ui.css" rel="stylesheet" />
-<script src="~/Scripts/jquery-ui.min.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>*@
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         //$("#selectcategory").change(function () {
@@ -33,9 +32,10 @@
 
         $(".chosen-select-multiple").chosen();
         $('.chosen-select-multiple').on('change', function () {
-            if ($(this).val().length > 0) {
+            console.log('changes');
+            if ($(this).val() != null &&  $(this).val().length > 0) {
                 $.each($(this).val(), function (key, value) {
-                    if (value == 1) {
+                    if (value == 1 ) {
                         //console.log('inside '+value);
                         $('.chosen-select-multiple').val('').trigger('chosen:updated');
 
@@ -43,13 +43,16 @@
                     }
                 });
             }
-            else { $('.chosen-select-multiple').val('').trigger('chosen:updated'); }
-            console.log($('.chosen-select-multiple').val().length);
+            else {
+                console.log('else');
+                $('.chosen-select-multiple').val('').trigger('chosen:updated');
+            }
+          
         });
-        $("#selectcategory").live("change", function () {
+        $(Document).on("change", "#selectcategory", function () {
             var categoryList = $(this).val();
             // console.log(categoryList);
-            if (categoryList.length == 0) {
+            if (categoryList ==null ||categoryList.length == 0) {
                 categoryList = ['1'];
             }
 
@@ -107,7 +110,7 @@
         $('#selectcategory').change(function () {
             if ($(this).val() != null && $(this).val().length > 0) {
                 $.each($(this).val(), function (key, value) {
-                    if (value == 1) {
+                    if (value == 1 ) {
                         $('#selectcategory').val('').trigger('chosen:updated');
                         $('#selectcategory').val('1').trigger('chosen:updated');
                     }

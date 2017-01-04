@@ -43,6 +43,7 @@ namespace CommonWeal.Data
         public DbSet<WorkingArea> WorkingAreas { get; set; }
         public DbSet<NGOUser> NGOUsers { get; set; }
         public DbSet<SpamUser> SpamUsers { get; set; }
+        public DbSet<RegistrationYear> RegistrationYears { get; set; }
     
         //public virtual ObjectResult<string> usp_GetPostDetails(Nullable<int> postID)
         //{

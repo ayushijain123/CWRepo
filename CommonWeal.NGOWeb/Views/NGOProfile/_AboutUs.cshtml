@@ -169,7 +169,7 @@
             //$("#submitbtn").prop('disabled', true);
         });
 
-        $(".SaveSummaryId").live('click', function () {
+        $(document).on('click',".SaveSummaryId", function () {
             var Loginid = $(this).attr('id').split('-')[1];
             var summary = $('#textSumamry').val();
             // alert("hi")
@@ -188,7 +188,7 @@
 
         });
         /*ajax for editing information of ngo*/
-        $("#submitbtn").live('click', function () {
+        $(document).on('click',"#submitbtn", function () {
            // console.log('hello');
             var NgoEmail = $("#email").val();
             var NgoMobile = $("#mobile").val();
@@ -221,7 +221,7 @@
     
 </script>
 
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 
 <div class="container">
     <div class="row">

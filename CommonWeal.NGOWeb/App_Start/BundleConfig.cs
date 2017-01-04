@@ -12,7 +12,8 @@ namespace CommonWeal.NGOWeb
 
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js"
+                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui-{version}.js"));
@@ -48,12 +49,11 @@ namespace CommonWeal.NGOWeb
 
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js",
-                      "~/Scripts/multiselect.js"
+                      "~/bootstrap/js/bootstrap.js",
+                       "~/Scripts/bootstrap-multiselect.js"
                       ));
 
-
+            
             //************************************** datapicker bundle **********************************************
 
             bundles.Add(new ScriptBundle("~/bundles/datapicker").Include(
@@ -62,14 +62,33 @@ namespace CommonWeal.NGOWeb
             //************************************** datapicker bundle **********************************************
             bundles.Add(new StyleBundle("~/Content/sitecss").Include(
                 "~/Content/bootstrap.css",
-                 "~/Content/bootstrap-theme.css",
-                 "~/Content/Site.css",
-                 "~/Content/multiselect.css" ));
+                 "~/bootstrap/css/bootstrap-theme.css",
+                 "~/Content/site.css",
+                 "~/Content/bootstrap-multiselect.css"
+                 ));
 
 
             //css  
-            bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
+            bundles.Add(new StyleBundle("~/Content/cssjqryUI").Include(
                    "~/Content/jquery-ui.css"));
+            //***************************************Added on 28/12/2016***********************************************
+
+
+
+            bundles.Add(new StyleBundle("~/Content/chosencss").Include(
+                "~/Content/chosen.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/Scripts/jschosen").Include(
+           "~/Scripts/chosen.jquery.js"));
+
+
+            bundles.Add(new StyleBundle("~/Contents/cssdynamiclist").Include(
+                "~/Content/dyanamiclist.css"
+                ));
+            bundles.Add(new StyleBundle("~/Contents/cssdngosearch").Include(
+           "~/Content/NgoSearchBox/NgoSearch.css"
+              ));
         }
     }
 }

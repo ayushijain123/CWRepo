@@ -180,7 +180,7 @@
             //$("#submitbtn").prop('disabled', true);
         });
 
-        $(".SaveSummaryId").live('click', function () {
+        $(".SaveSummaryId").on('click', function () {
             var Loginid = $(this).attr('id').split('-')[1];
             var summary = $('#textSumamry').val();
             $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {

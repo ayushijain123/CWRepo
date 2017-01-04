@@ -4,21 +4,6 @@
     ViewBag.Title = "All Rights Reserved";
 }
 
-<script src="~/Scripts/jquery-1.7.1.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-
-
-
-@*<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>*@
-@*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-
-
 
 <script>
     $(document).ready(function () {
@@ -31,7 +16,7 @@
                 return false;
             }
         });
-        
+
     });
 </script>
 
@@ -51,14 +36,14 @@
                                 <label class="control-label" for="first-name">
                                 First Name*
                           
-                                </label>
+                    </label>
 
-                            </div>
-                            <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
-                                @Html.TextBoxFor(a => a.FirstName, new { placeholder = "First Name", @class = "form-control col-md-7 col-xs-12" })
-                                @Html.ValidationMessageFor(a => a.FirstName, string.Empty, new { @class = "Validation-Message" })
-                            </div>
-                        </div>
+                </div>
+                <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
+                    @Html.TextBoxFor(a => a.FirstName, new { placeholder = "First Name", @class = "form-control col-md-7 col-xs-12" })
+                    @Html.ValidationMessageFor(a => a.FirstName, string.Empty, new { @class = "Validation-Message" })
+                </div>
+            </div>
                     
                      <div class="form-group row">
                         
@@ -143,4 +128,6 @@
             </div>
       
     </div>
+
+</div>
 
