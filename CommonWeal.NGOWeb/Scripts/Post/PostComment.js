@@ -7,9 +7,9 @@ function fileclick() {
 
 $(document).ready(function () {
     /*Implementation search ngo by ajax */
-    $(".searchNGO").keyup(function () {
+    $(document).on('keyup', '.searchNGO', function () {
         var name = $(".searchNGO").val();
-        
+        console.log('clicked');
             $('.searchNGO').autocomplete({
                 source: function (request, response) {
                     $.ajax({
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 
     });
-    $(".submitSelectedNGO").click(function () {
+    $(document).on('click','.submitSelectedNGO', function () {
         
         var value = $(".searchNGO").attr('name');
        
