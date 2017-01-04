@@ -296,7 +296,7 @@
                     <div class="panel panel-body ">
                         <div class="row">
                             <div class="col-md-6">
-                                <img class="profileimage img-thumbnail img-responsives " id="profileimage" src="@Model.imageurl " style="margin-left:78px" />
+                               <img class="profileimage img-thumbnail img-responsive " id="profileimage" src="@Model.imageurl" title="Change Image" style="margin-left: 80px"/>
                                
                                 @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
                                 { 
