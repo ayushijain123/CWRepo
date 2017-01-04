@@ -48,52 +48,68 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     }
                 }
                 return fileData;
-            }           
+            }
         }
-        
-        
+
+
         [HttpGet]
-        public async Task< ActionResult> getImage()
+        public async Task<ActionResult> getImage()
         {
-            List<string> imageValues = new List<string>();            
+            List<string> imageValues = new List<string>();
             var result = await APIHelper<List<ImageListResponse>>.GetJsonAsync1("NGORegistration/Get");
             foreach (var item in result)
-            {              
-                imageValues.Add("data:image/png;base64,"+item.strImage);
+            {
+                imageValues.Add("data:image/png;base64," + item.strImage);
             }
             ViewBag.ImageList = imageValues;
             return View();
         }
 
-       
+
         [HttpPost]
         public async Task<ActionResult> CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
         {
-            if (ModelState.IsValid)
+
+            try
             {
-                try
+                if (RegistrationProof != null)
                 {
-                    if (chairmanID != null && RegistrationProof != null)
+                    objngo.RegistrationProof = "default";
+                }
+                if (ModelState.IsValid)
+                {
+                    if (chairmanID != null)
                     {
                         ImageHandler img = new ImageHandler();
                         var res = img.ImagePost(chairmanID);
-                        var res1 = img.ImagePost(RegistrationProof);
-                       // string result = System.Text.Encoding.UTF8.GetString(byteArray);                  
+
+
+                        // string result = System.Text.Encoding.UTF8.GetString(byteArray);                  
                         objngo.ChairmanID = Convert.ToBase64String(res);
+
+                    }
+                    if (RegistrationProof != null)
+                    {
+                        ImageHandler img = new ImageHandler();
+                        var res1 = img.ImagePost(RegistrationProof);
                         objngo.RegistrationProof = Convert.ToBase64String(res1);
                     }
-                    var result = await Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));                                 
+                    var result = await Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));
+
                     return RedirectToAction("Index", "Welcome");
                 }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                return RedirectToAction("Index", "Error");
             }
-            /*the form type is ajaxform  that's why return type should be (return JavaScript) */
-            return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
-        }
+            catch (Exception ex)
+            {
+                return RedirectToAction("Index", "Error");
+                throw ex;
+            }
 
+            /*the form type is ajaxform  that's why return type should be (return JavaScript) */
+            //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
+
+        }
         /*to identify email address uniquely through ajax on registration*/
         public JsonResult checkEmail(NGOUser email)
         {
