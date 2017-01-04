@@ -154,7 +154,7 @@
                 <div class="form-group col-md-6 col-md-push-4">
                     <div class="ngoviewdetails" id="details">
                         <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>&nbsp
-                                     @if (Model.IsDecline == true && Model.IsActive == false)
+                                     @if (Model.IsDecline == false && Model.IsActive == false)
                                      { 
                                          <a href="/admin/Decline/@Model.LoginID"><span id="decline" class="btn btn-primary">Decline</span></a>    
                                      }
