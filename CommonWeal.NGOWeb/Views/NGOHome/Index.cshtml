@@ -28,8 +28,9 @@
 
                     $.each(states, function (i, state) {
                         console.log(state.Value);
-                        $("#State").append('<option value="' + state.ID + '">' +
-                             state.Name + '</option>');
+                        $("#State").val("");
+                        $("#State").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
 
                     });
                 },
@@ -57,8 +58,9 @@
 
                     $.each(cities, function (i, city) {
                         console.log(cities.Value);
-                        $("#city").append('<option value="' + city.ID + '">' +
-                             city.Name + '</option>');
+                        $("#city").val("");
+                        $("#city").append('<option value="' + city.Value + '">' +
+                             city.Text + '</option>');
 
                     });
                 },
@@ -97,7 +99,6 @@
     }*@
 
 </script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         //$("#selectcategory").change(function () {
