@@ -17,7 +17,13 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         //
         // GET: /NGOHome/
         public ActionResult Index()
-        {    
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
+            ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
+            ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
+
+            
             dbOperations ob = new dbOperations();
             /*get postList from GetAllPost method*/
             var postlist = ob.GetPostOnLoad();
