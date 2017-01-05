@@ -123,8 +123,18 @@
                     {
                         Model.RegistrationProof = "http://172.27.111.13:81" + "/Images/imagenotfound.jpg"; 
                     }
-
-                    <img src="@Url.Content("http://172.27.111.13:81" +Model.RegistrationProof)" alt="No Image found" data-toggle="modal" data-target="#Registrationphoto" style="width: 108px;height: 90px;padding-top: 12px;" />
+                     @if (Model.RegistrationProof.Substring(Model.RegistrationProof.LastIndexOf('.')).Equals(".pdf"))
+                    { 
+                   @*<embed src="@Url.Content("http://localhost:61504" + Model.RegistrationProof)" type="application/pdf"></embed>*@
+                      //  <img src="~/Images/pdf/1483637585_pdf.png" />
+                        
+                         <a href="@Url.Content("http://172.27.111.13:81" + Model.RegistrationProof)" target="_blank"><img src="../../Images/pdf/1483637585_pdf.png" height="50px" width="50px" alt="" /></a>
+                    }
+                    else
+                    { 
+             <img src="@Url.Content("http://172.27.111.13:81" + Model.RegistrationProof)" alt="No Image" data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
+                    }       
+                   
 
                     @*<input type="text" class="form-control" name="RegistrationProof" value="@Model.RegistrationProof"required>*@
 
@@ -146,7 +156,14 @@
                     {
                         Model.ChairmanID = "http://172.27.111.13:81" + "/Images/imagenotfound.jpg";
                     }
-                    <img src="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" alt="No Image found" data-toggle="modal" data-target="#chairmanphoto" style="width: 108px;height: 90px;padding-top: 12px;" />
+                     @if (Model.ChairmanID.Substring(Model.ChairmanID.LastIndexOf('.')).Equals(".pdf"))
+                    {                   
+                         <a href="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" target="_blank"><img src="../../Images/pdf/1483637585_pdf.png" height="50px" width="50px" alt="" /></a>
+                    }
+                    else
+                    { 
+             <img src="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
+                    }                           
                 </div>
                 <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>

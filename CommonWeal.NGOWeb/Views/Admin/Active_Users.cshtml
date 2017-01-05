@@ -27,9 +27,9 @@
                             <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
                             <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
 
-                            <td class="col-md-2 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x  pointer"  title="Warn" style="color:red; text-decoration:none;"></a></td>
+                            <td class="col-md-2 adminTableData"><span id="warn-@item.LoginID" class="fa fa-exclamation-triangle fa-2x warn"  aria-hidden="true" style="color:red"></span></td>
 
-                            <td class="col-md-2 adminTableData"><span id="blockngo-@item.LoginID" class="fa fa-ban fa-2x blockngo pointer"  title="Block" style="color:red;  cursor:pointer;"></span></td>
+                            <td class="col-md-2 adminTableData"><span id="blockngo-@item.LoginID" class="fa fa-ban fa-2x blockngo"  aria-hidden="true" style="color:red"></span></td>
                             @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
                         </tr>    
                     }
