@@ -18,9 +18,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             try
             {
-
+                CommonWealEntities context = new CommonWealEntities();
+                ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
+                ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
+                ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
            
-            CommonWealEntities context = new CommonWealEntities();
+           
             dbOperations db = new dbOperations();
           
             NGOProfilePostCustom NGpost = new NGOProfilePostCustom();
