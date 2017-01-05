@@ -487,7 +487,6 @@
     <Content Include="Views\Admin\SpamUser.cshtml" />
     <Content Include="Views\Admin\NGODetails.cshtml" />
     <Content Include="Views\Admin\MoreInfo.cshtml" />
-    <Content Include="Views\UserHome\_SearchNGOPartial.cshtml" />
     <Content Include="Views\Admin\SpamNGO.cshtml" />
     <Content Include="Views\Shared\_SideNav.cshtml" />
   </ItemGroup>
