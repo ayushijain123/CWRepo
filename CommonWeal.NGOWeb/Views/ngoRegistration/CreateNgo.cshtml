@@ -132,7 +132,7 @@
                 </label>
             </div>
             <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
-                @Html.DropDownList("Country", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
+                @Html.DropDownList("country", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
                 @Html.ValidationMessageFor(a => a.country, string.Empty, new { @class = "Validation-Message" })
             </div>
         </div>
