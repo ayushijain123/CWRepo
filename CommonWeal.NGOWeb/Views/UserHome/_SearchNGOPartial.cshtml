@@ -1,45 +1,131 @@
 ﻿@model IEnumerable<CommonWeal.Data.NGOUser>
 
- @Styles.Render("~/Contents/cssngosearch")
-    <div class="side-nav  nav-list row col-md-2 col-xs-2 col-sm-2 col-lg-2">
-         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <p style="padding:10px;"></p>
-            </div>
-            <div class="search-box">
-                <div class="form-inline col-xs-9 col-sm-9 col-md-9 col-lg-9" style="    padding-right: 0px;">
-                <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name" style="    font-size: 8px;
-    padding-left: 7px;">   </div>
-                <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
-    <button type="button" class=" btn btn-primary search-btn submitSelectedNGO col-xs-2 col-sm-2 col-md-2 col-lg-2" style="
-        margin-top: 5px;
-    padding-right: 20px;
-    padding-top: 7px;
-    padding-left: 5px;">
-                      <i class="fa fa-search " style="    font-size: 11px;"></i>
-                    </button>
-         
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-                </div>
-      
-     
-        <div class="top-ngo list-inline">
-            <div id="mySidenav" class="sidenav">
-                <div  class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <p class="top-text">Top NGOs</p>
-                    </div>
-                <ul class="list-top-ngo">
-                    @foreach(var ngo in Model)
-                    {
-                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                   <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID">
-                        <div class="ngo-list">
-                            <li>@ngo.NGOName</li>
-                        </div></a>
-                          </div>
-                    
-                    }
-                </ul>
-            </div>
+@Styles.Render("~/Contents/cssdngosearch")
+<script>
+    //$(document).ready(function () {
+    $(document).ready(function () {
+
+        $("#country").change(function () {
+            $("#State").empty();
+            console.log("Hit");
+            $.ajax({
+                type: 'POST',
+                @* url: '@Url.Action("getstate")',*@
+                url: '@Url.Action("GetJsonState", "Home")',
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+                    console.log(states);
+
+                    $.each(states, function (i, state) {
+                        console.log(state.Value);
+                        $("#State").val("");
+                        $("#State").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve country states.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $("#State").change(function () {
+            $("#city").empty();
+            console.log("Hit");
+            $.ajax({
+                type: 'POST',
+                @* url: '@Url.Action("getstate")',*@
+                url: '@Url.Action("GetJsonCity", "Home")',
+                dataType: 'json',
+
+                data: { id: $("#State").val() },
+
+
+                success: function (cities) {
+                    console.log(cities);
+
+                    $.each(cities, function (i, city) {
+                        console.log(cities.Value);
+                        $("#city").val("");
+                        $("#city").append('<option value="' + city.Value + '">' +
+                             city.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve country cities.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+
+
+
+    //});
+    @*  function GetState() {
+        console.log("Hit");
+        $.ajax({
+            url: "@Url.Action("GetJsonState", "Home")",
+            dataType: "json",
+            type: "GET",
+            data: { country: $("#country").val() },
+            error: function () {
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var items = "";
+                items = "<option value=''>Choose state</option>";
+                $.each(data, function (i, item) {
+                    items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+                });
+                $("#DropDownListstate").html(items);
+            }
+        });
+
+    }*@
+
+</script>
+
+<div class="side-nav  nav-list col-md-2">
+    <div class="form-inline">
+        <br>
+        <br>
+        @Html.DropDownList("country", ViewBag.country as SelectList, "Select country", new { style = "width: 200px;", @class="ngocountry" })
+       @* @Html.DropDownList("State", ViewBag.city as SelectList, "Choose state", new { @class = "inputBox", @id = "DropDownListstate" })*@
+         @Html.DropDownList("State", new SelectList(string.Empty, "ID", "Name"), "--Select State--", new { style = "width:200px" , @class="ngostate" })  
+      @*  @Html.DropDownList("city", ViewBag.city as SelectList, "--Choose city--", new {style = "width:200px" })*@
+          @Html.DropDownList("city", new SelectList(string.Empty, "ID", "Name"), "--Choose city--", new {style = "width:200px", @class="ngocity"  })
+        <div class="input-group search-box col-md-12">
+
+            <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name" style="font-size: 15px">
+            <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary search-btn submitSelectedNGO">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
         </div>
     </div>
-      </div>
+    <div class="top-ngo col-md-12 list-inline" style="margin-top:42px; padding-top:0px;">
+        <div id="mySidenav" class="sidenav">
+            <p class="top-text">Top NGOs</p>
+            <ul class="list-top-ngo">
+                @foreach (var ngo in Model)
+                {                   
+                        <div class="ngo-list">
+                            <li> <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID">@ngo.NGOName </a>  </li>
+                        </div>
+                                     
+                }
+            </ul>
+        </div>
+    </div>
+</div>
