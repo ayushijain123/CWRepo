@@ -1,96 +1,5 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
-<script>
-    //$(document).ready(function () {
-    $(document).ready(function () {
 
-        $("#country").change(function () {
-            $("#State").empty();
-            console.log("Hit");
-            $.ajax({
-                type: 'POST',
-                @* url: '@Url.Action("getstate")',*@
-                url: '@Url.Action("GetJsonState", "Home")',
-                dataType: 'json',
-
-                data: { id: $("#country").val() },
-
-
-                success: function (states) {
-                    console.log(states);
-
-                    $.each(states, function (i, state) {
-                        console.log(state.Value);
-                        $("#State").val("");
-                        $("#State").append('<option value="' + state.Value + '">' +
-                             state.Text + '</option>');
-
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve country states.' + ex);
-                }
-            });
-            return false;
-        });
-
-        $("#State").change(function () {
-            $("#city").empty();
-            console.log("Hit");
-            $.ajax({
-                type: 'POST',
-                @* url: '@Url.Action("getstate")',*@
-                url: '@Url.Action("GetJsonCity", "Home")',
-                dataType: 'json',
-
-                data: { id: $("#State").val() },
-
-
-                success: function (cities) {
-                    console.log(cities);
-
-                    $.each(cities, function (i, city) {
-                        console.log(cities.Value);
-                        $("#city").val("");
-                        $("#city").append('<option value="' + city.Value + '">' +
-                             city.Text + '</option>');
-
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed to retrieve country cities.' + ex);
-                }
-            });
-            return false;
-        });
-    });
-
-
-
-    //});
-    @*  function GetState() {
-        console.log("Hit");
-        $.ajax({
-            url: "@Url.Action("GetJsonState", "Home")",
-            dataType: "json",
-            type: "GET",
-            data: { country: $("#country").val() },
-            error: function () {
-            },
-            beforeSend: function () {
-            },
-            success: function (data) {
-                var items = "";
-                items = "<option value=''>Choose state</option>";
-                $.each(data, function (i, item) {
-                    items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
-                });
-                $("#DropDownListstate").html(items);
-            }
-        });
-
-    }*@
-
-</script>
 
 
 @section scripts{
@@ -106,14 +15,12 @@
     <div class="col-md-8">
         <div class="container">
             <div class="row">
-
                 <div class="panel panel-default  panelNGO ">
                     <div class="profileheadingcolor">
                         <div class="panel-heading">
                             <center> <b class="profilesummary"> Profile Summary for @Model.searchNgoProfileName </b></center>
                         </div>
                     </div>
-
                     <div class="panel-body" id="ngoprofilepanelbody">
                         <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
                             <div class="col-md-12">
@@ -132,7 +39,6 @@
                             </div>
                         </form>
                     </div>
-
                     <div class="panel-footer panel-group navbar-fixed profileheadingcolor">
                         <ul class="ultext nav">
                             <li id="profilepost"><span id="NGOProfilepost-@Model.CurrentUserID" class="NGOProfilepost">Post</span></li>
@@ -142,13 +48,15 @@
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="container">
-        <div id="NGOProfilecontent">
-            @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
+        <div class="container">
+            <div id="NGOProfilecontent">
+                @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
+            </div>
         </div>
     </div>
 </div>
+
+
 
