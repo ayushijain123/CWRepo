@@ -1,7 +1,7 @@
 ﻿
     .top-ngo {
        
-        font-size: 20px;
+        font-size: 16px;
         padding: 5px;
      text-transform: capitalize;
          padding:49px 0px 0px 15px;
@@ -55,14 +55,14 @@
          /*@*box-shadow:inset 2px 2px 2px #888888;*@*/
     }
     .top-text {
-        font-size:17px;
+        font-size:14px;
         font-weight: bold;
         padding-left: 10px;
     }
     
     .ngo-list {
         list-style-type: none;
-        font-size: 13px;
+        font-size: 10px;
         padding-left: 10px;
         opacity:.75
     }
