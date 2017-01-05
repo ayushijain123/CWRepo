@@ -1,5 +1,5 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
- <script>
+<script>
     //$(document).ready(function () {
     $(document).ready(function () {
 
@@ -20,8 +20,9 @@
 
                     $.each(states, function (i, state) {
                         console.log(state.Value);
-                        $("#State").append('<option value="' + state.ID + '">' +
-                             state.Name + '</option>');
+                        $("#State").val("");
+                        $("#State").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
 
                     });
                 },
@@ -49,8 +50,9 @@
 
                     $.each(cities, function (i, city) {
                         console.log(cities.Value);
-                        $("#city").append('<option value="' + city.ID + '">' +
-                             city.Name + '</option>');
+                        $("#city").val("");
+                        $("#city").append('<option value="' + city.Value + '">' +
+                             city.Text + '</option>');
 
                     });
                 },
@@ -108,7 +110,7 @@
                 <div class="panel panel-default  panelNGO ">
                     <div class="profileheadingcolor">
                         <div class="panel-heading">
-                            <center> <b class="profilesummary"> Profile Summary for </b></center>
+                            <center> <b class="profilesummary"> Profile Summary for @Model.searchNgoProfileName </b></center>
                         </div>
                     </div>
 
