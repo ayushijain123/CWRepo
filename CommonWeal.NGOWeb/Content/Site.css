@@ -1603,7 +1603,11 @@ added by payal*/
     column-fill: auto;
     overflow: scroll;
 }
-
+.categorydropdown {
+text-align:left;
+font-size:8px;
+color: #428bca;
+}
 .fixed {
     position: fixed;
     top: 0;
