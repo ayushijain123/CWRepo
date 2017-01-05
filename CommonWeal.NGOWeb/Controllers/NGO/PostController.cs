@@ -327,7 +327,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             var result = new List<NGoSearchModal>();
             CommonWealEntities context = new CommonWealEntities();
-            if (country > 0 && state > 0 && city > 0)
+            if (country > 0 && state > 0 && city > 0&&name=="")
+             { result = context.NGOUsers.Where(x => x.NGOName.ToLower().Contains(name.ToLower())&&x.country==country&&x.State==state &&x.city==city).Select(x => new NGoSearchModal { loginID = x.LoginID.Value, name = x.NGOName }).ToList();
+             }
+            else if (country > 0 && state > 0 && city > 0)
             {
              result = context.NGOUsers.Where(x => x.NGOName.ToLower().Contains(name.ToLower())&&x.country==country&&x.State==state &&x.city==city).Select(x => new NGoSearchModal { loginID = x.LoginID.Value, name = x.NGOName }).ToList();
             
