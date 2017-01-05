@@ -3,6 +3,7 @@ using CommonWeal.NGOWeb.Utility;
 using CommonWeal.NGOWeb.ViewModel;
 using System.Linq;
 using System.Web.Mvc;
+using System.Collections.Generic;
 namespace CommonWeal.NGOWeb.Controllers
 {
 
@@ -16,6 +17,10 @@ namespace CommonWeal.NGOWeb.Controllers
         {
 
             CommonWealEntities context = new CommonWealEntities();
+            ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
+            //ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
+            //ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
+
             PostWithTopNgo pwtn = new PostWithTopNgo();
             var ngolist = context.NGOUsers.ToList();
             var ngopostlist = context.NGOPosts.ToList();
@@ -104,6 +109,57 @@ namespace CommonWeal.NGOWeb.Controllers
 
             }
         }
+
+
+        public JsonResult GetJsonState(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var statelist = context.StateMasters.Where(x => x.CountryID== id).ToList();
+            List<SelectListItem> states = new List<SelectListItem>();
+
+            states.Add(new SelectListItem { Text = "--Select State--", Value = "0" });
+            if (statelist != null)
+            {
+                foreach (var x in statelist)
+                {
+                    states.Add(new SelectListItem { Text = x.Name, Value = x.ID.ToString() });
+
+                }
+
+
+
+            }
+
+
+            return Json(states, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult GetJsonCity(int id)
+        {
+           CommonWealEntities context = new CommonWealEntities();
+            var citylist = context.CityMasters.Where(x => x.StateID== id).ToList();
+            List<SelectListItem> cities = new List<SelectListItem>();
+
+            cities.Add(new SelectListItem { Text = "--Select City--", Value = "0" });
+            if (citylist != null)
+            {
+                foreach (var x in citylist)
+                {
+                    cities.Add(new SelectListItem { Text = x.Name, Value = x.ID.ToString() });
+
+                }
+
+
+
+            }
+
+
+            return Json(cities, JsonRequestBehavior.AllowGet);
+
+
+            }
+
+
+  
         //[HttpPost]
         //public ActionResult PostImage(HttpPostedFileBase file, NGOPost obpost)
         //{
