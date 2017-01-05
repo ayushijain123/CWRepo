@@ -7,7 +7,7 @@
 
 @if (Model != null && Model.Count() > 0)
 {
-    <div id="uploadpost" class="row col-sm-10 col-sm-push-1">
+    <div id="uploadpost" class="row col-sm-10 col-sm-push-1 col-md-10">
 
         @foreach (var item in Model)
         { <div class="postcontainer" id="Post-@item.postId">
@@ -27,29 +27,23 @@
 
                         @if (item.postCategoryNameList.Count() > 0)
                         {
-                           
-                            
-                           
                             <span class="dropdown">
-                                <span style="font-size: 10px">View categories</span>
-                                <button class="showcategory  " data-toggle="dropdown" id="showcategory-@item.postId"style="cursor:pointer;    background: none;
-    border: none;       margin-left: 0px; width: 12px;
-    padding-right: 0px;
-    padding-left: 0px;">
-                                    <i class="fa fa-arrow-down" style="font-size: 9px;"></i>
+                                <span style="font-size: 15px">View Categories</span>
+                                <button class="showcategory  " data-toggle="dropdown" id="showcategory-@item.postId"style="cursor:pointer;background: none;border: none;margin-left: 0px; width: 12px;padding-right: 0px;padding-left: 0px;">
+                                    <i class="fa fa-arrow-down" style="font-size: 15px;"></i>
                                 </button>
                                 <span class="dropdown-menu categorydropdown" id="categorylist-@item.postId">
 
                                     @{
                           
-                                foreach (var res in item.postCategoryNameList)
-                                {
+                            foreach (var res in item.postCategoryNameList)
+                            {
                                         <span>#@res</span>  <br />                    
           
                      
                                
                               
-                                }
+                            }
 
                                
                                     }
