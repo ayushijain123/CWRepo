@@ -24,7 +24,7 @@
                     {                       
                         <tr>
                             <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
-                            <td class="col-md-2 adminTableData"><a href="/admin/ViewDetails/@item.LoginID" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large;"></a>
+                            <td class="col-md-2 adminTableData" title="View Details"><a href="/admin/ViewDetails/@item.LoginID" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>
                                 @if (item.IsDecline == true)
                                 { 
                                     <td class="col-md-3 adminTableData">Declined</td>
