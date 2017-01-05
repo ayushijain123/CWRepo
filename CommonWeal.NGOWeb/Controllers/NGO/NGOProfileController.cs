@@ -37,7 +37,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
              
                NGpost.imageurl = image;
-
+               NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOName;
                NGpost.PostWithtopNgoModel.post = postList;
                NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
                 return View(NGpost);
