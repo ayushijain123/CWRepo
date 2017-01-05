@@ -22,7 +22,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
            
             CommonWealEntities context = new CommonWealEntities();
             dbOperations db = new dbOperations();
-
+          
             NGOProfilePostCustom NGpost = new NGOProfilePostCustom();
             NGpost.PostWithtopNgoModel = new PostWithTopNgo();
             //User UL = new User();
@@ -32,6 +32,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 NGpost.CurrentUserID = LoginUser.LoginID;
                 var postList = db.GetPostById(LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+             
                NGpost.imageurl = image;
 
                NGpost.PostWithtopNgoModel.post = postList;
@@ -43,7 +44,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 NGpost.CurrentUserID = id;
                 var postList = db.GetPostById(id);
                 var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
-
+                NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOName;
                 NGpost.imageurl = image;
                 NGpost.PostWithtopNgoModel.post = postList;
                
