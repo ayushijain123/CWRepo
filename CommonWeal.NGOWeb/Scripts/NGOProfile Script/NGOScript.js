@@ -76,3 +76,71 @@ $('img').on('click', function () {
 $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
+
+
+
+//Index Script
+//$(document).ready(function () {
+$(document).ready(function () {
+
+    $("#country").change(function () {
+        $("#State").empty();
+        console.log("Hit");
+        $.ajax({
+            type: 'POST',
+
+            url: '@Url.Action("GetJsonState", "Home")',
+            dataType: 'json',
+
+            data: { id: $("#country").val() },
+
+
+            success: function (states) {
+                console.log(states);
+
+                $.each(states, function (i, state) {
+                    console.log(state.Value);
+                    $("#State").val("");
+                    $("#State").append('<option value="' + state.Value + '">' +
+                         state.Text + '</option>');
+
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve country states.' + ex);
+            }
+        });
+        return false;
+    });
+
+    $("#State").change(function () {
+        $("#city").empty();
+        console.log("Hit");
+        $.ajax({
+            type: 'POST',
+
+            url: '@Url.Action("GetJsonCity", "Home")',
+            dataType: 'json',
+
+            data: { id: $("#State").val() },
+
+
+            success: function (cities) {
+                console.log(cities);
+
+                $.each(cities, function (i, city) {
+                    console.log(cities.Value);
+                    $("#city").val("");
+                    $("#city").append('<option value="' + city.Value + '">' +
+                         city.Text + '</option>');
+
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve country cities.' + ex);
+            }
+        });
+        return false;
+    });
+});
+
