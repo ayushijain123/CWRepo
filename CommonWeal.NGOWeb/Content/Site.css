@@ -948,14 +948,6 @@ tr.pager td {
     padding: 0px 8px 0px 42px;
 }
 
-.textComment {
-    width: 700px;
-    padding-left: 24px;
-    padding-right: 100px;
-    resize: none;
-    background-color: white;
-}
-
 #postform {
     /*background-color: #F0F0F0;*/
     margin-bottom: 13px;
@@ -1127,12 +1119,16 @@ tr.pager td {
 
 .textComment {
     margin-top: 0px !important;
-    padding-left: 15px;
+  
     margin-left: 5px;
-    width: 682px;
+   
     margin-top: 1px;
     margin-bottom: 7px;
     padding-right: 43px;
+    padding-left: 24px;
+    padding-right: 100px;
+    resize: none;
+    background-color: white;
 }
 /*Added by Rishiraj on 08/11/2016*/
 /*.showmeonhover { text-decoration: none; }*/
