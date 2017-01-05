@@ -362,6 +362,7 @@
     <Content Include="Images\Desert.jpg" />
     <Content Include="Images\Hydrangeas.jpg" />
     <Content Include="Images\Image.jpg" />
+    <Content Include="Images\imagenotfound.jpg" />
     <Content Include="Images\images1.jpg" />
     <Content Include="Images\Jellyfish.jpg" />
     <Content Include="Images\Koala.jpg" />
@@ -489,6 +490,7 @@
     <Content Include="Views\Admin\MoreInfo.cshtml" />
     <Content Include="Views\Admin\SpamNGO.cshtml" />
     <Content Include="Views\Shared\_SideNav.cshtml" />
+    <Content Include="Views\UserHome\_SearchNGOPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
