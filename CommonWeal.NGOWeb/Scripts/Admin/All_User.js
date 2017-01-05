@@ -126,6 +126,36 @@ $(document).ready(function () {
             });
         }
     });
+
+    /*ajax for warn user from active ngo*/
+    $(document).on('click', '.warn', function () {
+        var loginid = $(this).attr('id').split('-')[1];
+        if (loginid == null)
+        { loginid = 0; }
+        var response = confirm("Are you sure you want to send warning this ngo?");
+        if (response) {
+            $.post("/admin/WarnNGO?id=" + loginid, function (result) {
+                if (result == true) {
+                    alert("warning send");
+                }
+            });
+        }
+    });
+
+    /*ajax for unwarn ngo*/
+    $(document).on('click', '.unwarn', function () {
+        var loginid = $(this).attr('id').split('-')[1];
+        if (loginid == null)
+        { loginid = 0; }
+        var response = confirm("Are you sure you want to unblock this user?");
+        if (response) {
+            $.post("/admin/UnwarnNGO?id=" + loginid, function (result) {
+                if (result == true) {
+                    $('#Unwarn-' + loginid).remove();
+                }
+            });
+        }
+    });
 });
 
 
