@@ -1113,9 +1113,7 @@ tr.pager td {
 
 .textComment {
     margin-top: 0px !important;
-  
     margin-left: 5px;
-   
     margin-top: 1px;
     margin-bottom: 7px;
     padding-right: 43px;
@@ -1308,8 +1306,7 @@ tr:nth-child(even) {
 
 .profilesummary {
     font-size: 18px;
-    text-transform:capitalize;
-
+    text-transform: capitalize;
 }
 
 .aboutus {
@@ -1599,11 +1596,14 @@ added by payal*/
     column-fill: auto;
     overflow: scroll;
 }
+
 .categorydropdown {
-text-align:left;
-font-size:8px;
-color: #428bca;
+    text-align: left;
+    font-size: 13px;
+    color: #428bca;
+    padding-left: 5px;
 }
+
 .fixed {
     position: fixed;
     top: 0;
@@ -1774,5 +1774,3 @@ color: #428bca;
     opacity: 0.6;
     cursor: pointer;
 }
-
-
