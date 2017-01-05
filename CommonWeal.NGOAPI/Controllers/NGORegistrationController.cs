@@ -1,4 +1,6 @@
 ﻿using CommonWeal.Data;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 //using log4net;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -67,7 +70,7 @@ namespace CommonWeal.NGOAPI.Controllers
     
        public HttpResponseMessage CreateNGO(NGOUser objngo)
         {
-           
+            
             try
             {                            
                 using (CommonWealEntities context = new CommonWealEntities())
@@ -92,32 +95,55 @@ namespace CommonWeal.NGOAPI.Controllers
                     /*to append data in ngoUser object objngo which are not submitted through form */
                     ImageHandler imgobj = new ImageHandler();
                     
-                        if (objngo.ChairmanID != null)
+                    if (objngo.ChairmanID != null)
                         {
-                            byte[] imageBytes = Convert.FromBase64String(objngo.ChairmanID);
+                            byte[] imageBytes = Convert.FromBase64String(objngo.ChairmanID);                            
                             MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
                             ms.Write(imageBytes, 0, imageBytes.Length);
-                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+
+
                             var abc = Guid.NewGuid();
+                            if (objngo.OperationalArea != null && objngo.OperationalArea == ".pdf")
+                            {
+                                string path = "/Images/" + abc + ".pdf";
+                                string filepath = HttpContext.Current.Server.MapPath(path);
+                                File.WriteAllBytes(filepath, imageBytes);
+                                objngo.ChairmanID = path;
+                            }
+                            else
+                            { 
+                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                          
                             string path = "/Images/" + abc + ".jpg";
                             string filepath = HttpContext.Current.Server.MapPath(path);
                             image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            objngo.ChairmanID =path;
+                            objngo.ChairmanID = path;
+                            } 
                         }
-                        if (objngo.RegistrationProof != null) 
+                    if (objngo.RegistrationProof != null) 
                         {
                             byte[] imageBytes = Convert.FromBase64String(objngo.RegistrationProof);
                             MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
                             ms.Write(imageBytes, 0, imageBytes.Length);
-                            System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+
                             var abc = Guid.NewGuid();
-                            string path = "/Images/" + abc + ".jpg";
-                            string filepath = HttpContext.Current.Server.MapPath(path);
-                            image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            objngo.RegistrationProof = path;
-                        }
-                                                                                                   
-                       
+                            if (objngo.AreaOfIntrest != null && objngo.AreaOfIntrest == ".pdf")
+                            {
+                                string path = "/Images/" + abc + ".pdf";
+                                string filepath = HttpContext.Current.Server.MapPath(path);
+                                File.WriteAllBytes(filepath, imageBytes);
+                                objngo.RegistrationProof = path;
+                            }
+                            else
+                            {
+                                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+
+                                string path = "/Images/" + abc + ".jpg";
+                                string filepath = HttpContext.Current.Server.MapPath(path);
+                                image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                                objngo.RegistrationProof = path;
+                            } 
+                        }                    
                     objngo.LoginID = obj.LoginID;/*reference key from user table */
                     objngo.NGOEmailID = obj.LoginEmailID;
                     objngo.IsActive = false;                   
