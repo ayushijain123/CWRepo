@@ -1,30 +1,41 @@
 ﻿@model IEnumerable<CommonWeal.Data.NGOUser>
 
  @Styles.Render("~/Contents/cssngosearch")
-    <div class="side-nav  nav-list col-md-2">
-        <div class="form-inline">
-            <div class="input-group search-box col-md-12">
-                <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name" style="font-size:15px">
-                <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-primary search-btn submitSelectedNGO">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </span>
+    <div class="side-nav  nav-list row col-md-2 col-xs-2 col-sm-2 col-lg-2">
+         <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <p style="padding:10px;"></p>
             </div>
-        </div>
-        <div class="top-ngo col-md-12 list-inline">
+            <div class="search-box">
+                <div class="form-inline col-xs-9 col-sm-9 col-md-9 col-lg-9" style="    padding-right: 0px;">
+                <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name">   </div>
+                <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
+    <button type="button" class=" btn btn-primary fa fa-search search-btn submitSelectedNGO col-xs-2 col-sm-2 col-md-2 col-lg-2" style="
+    margin-top: 5px;">
+                      
+                    </button>
+         
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                </div>
+      
+     
+        <div class="top-ngo list-inline">
             <div id="mySidenav" class="sidenav">
+                <div  class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <p class="top-text">Top NGOs</p>
+                    </div>
                 <ul class="list-top-ngo">
                     @foreach(var ngo in Model)
                     {
-                    <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID">
+                        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <a class="ngo" href="/NGOProfile/Index/@ngo.LoginID">
                         <div class="ngo-list">
                             <li>@ngo.NGOName</li>
-                        </div></a>                    
+                        </div></a>
+                          </div>
+                    
                     }
                 </ul>
             </div>
         </div>
     </div>
+      </div>

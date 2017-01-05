@@ -11,16 +11,17 @@
 
         @foreach (var item in Model)
         { <div class="postcontainer" id="Post-@item.postId">
-        <div id="posttemplate">
-            <div class="postuserdetail form-inline col-md-12 " id="postuserdetail">
-                <span id="user-image" class="col-md-1 fa fa-users"></span>
+        <div id="posttemplate" >
+           
+            <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
+                <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
 
-                <a href="/NGOProfile/Index/@item.userId"><span class="usernamepost col-md-3 cursor" id="usernamepost"><b>@item.userName</b></span></a>
+                <a href="/NGOProfile/Index/@item.userId"><span class="usernamepost col-md-3 col-lg-3 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@item.userName</b></span></a>
 
 
-                <span class="posttime col-md-3">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
+                <span class="posttime col-md-4 col-lg-3 col-xs-5 col-sm-5">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
 
-                <span class="posttag col-md-5 float-right">
+                <span class="posttag col-md-5  col-xs-6 col-sm-6 col-lg-5 float-right">
                     @*method for multi #*@
 
 
@@ -32,7 +33,7 @@
                         {<span class="text-primary">#@item.postCategoryNameList[0] </span><span>and</span>
                         <span class="dropdown">
                             <span class="showcategory text-primary "id="showcategory-@item.postId"style="cursor:pointer;text-decoration:underline">@(item.postCategoryNameList.Count() - 1) Other</span>
-                            <span class="dropdown-content" id="categorylist-@item.postId">
+                            <span class="dropdown-menu" id="categorylist-@item.postId">
                                 @{
                             var Count = 1;
                             foreach (var res in item.postCategoryNameList)
@@ -61,6 +62,7 @@
 
             </div>
 
+             
             @*model for categorylist start*@
             @*<div class="modal fade" id="myModalCategory-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog likemodaldialog" role="document">
