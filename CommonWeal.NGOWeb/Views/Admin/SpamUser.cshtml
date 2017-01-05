@@ -28,12 +28,12 @@
                             <td id="iconcoluser-@item.UserID" class="col-md-3 adminTableData">
                                 @if (item.IsSpam == true)
                                 { 
-                                    <span id="UnspamUser-@item.UserID" class="fa fa-exclamation-triangle UnspamUser"  aria-hidden="true"  title="Unabuse" style="color:green; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
-                                    <span id="BlockSpamUser-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamUser"  title="Block" aria-hidden="true" style="color:red; "></span>
+                                    <span id="UnspamUser-@item.UserID" class="fa fa-exclamation-triangle UnspamUser"  aria-hidden="true"  title="Unabuse" style="color:green;cursor:pointer; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
+                                    <span id="BlockSpamUser-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamUser"  title="Block" aria-hidden="true" style="color:red;cursor:pointer; "></span>
                                 }
                                 @if (item.IsBlock == true)
                                 { 
-                                    <span id="UnblockSpamUser-@item.UserID" class="fa fa-unlock fa-2x UnblockSpamUser" title="Unblock" aria-hidden="true" style="color:green"></span>                     
+                                    <span id="UnblockSpamUser-@item.UserID" class="fa fa-unlock fa-2x UnblockSpamUser" title="Unblock" aria-hidden="true" style="color:green;cursor:pointer;"></span>                     
                                 }
                             </td>
 
