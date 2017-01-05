@@ -122,7 +122,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 ob.NGOAddress = obj.NGOAddress;
                 ob.NGOName = obj.NGOName;
                 ob.Telephone = obj.Telephone;
-                ob.City = obj.City;
+                ob.city = obj.city;
                 ob.ChairmanName = obj.ChairmanName;
                 //ob.NGOPassword = obj.NGOPassword;
                 context.Configuration.ValidateOnSaveEnabled = false;
