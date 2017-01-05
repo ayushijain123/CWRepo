@@ -1,337 +1,128 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfileCustom
 @{
     ViewBag.Title = "AboutUs";
-    //Layout = "~/Views/Shared/_Layout.cshtml";
+                                //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section scripts{
-    <script src="~/Scripts/NGOProfile%20Script/NGOScript.js"></script>
-}
-<script>
-   
-   
-    $(document).ready(function () {
-        $(".clickProfile").click(function () {
-            $("#profilefile").click();
+<script src="~/Scripts/NGOAdmin/NGOScript.js"></script>
 
-        });
-        $("#editbtn").click(function () {
-            $(this).hide();
-        });
-
-        /*about us hide and show*/
-        $("#profilefile").hide();
-        $("#uploadprofile").hide();
-        $("#profileimage").click(function () {
-            $("#profilefile").show();
-            $("#uploadprofile").show();
-        });
-        $("#uploadprofile").click(function () {
-            $("#profilefile").hide();
-            $("#uploadprofile").hide();
-
-
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $(".uploadprofile").click(function () {
-
-
-            if (window.FormData !== undefined) {
-
-                var fileUpload = $("#profilefile").get(0);
-                var files = fileUpload.files;
-
-                // Create FormData object  
-                var fileData = new FormData();
-
-                // Looping over all files and add it to FormData object  
-                for (var i = 0; i < files.length; i++) {
-                    fileData.append(files[i].name, files[i]);
-                }
-
-                // Adding one more key to FormData object  
-                fileData.append('username', 'manas');
-
-                $.ajax({
-                    url: '/NGOProfile/PostImage',
-                    type: "POST",
-                    contentType: false, // Not to set any content header  
-                    processData: false, // Not to process data  
-                    data: fileData,
-                    success: function (result) {
-
-                        $(".profileimage").attr('src', result[0]);
-                        $("#profileimage1").attr('src', result[0])
-
-                    },
-                    error: function (err) {
-                        alert(err.statusText);
-                    }
-                });
-            } else {
-                alert("FormData is not supported.");
-
-            }
-        });
-        $('.fieldchange').focus(function () {
-            $("#submitbtn").prop('disabled', false);
-
-        });
-        $('#textSumamry').focus(function () {
-            $(".SaveSummaryId").prop('disabled', false);
-
-
-
-
-        });
-
-
-        var email = "a";
-        var mobile = "b";
-        var NgoAdress = "c";
-        var Ngoname = "d";
-        var chairman = "e";
-        var textSumamry = "f"
-        $(".fieldchange").prop('disabled', true);
-        $("#uploadprofile").prop('disabled', false);
-        $("#profilefile").prop('disabled', false);
-        $("#submitbtn").prop('disabled', true);
-        $("#Canclebtn").hide();
-        $("#submitbtn").hide();
-
-
-        $("#editbtn").click(function () {
-
-            email = $("#email").val();
-            mobile = $("#mobile").val();
-            NgoAdress = $("#NgoAdress").val();
-            Ngoname = $("#Ngoname").val();
-            chairman = $("#chairman").val();
-
-            $(this).hide();
-            $("#Canclebtn").show();
-            $("#submitbtn").show();
-            $(".fieldchange").prop('disabled', false);
-
-            $("#submitbtn").prop('disabled', true);
-
-        });
-        $("#Canclebtn").click(function () {
-
-            $("#email").val(email);
-            $("#mobile").val(mobile);
-            $("#NgoAdress").val(NgoAdress);
-            $("#Ngoname").val(Ngoname);
-            $("#chairman").val(chairman);
-            $(".fieldchange").prop('disabled', true);
-            $("#submitbtn").hide();
-            $(this).hide();
-            $("#editbtn").show();
-            //$("#submitbtn").prop('disabled', true);
-        });
-
-
-
-        $("textarea").prop('disabled', true);
-        $(".SaveSummaryId").hide();
-        $("#Cancel").hide();
-        $("#edit").click(function () {
-            summary = $("#textSumamry").val();
-
-            $(this).hide();
-            $("#Cancel").show();
-            $(".SaveSummaryId").prop('disabled', true);
-            $(".SaveSummaryId").show();
-            $("textarea").prop('disabled', false);
-        });
-
-
-        $("#Cancel").click(function () {
-            $("#textSumamry").val(summary);
-
-            $("textarea").prop('disabled', true);
-            $(".SaveSummaryId").hide();
-            $(this).hide();
-            $("#edit").show();
-            //$("#submitbtn").prop('disabled', true);
-        });
-
-        $(document).on('click',".SaveSummaryId", function () {
-            var Loginid = $(this).attr('id').split('-')[1];
-            var summary = $('#textSumamry').val();
-            // alert("hi")
-            $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
-
-                alert("Saved successfully");
-                if (result != null) {
-                    $("#textSumamry").html(result);
-                }
-                $("#Cancel").hide();
-                $(".SaveSummaryId").hide();
-                $("#edit").show();
-                //console.log(result);
-            });
-
-
-        });
-        /*ajax for editing information of ngo*/
-        $(document).on('click',"#submitbtn", function () {
-           // console.log('hello');
-            var NgoEmail = $("#email").val();
-            var NgoMobile = $("#mobile").val();
-            var address = $("#NgoAdress").val();
-            var Name = $("#Ngoname").val();
-            var Chairman_name = $("#chairman").val();
-
-            $.post("/NGOProfile/edit?NGOEmailID=" + NgoEmail + "&Mobile=" + NgoMobile + "&NGOAddress=" + address + "&NGOName=" + Name + "&ChairmanName=" + Chairman_name, function (result1) {
-                if (result1 == true) {
-                    $(".fieldchange").prop('disabled', true);
-                    $("#Canclebtn").hide();
-                    $("#submitbtn").hide();
-                    $("#editbtn").show();
-                   // alert("Successfully updated");
-                }
-            });
-
-
-        });
-        $('img').on('click', function () {
-            var image = $(this).attr('src');
-            $('#myModal2').on('show.bs.modal', function () {
-                $(".img-responsive").attr("src", image);
-            });
-        });
-        $('[data-toggle="tooltip"]').tooltip();
-    });
- 
-
-    
-</script>
-
-
-
-<div class="container">
-    <div class="row">
-        <div class="AboutUs Info col-md-12">
-            <div class="ngo-info col-md-6">
-                <div class="panel panel-default">
-                    <div class="info-header panel-heading">
-                        <strong>Personal Information</strong>
-                    </div>
-                    <div class="panel panel-body">
-                       @* <form class="form-horizontal" action="/NGOProfile/Edit" method="post">*@
-                            <div class="form-group row ">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="email">NGO Email:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="email" class="form-control fieldchange" id="email" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NgoUser.NGOEmailID" required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="email">Mobile:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control fieldchange" name="Mobile" id="mobile" placeholder="Enter Mobile Number" value="@Model.NgoUser.Mobile"required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="email">Address:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control fieldchange" id="NgoAdress"  name="NGOAddress" placeholder="Enter Adderess" value="@Model.NgoUser.NGOAddress"required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="email">Name:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control fieldchange"  id="Ngoname"name="NGOName" placeholder="Enter Name" value="@Model.NgoUser.NGOName"required>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label class="control-label" for="email">Chairman Name:</label>
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control fieldchange" id="chairman"name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.NgoUser.ChairmanName"required>
-                                </div>
-                            </div>
-                            @if (Model.NgoUser.LoginID == Model.UserID)
-                            {
-                                <div class="form-inline">
-                                    <div id="profileupdate">
-                                        <center><span id="editbtn" class="btn btn-primary">Edit</span></center>
-                                        <center> <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
-                                        <span id="Canclebtn" class="btn btn-primary" >Cancel</span></center>
-                                    </div>
-                                </div>
-                            }
-                            <p style="padding-bottom: 10px;"></p>
-                @*        </form>*@
-                    </div>
+<div class="row">
+    <div class="AboutUs Info col-md-12 col-sm-12 col-xs-12">
+        <div class="ngo-info col-md-6 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="info-header panel-heading">
+                    <strong>Personal Information</strong>
                 </div>
-            </div>
-            <div class="form-inline col-md-6 ngo-about-us">
-                <div class="about-us-panel panel panel-default">
-                    <div class="about-us-header panel-heading">
-                        <strong>About Us</strong>
-                    </div>
-                    <div class="panel panel-body ">
-                        <div class="row">
-                            <div class="col-md-6">
-                               <img class="profileimage img-thumbnail img-responsive " id="profileimage" src="@Model.imageurl" title="Change Image" style="margin-left: 80px"/>
-                               
-                                @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
-                                { 
-                                    <input type="file" id="profilefile" class="profilefile" name="profilefile" style="margin-left: 80px;" />
-                                    <input type="button" id="uploadprofile" class="uploadprofile" value="Upload" style="margin-left: 80px;" />
-                                }
-
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="text-area col-md-8 col-md-push-2 " style="margin-left: 15px;">
-                                        <textarea id="textSumamry">@Model.NgoUser.AboutUs</textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-inline">
-                                    @if (Model.NgoUser.LoginID == Model.UserID)
-                                    {
-                                        <div id="editAboutUs">
-                                            <center><span id="edit" class="btn btn-primary">Edit</span></center>
-                                            <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
-                                    <span id="Cancel" class="btn btn-primary"hidden>Cancel</span></center>
-                                        </div>
-                                    }
-                                </div>
-                            </div>
+                <div class="panel panel-body">
+                    @* <form class="form-horizontal" action="/NGOProfile/Edit" method="post">*@
+                    <div class="form-group row ">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="control-label" for="email">NGO Email:</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="email" class="form-control fieldchange" id="email" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NgoUser.NGOEmailID" required>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="control-label" for="email">Mobile:</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control fieldchange" name="Mobile" id="mobile" placeholder="Enter Mobile Number" value="@Model.NgoUser.Mobile"required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="control-label" for="email">Address:</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control fieldchange" id="NgoAdress"  name="NGOAddress" placeholder="Enter Adderess" value="@Model.NgoUser.NGOAddress"required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="control-label" for="email">Name:</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control fieldchange"  id="Ngoname"name="NGOName" placeholder="Enter Name" value="@Model.NgoUser.NGOName"required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <label class="control-label" for="email">Chairman Name:</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control fieldchange" id="chairman"name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.NgoUser.ChairmanName"required>
+                        </div>
+                    </div>
+                    @if (Model.NgoUser.LoginID == Model.UserID)
+                    {
+                        <div class="form-inline">
+                            <div id="profileupdate">
+                                <center><span id="editbtn" class="btn btn-primary">Edit</span></center>
+                                <center> <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+                                        <span id="Canclebtn" class="btn btn-primary" >Cancel</span></center>
+                            </div>
+                        </div>
+                    }
+                    <p style="padding-bottom: 10px;"></p>
+                    @*        </form>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 ngo-about-us">
+            <div class="about-us-panel panel panel-default">
+                <div class="about-us-header panel-heading">
+                    <strong>About Us</strong>
+                </div>
+                <div class="panel panel-body" style="margin-bottom: 0px;">
+                    <center>
+                        @{
+                            string ngoimage = "", title = "";
+                            if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
+                            {
+                                ngoimage = "ngoimageguest"; title = "Change Image";
+                            }
+                              
+                              <img class="profileimage @ngoimage " id="profileimage" src="@Model.imageurl" title="@title"/>
+                         }
+                    </center>
+
+                    @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
+                    {
+                        <center> <input type="file" id="profilefile" class="profilefile" name="profilefile" /></center>
+                        <center> <span  id="uploadprofile" class="uploadprofile btn btn-primary">Upload</span>
+                        <span id="CancelImage" class="btn btn-primary">Cancel</span></center>                        
+                    }
+
+                </div>
+                <div class="row">
+                    <div class="text-area">
+                        <center> <textarea class="col-md-10 col-md-push-1" id="textSumamry">@Model.NgoUser.AboutUs</textarea></center>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-inline">
+                        @if (Model.NgoUser.LoginID == Model.UserID)
+                        {
+                            <div id="editAboutUs">
+                                <center><span id="edit" class="btn btn-primary">Edit</span></center>
+                                <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                    <span id="Cancel" class="btn btn-primary"hidden>Cancel</span></center>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="row col-md-12">
+                    <p style="padding: 5px;"></p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
 @if (TempData["US"] != null)
 {
     @Html.Raw(TempData["US"])

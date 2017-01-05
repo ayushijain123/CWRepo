@@ -1,5 +1,5 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
- 
+
 
 
 @section scripts{
@@ -9,60 +9,55 @@
 
 <div class="container-fluid">
     <div class="col-md-2">
-       @Html.Partial("../UserHome/_SearchNGOPartial",Model.PostWithtopNgoModel.ngouser)
+        @Html.Partial("../UserHome/_SearchNGOPartial", Model.PostWithtopNgoModel.ngouser)
     </div>
 
-<div class="col-md-8">
+    <div class="col-md-8">
         <div class="container">
-    <div class="row">
-        <div class="col-md-12 ngoprofilenavbar">
-            <div class="panel panel-default  panelNGO ">
-                <div class="profileheadingcolor">
-                    <div class="panel-heading">
-                        <center> <b class="profilesummary"> Profile Summary for @Model.searchNgoProfileName</b></center>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel-body" id="ngoprofilepanelbody">
-                            <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
-                                <div class="row">
-                                    <div class="row col-md-4 col-md-push-4 ">
-                                        <div class="row  col-md-12 ">
+            <div class="row">
 
-                                                                                    @{
-                                                var src = "";
-                                                if (Model.imageurl == null)
-                                                { src = "~/Images/usergroupnew.png"; }
-                                                else
-                                                {
-                                                    src = Model.imageurl;
-                                                }
-                                                <img class="profileimage" id="profileimage1" src="@src"/>
-                                                                                    }  
-
-                                        </div>
-
-                                        </div>
-                                    </div>
-                            </form>
+                <div class="panel panel-default  panelNGO ">
+                    <div class="profileheadingcolor">
+                        <div class="panel-heading">
+                            <center> <b class="profilesummary"> Profile Summary for </b></center>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel-group navbar-fixed profileheadingcolor">
-                            <ul class="ultext nav nav-tabs">
-                                <li id="profilepost"><span id="NGOProfilepost-@Model.CurrentUserID" class="NGOProfilepost">Post</span></li>
-                                <li><span id="aboutus-@Model.CurrentUserID"class="aboutus">About Us</span></li>
-                            </ul>
-                        </div>
+
+                    <div class="panel-body" id="ngoprofilepanelbody">
+                        <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
+                            <div class="col-md-12">
+                                <center>
+                                    @{
+                                        var src = "";
+                                        if (Model.imageurl == null)
+                                        { src = "~/Images/usergroupnew.png"; }
+                                        else
+                                        {
+                                            src = Model.imageurl;
+                                        }
+                                        <img class="profileimage" id="profileimage1" src="@src"/>
+                                    }
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="panel-footer panel-group navbar-fixed profileheadingcolor">
+                        <ul class="ultext nav">
+                            <li id="profilepost"><span id="NGOProfilepost-@Model.CurrentUserID" class="NGOProfilepost">Post</span></li>
+                            <li><span id="aboutus-@Model.CurrentUserID" class="aboutus">About Us</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="container">
+        <div id="NGOProfilecontent">
+            @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
+        </div>
+    </div>
 </div>
-<div id="NGOProfilecontent">
-    @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
-</div>
+
