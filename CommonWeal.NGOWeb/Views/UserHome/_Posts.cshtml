@@ -11,60 +11,64 @@
 
         @foreach (var item in Model)
         { <div class="postcontainer" id="Post-@item.postId">
-        <div id="posttemplate" >
-           
-            <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
-                <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
+            <div id="posttemplate">
 
-                <a href="/NGOProfile/Index/@item.userId"><span class="usernamepost col-md-3 col-lg-3 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@item.userName</b></span></a>
+                <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
+                    <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
 
-
-                <span class="posttime col-md-4 col-lg-3 col-xs-5 col-sm-5">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
-
-                <span class="posttag col-md-5  col-xs-6 col-sm-6 col-lg-5 float-right">
-                    @*method for multi #*@
+                    <a href="/NGOProfile/Index/@item.userId"><span class="usernamepost col-md-3 col-lg-3 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@item.userName</b></span></a>
 
 
-                    @if (item.postCategoryNameList.Count() > 0)
-                    {
-                        if (item.postCategoryNameList.Count() == 1)
-                        {<span class="text-primary">#@item.postCategoryNameList[0]</span>}
-                        else
-                        {<span class="text-primary">#@item.postCategoryNameList[0] </span><span>and</span>
-                        <span class="dropdown">
-                            <span class="showcategory text-primary "id="showcategory-@item.postId"style="cursor:pointer;text-decoration:underline">@(item.postCategoryNameList.Count() - 1) Other</span>
-                            <span class="dropdown-menu" id="categorylist-@item.postId">
-                                @{
-                            var Count = 1;
-                            foreach (var res in item.postCategoryNameList)
-                            {
-                                    <span class="">#@res</span>                       
+                    <span class="posttime col-md-4 col-lg-3 col-xs-5 col-sm-5">@item.postCreateTime.ToString("MM/dd/yyyy HH:mm")</span>
+
+                    <span class="posttag col-md-5  col-xs-6 col-sm-6 col-lg-5 float-right">
+                        @*method for multi #*@
+
+
+                        @if (item.postCategoryNameList.Count() > 0)
+                        {
+                           
+                            
+                           
+                            <span class="dropdown">
+                                <span style="font-size: 8px">View categories</span>
+                                <button class="showcategory  " data-toggle="dropdown" id="showcategory-@item.postId"style="cursor:pointer;    background: none;
+    border: none;       margin-left: 0px; width: 12px;
+    padding-right: 0px;
+    padding-left: 0px;">
+                                    <i class="fa fa-arrow-down" style="font-size: 9px;"></i>
+                                </button>
+                                <span class="dropdown-menu categorydropdown" id="categorylist-@item.postId">
+
+                                    @{
+                          
+                                foreach (var res in item.postCategoryNameList)
+                                {
+                                        <span>#@res</span>  <br />                    
           
                      
-                                if (item.postCategoryNameList.Count() != Count)
-                                { <span><br />
-                    </span>}
-                                Count++;
-                            }
+                               
+                              
                                 }
-                            </span>
-                        </span>  
+
+                               
+                                    }
+
+                                </span>
+                            </span>  
                
-                            if (item.postCategoryNameList.Count() == 2)
-                            {<span> Category</span>}
-                            else
-                            {<span> Categories</span>}
+                           
+                            
+
                         }
-
-                    }
-                </span>
+                    </span>
 
 
-            </div>
+                </div>
 
-             
-            @*model for categorylist start*@
-            @*<div class="modal fade" id="myModalCategory-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+
+                @*model for categorylist start*@
+                @*<div class="modal fade" id="myModalCategory-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog likemodaldialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -78,50 +82,50 @@
             </div>
             *@@*model for categorylist end*@
 
-            @*  Text for image*@
-            <div name="Textmessage" id="Textmessage">
-                <div class="form-inline" id="postcontent">
-                    <span>@item.postcontent</span>
+                @*  Text for image*@
+                <div name="Textmessage" id="Textmessage">
+                    <div class="form-inline" id="postcontent">
+                        <span>@item.postcontent</span>
+                    </div>
                 </div>
-            </div>
-            @*  <div class="form-group">*@
-            <div id="image/video" class="imagepost">
-                @if (item.postImageUrl != null)
-                { 
-                  @*    @item.postImageUrl
+                @*  <div class="form-group">*@
+                <div id="image/video" class="imagepost">
+                    @if (item.postImageUrl != null)
+                    { 
+@*    @item.postImageUrl
                      @Url.Content("http://172.27.111.13:81"+item.postImageUrl)
                     *@
-                 <img src=" @Url.Content("http://172.27.111.13:81"+item.postImageUrl)" data-toggle="modal" data-target="#myModal2-@item.postId" class="imageurlpost" id="imageurlpost-@item.postId" />
-                }
-                <br />
-                <div id="liketemplate-@item.postId">
-                    @Html.Partial("../UserHome/_LikePartial", item)
+                        <img src=" @Url.Content("http://172.27.111.13:81" + item.postImageUrl)" data-toggle="modal" data-target="#myModal2-@item.postId" class="imageurlpost" id="imageurlpost-@item.postId" />
+                    }
+                    <br />
+                    <div id="liketemplate-@item.postId">
+                        @Html.Partial("../UserHome/_LikePartial", item)
 
+                    </div>
+
+                    @* @Html.Partial("../Views/UserHome/_LikePartial",Model) *@
                 </div>
 
-                @* @Html.Partial("../Views/UserHome/_LikePartial",Model) *@
-            </div>
-
-            <!--Like Modal Start -->
-            <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog likemodaldialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel"><b>Likes</b></h4>
-                        </div>
-                        <div class="modal-body" id="likelist-@item.postId">
+                <!--Like Modal Start -->
+                <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog likemodaldialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><b>Likes</b></h4>
+                            </div>
+                            <div class="modal-body" id="likelist-@item.postId">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!--Like Modal End -->
+
+                @*///Comment div action*@
+
             </div>
-            <!--Like Modal End -->
-
-            @*///Comment div action*@
-
-        </div>
-        <div class="form-inline" id="postcommentbox">
-            @* @if(item.PostComments.Count()>0)
+            <div class="form-inline" id="postcommentbox">
+                @* @if(item.PostComments.Count()>0)
             {
                foreach (var comment in item.PostComments.Take(2))
             {
@@ -156,7 +160,7 @@
             }
             }*@
 
-            @*   @if(item.PostComments.Count()>2)
+                @*   @if(item.PostComments.Count()>2)
             {  <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
@@ -167,70 +171,70 @@
         <div class="panel-body">*@
 
 
-            <span id="IeThisCurrentNgoProfile" hidden>@(this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()))</span>
-            @foreach (var comment in item.PostComments)
-            {
-                <div class="col-md-12" id="CommentBox-@comment.commentId">
+                <span id="IeThisCurrentNgoProfile" hidden>@(this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()))</span>
+                @foreach (var comment in item.PostComments)
+                {
+                    <div class="col-md-12" id="CommentBox-@comment.commentId">
 
-                    @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()) && !this.User.Identity.Name.Equals(comment.commentUserId.ToString()))
-                    {
-                        <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-left" title="Report Abuse"></span>
-                    }
-                    <div class="form-inline col-md-12 comentpost">
-                        <span class="col-md-1 fa fa-user commentimage"></span>
-
-                        <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
-                        <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
-
-                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()))
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()) && !this.User.Identity.Name.Equals(comment.commentUserId.ToString()))
                         {
-                  
-                            <span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete Comment"></span>
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-left" title="Report Abuse"></span>
                         }
-                        <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
+                        <div class="form-inline col-md-12 comentpost">
+                            <span class="col-md-1 fa fa-user commentimage"></span>
+
+                            <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
+                            <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
+
+                            @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()))
+                            {
+                  
+                                <span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete Comment"></span>
+                            }
+                            <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
+                        </div>
                     </div>
-                </div>
                      
     
            
                 
                 
-            }
-            @*      </div>
+                }
+                @*      </div>
       </div>
     </div>
     
           
           }  *@
-            <div id="@item.postId">
-            </div>
-
-
-
-            @*///user Comment section*@
-
-            @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
-            {
-    
-                <div class="form-group col-md-12 commentmainbox">
-                    <span class="float-left profileimagecomment fa fa-user col-md-1"></span>
-                    <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
-                    @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
-                    <input type="button" id="postimage-@item.postId" name="button" class=" btn-primary btnPost col-md-1   " value="Post" />
+                <div id="@item.postId">
                 </div>
-            }
-        </div>
-        <br />
-        <br />
 
 
-        <div class="modal fade" id="myModal2-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-            <div class="modal-dialog likemodaldialog" role="document">
-                <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@item.postId"/>
+
+                @*///user Comment section*@
+
+                @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                {
+    
+                    <div class="form-group col-md-12 commentmainbox">
+                        <span class="float-left profileimagecomment fa fa-user col-md-1"></span>
+                        <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
+                        @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
+                        <input type="button" id="postimage-@item.postId" name="button" class=" btn-primary btnPost col-md-1   " value="Post" />
+                    </div>
+                }
             </div>
-        </div>
-    </div>          
+            <br />
+            <br />
+
+
+            <div class="modal fade" id="myModal2-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                <div class="modal-dialog likemodaldialog" role="document">
+                    <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@item.postId"/>
+                </div>
+            </div>
+        </div>          
         }
 
 
