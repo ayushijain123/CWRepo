@@ -28,7 +28,7 @@
                             <td class="col-md-3 adminTableData"><a>@Html.DisplayFor(modelItem => item.UserEmail) </a></td>
                             @* <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
                             @*    <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
-                            <td id="block" class="col-md-3 adminTableData"><span id="BlockUser-@item.LoginID" class="fa fa-ban fa-2x BlockUser" aria-hidden="true" style="color:red;"></span></td>
+                            <td id="block" class="col-md-3 adminTableData"><span id="BlockUser-@item.LoginID" class="fa fa-ban fa-2x BlockUser" title="Block" style="color:red;cursor:pointer;"></span></td>
                         </tr>   
                     }
                     @*<span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete Comment"></span>*@
