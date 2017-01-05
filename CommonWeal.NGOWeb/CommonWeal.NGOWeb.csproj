@@ -55,10 +55,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NuGet.VisualStudio">
-      <HintPath>..\packages\NuGet.VisualStudio.3.3.0\lib\net45\NuGet.VisualStudio.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -414,7 +410,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Scripts\NGOAdmin\Profile\Test.js" />
+    <Content Include="Scripts\NGOAdmin\NGOScript.js" />
     <Content Include="Scripts\NGOProfile Script\NGOScript.js" />
     <Content Include="Scripts\NGOProfile.js" />
     <Content Include="Scripts\Post\PostComment.js" />
