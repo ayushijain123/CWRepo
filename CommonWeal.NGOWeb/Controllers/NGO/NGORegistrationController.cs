@@ -68,36 +68,36 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
         [HttpPost]
         public async Task<ActionResult> CreateNGO(NGOUser objngo, HttpPostedFileBase chairmanID, HttpPostedFileBase RegistrationProof)
-        {
-
+        {           
             try
             {
                 if (RegistrationProof != null)
                 {
                     objngo.RegistrationProof = "default";
-                }
-                if (ModelState.IsValid)
-                {
+                }   
                     if (chairmanID != null)
                     {
+                        var ext = chairmanID.FileName.Substring(chairmanID.FileName.LastIndexOf('.'));
                         ImageHandler img = new ImageHandler();
                         var res = img.ImagePost(chairmanID);
-
-
                         // string result = System.Text.Encoding.UTF8.GetString(byteArray);                  
                         objngo.ChairmanID = Convert.ToBase64String(res);
+                        objngo.OperationalArea = ext;
 
                     }
                     if (RegistrationProof != null)
                     {
+                        var ext1 = RegistrationProof.FileName.Substring(RegistrationProof.FileName.LastIndexOf('.'));
                         ImageHandler img = new ImageHandler();
                         var res1 = img.ImagePost(RegistrationProof);
                         objngo.RegistrationProof = Convert.ToBase64String(res1);
+                        objngo.AreaOfIntrest = ext1;
                     }
+                   
                     var result = await Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));
 
                     return RedirectToAction("Index", "Welcome");
-                }
+                
                 return RedirectToAction("Index", "Error");
             }
             catch (Exception ex)
