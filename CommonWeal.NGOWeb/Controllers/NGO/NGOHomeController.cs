@@ -8,6 +8,7 @@ using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
+using CommonWeal.NGOWeb.ViewModel;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {   /*entry for authorized user and whose role is NGOAdmin*/
@@ -18,6 +19,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         // GET: /NGOHome/
         public ActionResult Index()
         {
+            PostWithTopNgo pwtn = new PostWithTopNgo();
             CommonWealEntities context = new CommonWealEntities();
             ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
             ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
@@ -31,7 +33,10 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             var list = ob.GetAllCategory();
            // ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
             /*return To view with postList */
-            return View(postlist);
+            pwtn.post = postlist;
+            pwtn.ngouser = GetTopNgo;
+            return View(pwtn);
+            
         }
         //class to convert image from file to binary
         public class ImageHandler
