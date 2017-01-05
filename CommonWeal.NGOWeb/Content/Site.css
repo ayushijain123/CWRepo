@@ -835,7 +835,7 @@ tr.pager td {
 
 #Textmessage {
     background-color: #7ac0da;
-    overflow-wrap:break-word;
+    overflow-wrap: break-word;
 }
 
 
@@ -947,12 +947,6 @@ tr.pager td {
 .postcommentcontent {
     padding: 0px 8px 0px 42px;
 }
-
-#postform {
-    /*background-color: #F0F0F0;*/
-    margin-bottom: 13px;
-}
-
 
 #postcontent {
     background-color: #FFFFFF;
@@ -1372,6 +1366,7 @@ textarea {
     text-align: center;
 }
 
+
 /*#textSumamry{
     margin-left: 32px;
 }*/
@@ -1477,7 +1472,6 @@ NGO registration page css*/
 }
 
 .media-body {
-    
     color: #fff;
 }
 
@@ -1654,11 +1648,15 @@ color: #428bca;
 }
 
 .ultext {
-    height: 33px;
-    padding-top: 8px;
     padding-left: 20px;
-    text-decoration: underline;
+    text-decoration: none;
+    list-style: none;
+    font-size: 15px;
 }
+
+    .ultext > li {
+        display: inline;
+    }
 
 #profilepost {
     padding-right: 36px;
@@ -1694,8 +1692,7 @@ color: #428bca;
 }
 
 .profileimage {
-    height: 169px;
-    min-width: 350px;
+    height: 170px;
 }
 
 .profileimagepadding {
@@ -1750,7 +1747,7 @@ color: #428bca;
         display: block;
         line-height: inherit;
     }
-    /*imageonhover*/
+/*imageonhover*/
 /*#overlay {
     background: rgba(0,0,0,.75);
     text-align: center;
@@ -1771,7 +1768,9 @@ color: #428bca;
 }*/
 
 
-#profileimage:hover {
-    opacity:0.6;
-    cursor:pointer;
+.ngoimageguest:hover {
+    opacity: 0.6;
+    cursor: pointer;
 }
+
+
