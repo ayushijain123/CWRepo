@@ -20,9 +20,75 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         // GET: /ngoRegistration/
         public ActionResult CreateNGO()
         {
-
+            CommonWealEntities context = new CommonWealEntities();
+            ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
+            ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
+            ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
             return View();
         }
+
+        public IList<StateMaster> GetState(int countryid)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            return context.StateMasters.Where(m => m.CountryID == countryid).ToList();
+        }
+
+        public JsonResult GetJsonState(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+
+            var stateListt = this.GetState(id);
+            List<StateMaster> list = new List<StateMaster>();
+            list.Add(new StateMaster { Name = "--Select Country--", ID = 0 });
+            foreach (var item in stateListt)
+            {
+
+                list.Add(new StateMaster { Name = item.Name, ID = item.ID });
+
+            }
+            //var statesList = stateListt.Select(m => new SelectListItem()
+            //{
+            //    Text = m.Name,
+            //    Value = m.ID.ToString()
+            //});
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+        public IList<CityMaster> GetCity(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            return context.CityMasters.Where(m => m.StateID == id).ToList();
+        }
+
+        public JsonResult GetJsonCity(int id)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+
+            var citylist = this.GetCity(id);
+            List<CityMaster> list = new List<CityMaster>();
+            list.Add(new CityMaster { Name = "--Select Country--", ID = 0 });
+            foreach (var item in citylist)
+            {
+
+                list.Add(new CityMaster { Name = item.Name, ID = item.ID });
+
+            }
+            //var cityList = citylist.Select(m => new SelectListItem()
+            //{
+            //    Text = m.Name,
+            //    Value = m.ID.ToString()
+            //});
+
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
         [HttpPost]
         public JsonResult doesEmailExist(string UserName)
         {
