@@ -323,12 +323,30 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
          [AllowAnonymous]
         /*action for search ngo  through ajax*/
-        public JsonResult SearchNGO(string name)
-        {  
-            
+        public JsonResult SearchNGO(string name="",int country=0,int state=0,int city=0)
+        {
+            var result = new List<NGoSearchModal>();
             CommonWealEntities context = new CommonWealEntities();
-            var result=context.NGOUsers.Where(x=>x.NGOName.ToLower().Contains(name.ToLower())).Select (x=>new NGoSearchModal{loginID=x.LoginID.Value,name=x.NGOName}).ToList();
-            return Json(result,JsonRequestBehavior.AllowGet);
+            if (country > 0 && state > 0 && city > 0)
+            {
+             result = context.NGOUsers.Where(x => x.NGOName.ToLower().Contains(name.ToLower())&&x.country==country&&x.State==state &&x.city==city).Select(x => new NGoSearchModal { loginID = x.LoginID.Value, name = x.NGOName }).ToList();
+            
+            }
+            else if (country > 0 && state > 0 && city == 0)
+            {
+               result = context.NGOUsers.Where(x => x.NGOName.ToLower().Contains(name.ToLower()) && x.country == country && x.State == state).Select(x => new NGoSearchModal { loginID = x.LoginID.Value, name = x.NGOName }).ToList();
+            }
+            else if (country > 0 && state == 0 && city == 0)
+            {
+             result=   context.NGOUsers.Where(x => x.NGOName.ToLower().Contains(name.ToLower()) && x.country == country).Select(x => new NGoSearchModal { loginID = x.LoginID.Value, name = x.NGOName }).ToList();
+            }
+            else
+            {
+
+
+                 result = context.NGOUsers.Where(x => x.NGOName.ToLower().Contains(name.ToLower())).Select(x => new NGoSearchModal { loginID = x.LoginID.Value, name = x.NGOName }).ToList();
+            }
+             return Json(result, JsonRequestBehavior.AllowGet);
         
         }
         /*modal for ngo search key value*/
