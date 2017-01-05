@@ -14,7 +14,10 @@ namespace CommonWeal.NGOWeb.Controllers.AuthUser
     {
         public ActionResult Index()
         {
-            
+            CommonWealEntities context = new CommonWealEntities();
+            ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
+            ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
+            ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
             /* Sammple API call */
           //  APIHelper helper = new APIHelper();
 
