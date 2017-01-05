@@ -86,7 +86,7 @@ namespace CommonWeal.NGOWeb
             bundles.Add(new StyleBundle("~/Contents/cssdynamiclist").Include(
                 "~/Content/dyanamiclist.css"
                 ));
-            bundles.Add(new StyleBundle("~/Contents/cssdngosearch").Include(
+            bundles.Add(new StyleBundle("~/Contents/cssngosearch").Include(
            "~/Content/NgoSearchBox/NgoSearch.css"
               ));
         }
