@@ -137,10 +137,12 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {           
             try
             {
-                if (RegistrationProof != null)
+                if (ModelState.IsValid)
                 {
-                    objngo.RegistrationProof = "default";
-                }   
+                    if (RegistrationProof != null)
+                    {
+                        objngo.RegistrationProof = "default";
+                    }
                     if (chairmanID != null)
                     {
                         var ext = chairmanID.FileName.Substring(chairmanID.FileName.LastIndexOf('.'));
@@ -159,18 +161,20 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                         objngo.RegistrationProof = Convert.ToBase64String(res1);
                         objngo.AreaOfIntrest = ext1;
                     }
-                   
+
                     var result = await Task.Run(() => APIHelper<string>.PostJson("NGORegistration/CreateNGO", objngo));
 
                     return RedirectToAction("Index", "Welcome");
+                }
+                return View();
                 
-                return RedirectToAction("Index", "Error");
             }
             catch (Exception ex)
             {
-                return RedirectToAction("Index", "Error");
+               
                 throw ex;
             }
+        
 
             /*the form type is ajaxform  that's why return type should be (return JavaScript) */
             //return JavaScript("window.location = '" + Url.Action("Index", "Login") + "'");
