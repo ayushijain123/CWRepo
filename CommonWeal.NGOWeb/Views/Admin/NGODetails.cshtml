@@ -118,13 +118,13 @@
                     <label class="control-label" for="email">Registration Proof:</label>
 
                 </div>
-                <div class="col-md-3 col-md-pull-1">
+                <div class="col-md-3">
                     @if (Model.RegistrationProof.IsEmpty() || Model.RegistrationProof == null)
                     {
-                        Model.RegistrationProof = "http://172.27.111.13:81" + "/Images/usernew.png";
+                        Model.RegistrationProof = "http://172.27.111.13:81" + "/Images/imagenotfound.jpg"; 
                     }
 
-                    <img src="@Url.Content("http://172.27.111.13:81" + Model.RegistrationProof)" alt="No Image" data-toggle="modal" data-target="#Registrationphoto" style="width: 108px;height: 90px;padding-top: 12px;" />
+                    <img src="@Url.Content("http://172.27.111.13:81" +Model.RegistrationProof)" alt="No Image found" data-toggle="modal" data-target="#Registrationphoto" style="width: 108px;height: 90px;padding-top: 12px;" />
 
                     @*<input type="text" class="form-control" name="RegistrationProof" value="@Model.RegistrationProof"required>*@
 
@@ -141,12 +141,12 @@
                     <label class="control-label" for="email">Photo Id of Chairman:</label>
 
                 </div>
-                <div class="col-md-3 col-md-pull-1" id="pop">
+                <div class="col-md-3" id="pop">
                     @if (Model.ChairmanID.IsEmpty() || Model.ChairmanID == null)
                     {
-                        Model.ChairmanID = "http://172.27.111.13:81" + "/Images/usernew.png";
+                        Model.ChairmanID = "http://172.27.111.13:81" + "/Images/imagenotfound.jpg";
                     }
-                    <img src="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#chairmanphoto" style="width: 108px;height: 90px;padding-top: 12px;" />
+                    <img src="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" alt="No Image found" data-toggle="modal" data-target="#chairmanphoto" style="width: 108px;height: 90px;padding-top: 12px;" />
                 </div>
                 <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
