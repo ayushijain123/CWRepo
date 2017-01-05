@@ -7,11 +7,14 @@ $(document).ready(function () {
     /*Implementation search ngo by ajax */
     $(document).on('keyup', '.searchNGO', function () {
         var name = $(".searchNGO").val();
-        console.log('clicked');
+        var state = $(".ngostate").val();
+        var city = $(".ngocity").val();
+        var country = $(".ngocountry").val();
+       
             $('.searchNGO').autocomplete({
                 source: function (request, response) {
                     $.ajax({
-                        url: "/Post/SearchNGO?name=" + name,
+                        url: "/Post/SearchNGO?name=" + name+"&country="+country+"&state="+state+"&city="+city,
                         dataType: "json",
                        // data:name,
                         success: function (data) {
@@ -28,7 +31,7 @@ $(document).ready(function () {
                 select: function (event, ui) {
                     $(".searchNGO").val(ui.item.label);
                     $(".searchNGO").attr('name',ui.item.value);
-
+                    console.log(ui.item.value);
                     return false;
                 },
                 focus: function (event, ui) {
@@ -45,7 +48,9 @@ $(document).ready(function () {
     $(document).on('click','.submitSelectedNGO', function () {
         
         var value = $(".searchNGO").attr('name');
-       
+        console.log(value);
+
+
         if (value!=undefined)
         {
             window.location.href = "/NGOProfile/index?id=" + value;
