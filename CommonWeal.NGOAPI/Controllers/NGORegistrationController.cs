@@ -158,6 +158,7 @@ namespace CommonWeal.NGOAPI.Controllers
                         objres.year = year;
                         context.RegistrationYears.Add(objres);
                     }
+                    context.Configuration.ValidateOnSaveEnabled = false;
                     context.SaveChanges();
                     /*it will redirect ngo user to welcome page after registration*/
                    
