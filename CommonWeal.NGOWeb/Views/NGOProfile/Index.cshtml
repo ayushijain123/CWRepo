@@ -1,5 +1,94 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
+ <script>
+    //$(document).ready(function () {
+    $(document).ready(function () {
 
+        $("#country").change(function () {
+            $("#State").empty();
+            console.log("Hit");
+            $.ajax({
+                type: 'POST',
+                @* url: '@Url.Action("getstate")',*@
+                url: '@Url.Action("GetJsonState", "Home")',
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+                    console.log(states);
+
+                    $.each(states, function (i, state) {
+                        console.log(state.Value);
+                        $("#State").append('<option value="' + state.ID + '">' +
+                             state.Name + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve country states.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $("#State").change(function () {
+            $("#city").empty();
+            console.log("Hit");
+            $.ajax({
+                type: 'POST',
+                @* url: '@Url.Action("getstate")',*@
+                url: '@Url.Action("GetJsonCity", "Home")',
+                dataType: 'json',
+
+                data: { id: $("#State").val() },
+
+
+                success: function (cities) {
+                    console.log(cities);
+
+                    $.each(cities, function (i, city) {
+                        console.log(cities.Value);
+                        $("#city").append('<option value="' + city.ID + '">' +
+                             city.Name + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve country cities.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+
+
+
+    //});
+    @*  function GetState() {
+        console.log("Hit");
+        $.ajax({
+            url: "@Url.Action("GetJsonState", "Home")",
+            dataType: "json",
+            type: "GET",
+            data: { country: $("#country").val() },
+            error: function () {
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var items = "";
+                items = "<option value=''>Choose state</option>";
+                $.each(data, function (i, item) {
+                    items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+                });
+                $("#DropDownListstate").html(items);
+            }
+        });
+
+    }*@
+
+</script>
 
 
 @section scripts{
