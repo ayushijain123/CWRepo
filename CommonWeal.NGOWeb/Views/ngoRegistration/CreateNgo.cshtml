@@ -173,7 +173,7 @@
             </div>
             <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                 @Html.DropDownList("Country", CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control" })
-                @Html.ValidationMessageFor(a => a.Country, string.Empty, new { @class = "Validation-Message" })
+                @Html.ValidationMessageFor(a => a.country, string.Empty, new { @class = "Validation-Message" })
             </div>
 
         </div>
@@ -199,7 +199,7 @@
             </div>
             <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-12">
                @*  @Html.DropDownList("City",(SelectList)ViewBag.CityList, "Select City",  new { @class = "form-control" })*@
-                @Html.ValidationMessageFor(a => a.City, string.Empty, new { @class = "Validation-Message" })
+                @Html.ValidationMessageFor(a => a.city, string.Empty, new { @class = "Validation-Message" })
             </div>
 
         </div>
