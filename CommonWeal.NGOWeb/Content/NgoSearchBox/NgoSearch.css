@@ -1,5 +1,4 @@
-﻿
-.top-ngo {
+﻿.top-ngo {
     font-size: 16px;
     padding: 5px;
     text-transform: capitalize;
@@ -56,12 +55,13 @@
 .top-text {
     font-size: 13px;
     font-weight: 500;
-    
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .ngo-list {
     list-style-type: none;
-    font-size: 10px;
+    font-size: 11px;
     padding-left: 1px;
     opacity: .75;
 }
