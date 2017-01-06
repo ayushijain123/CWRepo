@@ -359,6 +359,7 @@
     <Content Include="Images\Hydrangeas.jpg" />
     <Content Include="Images\Image.jpg" />
     <Content Include="Images\imagenotfound.jpg" />
+    <Content Include="Images\images.png" />
     <Content Include="Images\images1.jpg" />
     <Content Include="Images\Jellyfish.jpg" />
     <Content Include="Images\Koala.jpg" />
