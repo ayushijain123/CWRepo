@@ -84,8 +84,11 @@
                             {
                                 ngoimage = "ngoimageguest"; title = "Change Image";
                             }
-                              
-                              <img class="profileimage @ngoimage " id="profileimage" src="@Model.imageurl" title="@title"/>
+                              if(Model.imageurl.IsEmpty()|| Model.imageurl==null)
+                              {
+                                  Model.imageurl = "/Images/images.png";
+                              }
+                              <img class="profileimage @ngoimage " id="profileimage" src="@Model.imageurl" title="@title" />
                          }
                     </center>
 

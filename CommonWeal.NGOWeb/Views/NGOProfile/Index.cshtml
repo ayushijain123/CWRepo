@@ -27,8 +27,10 @@
                                 <center>
                                     @{
                                         var src = "";
-                                        if (Model.imageurl == null)
-                                        { src = "~/Images/usergroupnew.png"; }
+                                        if (Model.imageurl.IsEmpty() || Model.imageurl == null)
+                                        {
+                                          src = "/Images/images.png";
+                                        }
                                         else
                                         {
                                             src = Model.imageurl;
