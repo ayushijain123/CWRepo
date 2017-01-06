@@ -70,7 +70,15 @@ namespace CommonWeal.NGOAPI.Controllers
     
        public HttpResponseMessage CreateNGO(NGOUser objngo)
         {
-            
+            var username = objngo.NGOName.Split(' ');
+            int length = objngo.NGOName.Length;
+            objngo.NGOName = "";
+            foreach (var item in username)
+            {
+                objngo.NGOName += " " + item.Substring(0, 1).ToUpper() + item.Substring(1, item.Length - 1);
+            }
+           objngo.NGOName=objngo.NGOName.Trim();
+           
             try
             {                            
                 using (CommonWealEntities context = new CommonWealEntities())
