@@ -11,18 +11,18 @@
                 <table id="myTable" class="tableAdmin col-md-12">
                     <thead class="tableheader col-md-12">
                         <tr>
-                            <th class="col-md-3">NGO NAME</th>
-                            <th class="col-md-3">NGO EMAIL</th>
-                            <th class="col-md-3">UNWARN</th>
+                            <th class="col-md-4">NGO NAME</th>
+                            <th class="col-md-4">NGO EMAIL</th>
+                            <th class="col-md-4">UNWARN</th>
 
                         </tr>
                     </thead>
                     @foreach (var item in Model)
                     {                       
                         <tr id="Unwarn-@item.LoginID">
-                            <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
-                            <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.NGOEmailID)</td>
-                            <td class="col-md-3 adminTableData"><span id="unwarn-@item.LoginID" class="fa fa-exclamation-triangle fa-2x unwarn"  title="Unwarn" style="color:green;cursor:pointer"></span></td>
+                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.NGOName)</td>
+                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.NGOEmailID)</td>
+                            <td class="col-md-4 adminTableData"><span id="unwarn-@item.LoginID" class="fa fa-exclamation-triangle fa-2x unwarn"  title="Unwarn" style="color:green;cursor:pointer"></span></td>
 
                         </tr>    
                     }
