@@ -121,7 +121,7 @@
                 <div class="col-md-3">
                     @if (Model.RegistrationProof.IsEmpty() || Model.RegistrationProof == null)
                     {
-                        Model.RegistrationProof = "http://172.27.111.13:81" + "/Images/imagenotfound.jpg"; 
+                        Model.RegistrationProof ="/Images/imagenotfound.jpg";
                     }
                      @if (Model.RegistrationProof.Substring(Model.RegistrationProof.LastIndexOf('.')).Equals(".pdf"))
                     { 
@@ -132,7 +132,7 @@
                     }
                     else
                     { 
-             <img src="@Url.Content("http://172.27.111.13:81" + Model.RegistrationProof)" alt="No Image" data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
+            <img src="@Url.Content("http://172.27.111.13:81" + Model.RegistrationProof)"  data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
                     }       
                    
 
@@ -154,7 +154,7 @@
                 <div class="col-md-3" id="pop">
                     @if (Model.ChairmanID.IsEmpty() || Model.ChairmanID == null)
                     {
-                        Model.ChairmanID = "http://172.27.111.13:81" + "/Images/imagenotfound.jpg";
+                        Model.ChairmanID ="/Images/imagenotfound.jpg";
                     }
                      @if (Model.ChairmanID.Substring(Model.ChairmanID.LastIndexOf('.')).Equals(".pdf"))
                     {                   
@@ -162,7 +162,7 @@
                     }
                     else
                     { 
-             <img src="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
+             <img src="@Url.Content("http://172.27.111.13:81" + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#chairmanphoto" height="50px" width="50px" />                                
                     }                           
                 </div>
                 <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
