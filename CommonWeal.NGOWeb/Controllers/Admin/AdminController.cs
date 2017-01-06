@@ -53,7 +53,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
-            var request = obj.GetAllUserNotAccepted();
+            var request = obj.GetAllUserNotAccepted().OrderByDescending(x=>x.CreatedOn);
             return View(request);
         }
         //public ActionResult Index()
