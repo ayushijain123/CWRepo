@@ -76,7 +76,7 @@
                     <div class="about-us-header panel-heading">
                         <strong>About Us</strong>
                     </div>
-                    <div class="panel panel-body" >
+                    <div class="panel panel-body" style="margin-bottom: 0px;">
                         <center>
                         @{
                             string ngoimage = "", title = "";
@@ -84,11 +84,8 @@
                             {
                                 ngoimage = "ngoimageguest"; title = "Change Image";
                             }
-                              if(Model.imageurl.IsEmpty()|| Model.imageurl==null)
-                              {
-                                  Model.imageurl = "/Images/images.png";
-                              }
-                              <img class="profileimage @ngoimage " id="profileimage" src="@Model.imageurl" title="@title" />
+                              
+                              <img class="profileimage @ngoimage " id="profileimage" src="@Url.Content("http://172.27.111.13:81" + Model.imageurl)" title="@title"/>
                          }
                     </center>
 
@@ -101,8 +98,8 @@
 
                     </div>
                     <div class="row">
-                        <div class="text-area" >
-                            <center> <textarea class="col-md-10 col-md-push-1" id="textSumamry" >@Model.NgoUser.AboutUs</textarea></center>
+                        <div class="text-area">
+                            <center> <textarea class="col-md-10 col-md-push-1" id="textSumamry">@Model.NgoUser.AboutUs</textarea></center>
                         </div>
                     </div>
 
