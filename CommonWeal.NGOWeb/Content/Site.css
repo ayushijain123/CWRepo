@@ -1306,7 +1306,11 @@ tr:nth-child(even) {
 
 .profilesummary {
     font-size: 18px;
+}
+
+.ngo-name {
     text-transform: capitalize;
+    font-size: 18px;
 }
 
 .aboutus {
