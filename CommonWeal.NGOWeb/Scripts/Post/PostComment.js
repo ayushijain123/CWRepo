@@ -5,6 +5,46 @@ $(document).ready(function () {
 
     }
     /*Implementation search ngo by ajax */
+    $(document).on('focus', '.searchNGO', function () {
+        var name1 = $(".searchNGO").val();
+        var state1 = $(".ngostate").val();
+        var city1 = $(".ngocity").val();
+        var country1 = $(".ngocountry").val();
+        console.log("hit");
+        $('.searchNGO').autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Post/SearchNGO?name=" + name1 + "&country=" + country1 + "&state=" + state1 + "&city=" + city1,
+                    dataType: "json",
+                    // data:name,
+                    success: function (data) {
+
+                        response($.map(data, function (item) {
+                            return {
+                                label: item.name,
+                                value: item.loginID
+                            }
+                        }));
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $(".searchNGO").val(ui.item.label);
+                $(".searchNGO").attr('name', ui.item.value);
+                console.log(ui.item.value);
+                return false;
+            },
+            focus: function (event, ui) {
+                this.value = ui.item.label;
+
+                event.preventDefault();
+                // or return false;
+            }
+        });
+
+
+
+    });
     $(document).on('keyup', '.searchNGO', function () {
         var name = $(".searchNGO").val();
         var state = $(".ngostate").val();
