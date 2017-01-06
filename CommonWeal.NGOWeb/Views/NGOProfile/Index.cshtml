@@ -27,15 +27,13 @@
                                 <center>
                                     @{
                                         var src = "";
-                                        if (Model.imageurl.IsEmpty() || Model.imageurl == null)
-                                        {
-                                          src = "/Images/images.png";
-                                        }
+                                        if (Model.imageurl == null)
+                                        { src = "~/Images/usergroupnew.png"; }
                                         else
                                         {
                                             src = Model.imageurl;
-                                        }
-                                        <img class="profileimage" id="profileimage1" src="@Url.Content("http://172.27.111.13:81" + src)"/>
+                                        }@Url.Content("http://localhost:61504" + Model.imageurl)
+                                        <img class="profileimage" id="profileimage1" src="@src"/>
                                     }
                                 </center>
                             </div>
