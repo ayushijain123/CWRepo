@@ -66,8 +66,44 @@ namespace CommonWeal.NGOAPI.Controllers
             result = Request.CreateResponse(HttpStatusCode.OK, imageList);
             return result;
         }
+
+        public class CountryId
+        {
+         public int id { get; set; }
+        }
+        [HttpGet]
+        public  HttpResponseMessage Country()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.LazyLoadingEnabled = false;
+            var res = context.CountryMasters.ToList();
+            var response = Request.CreateResponse(HttpStatusCode.OK, res);
+            return response;
+           
+        }
         [HttpPost]
-    
+        public HttpResponseMessage State(CountryId Id)
+        {
+            int id = Id.id;
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.LazyLoadingEnabled = false;
+            var res = context.StateMasters.Where(w=>w.CountryID==id).ToList();
+            var response = Request.CreateResponse(HttpStatusCode.OK, res);
+            return response;
+
+        }
+        [HttpPost]
+        public HttpResponseMessage City(CountryId Id)
+        {
+            int id = Id.id;
+            CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.LazyLoadingEnabled = false;
+            var res = context.CityMasters.Where(w => w.StateID == id).ToList();
+            var response = Request.CreateResponse(HttpStatusCode.OK, res);
+            return response;
+
+        }
+        [HttpPost]
        public HttpResponseMessage CreateNGO(NGOUser objngo)
         {
             var username = objngo.NGOName.Split(' ');
