@@ -488,6 +488,7 @@
     <Content Include="Views\Admin\SpamNGO.cshtml" />
     <Content Include="Views\Shared\_SideNav.cshtml" />
     <Content Include="Views\UserHome\_SearchNGOPartial.cshtml" />
+    <Content Include="Views\NGOProfile\_Donationrequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
