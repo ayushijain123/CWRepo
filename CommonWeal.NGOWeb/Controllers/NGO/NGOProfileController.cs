@@ -282,7 +282,21 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 throw ex;
             }
 
+
+
+
         }
+        [AllowAnonymous]
+        [HttpPost]
+        public PartialViewResult Donationrequest()
+        {
+
+            return PartialView("~/Views/NGOProfile/_Donationrequest.cshtml");
+        
+        }
+
+
+
     }
 }
 
