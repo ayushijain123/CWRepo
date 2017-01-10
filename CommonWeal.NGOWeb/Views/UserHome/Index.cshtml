@@ -110,7 +110,7 @@
             </div>
             <div id="loadMoreSection"></div>
             <div style="text-align: center" id="morePost">
-                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; font-weight: 400; width: 200px;" value="See more posts" class="btnLoad" id="btnLoad" align="center">
+                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; font-weight: 400; width: 200px;" value="See more post(s)" class="btnLoad" id="btnLoad" align="center">
                 @*type="button"*@
             </div>
         </div>
@@ -151,7 +151,7 @@
                                 //alert(result1 + "" + total)
 
                                 if (result1 <= 5 && result1 > 0) {
-                                    $(".btnLoad").val('No more posts');
+                                    $(".btnLoad").val('No more post(s)');
                                     $(".btnLoad").attr('disabled', true);
                                 }
                                 if (result1 <= 0) {
@@ -161,7 +161,7 @@
                             }
                             else {
                                 $(".btnLoad").prop("disabled", false);
-                                $(".btnLoad").val("See more posts");
+                                $(".btnLoad").val("See more post(s)");
                                 //  alert("clickable");
 
                             }

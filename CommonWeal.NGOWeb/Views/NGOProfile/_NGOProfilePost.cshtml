@@ -5,7 +5,7 @@
         @Html.Partial("../UserHome/_Posts", Model.PostWithtopNgoModel.post)
     </div>
 
-    @{var poststatus="See more posts";
+    @{var poststatus="See more post(s)";
     if (Model.PostWithtopNgoModel.post.Count() == 0)
     { poststatus = "No post found"; }
     <div id="loadMoreSection"></div>
