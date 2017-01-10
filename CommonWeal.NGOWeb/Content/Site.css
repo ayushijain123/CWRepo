@@ -764,6 +764,27 @@ tr.pager td {
         width: 90%;
     }
 
+
+    #donationrequest {
+    font-weight: bold;
+    
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /* login page */
     #loginForm {
         border-right: none;
@@ -1670,7 +1691,7 @@ added by payal*/
     }
 
 #profilepost {
-    padding-right: 36px;
+    padding-right: 12px;
     font-weight: bold;
     cursor: pointer;
 }
@@ -1680,13 +1701,20 @@ added by payal*/
         cursor: pointer;
     }
 
-#aboutus {
+
+    .aboutus:hover {
+        color: #2a6496;
+    }
+
+.donationrequest {
+    padding-right: 12px;
     font-weight: bold;
     cursor: pointer;
 }
 
-    #aboutus:hover {
+    .donationrequest:hover {
         color: #2a6496;
+        cursor: pointer;
     }
 
 .profileheadingcolor {
@@ -1782,4 +1810,32 @@ added by payal*/
 .ngoimageguest:hover {
     opacity: 0.6;
     cursor: pointer;
+}
+
+.donationrequestimage {
+max-height:227px;
+max-width:80%;
+    display: block;
+     margin: 0 auto;
+           overflow: hidden;
+}
+
+.textDonation {
+    border-bottom-style: inset;
+  margin: 0 auto;
+}
+.donationdiscription {
+    font-size: 16px;
+}
+.donationrequestimagediv {
+border-bottom-style: inset;
+    padding-bottom: 5px;
+}
+
+
+.donationtextarea {
+    padding-bottom: inherit;
+border-bottom-style: inset;
+
+
 }
