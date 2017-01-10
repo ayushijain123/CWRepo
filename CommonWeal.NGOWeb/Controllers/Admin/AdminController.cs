@@ -223,7 +223,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
-        public ActionResult Accept(int id)
+        public JsonResult Accept(int id)
             {
             try
             {
@@ -239,11 +239,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 context.Configuration.ValidateOnSaveEnabled = false;
 
                 context.SaveChanges();
-                return RedirectToAction("Requests", "Admin");
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {
+                return Json(false, JsonRequestBehavior.AllowGet);
                 Exception raise = dbEx;
                 foreach (var validationErrors in dbEx.EntityValidationErrors)
                 {
@@ -412,7 +413,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             //var ob = context.SpamUsers.ToList();
             //return View(ob);
             User UL = new User();
-            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock == true) && w.LoginUserType == 1).ToList();
+            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock == true || w.IsDecline==true) && w.LoginUserType == 1).ToList();
             List<SpamAndBlockUser> listOfSpamAndBlockUsers = new List<SpamAndBlockUser>();
             foreach (var item in ob)
             {
@@ -424,6 +425,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                     objSpamAndBlock.Status = "Blocked";
                     objSpamAndBlock.IsSpam = false;
                     objSpamAndBlock.IsBlock = true;
+                }
+                else if (item.IsDecline.Value)
+                {
+                    objSpamAndBlock.Status = "Decline";
+                    objSpamAndBlock.IsDecline = true;
+                    objSpamAndBlock.IsBlock = false;                 
                 }
                 else
                 {
