@@ -170,7 +170,7 @@ footer {
 }
 
 .page-footer {
-    font-size: 15px;
+    font-size: 10px;
     padding: 10px;
 }
 
@@ -1172,7 +1172,7 @@ tr.pager td {
 }
 
 th {
-    background-color: #2A3F54;
+  
     text-align: center;
     padding: 10px;
 }
@@ -1195,6 +1195,11 @@ tr:nth-child(even) {
 
 .tableheader {
     color: white;
+    text-align: left;
+        background-color: #2A3F54;
+}
+.tabledonationheader {
+    color:#337ab7;
     text-align: left;
 }
 
@@ -1823,6 +1828,7 @@ max-width:80%;
 .textDonation {
     border-bottom-style: inset;
   margin: 0 auto;
+  margin-bottom:10px;
 }
 .donationdiscription {
     font-size: 16px;
@@ -1831,11 +1837,17 @@ max-width:80%;
 border-bottom-style: inset;
     padding-bottom: 5px;
 }
+.uploaddonationpheadingcolor {
+background-color:#c1c3c4;
+    color: #2e6da4;
+}
 
-
-.donationtextarea {
-    padding-bottom: inherit;
-border-bottom-style: inset;
-right:11px;
-
+.uploaddonationpanelbody{
+        padding-top: 7px;
+    background-color: #F0F0F0;
+}
+#donationtemplate{
+    border: medium;
+    background-color: #F0F0F0;
+    box-shadow: 2px 1px 10px #888888;
 }
