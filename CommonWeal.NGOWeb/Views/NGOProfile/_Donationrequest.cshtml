@@ -54,58 +54,95 @@
 
             }
             
+            //$("#remove").click(function () {
+            //    alert("hit");
+            //    if (i == 1) {
+            //        alert("No more textbox to remove");
+            //        return false;
+            //    }
+
+            //    i--;
+
+            //    $("#product" + counter).remove();
+
+            //});
+
+
+          
+        });
+
+        $("#file").change(function (event) {
+           
+            var fileName = window.URL.createObjectURL(event.target.files[0])
+
+            $("#uploadFileName").html("");
+            $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px">');
+
 
         });
-      
+        function fileclick() {
+            $("#file").click();
+        };
                
 </script>
 
-<div class="col-md-12">
-    <div class="row">
-                <div class="panel panel-default">
-                    <div class="info-header panel-heading">
-                        <strong>Request for Donation</strong>
-                    </div>
-                    <div class="panel panel-body">
-                        <div class="row col-md-12 col-lg-12 col-xs-12 xol-sm-12 donationrequestimagediv">
+<div class="row col-md-12">
+ 
+                <div id="donationtemplate">
+                        <div class="uploaddonationpheadingcolor">
+                            <div class="panel-heading"><b>Request for Donation</b></div>
+                        </div>
+                        <div class="panel-body uploaddonationpanelbody">
+                            <div class=" form-inline col-sm-12  uploadimagesection  ">
+                                <a href="#" id="uploadbtn " style="    margin-left: 16px;">
+                                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick(); return false;"></span>
+                                </a>
+                                <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
+                                <input type="file" id="file" name="file" data-badge="false" />
+                                <span id="uploadFileName"></span>
+                   <div class=" form-inline col-sm-12">
+                                @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Discription about Donation" })
+                                <br />
+                       @* <div class="col-md-12 col-lg-12 col-xs-12 xol-sm-12 donationrequestimagediv">
                      <img class="donationrequestimage " id="donationrequestimage" src="/Images/Tulips.jpg" title=""/>
                          <center><input type="file" id="donationfile" class="donationfile" name="donationfile" /> </center>
                          <center> <span  id="requestimagebutton" class="requestimagebutton btn btn-primary">Upload</span>
                         <span id="requestbutton" class="btn btn-primary">Cancel</span></center> 
-                            </div>
-                        <div class="row col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                         <center><p class="donationdiscription">Discription about Donation</p> </center> 
-                            </div> 
-                      
-                       <div class="row col-md-12 col-lg-12 col-xs-12 col-sm-12 donationtextarea">   
-                                  
-                         <textarea class=" textDonation col-md-9 col-lg-9 col-xs-9 col-sm-9 col-md-push-2 col-lg-push-2 col-xs-push-2 col-sm-push-2"  id="" name="TextRequestDonation" placeholder="Discription about donation" rows="3"></textarea>
+                            </div>*@
 
-                           </div>
-                        
-    <table class="table table-striped" style="margin-bottom: 12px;">
-  <thead class="thead-inverse tableheader">
+                       @* <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                         <center><p class="donationdiscription">Discription about Donation</p> </center> 
+                            </div>  
+                         <textarea class=" textDonation col-md-9 col-lg-9 col-xs-9 col-sm-9 col-md-push-2 col-lg-push-2 col-xs-push-2 col-sm-push-2"  id="" name="TextRequestDonation" placeholder="Discription about donation" rows="3"></textarea>*@
+    <table class="table table-striped" style="margin-bottom: 12px;      border: none;  margin-top: 0px;">
+  <thead class="thead-inverse tabledonationheader">
     <tr>
       
       <th>Product</th>
       <th>Quantity</th>
       <th></th>
+       
     </tr>
   </thead>
   <tbody>
     <tr>
     
-      <td class="input_fields_wrap" style="text-align:center"><input type="text" id="product" style="width:180px;height:32px;font-size: 14px;    background-color: rgba(226, 226, 226, 0.34)"/></td>
-     <td class="input_fields_wr" style="text-align:center"><input type="text" style="    width: 59px;height:32px;font-size: 12px; text-align:center;    background-color: rgba(226, 226, 226, 0.34)"/></td>
-     <td style="text-align:center"><button type="submit" id="submitbtn" class="fa fa-plus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>
+      <td class="input_fields_wrap" style="text-align:center"><input type="text" id="product" style="width:180px;height:32px;font-size: 14px;    background-color:rgba(226, 226, 226, 0.8)"/></td>
+     <td class="input_fields_wr" style="text-align:center"><input type="text" style="    width: 59px;height:32px;font-size: 12px; text-align:center;    background-color:rgba(226, 226, 226, 0.8)"/></td>
+     <td style="text-align:center"><button type="submit" id="submitbtn" class="fa fa-plus"  style="width: 24px; height: 22px;    background: none;
+    border: none;
+    color: #337ab7;    margin-top: 11px;"/></td>
+      
+      @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
     </tr>
      
   </tbody>
-      
-</table>
-  <center> <span  id="" class=" btn btn-primary">Save</span>
-                        <span id="" class="btn btn-primary">Cancel</span>         </center> 
+  </table>
+  <center> <span  id="" class=" btn btn-primary">Post</span>
+ <span id="" class="btn btn-primary">Cancel</span></center> 
                     </div>
                 </div>
             </div>
-            </div>
+           
+    </div>
+    </div>
