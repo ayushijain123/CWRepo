@@ -31,6 +31,10 @@
                                     <span class="fa fa-exclamation-triangle UnspamNGO" id="UnspamNGO-@item.UserID" aria-hidden="true"  title="Unabuse" style="color:green;cursor:pointer; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
                                     <span id="BlockSpamNGO-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamNGO"  title="Block" aria-hidden="true" style="color:red; cursor:pointer;"></span>
                                 }
+                                @if (item.IsDecline == true)
+                                { 
+                                <span id="Accept-@item.UserID" class="fa fa-check fa-2x adminTableData Accept"  title="Accept" aria-hidden="true" style="color:green; cursor:pointer;"></span>
+                                }
                                 @if (item.IsBlock == true)
                                 { 
                                     <span id="UnBlockSpamNGO-@item.UserID" class="fa fa-unlock fa-2x UnBlockSpamNGO" title="Unblock" aria-hidden="true" style="color:green;cursor:pointer;"></span>                            
