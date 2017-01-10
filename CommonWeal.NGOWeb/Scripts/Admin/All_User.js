@@ -156,6 +156,21 @@ $(document).ready(function () {
             });
         }
     });
+
+    /*ajax for accept from blocked ngo*/
+    $(document).on('click', '.Accept', function () {
+        var loginid = $(this).attr('id').split('-')[1];
+        if (loginid == null)
+        { loginid = 0; }
+        var response = confirm("Are you sure you want to accept the request?");
+        if (response) {
+            $.post("/admin/Accept?id=" + loginid, function (result) {
+                if (result == true) {                   
+                    $('#SpamNGO-' + loginid).remove();                  
+                }
+            });
+        }
+    });
 });
 
 

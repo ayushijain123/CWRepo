@@ -139,7 +139,7 @@ var ctx = document.getElementById("myChart1");
 var myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
-        labels: ["Active NGOs", "Warned NGOs", "Blocked/Abused NGOs"],
+        labels: ["Active NGOs", "Warned NGOs", "Blocked/Declined NGOs"],
         datasets: [
         {
             data: [parseInt($("#COAN").html()), parseInt($("#COWU").html()), parseInt($("#COBN").html())],
