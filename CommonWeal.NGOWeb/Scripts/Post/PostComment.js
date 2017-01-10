@@ -375,7 +375,7 @@ $(document).ready(function () {
                     var total = result - (loadcount + 1) * 5;
 
                     if (total <= 0 && result > 0) {
-                        $(".btnLoad").val('No more post');
+                        $(".btnLoad").val('No more post(s)');
                         $(".btnLoad").attr('disabled', true);
                         //alert(result + "" + total);
                         loadcount = 0;
@@ -423,7 +423,7 @@ $(document).ready(function () {
                     var total = result1 - (loadcnt + 1) * 5;
                     // alert(total);
                     if (total <= 0 && result1 > 0) {
-                        $(".btnLoadNGOPfrofile").val('No more post');
+                        $(".btnLoadNGOPfrofile").val('No more post(s)');
                         $(".btnLoadNGOPfrofile").attr('disabled', true);
                        // alert(result1 + "h" + total);
                         loadcnt = 0;
