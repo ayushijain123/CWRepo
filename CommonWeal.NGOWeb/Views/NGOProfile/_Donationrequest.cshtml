@@ -22,10 +22,32 @@
                          <textarea class=" textDonation col-md-9 col-lg-9 col-xs-9 col-sm-9 col-md-push-2 col-lg-push-2 col-xs-push-2 col-sm-push-2"  id="" name="TextRequestDonation" placeholder="Discription about donation" rows="3"></textarea>
 
                            </div>
-                           
-                        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                        <table id="#" class="tableAdmin col-md-10 col-lg-10 col-xs-10 col-sm-10 ">
-                    <thead class="tableheader">
+                        @*   
+                        <div class="row col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                
+                            <table class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                <thead class="tableheader">
+                                  <tr>
+                                      <th class="col-md-4 col-lg-4 col-xs-4 col-sm-4">Product</th>
+                                         <th class="col-md-4 col-lg-4 col-xs-4 col-sm-4">Quantity</th>
+                                        <th class="col-md-4 col-lg-4 col-xs-4 col-sm-4"></th>
+                                  </tr>
+
+                                </thead>
+                               
+                                    <tr>
+                                        <td class="col-md-4 col-lg-4 col-xs-4 col-sm-4"><input type="text"/></td>
+                                         <td class="col-md-4 col-lg-4 col-xs-4 col-sm-4"><input type="text"/></td>
+                                        <td class="col-md-4 col-lg-4 col-xs-4 col-sm-4"> <input type="submit"/></td>
+                                    </tr>
+
+                               
+
+                            </table>
+                          </div>
+                          *@
+                     @*   <table id="#" class="col-md-10 col-lg-10 col-xs-10 col-sm-10 ">
+                    <thead class="">
                         <tr>
                             <th class="col-md-4">Product</th>
                             <th class="col-md-4">Quantity</th>
@@ -38,9 +60,30 @@
                             <td class="col-md-1"><input type="text"/></td>
                          <td class="col-md-1"></td>
                           </tr>
-                </table>
-   </div>
-
+                </table>*@
+    <table class="table table-striped" style="margin-bottom: 12px;">
+  <thead class="thead-inverse tableheader">
+    <tr>
+      
+      <th>Product</th>
+      <th>Quantity</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    
+      <td style="text-align:center"><input type="text" style="width:180px;font-size: 14px;"/></td>
+     <td style="text-align:center"><input type="text" style="    width: 59px;
+    font-size: 12px; text-align:center"/></td>
+     <td style="text-align:center"><button type="submit" class="fa fa-plus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>
+    </tr>
+     
+  </tbody>
+      
+</table>
+  <center> <span  id="" class=" btn btn-primary">Save</span>
+                        <span id="" class="btn btn-primary">Cancel</span>         </center> 
                     </div>
                 </div>
             </div>
