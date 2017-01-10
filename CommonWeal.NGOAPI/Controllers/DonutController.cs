@@ -29,7 +29,7 @@ namespace CommonWeal.NGOAPI.Controllers
             var registeredUsers = obj1.RegisteredUsers;
             Count cnt = new Count();
              //NGOs Table
-            var COR =ngo.Where(w => w.IsActive == false && w.IsBlock == false).Count();
+            var COR =ngo.Where(w => w.IsActive == false && w.IsBlock == false && w.IsDecline==false).Count();
             var COA =ngo.Where(w => w.IsActive == true && w.IsBlock == false).Count();
              var COB = ngo.Where(w => w.IsBlock == true).Count();
             //var COAU= users.Where(w => w.IsActive == true && w.IsBlock == false && w.LoginUserType == 3).Count();
@@ -38,8 +38,9 @@ namespace CommonWeal.NGOAPI.Controllers
             var COWU = ngo.Where(w => w.IsWarn == true && w.IsBlock == false).Count();
             var COTAN = ngo.Where(w => w.IsActive == true).Count();
             var CountOfBlockedNGOS = users.Where(w => w.IsBlock == true&&w.LoginUserType==1).Count();
-           var CountOfSpamNGOS = users.Where(w => w.IsSpam == true && w.LoginUserType == 1).Count();
-           var COTBN = CountOfBlockedNGOS + CountOfSpamNGOS;
+            var CountOfSpamNGOS = users.Where(w => w.IsSpam == true && w.LoginUserType == 1).Count();
+            var CountOfDeclinedNGOS = users.Where(w => w.IsDecline == true && w.LoginUserType == 1).Count();
+            var COTBN = CountOfBlockedNGOS + CountOfSpamNGOS + CountOfDeclinedNGOS;
           //var COTN = cnt.CountOfTotalActiveNGO + cnt.CountOfTotalBlockNGO;
         //var COTAU = users.Where(w => w.IsActive == true && w.LoginUserType == 3).Count();
          // var COTBU = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
