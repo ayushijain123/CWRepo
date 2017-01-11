@@ -12,6 +12,7 @@ namespace CommonWeal.NGOWeb.ViewModel
         public string Status { get; set; }
         public bool IsBlock { get; set; }
         public bool IsSpam { get; set; }
+        public bool IsDecline { get; set; }
         public int UserID { get; set; }
     }
 }
