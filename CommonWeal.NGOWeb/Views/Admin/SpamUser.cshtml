@@ -12,11 +12,11 @@
                 <table id="myTable" class="tableAdmin col-md-12">
                     <thead class="tableheader col-md-12">
                         <tr>
-                            <th class="col-md-4">USER NAME</th>
-                            <th class="col-md-4">COMMENT CONTENT</th>
-                             <th class="col-md-4">REPORTED BY</th>
-                             <th class="col-md-4">STATUS</th>
-                            <th class="col-md-4">ACTION</th>
+                            <th class="col-md-2">USER NAME</th>
+                            <th class="col-md-3">COMMENT CONTENT</th>
+                             <th class="col-md-2">REPORTED BY</th>
+                             <th class="col-md-2">STATUS</th>
+                            <th class="col-md-3">ACTION</th>
 
 
                             @* <th class="col-md-2">RESET PWD</th>*@
@@ -25,11 +25,11 @@
                     @foreach (var item in Model)
                     {                       
                         <tr id="SpamUser-@item.UserID">
-                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.AbuseUser)</td>
-                          <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.ReportMessage)</td>
-                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.ReportedBy)</td>
-                            <td id="status-@item.UserID" class="col-md-4 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
-                            <td id="iconcoluser-@item.UserID" class="col-md-4 adminTableData">
+                            <td class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.AbuseUser)</td>
+                          <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.ReportMessage)</td>
+                            <td class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.ReportedBy)</td>
+                            <td id="status-@item.UserID" class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td id="iconcoluser-@item.UserID" class="col-md-3 adminTableData">
                                 @if (item.IsSpam == true)
                                 { 
                                     <span id="DeleteComment-@item.UserID" class="fa fa-trash-o fa-2x adminTableData DeleteComment"  title="Delete Comment" aria-hidden="true" style="color:red; cursor:pointer;"></span>
@@ -47,7 +47,7 @@
                     }
                     <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
                     <h3>
-                        <center><strong>Blocked/Abused Users</strong></center>
+                        <center><strong>Blocked/Declined Users</strong></center>
                     </h3>
                 </table>
             </div>

@@ -20,8 +20,8 @@
                     @foreach (var item in Model)
                     {                       
                         <tr id="Unwarn-@item.LoginID">
-                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.NGOName)</td>
-                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.NGOEmailID)</td>
+                            <td class="col-md-4 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
+                            <td class="col-md-4 adminTableData">@Html.DisplayFor(modelItem => item.NGOEmailID)</td>
                             <td class="col-md-4 adminTableData"><span id="unwarn-@item.LoginID" class="fa fa-exclamation-triangle fa-2x unwarn"  title="Unwarn" style="color:green;cursor:pointer"></span></td>
 
                         </tr>    
