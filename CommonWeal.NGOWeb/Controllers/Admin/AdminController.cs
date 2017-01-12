@@ -419,26 +419,47 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             {
                 SpamAndBlockUser objSpamAndBlock = new SpamAndBlockUser();
                 objSpamAndBlock.UserID = item.LoginID;
-                objSpamAndBlock.UserName = context.NGOUsers.Single(w => w.LoginID == item.LoginID).NGOName;
+                objSpamAndBlock.AbuseUser = context.NGOUsers.Single(w => w.LoginID == item.LoginID).NGOName;
                 if (item.IsBlock)
                 {
                     objSpamAndBlock.Status = "Blocked";
                     objSpamAndBlock.IsSpam = false;
                     objSpamAndBlock.IsBlock = true;
+                    listOfSpamAndBlockUsers.Add(objSpamAndBlock);
                 }
                 else if (item.IsDecline.Value)
                 {
                     objSpamAndBlock.Status = "Decline";
                     objSpamAndBlock.IsDecline = true;
-                    objSpamAndBlock.IsBlock = false;                 
+                    objSpamAndBlock.IsBlock = false;
+                    listOfSpamAndBlockUsers.Add(objSpamAndBlock);
                 }
                 else
                 {
                     objSpamAndBlock.IsSpam = true;
                     objSpamAndBlock.IsBlock = false;
                     objSpamAndBlock.Status = "Report Abuse";
+                    var spamUserList = context.SpamUsers.ToList();
+                    if (spamUserList != null)
+                    {
+                        var reportedCmntList = spamUserList.Where(x=>x.LoginId==item.LoginID).ToList();
+                        foreach(var spamcomment in reportedCmntList)
+                        {                                                        
+                            listOfSpamAndBlockUsers.Add(new SpamAndBlockUser() 
+                            { 
+                              UserID = objSpamAndBlock.UserID, 
+                              AbuseUser = objSpamAndBlock.AbuseUser, 
+                              ReportedBy = spamcomment.ReportedBy, 
+                              ReportMessage = spamcomment.CommentContent, 
+                              CommentId = spamcomment.CommentID.Value,
+                              IsSpam=true,
+                              Status = "Report Abuse"
+                            });
+                        }
+                       
+                    }
                 }
-                listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+              
             }
             return View(listOfSpamAndBlockUsers);
         }
@@ -521,20 +542,43 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             {
                 SpamAndBlockUser objSpamAndBlock = new SpamAndBlockUser();
                 objSpamAndBlock.UserID = item.LoginID;
-                objSpamAndBlock.UserName = context.RegisteredUsers.Single(w => w.LoginID == item.LoginID).FirstName;
+                objSpamAndBlock.AbuseUser = context.RegisteredUsers.Single(w => w.LoginID == item.LoginID).FirstName;
                 if (item.IsBlock)
                 {                    
                     objSpamAndBlock.Status = "Blocked";
                     objSpamAndBlock.IsSpam = false;
                     objSpamAndBlock.IsBlock = true;
+                    listOfSpamAndBlockUsers.Add(objSpamAndBlock);
                 }
                 else
                 {
                     objSpamAndBlock.IsSpam = true;
                     objSpamAndBlock.IsBlock = false;
                     objSpamAndBlock.Status = "Reported Abuse";
-                }
-                listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+                    var spamUserList = context.SpamUsers.ToList();
+                    if (spamUserList != null)
+                    {
+                        var reportedCmntList = spamUserList.Where(x => x.LoginId == item.LoginID).ToList();
+                        foreach (var spamcomment in reportedCmntList)
+                        {
+                            listOfSpamAndBlockUsers.Add(new SpamAndBlockUser()
+                            {
+                                UserID = objSpamAndBlock.UserID,
+                                AbuseUser = objSpamAndBlock.AbuseUser,
+                                ReportedBy = spamcomment.ReportedBy,
+                                ReportMessage = spamcomment.CommentContent,
+                                CommentId = spamcomment.CommentID.Value,
+                                IsSpam = true,
+                                Status = "Report Abuse"
+                            });
+                            //objSpamAndBlock.AbuseUser = spamcomment.AbuseedUserName;
+                            //objSpamAndBlock.ReportedBy = spamcomment.ReportedBy;
+                            //objSpamAndBlock.ReportMessage = spamcomment.CommentContent;
+                            //objSpamAndBlock.CommentId = spamcomment.CommentID.Value;
+                            //listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+                        }
+                    }
+                }              
             }
             return View(listOfSpamAndBlockUsers);
         }
