@@ -483,6 +483,7 @@ namespace CommonWeal.NGOWeb
             CommonWealEntities context1 = new CommonWealEntities();
            var ob= context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
             SpamUser su = new SpamUser();
+            su.CommentID = CommentId;
             su.LoginId= ob.LoginID.Value;
             su.CommentContent = ob.CommentText;
             su.ModifiedOn = DateTime.Now;
@@ -500,7 +501,7 @@ namespace CommonWeal.NGOWeb
                     break;
 
             }
-            var checkUser = context1.SpamUsers.Where(x => x.LoginId == su.LoginId).FirstOrDefault();
+            var checkUser = context1.SpamUsers.Where(x => x.CommentID == su.CommentID).FirstOrDefault();
             if (checkUser == null)
             {
                 context1.SpamUsers.Add(su);
