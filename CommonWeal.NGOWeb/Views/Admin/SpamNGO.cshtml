@@ -12,10 +12,11 @@
                 <table id="myTable" class="tableAdmin col-md-12">
                     <thead class="tableheader col-md-12">
                         <tr>
-                            <th class="col-md-4">USERNAME</th>
-                            <th class="col-md-4">STATUS</th>
-                            <th class="col-md-4">ACTION</th>
-
+                            <th class="col-md-4">USER NAME</th>
+                            <th class="col-md-4">COMMENT CONTENT</th>
+                            <th class="col-md-4">REPORTED BY</th>
+                             <th class="col-md-4">STATUS</th>
+                              <th class="col-md-4">ACTION</th>
 
                             @* <th class="col-md-2">RESET PWD</th>*@
                         </tr>
@@ -23,13 +24,16 @@
                     @foreach (var item in Model)
                     {                       
                         <tr id="SpamNGO-@item.UserID">
-                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.UserName)</td>
+                               <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.AbuseUser)</td>
+                               <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.ReportMessage)</td>
+                            <td class="col-md-3 col-md-push-1 adminTableDataLeft">@Html.DisplayFor(modelItem => item.ReportedBy)</td>
                             <td id="status-@item.UserID" class="col-md-4 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
                             <td id="iconcol-@item.UserID" class="col-md-4 adminTableData">
                                 @if (item.IsSpam == true)
                                 { 
-                                    <span class="fa fa-exclamation-triangle UnspamNGO" id="UnspamNGO-@item.UserID" aria-hidden="true"  title="Unabuse" style="color:green;cursor:pointer; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
-                                    <span id="BlockSpamNGO-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamNGO"  title="Block" aria-hidden="true" style="color:red; cursor:pointer;"></span>
+                                  <span id="DeleteComment-@item.UserID" class="fa fa-trash-o fa-2x adminTableData DeleteComment"  title="Delete Comment" aria-hidden="true" style="color:red; cursor:pointer;"></span>
+                                  <span class="fa fa-exclamation-triangle UnspamNGO" id="UnspamNGO-@item.UserID" aria-hidden="true"  title="Unabuse" style="color:green;cursor:pointer; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
+                                  <span id="BlockSpamNGO-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamNGO"  title="Block" aria-hidden="true" style="color:red; cursor:pointer;"></span>
                                 }
                                 @if (item.IsDecline == true)
                                 { 
