@@ -1851,3 +1851,13 @@ background-color:#c1c3c4;
     background-color: #F0F0F0;
     box-shadow: 2px 1px 10px #888888;
 }
+.al-center {
+    text-align:center;
+}
+
+.tbl-td {
+    background-color: #fff;
+    font-size: 12px;
+    text-align:center;
+    height:32px;
+}
