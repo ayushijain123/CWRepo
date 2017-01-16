@@ -95,11 +95,10 @@
 
 </script>
 
-<div class="container-fluid">
     <div class="row col-md-2 col-xs-2 col-sm-2 col-lg-2">
         @Html.Partial("../UserHome/_SearchNGOPartial", Model.ngouser)
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
         <div class="container">
             <div class="row col-sm-10 col-sm-push-1  selectcategory">
                 @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon ", @multiple = "multiple" })
@@ -117,7 +116,7 @@
     </div>
     <div class="col-md-2">
     </div>
-</div>
+
 @section scripts{
     <script src="~/Scripts/Post/PostComment.js"></script>
     <script type="text/javascript">

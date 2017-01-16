@@ -100,31 +100,30 @@
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        @Html.DropDownList("country", ViewBag.country as SelectList, "Select Country", new { style = "width: 170px;height: 18px;font-size: 11px;", @class = "ngocountry" })
+        @Html.DropDownList("country", ViewBag.country as SelectList, "Select Country", new { style = "width: 95%;font-size: 11px;", @class = "ngocountry" })
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         @* @Html.DropDownList("State", ViewBag.city as SelectList, "Choose state", new { @class = "inputBox", @id = "DropDownListstate" })*@
-        @Html.DropDownList("State", new SelectList(string.Empty, "ID", "Name"), "Select State", new { style = "width:170px;height: 18px;font-size: 11px;", @class = "ngostate" })
+        @Html.DropDownList("State", new SelectList(string.Empty, "ID", "Name"), "Select State", new { style = "width:95%;font-size: 11px;", @class = "ngostate" })
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         @*  @Html.DropDownList("city", ViewBag.city as SelectList, "--Choose city--", new {style = "width:200px" })*@
-        @Html.DropDownList("city", new SelectList(string.Empty, "ID", "Name"), "Choose City", new { style = "width:170px; height: 18px;font-size: 11px;", @class = "ngocity" })
+        @Html.DropDownList("city", new SelectList(string.Empty, "ID", "Name"), "Choose City", new { style = "width:95%;font-size: 11px;", @class = "ngocity" })
     </div>
 
-    <div class="search-box">
-        <div class="form-inline col-xs-9 col-sm-9 col-md-9 col-lg-9" style="padding-right: 0px;">
-            <input type="text" class="form-control search-form searchNGO" placeholder="Search NGO by Name" style="width: 150px; font-size: 11px; padding-left: 7px;">
-        </div>
+    <div class="row col-md-12 col-sm-12 col-xs-12 col-lg-12 searchbox">
+       
+            <input type="text" class="form-control search-form searchNGO col-md-10 col-lg-10 col-sm-10 col-xs-10" placeholder="Search NGO by Name" style="width: 65%; font-size: 11px; padding-left: 7px;"/>
+       
         <!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
-        <button type="button" class=" btn btn-primary search-btn submitSelectedNGO col-xs-2 col-sm-2 col-md-2 col-lg-2" style="left: 20px; margin-top: 5px; padding-right: 20px; padding-top: 7px; padding-left: 5px;">
+        <button type="button" class=" btn btn-primary search-btn submitSelectedNGO col-xs-1 col-sm-1 col-md-1 col-lg-1" style=" width: 10%; margin-top: 5px; padding-right: 20px; padding-top: 7px;">
             <i class="fa fa-search " style="font-size: 11px;"></i>
         </button>
-
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+             
     </div>
-    <div class="top-ngo list-inline">
+    <div class="top-ngo list-inline row col-md-12 col-lg-12 col-xs-12 col-sm-12 ">
         <div id="mySidenav" class="sidenav">
             <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="top-text">Top NGOs</div>
