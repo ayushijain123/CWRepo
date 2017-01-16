@@ -194,6 +194,7 @@
     <Compile Include="Utility\APIHelper.cs" />
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Models\Password.cs" />
+    <Compile Include="ViewModel\DonateItem.cs" />
     <Compile Include="ViewModel\NGOProfileCustom.cs" />
     <Compile Include="ViewModel\NGOProfilePostCustom.cs" />
     <Compile Include="ViewModel\PostWithCategory.cs" />
