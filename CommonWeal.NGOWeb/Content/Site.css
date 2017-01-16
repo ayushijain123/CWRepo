@@ -893,6 +893,16 @@ tr.pager td {
     cursor: pointer;
     overflow: hidden;
 }
+.donationimageurlpost {
+ margin: 0 auto;
+    max-width: 50%;
+    max-height: 600px;
+    display: block;
+    /*margin-left: 40px;
+    margin-right: auto;*/
+    cursor: pointer;
+    overflow: hidden;
+}
 
 
 .likecommentsign {
@@ -1860,4 +1870,49 @@ background-color:#c1c3c4;
     font-size: 12px;
     text-align:center;
     height:32px;
+}
+
+
+
+.donationtag {
+    width: auto;
+    padding-top: 14px;
+    color:#428bca;  
+}
+.donationmodaldialog {
+margin-top:6%;
+background-color:white;
+}
+.submitdonate {
+font-size: 14px; 
+color: #999999;
+ opacity: 3;
+  padding-right: 19px !important;
+}
+    .submitdonate:hover {
+    color:#337ab7;
+    opacity:3;
+    }
+.donatetableheadcolor {
+color: #337ab7;
+}
+.donatetextbox {
+width: 52px;
+ height: 27px;
+  font-size: 12px;
+   margin-bottom: 0px; 
+   margin-top: 0px; 
+   background-color: rgba(226, 226, 226, 0.8);
+}
+.donatetable {
+margin-bottom: 12px;
+ border: none;
+  margin-top: 0px;
+}
+.donationimage {
+    background-color: white;
+     padding-top: 10px;
+}
+.searchbox {
+margin-left:0px;
 }
