@@ -562,6 +562,19 @@ $(document).ready(function () {
 
 
     });
+
+    $(document).on('click', ".donationrequestraedonly", function () {
+        var userid = $(this).attr('id').split('-')[1];
+
+        $.post("/NGOProfile/Donationrequestreadonly?id=" + userid, function (result) {
+
+            $('#NGOProfilecontent').html("");
+            $('#NGOProfilecontent').append(result);
+
+        });
+
+
+    });
    
     /*end ajax for about us partial*/
 
