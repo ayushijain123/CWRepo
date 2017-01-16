@@ -337,7 +337,24 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             return Json(true);
         }
 
+[AllowAnonymous]
+        [HttpPost]
+        public PartialViewResult Donationrequestreadonly()
+        {
 
+
+
+
+
+
+            return PartialView("~/Views/NGOProfile/_Donationrequestreadonly.cshtml");
+
+
+
+
+
+
+        }
 
     }
 }
