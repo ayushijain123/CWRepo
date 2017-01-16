@@ -1,36 +1,16 @@
 ﻿<script>
     /*added on 10-01-2017*/
-    //$(document).ready(function () {
+    var wrapper = $(".input_fields_wrap");
+    var w = $(".input_fields_wr");
+    var b = $(".btn-fields");
+    var Add = 10;
+    var i = 1;
+    var ItemRow = { '0': 0 };
+  
 
+      
 
-    //    var readURL = function (input) {
-    //        if (input.files && input.files[0]) {
-    //            var reader = new FileReader();
-
-    //            reader.onload = function (e) {
-    //                $('.profile-pic').attr('src', e.target.result);
-    //            }
-
-    //            reader.readAsDataURL(input.files[0]);
-    //        }
-    //    }
-
-
-    //    $("#donationfile").on('change', function () {
-
-    //        readURL(this);
-    //    });
-
-    //    $("#requestimagebutton").on('click', function (event) {
-
-    //        //var fileName = $('#donationfile')[0].files[0];
-    //        alert(URL.createObjectURL(event.target.files[0]));
-    //        $('#donationfile').change(function (event) {
-    //            var tmppath = URL.createObjectURL(event.target.files[0]);
-    //            $("#donationrequestimage").fadeIn("fast").attr('src', tmppath);
-    //        });
-    //    });
-
+    $(document).ready(function () {
         $("#donationfile").hide();
         $("#requestimagebutton").hide();
         $("#requestbutton").hide();
@@ -41,108 +21,187 @@
 
         });
 
-        var wrapper = $(".input_fields_wrap");
-        var w = $(".input_fields_wr");
-        var submitbtn = 10;
-        var i = 1;
-        $("#submitbtn").click(function () {
-            if (i < submitbtn) { 
-               
-                $(wrapper).append('<br/><input type="text" id="product" style="width:180px;height:32px;font-size: 14px; background-color: rgba(226, 226, 226, 0.34)"/>');
-                $(w).append('<br/><input type="text" style="    width: 59px;height:32px;font-size: 12px; text-align:center; background-color: rgba(226, 226, 226, 0.34)"/>')
-                i++;
 
-            }
+        $(document).on('click', '#Add', function () {
             
-            //$("#remove").click(function () {
-            //    alert("hit");
-            //    if (i == 1) {
-            //        alert("No more textbox to remove");
-            //        return false;
+            if (i < Add) {
+                $(".Add").remove();
+                var row = '<tr id="row' + i + '" class="row ajaxrow">';
+                row = row + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname' + i + '"class="itemname tbl-td" style="width: 180px;"/></td>';
+                row = row + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity' +i+'" class="quantity tbl-td" style="width: 59px;"/></td>';
+                row = row + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px;" /></td>';
+                row = row + '<td class="btn-fields al-center" "><button  id="Minus-' + i + '" class="fa fa-minus Minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td></tr>';
+                console.log(row);
+                $("#RequestItemTable").append(row);
+                ItemRow[i]=i;
+                console.log(ItemRow);
+                i++;
+            }
+           
+
+        });
+       // $('#Minus-1').click(function () {
+       //   $('.Add').prepend('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px;" /></td>')
+       //});
+
+        $(document).on('click', '.Minus', function () {
+            
+
+            var id = $(this).attr('id').split('-')[1];
+            
+            delete ItemRow[id];
+            
+            //  $("#row"+id).remove();
+            $(this).parents('#row' + id).remove();
+            });
+        //else {
+        //    $("#Add").prop('disabled', true);
+        //    //$("#remove").click(function () {
+        //    //    alert("hit");
+        //    //    if (i == 1) {
+        //    //        alert("No more textbox to remove");
+        //    //        return false;
+        //    //    }
+        //}
+
+
+        $("#submitrequest").click(function () {
+
+            var formData = new FormData(); //create form data object
+            var obj, Itemlist;
+            Itemlist = [];
+           
+            jQuery.each(ItemRow, function (key, value) {
+                obj = {};
+                
+                console.log(value);
+                obj["Item"] = $("#itemname" + value).val();
+                obj["ItemCount"] = parseInt($("#quantity" + value).val());
+                Itemlist.push(obj);
+
+            });console.log(Itemlist);
+            var description = $("#postContentTextArea").val();
+            formData.append("description", description); // append description
+
+            // append all itemlist to formdata
+            jQuery.each(Itemlist, function (key, value) {
+                 formData.append('itemlist[' + key + '].Item', value.Item);
+                formData.append('itemlist[' + key + '].ItemCount', value.ItemCount);
+            });
+
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#file").get(0);
+                var files = fileUpload.files;
+                for (var k = 0; k < files.length; k++) {
+                    formData.append("DonationRequestImg", files[k]);
+                }
+            }
+            //formData.append("DonationRequestImg", files[k]);
+            $.ajax({
+                url: "/NGOProfile/SubmitDonationRequest",
+                type: "POST",
+                dataType: "JSON",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result == true) {
+                        $('#postContentTextArea').val("");
+                        $('#file').val("");
+                        $('.ajaxrow').remove();
+                        $('.cleanfield').val("");
+
+                        $('#sampleimage').remove();
+                        alert('successfully uploaded');
+                    }
+                    else {
+                        alert('Sorry upload Failed try again');
+
+                    }
+                   
+                   
+
+                }
+            });
+
+            //$.ajax({
+            //    url: "/NGOProfile/SubmitDonationRequest",
+            //    type: "POST",
+            //    dataType: "JSON",
+            //    data: fileData,
+            //    contentType: false,
+            //    processData: false,
+            //    success: function (result) {
             //    }
-
-            //    i--;
-
-            //    $("#product" + counter).remove();
-
             //});
 
-
-          
         });
-
         $("#file").change(function (event) {
-           
+
             var fileName = window.URL.createObjectURL(event.target.files[0])
 
             $("#uploadFileName").html("");
-            $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px">');
+            $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px" id="sampleimage">');
 
 
         });
-        function fileclick() {
-            $("#file").click();
-        };
-               
+
+    });
+    function fileclick() {
+        $("#file").click();
+    };
+
 </script>
 
 <div class="row col-md-12">
- 
-                <div id="donationtemplate">
-                        <div class="uploaddonationpheadingcolor">
-                            <div class="panel-heading"><b>Request for Donation</b></div>
-                        </div>
-                        <div class="panel-body uploaddonationpanelbody">
-                            <div class=" form-inline col-sm-12  uploadimagesection  ">
-                                <a href="#" id="uploadbtn " style="    margin-left: 16px;">
-                                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick(); return false;"></span>
-                                </a>
-                                <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
-                                <input type="file" id="file" name="file" data-badge="false" />
-                                <span id="uploadFileName"></span>
-                   <div class=" form-inline col-sm-12">
-                                @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Discription about Donation" })
-                                <br />
-                       @* <div class="col-md-12 col-lg-12 col-xs-12 xol-sm-12 donationrequestimagediv">
-                     <img class="donationrequestimage " id="donationrequestimage" src="/Images/Tulips.jpg" title=""/>
-                         <center><input type="file" id="donationfile" class="donationfile" name="donationfile" /> </center>
-                         <center> <span  id="requestimagebutton" class="requestimagebutton btn btn-primary">Upload</span>
-                        <span id="requestbutton" class="btn btn-primary">Cancel</span></center> 
-                            </div>*@
 
-                       @* <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                         <center><p class="donationdiscription">Discription about Donation</p> </center> 
-                            </div>  
-                         <textarea class=" textDonation col-md-9 col-lg-9 col-xs-9 col-sm-9 col-md-push-2 col-lg-push-2 col-xs-push-2 col-sm-push-2"  id="" name="TextRequestDonation" placeholder="Discription about donation" rows="3"></textarea>*@
-    <table class="table table-striped" style="margin-bottom: 12px;      border: none;  margin-top: 0px;">
-  <thead class="thead-inverse tabledonationheader">
-    <tr>
-      
-      <th>Product</th>
-      <th>Quantity</th>
-      <th></th>
-       
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-    
-      <td class="input_fields_wrap" style="text-align:center"><input type="text" id="product" style="width:180px;height:32px;font-size: 14px;    background-color:rgba(226, 226, 226, 0.8)"/></td>
-     <td class="input_fields_wr" style="text-align:center"><input type="text" style="    width: 59px;height:32px;font-size: 12px; text-align:center;    background-color:rgba(226, 226, 226, 0.8)"/></td>
-     <td style="text-align:center"><button type="submit" id="submitbtn" class="fa fa-plus"  style="width: 24px; height: 22px;    background: none;
-    border: none;
-    color: #337ab7;    margin-top: 11px;"/></td>
-      
-      @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
-    </tr>
-     
-  </tbody>
-  </table>
-  <center> <span  id="" class=" btn btn-primary">Post</span>
- <span id="" class="btn btn-primary">Cancel</span></center> 
-                    </div>
+    <div id="donationtemplate">
+        <div class="uploaddonationpheadingcolor">
+            <div class="panel-heading"><b>Request for Donation</b></div>
+        </div>
+        <div class="panel-body uploaddonationpanelbody">
+            <div class=" form-inline col-sm-12  uploadimagesection  ">
+                <a href="#" id="uploadbtn " style="margin-left: 16px;">
+                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick(); return false;"></span>
+                </a>
+                <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
+                <input type="file" id="file" name="file" data-badge="false" />
+                <span id="uploadFileName"></span>
+                <div class=" form-inline col-sm-12">
+                    @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Discription about Donation" })
+                    <br />
+                    <table class="table" style="margin-bottom: 12px; border: none; margin-top: 0px;">
+                        <thead class="thead-inverse tabledonationheader">
+                            <tr class="row">
+
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="RequestItemTable">
+                            <tr id="row0" class="row">
+                                <td class="input_fields_wrap al-center">
+                                    <input type="text" id="itemname0" class="itemname cleanfield  tbl-td" style="width: 180px;"/></td>
+                                <td class="input_fields_wr al-center">
+                                    <input type="text" class="quantity cleanfield tbl-td" id="quantity0" style="width: 59px;"/></td>
+                                <td class="btn-fields al-center" >
+                                    <button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px;" />
+                                </td>
+                               
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                  <center> <span  id="" class=" btn btn-primary">Post</span>
+                  <span  id="submitrequest" class=" btn btn-primary">Submit</span>
+                       <span id="" class="btn btn-primary">Cancel</span>         </center>
                 </div>
             </div>
-           
+        </div>
+
     </div>
-    </div>
+</div>
