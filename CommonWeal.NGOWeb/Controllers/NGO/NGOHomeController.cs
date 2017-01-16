@@ -80,7 +80,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 // string result = System.Text.Encoding.UTF8.GetString(byteArray);                  
                 postValue.file = Convert.ToBase64String(res);
                 postValue.content = obpost.PostContent;
-                postValue.loginid = LoginUser.LoginID; 
+                postValue.loginid = LoginUser.LoginID;
+                
                 postValue.cat = category;
                 var result = await Task.Run(() => APIHelper<string>.PostJson("Post/NGOPost", postValue));
                 //string ImageName = System.IO.Path.GetFileName(file.FileName);
