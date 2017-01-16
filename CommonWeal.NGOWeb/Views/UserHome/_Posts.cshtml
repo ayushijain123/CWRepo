@@ -181,7 +181,7 @@
                             <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
                             <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm") </span>
 
-                            @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()))
+                           @if (this.User.IsInRole("Admin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOHome") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOHome")) && this.User.Identity.Name.Equals(item.userId.ToString()))
                             {
                   
                                 <span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete Comment"></span>
