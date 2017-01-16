@@ -1,0 +1,85 @@
+﻿<script>
+    $('.disable').prop('disabled', true);
+
+</script>
+
+<div id="uploadpost" class="row col-sm-10 col-sm-push-1 col-md-10">
+
+
+    <div class="postcontainer" id="Post-">
+        <div id="posttemplate">
+
+            <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
+                <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
+
+                <a><span class="usernamepost col-md-4 col-lg-4 col-xs-2 col-sm-2 cursor" id="usernamepost"><b>Samman</b></span></a>
+
+
+                <span class="posttime col-md-4 col-lg-4 col-xs-4 col-sm-4">07-jan-2017</span>
+
+                <span class="donationtag col-md-3  col-xs-5 col-sm-5 col-lg-3 float-right"><a href="#" data-toggle="modal" data-target="#donationmodal">Wish to donate</a></span>
+
+                <div class="modal fade" id="donationmodal" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                    <div class="modal-dialog donationmodaldialog" role="document">
+                        <table class="table table-striped  donatetable">
+                            <thead class="thead-inverse ">
+                                <tr>
+                                    <th style="padding-left: 18px;" class="donatetableheadcolor">Product</th>
+                                    <th class="donatetableheadcolor" >Quantity Required</th>
+                                    <th class="donatetableheadcolor">Recived</th>
+                                    <th class="donatetableheadcolor">Donate</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+
+                                    <td class="input_fields_wrap " style="text-align: center">@*<input type="text" id="product" class="disable" style="width:150px;height:32px;margin-right9px;font-size: 14px;    background-color:rgba(226, 226, 226, 0.8)"/>*@ Shirt</td>
+                                    <td class="input_fields_wr " style="text-align: center">@*<input type="text" class="disable"style="width: 59px;height:32px;font-size: 12px;   background-color:rgba(226, 226, 226, 0.8)"/>*@ 10</td>
+                                    <td style="text-align: center">@*<input type="text" class="disable"style="width: 59px;height:32px;font-size: 12px; text-align:left;  margin-left:22px;  background-color:rgba(226, 226, 226, 0.8)"/>*@ 2</td>
+                                    <td style="text-align: center">
+                                        <input class="donatetextbox" type="text"  /></td>
+                                    @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                        <button type="button" class="close submitdonate" data-dismiss="modal" aria-label="Close" >
+                            <span>Submit</span></button>
+                    </div>
+
+                </div>
+            </div>
+            <div name="Textmessage" id="Textmessage">
+                <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
+                    <span>Need your help</span>
+                </div>
+            </div>
+            <div class="donationimage" >
+                <img src="/Images/Koala.jpg" data-toggle="modal" @*data-target="#myModal2-@item.postId"*@ class="donationimageurlpost" @*id="imageurlpost-@item.postId"*@ />
+            </div>
+            <table class="table table-striped donatetable" >
+                <thead class="thead-inverse tabledonationheader">
+                    <tr>
+                        <th style="padding-left: 18px;">Product</th>
+                        <th>Quantity Required</th>
+                        <th>Recived</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        <td class="input_fields_wrap " style="text-align: center">@*<input type="text" id="product" class="disable" style="width:150px;height:32px;margin-right9px;font-size: 14px;    background-color:rgba(226, 226, 226, 0.8)"/>*@ Shirt</td>
+                        <td class="input_fields_wr " style="text-align: center">@*<input type="text" class="disable"style="width: 59px;height:32px;font-size: 12px;   background-color:rgba(226, 226, 226, 0.8)"/>*@ 10</td>
+                        <td style="text-align: center">@*<input type="text" class="disable"style="width: 59px;height:32px;font-size: 12px; text-align:left;  margin-left:22px;  background-color:rgba(226, 226, 226, 0.8)"/>*@ 2</td>
+                        <td></td>
+                        @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
