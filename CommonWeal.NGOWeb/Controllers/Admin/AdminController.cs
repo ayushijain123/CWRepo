@@ -1,19 +1,12 @@
 ﻿using CommonWeal.Data;
-using System;
-using System.Linq;
-using System.Web.Mvc;
-using CommonWeal.NGOWeb.Utility;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Security;
 using CommonWeal.Data.ModelExtension;
-using System.Net;
-using System.Collections;
+using CommonWeal.NGOWeb.Utility;
 using CommonWeal.NGOWeb.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web.Mvc;
 
 
 namespace CommonWeal.NGOWeb.Controllers.Admin
@@ -48,12 +41,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return View(request);
         }
 
- 
+
         public ActionResult Requests()
         {
             CommonWealEntities context = new CommonWealEntities();
             dbOperations obj = new dbOperations();
-            var request = obj.GetAllUserNotAccepted().OrderByDescending(x=>x.CreatedOn);
+            var request = obj.GetAllUserNotAccepted().OrderByDescending(x => x.CreatedOn);
             return View(request);
         }
         //public ActionResult Index()
@@ -223,8 +216,12 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 throw raise;
             }
         }
+
+
+
+
         public JsonResult Accept(int id)
-            {
+        {
             try
             {
                 CommonWealEntities context = new CommonWealEntities();
@@ -262,7 +259,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             }
         }
 
-       /*method for reject request from view details page*/
+        /*method for reject request from view details page*/
         public ActionResult Decline(int id)
         {
             try
@@ -275,7 +272,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 context.SaveChanges();
                 var ob1 = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
                 ob1.IsActive = false;
-                ob1.IsDecline = true;                
+                ob1.IsDecline = true;
                 context.SaveChanges();
                 return RedirectToAction("Requests", "Admin");
             }
@@ -382,8 +379,8 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             return RedirectToAction("NGODetails", "Admin");
         }
         public ActionResult NGODetails()
-        {        
-           return View(TempData["ViewDetails"]);
+        {
+            return View(TempData["ViewDetails"]);
         }
 
         /*method for More Info*/
@@ -413,7 +410,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             //var ob = context.SpamUsers.ToList();
             //return View(ob);
             User UL = new User();
-            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock == true || w.IsDecline==true) && w.LoginUserType == 1).ToList();
+            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock == true || w.IsDecline == true) && w.LoginUserType == 1).ToList();
             List<SpamAndBlockUser> listOfSpamAndBlockUsers = new List<SpamAndBlockUser>();
             foreach (var item in ob)
             {
@@ -422,14 +419,36 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 objSpamAndBlock.AbuseUser = context.NGOUsers.Single(w => w.LoginID == item.LoginID).NGOName;
                 if (item.IsBlock)
                 {
-                    objSpamAndBlock.Status = "Blocked";
-                    objSpamAndBlock.IsSpam = false;
-                    objSpamAndBlock.IsBlock = true;
-                    listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+                    var reportedCmntList = context.SpamUsers.Where(x => x.LoginId == item.LoginID).ToList();
+                    if (reportedCmntList != null && reportedCmntList.Count() > 0)
+                    {
+                        foreach (var spamcomment in reportedCmntList)
+                        {
+                            listOfSpamAndBlockUsers.Add(new SpamAndBlockUser()
+                            {
+                                UserID = objSpamAndBlock.UserID,
+                                AbuseUser = objSpamAndBlock.AbuseUser,
+                                ReportedBy = spamcomment.ReportedBy,
+                                ReportMessage = spamcomment.CommentContent,
+                                CommentId = spamcomment.CommentID.Value,
+                                IsSpam = true,
+                                IsBlock = true,
+                                Status = "Abused after blocked"
+                            });
+                        }
+                    }
+                    else
+                    {
+                        objSpamAndBlock.Status = "Blocked";
+                        objSpamAndBlock.IsSpam = false;
+                        objSpamAndBlock.IsBlock = true;
+                        listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+                    }
+
                 }
                 else if (item.IsDecline.Value)
                 {
-                    objSpamAndBlock.Status = "Decline";
+                    objSpamAndBlock.Status = "Declined";
                     objSpamAndBlock.IsDecline = true;
                     objSpamAndBlock.IsBlock = false;
                     listOfSpamAndBlockUsers.Add(objSpamAndBlock);
@@ -442,24 +461,24 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                     var spamUserList = context.SpamUsers.ToList();
                     if (spamUserList != null)
                     {
-                        var reportedCmntList = spamUserList.Where(x=>x.LoginId==item.LoginID).ToList();
-                        foreach(var spamcomment in reportedCmntList)
-                        {                                                        
-                            listOfSpamAndBlockUsers.Add(new SpamAndBlockUser() 
-                            { 
-                              UserID = objSpamAndBlock.UserID, 
-                              AbuseUser = objSpamAndBlock.AbuseUser, 
-                              ReportedBy = spamcomment.ReportedBy, 
-                              ReportMessage = spamcomment.CommentContent, 
-                              CommentId = spamcomment.CommentID.Value,
-                              IsSpam=true,
-                              Status = "Report Abuse"
+                        var reportedCmntList = spamUserList.Where(x => x.LoginId == item.LoginID).ToList();
+                        foreach (var spamcomment in reportedCmntList)
+                        {
+                            listOfSpamAndBlockUsers.Add(new SpamAndBlockUser()
+                            {
+                                UserID = objSpamAndBlock.UserID,
+                                AbuseUser = objSpamAndBlock.AbuseUser,
+                                ReportedBy = spamcomment.ReportedBy,
+                                ReportMessage = spamcomment.CommentContent,
+                                CommentId = spamcomment.CommentID.Value,
+                                IsSpam = true,
+                                Status = "Report Abuse"
                             });
                         }
-                       
+
                     }
                 }
-              
+
             }
             return View(listOfSpamAndBlockUsers);
         }
@@ -482,7 +501,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         public JsonResult BlockFromSpamNGO(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
-            User UL = new User(); 
+            User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             var objngo = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsBlock = true;
@@ -492,6 +511,14 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             objngo.IsActive = false;
             objngo.IsDecline = false;
             context.Configuration.ValidateOnSaveEnabled = false;
+            var spamuserlist = context.SpamUsers.Where(x => x.LoginId == id).ToList();
+            foreach (var item in spamuserlist)
+            {
+                var comment = context.PostComments.Where(x => x.CommentID == item.CommentID).FirstOrDefault();
+                comment.IsDelete = true;
+                context.SpamUsers.Remove(item);
+                context.SaveChanges();
+            }
             context.SaveChanges();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -499,7 +526,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         public JsonResult UnBlockFromSpamNGO(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
-            User UL = new User();            
+            User UL = new User();
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             var objngo = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsBlock = false;
@@ -508,7 +535,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             ob.IsSpam = false;
             objngo.IsBlock = false;
             objngo.IsActive = true;
-            objngo.IsDecline = false;            
+            objngo.IsDecline = false;
             context.Configuration.ValidateOnSaveEnabled = false;
             UnSpamFromTable(id);
             context.SaveChanges();
@@ -516,8 +543,8 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
         public bool UnSpamFromTable(int id)
         {
-            CommonWealEntities context = new CommonWealEntities();    
-            if(id!=null && id!=0)
+            CommonWealEntities context = new CommonWealEntities();
+            if (id != null && id != 0)
             {
                 var ob = context.SpamUsers.Where(w => w.LoginId == id).FirstOrDefault();
                 if (ob != null)
@@ -525,10 +552,10 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                     context.Configuration.ValidateOnSaveEnabled = false;
                     context.SpamUsers.Remove(ob);
                     context.SaveChanges();
-                    return true;            
+                    return true;
                 }
-                }
-            return false;           
+            }
+            return false;
         }
         /*method for spam users*/
         public ActionResult SpamUser()
@@ -536,7 +563,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             CommonWealEntities context = new CommonWealEntities();
             //var ob = context.SpamUsers.ToList();
             //return View(ob);          
-            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock==true)&&w.LoginUserType==3).ToList();
+            var ob = context.Users.Where(w => (w.IsSpam == true || w.IsBlock == true) && w.LoginUserType == 3).ToList();
             List<SpamAndBlockUser> listOfSpamAndBlockUsers = new List<SpamAndBlockUser>();
             foreach (var item in ob)
             {
@@ -544,11 +571,32 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 objSpamAndBlock.UserID = item.LoginID;
                 objSpamAndBlock.AbuseUser = context.RegisteredUsers.Single(w => w.LoginID == item.LoginID).FirstName;
                 if (item.IsBlock)
-                {                    
-                    objSpamAndBlock.Status = "Blocked";
-                    objSpamAndBlock.IsSpam = false;
-                    objSpamAndBlock.IsBlock = true;
-                    listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+                {
+                    var reportedCmntList = context.SpamUsers.Where(x => x.LoginId == item.LoginID).ToList();
+                    if (reportedCmntList != null && reportedCmntList.Count() > 0)
+                    {
+                        foreach (var spamcomment in reportedCmntList)
+                        {
+                            listOfSpamAndBlockUsers.Add(new SpamAndBlockUser()
+                            {
+                                UserID = objSpamAndBlock.UserID,
+                                AbuseUser = objSpamAndBlock.AbuseUser,
+                                ReportedBy = spamcomment.ReportedBy,
+                                ReportMessage = spamcomment.CommentContent,
+                                CommentId = spamcomment.CommentID.Value,
+                                IsSpam = true,
+                                IsBlock = true,
+                                Status = "Abused after blocked"
+                            });
+                        }
+                    }
+                    else
+                    {
+                        objSpamAndBlock.Status = "Blocked";
+                        objSpamAndBlock.IsSpam = false;
+                        objSpamAndBlock.IsBlock = true;
+                        listOfSpamAndBlockUsers.Add(objSpamAndBlock);
+                    }
                 }
                 else
                 {
@@ -571,19 +619,14 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                                 IsSpam = true,
                                 Status = "Report Abuse"
                             });
-                            //objSpamAndBlock.AbuseUser = spamcomment.AbuseedUserName;
-                            //objSpamAndBlock.ReportedBy = spamcomment.ReportedBy;
-                            //objSpamAndBlock.ReportMessage = spamcomment.CommentContent;
-                            //objSpamAndBlock.CommentId = spamcomment.CommentID.Value;
-                            //listOfSpamAndBlockUsers.Add(objSpamAndBlock);
                         }
                     }
-                }              
+                }
             }
             return View(listOfSpamAndBlockUsers);
         }
 
-        /*method for Unspam*/      
+        /*method for Unspam*/
         public JsonResult UnSpam(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -591,7 +634,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             var ob = context.Users.Where(w => w.LoginID == id).FirstOrDefault();
             ob.IsSpam = false;
             var unspam = context.SpamUsers.Where(x => x.LoginId == id).FirstOrDefault();
-            if (unspam!=null)
+            if (unspam != null)
             {
                 context.SpamUsers.Remove(unspam);
             }
@@ -600,7 +643,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         }
 
         /*method for block user from SpamUser*/
-       
+
         public JsonResult BlockFromSpamUser(int id)
         {
             CommonWealEntities context = new CommonWealEntities();
@@ -609,6 +652,14 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             ob.IsActive = false;
             ob.IsBlock = true;
             ob.IsSpam = false;
+            var spamuserlist = context.SpamUsers.Where(x => x.LoginId == id).ToList();
+            foreach (var item in spamuserlist)
+            {
+                var comment = context.PostComments.Where(x => x.CommentID == item.CommentID).FirstOrDefault();
+                comment.IsDelete = true;
+                context.SpamUsers.Remove(item);
+                context.SaveChanges();
+            }
             context.SaveChanges();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
@@ -752,7 +803,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 return RedirectToAction("index", "Admin");
             }
         }
-       
+
 
         //public ActionResult DisplayGraph()
         //{
@@ -797,7 +848,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         //    return RedirectToAction("Index", "Admin");
         //}
 
-     
+
         //public JsonResult GetData()
         //{
         //    CommonWealEntities context = new CommonWealEntities();
