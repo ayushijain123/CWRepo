@@ -7,12 +7,11 @@
 }
 
 
-<div class="container-fluid">
-    <div class="col-md-2">
+    <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
         @Html.Partial("../UserHome/_SearchNGOPartial", Model.PostWithtopNgoModel.ngouser)
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
         <div class="container">
             <div class="row">
                 <div class="panel panel-default  panelNGO ">
@@ -42,6 +41,8 @@
                     <div class="panel-footer panel-group navbar-fixed profileheadingcolor">
                         <ul class="ultext nav">
                             <li id="profilepost"><span id="NGOProfilepost-@Model.CurrentUserID" class="NGOProfilepost">Post</span></li>
+                                                <li><span id="donationrequestreadonly-@Model.CurrentUserID" class="donationrequestraedonly">Donation Request readonly</span></li>
+                       
                        <li><span id="donationrequest-@Model.CurrentUserID" class="donationrequest">Donation Request</span></li>
                             <li ><span id="aboutus-@Model.CurrentUserID" class="aboutus">About Us</span></li>
                         </ul>
@@ -57,7 +58,7 @@
             </div>
         </div>
     </div>
-</div>
+
 
 
 
