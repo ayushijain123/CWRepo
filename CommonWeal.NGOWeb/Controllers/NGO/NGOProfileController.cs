@@ -8,6 +8,8 @@ using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.Web.Mvc.Ajax;
 using CommonWeal.NGOWeb.ViewModel;
+using CommonWeal.Data;
+
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
     //[AuthorizeRoles = "NGOAdmin")]]
@@ -293,6 +295,46 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
             return PartialView("~/Views/NGOProfile/_Donationrequest.cshtml");
         
+        }
+
+        [HttpPost]
+        public JsonResult SubmitDonationRequest(List<DonateItem> itemlist, string description, HttpPostedFileBase DonationRequestImg)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            DonationRequest dr = new DonationRequest();
+            DonationDetail dt = new DonationDetail();
+             
+                        string fname;
+
+                        // Checking for Internet Explorer  
+                     
+                       
+                        
+                            fname = DonationRequestImg.FileName;
+                        
+
+                        // Get the complete folder path and store the file inside it.  
+                      var  physicalPath = Server.MapPath("/Images/Post/" + fname);
+                        DonationRequestImg.SaveAs(physicalPath);
+                        dr.ImgeUrl = "/Images/Post/" + fname;
+                        dr.RequestNGOId = LoginUser.LoginID;
+                        dr.createdOn = DateTime.Now;
+                        dr.Description = description;
+                        context.DonationRequests.Add(dr);
+                        context.SaveChanges();
+                        foreach(var item in itemlist){
+
+                        dt.ItemName = item.Item;
+                        dt.ItemCount = item.ItemCount;
+                        dt.RequestID = dr.RequestID;
+                        dt.createdOn = DateTime.Now;
+                        context.DonationDetails.Add(dt);
+                        context.SaveChanges();
+                    }
+
+               
+
+            return Json(true);
         }
 
 
