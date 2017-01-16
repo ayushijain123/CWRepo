@@ -229,7 +229,7 @@ namespace CommonWeal.NGOWeb
         /*getting post on 1st time page loading*/
         public List<Post> GetPostOnLoad()
         {
-            var NGOPostlist = context.NGOPosts.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
+            var NGOPostlist = context.NGOPosts.Where(x=>x.Isdelete==false).OrderByDescending(x => x.CreatedOn ).Take(5).ToList();
             var list = getPostwithcategoryList();
             BaseController.pageleft = list.Count();
             var selectList = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
@@ -240,7 +240,7 @@ namespace CommonWeal.NGOWeb
         public List<PostWithCategory> getPostwithcategoryList()
         {
 
-            var postList = context.NGOPosts.ToList();
+            var postList = context.NGOPosts.Where(x => x.Isdelete == false).ToList();
             List<PostWithCategory> finalPostList = new List<PostWithCategory>();
             foreach (var item in postList)
             {
@@ -309,11 +309,9 @@ namespace CommonWeal.NGOWeb
             var PostLikeListmain = context.PostLikes.ToList();
             if (list != null)
             {
-
-
                 foreach (var item in list)
                 {
-
+                    
                     // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
                     var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
@@ -347,7 +345,7 @@ namespace CommonWeal.NGOWeb
                     pm.commentCount = item.PostCommentCount.Value;
                     pm.postId = item.PostID;
                     /*getting list of like user of curent post*/
-                    var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
+                    var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID && Cmntlst.IsDelete==false).ToList();
 
                     //start like list
                     List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
@@ -482,7 +480,7 @@ namespace CommonWeal.NGOWeb
         {
             CommonWealEntities context1 = new CommonWealEntities();
            var ob= context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
-            SpamUser su = new SpamUser();
+            SpamUser su = new SpamUser();            
             su.CommentID = CommentId;
             su.LoginId= ob.LoginID.Value;
             su.CommentContent = ob.CommentText;
