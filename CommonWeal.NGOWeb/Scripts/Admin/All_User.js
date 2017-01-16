@@ -171,6 +171,40 @@ $(document).ready(function () {
             });
         }
     });
+
+    /*ajax for deleting a comment(NGO)*/
+    $(document).on('click', '.DeleteCommentNGO', function () {
+        var commentid = $(this).attr('id').split('-')[1];
+        if (commentid == null)
+        { commentid = 0; }
+        var response = confirm("Are you sure you want to delete this comment?");
+        if (response) {
+            $.post("/Post/DeleteCommentOnPost?id=" + commentid, function (result) {
+                if (result == true) {
+                    var loginid = $("#"+commentid).text();
+                    $('#SpamNGO-' + loginid).remove();
+                }
+            });
+        }
+    });
+
+    /*ajax for deleting a comment(USER)*/
+    $(document).on('click', '.DeleteCommentUser', function () {
+        var commentid = $(this).attr('id').split('-')[1];
+        if (commentid == null)
+        { commentid = 0; }
+        var response = confirm("Are you sure you want to delete this comment?");
+        if (response) {
+            $.post("/Post/DeleteCommentOnPost?id=" + commentid, function (result) {
+                if (result == true) {
+                   
+                    var loginid = $("#"+commentid).text();
+                    alert(loginid);
+                    $('#SpamUser-' + loginid).remove();
+                }
+            });
+        }
+    });
 });
 
 
