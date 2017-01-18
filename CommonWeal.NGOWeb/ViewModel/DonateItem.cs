@@ -10,6 +10,5 @@ namespace CommonWeal.NGOWeb.ViewModel
         public string Item{get; set; }
         public int ItemCount { get; set; }
         public int DonateCount { get; set; }
-
     }
 }
