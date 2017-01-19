@@ -3,14 +3,20 @@
 <script type="text/javascript">
  
 </script>
+
 <p id="controllername" hidden>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</p>
 
 @if (Model != null && Model.Count() > 0)
 {
-    <div id="uploadpost" class="row col-sm-10 col-sm-push-1 col-md-10">
+   
+        <div id="uploadpost" class="row col-sm-10 col-sm-push-1 col-md-10">
 
         @foreach (var item in Model)
-        { <div class="postcontainer" id="Post-@item.postId">
+        {
+          if(item.IsRequest== false)
+          {
+              
+             <div class="postcontainer" id="Post-@item.postId">
             <div id="posttemplate">
 
                 <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
@@ -231,6 +237,12 @@
             </div>
         </div>          
         }
+        else
+        { 
+           @Html.Partial("~/Views/NGOProfile/_Donationrequestreadonly.cshtml", item);
+          }
+        }
     </div>
+
 }
 
