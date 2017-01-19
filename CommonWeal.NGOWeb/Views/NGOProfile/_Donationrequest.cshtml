@@ -1,4 +1,5 @@
-﻿<script>
+﻿
+<script>
     /*added on 10-01-2017*/
     var wrapper = $(".input_fields_wrap");
     var w = $(".input_fields_wr");
@@ -29,8 +30,8 @@
                 var row = '<tr id="row' + i + '" class="row ajaxrow">';
                 row = row + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname' + i + '"class="itemname tbl-td" style="width: 180px;"/></td>';
                 row = row + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity' +i+'" class="quantity tbl-td" style="width: 59px;"/></td>';
-                row = row + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px;" /></td>';
-                row = row + '<td class="btn-fields al-center" "><button  id="Minus-' + i + '" class="fa fa-minus Minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td></tr>';
+                row = row + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>';
+                row = row + '<td class="btn-fields al-center" "><button  id="Minus-' + i + '" class="fa fa-minus Minus"  style="width: 24px; height: 22px;    margin-top: 11px;  background: none; border: none;color: #2e6da4;"/></td></tr>';
                 console.log(row);
                 $("#RequestItemTable").append(row);
                 ItemRow[i]=i;
@@ -79,11 +80,13 @@
                 obj["ItemCount"] = parseInt($("#quantity" + value).val());
                 Itemlist.push(obj);
 
-            });console.log(Itemlist);
+            });
+            console.log(Itemlist);
             var description = $("#postContentTextArea").val();
             formData.append("description", description); // append description
 
             // append all itemlist to formdata
+            debugger
             jQuery.each(Itemlist, function (key, value) {
                  formData.append('itemlist[' + key + '].Item', value.Item);
                 formData.append('itemlist[' + key + '].ItemCount', value.ItemCount);
@@ -122,8 +125,9 @@
                    
 
                 }
-            });
+            });  });
 
+       
             //$.ajax({
             //    url: "/NGOProfile/SubmitDonationRequest",
             //    type: "POST",
@@ -135,7 +139,7 @@
             //    }
             //});
 
-        });
+      
         $("#file").change(function (event) {
 
             var fileName = window.URL.createObjectURL(event.target.files[0])
@@ -187,7 +191,7 @@
                                 <td class="input_fields_wr al-center">
                                     <input type="text" class="quantity cleanfield tbl-td" id="quantity0" style="width: 59px;"/></td>
                                 <td class="btn-fields al-center" >
-                                    <button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px;" />
+                                    <button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />
                                 </td>
                                
                             </tr>
@@ -196,7 +200,7 @@
 
                     </table>
 
-                  <center> <span  id="" class=" btn btn-primary">Post</span>
+                  <center> 
                   <span  id="submitrequest" class=" btn btn-primary">Submit</span>
                        <span id="" class="btn btn-primary">Cancel</span>         </center>
                 </div>
