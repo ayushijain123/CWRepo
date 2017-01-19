@@ -22,5 +22,7 @@ namespace CommonWeal.NGOWeb.ViewModel
         public string CreatedBy { get; set; }
         public List<string> CategoryList { get; set; }
         public List<int> CategoryIdList { get; set; }
+        public int RequestID { get; set; }
+        public bool IsRequest { get; set; }
     }
 }
