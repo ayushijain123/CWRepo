@@ -300,61 +300,140 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         [HttpPost]
         public JsonResult SubmitDonationRequest(List<DonateItem> itemlist, string description, HttpPostedFileBase DonationRequestImg)
         {
+            bool result = false;
+
+            if (itemlist != null) { 
+            
+            
+         
             CommonWealEntities context = new CommonWealEntities();
             DonationRequest dr = new DonationRequest();
             DonationDetail dt = new DonationDetail();
+            NGOPost np = new NGOPost();
              
                         string fname;
 
                         // Checking for Internet Explorer  
-                     
-                       
-                        
+
+
+                        if (DonationRequestImg != null) {
+
                             fname = DonationRequestImg.FileName;
-                        
+                            var physicalPath = Server.MapPath("/Images/Post/" + fname);
+                            DonationRequestImg.SaveAs(physicalPath);
+                            dr.ImgeUrl = "/Images/Post/" + fname;
+                            np.PostUrl = "/Images/Post/" + fname;
+                        }
+                            
 
                         // Get the complete folder path and store the file inside it.  
-                      var  physicalPath = Server.MapPath("/Images/Post/" + fname);
-                        DonationRequestImg.SaveAs(physicalPath);
-                        dr.ImgeUrl = "/Images/Post/" + fname;
-                        dr.RequestNGOId = LoginUser.LoginID;
-                        dr.createdOn = DateTime.Now;
-                        dr.Description = description;
-                        context.DonationRequests.Add(dr);
-                        context.SaveChanges();
-                        foreach(var item in itemlist){
 
+                        if (description != null) {
+                            dr.Description = description;
+                            np.PostContent = description;
+                        
+                        }
+                         dr.RequestNGOId = LoginUser.LoginID;
+                        dr.createdOn = DateTime.Now;
+                       
+                       
+                        context.DonationRequests.Add(dr);
+          
+                        context.SaveChanges();
+
+                        np.CreatedOn = DateTime.Now;
+         
+                       
+                        np.LoginID = LoginUser.LoginID;
+                        np.PostLikeCount = 0;
+                        np.Isdelete = false;
+                        np.PostCommentCount = 0;
+                        np.RequestID = dr.RequestID;
+                        np.IsRequest = true;
+                
+                        context.NGOPosts.Add(np);
+                        foreach(var item in itemlist)
+                        {
                         dt.ItemName = item.Item;
                         dt.ItemCount = item.ItemCount;
                         dt.RequestID = dr.RequestID;
                         dt.createdOn = DateTime.Now;
+                        dt.DonatedCount = 0;
+                        dt.ItemRequire = 0; 
+                           
+                          
                         context.DonationDetails.Add(dt);
                         context.SaveChanges();
+                        result = true;
                     }
 
-               
 
-            return Json(true);
+            }
+            return Json(result);
         }
 
-[AllowAnonymous]
+//[AllowAnonymous]
+//        [HttpPost]
+//        public PartialViewResult Donationrequestreadonly()
+//        {
+
+//            return PartialView("~/Views/NGOProfile/_Donationrequestreadonly.cshtml");
+
+//        }
+
+
         [HttpPost]
-        public PartialViewResult Donationrequestreadonly()
+        public JsonResult receivedonation(List<ReceiveDonation> receivedonation)
         {
+            List < ReceiveDonation > receivelist= new List<ReceiveDonation>();
+            CommonWealEntities context = new CommonWealEntities();
+            
+          //  DonationDetail dd = new DonationDetail();
+            DonarDetail donarob = new DonarDetail();
+            User u=new User();
+            //var ob1 = context.DonationDetails.Where(x => x.ItemID == ItemID).FirstOrDefault();
+          
+            foreach (var item in receivedonation)
+            {
+                if (item.ReceivedItem >= 0 && item.ReceivedItem!=0) {
+                    ReceiveDonation rd = new ReceiveDonation();
+
+                    var ob = context.DonationDetails.Where(x => x.ItemID == item.ItemID).FirstOrDefault();
+                    ob.DonatedCount = ob.DonatedCount + item.ReceivedItem;
+                    ob.ItemRequire = ob.ItemCount - ob.DonatedCount;
+                     if(ob.ItemRequire<=0 ){
+                         ob.ItemRequire = 0;
+                    }
+                    var donarexist = context.DonarDetails.Where(x=>x.ItemID==item.ItemID && x.RequestId==ob.RequestID).FirstOrDefault();
+                    // dd.ItemID = item.ItemID;
+                    if (donarexist == null)
+                    {
+                        donarob.ItemID = ob.ItemID;
+                        donarob.RequestId = ob.RequestID;
+
+                        donarob.DonarLoginID = LoginUser.LoginID;
+                        donarob.createdOn = DateTime.Now;
+                        donarob.Donatecount = item.ReceivedItem;
+                        context.DonarDetails.Add(donarob);
+                    }
+                    else {
+                        donarexist.Donatecount += item.ReceivedItem;
+                    }
+
+                    context.SaveChanges();
+                    rd.ItemID = ob.ItemID;
+                    rd.ReceivedItem = ob.ItemRequire.Value ;
+                    receivelist.Add(rd);
+                
+                }
+               
+            }
 
 
-
-
-
-
-            return PartialView("~/Views/NGOProfile/_Donationrequestreadonly.cshtml");
-
-
-
-
-
-
+            return Json(receivelist,JsonRequestBehavior.AllowGet);
+           
         }
+        
 
     }
 }
