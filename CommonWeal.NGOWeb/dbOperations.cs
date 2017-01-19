@@ -1,15 +1,12 @@
-﻿using CommonWeal.NGOWeb;
+﻿using CommonWeal.Data;
+using CommonWeal.NGOWeb.Controllers;
+using CommonWeal.NGOWeb.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
-using System.Web.Mvc;
-using System.Net.Mail;
+using System.Linq;
 using System.Net;
-using CommonWeal.NGOWeb.ViewModel;
-using CommonWeal.Data;
-using CommonWeal.NGOWeb.Controllers;
+using System.Net.Mail;
 
 namespace CommonWeal.NGOWeb
 {
@@ -25,7 +22,7 @@ namespace CommonWeal.NGOWeb
         public List<NGOUser> GetAllUserAccepted()
         {
             List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == true && w.IsDecline==false).ToList();
+            userList = context.NGOUsers.Where(w => w.IsActive == true && w.IsDecline == false).ToList();
             //userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive== false).ToList();
             return userList;
         }
@@ -152,7 +149,7 @@ namespace CommonWeal.NGOWeb
                 //foreach (var res in list )
                 {
                     selectedlist = list.Where(x => x.CategoryIdList.Where(w => category.Contains(w)).Any()).ToList();
-                    
+
                 }
             }
             else
@@ -168,15 +165,15 @@ namespace CommonWeal.NGOWeb
         public List<Post> GetPostById(int id)
         {
             //var NGOPostlist = context.NGOPosts.Where(x => x.LoginID == id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
-            var list = getPostwithcategoryList().Where(x=>x.LoginID==id).ToList();
-             BaseController.pageleft = list.Count();
-             list = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
+            var list = getPostwithcategoryList().Where(x => x.LoginID == id).ToList();
+            BaseController.pageleft = list.Count();
+            list = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var result = GetAllPost(list);
             return result;
         }
-       
+
         /*getting post on see more click*/
-        public List<Post> GetPostOnSeeMore( int []category,int pageNum = 0,int NgoID=0)
+        public List<Post> GetPostOnSeeMore(int[] category, int pageNum = 0, int NgoID = 0)
         {
             var selectlist = new List<PostWithCategory>();
             //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
@@ -189,16 +186,17 @@ namespace CommonWeal.NGOWeb
 
                     selectlist = list.Where(x => x.CategoryIdList.Where(w => category.Contains(w)).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
                     BaseController.pageleft = list.Count();
-                   
+
                 }
                 else
                 {
-                  
-                    BaseController.pageleft =list.Count();
+
+                    BaseController.pageleft = list.Count();
                     selectlist = list.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
                 }
             }
-            else {
+            else
+            {
                 selectlist = list.Where(x => x.LoginID == NgoID).ToList();
                 BaseController.pageleft = selectlist.Count();
                 selectlist = selectlist.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
@@ -229,7 +227,7 @@ namespace CommonWeal.NGOWeb
         /*getting post on 1st time page loading*/
         public List<Post> GetPostOnLoad()
         {
-            var NGOPostlist = context.NGOPosts.Where(x=>x.Isdelete==false).OrderByDescending(x => x.CreatedOn ).Take(5).ToList();
+            var NGOPostlist = context.NGOPosts.Where(x => x.Isdelete == false).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var list = getPostwithcategoryList();
             BaseController.pageleft = list.Count();
             var selectList = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
@@ -312,7 +310,7 @@ namespace CommonWeal.NGOWeb
             {
                 foreach (var item in list)
                 {
-                    
+
                     // var RegUser =RegUserlist.Where(regusr=>regusr.UserEmail==item.EmailID);
                     var Comment = Commentlist.Where(comment => comment.PostID == item.PostID);
 
@@ -346,7 +344,7 @@ namespace CommonWeal.NGOWeb
                     pm.commentCount = item.PostCommentCount.Value;
                     pm.postId = item.PostID;
                     /*getting list of like user of curent post*/
-                    var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID && Cmntlst.IsDelete==false).ToList();
+                    var postcomment = Commentlist.Where(Cmntlst => Cmntlst.PostID == item.PostID).ToList();
 
                     //start like list
                     List<PostLikeModel> imageLikeList = new List<PostLikeModel>();
@@ -372,7 +370,6 @@ namespace CommonWeal.NGOWeb
                         pl.postId = item.PostID;
                         pl.userImageUrl = "";
                         pl.UserID = like.LoginID;
-                      
                         imageLikeList.Add(pl);
                         likecount++;
 
@@ -390,6 +387,7 @@ namespace CommonWeal.NGOWeb
                         Comment cmnt = new Comment();
                         cmnt.commentId = a.CommentID;
                         cmnt.commentContent = a.CommentText;
+                        cmnt.IsDelete = a.IsDelete.Value;
                         cmnt.commentLike = 0;
                         cmnt.commentUserImage = "";
                         cmnt.CreatedDateTime = a.CreatedOn.Value;
@@ -413,6 +411,7 @@ namespace CommonWeal.NGOWeb
                     pm.commentCount = item.PostCommentCount.Value;
                     //end all comment of  particular post
                     pm.PostComments = imagecommentlist;
+
                     pm.controllername = "default";
                     pm.postCategoryNameList = item.CategoryList;
                     pm.IsRequest = item.IsRequest;
@@ -484,23 +483,23 @@ namespace CommonWeal.NGOWeb
         public bool abuseUser(int CommentId)
         {
             CommonWealEntities context1 = new CommonWealEntities();
-           var ob= context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
-            SpamUser su = new SpamUser();            
+            var ob = context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
+            SpamUser su = new SpamUser();
             su.CommentID = CommentId;
-            su.LoginId= ob.LoginID.Value;
+            su.LoginId = ob.LoginID.Value;
             su.CommentContent = ob.CommentText;
             su.ModifiedOn = DateTime.Now;
-            var post = context1.NGOPosts.Where(x=>x.PostID==ob.PostID).FirstOrDefault();            
-            su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();     
+            var post = context1.NGOPosts.Where(x => x.PostID == ob.PostID).FirstOrDefault();
+            su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();
             int userType = context1.Users.Where(user => user.LoginID == su.LoginId).FirstOrDefault().LoginUserType;
 
             switch (userType)
             {
                 case 1: string NGOUser = context1.NGOUsers.Where(ngusr => ngusr.LoginID == su.LoginId).FirstOrDefault().NGOName.ToString();
-                    su.AbuseedUserName= NGOUser;
+                    su.AbuseedUserName = NGOUser;
                     break;
                 case 3: var RegUser = context1.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == su.LoginId).FirstOrDefault();
-                   su.AbuseedUserName = RegUser.FirstName + " " + RegUser.LastName;
+                    su.AbuseedUserName = RegUser.FirstName + " " + RegUser.LastName;
                     break;
 
             }
@@ -508,7 +507,7 @@ namespace CommonWeal.NGOWeb
             if (checkUser == null)
             {
                 context1.SpamUsers.Add(su);
-                var res= context1.Users.Where(a => a.LoginID == su.LoginId).FirstOrDefault();
+                var res = context1.Users.Where(a => a.LoginID == su.LoginId).FirstOrDefault();
                 res.IsSpam = true;
                 context1.SaveChanges();
                 return true;
