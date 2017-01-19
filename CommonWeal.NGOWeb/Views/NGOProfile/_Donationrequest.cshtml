@@ -7,7 +7,7 @@
     var Add = 10;
     var i = 1;
     var ItemRow = { '0': 0 };
-  
+    var j = 0;
 
       
 
@@ -36,14 +36,14 @@
                 $("#RequestItemTable").append(row);
                 ItemRow[i]=i;
                 console.log(ItemRow);
-                i++;
+                i++; j++;
             }
            
 
         });
-       // $('#Minus-1').click(function () {
-       //   $('.Add').prepend('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px;" /></td>')
-       //});
+        
+        
+        
 
         $(document).on('click', '.Minus', function () {
             
@@ -51,7 +51,11 @@
             var id = $(this).attr('id').split('-')[1];
             
             delete ItemRow[id];
-            
+            j--;
+            if (j == 0)
+            {
+                $("#row0").append('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>');
+            }
             //  $("#row"+id).remove();
             $(this).parents('#row' + id).remove();
             });
@@ -115,6 +119,7 @@
                         $('.cleanfield').val("");
 
                         $('#sampleimage').remove();
+                        $("#row0").append('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>');
                         alert('successfully uploaded');
                     }
                     else {
