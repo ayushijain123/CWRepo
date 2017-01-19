@@ -252,7 +252,8 @@ namespace CommonWeal.NGOWeb
                 post.PostUrl = item.PostUrl;
                 post.PostContent = item.PostContent;
                 post.PostID = item.PostID;
-
+                post.RequestID = item.RequestID.Value;
+                post.IsRequest = item.IsRequest.Value;
                 List<string> categoryNames = new List<string>();
                 post.CategoryIdList = new List<int>();
                 foreach (var category in item.PostCategories)
@@ -414,8 +415,12 @@ namespace CommonWeal.NGOWeb
                     pm.PostComments = imagecommentlist;
                     pm.controllername = "default";
                     pm.postCategoryNameList = item.CategoryList;
-
+                    pm.IsRequest = item.IsRequest;
+                    pm.donateItemlist = donationdetails(item.RequestID);
                     ob.Add(pm);
+
+
+                    
                 }
             }
             return (ob);
@@ -510,6 +515,27 @@ namespace CommonWeal.NGOWeb
             }
             return false;
         }
+
+        //added on 16/jan/2017
+        //for doantion request
+        public List<DonateItem> donationdetails(int id) {
+            
+            var donate= context.DonationDetails.Where(x=> x.RequestID == id).ToList();
+            List<DonateItem> dd =new List<DonateItem>();
+           foreach(var don in donate){
+           DonateItem di = new DonateItem();
+           di.Item = don.ItemName;
+           di.ItemCount = don.ItemCount.Value;
+           di.DonateCount = don.DonatedCount.Value;
+           di.ItemID = don.ItemID;
+           di.ItemRequire = don.ItemRequire.Value;
+           dd.Add(di);
+           }
+           return dd;
+        }
+
+
+
 
     }
 }
