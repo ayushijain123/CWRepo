@@ -66,6 +66,7 @@
                 contentType: false,
                 processData: false,
                 success: function (result) {
+
                     jQuery.each(result, function (key, value) {
                         $("#modeldonateCount-" + value.ItemID).val(value.ReceivedItem);
                         $("#donateCount-" + value.ItemID).val(value.ReceivedItem);
