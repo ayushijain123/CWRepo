@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace CommonWeal.NGOWeb.ViewModel
 {
     public class PostLikeModel
@@ -10,7 +6,8 @@ namespace CommonWeal.NGOWeb.ViewModel
         public int postId { get; set; }
         public string userName { get; set; }
         public string userImageUrl { get; set; }
-        public int  UserID { get; set; }
-       
+        public int UserID { get; set; }
+        public bool IsDelete { get; set; }
+
     }
 }
