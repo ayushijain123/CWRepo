@@ -45,6 +45,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 donationdetail = donationdata.donationdetaildata[i];
                 donationdetail.RequestID = donationrequest.RequestID;
                 donationdetail.DonatedCount=0;
+                donationdetail.ItemRequire = 0;
                 //donationdetail.ItemName = donationdata.donationdetaildata.it
                 //donationdetail.ItemCount = donationdata.ItemCount;
                 donationdetail.createdOn = DateTime.Now;
