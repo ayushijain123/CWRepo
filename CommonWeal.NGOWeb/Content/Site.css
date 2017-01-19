@@ -1202,6 +1202,9 @@ th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+.donatetable tr:nth-child(even) {
+background-color:white;
+}
 
 .tableheader {
     color: white;
@@ -1902,7 +1905,7 @@ width: 52px;
   font-size: 12px;
    margin-bottom: 0px; 
    margin-top: 0px; 
-   background-color: rgba(226, 226, 226, 0.8);
+   background-color:#fcf8e3;
 }
 .donatetable {
 margin-bottom: 12px;
@@ -1915,4 +1918,29 @@ margin-bottom: 12px;
 }
 .searchbox {
 margin-left:0px;
+}
+.wishtodonate {
+       padding-left: 482px;
+    width: auto;
+   
+    color:#428bca;  
+
+
+
+}
+.wishtodonate:hover {
+text-decoration:underline;
+}
+.wishtodonateguest{
+       padding-left: 482px;
+    width: auto;
+}
+.trfont {
+font-size:12px;
+}
+.tdfont {
+        font-size: 12px;
+}
+.text-transform {
+text-transform:capitalize;
 }
