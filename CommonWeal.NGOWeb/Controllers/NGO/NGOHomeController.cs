@@ -28,7 +28,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             
             dbOperations ob = new dbOperations();
             /*get postList from GetAllPost method*/
-            var postlist = ob.GetPostOnLoad();
+            var postlist = ob.GetPostOnLoad(LoginUser.LoginID);
             postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
             var list = ob.GetAllCategory();
            // ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
