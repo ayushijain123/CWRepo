@@ -1,7 +1,62 @@
 ﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
 
 <script type="text/javascript">
- 
+    $('.disable').prop('disabled', true);
+
+
+
+    $(document).ready(function () {
+
+        $('#donationmodal').on('click', '#receivedonation', function () {
+       // $('#receivedonation').click(function () {
+            console.log('receive click');
+            //alert('+$(".donatetextbox".value)+');
+            var formData = new FormData(); //create form data object
+            var obj, Itemlist1;
+            Itemlist1 = [];
+            $('.donatetextbox').each(function () {
+                var id = $(this).attr('id').split('-')[1];
+                
+                var itemid = id;
+                var item = $(this).val();
+                obj = {};
+                obj["ItemID"] = parseInt(itemid);
+                obj["ReceivedItem"] = parseInt(item);
+                if (id != undefined && item != undefined) {
+                    Itemlist1.push(obj);
+                }
+            });
+            jQuery.each(Itemlist1, function (key, value) {
+                formData.append('receivedonation[' + key + '].ItemID', value.ItemID);
+                formData.append('receivedonation[' + key + '].ReceivedItem', value.ReceivedItem);
+            });
+            $.ajax({
+                url: "/NGOProfile/receivedonation",
+                type: "POST",
+                dataType: "JSON",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    window.location.reload();
+                    jQuery.each(result, function (key, value) {
+                        $("#modeldonateCount-" + value.ItemID).val(value.ReceivedItem);
+                        $("#donateCount-" + value.ItemID).val(value.ReceivedItem);
+                    });
+                    if (result) {
+                        $('.donatetextbox').val("");
+
+                    }
+                }
+
+            });
+        });
+
+        $('.wishtodonate').click(function () {
+            var postID = $(this).attr('data-id');
+            $('#dialog-div').load('/post/RenderDonateDetails/'+postID);
+        });
+    });
 </script>
 
 <p id="controllername" hidden>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</p>
@@ -13,8 +68,8 @@
 
         @foreach (var item in Model)
         {
-          if(item.IsRequest== false)
-          {
+            if (item.IsRequest == false)
+            {
               
              <div class="postcontainer" id="Post-@item.postId">
             <div id="posttemplate">
@@ -185,7 +240,7 @@
                         }
                          @if (comment.IsDelete == true)
                          { 
-                        <div style="background-color:red" class="form-inline col-md-12 comentpost">
+                        <div style="background-color:#FF7F7F" class="form-inline col-md-12 comentpost">
                             <span class="col-md-1 fa fa-user commentimage"></span>
 
                             <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
@@ -206,10 +261,10 @@
                             </div>                               
                          }                                                
                     </div>
-                }
+                    }
                     @*method for all user*@
-                         if (comment.IsDelete == false)
-                         {
+                    if (comment.IsDelete == false)
+                    {
                         <div class="col-md-12" id="CommentBox-@comment.commentId">
 
                         @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()) && !this.User.Identity.Name.Equals(comment.commentUserId.ToString()))
@@ -230,8 +285,8 @@
                             <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
                         </div>
                     </div>   
-                         }
                     }
+                }
                 
                 @*      </div>
       </div>
@@ -268,13 +323,22 @@
                 </div>
             </div>
         </div>          
-        }
-        else
-        { 
+            }
+            else
+            { 
            @Html.Partial("~/Views/NGOProfile/_Donationrequestreadonly.cshtml", item);
-          }
+            }
         }
     </div>
+    
+     <div class="modal fade" id="donationmodal" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                    <div class="modal-dialog donationmodaldialog" role="document" id="dialog-div">
+                      
+                       
+                    </div>
+
+                </div>
 
 }
 
