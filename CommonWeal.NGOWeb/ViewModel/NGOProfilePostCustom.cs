@@ -11,6 +11,7 @@ namespace CommonWeal.NGOWeb.ViewModel
         public int CurrentUserID { get; set; }
         public string imageurl { get; set; }
         public PostWithTopNgo PostWithtopNgoModel { get; set; }
+       
         
        
     }
