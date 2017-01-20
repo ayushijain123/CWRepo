@@ -359,7 +359,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                         dt.RequestID = dr.RequestID;
                         dt.createdOn = DateTime.Now;
                         dt.DonatedCount = 0;
-                        dt.ItemRequire = 0; 
+                        dt.ItemRequire = item.ItemCount; 
                            
                           
                         context.DonationDetails.Add(dt);
@@ -404,7 +404,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                      if(ob.ItemRequire<=0 ){
                          ob.ItemRequire = 0;
                     }
-                    var donarexist = context.DonarDetails.Where(x=>x.ItemID==item.ItemID && x.RequestId==ob.RequestID).FirstOrDefault();
+                    var donarexist = context.DonarDetails.Where(x=>x.ItemID==item.ItemID && x.RequestId==ob.RequestID &&x.DonarLoginID==LoginUser.LoginID).FirstOrDefault();
                     // dd.ItemID = item.ItemID;
                     if (donarexist == null)
                     {
