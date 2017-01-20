@@ -23,7 +23,7 @@
         });
 
 
-        $(document).on('click', '#Add', function () {
+        $('#donationtemplate').on('click', '#Add', function () {
             
             if (i < Add) {
                 $(".Add").remove();
@@ -59,15 +59,7 @@
             //  $("#row"+id).remove();
             $(this).parents('#row' + id).remove();
             });
-        //else {
-        //    $("#Add").prop('disabled', true);
-        //    //$("#remove").click(function () {
-        //    //    alert("hit");
-        //    //    if (i == 1) {
-        //    //        alert("No more textbox to remove");
-        //    //        return false;
-        //    //    }
-        //}
+        
 
 
         $("#submitrequest").click(function () {
