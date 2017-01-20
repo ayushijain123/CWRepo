@@ -371,5 +371,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             public string name { get; set; }
 
         }
+        public PartialViewResult RenderDonateDetails(int id)
+        {
+            dbOperations db = new dbOperations();
+            var postDetails= db.GetPostDetailwithDonateById(id);
+            return PartialView("_RenderDonateDetails", postDetails);
+        }
     }
 }
