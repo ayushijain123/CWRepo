@@ -78,7 +78,7 @@ namespace CommonWeal.NGOWeb.Controllers
             {
 
                 dbOperations ob = new dbOperations();
-                var postlist = ob.GetPostOnLoad();
+                var postlist = ob.GetPostOnLoad(LoginUser.LoginID);
                 CommonWealEntities db = new CommonWealEntities();
                 var ngopost = db.NGOPosts.OrderByDescending(x => x.PostDateTime).ToList();
 
