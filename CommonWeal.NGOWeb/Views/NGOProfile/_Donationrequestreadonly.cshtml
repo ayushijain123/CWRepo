@@ -1,166 +1,54 @@
 ﻿@model CommonWeal.NGOWeb.ViewModel.Post
 <script>
-    $('.disable').prop('disabled', true);
+    
 
-
-
-    $(document).ready(function () {
-
-
-        $('#receivedonation').on('click', function () {
-            //alert('+$(".donatetextbox".value)+');
-            var formData = new FormData(); //create form data object
-            var obj, Itemlist1;
-            Itemlist1 = [];
-            $('.donatetextbox').each(function () {
-                var id = $(this).attr('id').split('-')[1];
-                console.log(id);
-                var itemid = id;
-                var item = $(this).val();
-                console.log(itemid);
-                obj = {};
-
-               
-                obj["ItemID"] = parseInt(itemid);
-                obj["ReceivedItem"] = parseInt(item);
-                if (id != undefined && item != undefined) {
-                    Itemlist1.push(obj);
-                }
-                
-            });
-            console.log(Itemlist1);
-            //jQuery.each(ItemRow, function (key, value) {
-            //    obj = {};
-
-            //    console.log(value);
-            //    var item = $(".donatetextbox" + value).val();
-            //    alert(item);
-            //    obj["ItemCount"] = parseInt($("#quantity" + value).val());
-            //    Itemlist.push(obj);
-            //});
-
-
-           
-
-
-
-           //  append all itemlist to formdata
-            //jQuery.each(Itemlist, function (key, value) {
-            //    formData.append('itemlist[' + key + '].Item', value.Item);
-            //    formData.append('itemlist[' + key + '].ItemCount', value.ItemCount);
-            //});
-
-
-           
-            //formData.append("receivedonation", Itemlist);
-            jQuery.each(Itemlist1, function (key, value) {
-                formData.append('receivedonation[' + key + '].ItemID', value.ItemID);
-                formData.append('receivedonation[' + key + '].ReceivedItem', value.ReceivedItem);
-            });
-            console.log(formData);
-            $.ajax({
-                url: "/NGOProfile/receivedonation",
-                type: "POST",
-                dataType: "JSON",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function (result) {
-
-                    jQuery.each(result, function (key, value) {
-                        $("#modeldonateCount-" + value.ItemID).val(value.ReceivedItem);
-                        $("#donateCount-" + value.ItemID).val(value.ReceivedItem);
-                       // console.log(value);
-                    });
-
-                }
-
-            });
-        });
-
-    });
-
-    //});
-  
 </script>
 
 
-    
-             <div class="postcontainer" id="Post-@Model.postId">
-            <div id="posttemplate">
 
-            <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
-                <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
+<div class="postcontainer" id="Post-@Model.postId">
+    <div id="posttemplate">
 
-                <a href="/NGOProfile/Index/@Model.userId"><span class="usernamepost col-md-4 col-lg-4 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@Model.userName</b></span></a>
+        <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
+            <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
+
+            <a href="/NGOProfile/Index/@Model.userId"><span class="usernamepost col-md-4 col-lg-4 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@Model.userName</b></span></a>
 
 
-                <span class="posttime col-md-4 col-lg-4 col-xs-4 col-sm-4">@Model.postCreateTime</span>
+            <span class="posttime col-md-4 col-lg-4 col-xs-4 col-sm-4">@Model.postCreateTime</span>
 
-              
-                <div class="modal fade" id="donationmodal-@Model.userId" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-                    <div class="modal-dialog donationmodaldialog" role="document">
-                        <table class="table table-striped  donatetable">
-                            <thead class="thead-inverse trfont" >
-                                <tr>
-                                    <th style="padding-left: 18px;" class="donatetableheadcolor">Product</th>
-                                    <th class="donatetableheadcolor" >Total Quantity</th>
-                                    <th class="donatetableheadcolor">Received</th>
-                                     <th class="donatetableheadcolor">Quantity Require</th>
-                                    <th class="donatetableheadcolor">Donate</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{  
-                                    foreach(var item in Model.donateItemlist){
-                                <tr  class="ModalRequestRow"id="ModalRequestRow-@item.ItemID">
 
-                                    <td class="input_fields_wrap tdfont text-transform" style="text-align: center">@item.Item</td>
-                                    <td class="input_fields_wr tdfont" style="text-align: center">@item.ItemCount</td>
-
-                                    <td id="modeldonateCount-@item.ItemID" class="tdfont"style="text-align: center">@item.DonateCount</td>
-                                     <td class="tdfont"style="text-align: center"> @item.ItemRequire</td>
-                                    <td style="text-align: center" class="tdfont">
-                                 <input class="donatetextbox" id="donatetextbox-@item.ItemID " type="text"  /></td>
-                                    @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
-                                </tr>
-                                }
-                                }
-                                
-                            </tbody>
-
-                        </table>
-                        <button type="button" class="close submitdonate" data-dismiss="modal" aria-label="Close" id="receivedonation">
-                            <span>Submit</span></button>
-
-                    </div>
-
-                </div>
-            </div>
-            <div name="Textmessage" id="Textmessage">
-                <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
-                    <span>@Model.postcontent</span>
-                </div>
-            </div>
-            <div class="donationimage" >
-
- @if (Model.postImageUrl != null)
-                    { 
-                <img src="@Model.postImageUrl" data-toggle="modal" data-target="#myModal2-@Model.postId" class="imageurlpost" id="imageurlpost-@Model.postId" />
- }
-                </br>
-            </div>
-
-                
-            <div class="modal fade" id="myModal2-@Model.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal fade" id="donationmodal-@Model.userId" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
-                <div class="modal-dialog likemodaldialog" role="document">
-                    <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@Model.postId"/>
+                <div class="modal-dialog donationmodaldialog" role="document">
+
                 </div>
+
             </div>
-                
-                <div class="form-inline col-sm-12">
+        </div>
+        <div name="Textmessage" id="Textmessage">
+            <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
+                <span>@Model.postcontent</span>
+            </div>
+        </div>
+        <div class="donationimage">
+
+            @if (Model.postImageUrl != null)
+            { 
+                <img src="@Model.postImageUrl" data-toggle="modal" data-target="#myModal2-@Model.postId" class="imageurlpost" id="imageurlpost-@Model.postId" />
+            }
+            </br>
+        </div>
+
+
+        <div class="modal fade" id="myModal2-@Model.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <div class="modal-dialog likemodaldialog" role="document">
+                <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@Model.postId"/>
+            </div>
+        </div>
+
+        <div class="form-inline col-sm-12">
 
             <table class="table table-striped donatetable" id="donatetable-@Model.userId">
                 <thead class="thead-inverse tabledonationheader trfont">
@@ -169,44 +57,48 @@
                         <th>Total Quantity</th>
                         <th>Received</th>
                         <th>Quantity Require</th>
+                        @if(this.User.Identity.IsAuthenticated){
                         <th>Donated by You</th>
-
+                        }
                     </tr>
-                   
+
                 </thead>
                 <tbody>
-                      @{foreach(var item in Model.donateItemlist){
-                    <tr>
+                    @{foreach (var item in Model.donateItemlist)
+                      {
+                        <tr>
 
-                        <td class="input_fields_wrap tdfont text-transform"  style="text-align: center">@item.Item</td>
-                        <td class="input_fields_wr tdfont " style="text-align: center">@item.ItemCount</td>
-                        <td id="donateCount-@item.ItemID" class="tdfont"style="text-align: center">@item.DonateCount</td>
-                        <td class="tdfont" style="text-align: center">@item.ItemRequire</td>
-                         <td class="tdfont"></td>
-                       
-                    </tr>
+                            <td class="input_fields_wrap tdfont text-transform" style="text-align: center">@item.Item</td>
+                            <td class="input_fields_wr tdfont " style="text-align: center">@item.ItemCount</td>
+                            <td id="donateCount-@item.ItemID" class="tdfont"style="text-align: center">@item.DonateCount</td>
+                            <td class="tdfont" style="text-align: center">@item.ItemRequire</td>
+                             @if(this.User.Identity.IsAuthenticated){
+                            <td class="tdfont" style="text-align: center">@item.DonatedByyou</td>
+                             }
+                        </tr>
                       }
                        
                     
 
-                      }
-                       </tbody>
-               
-               
+                    }
+                </tbody>
+
+
             </table>
-                 </div>
-                <div style="padding-bottom: 6px;">
-                 @if (this.User.Identity.IsAuthenticated)
-                    {
-                    <span data-toggle="modal" data-target="#donationmodal-@Model.userId" class="cursor wishtodonate">Wish to donate</span>
-                    }
-                    else
-                    {
-                     <span class="wishtodonateguest">Wish to donate</span>
-                    }
-                    </div>
         </div>
-                 </div>  
-               <br/><br/>  
-    
+        <div style="padding-bottom: 6px;">
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <span data-toggle="modal" data-target="#donationmodal" class="cursor wishtodonate" data-id="@Model.postId" >Wish to donate</span>
+            }
+            else
+            {
+                <span class="wishtodonateguest">Wish to donate</span>
+            }
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
 
