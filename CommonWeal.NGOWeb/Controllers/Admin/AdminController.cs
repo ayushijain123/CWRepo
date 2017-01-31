@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-
+using CommonWeal.NGOWeb.ViewModel.Admin;
 
 namespace CommonWeal.NGOWeb.Controllers.Admin
 {
@@ -804,6 +804,39 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             }
         }
 
+        public ActionResult RequestEstimation()
+        {
+            RequestEstimation re=new RequestEstimation();
+            CommonWealEntities context = new CommonWealEntities();
+            var ngouser = context.NGOUsers.ToList();
+            var obj = context.DonationRequests.ToList();
+            
+             var grantotal=context.DonationRequests.Select(x=>x.ItemCost).Sum();
+             ViewData["total"] = grantotal;
+            List<RequestEstimation> relist = new List<RequestEstimation>();
+            
+            foreach (var item in obj)
+            {
+               // item.IsRequest = true;
+                var ngoname = ngouser.Where(x => x.LoginID == item.RequestNGOId).FirstOrDefault().NGOName;
+                relist.Add(new RequestEstimation { Description = item.Description, DonateRequestdate = item.createdOn.ToString(), Status = item.Status.Value, NGOName = ngoname, RequestId = item.RequestID, recievedCost = item.ItemCost.Value });
+                if (item.ItemCost.Value > 0)
+                {
+                    item.Status=true;
+
+                }
+                else {
+                    item.Status=false;
+                
+                }
+                
+               }
+            context.SaveChanges();
+
+            
+            return View(relist);
+        }
+
 
         //public ActionResult DisplayGraph()
         //{
@@ -857,12 +890,63 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         //}
 
 
+        /* method for generating estimation cost of ngo request by admin*/
+        [AllowAnonymous]
+        public ActionResult GenerateEstimation(int id = 0)
+        {
+           
+            List<GenerateEstimation> estimatelist=new List<GenerateEstimation>();
+            CommonWealEntities context=new CommonWealEntities();
+            var donatelist = context.DonationDetails.Where(x => x.RequestID == id).ToList();
+            
+            foreach(var item in donatelist)
+            {
+             GenerateEstimation estimate=new GenerateEstimation();
+            estimate.Product = item.ItemName;
+            estimate.Itemid = item.ItemID;
+            estimate.TotalQuantity = item.ItemCount.Value;
+            estimate.Received = item.DonatedCount.Value;
+            estimatelist.Add(estimate);
+
+
+            }
+
+            return View(estimatelist);
+        }
+        /*method for submit estimatuion by admin*/
+
+        public JsonResult submitCostEstimation(List<UnitPriceList> itemlist)
+        {
+            int total = 0,requestid=0;
+            CommonWealEntities context = new CommonWealEntities();
+            foreach (var item in itemlist)
+            {
+              
+                var ob = context.DonationDetails.Where(x => x.ItemID == item.itemId).FirstOrDefault();
+                if (ob != null)
+                {
+                    ob.UnitPrice = item.Unitprice;
+                    ob.DonatedCost = item.linetotal;
+                    total += item.linetotal;
+                }
+               requestid=ob.RequestID;
+                context.SaveChanges();
+            }
+            var ngorequest = context.DonationRequests.Where(x => x.RequestID == requestid).FirstOrDefault();
+            ngorequest.ItemCost = total;
+            context.SaveChanges();
+          return  Json(true,JsonRequestBehavior.AllowGet);
+        }
     }
+    
 
     public class BarChartModel
     {
         public string name { get; set; }
         public List<int> data { get; set; }
     }
+    
+
+    
 
 }
