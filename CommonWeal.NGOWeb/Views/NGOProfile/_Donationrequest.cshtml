@@ -78,6 +78,7 @@
 
             });
             console.log(Itemlist);
+        
             var description = $("#postContentTextArea").val();
             formData.append("description", description); // append description
 
@@ -169,6 +170,7 @@
                 <input type="file" id="file" name="file" data-badge="false" />
                 <span id="uploadFileName"></span>
                 <div class=" form-inline col-sm-12">
+              
                     @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Discription about Donation" })
                     <br />
                     <table class="table" style="margin-bottom: 12px; border: none; margin-top: 0px;">
