@@ -194,6 +194,9 @@
     <Compile Include="Utility\APIHelper.cs" />
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Models\Password.cs" />
+    <Compile Include="ViewModel\Admin\GenerateEstimation.cs" />
+    <Compile Include="ViewModel\Admin\RequestEstimation.cs" />
+    <Compile Include="ViewModel\Admin\UnitPriceList.cs" />
     <Compile Include="ViewModel\DonationRequestView\DonateItem.cs" />
     <Compile Include="ViewModel\NGOProfileCustom.cs" />
     <Compile Include="ViewModel\NGOProfilePostCustom.cs" />
@@ -492,6 +495,9 @@
     <Content Include="Views\UserHome\_SearchNGOPartial.cshtml" />
     <Content Include="Views\NGOProfile\_Donationrequest.cshtml" />
     <Content Include="Views\NGOProfile\_Donationrequestreadonly.cshtml" />
+    <Content Include="Views\Shared\_RenderDonateDetails.cshtml" />
+    <Content Include="Views\Admin\RequestEstimation.cshtml" />
+    <Content Include="Views\Admin\GenerateEstimation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
