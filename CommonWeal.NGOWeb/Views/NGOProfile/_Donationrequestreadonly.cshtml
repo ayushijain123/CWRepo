@@ -28,7 +28,8 @@
         </div>
         <div name="Textmessage" id="Textmessage">
             <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
-                <span>@Model.postcontent</span>
+               
+                <span>Donation Request: @Model.postcontent</span>
             </div>
         </div>
         <div class="donationimage">
@@ -54,11 +55,11 @@
                 <thead class="thead-inverse tabledonationheader trfont">
                     <tr>
                         <th style="padding-left: 18px;">Product</th>
-                        <th>Total Quantity</th>
-                        <th>Received</th>
                         <th>Quantity Require</th>
+                        <th>Received</th>
+                        <th>Remaining</th>
                         @if(this.User.Identity.IsAuthenticated){
-                        <th>Donated by You</th>
+                        <th>Your Contribution</th>
                         }
                     </tr>
 
@@ -89,11 +90,11 @@
         <div style="padding-bottom: 6px;">
             @if (this.User.Identity.IsAuthenticated)
             {
-                <span data-toggle="modal" data-target="#donationmodal" class="cursor wishtodonate" data-id="@Model.postId" >Wish to donate</span>
+                <span data-toggle="modal" data-target="#donationmodal" class="cursor wishtodonate" data-id="@Model.postId" >Donate</span>
             }
             else
             {
-                <span class="wishtodonateguest">Wish to donate</span>
+                <span class="wishtodonateguest">Donate</span>
             }
         </div>
     </div>
