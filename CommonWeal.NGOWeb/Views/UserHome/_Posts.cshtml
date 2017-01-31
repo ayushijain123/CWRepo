@@ -140,6 +140,7 @@
 
                 @*  Text for image*@
                 <div name="Textmessage" id="Textmessage">
+                    
                     <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
                         <span>@item.postcontent</span>
                     </div>
@@ -149,9 +150,9 @@
                     @if (item.postImageUrl != null)
                     { 
 @*    @item.postImageUrl
-                     @Url.Content("http://172.27.111.13:81"+item.postImageUrl)
+                     @Url.Content("http://172.27.11.26:81"+item.postImageUrl)
                     *@
-                        <img src=" @Url.Content("http://172.27.111.13:81" + item.postImageUrl)" data-toggle="modal" data-target="#myModal2-@item.postId" class="imageurlpost" id="imageurlpost-@item.postId" />
+                        <img src=" @Url.Content("http://172.27.11.26:81" + item.postImageUrl)" data-toggle="modal" data-target="#myModal2-@item.postId" class="imageurlpost" id="imageurlpost-@item.postId" />
                     }
                     <br />
                     <div id="liketemplate-@item.postId">
