@@ -26,6 +26,7 @@ namespace CommonWeal.NGOAPI.Controllers
             CommonWealEntities obj1 = new CommonWealEntities();
             var ngo = obj1.NGOUsers;
             var users = obj1.Users;
+          
             var registeredUsers = obj1.RegisteredUsers;
             Count cnt = new Count();
              //NGOs Table
@@ -48,7 +49,12 @@ namespace CommonWeal.NGOAPI.Controllers
             var yearList = obj1.RegistrationYears.Select(x=>x.year).ToList();
             var CountOfBlockedUsers = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
             var CountOfSpamUsers= users.Where(w => w.IsSpam == true && w.LoginUserType == 3).Count();
-            var COTBU = CountOfBlockedUsers + CountOfSpamUsers;        
+            var COTBU = CountOfBlockedUsers + CountOfSpamUsers;
+            var requestestimation = obj1.DonationRequests.Where(x => x.IsRequest == true).Count();
+         
+          
+            
+           
 
             cnt.CountOfRequests = COR;
             cnt.CountOfActiveNGO = COA;
@@ -60,6 +66,7 @@ namespace CommonWeal.NGOAPI.Controllers
             cnt.CountOfTotalBlockNGO=COTBN;
             cnt.IsBlockSpam = COTBU;
             cnt.YearList = yearList;
+            cnt.RequestEstimation = requestestimation;
             HttpResponseMessage res=Request.CreateResponse(HttpStatusCode.OK, cnt);
             return res;
 
