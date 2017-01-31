@@ -1920,7 +1920,7 @@ margin-bottom: 12px;
 margin-left:0px;
 }
 .wishtodonate {
-       padding-left: 482px;
+       padding-left: 521px;
     width: auto;
    
     color:#428bca;  
@@ -1928,11 +1928,18 @@ margin-left:0px;
 
 
 }
+
+
+
+.unitprice {
+    left: 74px;
+
+}
 .wishtodonate:hover {
 text-decoration:underline;
 }
 .wishtodonateguest{
-       padding-left: 482px;
+       padding-left: 521px;
     width: auto;
 }
 .trfont {
