@@ -31,6 +31,105 @@ $(document).ready(function () {
         }
     });
 
+
+
+    /*ajax for RequsetEstimation*/
+
+    $(document).on('click', ".RequestEstimation", function () {
+        var userid = $(this).attr('id').split('-')[1];
+
+        $.post("/admin/RequestEstiamtion?id=" + userid, function (result) {
+
+            
+
+        });
+
+
+    });
+
+
+    /*for cost estimation */
+   
+    $(document).on('change', ".unitprice", function () {
+       
+        var id = $(this).attr('id').split('-')[1];
+        var itemcount = parseInt($("#received-" + id).text());
+        var unitprice = parseInt($("#unitprice-" + id).val());
+        var grandtotal = parseInt($("#total").val());
+        $("#lineTotal-" + id).text(itemcount * unitprice);
+       
+        $("#total").val(grandtotal + itemcount * unitprice);
+    });
+
+    
+
+
+    $("#submitEstimation").click(function () {
+
+        var formData = new FormData(); //create form data object
+        var obj, Itemlist;
+        Itemlist = [];
+       
+
+        $(".admintable").each(function () {
+            var ItemID = $(this).attr('id').split('-')[1];
+            obj = {};
+
+            
+            obj["Unitprice"] = $("#unitprice-" + ItemID).val();
+            obj["linetotal"] = parseInt($("#lineTotal-"+ItemID).text());
+            obj["itemId"] = ItemID;
+            Itemlist.push(obj);
+            
+        });
+        console.log(Itemlist);
+
+       
+
+        // append all itemlist to formdata
+        
+        jQuery.each(Itemlist, function (key, value) {
+            formData.append('itemlist[' + key + '].Unitprice', value.Unitprice);
+            formData.append('itemlist[' + key + '].linetotal', value.linetotal);
+            formData.append('itemlist[' + key + '].itemId', value.itemId);
+        });
+
+       
+        //formData.append("DonationRequestImg", files[k]);
+        $.ajax({
+            url: "/Admin/submitCostEstimation",
+            type: "POST",
+            dataType: "JSON",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result == true) {
+                    
+                    alert('successfully uploaded');
+                }
+                else {
+                    alert('Sorry upload Failed try again');
+
+                }
+
+
+
+            }
+        });
+    });
+
+
+
+
+
+
+
+
+
+
+
+
     /*ajax for unspam ngo*/
     $(document).on('click', '.UnspamNGO', function () {
         var loginid = $(this).attr('id').split('-')[1];
