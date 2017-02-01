@@ -50,7 +50,7 @@ namespace CommonWeal.NGOAPI.Controllers
             var CountOfBlockedUsers = users.Where(w => w.IsBlock == true && w.LoginUserType == 3).Count();
             var CountOfSpamUsers= users.Where(w => w.IsSpam == true && w.LoginUserType == 3).Count();
             var COTBU = CountOfBlockedUsers + CountOfSpamUsers;
-            var requestestimation = obj1.DonationRequests.Where(x => x.IsRequest == true).Count();
+            var requestestimation = obj1.DonationRequests.Count();
          
           
             
