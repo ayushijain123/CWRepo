@@ -810,14 +810,14 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             CommonWealEntities context = new CommonWealEntities();
             var ngouser = context.NGOUsers.ToList();
             var obj = context.DonationRequests.ToList();
-            
-             var grantotal=context.DonationRequests.Select(x=>x.ItemCost).Sum();
+
+            var grantotal = context.DonationRequests.Select(x => x.ItemCost).Sum();
              ViewData["total"] = grantotal;
             List<RequestEstimation> relist = new List<RequestEstimation>();
             
             foreach (var item in obj)
             {
-               // item.IsRequest = true;
+              
                 var ngoname = ngouser.Where(x => x.LoginID == item.RequestNGOId).FirstOrDefault().NGOName;
                 relist.Add(new RequestEstimation { Description = item.Description, DonateRequestdate = item.createdOn.ToString(), Status = item.Status.Value, NGOName = ngoname, RequestId = item.RequestID, recievedCost = item.ItemCost.Value });
                 if (item.ItemCost.Value > 0)
