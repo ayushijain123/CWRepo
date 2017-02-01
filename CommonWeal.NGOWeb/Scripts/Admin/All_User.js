@@ -47,6 +47,16 @@ $(document).ready(function () {
 
     });
 
+    /*method for adding cost for a column*/
+    $(document).on('keyup', "input", function () {
+        var total = 0;
+        $('.receivedcost').each(function () {
+            
+           total+=parseInt($(this).text());
+        });
+        $('#grandtotal').html("<b>Grand Total:"+total+"</b>");
+
+    });
 
     /*for cost estimation */
    
