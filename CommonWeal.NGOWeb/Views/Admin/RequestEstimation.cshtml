@@ -39,7 +39,7 @@
                                  
                                  }
                             
-                                 <td class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.recievedCost)</td>
+                                 <td class="col-md-2 adminTableData receivedcost">@Html.DisplayFor(modelItem => item.recievedCost)</td>
                              <td class="col-md-3 adminTableData" title="View Details"><a href="../Admin/GenerateEstimation/@item.RequestId" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>
                          
                            @* <td class="col-md-4 adminTableData"><a href="/admin/unblockUsers/@item.LoginID" class="fa fa-unlock fa-2x" aria-hidden="true" style="color:green"></a></td>*@
@@ -52,7 +52,7 @@
                     </h3>*@
                 </table>
             </div>
-            <span  style="float:right">Grand Total:<input type="text"  id="total" value="@ViewData["total"]"/> </span>    
+            <span  style="float:right; font-size:20px;" id="grandtotal"><b>Grand Total: @ViewData["total"]</b></span>    
            
         </div>
     </div>
