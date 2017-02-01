@@ -335,7 +335,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                         }
                          dr.RequestNGOId = LoginUser.LoginID;
                         dr.createdOn = DateTime.Now;
-                       
+                        dr.ItemCost = 0;
+                        dr.Status = false;
                        
                         context.DonationRequests.Add(dr);
           
