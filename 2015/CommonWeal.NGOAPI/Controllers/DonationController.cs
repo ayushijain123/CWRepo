@@ -36,8 +36,10 @@ namespace CommonWeal.NGOAPI.Controllers
             donationrequest.Description = donationdata.Description;
             donationrequest.RequestNGOId = donationdata.RequestNGOID;
             donationrequest.createdOn = DateTime.Now;
+            donationrequest.Status =false;
+          
             context.DonationRequests.Add(donationrequest);
-           // context.SaveChanges();
+            context.SaveChanges();
             var ItemTypes = donationdata.donationdetaildata.Count();
             DonationDetail donationdetail = new DonationDetail();
             for (int i = 0; i < ItemTypes; i++)
@@ -52,9 +54,20 @@ namespace CommonWeal.NGOAPI.Controllers
                 context.DonationDetails.Add(donationdetail);
                 
             }
+            NGOPost ngopost = new NGOPost();
+            ngopost.CreatedOn = DateTime.Now;
+            ngopost.PostDateTime = DateTime.Now;
+            ngopost.Isdelete = false;
+            ngopost.IsRequest = true;
+            ngopost.PostContent = donationdata.Description;
+            ngopost.LoginID = donationdata.RequestNGOID;
+            ngopost.PostCommentCount = 0;
+            ngopost.PostLikeCount = 0;
+            ngopost.RequestID = donationrequest.RequestID;
+            context.NGOPosts.Add(ngopost);
             context.SaveChanges();
-           // var res = "hello";
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            var res = "yes";
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK,res);
             return response;
         }
         public class UserDonationData
