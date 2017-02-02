@@ -1,0 +1,210 @@
+﻿
+<script>
+    /*added on 10-01-2017*/
+    var wrapper = $(".input_fields_wrap");
+    var w = $(".input_fields_wr");
+    var b = $(".btn-fields");
+    var Add = 10;
+    var i = 1;
+    var ItemRow = { '0': 0 };
+    var j = 0;
+
+      
+
+    $(document).ready(function () {
+        $("#donationfile").hide();
+        $("#requestimagebutton").hide();
+        $("#requestbutton").hide();
+        $("#donationrequestimage").click(function () {
+            $("#donationfile").show();
+            $("#requestimagebutton").show();
+            $("#requestbutton").show();
+
+        });
+
+
+        $('#donationtemplate').on('click', '#Add', function () {
+            
+            if (i < Add) {
+                $(".Add").remove();
+                var row = '<tr id="row' + i + '" class="row ajaxrow">';
+                row = row + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname' + i + '"class="itemname tbl-td" style="width: 180px;"/></td>';
+                row = row + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity' +i+'" class="quantity tbl-td" style="width: 59px;"/></td>';
+                row = row + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>';
+                row = row + '<td class="btn-fields al-center" "><button  id="Minus-' + i + '" class="fa fa-minus Minus"  style="width: 24px; height: 22px;    margin-top: 11px;  background: none; border: none;color: #2e6da4;"/></td></tr>';
+                console.log(row);
+                $("#RequestItemTable").append(row);
+                ItemRow[i]=i;
+                console.log(ItemRow);
+                i++; j++;
+            }
+           
+
+        });
+        
+        
+        
+
+        $(document).on('click', '.Minus', function () {
+            
+
+            var id = $(this).attr('id').split('-')[1];
+            
+            delete ItemRow[id];
+            j--;
+            if (j == 0)
+            {
+                $("#row0").append('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>');
+            }
+            //  $("#row"+id).remove();
+            $(this).parents('#row' + id).remove();
+            });
+        
+
+
+        $("#submitrequest").click(function () {
+
+            var formData = new FormData(); //create form data object
+            var obj, Itemlist;
+            Itemlist = [];
+           
+            jQuery.each(ItemRow, function (key, value) {
+                obj = {};
+                
+                console.log(value);
+                obj["Item"] = $("#itemname" + value).val();
+                obj["ItemCount"] = parseInt($("#quantity" + value).val());
+                Itemlist.push(obj);
+
+            });
+            console.log(Itemlist);
+        
+            var description = $("#postContentTextArea").val();
+            formData.append("description", description); // append description
+
+            // append all itemlist to formdata
+            debugger
+            jQuery.each(Itemlist, function (key, value) {
+                 formData.append('itemlist[' + key + '].Item', value.Item);
+                formData.append('itemlist[' + key + '].ItemCount', value.ItemCount);
+            });
+
+            if (window.FormData !== undefined) {
+                var fileUpload = $("#file").get(0);
+                var files = fileUpload.files;
+                for (var k = 0; k < files.length; k++) {
+                    formData.append("DonationRequestImg", files[k]);
+                }
+            }
+            //formData.append("DonationRequestImg", files[k]);
+            $.ajax({
+                url: "/NGOProfile/SubmitDonationRequest",
+                type: "POST",
+                dataType: "JSON",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    if (result == true) {
+                        $('#postContentTextArea').val("");
+                        $('#file').val("");
+                        $('.ajaxrow').remove();
+                        $('.cleanfield').val("");
+
+                        $('#sampleimage').remove();
+                        $("#row0").append('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>');
+                        alert('successfully uploaded');
+                    }
+                    else {
+                        alert('Sorry upload Failed try again');
+
+                    }
+                   
+                   
+
+                }
+            });  });
+
+       
+            //$.ajax({
+            //    url: "/NGOProfile/SubmitDonationRequest",
+            //    type: "POST",
+            //    dataType: "JSON",
+            //    data: fileData,
+            //    contentType: false,
+            //    processData: false,
+            //    success: function (result) {
+            //    }
+            //});
+
+      
+        $("#file").change(function (event) {
+
+            var fileName = window.URL.createObjectURL(event.target.files[0])
+
+            $("#uploadFileName").html("");
+            $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px" id="sampleimage">');
+
+
+        });
+
+    });
+    function fileclick() {
+        $("#file").click();
+    };
+
+</script>
+
+<div class="row col-md-12">
+
+    <div id="donationtemplate">
+        <div class="uploaddonationpheadingcolor">
+            <div class="panel-heading"><b>Request for Donation</b></div>
+        </div>
+        <div class="panel-body uploaddonationpanelbody">
+            <div class=" form-inline col-sm-12  uploadimagesection  ">
+                <a href="#" id="uploadbtn " style="margin-left: 16px;">
+                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick(); return false;"></span>
+                </a>
+                <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
+                <input type="file" id="file" name="file" data-badge="false" />
+                <span id="uploadFileName"></span>
+                <div class=" form-inline col-sm-12">
+              
+                    @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Discription about Donation" })
+                    <br />
+                    <table class="table" style="margin-bottom: 12px; border: none; margin-top: 0px;">
+                        <thead class="thead-inverse tabledonationheader">
+                            <tr class="row">
+
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="RequestItemTable">
+                            <tr id="row0" class="row">
+                                <td class="input_fields_wrap al-center">
+                                    <input type="text" id="itemname0" class="itemname cleanfield  tbl-td" style="width: 180px;"/></td>
+                                <td class="input_fields_wr al-center">
+                                    <input type="text" class="quantity cleanfield tbl-td" id="quantity0" style="width: 59px;"/></td>
+                                <td class="btn-fields al-center" >
+                                    <button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />
+                                </td>
+                               
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                  <center> 
+                  <span  id="submitrequest" class=" btn btn-primary">Submit</span>
+                       <span id="" class="btn btn-primary">Cancel</span>         </center>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

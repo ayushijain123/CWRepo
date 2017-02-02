@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Admin.RequestEstimation>
+
+
+<script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
+<link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/Admin/All_User.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="requests">
+                <table id="myTable" class="tableAdmin col-md-12">
+                    <thead class="tableheader col-md-12">
+                        <tr>
+                            
+                            <th class="col-md-2">NGO Name</th>
+                           
+                             <th class="col-md-3">Donation Request Date</th>
+                             <th class="col-md-1">Status</th>
+                             <th class="col-md-2">Estimated Amount</th>
+                             <th class="col-md-3">View Request</th>
+                           
+                        </tr>
+                    </thead>
+
+                     @foreach (var item in Model)
+                    {                       
+                             <tr class="admintable">
+                            <td class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.NGOName)</td>
+                         
+                            <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.DonateRequestdate)</td>
+                                 @if (item.Status==true) { 
+                                  <td class="col-md-2 adminTableData">Estimated</td>
+                                 
+                                 }
+                                 else{
+                                  <td class="col-md-2 adminTableData">To Be Estimated</td>
+                                 
+                                 }
+                            
+                                 <td class="col-md-2 adminTableData receivedcost">@Html.DisplayFor(modelItem => item.recievedCost)</td>
+                             <td class="col-md-3 adminTableData" title="View Details"><a href="../Admin/GenerateEstimation/@item.RequestId" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>
+                         
+                           @* <td class="col-md-4 adminTableData"><a href="/admin/unblockUsers/@item.LoginID" class="fa fa-unlock fa-2x" aria-hidden="true" style="color:green"></a></td>*@
+                        </tr>     
+                    }
+                  
+                    <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
+                   @* <h3>
+                        <center><strong>Warned NGOs </strong></center>
+                    </h3>*@
+                </table>
+            </div>
+            <span  style="float:right; font-size:20px;" id="grandtotal"><b>Grand Total: @ViewData["total"]</b></span>    
+           
+        </div>
+    </div>
+</div>
+

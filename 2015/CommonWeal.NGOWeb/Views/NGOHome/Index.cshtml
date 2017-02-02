@@ -1,0 +1,283 @@
+﻿ @model CommonWeal.NGOWeb.ViewModel.PostWithTopNgo
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/chosen.jquery.js"></script>
+<script src="~/Scripts/chosen.jquery.min.js"></script>*@
+<script>
+    //$(document).ready(function () {
+    $(document).ready(function () {
+
+        $("#country").change(function () {
+            $("#State").empty();
+            console.log("Hit");
+            $.ajax({
+                type: 'POST',
+                @* url: '@Url.Action("getstate")',*@
+                url: '@Url.Action("GetJsonState", "Home")',
+                dataType: 'json',
+
+                data: { id: $("#country").val() },
+
+
+                success: function (states) {
+                    console.log(states);
+
+                    $.each(states, function (i, state) {
+                        console.log(state.Value);
+                        $("#State").val("");
+                        $("#State").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve country states.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $("#State").change(function () {
+            $("#city").empty();
+            console.log("Hit");
+            $.ajax({
+                type: 'POST',
+                @* url: '@Url.Action("getstate")',*@
+                url: '@Url.Action("GetJsonCity", "Home")',
+                dataType: 'json',
+
+                data: { id: $("#State").val() },
+
+
+                success: function (cities) {
+                    console.log(cities);
+
+                    $.each(cities, function (i, city) {
+                        console.log(cities.Value);
+                        $("#city").val("");
+                        $("#city").append('<option value="' + city.Value + '">' +
+                             city.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve country cities.' + ex);
+                }
+            });
+            return false;
+        });
+    });
+
+
+
+    //});
+    @*  function GetState() {
+        console.log("Hit");
+        $.ajax({
+            url: "@Url.Action("GetJsonState", "Home")",
+            dataType: "json",
+            type: "GET",
+            data: { country: $("#country").val() },
+            error: function () {
+            },
+            beforeSend: function () {
+            },
+            success: function (data) {
+                var items = "";
+                items = "<option value=''>Choose state</option>";
+                $.each(data, function (i, item) {
+                    items += "<option value=\"" + item.Value + "\">" + item.Text + "</option>";
+                });
+                $("#DropDownListstate").html(items);
+            }
+        });
+
+    }*@
+
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$("#selectcategory").change(function () {
+
+        //    if ($(this).val() >= 0) {
+
+        //        $.post("/post/GetPostByCategory?category=" + $(this).val(), function (result) {
+
+        //            // $("#loadMoreSection").append(result);
+        //            //    console.log(result);
+        //            if (result != null) {
+        //                $("#postsection").html("");
+        //                $("#loadMoreSection").html("");
+        //                $("#loadMoreSection").append(result);
+        //            }
+        //            //    //console.log(result);
+        //        });
+        //    }
+
+        //});
+
+        $(".chosen-select-multiple").chosen();
+        $('.chosen-select-multiple').on('change', function () {
+            console.log('changes');
+            if ($(this).val() != null &&  $(this).val().length > 0) {
+                $.each($(this).val(), function (key, value) {
+                    if (value == 1 ) {
+                        //console.log('inside '+value);
+                        $('.chosen-select-multiple').val('').trigger('chosen:updated');
+
+                        $('.chosen-select-multiple').val('1').trigger('chosen:updated');
+                    }
+                });
+            }
+            else {
+                console.log('else');
+                $('.chosen-select-multiple').val('').trigger('chosen:updated');
+            }
+          
+        });
+        $(Document).on("change", "#selectcategory", function () {
+            var categoryList = $(this).val();
+            // console.log(categoryList);
+            if (categoryList ==null ||categoryList.length == 0) {
+                categoryList = ['1'];
+            }
+
+            var things = JSON.stringify({ 'category': categoryList });
+            $.ajax({
+                contentType: 'application/json; charset=utf-8',
+
+                type: 'POST',
+                url: '/post/GetPostByCategory2',
+                data: things,
+                success: function (result) {
+                    // console.log(result);
+                    if (result != null) {
+                        // alert(result);
+                        $("#postsection").html("");
+                        $("#loadMoreSection").html("");
+                        $("#loadMoreSection").append(result);
+                    }
+                    $.post("/post/getpostCount", function (result1) {
+                        // alert(result1);
+                        var total = result1 - 5;
+
+                        if (total <= 0) {
+                            //alert(result1 + "" + total)
+
+                            if (result1 <= 5 && result1 > 0) {
+                                $(".btnLoad").val('No more post(s)');
+                                $(".btnLoad").attr('disabled', true);
+                            }
+                            if (result1 <= 0) {
+                                $(".btnLoad").val('No post found');
+                                $(".btnLoad").attr('disabled', true);
+                            }
+                        }
+                        else {
+                            $(".btnLoad").prop("disabled", false);
+                            $(".btnLoad").val("See more post(s)");
+                            //  alert("clickable");
+
+                        }
+
+
+                        // alert(result);
+                    });
+                },
+                failure: function (response) {
+                    $('#result').html(response);
+                }
+            });
+
+
+        });
+
+        Catlist = $("#selectcategory").chosen();
+        $('#selectcategory').change(function () {
+            if ($(this).val() != null && $(this).val().length > 0) {
+                $.each($(this).val(), function (key, value) {
+                    if (value == 1 ) {
+                        $('#selectcategory').val('').trigger('chosen:updated');
+                        $('#selectcategory').val('1').trigger('chosen:updated');
+                    }
+
+                });
+            }
+            else { $('#selectcategory').val('').trigger('chosen:updated'); }
+            //console.log($('#selectcategory').val().length);
+        });
+
+    });
+    function fileclick() {
+        $("#file").click();
+
+    }
+</script>
+
+
+    <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
+        @Html.Partial("../UserHome/_SearchNGOPartial", Model.ngouser)
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+        <div class="container">
+            <div class="row col-sm-10 col-sm-push-1">
+                <div class="selectcategory">
+                    @Html.DropDownList("selectcategory", (SelectList)ViewBag.category, new { id = "selectcategory", @data_placeholder = "Search by Category", @class = "form-control chosen-with-icon", @multiple = "multiple" })
+                </div>
+            </div>            
+            <div class="row col-sm-10 col-sm-push-1">
+                <form method="post" action="~/NGOHome/PostImage" enctype="multipart/form-data" id="postform">
+                    <div id="posttemplate">
+                        <div class="uploadpheadingcolor">
+                            <div class="panel-heading"><b>Upload Post</b></div>
+                        </div>
+                        <div class="panel-body uploadpanelbody">
+                            <div class=" form-inline col-sm-12  uploadimagesection  ">
+                                <a href="#" id="uploadbtn ">
+                                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick(); return false;"></span>
+                                </a>
+                                <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
+                                <input type="file" id="file" name="file" data-badge="false" />
+                                <span id="uploadFileName"></span>
+                                @Html.DropDownList("category", (SelectList)ViewBag.categoryList, new { @class = "form-control chosen-select-multiple", @multiple = "multiple" })
+                            </div>
+                            <div class=" form-inline col-sm-12">
+                                @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "What do you want to share?" })
+                                <br />
+                                <input type="submit" class="btn btn-primary btn-lg right btnPost" id="post" value="Post" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row col-sm-12 col-xs-12">
+                    <div class="row col-sm-12 col-xs-12">
+                        <p style="padding: 10px;"></p>
+                    </div>
+                </div>
+            </div>
+            <div id="postsection">
+                @Html.Partial("../UserHome/_Posts", Model.post)
+            </div>
+            <div id="loadMoreSection"></div>
+            <div style="text-align: center">
+                <input type="button" style="background: transparent; border: none; outline: none; color: #0f66f1; margin-bottom: 20px; font-weight: 400; width: 200px;" class="btnLoad" value="See more post(s)" id="btnLoad" align="center">
+                @*type="button"*@
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="col-md-2">
+        </div>
+    </div>
+
+
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}
+

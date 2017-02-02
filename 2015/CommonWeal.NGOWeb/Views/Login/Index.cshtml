@@ -1,0 +1,64 @@
+﻿@model CommonWeal.Data.User
+
+@{
+    ViewBag.Title = "All Rights Reserved";
+}
+
+@Html.Raw(TempData["PasswordChange"])
+
+<div class="container">
+    <div id="main" class="col-md-12">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="login panel panel-default">
+                <div class="panel-heading">
+                    <h3>Login</h3>
+                </div>
+                <div class="panel-body">
+                    <div id="Login" class="form-horizontal">
+                        @*<form name="User" class="form-horizontal" action="/Login/login" method="post">*@
+                        @using (Html.BeginForm("Index", "Login"))
+                        {  
+                        
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="fn">Email*</label>
+                                <div class="col-xs-8">
+                                    @Html.TextBoxFor(a => a.LoginEmailID, new { placeholder = "Email ID" })<br />
+                                    @Html.ValidationMessageFor(a => a.LoginEmailID)
+                                    @*  <input type="text" class="form-control" id="email/mobno" placeholder="Email/Mobile Number" name="login_Email">*@
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-xs-4" for="ln">Password*</label>
+                                <div class="col-xs-8">
+                                    @Html.PasswordFor(a => a.LoginPassword, new { placeholder = "Password" })<br />
+                                    @Html.ValidationMessageFor(a => a.LoginPassword)
+                                    @*@Html.EditorFor(a => a.LoginPassword)*@
+                                </div>
+                            </div>
+                    
+                    
+                    
+                 
+                    
+                            <div class="form-group">
+                                @if (TempData["Success"] != null)
+                                {
+                      
+                                    <p style="color: red; padding-right: 200px"><strong></strong>@TempData["Success"].ToString()</p>
+                                }
+                            </div> 
+                            <div class="form-group">
+                                <center><button type="submit" class="btn btn-primary" onclick="">Login</button></center>
+                            </div>
+                            <a id="forgatpassword" href="/Password/ForgotPassword">Forgot Password?</a>
+                        }
+                        <br />
+                        @Html.ValidationSummary(true)
+                        @*  @Html.Raw(TempData["Loginmsg"])*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

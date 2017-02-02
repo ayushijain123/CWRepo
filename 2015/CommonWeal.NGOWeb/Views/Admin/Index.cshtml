@@ -1,0 +1,332 @@
+﻿@model CommonWeal.Data.ModelExtension.Count
+
+@*Added by Neha M.*@
+
+@section scripts{
+    <script src="~/Scripts/Admin/Admin%20Script.js"></script>
+}
+<script src="~/Scripts/Admin/jquery.min.js"></script>
+<script src="~/Scripts/Admin/Highcharts/highcharts.js"></script>
+<script src="~/Scripts/Admin/Highcharts/data.js"></script>
+<script src="~/Scripts/Admin/Highcharts/exporting.js"></script>
+<script src="~/Scripts/Admin/CloudFlare/Chart.bundle.min.js"></script>
+<script src="~/Scripts/Admin/CloudFlare/d3.min.js"></script>
+<script src="~/Scripts/Admin/CloudFlare/nv.d3.min.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="top-panel col-md-12">
+            <div class="top-row col-md-4">
+                <a href="/Admin/Requests">
+                    <div class="media bg-primary request">
+                        <div class="media-left side-request pull-left">
+                            <i class="icon-admin fa fa-user-plus fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>NGOs Request
+                             <span class="pull-right count-of-users" id="COR">@Model.CountOfRequests</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div> 
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/Active_Users">
+                    <div class="media bg-primary active-ngo">
+                        <div class="media-left side-active-ngo pull-left">
+                            <i class="icon-admin fa fa-rotate-right fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Active NGOs
+                             <span class="pull-right count-of-users" id="COAN">@Model.CountOfActiveNGO</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/SpamNGO">
+                    <div class="media bg-primary blocked-ngo">
+                        <div class="media-left side-blocked-ngo pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Blocked/Declined NGOs
+                            <span class="pull-right count-of-users" id="COBN">@Model.CountOfTotalBlockNGO</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="bottom-panel col-md-12">
+            <div class="top-row col-md-4">
+                <a href="/Admin/All_Users">
+                    <div class="media bg-primary all-users">
+                        <div class="media-left side-all-users pull-left">
+                            <i class="icon-admin fa fa-users fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Active Users
+                            <span class="pull-right count-of-users" id="COAL">@Model.CountOfTotalActiveUsers</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/Warned_NGOs">
+                    <div class="media bg-primary warned-users">
+                        <div class="media-left side-warned-users pull-left">
+                            <i class="icon-admin fa fa-exclamation-triangle fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Warned NGOs
+                                <span class="pull-right count-of-users" id="COWU">@Model.CountOfWarnedUsers</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="top-row col-md-4">
+                <a href="/Admin/SpamUser">
+                    <div class="media bg-primary blocked-users">
+                        <div class="media-left side-blocked-users pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Blocked/Declined Users  
+                            <span class="pull-right count-of-users" id="COBS">@Model.IsBlockSpam</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="top-row col-md-4" style="margin-top:3px;">
+                <a href="/Admin/RequestEstimation">
+                    <div class="media bg-primary blocked-users">
+                        <div class="media-left side-blocked-users pull-left">
+                            <i class="icon-admin fa fa-ban fa-spin-hover" aria-hidden="true"></i>
+                        </div>
+                        <div class="media-body">
+                            <h3>Donation Request
+                            <span class="pull-right count-of-users" id="COBS" style="padding-right: 6px">@Model.RequestEstimation</span>
+                            </h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="donut-chart col-md-6">
+            <center><h2>NGO's Information:</h2></center>
+            <canvas id="myChart1" style="height: 50px;"></canvas>
+        </div>
+        <div class="donut-chart col-md-6">
+            <center><h2>User's Information:</h2></center>
+            <canvas id="myChart2" style="height: 50px;"></canvas>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="discrete-graph col-md-12">
+            <div class="row year-dropdown pull-right">
+                <div class="col-md-12">
+                    <form>
+                        <strong>Year:</strong>
+                        <select name="year" id="" class="BarGraph">
+
+                            @foreach (var year in Model.YearList)
+                            {
+                                if (year == DateTime.Now.Year)
+                                { <option selected>@year</option>}
+                                else
+                                { <option>@year</option>}
+                            }
+
+                        </select>
+                    </form>
+                </div>
+            </div>
+            <div id="container"></div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["msg"] != null)
+{
+    @Html.Raw(TempData["msg"])
+}
+
+@ViewData["MoreInfo"]
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="row">
+    <div class="col-md-12">
+        <script>
+
+            $(document).ready(function () {
+                $('#getRequest').click();
+            });
+        </script>
+
+        <script type="text/javascript" src="/assets/script/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript" src="/assets/script/jquery.canvasjs.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.migrate/jquery-migrate-1.2.1.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/5.2.2/jquery.validate.unobtrusive.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/mvc/3.0/jquery.unobtrusive-ajax.min.js"></script>
+
+        @using (Ajax.BeginForm("DisplayGraph", "Admin",
+                null, //route values
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                },
+                new { id = "SampleForm" }))
+        {
+           
+           
+            <button class="btn btn-primary" id="getRequest" type="submit">Graph</button>
+        }*@
+
+
+
+@* @using (Ajax.BeginForm("DisplayGraph", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+                ))
+        {     
+            <button id="getRequest" class="fa fa-user-plus fa-5x,btn btn-primary btn-lg  btnMenu" type="submit" style="width: 167px;">&nbsp Requests</button>
+    
+        }*@
+
+@*   <span id="lblResult"></span>*@
+
+@* </div>
+</div>
+<span id="lblResult"></span>*@
+@*<table class="col-md-12 col-md-offset-1" style="border:hidden">
+    <tr>
+        <td>
+
+@using (Ajax.BeginForm("Requests", "Admin",
+                null, 
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+               
+                ))     
+                      
+    {     
+    <button id="getRequest" class="fa fa-user-plus fa-5x,btn btn-primary btn-lg  btnMenu" type="submit" style="width:167px;">&nbsp Requests</button>
+    
+    }
+  </td>
+<td>
+ @using (Ajax.BeginForm("Active_Users", "Admin",
+                null, 
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+           ))
+ {         
+    
+       <button class="fa fa-users fa-5x,btn btn-primary btn-lg "    type="submit" style="width:167px;" >&nbsp Active NGO</button>
+ }
+    </td>
+        <td>
+
+ @using (Ajax.BeginForm("Blocked_Users", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+
+                ))
+ {        
+      <button class="fa fa-ban ,btn btn-primary btn-lg "  type="submit" style="width:164px;">&nbsp Blocked NGO </button>
+ }
+
+            </td>
+        <td>
+
+ @using (Ajax.BeginForm("All_Users", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+
+                ))
+ {        
+     <a href="/Admin/All_Users"><button class="fa fa-ban ,btn btn-primary btn-lg " type="submit" style="width:164px;">&nbsp All Users</button></a>
+ }
+
+            </td>
+         <td>
+
+ @using (Ajax.BeginForm("Blocked_NormalUsers", "Admin",
+                null,
+                new AjaxOptions
+                {
+                    UpdateTargetId = "lblResult",
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                }
+
+
+                ))
+ {        
+      <a href="~/Views/Admin/Blocked_NormalUsers"><button class="fa fa-ban ,btn btn-primary btn-lg "  type="submit" style="width:164px;">&nbsp Blocked Users</button></a>
+ }
+
+            </td>
+        </tr>
+    </table>
+    
+    <span id="lblResult"></span>      
+
+*@

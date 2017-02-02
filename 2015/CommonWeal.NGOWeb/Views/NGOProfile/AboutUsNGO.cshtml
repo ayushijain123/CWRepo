@@ -1,0 +1,210 @@
+﻿@model CommonWeal.Data.NGOUser
+@{
+    ViewBag.Title = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+      <div class="row">
+        <div class="main-panel">
+
+            <div class="aboutusform row">
+
+                <div class="row">
+                    <div class="col-md-6 col-md-push-2">
+                        <h3><strong>Your Personal Info</strong></h3>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-md-pull-1">
+
+                    <form class="form-horizontal" action="/NGOProfile/Edit" method="post">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="email">NGO Email:</label>
+                            </div>
+                            <div class="col-md-6">
+
+                                <input type="email" class="form-control" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NGOEmailID" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="email">Mobile:</label>
+
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="Mobile" placeholder="Enter Mobile Number" value="@Model.Mobile"required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="email">Address:</label>
+
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="NGOAddress" placeholder="Enter Adderess" value="@Model.NGOAddress"required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="email">Name:</label>
+
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="NGOName" placeholder="Enter Name" value="@Model.NGOName"required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="control-label" for="email">Chairman Name:</label>
+
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.ChairmanName"required>
+                            </div>
+                        </div>
+
+
+                        <div class="form-inline col-md-6 col-md-push-6">
+                          <div id="profileupdate">
+                                    <span id="editbtn" class="btn btn-primary">Edit</span>
+                                    <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+                                </form>
+                                     <a href="/NGOProfile/Index"><span id="Canclebtn" class="btn btn-primary">Cancel</span></a>
+                                </div>
+                            </div>
+                      
+                        <p style="padding-bottom: 10px;"></p>
+                  
+                </div>
+
+
+                <div class="col-md-6 col-md-push-1">
+
+                    <p style="padding-top: 60px;"></p>
+                    <div class="editpanel panel panel-default">
+                        <div class="card card-user">
+                            @* <div class="image">
+                                        <img src="~/Images/bckg.jpg" style="align" alt="...">
+                                    </div>*@
+
+                            <div class="content">
+                                <div class="author">
+                                    @*<a href="#">*@
+
+                                    @*                                            <a href="#">*@
+
+                                    <img  class="avatar border-gray" src="@ViewBag.imageurl" alt="...">
+                                    <h4 class="title">AboutUs<br>
+                                    </h4>
+                                    </a>
+
+                                            @*</a>*@
+                                </div>
+                                <p class="description text-center">
+                                  @ViewBag.LoginUser.UserName,
+                                    <textarea style="width:232px; resize:none;" id="textSumamry">@Model.AboutUs</textarea>
+                                    <div class="form-inline">
+                                    <div id="EditAboutUs">
+                                    <span id="edit" class="btn btn-primary">Edit</span>
+                                     <button id="SaveSummaryId-@Model.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                      <a href="/NGOProfile/AboutUs"><span id="Cancel" class="btn btn-primary">Cancel</span>
+                                        </div>
+                                        </div>
+
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script>
+    $("#editbtn").click(function () {
+        $(this).hide();
+    });
+    $(document).ready(function () {
+        $("input").prop('disabled', true);
+        $("#submitbtn").prop('disabled', true);
+        $("#Canclebtn").hide();
+        $("#submitbtn").hide();
+
+
+        $("#editbtn").click(function () {
+            $(this).hide();
+            $("#Canclebtn").show();
+            $("#submitbtn").show();
+            $("input").prop('disabled', false);
+            $("#submitbtn").prop('disabled', false);
+
+        });
+        $("#Canclebtn").click(function () {
+           
+            $("input").prop('disabled', true);
+            $("#submitbtn").hide();
+            $(this).hide();
+            $("#editbtn").show();
+            //$("#submitbtn").prop('disabled', true);
+        });
+
+
+
+
+
+        $("textarea").prop('disabled', true);
+        $(".SaveSummaryId").hide();
+        $("#Cancel").hide();
+        $("#edit").click(function () {
+            $(this).hide();
+            $("#Cancel").show();
+            $(".SaveSummaryId").show();
+            $("textarea").prop('disabled', false);
+        });
+
+
+        $("#Cancel").click(function () {
+            $("textarea").prop('disabled', true);
+            $(".SaveSummaryId").hide();
+            $(this).hide();
+            $("#edit").show();
+            //$("#submitbtn").prop('disabled', true);
+        });
+
+        $(".SaveSummaryId").on('click', function () {
+            var Loginid = $(this).attr('id').split('-')[1];
+            var summary = $('#textSumamry').val();
+            $.post("/NGOProfile/SubmitSummary?summary=" + summary + "&Loginid=" + Loginid, function (result) {
+
+                alert("summary saved successfully");
+                $("#Cancel").hide();
+                $(".SaveSummaryId").hide();
+                $("#edit").show();
+                //console.log(result);
+            });
+
+
+        });
+       
+    });
+    $('img').on('click', function () {
+        var image = $(this).attr('src');
+        $('#myModal2').on('show.bs.modal', function () {
+            $(".img-responsive").attr("src", image);
+        });
+    });
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+  
+</script>

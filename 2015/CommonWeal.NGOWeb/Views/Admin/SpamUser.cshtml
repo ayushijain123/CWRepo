@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.SpamAndBlockUser>
+
+<script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
+<link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/Admin/All_User.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="requests">
+                <table id="myTable" class="tableAdmin col-md-12">
+                    <thead class="tableheader col-md-12">
+                        <tr>
+                            <th class="col-md-2">USER NAME</th>
+                            <th class="col-md-3">COMMENT CONTENT</th>
+                             <th class="col-md-2">REPORTED BY</th>
+                             <th class="col-md-2">STATUS</th>
+                            <th class="col-md-3">ACTION</th>
+
+
+                            @* <th class="col-md-2">RESET PWD</th>*@
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {                       
+                        <tr id="SpamUser-@item.UserID">
+                            <td class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.AbuseUser)</td>
+                          <td class="col-md-3 adminTableData">@Html.DisplayFor(modelItem => item.ReportMessage)</td>
+                            <td class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.ReportedBy)</td>
+                            <td id="status-@item.UserID" class="col-md-2 adminTableData">@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td id="iconcoluser-@item.UserID" class="col-md-3 adminTableData">
+                                @if (item.IsSpam == true && item.IsBlock==false)
+                                { 
+                                    <span id="DeleteCommentUser-@item.CommentId" class="fa fa-trash-o fa-2x adminTableData DeleteCommentUser"  title="Delete Comment" aria-hidden="true" style="color:red; cursor:pointer;"><span id="@item.CommentId" hidden>@item.UserID</span></span>
+                                    <span id="UnspamUser-@item.UserID" class="fa fa-exclamation-triangle UnspamUser"  aria-hidden="true"  title="Unabuse" style="color:green;cursor:pointer; padding-bottom: 0px; padding-right: 0px;padding-top: 8px; font-size: 20px;">&nbsp&nbsp</span>
+                                    <span id="BlockSpamUser-@item.UserID" class="fa fa-lock fa-2x adminTableData BlockSpamUser"  title="Block" aria-hidden="true" style="color:red;cursor:pointer; "></span>
+                                }
+                                 @if (item.IsSpam == true && item.IsBlock == true)
+                                 { 
+                                 <span id="DeleteCommentUser-@item.CommentId" class="fa fa-trash-o fa-2x adminTableData DeleteCommentUser"  title="Delete Comment" aria-hidden="true" style="color:red; cursor:pointer;"><span id="@item.CommentId" hidden>@item.UserID</span></span>
+                                 <span id="UnblockSpamUser-@item.UserID" class="fa fa-unlock fa-2x UnblockSpamUser" title="Unblock" aria-hidden="true" style="color:green;cursor:pointer;"></span>
+                                 }
+                                @if (item.IsBlock == true && item.IsSpam==false)
+                                { 
+                                    <span id="UnblockSpamUser-@item.UserID" class="fa fa-unlock fa-2x UnblockSpamUser" title="Unblock" aria-hidden="true" style="color:green;cursor:pointer;"></span>                     
+                                }
+                            </td>
+
+                            @* <td class="col-md-2 adminTableData"><a href="#">Reset</a></td>*@
+                        </tr>    
+                    }
+                    <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
+                    <h3>
+                        <center><strong>Blocked/Declined Users</strong></center>
+                    </h3>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

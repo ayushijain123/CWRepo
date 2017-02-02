@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CommonWeal.Data.RegisteredUser>
+
+
+
+<script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
+<link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
+<script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/Admin/All_User.js"></script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="requests">
+                <table id="myTable" class="tableAdmin col-md-12">
+                    <thead class="tableheader col-md-12">
+                        <tr>
+                            <th class="col-md-4">USER NAME</th>
+                            <th class="col-md-4">E-MAIL ID</th>
+                            @*<th class="col-md-3">WARN</th>*@
+                            <th class="col-md-4">BLOCK</th>
+                        </tr>
+
+                    </thead>
+                    @foreach (var item in Model)
+                    {                       
+                        <tr id="blockrow-@item.LoginID" class="admintable">
+                            <td class="col-md-3 col-md-push-1 adminTableDataleft">@Html.DisplayFor(modelItem => item.FirstName)</td>
+                            <td class="col-md-4 adminTableData"><a>@Html.DisplayFor(modelItem => item.UserEmail) </a></td>
+                            @* <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
+                            @*    <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
+                            <td id="block" class="col-md-4 adminTableData"><span id="BlockUser-@item.LoginID" class="fa fa-ban fa-2x BlockUser" title="Block" style="color:red;cursor:pointer;"></span></td>
+                        </tr>   
+                    }
+                    @*<span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete Comment"></span>*@
+                    <i><a href="/Admin/" style="font-size: 16px;">Back to Dashboard</a></i>
+                    <h3>
+                        <center> <strong>Active Users </strong></center>
+                    </h3>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@if (TempData["WS"] != null)
+{
+    @Html.Raw(TempData["WS"])
+}
+

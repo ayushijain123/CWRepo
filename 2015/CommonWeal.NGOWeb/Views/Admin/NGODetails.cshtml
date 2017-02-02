@@ -1,0 +1,207 @@
+﻿@model CommonWeal.Data.NGOUser
+
+
+<script>
+    $(document).ready(function () {
+        $("input").prop('disabled', true);
+
+    });
+
+</script>
+
+
+
+<div class="container">
+    <div class="MoreInfo panel panel-default">
+
+        <div class="panel-heading">
+            <center><h3>NGO Details</h3></center>
+        </div>
+
+        <form class="form-horizontal">
+            <div class="panel-body">
+            <div class="form-group rows">
+
+                <div class="col-md-3">
+                    <label class="control-label" for="email">NGO Name:</label>
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="text" class="form-control" name="NGOName"  value="@Model.NGOName" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Email:</label>
+                    </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="email" class="form-control" name="NGOEmailID" value="@Model.NGOEmailID"required>
+                </div>
+
+
+            </div>
+     
+            <div class="form-group row">
+
+
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Mobile Number:</label>
+
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="text" class="form-control" name="Mobile"  value="@Model.Mobile"required>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Address:</label>
+
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="text" class="form-control" name="NGOAddress" value="@Model.NGOAddress"required>
+                </div>
+
+
+
+
+            </div>
+
+
+           
+
+
+
+            <div class="form-group row">
+
+
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Chairman Name:</label>
+
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="text" class="form-control" name="ChairmanName" value="@Model.ChairmanName"required>
+                </div>
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Register with:</label>
+
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    @Html.DropDownListFor(m => m.RegisteredWith, CommonWeal.NGOWeb.Utility.UIHelper.GetDropDownListFromEnum((typeof(CommonWeal.Data.EnumHelper.RegisteredWith))), "Select Type", new { @class = "form-control", @disabled = "disabled" })
+                    @* <input type="text" class="form-control" name="RegisteredWith"  value="@Model.RegisteredWith"required>*@
+                </div>
+                @*inserthere*@
+
+
+
+            </div>
+          
+
+
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Date of Reg.:</label>
+
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="text" class="form-control" name="DateOfRegistration" value="@Model.DateOfRegistration"required>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Website URL:</label>
+
+                </div>
+                <div class="col-md-3 col-md-pull-1">
+                    <input type="text" class="form-control" name="WebsiteUrl" value="@Model.WebsiteUrl"required>
+                </div>
+            </div>
+
+            
+
+            <div class="form-group row">
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Registration Proof:</label>
+
+                </div>
+                <div class="col-md-3">
+                    @if (Model.RegistrationProof.IsEmpty() || Model.RegistrationProof == null)
+                    {
+                        Model.RegistrationProof ="/Images/imagenotfound.jpg";
+                    }
+                     @if (Model.RegistrationProof.Substring(Model.RegistrationProof.LastIndexOf('.')).Equals(".pdf"))
+                    { 
+                   @*<embed src="@Url.Content("http://localhost:61504" + Model.RegistrationProof)" type="application/pdf"></embed>*@
+                      //  <img src="~/Images/pdf/1483637585_pdf.png" />
+                        
+                         <a href="@Url.Content("http://172.27.11.26:81" + Model.RegistrationProof)" target="_blank"><img src="/Images/1483646036_pdf.png" height="50px" width="50px" alt="" /></a>
+                    }
+                    else
+                    { 
+            <img src="@Url.Content("http://172.27.11.26:81" + Model.RegistrationProof)"  data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
+                    }       
+                   
+
+                    @*<input type="text" class="form-control" name="RegistrationProof" value="@Model.RegistrationProof"required>*@
+
+                </div>
+
+                <div class="modal fade" id="Registrationphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                    <div class="modal-dialog likemodaldialog" role="document">
+                        <img src="@Url.Content("http://172.27.11.26:81" + Model.RegistrationProof) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="control-label" for="email">Photo Id of Chairman:</label>
+
+                </div>
+                <div class="col-md-3" id="pop">
+                    @if (Model.ChairmanID.IsEmpty() || Model.ChairmanID == null)
+                    {
+                        Model.ChairmanID ="/Images/imagenotfound.jpg";
+                    }
+                     @if (Model.ChairmanID.Substring(Model.ChairmanID.LastIndexOf('.')).Equals(".pdf"))
+                    {                   
+                         <a href="@Url.Content("http://172.27.11.26:81" + Model.ChairmanID)" target="_blank"><img src="/Images/1483646036_pdf.png" height="50px" width="50px" alt="" /></a>
+                    }
+                    else
+                    { 
+             <img src="@Url.Content("http://172.27.11.26:81" + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#chairmanphoto" height="50px" width="50px" />                                
+                    }                           
+                </div>
+                <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                    <div class="modal-dialog likemodaldialog" role="document">
+                        <img src="@Url.Content("http://172.27.11.26:81" + Model.ChairmanID) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6 col-md-push-4">
+                <div class="ngoviewdetails" id="details">
+                    <a href="/admin/Accept/@Model.LoginID"><span id="accept" class="btn btn-primary">Accept</span></a>&nbsp
+                                     @if (Model.IsDecline == false && Model.IsActive == false)
+                                     { 
+                                         <a href="/admin/Decline/@Model.LoginID"><span id="decline" class="btn btn-primary">Decline</span></a>    
+                                     }
+                    <a href="/Admin/MoreInfo/@Model.LoginID" <span id="SendMail" class="btn btn-primary">Request for More Info.</span></a>
+                   
+                </div>
+                
+            </div>
+</div>
+             <i><a href="/Admin/Requests" style="font-size: 16px; padding-left: 33px;">Back</a></i>
+    </form>
+        
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

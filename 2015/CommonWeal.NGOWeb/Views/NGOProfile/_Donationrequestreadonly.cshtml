@@ -1,0 +1,105 @@
+﻿@model CommonWeal.NGOWeb.ViewModel.Post
+<script>
+    
+
+</script>
+
+
+
+<div class="postcontainer" id="Post-@Model.postId">
+    <div id="posttemplate">
+
+        <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
+            <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
+
+            <a href="/NGOProfile/Index/@Model.userId"><span class="usernamepost col-md-4 col-lg-4 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@Model.userName</b></span></a>
+
+
+            <span class="posttime col-md-4 col-lg-4 col-xs-4 col-sm-4">@Model.postCreateTime</span>
+
+
+            <div class="modal fade" id="donationmodal-@Model.userId" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                <div class="modal-dialog donationmodaldialog" role="document">
+
+                </div>
+
+            </div>
+        </div>
+        <div name="Textmessage" id="Textmessage">
+            <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
+               
+                <span>Donation Request: @Model.postcontent</span>
+            </div>
+        </div>
+        <div class="donationimage">
+
+            @if (Model.postImageUrl != null)
+            { 
+                <img src="@Model.postImageUrl" data-toggle="modal" data-target="#myModal2-@Model.postId" class="imageurlpost" id="imageurlpost-@Model.postId" />
+            }
+            </br>
+        </div>
+
+
+        <div class="modal fade" id="myModal2-@Model.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+            <div class="modal-dialog likemodaldialog" role="document">
+                <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@Model.postId"/>
+            </div>
+        </div>
+
+        <div class="form-inline col-sm-12">
+
+            <table class="table table-striped donatetable" id="donatetable-@Model.userId">
+                <thead class="thead-inverse tabledonationheader trfont">
+                    <tr>
+                        <th style="padding-left: 18px;">Product</th>
+                        <th>Quantity Require</th>
+                        <th>Received</th>
+                        <th>Remaining</th>
+                        @if(this.User.Identity.IsAuthenticated){
+                        <th>Your Contribution</th>
+                        }
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @{foreach (var item in Model.donateItemlist)
+                      {
+                        <tr>
+
+                            <td class="input_fields_wrap tdfont text-transform" style="text-align: center">@item.Item</td>
+                            <td class="input_fields_wr tdfont " style="text-align: center">@item.ItemCount</td>
+                            <td id="donateCount-@item.ItemID" class="tdfont"style="text-align: center">@item.DonateCount</td>
+                            <td class="tdfont" style="text-align: center">@item.ItemRequire</td>
+                             @if(this.User.Identity.IsAuthenticated){
+                            <td class="tdfont" style="text-align: center">@item.DonatedByyou</td>
+                             }
+                        </tr>
+                      }
+                       
+                    
+
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+        <div style="padding-bottom: 6px;">
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <span data-toggle="modal" data-target="#donationmodal" class="cursor wishtodonate" data-id="@Model.postId" >Donate</span>
+            }
+            else
+            {
+                <span class="wishtodonateguest">Donate</span>
+            }
+        </div>
+    </div>
+</div>
+<br />
+<br />
+
+
