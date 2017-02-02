@@ -11,24 +11,29 @@ namespace CommonWeal.Data
 {
     public class Functions
     {
-       
-        //public List<NGOUser> GetAllUserNotAccepted()
-        //{
-        //    List<NGOUser> userList = new List<NGOUser>();
-        //    userList = context.NGOUsers.Where(w => w.IsActive == false && w.IsBlock == false).Select(w => new { w.NGOName, w.NGOEmailID, w.WebsiteUrl, w.IsActive }).SelectMany(w => w).ToList();
-        //    //userList = from NGOUsers in context.NGOUsers
-        //    //           where NGOUsers.IsActive == false && NGOUsers.IsBlock == false
-        //    //           select NGOUsers.NGOName
-        //}
-        //public string GetAllUserNotAccepted()
-        //{
-        //    CommonWealEntities context = new CommonWealEntities();
-        //    var result = context.usp_GetNGORequest();
-        //    return result.ToString();
-        //    //userList = from NGOUsers in context.NGOUsers
-        //    //           where NGOUsers.IsActive == false && NGOUsers.IsBlock == false
-        //    //           select NGOUsers.NGOName
-        //}
+        public List<NGOUser> WarnedNGOs()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            List<NGOUser> NGOList = new List<NGOUser>();
+            // userList = context.RegisteredUsers.ToList();
+            NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
+            return NGOList;
+        }
+        public List<RegisteredUser> AllUsers()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            List<RegisteredUser> userList = new List<RegisteredUser>();
+            // userList = context.RegisteredUsers.ToList();
+            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true && w.User.LoginUserType == 3).ToList();
+            return userList;
+        }
+        public List<NGOUser> GetAllUserNotAccepted()
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            List<NGOUser> userList = new List<NGOUser>();
+            userList = context.NGOUsers.Where(w => w.IsActive == false && w.IsBlock == false).ToList();
+            return userList;
+        }
         public List<NGOUser> GetAllUserAccepted()
         {
             CommonWealEntities context = new CommonWealEntities();
