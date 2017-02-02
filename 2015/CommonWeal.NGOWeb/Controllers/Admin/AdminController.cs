@@ -27,64 +27,31 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
         public ActionResult Active_Users()
         {
-            CommonWealEntities context = new CommonWealEntities();
-            dbOperations obj = new dbOperations();
-            var request = obj.GetAllUserAccepted();
-            return View(request);
+            var res = Task.Run(() => APIHelper<List<NGOUser>>.GetJsonAsync1("Admin/Active_User"));
+                         
+            return View(res.Result);
         }
-
-        public ActionResult Blocked_Users()
-        {
-            CommonWealEntities context = new CommonWealEntities();
-            dbOperations obj = new dbOperations();
-            var request = obj.GetAllUserBlocked();
-            return View(request);
-        }
-
 
         public ActionResult Requests()
         {
-            CommonWealEntities context = new CommonWealEntities();
-            dbOperations obj = new dbOperations();
-            var request = obj.GetAllUserNotAccepted().OrderByDescending(x => x.CreatedOn);
-            return View(request);
+            var res = Task.Run(() => APIHelper<List<NGOUser>>.GetJsonAsync1("Admin/Requests"));
+
+            return View(res.Result);
         }
-        //public ActionResult Index()
-        //{
-
-        //    var result = Task.Run(() => APIHelper<Count>.GetJsonAsync1("Admin/GetRequest"));
-
-        //    return View(result.Result);
-
-        //}
-
-
-
 
         public ActionResult All_Users()
         {
-            CommonWealEntities context = new CommonWealEntities();
-            dbOperations obj = new dbOperations();
-            var request = obj.AllUsers();
-            return View(request);
+            var res = Task.Run(() => APIHelper<List<RegisteredUser>>.GetJsonAsync1("Admin/All_Users"));
+           
+            return View(res.Result);
         }
-
-        public ActionResult Blocked_NormalUsers()
-        {
-            CommonWealEntities context = new CommonWealEntities();
-            dbOperations obj = new dbOperations();
-            var request = obj.BlockedNormalUsers();
-            return View(request);
-        }
+       
         public ActionResult Warned_NGOs()
         {
-            CommonWealEntities context = new CommonWealEntities();
-            dbOperations obj = new dbOperations();
-            var User = context.Users.Where(w => w.IsWarn == true).ToList();
 
-            var request = obj.WarnedNGOs();
+            var res = Task.Run(() => APIHelper<List<NGOUser>>.GetJsonAsync1("Admin/Warned_NGOs"));
 
-            return View(request);
+            return View(res.Result);
         }
 
         public ActionResult Settings()
