@@ -1,0 +1,45 @@
+﻿@model CommonWeal.NGOWeb.ViewModel.Post
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+    });
+
+</script>
+<table class="table table-striped  donatetable">
+    <thead class="thead-inverse trfont">
+        <tr>
+            <th style="padding-left: 18px;" class="donatetableheadcolor">Product</th>
+            <th class="donatetableheadcolor">Quantity Require</th>
+            <th class="donatetableheadcolor">Received</th>
+            <th class="donatetableheadcolor">Remaining</th>
+            <th class="donatetableheadcolor">Donate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model.donateItemlist)
+            {
+                <tr class="ModalRequestRow" id="ModalRequestRow-@item.ItemID">
+
+                    <td class="input_fields_wrap tdfont text-transform" style="text-align: center">@item.Item</td>
+                    <td class="input_fields_wr tdfont" style="text-align: center">@item.ItemCount</td>
+
+                    <td id="modeldonateCount-@item.ItemID" class="tdfont" style="text-align: center">@item.DonateCount</td>
+                    <td class="tdfont" style="text-align: center">@item.ItemRequire</td>
+                    <td style="text-align: center" class="tdfont">
+                        <input class="donatetextbox" id="donatetextbox-@item.ItemID " type="text" />
+                    </td>
+                    @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
+                </tr>
+            }
+        }
+
+    </tbody>
+
+</table>
+<button type="button" class="close submitdonate" data-dismiss="modal" aria-label="Close" id="receivedonation">
+   
+    <span>Submit</span>
+</button>
+<button type="button" class="close canceldonate" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Cancel</span></button>
