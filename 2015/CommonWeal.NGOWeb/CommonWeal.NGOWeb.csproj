@@ -22,6 +22,13 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -495,9 +502,9 @@
     <Content Include="Views\UserHome\_SearchNGOPartial.cshtml" />
     <Content Include="Views\NGOProfile\_Donationrequest.cshtml" />
     <Content Include="Views\NGOProfile\_Donationrequestreadonly.cshtml" />
-    <Content Include="Views\Shared\_RenderDonateDetails.cshtml" />
     <Content Include="Views\Admin\RequestEstimation.cshtml" />
     <Content Include="Views\Admin\GenerateEstimation.cshtml" />
+    <Content Include="Views\Shared\_RenderDonateDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Album\ChairmanID\" />
