@@ -1,12 +1,13 @@
 ﻿using CommonWeal.Data;
 using CommonWeal.NGOWeb.Controllers;
-using CommonWeal.NGOWeb.ViewModel;
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using CommonWeal.Data.ModelExtension;
 
 namespace CommonWeal.NGOWeb
 {
