@@ -80,8 +80,12 @@
     <Compile Include="ImageHandler.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelExtension\DonateItem.cs" />
     <Compile Include="ModelExtension\DoNut.cs" />
-    <Compile Include="ModelExtension\Abuse.cs" />
+    <Compile Include="ModelExtension\NGOProfileCustom.cs" />
+    <Compile Include="ModelExtension\NGOProfilePostCustom.cs" />
+    <Compile Include="ModelExtension\Post.cs" />
+    <Compile Include="ModelExtension\ReceiveDonation.cs" />
     <Compile Include="ModelMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
