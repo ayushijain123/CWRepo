@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using CommonWeal.Data.ModelExtension;
 
 namespace CommonWeal.NGOAPI.Controllers
 {
@@ -35,23 +36,17 @@ namespace CommonWeal.NGOAPI.Controllers
             public int PostID { get; set; }
             public int CommentID { get; set; }
         }
-        public class Abuse
-        {
-         
-            public int CommentID { get; set; }
-        }
+        
 
-[HttpPost]
+        [HttpPost]
         public bool AbuseUser(Abuse abuse)
-    {
+        {
         int id = abuse.CommentID;
         bool result = false;
-        dbOperations ob = new dbOperations();
+        Functions ob = new Functions();
         if ( id> 0)
         {
-           result= ob.abuseUser(id);
-            
-
+           result= ob.abuseUser(id);            
         }
         return result;
     }
