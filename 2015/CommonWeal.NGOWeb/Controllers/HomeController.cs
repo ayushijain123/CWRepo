@@ -1,6 +1,6 @@
 ﻿using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
-using CommonWeal.NGOWeb.ViewModel;
+using CommonWeal.Data.ModelExtension;
 using System.Linq;
 using System.Web.Mvc;
 using System.Collections.Generic;
