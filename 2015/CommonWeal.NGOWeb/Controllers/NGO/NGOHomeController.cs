@@ -8,7 +8,7 @@ using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.IO;
 using System.Threading.Tasks;
-using CommonWeal.NGOWeb.ViewModel;
+using CommonWeal.Data.ModelExtension;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {   /*entry for authorized user and whose role is NGOAdmin*/

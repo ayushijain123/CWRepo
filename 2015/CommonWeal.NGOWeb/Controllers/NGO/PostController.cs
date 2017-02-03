@@ -1,5 +1,4 @@
 ﻿using CommonWeal.Data;
-using CommonWeal.NGOWeb.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

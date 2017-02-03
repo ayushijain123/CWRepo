@@ -7,8 +7,8 @@ using System.Web;
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.Web.Mvc.Ajax;
-using CommonWeal.NGOWeb.ViewModel;
-using CommonWeal.Data;
+
+using CommonWeal.Data.ModelExtension;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
