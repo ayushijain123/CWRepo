@@ -80,6 +80,7 @@
     <Compile Include="ImageHandler.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelExtension\Abuse.cs" />
     <Compile Include="ModelExtension\DonateItem.cs" />
     <Compile Include="ModelExtension\DoNut.cs" />
     <Compile Include="ModelExtension\NGOProfileCustom.cs" />
