@@ -14,31 +14,31 @@ namespace CommonWeal.NGOWeb
     {
         CommonWealEntities context = new CommonWealEntities();
 
-        public List<NGOUser> GetAllUserNotAccepted()
-        {
-            List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == false && w.IsBlock == false).ToList();
-            return userList;
-        }
-        public List<NGOUser> GetAllUserAccepted()
-        {
-            List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsActive == true && w.IsDecline == false).ToList();
-            //userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive== false).ToList();
-            return userList;
-        }
-        public List<NGOUser> GetAllUserBlocked()
-        {
-            List<NGOUser> userList = new List<NGOUser>();
-            userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
-            return userList;
-        }
-        public NGOUser GetNGODetails(int id)
-        {
-            NGOUser ob = new NGOUser();
-            ob = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
-            return ob;
-        }
+        //public List<NGOUser> GetAllUserNotAccepted()
+        //{
+        //    List<NGOUser> userList = new List<NGOUser>();
+        //    userList = context.NGOUsers.Where(w => w.IsActive == false && w.IsBlock == false).ToList();
+        //    return userList;
+        //}
+        //public List<NGOUser> GetAllUserAccepted()
+        //{
+        //    List<NGOUser> userList = new List<NGOUser>();
+        //    userList = context.NGOUsers.Where(w => w.IsActive == true && w.IsDecline == false).ToList();
+        //    //userList = context.NGOUsers.Include(x => x.User).Where(w => w.User.IsActive== false).ToList();
+        //    return userList;
+        //}
+        //public List<NGOUser> GetAllUserBlocked()
+        //{
+        //    List<NGOUser> userList = new List<NGOUser>();
+        //    userList = context.NGOUsers.Where(w => w.IsBlock == true).ToList();
+        //    return userList;
+        //}
+        //public NGOUser GetNGODetails(int id)
+        //{
+        //    NGOUser ob = new NGOUser();
+        //    ob = context.NGOUsers.Where(w => w.LoginID == id).FirstOrDefault();
+        //    return ob;
+        //}
         public ForgotPassword UserDetail(string FinalOTP)
         {
             ForgotPassword ob = new ForgotPassword();
@@ -66,27 +66,27 @@ namespace CommonWeal.NGOWeb
             userList = context.Users.Where(w => w.IsActive == true).ToList();
             return userList;
         }
-        public List<NGOUser> WarnedNGOs()
-        {
-            List<NGOUser> NGOList = new List<NGOUser>();
-            // userList = context.RegisteredUsers.ToList();
-            NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
-            return NGOList;
-        }
+        //public List<NGOUser> WarnedNGOs()
+        //{
+        //    List<NGOUser> NGOList = new List<NGOUser>();
+        //    // userList = context.RegisteredUsers.ToList();
+        //    NGOList = context.NGOUsers.Where(w => w.IsWarn == true).ToList();
+        //    return NGOList;
+        //}
         //User Table
-        public List<RegisteredUser> AllUsers()
-        {
-            List<RegisteredUser> userList = new List<RegisteredUser>();
-            // userList = context.RegisteredUsers.ToList();
-            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true && w.User.LoginUserType == 3).ToList();
-            return userList;
-        }
-        public List<RegisteredUser> BlockedNormalUsers()
-        {
-            List<RegisteredUser> userList = new List<RegisteredUser>();
-            userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsBlock == true && w.User.LoginUserType == 3).ToList();
-            return userList;
-        }
+        //public List<RegisteredUser> AllUsers()
+        //{
+        //    List<RegisteredUser> userList = new List<RegisteredUser>();
+        //    // userList = context.RegisteredUsers.ToList();
+        //    userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsActive == true && w.User.LoginUserType == 3).ToList();
+        //    return userList;
+        //}
+        //public List<RegisteredUser> BlockedNormalUsers()
+        //{
+        //    List<RegisteredUser> userList = new List<RegisteredUser>();
+        //    userList = context.RegisteredUsers.Include(x => x.User).Where(w => w.User.IsBlock == true && w.User.LoginUserType == 3).ToList();
+        //    return userList;
+        //}
 
 
         public string GenerateRandomPassword(int length)
@@ -480,41 +480,41 @@ namespace CommonWeal.NGOWeb
 
         }
 
-        /*method for submit abuseusers*/
-        public bool abuseUser(int CommentId)
-        {
-            CommonWealEntities context1 = new CommonWealEntities();
-            var ob = context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
-            SpamUser su = new SpamUser();
-            su.CommentID = CommentId;
-            su.LoginId = ob.LoginID.Value;
-            su.CommentContent = ob.CommentText;
-            su.ModifiedOn = DateTime.Now;
-            var post = context1.NGOPosts.Where(x => x.PostID == ob.PostID).FirstOrDefault();
-            su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();
-            int userType = context1.Users.Where(user => user.LoginID == su.LoginId).FirstOrDefault().LoginUserType;
+        ///*method for submit abuseusers*/
+        //public bool abuseUser(int CommentId)
+        //{
+        //    CommonWealEntities context1 = new CommonWealEntities();
+        //    var ob = context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
+        //    SpamUser su = new SpamUser();
+        //    su.CommentID = CommentId;
+        //    su.LoginId = ob.LoginID.Value;
+        //    su.CommentContent = ob.CommentText;
+        //    su.ModifiedOn = DateTime.Now;
+        //    var post = context1.NGOPosts.Where(x => x.PostID == ob.PostID).FirstOrDefault();
+        //    su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();
+        //    int userType = context1.Users.Where(user => user.LoginID == su.LoginId).FirstOrDefault().LoginUserType;
 
-            switch (userType)
-            {
-                case 1: string NGOUser = context1.NGOUsers.Where(ngusr => ngusr.LoginID == su.LoginId).FirstOrDefault().NGOName.ToString();
-                    su.AbuseedUserName = NGOUser;
-                    break;
-                case 3: var RegUser = context1.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == su.LoginId).FirstOrDefault();
-                    su.AbuseedUserName = RegUser.FirstName + " " + RegUser.LastName;
-                    break;
+        //    switch (userType)
+        //    {
+        //        case 1: string NGOUser = context1.NGOUsers.Where(ngusr => ngusr.LoginID == su.LoginId).FirstOrDefault().NGOName.ToString();
+        //            su.AbuseedUserName = NGOUser;
+        //            break;
+        //        case 3: var RegUser = context1.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == su.LoginId).FirstOrDefault();
+        //            su.AbuseedUserName = RegUser.FirstName + " " + RegUser.LastName;
+        //            break;
 
-            }
-            var checkUser = context1.SpamUsers.Where(x => x.CommentID == su.CommentID).FirstOrDefault();
-            if (checkUser == null)
-            {
-                context1.SpamUsers.Add(su);
-                var res = context1.Users.Where(a => a.LoginID == su.LoginId).FirstOrDefault();
-                res.IsSpam = true;
-                context1.SaveChanges();
-                return true;
-            }
-            return false;
-        }
+        //    }
+        //    var checkUser = context1.SpamUsers.Where(x => x.CommentID == su.CommentID).FirstOrDefault();
+        //    if (checkUser == null)
+        //    {
+        //        context1.SpamUsers.Add(su);
+        //        var res = context1.Users.Where(a => a.LoginID == su.LoginId).FirstOrDefault();
+        //        res.IsSpam = true;
+        //        context1.SaveChanges();
+        //        return true;
+        //    }
+        //    return false;
+        //}
 
         //added on 16/jan/2017
         //for doantion request
