@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-
+using System.Threading.Tasks;
+using CommonWeal.NGOWeb.Utility;
+using CommonWeal.Data.ModelExtension;
 
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
@@ -309,27 +311,25 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*method for submit abused users on comment */
         //[HttpPost]
         [AllowAnonymous]
-        public JsonResult AbuseUser(int CommentId = 0)
+        public async Task<JsonResult> AbuseUser(Abuse objabuse)
         {
             try
             {
+                //bool result = false;
+                //Functions ob = new Functions();
+                //if (CommentId > 0)
+                //{
+                //    result = ob.abuseUser(CommentId);
 
-                bool result = false;
-                dbOperations ob = new dbOperations();
-                if (CommentId > 0)
-                {
-                    result = ob.abuseUser(CommentId);
-
-                }
-
-                return Json(result, JsonRequestBehavior.AllowGet);
+                //}
+                var res =await Task.Run(() => APIHelper<string>.PostJson("NGOProfile/AbuseUser", objabuse));
+                return Json(res, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-
         }
         [AllowAnonymous]
         /*action for search ngo  through ajax*/
