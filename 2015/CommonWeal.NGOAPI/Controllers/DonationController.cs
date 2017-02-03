@@ -36,8 +36,9 @@ namespace CommonWeal.NGOAPI.Controllers
             donationrequest.Description = donationdata.Description;
             donationrequest.RequestNGOId = donationdata.RequestNGOID;
             donationrequest.createdOn = DateTime.Now;
-            donationrequest.Status =false;
-          
+            donationrequest.Status = false;
+            donationrequest.ItemCost = 0;
+
             context.DonationRequests.Add(donationrequest);
             context.SaveChanges();
             var ItemTypes = donationdata.donationdetaildata.Count();
@@ -46,13 +47,13 @@ namespace CommonWeal.NGOAPI.Controllers
             {
                 donationdetail = donationdata.donationdetaildata[i];
                 donationdetail.RequestID = donationrequest.RequestID;
-                donationdetail.DonatedCount=0;
-                donationdetail.ItemRequire = donationdetail.ItemCount ;
+                donationdetail.DonatedCount = 0;
+                donationdetail.ItemRequire = donationdetail.ItemCount;
                 //donationdetail.ItemName = donationdata.donationdetaildata.it
                 //donationdetail.ItemCount = donationdata.ItemCount;
                 donationdetail.createdOn = DateTime.Now;
                 context.DonationDetails.Add(donationdetail);
-                
+
             }
             NGOPost ngopost = new NGOPost();
             ngopost.CreatedOn = DateTime.Now;
@@ -67,31 +68,46 @@ namespace CommonWeal.NGOAPI.Controllers
             context.NGOPosts.Add(ngopost);
             context.SaveChanges();
             var res = "yes";
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK,res);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, res);
             return response;
         }
+
+
+
         public class UserDonationData
         {
             public int donatecount { get; set; }
             public int ItemID { get; set; }
             public int UserLoginID { get; set; }
+            public int RequestId { get; set; }
+        }
+        public class DonarDetailData
+        {
+            public List<UserDonationData> donardetailvalue { get; set; }
         }
 
         [HttpPost]
-        public HttpResponseMessage UserDonation(UserDonationData userdonationdata)
+        public HttpResponseMessage UserDonation(DonarDetailData donardetaildata)
         {
             CommonWealEntities context = new CommonWealEntities();
             DonarDetail donardetail = new DonarDetail();
-            donardetail.ItemID = userdonationdata.ItemID;
-            donardetail.DonarLoginID = userdonationdata.UserLoginID;
-            donardetail.createdOn = DateTime.Now;
-          
-            var donationdeatail = context.DonationDetails.Where(w=>w.ItemID == donardetail.ItemID).FirstOrDefault();
-            donationdeatail.DonatedCount = donationdeatail.DonatedCount+ userdonationdata.donatecount;
-            donationdeatail.ItemRequire = donationdeatail.ItemCount - donationdeatail.DonatedCount;
-            context.DonarDetails.Add(donardetail);
-            context.SaveChanges();
-           // var res = "hello";
+           var count = donardetaildata.donardetailvalue.Count;
+            for (int i = 0; i < count; i++)
+            {
+                donardetail.ItemID = donardetaildata.donardetailvalue[i].ItemID;
+                donardetail.DonarLoginID = donardetaildata.donardetailvalue[i].UserLoginID;
+                donardetail.createdOn = DateTime.Now;
+                donardetail.RequestId = donardetaildata.donardetailvalue[i].RequestId;
+                donardetail.Donatecount = donardetaildata.donardetailvalue[i].donatecount;
+                var donationdetail = context.DonationDetails.Where(w => w.ItemID == donardetail.ItemID).FirstOrDefault();
+                donationdetail.DonatedCount = donationdetail.DonatedCount + donardetaildata.donardetailvalue[i].donatecount;
+                donationdetail.ItemRequire = donationdetail.ItemCount - donationdetail.DonatedCount;
+                context.DonarDetails.Add(donardetail);
+                context.SaveChanges();
+            }
+
+
+            // var res = "hello";
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
