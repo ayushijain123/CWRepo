@@ -81,6 +81,7 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ModelExtension\DoNut.cs" />
+    <Compile Include="ModelExtension\Abuse.cs" />
     <Compile Include="ModelMessages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
