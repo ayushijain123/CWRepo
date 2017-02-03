@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using CommonWeal.Data;
 using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
-using CommonWeal.NGOWeb.ViewModel;
+using CommonWeal.Data.ModelExtension;
 namespace CommonWeal.NGOWeb.Controllers.AuthUser
 {
     [Authorize]
