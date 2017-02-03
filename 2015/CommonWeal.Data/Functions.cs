@@ -142,8 +142,43 @@ namespace CommonWeal.Data
             }
 
             return activationCode;
+        }
+        /*method for submit abuseusers*/
+        public bool abuseUser(int CommentId)
+        {
+            CommonWealEntities context1 = new CommonWealEntities();
+            var ob = context1.PostComments.Where(x => x.CommentID == CommentId).FirstOrDefault();
+            SpamUser su = new SpamUser();
+            su.CommentID = CommentId;
+            su.LoginId = ob.LoginID.Value;
+            su.CommentContent = ob.CommentText;
+            su.ModifiedOn = DateTime.Now;
+            var post = context1.NGOPosts.Where(x => x.PostID == ob.PostID).FirstOrDefault();
+            su.ReportedBy = context1.NGOUsers.Where(ngusr => ngusr.LoginID == post.LoginID).FirstOrDefault().NGOName.ToString();
+            int userType = context1.Users.Where(user => user.LoginID == su.LoginId).FirstOrDefault().LoginUserType;
 
+            switch (userType)
+            {
+                case 1:
+                    string NGOUser = context1.NGOUsers.Where(ngusr => ngusr.LoginID == su.LoginId).FirstOrDefault().NGOName.ToString();
+                    su.AbuseedUserName = NGOUser;
+                    break;
+                case 3:
+                    var RegUser = context1.RegisteredUsers.Where(lgnuser => lgnuser.LoginID == su.LoginId).FirstOrDefault();
+                    su.AbuseedUserName = RegUser.FirstName + " " + RegUser.LastName;
+                    break;
 
+            }
+            var checkUser = context1.SpamUsers.Where(x => x.CommentID == su.CommentID).FirstOrDefault();
+            if (checkUser == null)
+            {
+                context1.SpamUsers.Add(su);
+                var res = context1.Users.Where(a => a.LoginID == su.LoginId).FirstOrDefault();
+                res.IsSpam = true;
+                context1.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }
