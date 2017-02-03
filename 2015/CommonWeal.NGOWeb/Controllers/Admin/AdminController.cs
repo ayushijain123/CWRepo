@@ -53,13 +53,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
 
             return View(res.Result);
         }
-
-        public ActionResult Settings()
-        {
-            return View();
-        }
-
-
+        
         public ActionResult WarnNGO(int id)
         {
             try
