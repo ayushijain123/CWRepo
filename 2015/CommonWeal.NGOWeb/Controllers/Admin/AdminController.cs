@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using CommonWeal.NGOWeb.ViewModel.Admin;
+using CommonWeal.NGOWeb.ViewModel.Admin.NGOCostChart;
 
 namespace CommonWeal.NGOWeb.Controllers.Admin
 {
@@ -18,7 +19,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         dbOperations obj = new dbOperations();
         public ActionResult Index()
         {
-
+           
             var result = Task.Run(() => APIHelper<Count>.GetJsonAsync1("Donut/GetCount"));
 
             return View(result.Result);
@@ -859,8 +860,8 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             List<GenerateEstimation> estimatelist=new List<GenerateEstimation>();
             CommonWealEntities context=new CommonWealEntities();
             var donatelist = context.DonationDetails.Where(x => x.RequestID == id).ToList();
-            
-            foreach(var item in donatelist)
+           
+            foreach (var item in donatelist)
             {
              GenerateEstimation estimate=new GenerateEstimation();
             estimate.Product = item.ItemName;
@@ -868,7 +869,6 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             estimate.TotalQuantity = item.ItemCount.Value;
             estimate.Received = item.DonatedCount.Value;
             estimatelist.Add(estimate);
-
 
             }
 
@@ -897,6 +897,39 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             ngorequest.ItemCost = total;
             context.SaveChanges();
           return  Json(true,JsonRequestBehavior.AllowGet);
+        }
+
+        public class donationrequest {
+            public string NGOName { get; set; }
+            public int TotalDonationAmount { get; set; }
+        }
+
+
+        public JsonResult DonationRequest() {
+            string[] color = { "#00FFFF", "#0000FF", "#DC143C", "#006400", "#FF1493", "#1E90FF", "#FFD700", "#7CFC00", "#7B68EE", "#FF4500", "#2E8B57" };
+            CommonWealEntities context = new CommonWealEntities();           
+            var result = context.DonationRequests.GroupBy(o => o.RequestNGOId)
+                 .Select(g => new {LoginId = g.Key, total = g.Sum(x => x.ItemCost) });
+            var ngolist = context.NGOUsers.ToList();
+            CommonWeal.NGOWeb.ViewModel.Admin.NGOCostChart.Data objdonate = new CommonWeal.NGOWeb.ViewModel.Admin.NGOCostChart.Data();
+            dataSets objdataset = new dataSets();
+            objdataset.data = new List<int>();
+            objdataset.backgroundColor = new List<string>();
+            objdataset.hoverBackgroundColor = new List<string>();
+            objdonate.labels= new List<string>();
+            objdonate.datasets = new List<dataSets>();
+            int i = 0;
+            foreach (var item in result) {
+                objdataset.data.Add(item.total.Value);
+                objdataset.backgroundColor.Add(color[i]);
+                objdataset.hoverBackgroundColor.Add(color[i++]);
+                objdonate.labels.Add(ngolist.Where(x=>x.LoginID==item.LoginId).FirstOrDefault().NGOName);
+                //objdonate.datasets.Add() = item.total.Value;
+                //donationamountlist.Add(objdonate);
+            }
+            objdonate.datasets.Add(objdataset);
+            return Json(objdonate, JsonRequestBehavior.AllowGet);
+
         }
     }
     
