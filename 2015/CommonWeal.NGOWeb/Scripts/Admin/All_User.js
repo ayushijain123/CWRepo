@@ -116,10 +116,10 @@ $(document).ready(function () {
             success: function (result) {
                 if (result == true) {
                     
-                    alert('successfully uploaded');
+                    alert('Estimated successfully');
                 }
                 else {
-                    alert('Sorry upload Failed try again');
+                    alert('Failed, try again');
 
                 }
 

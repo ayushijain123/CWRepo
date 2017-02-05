@@ -202,6 +202,8 @@
     <Compile Include="Utility\UIHelper.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="ViewModel\Admin\GenerateEstimation.cs" />
+    <Compile Include="ViewModel\Admin\NGOCostChart\Data.cs" />
+    <Compile Include="ViewModel\Admin\NGOCostChart\dataSets.cs" />
     <Compile Include="ViewModel\Admin\RequestEstimation.cs" />
     <Compile Include="ViewModel\Admin\UnitPriceList.cs" />
     <Compile Include="ViewModel\DonationRequestView\DonateItem.cs" />

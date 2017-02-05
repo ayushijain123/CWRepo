@@ -86,7 +86,7 @@ mark {
 
 .main-content {
     padding-left: 10px;
-       padding-top: 19px;
+    padding-top: 19px;
 }
 
 .featured + .main-content {
@@ -766,8 +766,7 @@ tr.pager td {
 
 
     #donationrequest {
-    font-weight: bold;
-    
+        font-weight: bold;
     }
 
 
@@ -893,8 +892,9 @@ tr.pager td {
     cursor: pointer;
     overflow: hidden;
 }
+
 .donationimageurlpost {
- margin: 0 auto;
+    margin: 0 auto;
     max-width: 50%;
     max-height: 600px;
     display: block;
@@ -1182,7 +1182,6 @@ tr.pager td {
 }
 
 th {
-  
     text-align: center;
     padding: 10px;
 }
@@ -1196,23 +1195,24 @@ th {
 
 .adminTableDataleft {
     text-align: left;
-
 }
 
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
 .donatetable tr:nth-child(even) {
-background-color:white;
+    background-color: white;
 }
 
 .tableheader {
     color: white;
     text-align: left;
-        background-color: #2A3F54;
+    background-color: #2A3F54;
 }
+
 .tabledonationheader {
-    color:#337ab7;
+    color: #337ab7;
     text-align: left;
 }
 
@@ -1442,7 +1442,6 @@ NGO registration page css*/
 .panelNGO {
     margin-top: 8px;
 }
-
 /*Added by Neha M.*/
 /*Admin CSS*/
 
@@ -1482,6 +1481,10 @@ NGO registration page css*/
     background-color: #e45857;
 }
 
+.donation-request {
+    background-color: #CD853F;
+}
+
 .icon-admin {
     font-size: 25px;
     padding: 19px;
@@ -1516,6 +1519,10 @@ NGO registration page css*/
 
 .blocked-users:hover {
     background-color: #dd2c2b;
+}
+
+.donation-request:hover {
+    background-color: #8B4513;
 }
 
 .media-body {
@@ -1554,6 +1561,10 @@ NGO registration page css*/
     background-color: #dd2c2b;
 }
 
+.side-donation-request {
+    background-color: #8B4513;
+}
+
 .top-row > a:link {
     text-decoration: none;
 }
@@ -1561,7 +1572,7 @@ NGO registration page css*/
 .discrete-graph {
     background-color: #fff;
     box-shadow: 2px 1px 10px #888888;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-bottom: 40px;
     min-height: 450px;
 }
@@ -1585,7 +1596,6 @@ NGO registration page css*/
 .year-dropdown {
     margin-top: 5px;
 }
-
 /*Reset Password CSS*/
 /*Added by Neha M. on 6-12-16*/
 
@@ -1720,9 +1730,9 @@ added by payal*/
     }
 
 
-    .aboutus:hover {
-        color: #2a6496;
-    }
+.aboutus:hover {
+    color: #2a6496;
+}
 
 .donationrequest {
     padding-right: 12px;
@@ -1831,48 +1841,53 @@ added by payal*/
 }
 
 .donationrequestimage {
-max-height:227px;
-max-width:80%;
+    max-height: 227px;
+    max-width: 80%;
     display: block;
-     margin: 0 auto;
-           overflow: hidden;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
 .textDonation {
     border-bottom-style: inset;
-  margin: 0 auto;
-  margin-bottom:10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
+
 .donationdiscription {
     font-size: 16px;
 }
+
 .donationrequestimagediv {
-border-bottom-style: inset;
+    border-bottom-style: inset;
     padding-bottom: 5px;
 }
+
 .uploaddonationpheadingcolor {
-background-color:#c1c3c4;
+    background-color: #c1c3c4;
     color: #2e6da4;
 }
 
-.uploaddonationpanelbody{
-        padding-top: 7px;
+.uploaddonationpanelbody {
+    padding-top: 7px;
     background-color: #F0F0F0;
 }
-#donationtemplate{
+
+#donationtemplate {
     border: medium;
     background-color: #F0F0F0;
     box-shadow: 2px 1px 10px #888888;
 }
+
 .al-center {
-    text-align:center;
+    text-align: center;
 }
 
 .tbl-td {
     background-color: #fff;
     font-size: 12px;
-    text-align:center;
-    height:32px;
+    text-align: center;
+    height: 32px;
 }
 
 
@@ -1880,74 +1895,83 @@ background-color:#c1c3c4;
 .donationtag {
     width: auto;
     padding-top: 14px;
-    color:#428bca;  
+    color: #428bca;
 }
+
 .donationmodaldialog {
-margin-top:6%;
-background-color:white;
+    margin-top: 6%;
+    background-color: white;
 }
+
 .submitdonate {
-font-size: 14px; 
-color: #999999;
- opacity: 3;
-  padding-right: 19px !important;
+    font-size: 14px;
+    color: #999999;
+    opacity: 3;
+    padding-right: 19px !important;
 }
+
     .submitdonate:hover {
-    color:#337ab7;
-    opacity:3;
+        color: #337ab7;
+        opacity: 3;
     }
+
 .donatetableheadcolor {
-color: #337ab7;
+    color: #337ab7;
 }
+
 .donatetextbox {
-width: 52px;
- height: 27px;
-  font-size: 12px;
-   margin-bottom: 0px; 
-   margin-top: 0px; 
-   background-color:#fcf8e3;
+    width: 52px;
+    height: 27px;
+    font-size: 12px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    background-color: #fcf8e3;
 }
+
 .donatetable {
-margin-bottom: 12px;
- border: none;
-  margin-top: 0px;
+    margin-bottom: 12px;
+    border: none;
+    margin-top: 0px;
 }
+
 .donationimage {
     background-color: white;
-     padding-top: 10px;
+    padding-top: 10px;
 }
+
 .searchbox {
-margin-left:0px;
+    margin-left: 0px;
 }
+
 .wishtodonate {
-       padding-left: 521px;
+    padding-left: 521px;
     width: auto;
-   
-    color:#428bca;  
-
-
-
+    color: #428bca;
 }
 
 
 
 .unitprice {
     left: 74px;
+}
 
-}
 .wishtodonate:hover {
-text-decoration:underline;
+    text-decoration: underline;
 }
-.wishtodonateguest{
-       padding-left: 521px;
+
+.wishtodonateguest {
+    padding-left: 521px;
     width: auto;
 }
+
 .trfont {
-font-size:12px;
+    font-size: 12px;
 }
+
 .tdfont {
-        font-size: 12px;
+    font-size: 12px;
 }
+
 .text-transform {
-text-transform:capitalize;
+    text-transform: capitalize;
 }

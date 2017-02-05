@@ -96,10 +96,9 @@ $(document).ready(function () {
 
 
             success: function (states) {
-                console.log(states);
-
+               
                 $.each(states, function (i, state) {
-                    console.log(state.Value);
+                    
                     $("#State").val("");
                     $("#State").append('<option value="' + state.Value + '">' +
                          state.Text + '</option>');
@@ -115,7 +114,7 @@ $(document).ready(function () {
 
     $("#State").change(function () {
         $("#city").empty();
-        console.log("Hit");
+        
         $.ajax({
             type: 'POST',
 
@@ -126,10 +125,10 @@ $(document).ready(function () {
 
 
             success: function (cities) {
-                console.log(cities);
+                
 
                 $.each(cities, function (i, city) {
-                    console.log(cities.Value);
+                    
                     $("#city").val("");
                     $("#city").append('<option value="' + city.Value + '">' +
                          city.Text + '</option>');

@@ -31,7 +31,7 @@ $(document).ready(function () {
             select: function (event, ui) {
                 $(".searchNGO").val(ui.item.label);
                 $(".searchNGO").attr('name', ui.item.value);
-                console.log(ui.item.value);
+               
                 return false;
             },
             focus: function (event, ui) {
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 select: function (event, ui) {
                     $(".searchNGO").val(ui.item.label);
                     $(".searchNGO").attr('name',ui.item.value);
-                    console.log(ui.item.value);
+                   
                     return false;
                 },
                 focus: function (event, ui) {
@@ -88,7 +88,7 @@ $(document).ready(function () {
     $(document).on('click','.submitSelectedNGO', function () {
         
         var value = $(".searchNGO").attr('name');
-        console.log(value);
+       
 
 
         if (value!=undefined)
