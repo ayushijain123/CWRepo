@@ -97,9 +97,12 @@ namespace CommonWeal.NGOAPI.Controllers
                 donardetail.ItemID = donardetaildata.donardetailvalue[i].ItemID;
                 donardetail.DonarLoginID = donardetaildata.donardetailvalue[i].UserLoginID;
                 donardetail.createdOn = DateTime.Now;
-                donardetail.RequestId = donardetaildata.donardetailvalue[i].RequestId;
+              
+                // donardetail.RequestId = donardetaildata.donardetailvalue[i].RequestId;
+               
                 donardetail.Donatecount = donardetaildata.donardetailvalue[i].donatecount;
                 var donationdetail = context.DonationDetails.Where(w => w.ItemID == donardetail.ItemID).FirstOrDefault();
+                donardetail.RequestId = donationdetail.RequestID;
                 donationdetail.DonatedCount = donationdetail.DonatedCount + donardetaildata.donardetailvalue[i].donatecount;
                 donationdetail.ItemRequire = donationdetail.ItemCount - donationdetail.DonatedCount;
                 context.DonarDetails.Add(donardetail);
