@@ -28,7 +28,7 @@ namespace CommonWeal.NGOAPI.Controllers
         //}
 
         [HttpPost]
-        public HttpResponseMessage NGODonationRequest(DonationData donationdata)
+        public bool NGODonationRequest(DonationData donationdata)
         {
             CommonWealEntities context = new CommonWealEntities();
             DonationRequest donationrequest = new DonationRequest();
@@ -69,7 +69,7 @@ namespace CommonWeal.NGOAPI.Controllers
             context.SaveChanges();
             var res = "yes";
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, res);
-            return response;
+            return true;
         }
 
 
@@ -87,10 +87,11 @@ namespace CommonWeal.NGOAPI.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage UserDonation(DonarDetailData donardetaildata)
+        public bool UserDonation(DonarDetailData donardetaildata)
         {
             CommonWealEntities context = new CommonWealEntities();
             DonarDetail donardetail = new DonarDetail();
+            var result = false;
            var count = donardetaildata.donardetailvalue.Count;
             for (int i = 0; i < count; i++)
             {
@@ -107,12 +108,14 @@ namespace CommonWeal.NGOAPI.Controllers
                 donationdetail.ItemRequire = donationdetail.ItemCount - donationdetail.DonatedCount;
                 context.DonarDetails.Add(donardetail);
                 context.SaveChanges();
+                result = true;
+              
             }
 
 
             // var res = "hello";
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
-            return response;
+            //HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            return result;
         }
 
         public class GetDonationData 
