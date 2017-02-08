@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 using System.Web.Mvc.Ajax;
 using CommonWeal.NGOWeb.ViewModel;
 using CommonWeal.Data;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace CommonWeal.NGOWeb.Controllers.NGO
 {
@@ -23,7 +25,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 CommonWealEntities context = new CommonWealEntities();
                 ViewBag.country = new SelectList(context.CountryMasters, "ID", "Name");
                 ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
-                ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
+                  ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
            
            
             dbOperations db = new dbOperations();
@@ -38,8 +40,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 var postList = db.GetPostById(LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
              
-               NGpost.imageurl = image;
-               NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOName;
+               NGpost.imageurl = "http://localhost:61504\\images\\" + image; //http://172.27.11.26:81
+                    NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOName;
                NGpost.PostWithtopNgoModel.post = postList;
                NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
                 return View(NGpost);
@@ -50,7 +52,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 var postList = db.GetPostById(id);
                 var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
                 NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOName;
-                NGpost.imageurl = image;
+                NGpost.imageurl = "http://localhost:61504\\images\\" + image;
                 NGpost.PostWithtopNgoModel.post = postList;
                
                 NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
@@ -143,10 +145,42 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
 
             return Json(result1, JsonRequestBehavior.AllowGet);
         }
+        public class ImageHandler
+        {
+            public byte[] ImagePost(HttpPostedFileBase file)
+            {
+                byte[] fileData = null;
+
+                if (file != null)
+                {
+                    // var docfiles = new List<string>();
+                    //byte[] fileData = null;
+                    using (var binaryReader = new BinaryReader(file.InputStream))
+                    {
+                        fileData = binaryReader.ReadBytes(file.ContentLength);
+                    }
+                }
+                return fileData;
+            }
+        }
+        public class PostValue
+        {
+            public int LogInID { get; set; }
+            public string profilepic { get; set; }
+        }
+        public async Task<string> ProfileImage(PostValue postvalue)
+        {
+
+            var result = await Task.Run(() => APIHelper<string>.PostJson("NGOProfile/UpdateProfile", postvalue));
+            return result;
+
+        }
         [Authorize]
         [HttpPost]
-        public JsonResult PostImage()
+
+        public async Task<JsonResult> PostImage()
         {
+            PostValue postvalue = new PostValue();
             CommonWealEntities context = new CommonWealEntities();
             List<string> imginfo = new List<string>();
             if (Request.Files.Count > 0)
@@ -173,39 +207,125 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                         {
                             fname = file.FileName;
                         }
-
-                        // Get the complete folder path and store the file inside it.  
-                      var  physicalPath = Server.MapPath("/Images/Post/" + fname);
-                        file.SaveAs(physicalPath);
+                        ImageHandler img = new ImageHandler();
+                        var res1 = img.ImagePost(file);
+                        var image = Convert.ToBase64String(res1);
                         var objngo = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
-                        objngo.NGOProfilePic = "/Images/Post/" + fname;
+                        postvalue.LogInID = LoginUser.LoginID;
+                        postvalue.profilepic = image;
 
-                        context.Configuration.ValidateOnSaveEnabled = false;
-                        context.SaveChanges();
+                        string val = await Task.Run(() => ProfileImage(postvalue).Result);
 
-                        imginfo.Add("/Images/Post/"+fname);
+
+
+                        //   objngo.AreaOfIntrest = ext1;
+
+                        // var  physicalPath = Server.MapPath("/Images/Post/" + fname);
+                        // file.SaveAs(physicalPath);
+
+                        objngo.NGOProfilePic = val;
+
+                        // context.Configuration.ValidateOnSaveEnabled = false;
+                        //context.SaveChanges();
+
+                        // imginfo.Add("/Images/Post/"+fname);
+                        //var value = Newtonsoft.Json.JsonConvert.DeserializeObject<dynamic>(val);
+                        imginfo.Add(val);
+                        //    imginfo.Add(x);
 
                     }
                     // Returns message that successfully uploaded
                     imginfo.Add("File Uploaded Successfully!");
-                    return Json(imginfo,JsonRequestBehavior.AllowGet);
+                    return Json(imginfo, JsonRequestBehavior.AllowGet);
+                    //NGOProfileCustom NgoInfo = new NGOProfileCustom();
+                    //NgoInfo.WatchNgoID = LoginUser.LoginID;
+                    //NgoInfo.UserID = LoginUser.LoginID;
+                    //var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+                    //NgoInfo.NgoUser = obj;
+                    //var profileimage = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
+                    //NgoInfo.imageurl =profileimage;
+                    ////return PartialView("AboutUsNGO",obj);
+
+                    ///*returing list to  partial view and than partial view is retuned to ajax call  */
+                    //return PartialView("~/views/NGOProfile/_AboutUs.cshtml", NgoInfo);
+
                 }
                 catch (Exception ex)
                 {
                     imginfo.Add("");
                     imginfo.Add("Error occurred. Error details: " + ex.Message);
-                    return Json(imginfo,JsonRequestBehavior.AllowGet);
+                    return Json(imginfo, JsonRequestBehavior.AllowGet);
                 }
             }
             else
             {
                 imginfo.Add("");
                 imginfo.Add("No files selected.");
-                return Json(imginfo,JsonRequestBehavior.AllowGet);
-            }  
-            
-          
-            
+                return Json(imginfo, JsonRequestBehavior.AllowGet);
+            }
+            //[Authorize]
+            //[HttpPost]
+            //public JsonResult PostImage()
+            //{
+            //    CommonWealEntities context = new CommonWealEntities();
+            //    List<string> imginfo = new List<string>();
+            //    if (Request.Files.Count > 0)
+            //    {
+            //        try
+            //        {
+            //            //  Get all files from Request object  
+            //            HttpFileCollectionBase files = Request.Files;
+            //            for (int i = 0; i < files.Count; i++)
+            //            {
+            //                //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
+            //                //string filename = Path.GetFileName(Request.Files[i].FileName);  
+
+            //                HttpPostedFileBase file = files[i];
+            //                string fname;
+
+            //                // Checking for Internet Explorer  
+            //                if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+            //                {
+            //                    string[] testfiles = file.FileName.Split(new char[] { '\\' });
+            //                    fname = testfiles[testfiles.Length - 1];
+            //                }
+            //                else
+            //                {
+            //                    fname = file.FileName;
+            //                }
+
+            //                // Get the complete folder path and store the file inside it.  
+            //              var  physicalPath = Server.MapPath("/Images/Post/" + fname);
+            //                file.SaveAs(physicalPath);
+            //                var objngo = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
+            //                objngo.NGOProfilePic = "/Images/Post/" + fname;
+
+            //                context.Configuration.ValidateOnSaveEnabled = false;
+            //                context.SaveChanges();
+
+            //                imginfo.Add("/Images/Post/"+fname);
+
+            //            }
+            //            // Returns message that successfully uploaded
+            //            imginfo.Add("File Uploaded Successfully!");
+            //            return Json(imginfo,JsonRequestBehavior.AllowGet);
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            imginfo.Add("");
+            //            imginfo.Add("Error occurred. Error details: " + ex.Message);
+            //            return Json(imginfo,JsonRequestBehavior.AllowGet);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        imginfo.Add("");
+            //        imginfo.Add("No files selected.");
+            //        return Json(imginfo,JsonRequestBehavior.AllowGet);
+            //    }  
+
+
+
         }
 
         [AllowAnonymous]
@@ -223,7 +343,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
                     NgoInfo.NgoUser = obj;
                     var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
-                    NgoInfo.imageurl = image;
+                    NgoInfo.imageurl = "http://localhost:61504\\images\\" + image;
                     //return PartialView("AboutUsNGO",obj);
 
                     /*returing list to  partial view and than partial view is retuned to ajax call  */
@@ -236,7 +356,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     var obj = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault();
                     NgoInfo.NgoUser = obj;
                     var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
-                    NgoInfo.imageurl = image;
+                    NgoInfo.imageurl = "http://localhost:61504\\images\\" + image;
                     return PartialView("~/views/NGOProfile/_AboutUs.cshtml", NgoInfo);
                 }
             }
