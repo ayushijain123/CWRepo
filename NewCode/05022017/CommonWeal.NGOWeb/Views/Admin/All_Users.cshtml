@@ -24,7 +24,7 @@
                     @foreach (var item in Model)
                     {                       
                         <tr id="blockrow-@item.LoginID" class="admintable">
-                            <td class="col-md-3 col-md-push-1 adminTableDataleft">@Html.DisplayFor(modelItem => item.FirstName)</td>
+                            <td class="col-md-4 adminTableDataleft" style="text-align: center;">@Html.DisplayFor(modelItem => item.FirstName)</td>
                             <td class="col-md-4 adminTableData"><a>@Html.DisplayFor(modelItem => item.UserEmail) </a></td>
                             @* <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
                             @*    <td class="col-md-3 adminTableData"><a href="/admin/Warn/@item.LoginID" class="fa fa-exclamation-triangle fa-2x" aria-hidden="true" style="color: red"></a></td>*@
