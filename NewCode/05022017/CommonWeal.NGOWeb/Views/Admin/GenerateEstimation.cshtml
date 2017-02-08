@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Admin.GenerateEstimation>
+﻿@model CommonWeal.NGOWeb.ViewModel.Admin.RequestItemEstimation
 
 
 <script src="~/Content/DataPlugIn/jquery-1.11.2-jquery.min.js"></script>
@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                    
-                     @foreach (var item in Model)
+                     @foreach (var item in Model.estimate)
                     {                       
                              <tr class="admintable" id="admintable-@item.Itemid">
                             <td class="col-md-2 adminTableData" >@item.Product</td>
@@ -44,7 +44,7 @@
                         <center><strong>Warned NGOs </strong></center>
                     </h3>*@
                     <h3>
-                        <center> <strong>Donation Request</strong></center>
+                        <center> <strong>Donation Request:@Model.NGOName @Model.DonateRequestDate.ToString("dd-MMM-yyyy HH:mm")</strong></center>
                     </h3>
                 </table>
                   
