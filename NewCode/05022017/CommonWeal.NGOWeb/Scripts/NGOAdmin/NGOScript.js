@@ -52,8 +52,9 @@
                 processData: false, // Not to process data  
                 data: fileData,
                 success: function (result) {
-                    $(".profileimage").attr('src', result[0]);
-                    $("#profileimage1").attr('src', result[0])
+                    console.log(result[0]);
+                    $(".profileimage").attr('src', '/NGOHome/GetImage?imagePath=' + result[0]);
+                    $("#profileimage1").attr('src', '/NGOHome/GetImage?imagePath=' + result[0])
                 },
                 error: function (err) {
                     alert(err.statusText);
