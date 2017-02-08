@@ -8,7 +8,9 @@ using CommonWeal.NGOWeb.Utility;
 using Newtonsoft.Json;
 using System.Web.Mvc.Ajax;
 using CommonWeal.NGOWeb.ViewModel;
-using CommonWeal.Data;
+using CommonWeal.Data.ModelExtension;
+using System.IO;
+using System.Threading.Tasks;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -418,80 +420,106 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
 
         [HttpPost]
-        public JsonResult SubmitDonationRequest(List<DonateItem> itemlist, string description, HttpPostedFileBase DonationRequestImg)
+        public async Task<JsonResult> SubmitDonationRequest(List<DonateItem1> itemlist,string description, HttpPostedFileBase DonationRequestImg)
         {
-            bool result = false;
+            //bool result = false;
 
-            if (itemlist != null) { 
-            
-            
-         
-            CommonWealEntities context = new CommonWealEntities();
-                context.Configuration.ValidateOnSaveEnabled = false;
-                DonationRequest dr = new DonationRequest();
-            DonationDetail dt = new DonationDetail();
-            NGOPost np = new NGOPost();
-             
-                        string fname;
-
-                        // Checking for Internet Explorer  
+            //if (itemlist != null) { 
 
 
-                        if (DonationRequestImg != null) {
 
-                            fname = DonationRequestImg.FileName;
-                            var physicalPath = Server.MapPath("/Images/Post/" + fname);
-                            DonationRequestImg.SaveAs(physicalPath);
-                            dr.ImgeUrl = "/Images/Post/" + fname;
-                            np.PostUrl = "/Images/Post/" + fname;
-                        }
-                            
+            //CommonWealEntities context = new CommonWealEntities();
+            //    context.Configuration.ValidateOnSaveEnabled = false;
+            //    DonationRequest dr = new DonationRequest();
+            //DonationDetail dt = new DonationDetail();
+            //NGOPost np = new NGOPost();
 
-                        // Get the complete folder path and store the file inside it.  
+            //            string fname;
 
-                        if (description != null) {
-                            dr.Description = description;
-                            np.PostContent = description;
-                        
-                        }
-                         dr.RequestNGOId = LoginUser.LoginID;
-                        dr.createdOn = DateTime.Now;
-                        dr.ItemCost = 0;
-                        dr.Status = false;
-                       
-                        context.DonationRequests.Add(dr);
-          
-                        context.SaveChanges();
-
-                        np.CreatedOn = DateTime.Now;
-         
-                       
-                        np.LoginID = LoginUser.LoginID;
-                        np.PostLikeCount = 0;
-                        np.Isdelete = false;
-                        np.PostCommentCount = 0;
-                        np.RequestID = dr.RequestID;
-                        np.IsRequest = true;
-                
-                        context.NGOPosts.Add(np);
-                        foreach(var item in itemlist)
-                        {
-                        dt.ItemName = item.Item;
-                        dt.ItemCount = item.ItemCount;
-                        dt.RequestID = dr.RequestID;
-                        dt.createdOn = DateTime.Now;
-                        dt.DonatedCount = 0;
-                        dt.ItemRequire = item.ItemCount; 
-                           
-                          
-                        context.DonationDetails.Add(dt);
-                        context.SaveChanges();
-                        result = true;
-                    }
+            //            // Checking for Internet Explorer  
 
 
+            //            if (DonationRequestImg != null) {
+
+            //                fname = DonationRequestImg.FileName;
+            //                var physicalPath = Server.MapPath("/Images/Post/" + fname);
+            //                DonationRequestImg.SaveAs(physicalPath);
+            //                dr.ImgeUrl = "/Images/Post/" + fname;
+            //                np.PostUrl = "/Images/Post/" + fname;
+            //            }
+
+
+            //            // Get the complete folder path and store the file inside it.  
+
+            //            if (description != null) {
+            //                dr.Description = description;
+            //                np.PostContent = description;
+
+            //            }
+            //             dr.RequestNGOId = LoginUser.LoginID;
+            //            dr.createdOn = DateTime.Now;
+            //            dr.ItemCost = 0;
+            //            dr.Status = false;
+
+            //            context.DonationRequests.Add(dr);
+
+            //            context.SaveChanges();
+
+            //            np.CreatedOn = DateTime.Now;
+
+
+            //            np.LoginID = LoginUser.LoginID;
+            //            np.PostLikeCount = 0;
+            //            np.Isdelete = false;
+            //            np.PostCommentCount = 0;
+            //            np.RequestID = dr.RequestID;
+            //            np.IsRequest = true;
+
+            //            context.NGOPosts.Add(np);
+            //            foreach(var item in itemlist)
+            //            {
+            //            dt.ItemName = item.Item;
+            //            dt.ItemCount = item.ItemCount;
+            //            dt.RequestID = dr.RequestID;
+            //            dt.createdOn = DateTime.Now;
+            //            dt.DonatedCount = 0;
+            //            dt.ItemRequire = item.ItemCount; 
+
+
+            //            context.DonationDetails.Add(dt);
+            //            context.SaveChanges();
+            //            result = true;
+            //        }
+            DonationData objDonationData = new DonationData();
+            if (DonationRequestImg != null)
+            {
+                byte[] filedata = null;
+                using (var binaryReader = new BinaryReader(DonationRequestImg.InputStream))
+                {
+                    filedata = binaryReader.ReadBytes(DonationRequestImg.ContentLength);
+                }
+                objDonationData.Image = Convert.ToBase64String(filedata);
             }
-            return Json(result);
+            List<DonationDetail> donationDetailList = new List<DonationDetail>();
+            foreach (var item in itemlist)
+            {
+                if(item.ItemCount>0)
+                {
+                    DonationDetail objdonate = new DonationDetail();
+                    objdonate.ItemCount = item.ItemCount;
+                    objdonate.ItemName = item.Item;
+                    donationDetailList.Add(objdonate);
+                }
+            }
+            if(description!=null)
+            {
+                objDonationData.Description = description;               
+            }
+            objDonationData.donationdetaildata = donationDetailList;
+            objDonationData.RequestNGOID = LoginUser.LoginID;
+            var result = await Task.Run(() => APIHelper<string>.PostJson("Donation/NGODonationRequest", objDonationData));
+       
+            return Json(Convert.ToBoolean( result));
         }
 
 //[AllowAnonymous]
