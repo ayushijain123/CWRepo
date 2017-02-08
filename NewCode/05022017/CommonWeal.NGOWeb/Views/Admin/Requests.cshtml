@@ -23,8 +23,8 @@
                     @foreach (var item in Model)
                     {                       
                         <tr>
-                            <td class="col-md-3 col-md-push-1 adminTableDataleft">@Html.DisplayFor(modelItem => item.NGOName)</td>                          
-                            <td class="col-md-3 adminTableData" title="View Details"><a href="/admin/ViewDetails/@item.LoginID" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>
+                            <td class="col-md-4  adminTableDataleft" style="text-align: center;">@Html.DisplayFor(modelItem => item.NGOName)</td>                          
+                            <td class="col-md-4 adminTableData" title="View Details"><a href="/admin/ViewDetails/@item.LoginID" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>
                                 @if (item.IsDecline == true)
                                 { 
                                     <td class="col-md-3 adminTableData">Declined</td>
