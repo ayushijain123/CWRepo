@@ -80,6 +80,9 @@
     <Compile Include="ImageHandler.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelExtension\DonateItem1.cs" />
+    <Compile Include="ModelExtension\DonateRequest.cs" />
+    <Compile Include="ModelExtension\DonationData.cs" />
     <Compile Include="ModelExtension\DoNut.cs" />
     <Compile Include="ModelMessages.Designer.cs">
       <AutoGen>True</AutoGen>
