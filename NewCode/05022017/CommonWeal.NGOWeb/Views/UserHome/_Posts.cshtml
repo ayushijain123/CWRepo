@@ -1,0 +1,362 @@
+﻿@model IEnumerable<CommonWeal.NGOWeb.ViewModel.Post>
+
+<script type="text/javascript">
+    $('.disable').prop('disabled', true);
+
+
+
+    $(document).ready(function () {
+
+        $('#donationmodal').on('click', '#receivedonation', function () {
+            // $('#receivedonation').click(function () {
+            var flag = 0;
+
+
+            $(".donatetextbox").each(function () {
+                if ($.trim($(this).val())) {
+                    
+                    flag++;
+                }
+                
+
+            });
+            if (flag > 0) {
+
+
+                //alert('+$(".donatetextbox".value)+');
+                var formData = new FormData(); //create form data object
+                var obj, Itemlist1;
+                Itemlist1 = [];
+                $('.donatetextbox').each(function () {
+                    var id = $(this).attr('id').split('-')[1];
+
+                    var itemid = id;
+                    var item = $(this).val();
+                    obj = {};
+                    obj["ItemID"] = parseInt(itemid);
+                    obj["ReceivedItem"] = parseInt(item);
+                    if (id != undefined && item != undefined) {
+                        Itemlist1.push(obj);
+                    }
+                });
+                jQuery.each(Itemlist1, function (key, value) {
+                    formData.append('receivedonation[' + key + '].ItemID', value.ItemID);
+                    formData.append('receivedonation[' + key + '].ReceivedItem', value.ReceivedItem);
+                });
+                $.ajax({
+                    url: "/NGOProfile/receivedonation",
+                    type: "POST",
+                    dataType: "JSON",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (result) {
+                        window.location.reload();
+                        jQuery.each(result, function (key, value) {
+                            $("#modeldonateCount-" + value.ItemID).val(value.ReceivedItem);
+                            $("#donateCount-" + value.ItemID).val(value.ReceivedItem);
+                        });
+                        if (result) {
+                            $('.donatetextbox').val("");
+                            alert('Donation request submitted successfully ');
+                        }
+                    }
+
+                });
+
+            }
+            else {
+                alert('Please enter your contribution first.');
+            }
+        });
+        $(document).on('click', '.wishtodonate',function () {
+            var postID = $(this).attr('data-id');
+            $('#dialog-div').load('/post/RenderDonateDetails/'+postID);
+        });
+    });
+</script>
+
+<p id="controllername" hidden>@HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString()</p>
+
+@if (Model != null && Model.Count() > 0)
+{
+   
+        <div id="uploadpost" class="row col-sm-10 col-sm-push-1 col-md-10">
+
+        @foreach (var item in Model)
+        {
+            if (item.IsRequest == false)
+            {
+              
+             <div class="postcontainer" id="Post-@item.postId">
+            <div id="posttemplate">
+
+                <div class="postuserdetail form-inline col-md-12 col-xs-12 col-sm-12 col-lg-12 " id="postuserdetail">
+                    <span id="user-image" class="col-md-1 col-sm-1 col-lg-1 col-xs-1 fa fa-users"></span>
+
+                    <a href="/NGOProfile/Index/@item.userId"><span class="usernamepost col-md-4 col-lg-4 col-xs-1 col-sm-1 cursor" id="usernamepost"><b>@item.userName</b></span></a>
+
+
+                    <span class="posttime col-md-4 col-lg-4 col-xs-4 col-sm-4">@item.postCreateTime.ToString("dd-MMM-yyyy HH:mm")</span>
+
+
+                    <span class="posttag col-md-3  col-xs-5 col-sm-5 col-lg-3 float-right">
+                        @*method for multi #*@
+
+
+                        @if (item.postCategoryNameList.Count() > 0)
+                        {
+                            <span class="dropdown">
+                                <span style="font-size: 15px">View Categories</span>
+                                <button class="showcategory  " data-toggle="dropdown" id="showcategory-@item.postId"style="cursor:pointer;background: none;border: none;margin-left: 0px; width: 12px;padding-right: 0px;padding-left: 0px;">
+                                    <i class="fa fa-arrow-down" style="font-size: 15px;"></i>
+                                </button>
+                                <span class="dropdown-menu categorydropdown" id="categorylist-@item.postId">
+
+                                    @{
+                          
+                            foreach (var res in item.postCategoryNameList)
+                            {
+                                        <span>#@res</span>  <br />                    
+          
+                     
+                               
+                              
+                            }
+
+                               
+                                    }
+
+                                </span>
+                            </span>  
+               
+                           
+                            
+
+                        }
+                    </span>
+
+
+                </div>
+
+
+                @*model for categorylist start*@
+                @*<div class="modal fade" id="myModalCategory-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog likemodaldialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalCategoryLabel"><b>Likes</b></h4>
+                        </div>
+                        <div class="modal-body"  id="categoryList-@item.postId">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            *@@*model for categorylist end*@
+
+                @*  Text for image*@
+                <div name="Textmessage" id="Textmessage">
+                    
+                    <div class="form-inline col-md-12 col-lg-12 col-xs-12 col-sm-12" id="postcontent">
+                        <span>@item.postcontent</span>
+                    </div>
+                </div>
+                @*  <div class="form-group">*@
+                <div id="image/video" class="imagepost">
+                    @if (item.postImageUrl != null)
+                    { 
+@*    @item.postImageUrl
+                     @Url.Content("http://172.27.11.26:81"+item.postImageUrl)
+                    *@
+                        <img src=" @Url.Content("http://172.27.11.26:81" + item.postImageUrl)" data-toggle="modal" data-target="#myModal2-@item.postId" class="imageurlpost" id="imageurlpost-@item.postId" />
+                    }
+                    <br />
+                    <div id="liketemplate-@item.postId">
+                        @Html.Partial("../UserHome/_LikePartial", item)
+
+                    </div>
+
+                    @* @Html.Partial("../Views/UserHome/_LikePartial",Model) *@
+                </div>
+
+                <!--Like Modal Start -->
+                <div class="modal fade" id="myModal-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog likemodaldialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel"><b>Likes</b></h4>
+                            </div>
+                            <div class="modal-body" id="likelist-@item.postId">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Like Modal End -->
+
+                @*///Comment div action*@
+
+            </div>
+            <div class="form-inline" id="postcommentbox">
+                @* @if(item.PostComments.Count()>0)
+            {
+               foreach (var comment in item.PostComments.Take(2))
+            {
+                
+            <div class="form-group col-md-12">
+                    <div class="form-inline col-md-12 comentpost">
+                        <span class="col-md-1 fa fa-user commentimage"></span>
+
+                        <span class="commentusername col-md-3 "><b>@comment.Username </b></span>
+                        <span class="commentdate">@comment.CreatedDateTime.ToString("MM/dd/yyyy HH:mm")</span>
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("post")))
+                        {
+     <span class="posttag col-md-5 float-right">
+             <span class="dropdown">
+<span class="showcategory text-primary "id=""style="cursor:pointer"><b>...</b></span>
+                               <span class="dropdown-content" style=""id="">
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse" style="cursor:pointer; text-decoration:underline;">Report abuse</span><br/>
+                                     
+           
+                               </span>
+           </span>
+         </span>
+                        }
+                        <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
+
+                    </div>
+                </div>
+                <br />
+           
+                
+                
+            }
+            }*@
+
+                @*   @if(item.PostComments.Count()>2)
+            {  <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2-@item.postId">Collapsible Group 2</a>
+        </h4>
+      </div>
+      <div id="collapse2-@item.postId" class="panel-collapse collapse">
+        <div class="panel-body">*@
+
+
+                <span id="IeThisCurrentNgoProfile" hidden>@(this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()))</span>
+                @foreach (var comment in item.PostComments)
+                {
+                    if (User.IsInRole("Admin"))
+                    { 
+                    <div class="col-md-12" id="CommentBox-@comment.commentId">
+
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()) && !this.User.Identity.Name.Equals(comment.commentUserId.ToString()))
+                        {
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-left" title="Report Abuse"></span>
+                        }
+                         @if (comment.IsDelete == true)
+                         { 
+                        <div style="background-color:#FF7F7F" class="form-inline col-md-12 comentpost">
+                            <span class="col-md-1 fa fa-user commentimage"></span>
+
+                            <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
+                            <span class="commentdate">@comment.CreatedDateTime.ToString("dd-MMM-yyyy HH:mm") </span>
+                                                          
+                            <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p> 
+                            </div>                                
+                         }
+                         else
+                         { 
+                            <div class="form-inline col-md-12 comentpost">
+                            <span class="col-md-1 fa fa-user commentimage"></span>
+
+                            <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
+                            <span class="commentdate">@comment.CreatedDateTime.ToString("dd-MMM-yyyy HH:mm") </span>
+                                                  
+                            <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>    
+                            </div>                               
+                         }                                                
+                    </div>
+                    }
+                    @*method for all user*@
+                    if (comment.IsDelete == false)
+                    {
+                        <div class="col-md-12" id="CommentBox-@comment.commentId">
+
+                        @if (this.User.IsInRole("NGOAdmin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOProfile")) && this.User.Identity.Name.Equals(item.userId.ToString()) && !this.User.Identity.Name.Equals(comment.commentUserId.ToString()))
+                        {
+                            <span id="reportAbuse-@comment.commentId" class="reportAbuse fa fa-exclamation-circle float-left" title="Report Abuse"></span>
+                        }
+                        <div class="form-inline col-md-12 comentpost">
+                            <span class="col-md-1 fa fa-user commentimage"></span>
+
+                            <span class="commentusername col-md-3 " id="commentusername-@comment.commentId"><b>@comment.Username </b></span>
+                            <span class="commentdate">@comment.CreatedDateTime.ToString("dd-MMM-yyyy HH:mm") </span>
+
+                           @if (this.User.IsInRole("Admin") && (HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOHome") || Model.Take(1).FirstOrDefault().controllername.Equals("NGOHome")) && this.User.Identity.Name.Equals(item.userId.ToString()))
+                           {
+                  
+                                <span id="deleteComment-@comment.commentId" class="deleteComment float-right fa fa-remove" title="Delete Comment"></span>
+                           }
+                            <p id="postcommentcontent-@comment.commentId"class="postcommentcontent">@comment.commentContent</p>
+                        </div>
+                    </div>   
+                    }
+                }
+                
+                @*      </div>
+      </div>
+    </div>
+    
+          
+          }  *@
+                <div id="@item.postId">
+                </div>
+
+
+
+                @*///user Comment section*@
+
+                @if (User.Identity.IsAuthenticated && !User.IsInRole("Admin"))
+                {
+    
+                    <div class="form-group col-md-12 commentmainbox">
+                        <span class="float-left profileimagecomment fa fa-user col-md-1"></span>
+                        <textarea class=" textComment col-md-8"  id="txtComment-@item.postId" name="TextComment" placeholder="Write Your comment" rows="1"></textarea>
+                        @* @Html.TextArea("TextComment", new { id = "txtComment-" + item.postId, @class = " textComment col-md-8 ", placeholder = "Write Your comment" })*@
+                        <input type="button" id="postimage-@item.postId" name="button" class=" btn-primary btnPost col-md-1   " value="Post" />
+                    </div>
+                }
+            </div>
+            <br />
+            <br />
+
+
+            <div class="modal fade" id="myModal2-@item.postId" tabindex="-1" style="overflow-y:auto;"  role="dialog" aria-labelledby="myModalLabel">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                <div class="modal-dialog likemodaldialog" role="document">
+                    <img style="min-height:300px;min-width:300px;" class="modal-content fullImage" id="img01-@item.postId"/>
+                </div>
+            </div>
+        </div>          
+            }
+            else
+            { 
+           @Html.Partial("~/Views/NGOProfile/_Donationrequestreadonly.cshtml", item);
+            }
+        }
+    </div>
+    
+     <div class="modal fade" id="donationmodal" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
+                    <div class="modal-dialog donationmodaldialog" role="document" id="dialog-div">
+                      
+                       
+                    </div>
+
+                </div>
+
+}
+

@@ -1,0 +1,43 @@
+﻿@*@model CommonWeal.NGOWeb.Models.Admin_Pass
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Admin/Admin_Master.cshtml";
+}
+
+<div class="col-md-10 pull-right">
+    <div class="row">
+        <div class=" col-md-12">
+            <div class="password-panel panel-default col-md-5">
+                <div class="panel-header">
+                    <h1>Change Password</h1>
+                </div>
+                <div class="form-group">
+                    <label for="usr">Current Password:</label>
+                    <input type="text" class="form-control" id="usr">
+                </div>
+
+                <div class="form-group">
+                    <label for="pwd">New Password:</label>
+                    <input type="password" class="form-control" id="n-pwd">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Confirm Password:</label>
+                    <input type="password" class="form-control" id="c-pwd">
+                </div>
+                <div class="panel-footer">
+                    <button type="button" class="btn btn-primary save">Save</button>
+                    <button type="button" class="btn btn-default cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

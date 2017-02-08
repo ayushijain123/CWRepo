@@ -1,0 +1,75 @@
+﻿
+/*Index Css*/
+.header {
+    height: 80px;
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.footer {
+    height: 50px;
+    width: 100%;
+    background-color: blueviolet;
+}
+
+.nav {
+    font-size: 20px;
+}
+
+/*#post {
+    font-size: 20px;
+    border-left-width:0px;
+    border-right-width:0px;
+}
+
+/*.post-button
+{
+    
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+    margin-top: 10px;
+    margin-left: 20px;
+    border-left-width:0px;
+    border-right-width:0px;
+}*
+
+.image-size
+{
+    width: 470px;
+    height: 392px;
+
+}
+
+/*Timeline or Index page css*/
+/*.post {
+    width: 70px;
+    height: 30px;
+    text-align: center;
+    padding-top: 3px;
+    margin-top: 10px;
+    margin-left: 20px;
+  
+}*/
+/*#timeline {
+    margin-right: 148px;
+    margin-left: 152px;
+}*/
+/*.panel-header {
+    background-color: #f5f5f5;
+}
+
+.panel-body {
+    background-color: #fff;
+}*/
+
+.container {
+    min-height: 844px;
+}
+
+
+.about-us-details > p 
+{
+    font-size: 30px;
+}

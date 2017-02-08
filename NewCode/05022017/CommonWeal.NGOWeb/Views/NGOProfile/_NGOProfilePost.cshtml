@@ -1,0 +1,56 @@
+﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
+
+<div class="container">
+    <div id="postsection">
+        @Html.Partial("../UserHome/_Posts", Model.PostWithtopNgoModel.post)
+    </div>
+
+    @{var poststatus="See more post(s)";
+    if (Model.PostWithtopNgoModel.post.Count() == 0)
+    { poststatus = "No post found"; }
+    <div id="loadMoreSection"></div>
+    <div style="text-align: center">
+        <input type="button" style=" background: transparent; border: none;outline:none; color: #0f66f1; margin-bottom: 20px; font-weight:400; width:200px;"class="btnLoadNGOPfrofile" value="@poststatus" id="btnLoadNGOPfrofile-@Model.CurrentUserID" align="center">
+        @*type="button"*@
+
+    </div>
+    } 
+</div>
+
+@if (TempData["US"] != null)
+{
+    @Html.Raw(TempData["US"])
+}
+@*<div id="lblpost">*@
+@* @Html.Partial("../UserHome/_Posts", Model)
+    <div id="loadMoreSection"></div>*@
+@*<div style="text-align: center" class="row col-sm-12">
+    <input type="button" style="background: transparent; border: none; outline: none; width: 200px; text-decoration: none;" value="See more posts" id="btnLoad" class="btnLoadNGOPfrofile" align="center">
+</div>*@
+
+@*</div>*@
+
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#uploadimage").hide();
+            $("#pencil").click(function () {
+                $("#uploadimage").show();
+            });
+        });
+    </script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    @* <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>*@
+
+    @* <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+   *@
+
+}
+

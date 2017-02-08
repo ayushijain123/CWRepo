@@ -1,0 +1,14 @@
+﻿
+<h2>getImage</h2>
+@{
+    var images = ViewBag.ImageList as System.Collections.Generic.List<string>;
+}
+
+
+@*<img src="@imgUrl" />*@
+
+@foreach (var item in images)
+{ 
+<img src="@item" />
+}
+

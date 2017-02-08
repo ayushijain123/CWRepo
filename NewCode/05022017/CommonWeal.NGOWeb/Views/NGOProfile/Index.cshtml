@@ -1,0 +1,65 @@
+﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfilePostCustom
+
+
+
+@section scripts{
+    <script src="~/Scripts/Post/PostComment.js"></script>
+}
+
+
+    <div class="col-md-2 col-xs-2 col-lg-2 col-sm-2">
+        @Html.Partial("../UserHome/_SearchNGOPartial", Model.PostWithtopNgoModel.ngouser)
+    </div>
+
+    <div class="col-md-8 col-sm-8 col-xs-8 col-lg-8">
+        <div class="container">
+            <div class="row">
+                <div class="panel panel-default  panelNGO ">
+                    <div class="profileheadingcolor">
+                        <div class="panel-heading">
+                            <center> <b class="profilesummary"> Profile Summary for <b class="ngo-name">@Model.searchNgoProfileName </b></b></center>
+                        </div>
+                    </div>
+                    <div class="panel-body" id="ngoprofilepanelbody">
+                        <form method="post" action="~/NGOProfile/PostImage" enctype="multipart/form-data" id="postform">
+                            <div class="col-md-12">
+                                <center>
+                                    @{
+                                        var src = "";
+                                        if (Model.imageurl == null)
+                                        { src = "/Images/usergroupnew.png"; }
+                                        else
+                                        {
+                                            src = Model.imageurl;
+                                        }
+                                        <img class="profileimage" id="profileimage1" src="@src"/>
+                                    }
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer panel-group navbar-fixed profileheadingcolor">
+                        <ul class="ultext nav">
+                            <li id="profilepost"><span id="NGOProfilepost-@Model.CurrentUserID" class="NGOProfilepost">Post</span></li>
+                         @if (this.User.IsInRole("NGOAdmin") && this.User.Identity.Name.Equals(Model.CurrentUserID.ToString()))
+                         {
+                       <li><span id="donationrequest-@Model.CurrentUserID" class="donationrequest">Donation Request</span></li>
+                         }
+                            <li ><span id="aboutus-@Model.CurrentUserID" class="aboutus">About Us</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div id="NGOProfilecontent">
+                @Html.Partial("../NGOProfile/_NGOProfilePost", Model)
+            </div>
+        </div>
+    </div>
+
+
+
+

@@ -1,0 +1,156 @@
+﻿@model CommonWeal.NGOWeb.ViewModel.NGOProfileCustom
+@{
+    ViewBag.Title = "AboutUs";
+                                    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/NGOAdmin/NGOScript.js"></script>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="AboutUs Info col-md-12 col-sm-12 col-xs-12">
+            <div class="ngo-info col-md-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="info-header panel-heading">
+                        <strong>Personal Information</strong>
+                    </div>
+                    <div class="panel panel-body">
+                        @* <form class="form-horizontal" action="/NGOProfile/Edit" method="post">*@
+                        <div class="form-group row ">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label" for="email">NGO Email:</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="email" class="form-control fieldchange" id="email" name="NGOEmailID"  placeholder="Enter Email" value="@Model.NgoUser.NGOEmailID" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label" for="email">Mobile:</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control fieldchange" name="Mobile" id="mobile" placeholder="Enter Mobile Number" value="@Model.NgoUser.Mobile"required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label" for="email">Address:</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control fieldchange" id="NgoAdress"  name="NGOAddress" placeholder="Enter Adderess" value="@Model.NgoUser.NGOAddress"required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label" for="email">Name:</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control fieldchange"  id="Ngoname"name="NGOName" placeholder="Enter Name" value="@Model.NgoUser.NGOName"required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <label class="control-label" for="email">Chairman Name:</label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" class="form-control fieldchange" id="chairman"name="ChairmanName" placeholder="Enter Chairman Name" value="@Model.NgoUser.ChairmanName"required>
+                            </div>
+                        </div>
+                        @if (Model.NgoUser.LoginID == Model.UserID)
+                        {
+                            <div class="form-inline">
+                                <div id="profileupdate">
+                                    <center><span id="editbtn" class="btn btn-primary">Edit</span></center>
+                                    <center> <button type="submit" id="submitbtn" class="btn btn-primary">Update</button>
+                                        <span id="Canclebtn" class="btn btn-primary" >Cancel</span></center>
+                                </div>
+                            </div>
+                        }
+                        <p style="padding-bottom: 10px;"></p>
+                        @*        </form>*@
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12 ngo-about-us">
+                <div class="about-us-panel panel panel-default">
+                    <div class="about-us-header panel-heading">
+                        <strong>About Us</strong>
+                    </div>
+                    <div class="panel panel-body" style="margin-bottom: 0px;">
+                        <center>
+                        @{
+
+
+                            string ngoimage = "", title = "";
+                            if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
+                            {
+                                ngoimage = "ngoimageguest"; title = "Change Image";
+                            }
+                            var src = "";
+                            if (Model.imageurl == null)
+                            { src = "/Images/usergroupnew.png"; }
+                            else
+                            {
+                                src = Model.imageurl;
+
+                            }
+                              <img class="profileimage @ngoimage " id="profileimage" src="@src" title="@title"/>
+                         }
+                    </center>
+
+                        @if (this.User.IsInRole("NGOAdmin") && HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString().Equals("NGOProfile") && this.User.Identity.Name.Equals(Model.WatchNgoID.ToString()))
+                        {
+                            <center> <input type="file" id="profilefile" class="profilefile" name="profilefile" /></center>
+                            <center> <span  id="uploadprofile" class="uploadprofile btn btn-primary">Upload</span>
+                        <span id="CancelImage" class="btn btn-primary">Cancel</span></center>                        
+                        }
+
+                    </div>
+                    <div class="row">
+                        <div class="text-area">
+                            
+                            @{ 
+                                var summary="";
+                                if (Model.NgoUser.AboutUs == null)
+                                {
+                                    summary = "Welcome to " + Model.NgoUser.NGOName;
+                                }
+                                else
+                                {
+                                    summary = Model.NgoUser.AboutUs;
+                                }
+                 <center> <textarea class="col-md-10 col-md-push-1" id="textSumamry">@summary</textarea></center>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-inline">
+                            @if (Model.NgoUser.LoginID == Model.UserID)
+                            {
+                                <div id="editAboutUs">
+                                    <center><span id="edit" class="btn btn-primary">Edit</span></center>
+                                    <center><button id="SaveSummaryId-@Model.NgoUser.LoginID" class="btn btn-primary SaveSummaryId" hidden>Save</button>
+                                    <span id="Cancel" class="btn btn-primary"hidden>Cancel</span></center>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <p style="padding: 5px;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-2"></div>
+
+
+@if (TempData["US"] != null)
+{
+    @Html.Raw(TempData["US"])
+}
+
+
+

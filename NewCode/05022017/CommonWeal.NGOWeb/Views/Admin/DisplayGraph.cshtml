@@ -1,0 +1,57 @@
+﻿@model CommonWeal.NGOWeb.Models.AdminChart
+
+@{
+    ViewBag.Title = "DisplayGraph";
+}
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+        $.get('/Admin/DisplayGraph', {},
+
+ function () {
+     var tdata = new google.visualization.DataTable();
+
+     var Months = [@Model.DataValue.Months];
+     var NGO = [@Model.DataValue.NGO];
+     var User = [@Model.DataValue.User];
+
+     //var data = new google.visualization.DataTable();
+     tdata.addColumn('string', '@Model.MonthsTitle');
+     tdata.addColumn('number', '@Model.NGOTitle');
+     tdata.addColumn('number', '@Model.UserTitle');
+     for (i = 0; i < Months.length; i++) {
+         tdata.addRow([Months[i].toString(), NGO[0], User[0]]);
+     }
+     var options = {
+         title: 'Active NGO and Users',
+         hAxis: { title: '@Model.MonthsTitle', titleTextStyle: { color: 'red' } }
+     };
+
+
+     //var options = {
+     //    title: "Country Population"
+     //};
+
+     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+     chart.draw(tdata, options);
+ });
+}
+
+</script>
+
+
+<body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+</body>
+
+

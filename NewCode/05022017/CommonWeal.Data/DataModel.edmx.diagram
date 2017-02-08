@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f20fc33f3e44cc4a93beb5f2bc9258d" Name="Diagram1" ZoomLevel="67">
+        <EntityTypeShape EntityType="CommonWealModel.AreaOfInterest" Width="1.5" PointX="5.75" PointY="14" />
+        <EntityTypeShape EntityType="CommonWealModel.CityMaster" Width="1.5" PointX="10.25" PointY="5" />
+        <EntityTypeShape EntityType="CommonWealModel.CountryMaster" Width="1.5" PointX="5.75" PointY="5" />
+        <EntityTypeShape EntityType="CommonWealModel.DonarDetail" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="CommonWealModel.DonationDetail" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="CommonWealModel.DonationRequest" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="CommonWealModel.ForgotPassword" Width="1.5" PointX="10.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CommonWealModel.ImageHandler" Width="1.5" PointX="10.75" PointY="11.75" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOPost" Width="1.5" PointX="5.75" PointY="8.75" />
+        <EntityTypeShape EntityType="CommonWealModel.NGOUser" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="CommonWealModel.PostCategory" Width="1.5" PointX="8" PointY="9.625" />
+        <EntityTypeShape EntityType="CommonWealModel.PostComment" Width="1.5" PointX="12.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CommonWealModel.PostLike" Width="1.5" PointX="8" PointY="12.75" />
+        <EntityTypeShape EntityType="CommonWealModel.RegisteredUser" Width="1.5" PointX="3" PointY="15.375" />
+        <EntityTypeShape EntityType="CommonWealModel.RegistrationYear" Width="1.5" PointX="12.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CommonWealModel.Role" Width="1.5" PointX="7.75" PointY="1.125" />
+        <EntityTypeShape EntityType="CommonWealModel.RoleType" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CommonWealModel.Search" Width="1.5" PointX="12.75" PointY="10.75" />
+        <EntityTypeShape EntityType="CommonWealModel.SpamUser" Width="1.5" PointX="12.75" PointY="13.75" />
+        <EntityTypeShape EntityType="CommonWealModel.StateMaster" Width="1.5" PointX="8" PointY="4.875" />
+        <EntityTypeShape EntityType="CommonWealModel.sysdiagram" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="CommonWealModel.Test" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CommonWealModel.User" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="CommonWealModel.UserRole" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="CommonWealModel.WorkingArea" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="CommonWealModel.ChatMessage" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="CommonWealModel.ChatUser" Width="1.5" PointX="14.75" PointY="12.75" />
+        <AssociationConnector Association="CommonWealModel.FK_PostCategories_AreaOfInterest" />
+        <AssociationConnector Association="CommonWealModel.FK_CityMaster_StateMaster" />
+        <AssociationConnector Association="CommonWealModel.FK_StateMaster_CountryMaster" />
+        <AssociationConnector Association="CommonWealModel.FK_DonarDetail_DonationDetails" />
+        <AssociationConnector Association="CommonWealModel.FK_DonationDetails_DonationRequest" />
+        <AssociationConnector Association="CommonWealModel.FK_DonationRequest_DonationRequest" />
+        <AssociationConnector Association="CommonWealModel.FK_PostCategories_NGOPost1" />
+        <AssociationConnector Association="CommonWealModel.FK_PostLike_NGOPost" />
+        <AssociationConnector Association="CommonWealModel.FK_NGOUser_UserLogin" />
+        <AssociationConnector Association="CommonWealModel.FK_RegisteredUser_UserLogin" />
+        <AssociationConnector Association="CommonWealModel.FK_UserRolesRoleID_RoleRoleID" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">*@
+    <link href="~/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    @*<link href="~/Content/font-awesome.min.css" rel="stylesheet" />*@
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Commonweal</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/jquery")
+
+    @Styles.Render("~/Content/sitecss")
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/cssjqryUI")
+    @Styles.Render("~/Content/chosencss")
+    @Styles.Render("~/Contents/cssdynamiclist")
+
+
+
+
+
+</head>
+
+<body id="bodycolor">
+
+    <header class="navbar-fixed-top" role="navigation">       
+        <div class="content-wrapper">
+            <div class="float-left ">
+                <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                    <img src="~/Images/lg.png" id="logoimage" class="col-md-offset-2" />
+                    <br />
+                    <span id="logofont">Commonweal</span>
+                </a>
+            </div>
+            @* @if (User.Identity.IsAuthenticated)
+           {
+              @Html.Partial("_filter")
+           }
+         *@
+            <div class="float-right">
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+
+
+    </header>
+
+    <div id="body" class="container-fluid">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+
+        </section>
+    </div>
+
+    <footer class=" navbar-fixed-bottom">
+        <div class="content-wrapper">
+            <div class="page-footer">
+                <center><p  id="footerText">&copy; @DateTime.Now.Year - Commonweal | Powered by ValueLabs</p></center>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/Scripts/jschosen")
+
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
