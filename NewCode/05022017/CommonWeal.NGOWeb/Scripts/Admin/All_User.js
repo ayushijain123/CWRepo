@@ -73,7 +73,7 @@ $(document).ready(function () {
             grandtotal += parseInt($(this).text());
         });
         
-        $("#total").val(grandtotal );
+        $("#total").text(grandtotal);
     });
 
     
