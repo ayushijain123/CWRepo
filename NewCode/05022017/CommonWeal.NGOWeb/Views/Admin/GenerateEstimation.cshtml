@@ -5,6 +5,17 @@
 <link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
 <script src="~/Scripts/Admin/All_User.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#total").prop('disabled', true);
+        });
+     
+        </script>
+
+
+
+
+
 
 <div class="container">
     <div class="row">
@@ -30,7 +41,7 @@
                             <td class="col-md-2 adminTableData" >@item.Product</td>
                             <td class="col-md-2 adminTableData"> @item.TotalQuantity</td>
                             <td class="col-md-2 adminTableData" id="received-@item.Itemid">@item.Received</td>
-                            <td class="col-md-2 adminTableData"><input type="text" class="unitprice col-md-3 " value="@item.Unitprice" id="unitprice-@item.Itemid"/></td>
+                            <td class="col-md-2 adminTableData"><input type="text" class="unitprice col-md-5" value="@item.Unitprice" id="unitprice-@item.Itemid"/></td>
                             <td class="col-md-2 adminTableData"><span class="lineTotal" id="lineTotal-@item.Itemid">@item.linetotal</span></td>
                              @*<td class="col-md-3 adminTableData" title="View Details"><a href="@item.RequestId" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>*@
                       
