@@ -7,7 +7,7 @@ namespace CommonWeal.NGOWeb.ViewModel.Admin
 {
     public class GenerateEstimation
     {
-
+       
         public string Product { get; set; }
         public int TotalQuantity { get; set; }
         public int Received { get; set; }
