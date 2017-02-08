@@ -7,16 +7,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using CommonWeal.Data.ModelExtension;
 
-public class DonationData
-{
-    public string Image { get; set; }
-    public string Description { get; set; }
-    public int RequestNGOID { get; set; }
-    //public string ItemName { get; set; }
-    //public int  ItemCount { get; set; }
-    public List<DonationDetail> donationdetaildata{get; set;}
-}
+
 
 namespace CommonWeal.NGOAPI.Controllers
 {
@@ -33,8 +26,8 @@ namespace CommonWeal.NGOAPI.Controllers
         public bool NGODonationRequest(DonationData donationdata)
         {
             CommonWealEntities context = new CommonWealEntities();
-            DonationRequest donationrequest = new DonationRequest();
-            donationrequest.ImgeUrl = donationdata.Image;
+            DonationRequest donationrequest = new DonationRequest();           
+           // donationrequest.ImgeUrl = donationdata.Image;
             donationrequest.Description = donationdata.Description;
             donationrequest.RequestNGOId = donationdata.RequestNGOID;
             donationrequest.createdOn = DateTime.Now;
@@ -49,10 +42,11 @@ namespace CommonWeal.NGOAPI.Controllers
                 string path = "/Images/Post/" + abc + ".jpg";
                 string filepath = HttpContext.Current.Server.MapPath(path);
                 image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                donationrequest.ImgeUrl = path;
-                donationrequest.ItemCost = 0;
+                donationrequest.ImgeUrl = path;              
             }
+            donationrequest.ItemCost = 0;
             context.DonationRequests.Add(donationrequest);
+            context.Configuration.ValidateOnSaveEnabled = false;
             context.SaveChanges();
             var ItemTypes = donationdata.donationdetaildata.Count();
             DonationDetail donationdetail = new DonationDetail();
