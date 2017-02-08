@@ -1,9 +1,11 @@
 ﻿using CommonWeal.Data;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 public class DonationData
@@ -37,8 +39,19 @@ namespace CommonWeal.NGOAPI.Controllers
             donationrequest.RequestNGOId = donationdata.RequestNGOID;
             donationrequest.createdOn = DateTime.Now;
             donationrequest.Status = false;
-            donationrequest.ItemCost = 0;
-
+            if (donationdata.Image != null)
+            {
+                byte[] imageBytes = Convert.FromBase64String(donationdata.Image);
+                MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                var abc = Guid.NewGuid();
+                string path = "/Images/Post/" + abc + ".jpg";
+                string filepath = HttpContext.Current.Server.MapPath(path);
+                image.Save(filepath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                donationrequest.ImgeUrl = path;
+                donationrequest.ItemCost = 0;
+            }
             context.DonationRequests.Add(donationrequest);
             context.SaveChanges();
             var ItemTypes = donationdata.donationdetaildata.Count();
@@ -53,6 +66,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 //donationdetail.ItemCount = donationdata.ItemCount;
                 donationdetail.createdOn = DateTime.Now;
                 donationdetail.DonatedCost = 0;
+
                 context.DonationDetails.Add(donationdetail);
 
             }
@@ -68,8 +82,7 @@ namespace CommonWeal.NGOAPI.Controllers
             ngopost.RequestID = donationrequest.RequestID;
             context.NGOPosts.Add(ngopost);
             context.SaveChanges();
-            var res = "yes";
-            // HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, res);
+           // HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, res);
             return true;
         }
 
