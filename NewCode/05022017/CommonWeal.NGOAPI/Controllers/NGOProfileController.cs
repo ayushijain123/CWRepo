@@ -178,6 +178,28 @@ namespace CommonWeal.NGOAPI.Controllers
             return response;
         }
         [HttpPost]
+        public HttpResponseMessage UpdateProfile(AboutUs loginid)
+        {
+            CommonWealEntities context = new CommonWealEntities();
+            var ngodata = context.NGOUsers.Where(w => w.LoginID == loginid.LoginID).FirstOrDefault();
+            if (loginid.profilepic != null)
+            {
+                byte[] imageBytes = Convert.FromBase64String(loginid.profilepic);
+                MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
+                var imageName = Guid.NewGuid() + ".jpg";
+                string fullPath = System.Web.Configuration.WebConfigurationManager.AppSettings["ImageDirectory"] + "/" + imageName;
+                // string filepath = HttpContext.Current.Server.MapPath(fullPath);
+                image.Save(fullPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                ngodata.NGOProfilePic = imageName;
+            }
+            context.Configuration.ValidateOnSaveEnabled = false;
+            context.SaveChanges();
+            var response = Request.CreateResponse(HttpStatusCode.OK, ngodata.NGOProfilePic);
+            return response;
+        }
+        [HttpPost]
         public HttpResponseMessage UpdateNGO(AboutUs loginid)
         {
             CommonWealEntities context = new CommonWealEntities();
