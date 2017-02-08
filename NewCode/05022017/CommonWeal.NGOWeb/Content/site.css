@@ -1966,8 +1966,9 @@ font-size: 14px;
 
 
 .unitprice {
-    left: 74px;
+    left: 61px;
      font-size:11px;
+     padding-right:10px;
 }
 
 .wishtodonate:hover {
