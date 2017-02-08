@@ -936,20 +936,29 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         [AllowAnonymous]
         public ActionResult GenerateEstimation(int id = 0)
         {          
-            List<GenerateEstimation> estimatelist=new List<GenerateEstimation>();
+            RequestItemEstimation estimatelist=new RequestItemEstimation();
+            estimatelist.estimate = new List<GenerateEstimation>();
             CommonWealEntities context=new CommonWealEntities();
             var donatelist = context.DonationDetails.Where(x => x.RequestID == id).ToList();
            
+            int Ngoid= context.DonationRequests.Where(x => x.RequestID == id).FirstOrDefault().RequestNGOId;
+            var ob= context.DonationRequests.Where(x => x.RequestID == id).FirstOrDefault();
+            if (ob != null) {
+
+                Ngoid = ob.RequestNGOId;
+                estimatelist.DonateRequestDate = ob.createdOn.Value;
+            }
+            estimatelist.NGOName = context.NGOUsers.Where(x => x.LoginID == Ngoid).FirstOrDefault().NGOName;
             foreach (var item in donatelist)
             {
-             GenerateEstimation estimate=new GenerateEstimation();
-            estimate.Product = item.ItemName;
+                GenerateEstimation estimate = new GenerateEstimation();
+                estimate.Product = item.ItemName;
             estimate.Itemid = item.ItemID;
             estimate.TotalQuantity = item.ItemCount.Value;
             estimate.Received = item.DonatedCount.Value;
             estimate.linetotal = item.DonatedCost??0;
             estimate.Unitprice = item.UnitPrice??0;
-            estimatelist.Add(estimate);
+            estimatelist.estimate.Add(estimate);
 
             }
 
@@ -1004,10 +1013,13 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
             objdonate.datasets = new List<dataSets>();
             int i = 0;
             foreach (var item in result) {
-                objdataset.data.Add(item.total.Value);
-                objdataset.backgroundColor.Add(color[i]);
-                objdataset.hoverBackgroundColor.Add(color[i++]);
-                objdonate.labels.Add(ngolist.Where(x=>x.LoginID==item.LoginId).FirstOrDefault().NGOName);
+                if (item.total > 0)
+                {
+                    objdataset.data.Add(item.total.Value);
+                    objdataset.backgroundColor.Add(color[i]);
+                    objdataset.hoverBackgroundColor.Add(color[i++]);
+                    objdonate.labels.Add(ngolist.Where(x => x.LoginID == item.LoginId).FirstOrDefault().NGOName);
+                }
                 //objdonate.datasets.Add() = item.total.Value;
                 //donationamountlist.Add(objdonate);
             }
