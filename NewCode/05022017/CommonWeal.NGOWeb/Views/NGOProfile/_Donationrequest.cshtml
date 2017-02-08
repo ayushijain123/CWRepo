@@ -180,7 +180,10 @@
                     contentType: false,
                     processData: false,
                     success: function (result) {
+                        alert(result);
                         if (result == true) {
+
+
                             $('#postContentTextArea').val("");
                             $('#file').val("");
                             $('.ajaxrow').remove();
