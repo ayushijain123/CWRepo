@@ -16,6 +16,10 @@ namespace CommonWeal.NGOAPI.Controllers
     [AllowAnonymous]
     public class PostController : BaseController
     {
+        public class CurrentUser
+        {
+            public int userID { get; set; }
+        }
         public class Comment
         {
 
@@ -182,11 +186,11 @@ namespace CommonWeal.NGOAPI.Controllers
             var response = Request.CreateResponse(HttpStatusCode.OK, res);
             return response;
         }
-        [HttpGet]
-        public HttpResponseMessage GetOnLoad()
+        [HttpPost]
+        public HttpResponseMessage GetOnLoad(CurrentUser user)
         {
             dbOperations db = new dbOperations();
-            var res = db.GetPostOnLoad();
+            var res = db.GetPostOnLoad(user.userID);
             var response = Request.CreateResponse(HttpStatusCode.OK, res);
             return response;
 
@@ -208,12 +212,14 @@ namespace CommonWeal.NGOAPI.Controllers
             public int[] category { get; set; }
             public int pageNum { get; set; }
             public int NgoID { get; set; }
+            public int userID { get; set; }
         }
         [HttpPost]
         public HttpResponseMessage GetPostOnSeeMore(postOnSeeMore objsee)
         {
+            int userID = objsee.userID;
             dbOperations db = new dbOperations();
-            var res = db.GetPostOnSeeMore(objsee.category,objsee.pageNum,objsee.NgoID);
+            var res = db.GetPostOnSeeMore(objsee.category,objsee.pageNum,objsee.NgoID, userID);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, res);
             return response;       
         }
