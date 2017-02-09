@@ -114,7 +114,8 @@ namespace CommonWeal.NGOAPI.Controllers
                 var donationdetail = context.DonationDetails.Where(w => w.ItemID == donardetail.ItemID).FirstOrDefault();
                 donardetail.RequestId = donationdetail.RequestID;
                 donationdetail.DonatedCount = donationdetail.DonatedCount + donardetaildata.donardetailvalue[i].donatecount;
-                donationdetail.ItemRequire = donationdetail.ItemCount - donationdetail.DonatedCount;
+                var remaining = donationdetail.ItemCount - donationdetail.DonatedCount;
+                donationdetail.ItemRequire = remaining>0? remaining:0;
                 context.DonarDetails.Add(donardetail);
                 context.SaveChanges();
                 result = true;
