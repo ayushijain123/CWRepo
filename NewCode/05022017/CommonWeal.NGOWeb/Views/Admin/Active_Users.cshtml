@@ -14,7 +14,7 @@
                     <thead class="tableheader col-md-12">
                         <tr>
                             <th class="col-md-3">NGO NAME</th>
-                            <th class="col-md-3">NGO URL</th>
+                            <th class="col-md-3">EMAIL-ID</th>
 
                             <th class="col-md-3">WARN</th>
                             <th class="col-md-3">BLOCK</th>
@@ -25,7 +25,7 @@
                     {                       
                         <tr id="BlockNGO-@item.LoginID">
                             <td class="col-md-3 adminTableDataleft"  style="text-align:center;">@Html.DisplayFor(modelItem => item.NGOName)</td>
-                            <td class="col-md-3 col-md-push-1 adminTableDataleft"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
+                            <td class="col-md-3  adminTableDataleft" style="text-align:center;"><a>@Html.DisplayFor(modelItem => item.NGOEmailID) </a></td>
 
                             <td class="col-md-2 adminTableData"><span id="warn-@item.LoginID" class="fa fa-exclamation-triangle fa-2x warn"  title="Warn" style="color:red; cursor:pointer"></span></td>
 
