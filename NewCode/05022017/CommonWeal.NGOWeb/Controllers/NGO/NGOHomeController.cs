@@ -25,18 +25,18 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             ViewBag.state = new SelectList(new List<StateMaster>(), "ID", "Name");
             ViewBag.city = new SelectList(new List<CityMaster>(), "ID", "Name");
 
-            
+
             dbOperations ob = new dbOperations();
             /*get postList from GetAllPost method*/
             var postlist = ob.GetPostOnLoad(LoginUser.LoginID);
             postlist = postlist.OrderByDescending(x => x.postCreateTime).ToList();
             var list = ob.GetAllCategory();
-           // ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
+            // ViewBag.categoryList = new SelectList(list,"categoryId","categoryName");
             /*return To view with postList */
             pwtn.post = postlist;
             pwtn.ngouser = GetTopNgo;
             return View(pwtn);
-            
+
         }
         //class to convert image from file to binary
         public class ImageHandler
@@ -68,8 +68,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         /*method for upload image*/
         [HttpPost]
         public async Task<ActionResult> PostImage(HttpPostedFileBase file, NGOPost obpost, int[] category)
-        {   
-            postData postValue=new postData();
+        {
+            postData postValue = new postData();
             dbOperations ob = new dbOperations();
             CommonWealEntities db = new CommonWealEntities();
             /*if file is uploaded with or without content message*/
@@ -81,7 +81,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 postValue.file = Convert.ToBase64String(res);
                 postValue.content = obpost.PostContent;
                 postValue.loginid = LoginUser.LoginID;
-                
+
                 postValue.cat = category;
                 var result = await Task.Run(() => APIHelper<string>.PostJson("Post/NGOPost", postValue));
                 //string ImageName = System.IO.Path.GetFileName(file.FileName);
@@ -103,9 +103,9 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 //db.NGOPosts.Add(obpost);
                 //db.SaveChanges();
                 //ob.SubmitPostCategory(obpost.PostID, category);
-                
+
             }
-                /*if only content is posted without any image*/
+            /*if only content is posted without any image*/
             else if (obpost.PostContent != null)
             {
                 postValue.content = obpost.PostContent;
@@ -125,7 +125,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 //db.SaveChanges();
                 //ob.SubmitPostCategory(obpost.PostID, category);
             }
-           Console.Write("<script>alert('"+obpost.PostID+"')</script>");
+            Console.Write("<script>alert('" + obpost.PostID + "')</script>");
             /*return to current view*/
             return RedirectToAction("Index", "NGOHome");
         }
@@ -134,13 +134,9 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         {
             return View();
         }
-        public FileResult GetImage(string imagePath)
-        {
-            var strArray = imagePath.Split('/');
-           imagePath = strArray[6];
-            byte[] fileBytes = System.IO.File.ReadAllBytes(System.Web.Configuration.WebConfigurationManager.AppSettings["ImageDirectory"]  + imagePath);
-            string fileName = "myfile.jpg"; //get the  file name from  imagePath
-            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
-        }
+        //public string GetImage(string imagePath)
+        //{
+        //    return  + APIHelper<string>.APIBaseUrl + imagePath;
+        //}
     }
 }
