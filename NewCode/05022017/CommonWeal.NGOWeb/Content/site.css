@@ -33,6 +33,7 @@ mark {
     height: 0;
     visibility: hidden;
 }
+.clear { clear: both; }
 
 
 /*Added by Neha M.*/
@@ -40,7 +41,7 @@ mark {
 
 /*SEARCH FORM*/
 .search-form {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px;
     /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
 }
 /*to cange only one form and not all give unique class name like  class="search-form" */
@@ -59,6 +60,7 @@ mark {
     position: fixed;
     top: 80px;
     left: 0px;
+        margin: 0px;
     /*background-color:#D3D3D3;*/
     box-shadow: 2px 1px 5px #A9A9A9;
 }
@@ -1758,8 +1760,17 @@ added by payal*/
     border: 1px solid #deca7e;
 }
 
-.profileimage {
-    height: 170px;
+
+.profileimagecss{
+     height: 170px;
+     width:75%;
+
+
+}
+.profileimageindexcss {
+     height: 170px;
+     width:45%;
+
 }
 
 .profileimagepadding {
@@ -1958,16 +1969,25 @@ font-size: 14px;
 }
 
 .wishtodonate {
-    padding-left: 521px;
+    margin-right: 20px; 
     width: auto;
     color: #428bca;
+    float: right;
 }
 
+.relative {
+position:relative;
+}
+.absolute {
+position:absolute;
 
-
+}
+.margin-bottom-10 {
+margin-bottom:10px;
+}
 .unitprice {
     left: 61px;
-     font-size:11px;
+     font-size:13px;
      padding-right:10px;
 }
 
@@ -1976,8 +1996,38 @@ font-size: 14px;
 }
 
 .wishtodonateguest {
-    padding-left: 521px;
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     margin-right: 20px; 
     width: auto;
+    
+    float: right;
 }
 
 .trfont {
@@ -1990,4 +2040,8 @@ font-size: 14px;
 
 .text-transform {
     text-transform: capitalize;
+}
+/* */
+.chosen-container {
+    width: 100% !important;
 }
