@@ -10,7 +10,7 @@
     var j = 0;
     var temp = 0;
     var counter = [];
-      
+
 
     $(document).ready(function () {
         $("#donationfile").hide();
@@ -23,16 +23,16 @@
 
         });
 
-       
-           
-          
+
+
+
 
 
         $('#donationtemplate').on('click', '#Add', function () {
             console.log(counter.length + " ," + Add);
             if (counter.length < Add) {
-                
-               
+
+
                 if ($('tr').length== 2) {
                     $(this).parents('td').before('<td class="btn-fields al-center" "><button  id="Minus-0" class="fa fa-minus Minus"  style="width: 24px; height: 22px;    margin-top: 11px;  background: none; border: none;color: #2e6da4;"/></td></tr>');
                 }
@@ -40,72 +40,72 @@
                 console.log('add' + $('tr').length);
 
                 var row = '<tr id="row' + i + '" class="row ajaxrow lastrow inputfildrow">';
-                row = row + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname' + i + '"class="itemname cleanfield tbl-td" style="width: 180px;"/></td>';
-                row = row + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity' + i + '" class="quantity cleanfield tbl-td" style="width: 59px;"/></td>';
-               
+                row = row + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname' + i + '"class="itemname cleanfield tbl-td required" style="width: 180px;"/></td>';
+                row = row + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity' + i + '" class="quantity cleanfield tbl-td required" onkeypress="return isNumber(event)"  style="width: 59px;"/></td>';
+
                 row = row + '<td class="btn-fields al-center" "><button  id="Minus-' + i + '" class="fa fa-minus Minus"  style="width: 24px; height: 22px;    margin-top: 11px;  background: none; border: none;color: #2e6da4;"/></td>';
                 row = row + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
                 $("#RequestItemTable").append(row);
                 ItemRow[i] = i;
-              
-              
+
+
                 i++; j++;
             }
             counter.push(i);
 
         });
-        
+
 
         $("#cancelrequest").click(function () {
 
-         $('#postContentTextArea').val("");
-                            $('#file').val("");
-                            $('.ajaxrow').remove();
-                            $('.cleanfield').val("");
-                            $('.inputfildrow').remove();
-                            $('#sampleimage').remove();
-                            var rownew = '<tr id="row0" class="row ajaxrow lastrow inputfildrow">';
-                            rownew = rownew + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname0"class="itemname cleanfield tbl-td" style="width: 180px;"/></td>';
-                            rownew = rownew + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity0" class="quantity cleanfield tbl-td" style="width: 59px;"/></td>';
+            $('#postContentTextArea').val("");
+            $('#file').val("");
+            $('.ajaxrow').remove();
+            $('.cleanfield').val("");
+            $('.inputfildrow').remove();
+            $('#sampleimage').remove();
+            var rownew = '<tr id="row0" class="row ajaxrow lastrow inputfildrow">';
+            rownew = rownew + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname0"class="itemname cleanfield tbl-td" style="width: 180px;"/></td>';
+            rownew = rownew + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity0" class="quantity cleanfield tbl-td" style="width: 59px;"/></td>';
 
-                         
-                            rownew = rownew + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
-                            $("#RequestItemTable").append(rownew);
-                          
-                            while (counter.length) {
-                                counter.pop();
-                                
-                            }
-                            console.log(ItemRow);
-                            ItemRow = { '0':0};
+
+            rownew = rownew + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
+            $("#RequestItemTable").append(rownew);
+
+            while (counter.length) {
+                counter.pop();
+
+            }
+            console.log(ItemRow);
+            ItemRow = { '0':0};
 
         });
-        
-        
+
+
 
         $(document).on('click', '.Minus', function () {
-            
-            
+
+
             var id = $(this).attr('id').split('-')[1];
             counter.pop(id);
-           // console.log(id);
+            // console.log(id);
             var trlen=$('tr').length;
             if (trlen > 2) {
 
-               
+
                 delete ItemRow[id];
                 j--;
-                
+
 
                 if ($(this).parents('td').siblings().length == 3) {
                     var PrelastTD = $("#Minus-" + id).parents('tr').prev().find('td:last');
                     PrelastTD.after('<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td>');
-                    
+
                 }
-               
-                
+
+
                 console.log(trlen);
-              //  console.log($("#Minus-" + id).parents('td').siblings().length);
+                //  console.log($("#Minus-" + id).parents('td').siblings().length);
                 //  console.log(PrelastTD);
 
                 //if (prev1[0] == 'Add')
@@ -121,23 +121,26 @@
                 }
             }
 
-           
-           
-           
-            });
-        
+
+
+
+        });
+
 
         /*jquery method for required field */
         $('#submitrequest').click(function () {
-            
-            var flag = true;
-            $(".cleanfield").each(function () {
-                if (!$.trim($(this).val())) {
-                    flag = false;
+            var isValid = true;
+            $('.required').each(function () {
+                if ($(this).val() == '' && $(this).val().trim() == '') {
+                    $(this).addClass('error');
+                    isValid=false;
+                }
+                else {
+                    $(this).removeClass('error');
                 }
             });
-
-            if (flag==true) {
+            console.log(isValid);
+            if (isValid) {
 
                 var formData = new FormData(); //create form data object
                 var obj, Itemlist;
@@ -152,7 +155,7 @@
                     Itemlist.push(obj);
 
                 });
-               
+
 
                 var description = $("#postContentTextArea").val();
                 formData.append("description", description); // append description
@@ -180,7 +183,7 @@
                     contentType: false,
                     processData: false,
                     success: function (result) {
-                       
+
                         if (result == true) {
 
 
@@ -194,85 +197,87 @@
                             rownew = rownew + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname0"class="itemname cleanfield tbl-td" style="width: 180px;"/></td>';
                             rownew = rownew + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity0" class="quantity cleanfield tbl-td" style="width: 59px;"/></td>';
 
-                         
+
                             rownew = rownew + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
                             $("#RequestItemTable").append(rownew);
                             alert('Donation request submitted successfully');
                             while (counter.length) {
                                 counter.pop();
-                                
+
                             }
                             console.log(ItemRow);
                             ItemRow = { '0':0};
 
-                            
+
                         }
                         else {
+
                             alert('Sorry upload Failed try again');
 
                         }
-
-
-
                     }
                 });
-               
-            } else {
-                alert("Input fields are mandatory");
             }
+
+            $("#file").change(function (event) {
+
+                var fileName = window.URL.createObjectURL(event.target.files[0])
+
+                $("#uploadFileName").html("");
+                $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px" id="sampleimage">');
+
+
+            });
+
         });
- 
-
-       
-            
-
+        function fileclick() {
+            $("#file").click();
+        }
       
-        $("#file").change(function (event) {
-
-            var fileName = window.URL.createObjectURL(event.target.files[0])
-
-            $("#uploadFileName").html("");
-            $("#uploadFileName").append('<img src="' + fileName + '" style="height:40px;width:40px" id="sampleimage">');
-
-
-        });
-
     });
-    function fileclick() {
-        $("#file").click();
-    };
-
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
 </script>
 @*<script type="text/javascript">
-    var rowId=0
-    $(document).ready(function () {
-        $(document).on('click','#Add', function () {
-            rowId += 1;
-            var str = '<tr id="row' + rowId + '" class="row"><td class="input_fields_wrap al-center"><input type="text" id="itemname' + rowId + '" class="itemname cleanfield  tbl-td" style="width: 180px;"/></td><td class="input_fields_wr al-center"><input type="text" class="quantity cleanfield tbl-td" id="quantity' + rowId + '" style="width: 59px;"/></td><td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /><button id="Remove-' + rowId + '" class="fa fa-minus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
-            if (rowId == 1)
-            {
-                $(this).after('<button id="Remove-0" class="fa fa-minus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />');
-            }
-            $(this).remove();
-            $('#RequestItemTable').append(str);
+        var rowId=0
+        $(document).ready(function () {
+            $(document).on('click','#Add', function () {
+                rowId += 1;
+                var str = '<tr id="row' + rowId + '" class="row"><td class="input_fields_wrap al-center"><input type="text" id="itemname' + rowId + '" class="itemname cleanfield  tbl-td" style="width: 180px;"/></td><td class="input_fields_wr al-center"><input type="text" class="quantity cleanfield tbl-td" id="quantity' + rowId + '" style="width: 59px;"/></td><td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /><button id="Remove-' + rowId + '" class="fa fa-minus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
+                if (rowId == 1)
+                {
+                    $(this).after('<button id="Remove-0" class="fa fa-minus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />');
+                }
+                $(this).remove();
+                $('#RequestItemTable').append(str);
+            });
+            $(document).on('click', '.fa-minus', function () {
+                if ($('tr').length > 2) {
+                    var elemId = $(this).attr('id').split('-')[1];
+                    var previousElement = $('#Remove-' + elemId).parents('tr').prev().find('td:last');
+
+                    if ($(this).prev().length == 1) {
+                        $('#Add').remove();
+                        previousElement.prepend('<button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />');
+
+
+                    } $('#row' + elemId).remove();
+                }
+
+            });
         });
-        $(document).on('click', '.fa-minus', function () {
-            if ($('tr').length > 2) {
-                var elemId = $(this).attr('id').split('-')[1];
-                var previousElement = $('#Remove-' + elemId).parents('tr').prev().find('td:last');
-             
-                if ($(this).prev().length == 1) {
-                    $('#Add').remove();
-                    previousElement.prepend('<button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />');
-
-
-                } $('#row' + elemId).remove();
-            }
-            
-        });
-    });
-</script>*@
-
+    </script>*@
+<style>
+    .error {
+        border: 1px solid red;
+    }
+</style>
 <div class="row col-md-12">
 
     <div id="donationtemplate">
@@ -288,7 +293,7 @@
                 <input type="file" id="file" name="file" data-badge="false" />
                 <span id="uploadFileName"></span>
                 <div class=" form-inline col-sm-12">
-              
+
                     @Html.TextArea("PostContent", null, new { id = "postContentTextArea", @class = "form-control", placeholder = "Discription about Donation" })
                     <br />
                     <table class="table" style="margin-bottom: 12px; border: none; margin-top: 0px;">
@@ -304,10 +309,12 @@
                         <tbody id="RequestItemTable">
                             <tr id="row0" class="row inputfildrow">
                                 <td class="input_fields_wrap al-center">
-                                    <input type="text" id="itemname0" class="itemname cleanfield  tbl-td" style="width: 180px;"/></td>
+                                    <input type="text" id="itemname0" class="itemname cleanfield  tbl-td required" style="width: 180px;" />
+                                </td>
                                 <td class="input_fields_wr al-center">
-                                    <input type="text" class="quantity cleanfield tbl-td" id="quantity0" style="width: 59px;" title="Enter numbers only"/></td>
-                                <td class="btn-fields al-center" >
+                                    <input type="text" class="quantity cleanfield  numberfield tbl-td required" id="quantity0" onkeypress="return isNumber(event)" style="width: 59px;" title="Enter numbers only" />
+                                </td>
+                                <td class="btn-fields al-center">
                                     <button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" />
                                 </td>
                             </tr>
@@ -316,9 +323,10 @@
 
                     </table>
 
-                  <center> 
-                  <span  id="submitrequest" class=" btn btn-primary">Submit</span>
-                       <span id="cancelrequest" class="btn btn-primary">Cancel</span>         </center>
+                    <center>
+                        <span id="submitrequest" class=" btn btn-primary">Submit</span>
+                        <span id="cancelrequest" class="btn btn-primary">Cancel</span>
+                    </center>
                 </div>
             </div>
         </div>
