@@ -53,8 +53,8 @@
                 data: fileData,
                 success: function (result) {
                     console.log(result[0]);
-                    $(".profileimage").attr('src', '/NGOHome/GetImage?imagePath=' + result[0]);
-                    $("#profileimage1").attr('src', '/NGOHome/GetImage?imagePath=' + result[0])
+                    $(".profileimage").attr('src', apiUrl + result[0]);
+                    $("#profileimage1").attr('src', apiUrl + result[0])
                 },
                 error: function (err) {
                     alert(err.statusText);
