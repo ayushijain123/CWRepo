@@ -42,7 +42,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 var postList = db.GetPostById(LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
              
-               NGpost.imageurl = "http://localhost:61504\\images\\" + image; //http://172.27.11.26:81
+               NGpost.imageurl = "http://172.27.11.26:81" + image; //http://172.27.11.26:81
                     NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOName;
                NGpost.PostWithtopNgoModel.post = postList;
                NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
@@ -54,7 +54,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 var postList = db.GetPostById(id);
                 var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
                 NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOName;
-                NGpost.imageurl = "http://localhost:61504\\images\\" + image;
+                NGpost.imageurl = "http://172.27.11.26:81" + image;
                 NGpost.PostWithtopNgoModel.post = postList;
                
                 NGpost.PostWithtopNgoModel.ngouser = GetTopNgo;
@@ -345,7 +345,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     var obj = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault();
                     NgoInfo.NgoUser = obj;
                     var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
-                    NgoInfo.imageurl = "http://localhost:61504\\images\\" + image;
+                    NgoInfo.imageurl = "http://172.27.11.26:81" + image;
                     //return PartialView("AboutUsNGO",obj);
 
                     /*returing list to  partial view and than partial view is retuned to ajax call  */
@@ -358,7 +358,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                     var obj = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault();
                     NgoInfo.NgoUser = obj;
                     var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
-                    NgoInfo.imageurl = "http://localhost:61504\\images\\" + image;
+                    NgoInfo.imageurl = "http://172.27.11.26:81" + image;
                     return PartialView("~/views/NGOProfile/_AboutUs.cshtml", NgoInfo);
                 }
             }
