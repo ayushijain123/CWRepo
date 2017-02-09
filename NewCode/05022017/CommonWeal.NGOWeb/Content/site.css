@@ -905,7 +905,12 @@ tr.pager td {
     cursor: pointer;
     overflow: hidden;
 }
+.submitEstimation{
 
+    width:30%;
+    font-size:14px !important;
+
+} 
 
 .likecommentsign {
     background-color: #FFFFFF;
