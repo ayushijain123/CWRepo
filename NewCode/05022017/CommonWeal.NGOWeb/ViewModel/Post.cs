@@ -23,5 +23,6 @@ namespace CommonWeal.NGOWeb.ViewModel
         public string controllername { get; set; }
         public bool IsRequest { get; set; }
         public List<DonateItem> donateItemlist { get; set; }
+        public int RequestID { get; set; }
     } 
 }
