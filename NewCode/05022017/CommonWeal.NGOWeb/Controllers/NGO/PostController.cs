@@ -172,11 +172,11 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 if (NgoID == 1)
                 {
                     NgoID = LoginUser.LoginID;
-                    load = ob.GetPostOnSeeMore(category, count, NgoID);
+                    load = ob.GetPostOnSeeMore(category, count, NgoID,NgoID);
                 }
                 else
                 {
-                    load = ob.GetPostOnSeeMore(category, count, NgoID);
+                    load = ob.GetPostOnSeeMore(category, count, NgoID,LoginUser.LoginID);
                 }
                 if (load.Count() > 0)
                 {
