@@ -36,7 +36,7 @@
 
             @if (Model.postImageUrl != null)
             { 
-                <img src="@Model.postImageUrl" data-toggle="modal" data-target="#myModal2-@Model.postId" class="imageurlpost" id="imageurlpost-@Model.postId" />
+                <img src="@Url.Content("http://172.27.11.26:81" + Model.postImageUrl)" data-toggle="modal" data-target="#myModal2-@Model.postId" class="imageurlpost" id="imageurlpost-@Model.postId" />
             }
             </br>
         </div>
@@ -90,12 +90,13 @@
         <div style="padding-bottom: 6px;">
             @if (this.User.Identity.IsAuthenticated)
             {
-                <span data-toggle="modal" data-target="#donationmodal" class="cursor wishtodonate" data-id="@Model.postId" >Donate</span>
+                <div data-toggle="modal" data-target="#donationmodal" class="cursor wishtodonate" data-id="@Model.postId" >Donate</div>
             }
             else
             {
-                <span class="wishtodonateguest">Donate</span>
+                <div class="wishtodonateguest">Donate</div>
             }
+            <div class="clear "></div>
         </div>
     </div>
 </div>
