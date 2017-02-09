@@ -970,6 +970,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
         {
             int total = 0,requestid=0;
             CommonWealEntities context = new CommonWealEntities();
+            context.Configuration.ValidateOnSaveEnabled = false;
             foreach (var item in itemlist)
             {
               
