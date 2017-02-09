@@ -1,4 +1,5 @@
-﻿@model CommonWeal.Data.NGOUser
+﻿@using CommonWeal.NGOWeb.Utility
+@model CommonWeal.Data.NGOUser
 
 
 <script>
@@ -127,11 +128,11 @@
                    @*<embed src="@Url.Content("http://localhost:61504" + Model.RegistrationProof)" type="application/pdf"></embed>*@
                       //  <img src="~/Images/pdf/1483637585_pdf.png" />
                         
-                         <a href="@Url.Content("http://172.27.11.26:81" + Model.RegistrationProof)" target="_blank"><img src="/Images/1483646036_pdf.png" height="50px" width="50px" alt="" /></a>
+                         <a href="@Url.Content(AppConfiguration.APIServerUrl + Model.RegistrationProof)" target="_blank"><img src="/Images/1483646036_pdf.png" height="50px" width="50px" alt="" /></a>
                     }
                     else
                     { 
-            <img src="@Url.Content("http://172.27.11.26:81" + Model.RegistrationProof)"  data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
+            <img src="@Url.Content(AppConfiguration.APIServerUrl+ Model.RegistrationProof)"  data-toggle="modal" data-target="#Registrationphoto" height="50px" width="50px" />                                
                     }       
                    
 
@@ -142,7 +143,7 @@
                 <div class="modal fade" id="Registrationphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
                     <div class="modal-dialog likemodaldialog" role="document">
-                        <img src="@Url.Content("http://172.27.11.26:81" + Model.RegistrationProof) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
+                        <img src="@Url.Content(AppConfiguration.APIServerUrl+ Model.RegistrationProof) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
                     </div>
                 </div>
 
@@ -157,17 +158,17 @@
                     }
                      @if (Model.ChairmanID.Substring(Model.ChairmanID.LastIndexOf('.')).Equals(".pdf"))
                     {                   
-                         <a href="@Url.Content("http://172.27.11.26:81" + Model.ChairmanID)" target="_blank"><img src="/Images/1483646036_pdf.png" height="50px" width="50px" alt="" /></a>
+                         <a href="@Url.Content(AppConfiguration.APIServerUrl + Model.ChairmanID)" target="_blank"><img src="/Images/1483646036_pdf.png" height="50px" width="50px" alt="" /></a>
                     }
                     else
                     { 
-             <img src="@Url.Content("http://172.27.11.26:81" + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#chairmanphoto" height="50px" width="50px" />                                
+             <img src="@Url.Content(AppConfiguration.APIServerUrl + Model.ChairmanID)" alt="No Image" data-toggle="modal" data-target="#chairmanphoto" height="50px" width="50px" />                                
                     }                           
                 </div>
                 <div class="modal fade" id="chairmanphoto" tabindex="-1" style="overflow-y: auto;" role="dialog" aria-labelledby="myModalLabel">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span></button>
                     <div class="modal-dialog likemodaldialog" role="document">
-                        <img src="@Url.Content("http://172.27.11.26:81" + Model.ChairmanID) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
+                        <img src="@Url.Content(AppConfiguration.APIServerUrl + Model.ChairmanID) "style="min-height:300px;min-width:300px;" class="modal-content fullImage" id=""/>
                     </div>
                 </div>
             </div>
