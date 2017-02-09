@@ -19,7 +19,13 @@ namespace CommonWeal.NGOWeb.Utility
         public string Expires_In;
     }
 
-    public class APIHelper<T> where T : class
+    public class AppConfiguration
+    {
+        public static string APIServerUrl = System.Configuration.ConfigurationManager.AppSettings["APIServerUrl"];
+        public static string APIBaseUrl = APIServerUrl + System.Configuration.ConfigurationManager.AppSettings["APIBasePath"] + "/";
+    }
+
+        public class APIHelper<T> where T : class
     {
         public static string Access_Token
         {
@@ -51,8 +57,8 @@ namespace CommonWeal.NGOWeb.Utility
         const string applicationJson = "application/json";
         const string applicationOctet = "application/octet-stream";
         const string applicationformurlencoded = "application/x-www-form-urlencoded";
-        static string APIServerUrl = System.Configuration.ConfigurationManager.AppSettings["APIServerUrl"];
-        static string APIBaseUrl = APIServerUrl + System.Configuration.ConfigurationManager.AppSettings["APIBasePath"] + "/";
+        static string APIServerUrl = AppConfiguration.APIServerUrl;
+        static string APIBaseUrl = AppConfiguration.APIBaseUrl;
         static string APITokeUrl = APIServerUrl + System.Configuration.ConfigurationManager.AppSettings["APITokenPath"];
         /// <summary> 
 
