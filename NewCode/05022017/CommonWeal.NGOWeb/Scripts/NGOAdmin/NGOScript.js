@@ -135,6 +135,7 @@
     });
 
     $(document).on('click', ".SaveSummaryId", function () {
+        $("textarea").prop('disabled', true);
         var Loginid = $(this).attr('id').split('-')[1];
         var summary = $('#textSumamry').val();
         // alert("hi")
