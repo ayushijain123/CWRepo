@@ -163,18 +163,18 @@ namespace CommonWeal.NGOWeb
             return result.OrderByDescending(x => x.postCreateTime).ToList();
         }
         /*getting post by id*/
-        public List<Post> GetPostById(int id)
+        public List<Post> GetPostById(int id, int userID=0)
         {
             //var NGOPostlist = context.NGOPosts.Where(x => x.LoginID == id).OrderByDescending(x => x.CreatedOn).Take(5).ToList();
             var list = getPostwithcategoryList().Where(x => x.LoginID == id).ToList();
             BaseController.pageleft = list.Count();
             list = list.OrderByDescending(x => x.CreatedOn).Take(5).ToList();
-            var result = GetAllPost(list, id);
+            var result = GetAllPost(list, userID);
             return result;
         }
 
         /*getting post on see more click*/
-        public List<Post> GetPostOnSeeMore(int[] category, int pageNum = 0, int NgoID = 0)
+        public List<Post> GetPostOnSeeMore(int[] category, int pageNum = 0, int NgoID = 0, int userID=0)
         {
             var selectlist = new List<PostWithCategory>();
             //var NGOPostlist = context.NGOPosts.Include(x => x.PostCategories).Where(w => w.PostCategories.Where(m => m.CategoryID == category).Any()).OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
@@ -202,13 +202,13 @@ namespace CommonWeal.NGOWeb
                 BaseController.pageleft = selectlist.Count();
                 selectlist = selectlist.OrderByDescending(x => x.CreatedOn).Skip(pageNum * 5).Take(5).ToList();
             }
-            var result = GetAllPost(selectlist,null);
+            var result = GetAllPost(selectlist,userID);
             return result;
         }
 
 
         /*getting post category*/
-        public List<Post> GetPostCategory(int category)
+        public List<Post> GetPostCategory(int category,int userID=0)
         {
 
 
@@ -220,7 +220,7 @@ namespace CommonWeal.NGOWeb
             // arrayList.Add(List);
             // return list;
             var selectedlist = list.Where(x => x.CategoryID == category).ToList();
-            var result = GetAllPost(selectedlist,null);
+            var result = GetAllPost(selectedlist, userID );
             //var cat = list[0].CategoryID;
             // var pos = list[0].u.PostID;
             return result;
@@ -532,7 +532,7 @@ namespace CommonWeal.NGOWeb
                 di.ItemID = don.ItemID;
                 di.ItemRequire = don.ItemRequire.Value;
                 donar.DonarLoginID = loginId;
-                if (loginId != null)
+                if (loginId != 0)
                 {
                     var donorDetail = context.DonarDetails.Where(w => w.ItemID == don.ItemID && w.DonarLoginID == loginId).FirstOrDefault();
                     di.DonatedByyou = donorDetail != null ? donorDetail.Donatecount : null;
