@@ -192,7 +192,7 @@ namespace CommonWeal.NGOAPI.Controllers
                 string fullPath = System.Web.Configuration.WebConfigurationManager.AppSettings["ImageDirectory"] + "/" + imageName;
                 // string filepath = HttpContext.Current.Server.MapPath(fullPath);
                 image.Save(fullPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                ngodata.NGOProfilePic = imageName;
+                ngodata.NGOProfilePic ="//Images//"+ imageName;
             }
             context.Configuration.ValidateOnSaveEnabled = false;
             context.SaveChanges();
