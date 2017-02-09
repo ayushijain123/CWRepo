@@ -416,6 +416,7 @@ namespace CommonWeal.NGOWeb
                     pm.controllername = "default";
                     pm.postCategoryNameList = item.CategoryList;
                     pm.IsRequest = item.IsRequest;
+                    pm.RequestID = item.RequestID;
                     pm.donateItemlist = donationdetails(item.RequestID, loginId);
                     ob.Add(pm);
 
