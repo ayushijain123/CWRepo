@@ -8,6 +8,7 @@ namespace CommonWeal.NGOWeb.ViewModel.Admin
     public class RequestItemEstimation
     {
         public string NGOName { get; set; }
+        public int RequestID { get; set; }
         public DateTime DonateRequestDate { get; set; }
         public List<GenerateEstimation> estimate { get; set; }
     }

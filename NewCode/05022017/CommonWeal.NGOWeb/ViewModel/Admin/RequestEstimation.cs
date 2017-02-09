@@ -13,5 +13,6 @@ namespace CommonWeal.NGOWeb.ViewModel.Admin
         public bool Status { get; set; }
         public int recievedCost { get; set; }
         public int RequestId { get; set; }
+
     }
 }
