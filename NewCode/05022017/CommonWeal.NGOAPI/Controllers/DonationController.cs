@@ -73,6 +73,7 @@ namespace CommonWeal.NGOAPI.Controllers
             ngopost.LoginID = donationdata.RequestNGOID;
             ngopost.PostCommentCount = 0;
             ngopost.PostLikeCount = 0;
+            ngopost.PostUrl = donationrequest.ImgeUrl;
             ngopost.RequestID = donationrequest.RequestID;
             context.NGOPosts.Add(ngopost);
             context.SaveChanges();
