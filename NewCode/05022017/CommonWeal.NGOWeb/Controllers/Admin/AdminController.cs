@@ -949,6 +949,7 @@ namespace CommonWeal.NGOWeb.Controllers.Admin
                 estimatelist.DonateRequestDate = ob.createdOn.Value;
             }
             estimatelist.NGOName = context.NGOUsers.Where(x => x.LoginID == Ngoid).FirstOrDefault().NGOName;
+            estimatelist.RequestID = id;
             foreach (var item in donatelist)
             {
                 GenerateEstimation estimate = new GenerateEstimation();
