@@ -28,6 +28,7 @@ namespace CommonWeal.NGOAPI.Controllers
             public string ChairmanName { get; set; }
             public string AboutNGO { get; set; }
             public string profilepic { get; set; }
+            public int userID { get; set; }
 
         }
         public class Delete
@@ -155,9 +156,9 @@ namespace CommonWeal.NGOAPI.Controllers
 
         [HttpPost]
         public HttpResponseMessage NGOPost(AboutUs loginid)
-        {
+        { var userID = loginid.userID>0 ?loginid.userID : 0;
             dbOperations db = new dbOperations();
-            var res = db.GetPostById(loginid.LoginID);
+            var res = db.GetPostById(loginid.LoginID,userID);
             var response = Request.CreateResponse(HttpStatusCode.OK, res);
             return response;
 
