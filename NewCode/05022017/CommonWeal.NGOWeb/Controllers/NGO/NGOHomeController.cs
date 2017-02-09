@@ -136,7 +136,9 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
         }
         public FileResult GetImage(string imagePath)
         {
-            byte[] fileBytes = System.IO.File.ReadAllBytes(System.Web.Configuration.WebConfigurationManager.AppSettings["ImageDirectory"] + "\\" + imagePath);
+            var strArray = imagePath.Split('/');
+           imagePath = strArray[6];
+            byte[] fileBytes = System.IO.File.ReadAllBytes(System.Web.Configuration.WebConfigurationManager.AppSettings["ImageDirectory"]  + imagePath);
             string fileName = "myfile.jpg"; //get the  file name from  imagePath
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
