@@ -104,20 +104,45 @@ namespace CommonWeal.NGOAPI.Controllers
             var result = false;
             for (int i = 0; i < count; i++)
             {
-                donardetail.ItemID = donardetaildata.donardetailvalue[i].ItemID;
-                donardetail.DonarLoginID = donardetaildata.donardetailvalue[i].UserLoginID;
-                donardetail.createdOn = DateTime.Now;
+                var itemid = donardetaildata.donardetailvalue[i].ItemID;
+                var donationdetail = context.DonationDetails.Where(w => w.ItemID == itemid).FirstOrDefault();
 
-                // donardetail.RequestId = donardetaildata.donardetailvalue[i].RequestId;
+                var userid = donardetaildata.donardetailvalue[i].UserLoginID;
+                var donar = context.DonarDetails.Where(w => w.ItemID ==itemid && w.DonarLoginID==userid).FirstOrDefault();
+                if (donar !=null)
+                {
+                   //donar.ItemID = donardetaildata.donardetailvalue[i].ItemID;
+                    //donar.DonarLoginID = donardetaildata.donardetailvalue[i].UserLoginID;
+                   // donardetail.createdOn = DateTime.Now;
 
-                donardetail.Donatecount = donardetaildata.donardetailvalue[i].donatecount;
-                var donationdetail = context.DonationDetails.Where(w => w.ItemID == donardetail.ItemID).FirstOrDefault();
-                donardetail.RequestId = donationdetail.RequestID;
-                donationdetail.DonatedCount = donationdetail.DonatedCount + donardetaildata.donardetailvalue[i].donatecount;
-                var remaining = donationdetail.ItemCount - donationdetail.DonatedCount;
-                donationdetail.ItemRequire = remaining>0? remaining:0;
-                context.DonarDetails.Add(donardetail);
-                context.SaveChanges();
+                    // donardetail.RequestId = donardetaildata.donardetailvalue[i].RequestId;
+
+                    donar.Donatecount =donar.Donatecount+ donardetaildata.donardetailvalue[i].donatecount;
+
+                    //donardetail.RequestId = donationdetail.RequestID;
+                    donationdetail.DonatedCount = donationdetail.DonatedCount + donardetaildata.donardetailvalue[i].donatecount;
+                    var remaining = donationdetail.ItemCount - donationdetail.DonatedCount;
+                    donationdetail.ItemRequire = remaining > 0 ? remaining : 0;
+                    //context.DonarDetails.Add(donardetail);
+                }
+                else
+                {
+                    donardetail.ItemID = donardetaildata.donardetailvalue[i].ItemID;
+                    donardetail.DonarLoginID = donardetaildata.donardetailvalue[i].UserLoginID;
+                    donardetail.createdOn = DateTime.Now;
+
+                    // donardetail.RequestId = donardetaildata.donardetailvalue[i].RequestId;
+
+                    donardetail.Donatecount = donardetaildata.donardetailvalue[i].donatecount;
+
+                    donardetail.RequestId = donationdetail.RequestID;
+                    donationdetail.DonatedCount = donationdetail.DonatedCount + donardetaildata.donardetailvalue[i].donatecount;
+                    var remaining = donationdetail.ItemCount - donationdetail.DonatedCount;
+                    donationdetail.ItemRequire = remaining > 0 ? remaining : 0;
+                    context.DonarDetails.Add(donardetail);
+                 
+                }
+                   context.SaveChanges();
                 result = true;
             }
 
