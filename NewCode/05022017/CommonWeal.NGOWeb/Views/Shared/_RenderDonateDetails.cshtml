@@ -2,9 +2,16 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        
+      
     });
-
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
 </script>
 <table class="table table-striped  donatetable">
     <thead class="thead-inverse trfont">
@@ -28,7 +35,7 @@
                 <td id="modeldonateCount-@item.ItemID" class="tdfont"style="text-align: center">@item.DonateCount</td>
                 <td class="tdfont" style="text-align: center">@item.ItemRequire</td>
                 <td style="text-align: center" class="tdfont">
-                    <input class="donatetextbox" id="donatetextbox-@item.ItemID " type="text"  /></td>
+                    <input class="donatetextbox" id="donatetextbox-@item.ItemID " onkeypress="return isNumber(event)"  type="text"  /></td>
                 @*<td style="text-align:center"><button type="submit" id="remove" class="fa fa-minus"  style="width: 24px; height: 22px;    margin-top: 11px;"/></td>*@
             </tr>
         }
