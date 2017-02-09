@@ -39,7 +39,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             if (id == 0 )
             {
                 NGpost.CurrentUserID = LoginUser.LoginID;
-                var postList = db.GetPostById(LoginUser.LoginID);
+                var postList = db.GetPostById(LoginUser.LoginID, LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
              
                NGpost.imageurl =    image; 
@@ -51,7 +51,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             else
             {
                 NGpost.CurrentUserID = id;
-                var postList = db.GetPostById(id);
+                var postList = db.GetPostById(id, LoginUser.LoginID);
                 var image = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOProfilePic;
                 NGpost.searchNgoProfileName = context.NGOUsers.Where(x => x.LoginID == id).FirstOrDefault().NGOName;
                 NGpost.imageurl =  image;
@@ -75,7 +75,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             dbOperations db = new dbOperations();
             //User UL = new User();
             //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
-            var postList = db.GetPostById(LoginUser.LoginID);
+            var postList = db.GetPostById(LoginUser.LoginID, LoginUser.LoginID);
             var image = context.NGOUsers.Where(x => x.LoginID == LoginUser.LoginID).FirstOrDefault().NGOProfilePic;
             ViewBag.imageurl = image;
             //var ngoPostList = context.Where(w => w.userId == LoginUser.LoginID).OrderByDescending(x => x.postCreateTime).ToList();
@@ -381,7 +381,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 //  var userId=context.Users.Where(w=>w.LoginID==LoginUser.LoginID).FirstOrDefault().LoginID;
                 if (id == 0)
                 {
-                    var obj = db.GetPostById(LoginUser.LoginID);
+                    var obj = db.GetPostById(LoginUser.LoginID, LoginUser.LoginID);
                     NGpostlist.PostWithtopNgoModel.post = obj;
                     NGpostlist.CurrentUserID = LoginUser.LoginID;
                     //return PartialView("AboutUsNGO",obj);
@@ -391,7 +391,7 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
                 }
                 else
                 {
-                    var obj = db.GetPostById(id);
+                    var obj = db.GetPostById(id, LoginUser.LoginID);
                     NGpostlist.PostWithtopNgoModel.post = obj;
                     NGpostlist.CurrentUserID =id;
                     //return PartialView("AboutUsNGO",obj);
