@@ -1,6 +1,6 @@
 ﻿
 $(document).ready(function () {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({statesave:true});
     /*ajax for block user from all user*/
     $(document).on('click','.BlockUser',function () {
         var loginid = $(this).attr('id').split('-')[1];        
