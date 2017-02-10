@@ -1,6 +1,6 @@
-﻿
+﻿//added on 10216
 $(document).ready(function () {
-    $('#myTable').DataTable({statesave:true});
+   $('#myTable').dataTable({ stateSave: true });
     /*ajax for block user from all user*/
     $(document).on('click','.BlockUser',function () {
         var loginid = $(this).attr('id').split('-')[1];        
@@ -73,7 +73,7 @@ $(document).ready(function () {
             grandtotal += parseInt($(this).text());
         });
         
-        $("#total").text(grandtotal);
+        $("#total").val(grandtotal );
     });
 
     
