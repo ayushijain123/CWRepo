@@ -880,6 +880,13 @@ tr.pager td {
     padding-top: 10px;
 }
 
+#estimate {
+float: right;
+    margin-right: 30px;
+    margin-top: 10px;
+
+}
+
 .uploadimage {
     cursor: pointer;
 }
