@@ -196,7 +196,7 @@
                             $('#sampleimage').remove();
                             var rownew = '<tr id="row0" class="row ajaxrow lastrow inputfildrow">';
                             rownew = rownew + ' <td class="input_fields_wrap al-center"><input type="text" id="itemname0"class="itemname cleanfield tbl-td" style="width: 180px;"/></td>';
-                            rownew = rownew + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity0" class="quantity cleanfield tbl-td" style="width: 59px;"/></td>';
+                            rownew = rownew + ' <td class="input_fields_wr al-center"><input type="text"  id="quantity0" onkeypress="return isNumber(event)" class="quantity cleanfield tbl-td" style="width: 59px;"/></td>';
 
 
                             rownew = rownew + '<td class="btn-fields al-center" ><button id="Add" class="fa fa-plus Add" style="width: 24px; height: 22px; margin-top: 11px; background: none; border: none;color: #2e6da4;" /></td></tr>';
@@ -231,14 +231,20 @@
             });
 
         });
-        function fileclick() {
-            $("#file").click();
-        }
+       
       
     });
     function fileclick() {
         $("#file").click();
     };
+    function isNumber(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+            return false;
+        }
+        return true;
+    }
 
 </script>
 @*<script type="text/javascript">
@@ -284,7 +290,7 @@
         <div class="panel-body uploaddonationpanelbody">
             <div class=" form-inline col-sm-12  uploadimagesection  ">
                 <a href="#" id="uploadbtn " style="margin-left: 16px;">
-                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick(); return false;"></span>
+                    <span class="fa fa-picture-o fa-2x uploadimage" onclick="fileclick();" return false;"></span>
                 </a>
                 <a class="uploadimage"><span onclick="fileclick(); return false;"><strong>Upload Image</strong></span></a>
                 <input type="file" id="file" name="file" data-badge="false" />
