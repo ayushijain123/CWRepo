@@ -16,8 +16,8 @@ namespace CommonWeal.Data
     {
         public User()
         {
-            this.RegisteredUsers = new HashSet<RegisteredUser>();
             this.NGOUsers = new HashSet<NGOUser>();
+            this.RegisteredUsers = new HashSet<RegisteredUser>();
         }
     
         public int LoginID { get; set; }
@@ -32,7 +32,7 @@ namespace CommonWeal.Data
         public Nullable<bool> IsSpam { get; set; }
         public Nullable<bool> IsDecline { get; set; }
     
-        public virtual ICollection<RegisteredUser> RegisteredUsers { get; set; }
         public virtual ICollection<NGOUser> NGOUsers { get; set; }
+        public virtual ICollection<RegisteredUser> RegisteredUsers { get; set; }
     }
 }

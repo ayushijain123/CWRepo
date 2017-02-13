@@ -29,21 +29,30 @@ namespace CommonWeal.Data
         }
     
         public DbSet<AreaOfInterest> AreaOfInterests { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
+        public DbSet<ChatUser> ChatUsers { get; set; }
+        public DbSet<CityMaster> CityMasters { get; set; }
+        public DbSet<CountryMaster> CountryMasters { get; set; }
+        public DbSet<DonarDetail> DonarDetails { get; set; }
+        public DbSet<DonationDetail> DonationDetails { get; set; }
+        public DbSet<DonationRequest> DonationRequests { get; set; }
         public DbSet<ForgotPassword> ForgotPasswords { get; set; }
         public DbSet<ImageHandler> ImageHandlers { get; set; }
         public DbSet<NGOPost> NGOPosts { get; set; }
+        public DbSet<NGOUser> NGOUsers { get; set; }
         public DbSet<PostCategory> PostCategories { get; set; }
         public DbSet<PostComment> PostComments { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<RegisteredUser> RegisteredUsers { get; set; }
+        public DbSet<RegistrationYear> RegistrationYears { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
+        public DbSet<Search> Searches { get; set; }
+        public DbSet<SpamUser> SpamUsers { get; set; }
+        public DbSet<StateMaster> StateMasters { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Test> Tests { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<WorkingArea> WorkingAreas { get; set; }
-        public DbSet<NGOUser> NGOUsers { get; set; }
-        public DbSet<SpamUser> SpamUsers { get; set; }
-        public DbSet<RegistrationYear> RegistrationYears { get; set; }
     
         //public virtual ObjectResult<string> usp_GetPostDetails(Nullable<int> postID)
         //{

@@ -20,5 +20,6 @@ namespace CommonWeal.Data
         public string ReportedBy { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string AbuseedUserName { get; set; }
+        public Nullable<int> CommentID { get; set; }
     }
 }

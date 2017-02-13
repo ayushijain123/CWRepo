@@ -24,8 +24,8 @@ namespace CommonWeal.Data
         public string NGOProfilePic { get; set; }
         public string Telephone { get; set; }
         public string Mobile { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
+        public Nullable<int> city { get; set; }
+        public Nullable<int> State { get; set; }
         public Nullable<int> LoginUserType { get; set; }
         public string NGOAddress { get; set; }
         public string ChairmanName { get; set; }
@@ -49,6 +49,7 @@ namespace CommonWeal.Data
         public string AboutUs { get; set; }
         public Nullable<bool> IsDecline { get; set; }
         public Nullable<int> PostCount { get; set; }
+        public Nullable<int> country { get; set; }
     
         public virtual User User { get; set; }
     }

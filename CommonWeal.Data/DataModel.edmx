@@ -7,6 +7,28 @@
     <Schema Namespace="CommonWealModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="CommonWealModelStoreContainer">
           <EntitySet Name="AreaOfInterest" EntityType="CommonWealModel.Store.AreaOfInterest" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ChatMessage" EntityType="CommonWealModel.Store.ChatMessage" store:Type="Tables" store:Schema="dbo" store:Name="ChatMessage">
+            <DefiningQuery>SELECT 
+      [ChatMessage].[ChatID] AS [ChatID], 
+      [ChatMessage].[LoginID] AS [LoginID], 
+      [ChatMessage].[Message] AS [Message], 
+      [ChatMessage].[SenderID] AS [SenderID], 
+      [ChatMessage].[CreatedOn] AS [CreatedOn]
+      FROM [dbo].[ChatMessage] AS [ChatMessage]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ChatUser" EntityType="CommonWealModel.Store.ChatUser" store:Type="Tables" store:Schema="dbo" store:Name="ChatUser">
+            <DefiningQuery>SELECT 
+      [ChatUser].[ID] AS [ID], 
+      [ChatUser].[LoginID] AS [LoginID], 
+      [ChatUser].[ConnectID] AS [ConnectID], 
+      [ChatUser].[Status] AS [Status]
+      FROM [dbo].[ChatUser] AS [ChatUser]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CityMaster" EntityType="CommonWealModel.Store.CityMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CountryMaster" EntityType="CommonWealModel.Store.CountryMaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DonarDetail" EntityType="CommonWealModel.Store.DonarDetail" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DonationDetails" EntityType="CommonWealModel.Store.DonationDetails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DonationRequest" EntityType="CommonWealModel.Store.DonationRequest" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ForgotPassword" EntityType="CommonWealModel.Store.ForgotPassword" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ImageHandler" EntityType="CommonWealModel.Store.ImageHandler" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="NGOPost" EntityType="CommonWealModel.Store.NGOPost" store:Type="Tables" Schema="dbo" />
@@ -17,11 +39,29 @@
           <EntitySet Name="RegisteredUser" EntityType="CommonWealModel.Store.RegisteredUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegistrationYear" EntityType="CommonWealModel.Store.RegistrationYear" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleType" EntityType="CommonWealModel.Store.RoleType" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Search" EntityType="CommonWealModel.Store.Search" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SpamUser" EntityType="CommonWealModel.Store.SpamUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StateMaster" EntityType="CommonWealModel.Store.StateMaster" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Test" EntityType="CommonWealModel.Store.Test" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="CommonWealModel.Store.User" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WorkingArea" EntityType="CommonWealModel.Store.WorkingArea" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_CityMaster_StateMaster" Association="CommonWealModel.Store.FK_CityMaster_StateMaster">
+            <End Role="StateMaster" EntitySet="StateMaster" />
+            <End Role="CityMaster" EntitySet="CityMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonarDetail_DonationDetails" Association="CommonWealModel.Store.FK_DonarDetail_DonationDetails">
+            <End Role="DonationDetails" EntitySet="DonationDetails" />
+            <End Role="DonarDetail" EntitySet="DonarDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonationDetails_DonationRequest" Association="CommonWealModel.Store.FK_DonationDetails_DonationRequest">
+            <End Role="DonationRequest" EntitySet="DonationRequest" />
+            <End Role="DonationDetails" EntitySet="DonationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonationRequest_DonationRequest" Association="CommonWealModel.Store.FK_DonationRequest_DonationRequest">
+            <End Role="DonationRequest" EntitySet="DonationRequest" />
+            <End Role="DonationRequest1" EntitySet="DonationRequest" />
+          </AssociationSet>
           <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.Store.FK_NGOUser_UserLogin">
             <End Role="User" EntitySet="User" />
             <End Role="NGOUser" EntitySet="NGOUser" />
@@ -42,6 +82,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="RegisteredUser" EntitySet="RegisteredUser" />
           </AssociationSet>
+          <AssociationSet Name="FK_StateMaster_CountryMaster" Association="CommonWealModel.Store.FK_StateMaster_CountryMaster">
+            <End Role="CountryMaster" EntitySet="CountryMaster" />
+            <End Role="StateMaster" EntitySet="StateMaster" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AreaOfInterest">
           <Key>
@@ -49,6 +93,83 @@
           </Key>
           <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CommonWeal.dbo.ChatMessage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ChatMessage">
+          <Key>
+            <PropertyRef Name="ChatID" />
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="ChatID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="SenderID" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'CommonWeal.dbo.ChatUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ChatUser">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginID" Type="int" Nullable="false" />
+          <Property Name="ConnectID" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="StateID" Type="int" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryCode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="DonarDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="int" Nullable="false" />
+          <Property Name="DonarLoginID" Type="int" />
+          <Property Name="createdOn" Type="datetime" />
+          <Property Name="RequestId" Type="int" />
+          <Property Name="Donatecount" Type="int" />
+        </EntityType>
+        <EntityType Name="DonationDetails">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Name="ItemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RequestID" Type="int" Nullable="false" />
+          <Property Name="ItemName" Type="varchar" MaxLength="50" />
+          <Property Name="ItemCount" Type="int" />
+          <Property Name="DonatedCount" Type="int" />
+          <Property Name="ItemRequire" Type="int" />
+          <Property Name="DonatedCost" Type="int" />
+          <Property Name="createdOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DonationRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Name="RequestID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ImgeUrl" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="RequestNGOId" Type="int" Nullable="false" />
+          <Property Name="createdOn" Type="datetime" />
         </EntityType>
         <EntityType Name="ForgotPassword">
           <Key>
@@ -85,6 +206,9 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="Isdelete" Type="bit" />
+          <Property Name="RequestID" Type="int" />
+          <Property Name="IsRequest" Type="bit" />
         </EntityType>
         <EntityType Name="NGOUser">
           <Key>
@@ -100,8 +224,8 @@
           <Property Name="NGOProfilePic" Type="varchar" MaxLength="100" />
           <Property Name="Telephone" Type="varchar" MaxLength="50" />
           <Property Name="Mobile" Type="varchar" MaxLength="50" />
-          <Property Name="City" Type="varchar" MaxLength="20" />
-          <Property Name="State" Type="varchar" MaxLength="20" />
+          <Property Name="city" Type="int" />
+          <Property Name="State" Type="int" />
           <Property Name="LoginUserType" Type="int" />
           <Property Name="NGOAddress" Type="varchar" MaxLength="100" />
           <Property Name="ChairmanName" Type="varchar" MaxLength="50" />
@@ -125,6 +249,7 @@
           <Property Name="AboutUs" Type="varchar(max)" />
           <Property Name="IsDecline" Type="bit" />
           <Property Name="PostCount" Type="int" />
+          <Property Name="country" Type="int" />
         </EntityType>
         <EntityType Name="PostCategories">
           <Key>
@@ -147,6 +272,7 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityType Name="PostLike">
           <Key>
@@ -192,6 +318,14 @@
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="ModifiedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="Search">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="CityName" Type="varchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="SpamUser">
           <Key>
             <PropertyRef Name="SpamUserId" />
@@ -202,6 +336,15 @@
           <Property Name="ReportedBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifiedOn" Type="datetime" />
           <Property Name="AbuseedUserName" Type="varchar" MaxLength="50" />
+          <Property Name="CommentID" Type="int" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -244,6 +387,54 @@
           <Property Name="LoginID" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" />
         </EntityType>
+        <Association Name="FK_CityMaster_StateMaster">
+          <End Role="StateMaster" Type="CommonWealModel.Store.StateMaster" Multiplicity="0..1" />
+          <End Role="CityMaster" Type="CommonWealModel.Store.CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonarDetail_DonationDetails">
+          <End Role="DonationDetails" Type="CommonWealModel.Store.DonationDetails" Multiplicity="1" />
+          <End Role="DonarDetail" Type="CommonWealModel.Store.DonarDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonationDetails">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="DonarDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonationDetails_DonationRequest">
+          <End Role="DonationRequest" Type="CommonWealModel.Store.DonationRequest" Multiplicity="1" />
+          <End Role="DonationDetails" Type="CommonWealModel.Store.DonationDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonationRequest">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="DonationDetails">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonationRequest_DonationRequest">
+          <End Role="DonationRequest" Type="CommonWealModel.Store.DonationRequest" Multiplicity="1" />
+          <End Role="DonationRequest1" Type="CommonWealModel.Store.DonationRequest" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DonationRequest">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="DonationRequest1">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_NGOUser_UserLogin">
           <End Role="User" Type="CommonWealModel.Store.User" Multiplicity="0..1" />
           <End Role="NGOUser" Type="CommonWealModel.Store.NGOUser" Multiplicity="*" />
@@ -304,6 +495,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_StateMaster_CountryMaster">
+          <End Role="CountryMaster" Type="CommonWealModel.Store.CountryMaster" Multiplicity="0..1" />
+          <End Role="StateMaster" Type="CommonWealModel.Store.StateMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StateMaster">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="usp_GetPostDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PostID" Type="int" Mode="In" />
         </Function>
@@ -316,41 +519,70 @@
           <Parameter Name="PostID" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="AreaOfInterests" EntityType="CommonWealModel.AreaOfInterest" />
+          <EntitySet Name="ChatMessages" EntityType="CommonWealModel.ChatMessage" />
+          <EntitySet Name="ChatUsers" EntityType="CommonWealModel.ChatUser" />
+          <EntitySet Name="CityMasters" EntityType="CommonWealModel.CityMaster" />
+          <EntitySet Name="CountryMasters" EntityType="CommonWealModel.CountryMaster" />
+          <EntitySet Name="DonarDetails" EntityType="CommonWealModel.DonarDetail" />
+          <EntitySet Name="DonationDetails" EntityType="CommonWealModel.DonationDetail" />
+          <EntitySet Name="DonationRequests" EntityType="CommonWealModel.DonationRequest" />
           <EntitySet Name="ForgotPasswords" EntityType="CommonWealModel.ForgotPassword" />
           <EntitySet Name="ImageHandlers" EntityType="CommonWealModel.ImageHandler" />
           <EntitySet Name="NGOPosts" EntityType="CommonWealModel.NGOPost" />
+          <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
           <EntitySet Name="PostCategories" EntityType="CommonWealModel.PostCategory" />
           <EntitySet Name="PostComments" EntityType="CommonWealModel.PostComment" />
           <EntitySet Name="PostLikes" EntityType="CommonWealModel.PostLike" />
           <EntitySet Name="RegisteredUsers" EntityType="CommonWealModel.RegisteredUser" />
+          <EntitySet Name="RegistrationYears" EntityType="CommonWealModel.RegistrationYear" />
           <EntitySet Name="RoleTypes" EntityType="CommonWealModel.RoleType" />
+          <EntitySet Name="Searches" EntityType="CommonWealModel.Search" />
+          <EntitySet Name="SpamUsers" EntityType="CommonWealModel.SpamUser" />
+          <EntitySet Name="StateMasters" EntityType="CommonWealModel.StateMaster" />
           <EntitySet Name="sysdiagrams" EntityType="CommonWealModel.sysdiagram" />
           <EntitySet Name="Tests" EntityType="CommonWealModel.Test" />
           <EntitySet Name="Users" EntityType="CommonWealModel.User" />
           <EntitySet Name="WorkingAreas" EntityType="CommonWealModel.WorkingArea" />
-          <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
-            <End Role="User" EntitySet="Users" />
-            <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+          <AssociationSet Name="FK_PostCategories_AreaOfInterest" Association="CommonWealModel.FK_PostCategories_AreaOfInterest">
+            <End Role="AreaOfInterest" EntitySet="AreaOfInterests" />
+            <End Role="PostCategory" EntitySet="PostCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CityMaster_StateMaster" Association="CommonWealModel.FK_CityMaster_StateMaster">
+            <End Role="StateMaster" EntitySet="StateMasters" />
+            <End Role="CityMaster" EntitySet="CityMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StateMaster_CountryMaster" Association="CommonWealModel.FK_StateMaster_CountryMaster">
+            <End Role="CountryMaster" EntitySet="CountryMasters" />
+            <End Role="StateMaster" EntitySet="StateMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonarDetail_DonationDetails" Association="CommonWealModel.FK_DonarDetail_DonationDetails">
+            <End Role="DonationDetail" EntitySet="DonationDetails" />
+            <End Role="DonarDetail" EntitySet="DonarDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonationDetails_DonationRequest" Association="CommonWealModel.FK_DonationDetails_DonationRequest">
+            <End Role="DonationRequest" EntitySet="DonationRequests" />
+            <End Role="DonationDetail" EntitySet="DonationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonationRequest_DonationRequest" Association="CommonWealModel.FK_DonationRequest_DonationRequest">
+            <End Role="DonationRequest" EntitySet="DonationRequests" />
+            <End Role="DonationRequest1" EntitySet="DonationRequests" />
           </AssociationSet>
           <AssociationSet Name="FK_PostCategories_NGOPost1" Association="CommonWealModel.FK_PostCategories_NGOPost1">
             <End Role="NGOPost" EntitySet="NGOPosts" />
-            <End Role="PostCategory" EntitySet="PostCategories" />
-          </AssociationSet>
-          <EntitySet Name="NGOUsers" EntityType="CommonWealModel.NGOUser" />
-          <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
-            <End Role="User" EntitySet="Users" />
-            <End Role="NGOUser" EntitySet="NGOUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PostCategories_AreaOfInterest" Association="CommonWealModel.FK_PostCategories_AreaOfInterest">
-            <End Role="AreaOfInterest" EntitySet="AreaOfInterests" />
             <End Role="PostCategory" EntitySet="PostCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_PostLike_NGOPost" Association="CommonWealModel.FK_PostLike_NGOPost">
             <End Role="NGOPost" EntitySet="NGOPosts" />
             <End Role="PostLike" EntitySet="PostLikes" />
           </AssociationSet>
-          <EntitySet Name="SpamUsers" EntityType="CommonWealModel.SpamUser" />
-          <EntitySet Name="RegistrationYears" EntityType="CommonWealModel.RegistrationYear" />
+          <AssociationSet Name="FK_NGOUser_UserLogin" Association="CommonWealModel.FK_NGOUser_UserLogin">
+            <End Role="User" EntitySet="Users" />
+            <End Role="NGOUser" EntitySet="NGOUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RegisteredUser_UserLogin" Association="CommonWealModel.FK_RegisteredUser_UserLogin">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RegisteredUser" EntitySet="RegisteredUsers" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AreaOfInterest">
           <Key>
@@ -359,6 +591,85 @@
           <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="PostCategories" Relationship="CommonWealModel.FK_PostCategories_AreaOfInterest" FromRole="AreaOfInterest" ToRole="PostCategory" />
+        </EntityType>
+        <EntityType Name="ChatMessage">
+          <Key>
+            <PropertyRef Name="ChatID" />
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Type="Int32" Name="ChatID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="String" Name="Message" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SenderID" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+        </EntityType>
+        <EntityType Name="ChatUser">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="LoginID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LoginID" Nullable="false" />
+          <Property Type="String" Name="ConnectID" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Status" />
+        </EntityType>
+        <EntityType Name="CityMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StateID" />
+          <NavigationProperty Name="StateMaster" Relationship="CommonWealModel.FK_CityMaster_StateMaster" FromRole="CityMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="CountryMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CountryCode" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="StateMasters" Relationship="CommonWealModel.FK_StateMaster_CountryMaster" FromRole="CountryMaster" ToRole="StateMaster" />
+        </EntityType>
+        <EntityType Name="DonarDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ItemID" Nullable="false" />
+          <Property Type="Int32" Name="DonarLoginID" />
+          <Property Type="DateTime" Name="createdOn" Precision="3" />
+          <Property Type="Int32" Name="RequestId" />
+          <Property Type="Int32" Name="Donatecount" />
+          <NavigationProperty Name="DonationDetail" Relationship="CommonWealModel.FK_DonarDetail_DonationDetails" FromRole="DonarDetail" ToRole="DonationDetail" />
+        </EntityType>
+        <EntityType Name="DonationDetail">
+          <Key>
+            <PropertyRef Name="ItemID" />
+          </Key>
+          <Property Type="Int32" Name="ItemID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="RequestID" Nullable="false" />
+          <Property Type="String" Name="ItemName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="ItemCount" />
+          <Property Type="Int32" Name="DonatedCount" />
+          <Property Type="Int32" Name="ItemRequire" />
+          <Property Type="Int32" Name="DonatedCost" />
+          <Property Type="DateTime" Name="createdOn" Precision="3" />
+          <NavigationProperty Name="DonarDetails" Relationship="CommonWealModel.FK_DonarDetail_DonationDetails" FromRole="DonationDetail" ToRole="DonarDetail" />
+          <NavigationProperty Name="DonationRequest" Relationship="CommonWealModel.FK_DonationDetails_DonationRequest" FromRole="DonationDetail" ToRole="DonationRequest" />
+        </EntityType>
+        <EntityType Name="DonationRequest">
+          <Key>
+            <PropertyRef Name="RequestID" />
+          </Key>
+          <Property Type="Int32" Name="RequestID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ImgeUrl" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="RequestNGOId" Nullable="false" />
+          <Property Type="DateTime" Name="createdOn" Precision="3" />
+          <NavigationProperty Name="DonationDetails" Relationship="CommonWealModel.FK_DonationDetails_DonationRequest" FromRole="DonationRequest" ToRole="DonationDetail" />
+          <NavigationProperty Name="DonationRequest1" Relationship="CommonWealModel.FK_DonationRequest_DonationRequest" FromRole="DonationRequest" ToRole="DonationRequest1" />
+          <NavigationProperty Name="DonationRequest2" Relationship="CommonWealModel.FK_DonationRequest_DonationRequest" FromRole="DonationRequest1" ToRole="DonationRequest" />
         </EntityType>
         <EntityType Name="ForgotPassword">
           <Key>
@@ -395,8 +706,53 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Isdelete" />
+          <Property Type="Int32" Name="RequestID" />
+          <Property Type="Boolean" Name="IsRequest" />
           <NavigationProperty Name="PostCategories" Relationship="CommonWealModel.FK_PostCategories_NGOPost1" FromRole="NGOPost" ToRole="PostCategory" />
           <NavigationProperty Name="PostLikes" Relationship="CommonWealModel.FK_PostLike_NGOPost" FromRole="NGOPost" ToRole="PostLike" />
+        </EntityType>
+        <EntityType Name="NGOUser">
+          <Key>
+            <PropertyRef Name="NGOUserId" />
+          </Key>
+          <Property Type="Int32" Name="NGOUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UniqueuId" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOEmailID" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOPassword" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LoginID" />
+          <Property Type="String" Name="NGOKey" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="NGOProfilePic" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Mobile" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="city" />
+          <Property Type="Int32" Name="State" />
+          <Property Type="Int32" Name="LoginUserType" />
+          <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ChairmanID" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RegistrationProof" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
+          <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsActive" />
+          <Property Type="Boolean" Name="IsBlock" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsWarn" />
+          <Property Type="String" Name="AboutUs" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsDecline" />
+          <Property Type="Int32" Name="PostCount" />
+          <Property Type="Int32" Name="country" />
+          <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
         </EntityType>
         <EntityType Name="PostCategory">
           <Key>
@@ -407,8 +763,8 @@
           <Property Type="Int32" Name="CategoryID" Nullable="false" />
           <Property Type="DateTime" Name="createdOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <NavigationProperty Name="NGOPost" Relationship="CommonWealModel.FK_PostCategories_NGOPost1" FromRole="PostCategory" ToRole="NGOPost" />
           <NavigationProperty Name="AreaOfInterest" Relationship="CommonWealModel.FK_PostCategories_AreaOfInterest" FromRole="PostCategory" ToRole="AreaOfInterest" />
+          <NavigationProperty Name="NGOPost" Relationship="CommonWealModel.FK_PostCategories_NGOPost1" FromRole="PostCategory" ToRole="NGOPost" />
         </EntityType>
         <EntityType Name="PostComment">
           <Key>
@@ -421,6 +777,7 @@
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsDelete" />
         </EntityType>
         <EntityType Name="PostLike">
           <Key>
@@ -452,6 +809,13 @@
           <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="User" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="RegisteredUser" ToRole="User" />
         </EntityType>
+        <EntityType Name="RegistrationYear">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="year" Nullable="false" />
+        </EntityType>
         <EntityType Name="RoleType">
           <Key>
             <PropertyRef Name="RoleID" />
@@ -460,6 +824,36 @@
           <Property Type="String" Name="RoleName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+        </EntityType>
+        <EntityType Name="Search">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="StateName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CityName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SpamUser">
+          <Key>
+            <PropertyRef Name="SpamUserId" />
+          </Key>
+          <Property Type="Int32" Name="SpamUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LoginId" Nullable="false" />
+          <Property Type="String" Name="CommentContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ReportedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
+          <Property Type="String" Name="AbuseedUserName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CommentID" />
+        </EntityType>
+        <EntityType Name="StateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CountryID" />
+          <NavigationProperty Name="CityMasters" Relationship="CommonWealModel.FK_CityMaster_StateMaster" FromRole="StateMaster" ToRole="CityMaster" />
+          <NavigationProperty Name="CountryMaster" Relationship="CommonWealModel.FK_StateMaster_CountryMaster" FromRole="StateMaster" ToRole="CountryMaster" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -490,11 +884,11 @@
           <Property Type="Boolean" Name="IsBlock" Nullable="false" />
           <Property Type="DateTime" Name="CreatedOn" Precision="3" />
           <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="User" ToRole="RegisteredUser" />
           <Property Type="Boolean" Name="IsWarn" />
-          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
           <Property Type="Boolean" Name="IsSpam" />
           <Property Type="Boolean" Name="IsDecline" />
+          <NavigationProperty Name="NGOUsers" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="User" ToRole="NGOUser" />
+          <NavigationProperty Name="RegisteredUsers" Relationship="CommonWealModel.FK_RegisteredUser_UserLogin" FromRole="User" ToRole="RegisteredUser" />
         </EntityType>
         <EntityType Name="WorkingArea">
           <Key>
@@ -504,15 +898,75 @@
           <Property Type="Int32" Name="LoginID" Nullable="false" />
           <Property Type="Int32" Name="CategoryID" />
         </EntityType>
-        <Association Name="FK_RegisteredUser_UserLogin">
-          <End Type="CommonWealModel.User" Role="User" Multiplicity="1" />
-          <End Type="CommonWealModel.RegisteredUser" Role="RegisteredUser" Multiplicity="*" />
+        <Association Name="FK_PostCategories_AreaOfInterest">
+          <End Type="CommonWealModel.AreaOfInterest" Role="AreaOfInterest" Multiplicity="1" />
+          <End Type="CommonWealModel.PostCategory" Role="PostCategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="LoginID" />
+            <Principal Role="AreaOfInterest">
+              <PropertyRef Name="CategoryID" />
             </Principal>
-            <Dependent Role="RegisteredUser">
-              <PropertyRef Name="LoginID" />
+            <Dependent Role="PostCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CityMaster_StateMaster">
+          <End Type="CommonWealModel.StateMaster" Role="StateMaster" Multiplicity="0..1" />
+          <End Type="CommonWealModel.CityMaster" Role="CityMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CityMaster">
+              <PropertyRef Name="StateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StateMaster_CountryMaster">
+          <End Type="CommonWealModel.CountryMaster" Role="CountryMaster" Multiplicity="0..1" />
+          <End Type="CommonWealModel.StateMaster" Role="StateMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CountryMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="StateMaster">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonarDetail_DonationDetails">
+          <End Type="CommonWealModel.DonationDetail" Role="DonationDetail" Multiplicity="1" />
+          <End Type="CommonWealModel.DonarDetail" Role="DonarDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonationDetail">
+              <PropertyRef Name="ItemID" />
+            </Principal>
+            <Dependent Role="DonarDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonationDetails_DonationRequest">
+          <End Type="CommonWealModel.DonationRequest" Role="DonationRequest" Multiplicity="1" />
+          <End Type="CommonWealModel.DonationDetail" Role="DonationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonationRequest">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="DonationDetail">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonationRequest_DonationRequest">
+          <End Type="CommonWealModel.DonationRequest" Role="DonationRequest" Multiplicity="1" />
+          <End Type="CommonWealModel.DonationRequest" Role="DonationRequest1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DonationRequest">
+              <PropertyRef Name="RequestID" />
+            </Principal>
+            <Dependent Role="DonationRequest1">
+              <PropertyRef Name="RequestID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -528,71 +982,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="NGOUser">
-          <Key>
-            <PropertyRef Name="NGOUserId" />
-          </Key>
-          <Property Type="Int32" Name="NGOUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="UniqueuId" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOEmailID" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOPassword" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="LoginID" />
-          <Property Type="String" Name="NGOKey" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="NGOProfilePic" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Telephone" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Mobile" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="City" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="State" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="LoginUserType" />
-          <Property Type="String" Name="NGOAddress" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ChairmanName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ChairmanID" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ParentOrganisation" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RegisteredWith" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RegistrationNumber" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="RegistrationProof" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CityOfRegistration" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="DateOfRegistration" Precision="0" />
-          <Property Type="String" Name="FCRANumber" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AreaOfIntrest" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="OperationalArea" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="WebsiteUrl" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsActive" />
-          <Property Type="Boolean" Name="IsBlock" />
-          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
-          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <Property Type="String" Name="CreatedBy" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsWarn" />
-          <NavigationProperty Name="User" Relationship="CommonWealModel.FK_NGOUser_UserLogin" FromRole="NGOUser" ToRole="User" />
-          <Property Type="String" Name="AboutUs" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsDecline" />
-          <Property Type="Int32" Name="PostCount" />
-        </EntityType>
-        <Association Name="FK_NGOUser_UserLogin">
-          <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="LoginID" />
-            </Principal>
-            <Dependent Role="NGOUser">
-              <PropertyRef Name="LoginID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PostCategories_AreaOfInterest">
-          <End Type="CommonWealModel.AreaOfInterest" Role="AreaOfInterest" Multiplicity="1" />
-          <End Type="CommonWealModel.PostCategory" Role="PostCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AreaOfInterest">
-              <PropertyRef Name="CategoryID" />
-            </Principal>
-            <Dependent Role="PostCategory">
-              <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PostLike_NGOPost">
           <End Type="CommonWealModel.NGOPost" Role="NGOPost" Multiplicity="0..1" />
           <End Type="CommonWealModel.PostLike" Role="PostLike" Multiplicity="*" />
@@ -605,24 +994,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SpamUser">
-          <Key>
-            <PropertyRef Name="SpamUserId" />
-          </Key>
-          <Property Type="Int32" Name="SpamUserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="LoginId" Nullable="false" />
-          <Property Type="String" Name="CommentContent" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="ReportedBy" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="ModifiedOn" Precision="3" />
-          <Property Type="String" Name="AbuseedUserName" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="RegistrationYear">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="year" Nullable="false" />
-        </EntityType>
+        <Association Name="FK_NGOUser_UserLogin">
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CommonWealModel.NGOUser" Role="NGOUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="NGOUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RegisteredUser_UserLogin">
+          <End Type="CommonWealModel.User" Role="User" Multiplicity="1" />
+          <End Type="CommonWealModel.RegisteredUser" Role="RegisteredUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="LoginID" />
+            </Principal>
+            <Dependent Role="RegisteredUser">
+              <PropertyRef Name="LoginID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -635,6 +1030,82 @@
               <MappingFragment StoreEntitySet="AreaOfInterest">
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatMessages">
+            <EntityTypeMapping TypeName="CommonWealModel.ChatMessage">
+              <MappingFragment StoreEntitySet="ChatMessage">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="SenderID" ColumnName="SenderID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="ChatID" ColumnName="ChatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChatUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.ChatUser">
+              <MappingFragment StoreEntitySet="ChatUser">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ConnectID" ColumnName="ConnectID" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityMasters">
+            <EntityTypeMapping TypeName="CommonWealModel.CityMaster">
+              <MappingFragment StoreEntitySet="CityMaster">
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CountryMasters">
+            <EntityTypeMapping TypeName="CommonWealModel.CountryMaster">
+              <MappingFragment StoreEntitySet="CountryMaster">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonarDetails">
+            <EntityTypeMapping TypeName="CommonWealModel.DonarDetail">
+              <MappingFragment StoreEntitySet="DonarDetail">
+                <ScalarProperty Name="Donatecount" ColumnName="Donatecount" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="DonarLoginID" ColumnName="DonarLoginID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonationDetails">
+            <EntityTypeMapping TypeName="CommonWealModel.DonationDetail">
+              <MappingFragment StoreEntitySet="DonationDetails">
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="DonatedCost" ColumnName="DonatedCost" />
+                <ScalarProperty Name="ItemRequire" ColumnName="ItemRequire" />
+                <ScalarProperty Name="DonatedCount" ColumnName="DonatedCount" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonationRequests">
+            <EntityTypeMapping TypeName="CommonWealModel.DonationRequest">
+              <MappingFragment StoreEntitySet="DonationRequest">
+                <ScalarProperty Name="createdOn" ColumnName="createdOn" />
+                <ScalarProperty Name="RequestNGOId" ColumnName="RequestNGOId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImgeUrl" ColumnName="ImgeUrl" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -663,6 +1134,9 @@
           <EntitySetMapping Name="NGOPosts">
             <EntityTypeMapping TypeName="CommonWealModel.NGOPost">
               <MappingFragment StoreEntitySet="NGOPost">
+                <ScalarProperty Name="IsRequest" ColumnName="IsRequest" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="Isdelete" ColumnName="Isdelete" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -674,6 +1148,48 @@
                 <ScalarProperty Name="PostDateTime" ColumnName="PostDateTime" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NGOUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
+              <MappingFragment StoreEntitySet="NGOUser">
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="PostCount" ColumnName="PostCount" />
+                <ScalarProperty Name="IsDecline" ColumnName="IsDecline" />
+                <ScalarProperty Name="AboutUs" ColumnName="AboutUs" />
+                <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
+                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
+                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
+                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
+                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
+                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
+                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
+                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
+                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
+                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
+                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
+                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
+                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
+                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
+                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
+                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
+                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
+                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -691,6 +1207,7 @@
           <EntitySetMapping Name="PostComments">
             <EntityTypeMapping TypeName="CommonWealModel.PostComment">
               <MappingFragment StoreEntitySet="PostComment">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -731,6 +1248,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationYears">
+            <EntityTypeMapping TypeName="CommonWealModel.RegistrationYear">
+              <MappingFragment StoreEntitySet="RegistrationYear">
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RoleTypes">
             <EntityTypeMapping TypeName="CommonWealModel.RoleType">
               <MappingFragment StoreEntitySet="RoleType">
@@ -738,6 +1263,37 @@
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Searches">
+            <EntityTypeMapping TypeName="CommonWealModel.Search">
+              <MappingFragment StoreEntitySet="Search">
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SpamUsers">
+            <EntityTypeMapping TypeName="CommonWealModel.SpamUser">
+              <MappingFragment StoreEntitySet="SpamUser">
+                <ScalarProperty Name="CommentID" ColumnName="CommentID" />
+                <ScalarProperty Name="AbuseedUserName" ColumnName="AbuseedUserName" />
+                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+                <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
+                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="SpamUserId" ColumnName="SpamUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StateMasters">
+            <EntityTypeMapping TypeName="CommonWealModel.StateMaster">
+              <MappingFragment StoreEntitySet="StateMaster">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -783,67 +1339,6 @@
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="LoginID" ColumnName="LoginID" />
                 <ScalarProperty Name="WorkingAreaID" ColumnName="WorkingAreaID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="NGOUsers">
-            <EntityTypeMapping TypeName="CommonWealModel.NGOUser">
-              <MappingFragment StoreEntitySet="NGOUser">
-                <ScalarProperty Name="PostCount" ColumnName="PostCount" />
-                <ScalarProperty Name="IsDecline" ColumnName="IsDecline" />
-                <ScalarProperty Name="AboutUs" ColumnName="AboutUs" />
-                <ScalarProperty Name="IsWarn" ColumnName="IsWarn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="WebsiteUrl" ColumnName="WebsiteUrl" />
-                <ScalarProperty Name="OperationalArea" ColumnName="OperationalArea" />
-                <ScalarProperty Name="AreaOfIntrest" ColumnName="AreaOfIntrest" />
-                <ScalarProperty Name="FCRANumber" ColumnName="FCRANumber" />
-                <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
-                <ScalarProperty Name="CityOfRegistration" ColumnName="CityOfRegistration" />
-                <ScalarProperty Name="RegistrationProof" ColumnName="RegistrationProof" />
-                <ScalarProperty Name="RegistrationNumber" ColumnName="RegistrationNumber" />
-                <ScalarProperty Name="RegisteredWith" ColumnName="RegisteredWith" />
-                <ScalarProperty Name="ParentOrganisation" ColumnName="ParentOrganisation" />
-                <ScalarProperty Name="ChairmanID" ColumnName="ChairmanID" />
-                <ScalarProperty Name="ChairmanName" ColumnName="ChairmanName" />
-                <ScalarProperty Name="NGOAddress" ColumnName="NGOAddress" />
-                <ScalarProperty Name="LoginUserType" ColumnName="LoginUserType" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="NGOProfilePic" ColumnName="NGOProfilePic" />
-                <ScalarProperty Name="NGOKey" ColumnName="NGOKey" />
-                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
-                <ScalarProperty Name="NGOPassword" ColumnName="NGOPassword" />
-                <ScalarProperty Name="NGOEmailID" ColumnName="NGOEmailID" />
-                <ScalarProperty Name="NGOName" ColumnName="NGOName" />
-                <ScalarProperty Name="UniqueuId" ColumnName="UniqueuId" />
-                <ScalarProperty Name="NGOUserId" ColumnName="NGOUserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SpamUsers">
-            <EntityTypeMapping TypeName="CommonWealModel.SpamUser">
-              <MappingFragment StoreEntitySet="SpamUser">
-                <ScalarProperty Name="AbuseedUserName" ColumnName="AbuseedUserName" />
-                <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
-                <ScalarProperty Name="ReportedBy" ColumnName="ReportedBy" />
-                <ScalarProperty Name="CommentContent" ColumnName="CommentContent" />
-                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
-                <ScalarProperty Name="SpamUserId" ColumnName="SpamUserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RegistrationYears">
-            <EntityTypeMapping TypeName="CommonWealModel.RegistrationYear">
-              <MappingFragment StoreEntitySet="RegistrationYear">
-                <ScalarProperty Name="year" ColumnName="year" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

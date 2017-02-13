@@ -31,6 +31,9 @@ namespace CommonWeal.Data
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string CreatedBy { get; set; }
+        public Nullable<bool> Isdelete { get; set; }
+        public Nullable<int> RequestID { get; set; }
+        public Nullable<bool> IsRequest { get; set; }
     
         public virtual ICollection<PostCategory> PostCategories { get; set; }
         public virtual ICollection<PostLike> PostLikes { get; set; }
