@@ -5,12 +5,12 @@
 <link href="~/Content/DataPlugIn/jquery.dataTables.min.css" rel="stylesheet" />
 <script src="~/Content/DataPlugIn/jquery.dataTables.min.js"></script>
 <script src="~/Scripts/Admin/All_User.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#total").prop('disabled', true);
-        });
-     
-        </script>
+<script>
+    $(document).ready(function () {
+        $("#total").prop('disabled', true);
+    });
+
+</script>
 
 
 
@@ -20,50 +20,53 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-@{ var grandtotal=0;
-            <div class="requests">
-                <table class="tableAdmin col-md-12">
-                    <thead class="tableheader col-md-12">
-                        <tr>
-                            
-                            <th class="col-md-2">PRODUCT</th>
-                            <th class="col-md-2">REQUESTED QUANTITY</th>
-                             <th class="col-md-2">RECEIVED</th>
-                             <th class="col-md-2">UNIT PRICE</th>
-                             <th class="col-md-2">LINE TOTAL</th>
-                           
-                        </tr>
-                    </thead>
-                   
-                     @foreach (var item in Model.estimate)
-                    {                       
-                             <tr class="admintable" id="admintable-@item.Itemid">
-                            <td class="col-md-2 adminTableData" >@item.Product</td>
-                            <td class="col-md-2 adminTableData"> @item.TotalQuantity</td>
-                            <td class="col-md-2 adminTableData" id="received-@item.Itemid">@item.Received</td>
-                            <td class="col-md-2 adminTableData"><input type="text" class="unitprice col-md-5" value="@item.Unitprice" id="unitprice-@item.Itemid"/></td>
-                            <td class="col-md-2 adminTableData"><span class="lineTotal" id="lineTotal-@item.Itemid">@item.linetotal</span></td>
-                             @*<td class="col-md-3 adminTableData" title="View Details"><a href="@item.RequestId" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>*@
-                      
-                           @* <td class="col-md-4 adminTableData"><a href="/admin/unblockUsers/@item.LoginID" class="fa fa-unlock fa-2x" aria-hidden="true" style="color:green"></a></td>*@
-                        </tr> 
-                         grandtotal += item.linetotal;
-                     }
-               
-                    <i><a href="/Admin/RequestEstimation" style="font-size: 16px;">Back</a></i>
-                   @* <h3>
-                        <center><strong>Warned NGOs </strong></center>
-                    </h3>*@
-                    <h3>
-                        <center> <strong><span style="text-transform:capitalize">Donation Request: @Model.NGOName,</span><span> @Model.DonateRequestDate.ToString("dd-MMM-yyyy HH:mm")</span></strong><br/> <span style="float:right">RequestID: @Model.RequestID</span></center>
-                    </h3>
-                </table>
-                  
-            </div>
-            <span  style="float:right">Grand Total:<span type="text" id="total">@grandtotal</span> <input type="button" class="submitEstimation btn btn-primary"  id="submitEstimation" value="Submit"/></span>
-                    }
-         </div>
-        
+            @{ var grandtotal = 0;
+                <div class="requests">
+                    <table class="tableAdmin col-md-12">
+                        <thead class="tableheader col-md-12">
+                            <tr>
+
+                                <th class="col-md-2">PRODUCT</th>
+                                <th class="col-md-2">REQUESTED QUANTITY</th>
+                                <th class="col-md-2">RECEIVED</th>
+                                <th class="col-md-2">UNIT PRICE</th>
+                                <th class="col-md-2">LINE TOTAL</th>
+
+                            </tr>
+                        </thead>
+
+                        @foreach (var item in Model.estimate)
+                        {
+                            <tr class="admintable" id="admintable-@item.Itemid">
+                                <td class="col-md-2 adminTableData">@item.Product</td>
+                                <td class="col-md-2 adminTableData"> @item.TotalQuantity</td>
+                                <td class="col-md-2 adminTableData" id="received-@item.Itemid">@item.Received</td>
+                                <td class="col-md-2 adminTableData"><input type="text" class="unitprice col-md-5" value="@item.Unitprice" id="unitprice-@item.Itemid" /></td>
+                                <td class="col-md-2 adminTableData"><span class="lineTotal" id="lineTotal-@item.Itemid">@item.linetotal</span></td>
+                                @*<td class="col-md-3 adminTableData" title="View Details"><a href="@item.RequestId" class="fa fa-address-card-o" aria-hidden="true" style="color:black;font-size:large"></a>*@
+
+                                @* <td class="col-md-4 adminTableData"><a href="/admin/unblockUsers/@item.LoginID" class="fa fa-unlock fa-2x" aria-hidden="true" style="color:green"></a></td>*@
+                            </tr>
+                            grandtotal += item.linetotal;
+                        }
+
+                        <i><a href="/Admin/RequestEstimation" style="font-size: 16px;">Back</a></i>
+                        @* <h3>
+                                <center><strong>Warned NGOs </strong></center>
+                            </h3>*@
+                        <h3>
+                            <center>
+                                <strong><span style="text-transform:capitalize">Donation Request: @Model.NGOName,</span><span> @Model.DonateRequestDate.ToString("dd-MMM-yyyy HH:mm")</span></strong><br /> <span style="float:right;margin-bottom: 5px;
+    font-size: 20px;">Request ID:@Model.RequestID</span>
+</center>
+</h3>
+</table>
+
+</div>
+            <span style="float:right">Grand Total:<span type="text" id="total">@grandtotal</span> <input type="button" class="submitEstimation btn btn-primary" id="submitEstimation" value="Submit" /></span>
+            }
+        </div>
+
     </div>
 
 </div>
