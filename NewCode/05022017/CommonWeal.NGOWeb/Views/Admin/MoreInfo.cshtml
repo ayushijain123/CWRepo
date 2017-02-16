@@ -2,6 +2,12 @@
 <br/>
 <br/>
 <br/>
+<script>
+    $(document).ready(function () {
+        $("#moreinfo").prop('disabled', true);
+    });
+
+</script>
 <div class="container">
     <div id="main" class="col-md-12">
         <div class="col-md-8 col-md-offset-2">
@@ -19,7 +25,7 @@
 
                     </div>
                     <div class="col-md-6">
-                        <input type="email" class="form-control" name="NGOEmailID" value="@Model.LoginEmailID"required>
+                        <input type="email" id="moreinfo"class="form-control" name="NGOEmailID" value="@Model.LoginEmailID"required>
                     </div>
 
                 </div>
