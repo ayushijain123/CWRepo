@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
       <Private>True</Private>
@@ -108,17 +116,79 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Survey.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Survey.Context.cs</LastGenOutput>
+      <DependentUpon>Survey.edmx</DependentUpon>
+    </Content>
+    <Content Include="Survey.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Survey.edmx</DependentUpon>
+      <LastGenOutput>Survey.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Answer_Type.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Authority_Link.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
+    <Compile Include="Controllers\SurveyLinkController.cs" />
+    <Compile Include="Department.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Designation.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee_Details.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Question.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionAnswer.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionType.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RadioColumnName.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Survey.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Survey.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Survey.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Survey.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Survey.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SurveyLink.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vertical.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -130,6 +200,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <EntityDeploy Include="Survey.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Survey.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Survey.edmx.diagram">
+      <DependentUpon>Survey.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,6 +217,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\SurveyLink\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
