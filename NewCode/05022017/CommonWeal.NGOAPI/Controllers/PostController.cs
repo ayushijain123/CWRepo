@@ -117,6 +117,7 @@ namespace CommonWeal.NGOAPI.Controllers
             /*if only content is posted without any image*/
             else if (postvalue.content != null)
             {
+                obpost.RequestID = 0;
                 /*login user login id is a property in base controller
                 which contain current user information from user table*/
                 obpost.LoginID = postvalue.loginID;
@@ -128,7 +129,11 @@ namespace CommonWeal.NGOAPI.Controllers
                 obpost.PostCommentCount = 0;
                 obpost.PostLikeCount = 0;
                 obpost.PostContent = postvalue.content;
+                obpost.IsRequest = false;
+                obpost.Isdelete = false;
+
                 db.NGOPosts.Add(obpost);
+                
                 db.SaveChanges();
                 ob.SubmitPostCategory(obpost.PostID,postvalue.cat);
                 return true;
@@ -298,6 +303,7 @@ namespace CommonWeal.NGOAPI.Controllers
                         }
                         cmnt.PostID=a.PostID.Value;
                         cmnt.UserID=a.LoginID.Value;
+                        
                         commentlist.Add(cmnt);
                         commentcount++;
                     }
@@ -318,7 +324,8 @@ namespace CommonWeal.NGOAPI.Controllers
         {
             CommonWealEntities context = new CommonWealEntities();
             if (objPostComment.LoginID > 0)
-            {           
+            {
+                objPostComment.IsDelete = false;       
             context.PostComments.Add(objPostComment);
             context.SaveChanges();
             }
