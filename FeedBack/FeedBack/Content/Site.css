@@ -62,4 +62,9 @@ float:right;
 .center {
 text-align:center;
 }
-
+.float-right {
+float:right;
+}
+.padding0 {
+    padding-left:0 !important;
+}
