@@ -53,7 +53,7 @@ namespace FeedBack.Controllers
                     DataSet result = reader.AsDataSet();
                     reader.Close();
 
-                    SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SqlCom"].ConnectionString);
+                    SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["FeedBack_180Entities"].ConnectionString);
                     SqlBulkCopy objbulk = new SqlBulkCopy(connection);
                     objbulk.DestinationTableName = "Employee_Details";
                     //Mapping Table column    
