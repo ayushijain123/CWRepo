@@ -87,6 +87,12 @@ namespace FeedBack.Controllers
             }
             return View();
         }
+        public ActionResult StartSurvey()
+        {
+            return View();
+        }
+
+        
 
     }
 }
