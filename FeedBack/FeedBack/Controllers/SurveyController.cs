@@ -97,5 +97,22 @@ namespace FeedBack.Controllers
         {
             return View();
         }
+        public ActionResult DynamicSurveyForm() {
+            FeedBack_180Entities obj = new FeedBack_180Entities();
+            List<questioncontent> questioncontent = new List<questioncontent>();
+            var res=obj.Questions.ToList();
+            foreach (var item in res)
+            {
+                questioncontent objcontent = new questioncontent();
+                objcontent.QuestionContent = item.Question_Content;
+                objcontent.QuestionId = item.ID;
+                objcontent.AnswerType = "1";
+                objcontent.ColumnCount = 4;
+                questioncontent.Add(objcontent);
+
+            }
+            return View(questioncontent);
+
+        }
     }
 }
