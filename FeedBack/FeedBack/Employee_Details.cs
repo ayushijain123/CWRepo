@@ -16,6 +16,7 @@ namespace FeedBack
     {
         public int ID { get; set; }
         public int EmpID { get; set; }
+        public string Emp_Email { get; set; }
         public string Name { get; set; }
         public string Designation { get; set; }
         public string Department { get; set; }

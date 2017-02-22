@@ -18,6 +18,6 @@ namespace FeedBack
         public string Link { get; set; }
         public int EmpID { get; set; }
         public string SurveyFor_ID { get; set; }
-        public bool Status { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 }

@@ -88,6 +88,7 @@ warning 6002: The table/view 'FeedBack_180.dbo.Employee_Details' does not have a
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpID" Type="int" Nullable="false" />
+          <Property Name="Emp_Email" Type="varchar" MaxLength="50" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
@@ -112,17 +113,11 @@ warning 6002: The table/view 'FeedBack_180.dbo.Question' does not have a primary
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Question_Content" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FeedBack_180.dbo.QuestionAnswer' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="QuestionAnswer">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="EmpID" />
-            <PropertyRef Name="QuestionID" />
-            <PropertyRef Name="SurveyID" />
-            <PropertyRef Name="AnswerContent" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpID" Type="int" Nullable="false" />
           <Property Name="QuestionID" Type="int" Nullable="false" />
           <Property Name="SurveyID" Type="int" Nullable="false" />
@@ -154,21 +149,15 @@ warning 6002: The table/view 'FeedBack_180.dbo.RadioColumnName' does not have a 
           <Property Name="Column_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="QuestionTypeID" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'FeedBack_180.dbo.SurveyLink' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="SurveyLink">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="Link" />
-            <PropertyRef Name="EmpID" />
-            <PropertyRef Name="SurveyFor_ID" />
-            <PropertyRef Name="Status" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Link" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="EmpID" Type="int" Nullable="false" />
           <Property Name="SurveyFor_ID" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -181,6 +170,8 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
           <Property Name="Vertical_Name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="FeedBack_180ModelStoreContainer">
+          <EntitySet Name="QuestionAnswer" EntityType="Self.QuestionAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SurveyLink" EntityType="Self.SurveyLink" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Answer_Type" EntityType="Self.Answer_Type" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Answer_Type].[ID] AS [ID], 
@@ -226,6 +217,7 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
             <DefiningQuery>SELECT 
     [Employee_Details].[ID] AS [ID], 
     [Employee_Details].[EmpID] AS [EmpID], 
+    [Employee_Details].[Emp_Email] AS [Emp_Email], 
     [Employee_Details].[Name] AS [Name], 
     [Employee_Details].[Designation] AS [Designation], 
     [Employee_Details].[Department] AS [Department], 
@@ -247,15 +239,6 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
     [Question].[Question_Content] AS [Question_Content]
     FROM [dbo].[Question] AS [Question]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="QuestionAnswer" EntityType="Self.QuestionAnswer" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [QuestionAnswer].[ID] AS [ID], 
-    [QuestionAnswer].[EmpID] AS [EmpID], 
-    [QuestionAnswer].[QuestionID] AS [QuestionID], 
-    [QuestionAnswer].[SurveyID] AS [SurveyID], 
-    [QuestionAnswer].[AnswerContent] AS [AnswerContent]
-    FROM [dbo].[QuestionAnswer] AS [QuestionAnswer]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="QuestionType" EntityType="Self.QuestionType" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [QuestionType].[ID] AS [ID], 
@@ -271,15 +254,6 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
     [RadioColumnName].[QuestionTypeID] AS [QuestionTypeID]
     FROM [dbo].[RadioColumnName] AS [RadioColumnName]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="SurveyLink" EntityType="Self.SurveyLink" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [SurveyLink].[ID] AS [ID], 
-    [SurveyLink].[Link] AS [Link], 
-    [SurveyLink].[EmpID] AS [EmpID], 
-    [SurveyLink].[SurveyFor_ID] AS [SurveyFor_ID], 
-    [SurveyLink].[Status] AS [Status]
-    FROM [dbo].[SurveyLink] AS [SurveyLink]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="Vertical" EntityType="Self.Vertical" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [Vertical].[ID] AS [ID], 
@@ -292,6 +266,8 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
     <edmx:ConceptualModels>
       <Schema Namespace="FeedBack_180Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FeedBack_180Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QuestionAnswers" EntityType="FeedBack_180Model.QuestionAnswer" />
+          <EntitySet Name="SurveyLinks" EntityType="FeedBack_180Model.SurveyLink" />
           <EntitySet Name="Answer_Type" EntityType="FeedBack_180Model.Answer_Type" />
           <EntitySet Name="Authority_Link" EntityType="FeedBack_180Model.Authority_Link" />
           <EntitySet Name="Departments" EntityType="FeedBack_180Model.Department" />
@@ -299,12 +275,30 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
           <EntitySet Name="Employees" EntityType="FeedBack_180Model.Employee" />
           <EntitySet Name="Employee_Details" EntityType="FeedBack_180Model.Employee_Details" />
           <EntitySet Name="Questions" EntityType="FeedBack_180Model.Question" />
-          <EntitySet Name="QuestionAnswers" EntityType="FeedBack_180Model.QuestionAnswer" />
           <EntitySet Name="QuestionTypes" EntityType="FeedBack_180Model.QuestionType" />
           <EntitySet Name="RadioColumnNames" EntityType="FeedBack_180Model.RadioColumnName" />
-          <EntitySet Name="SurveyLinks" EntityType="FeedBack_180Model.SurveyLink" />
           <EntitySet Name="Verticals" EntityType="FeedBack_180Model.Vertical" />
         </EntityContainer>
+        <EntityType Name="QuestionAnswer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="SurveyID" Type="Int32" Nullable="false" />
+          <Property Name="AnswerContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SurveyLink">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="SurveyFor_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
         <EntityType Name="Answer_Type">
           <Key>
             <PropertyRef Name="ID" />
@@ -376,6 +370,7 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpID" Type="Int32" Nullable="false" />
+          <Property Name="Emp_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Designation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -397,20 +392,6 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Question_Content" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="QuestionAnswer">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="EmpID" />
-            <PropertyRef Name="QuestionID" />
-            <PropertyRef Name="SurveyID" />
-            <PropertyRef Name="AnswerContent" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="EmpID" Type="Int32" Nullable="false" />
-          <Property Name="QuestionID" Type="Int32" Nullable="false" />
-          <Property Name="SurveyID" Type="Int32" Nullable="false" />
-          <Property Name="AnswerContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
@@ -434,20 +415,6 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
           <Property Name="Column_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="QuestionTypeID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="SurveyLink">
-          <Key>
-            <PropertyRef Name="ID" />
-            <PropertyRef Name="Link" />
-            <PropertyRef Name="EmpID" />
-            <PropertyRef Name="SurveyFor_ID" />
-            <PropertyRef Name="Status" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Link" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="EmpID" Type="Int32" Nullable="false" />
-          <Property Name="SurveyFor_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="Vertical">
           <Key>
             <PropertyRef Name="ID" />
@@ -456,12 +423,34 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Vertical_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="FeedBack_180ModelStoreContainer" CdmEntityContainer="FeedBack_180Entities">
+          <EntitySetMapping Name="QuestionAnswers">
+            <EntityTypeMapping TypeName="FeedBack_180Model.QuestionAnswer">
+              <MappingFragment StoreEntitySet="QuestionAnswer">
+                <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
+                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SurveyLinks">
+            <EntityTypeMapping TypeName="FeedBack_180Model.SurveyLink">
+              <MappingFragment StoreEntitySet="SurveyLink">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SurveyFor_ID" ColumnName="SurveyFor_ID" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Answer_Type">
             <EntityTypeMapping TypeName="FeedBack_180Model.Answer_Type">
               <MappingFragment StoreEntitySet="Answer_Type">
@@ -529,6 +518,7 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Emp_Email" ColumnName="Emp_Email" />
                 <ScalarProperty Name="EmpID" ColumnName="EmpID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -538,17 +528,6 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
             <EntityTypeMapping TypeName="FeedBack_180Model.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="Question_Content" ColumnName="Question_Content" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuestionAnswers">
-            <EntityTypeMapping TypeName="FeedBack_180Model.QuestionAnswer">
-              <MappingFragment StoreEntitySet="QuestionAnswer">
-                <ScalarProperty Name="AnswerContent" ColumnName="AnswerContent" />
-                <ScalarProperty Name="SurveyID" ColumnName="SurveyID" />
-                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
-                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -568,17 +547,6 @@ warning 6002: The table/view 'FeedBack_180.dbo.Vertical' does not have a primary
               <MappingFragment StoreEntitySet="RadioColumnName">
                 <ScalarProperty Name="QuestionTypeID" ColumnName="QuestionTypeID" />
                 <ScalarProperty Name="Column_Name" ColumnName="Column_Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SurveyLinks">
-            <EntityTypeMapping TypeName="FeedBack_180Model.SurveyLink">
-              <MappingFragment StoreEntitySet="SurveyLink">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SurveyFor_ID" ColumnName="SurveyFor_ID" />
-                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
-                <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
