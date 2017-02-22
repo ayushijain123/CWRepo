@@ -19,5 +19,8 @@ namespace FeedBack
         public int EmpID { get; set; }
         public string SurveyFor_ID { get; set; }
         public Nullable<bool> Status { get; set; }
+    
+        public virtual SurveyLink SurveyLink1 { get; set; }
+        public virtual SurveyLink SurveyLink2 { get; set; }
     }
 }
