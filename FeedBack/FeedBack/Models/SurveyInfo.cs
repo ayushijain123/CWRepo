@@ -12,5 +12,7 @@ namespace FeedBack.Models
         public string PositionoftheReportingMgr { get; set; }
         public string Designation { get; set; }
         public string Location { get; set; }
+        public int EmpID { get; set; }
+        public int SurveyID { get; set; }
     }
 }
