@@ -3,37 +3,98 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
+using FeedBack.Models;
 
 namespace FeedBack.Controllers
 {
     public class SurveyController : Controller
     {
         // GET: Survey
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(string link)
         {
-            return View();
+            if(link!=null)
+            { 
+            FeedBack_180Entities objfeedback = new FeedBack_180Entities();
+                
+            Employee_Details objempdetails = new Employee_Details();
+            SurveyInfo objsurveyinfo = new SurveyInfo();
+            var linkdetails = objfeedback.SurveyLinks.Where(x=>x.Link==link).FirstOrDefault();
+                if (linkdetails.Status == true)
+                {
+                    TempData["feedback"] = "You have already submitted feedback";
+                    return RedirectToAction("SurveyClosed", "Survey");
+                } 
+            if(linkdetails!=null)
+            {        
+            var empdetails = objfeedback.Employee_Details.Where(emp => emp.EmpID == linkdetails.EmpID).FirstOrDefault();
+            objsurveyinfo.Nameoftheemployee = empdetails.Name;               
+            var relation=objfeedback.EmployeeRelationships.Where(x => x.SuperiorID == linkdetails.SurveyFor_ID && x.EmpID == linkdetails.EmpID).FirstOrDefault().Relation;
+            objsurveyinfo.Designation = empdetails.Designation;
+            objsurveyinfo.SurveyID = linkdetails.ID;
+            objsurveyinfo.Location = empdetails.Location;
+                if (relation==1)
+                {
+                    objsurveyinfo.NameoftheReportingMgr = empdetails.L1;
+                    objsurveyinfo.PositionoftheReportingMgr = "L1";
+                }
+               else if (relation == 2)
+                {
+                    objsurveyinfo.NameoftheReportingMgr = empdetails.L2;
+                    objsurveyinfo.PositionoftheReportingMgr = "L2";
+                }
+              else  if (relation == 3)
+                {
+                    objsurveyinfo.NameoftheReportingMgr = empdetails.L3;
+                    objsurveyinfo.PositionoftheReportingMgr = "L3";
+                }
+                
+            }
+                return View(objsurveyinfo);
+            }
+            
+            return RedirectToAction("Error", "Survey");
         }
         [HttpPost]
         public ActionResult Index(FormCollection frm)
         {
-            int i = 0;
-            FeedBack_180Entities objfeedback = new FeedBack_180Entities();
-            List<QuestionAnswer> QueAnsList = new List<QuestionAnswer>();
-            foreach (var item in frm.AllKeys)
-            {
-                
-                QuestionAnswer objQA = new QuestionAnswer();
-                objQA.EmpID =Convert.ToInt32( frm["EmpID"]);
-                objQA.SurveyID = Convert.ToInt32(frm["MrgID"]);
-                if(item.ToString()!="EmpID" && item.ToString()!="MrgId")
+            try
+            {             
+                FeedBack_180Entities objfeedback = new FeedBack_180Entities();
+                List<QuestionAnswer> QueAnsList = new List<QuestionAnswer>();               
+                var SurveyId = Convert.ToInt32(frm[ConfigurationManager.AppSettings["SurveyId"]]);
+                foreach (var item in frm.AllKeys)
                 {
-                objQA.QuestionID = i++;
-                objQA.AnswerContent = frm[item];
-                QueAnsList.Add(objQA);
-                }                
+                    QuestionAnswer objQA = new QuestionAnswer();                    
+                    objQA.SurveyID = SurveyId;
+                    if (!item.ToString().Equals(ConfigurationManager.AppSettings["SurveyId"]))
+                    {
+                        objQA.QuestionID = Convert.ToInt32(item.Split('-')[1]);
+                        objQA.AnswerContent = frm[item];
+                        QueAnsList.Add(objQA);
+                    }
+                }
+                objfeedback.QuestionAnswers.AddRange(QueAnsList);
+               var slob= objfeedback.SurveyLinks.Where(x => x.ID == SurveyId).FirstOrDefault();
+                slob.Status = true;
+                objfeedback.SaveChanges();
+                TempData["feedback"] = "Feedback submitted successfully";
+                return RedirectToAction("SurveyClosed", "Survey");
+
             }
-            objfeedback.QuestionAnswers.AddRange(QueAnsList);
-            objfeedback.SaveChanges();
+            catch (Exception ex)
+            {
+                return RedirectToAction("Error", "Survey",ex);
+                throw;
+            }
+        }
+        public ActionResult SurveyClosed()
+        {
+            return View();
+        }
+        public ActionResult Error()
+        {
             return View();
         }
     }

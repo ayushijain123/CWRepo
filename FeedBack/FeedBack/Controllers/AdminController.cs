@@ -53,12 +53,13 @@ namespace FeedBack.Controllers
                     DataSet result = reader.AsDataSet();
                     reader.Close();
 
-                    SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["FeedBack_180Entities"].ConnectionString);
+                    SqlConnection connection = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["SqlCom"].ConnectionString);
                     SqlBulkCopy objbulk = new SqlBulkCopy(connection);
                     objbulk.DestinationTableName = "Employee_Details";
                     //Mapping Table column    
                     objbulk.ColumnMappings.Add("EMP ID", "EmpID");
                     objbulk.ColumnMappings.Add("Name", "Name");
+                    objbulk.ColumnMappings.Add("Emp_Email", "Emp_Email");
                     objbulk.ColumnMappings.Add("Designation", "Designation");
                     objbulk.ColumnMappings.Add("Department", "Department");
                     objbulk.ColumnMappings.Add("Vertical", "Vertical");
@@ -76,7 +77,29 @@ namespace FeedBack.Controllers
 
                     objbulk.WriteToServer(result.Tables[0]);
                     connection.Close();
-
+                    FeedBack_180Entities objfeedback = new FeedBack_180Entities();
+                    var relation = objfeedback.Employee_Details.ToList();
+                    List<EmployeeRelationship> EmployeeRealtionshipList = new List<EmployeeRelationship>();
+                    foreach(var item in relation)
+                    {
+                        if(item.L1!=null&&!item.Equals("0"))
+                        { 
+                        EmployeeRealtionshipList.Add(new EmployeeRelationship {EmpID=item.EmpID,Relation=1,SuperiorID=item.L1Email});
+                        
+                        }
+                        if (item.L2 != null&&!item.Equals("0"))
+                        {
+                            EmployeeRealtionshipList.Add(new EmployeeRelationship { EmpID = item.EmpID, Relation = 2, SuperiorID = item.L2Email });
+                            
+                        }
+                        if (item.L3 != null&&!item.Equals("0"))
+                        {
+                            EmployeeRealtionshipList.Add(new EmployeeRelationship { EmpID = item.EmpID, Relation = 3, SuperiorID = item.L3Email });
+                            
+                        }
+                    }
+                    objfeedback.EmployeeRelationships.AddRange(EmployeeRealtionshipList);
+                    objfeedback.SaveChanges();
                     //Sending result data to View
                     return View(result.Tables[0]);
                 }
