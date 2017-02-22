@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FeedBack.SurveyLink>
+
+@{
+    ViewBag.Title = "Surveylink";
+}
+
+<h2>Surveylink</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Link)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SurveyFor_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="/Survey/Index?link=@item.Link">@Html.DisplayFor(modelItem => item.Link)</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurveyFor_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+       
+    </tr>
+}
+
+</table>
