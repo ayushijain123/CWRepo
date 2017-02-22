@@ -25,17 +25,19 @@ namespace FeedBack
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<QuestionAnswer> QuestionAnswers { get; set; }
-        public virtual DbSet<SurveyLink> SurveyLinks { get; set; }
         public virtual DbSet<Answer_Type> Answer_Type { get; set; }
         public virtual DbSet<Authority_Link> Authority_Link { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Designation> Designations { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Employee_Details> Employee_Details { get; set; }
+        public virtual DbSet<EmployeeRelationship> EmployeeRelationships { get; set; }
+        public virtual DbSet<PostHierarchy> PostHierarchies { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<QuestionAnswer> QuestionAnswers { get; set; }
         public virtual DbSet<QuestionType> QuestionTypes { get; set; }
         public virtual DbSet<RadioColumnName> RadioColumnNames { get; set; }
+        public virtual DbSet<SurveyLink> SurveyLinks { get; set; }
         public virtual DbSet<Vertical> Verticals { get; set; }
     }
 }
