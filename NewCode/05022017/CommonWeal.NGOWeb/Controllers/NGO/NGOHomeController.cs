@@ -110,7 +110,8 @@ namespace CommonWeal.NGOWeb.Controllers.NGO
             {
                 postValue.content = obpost.PostContent;
                 postValue.loginid = LoginUser.LoginID;
-                postValue.cat = category;
+                postValue.cat = category;              
+                var result = await Task.Run(() => APIHelper<string>.PostJson("Post/NGOPost", postValue));
                 /*login user login id is a property in base controller
                 which contain current user information from user table*/
                 //obpost.LoginID=LoginUser.LoginID; 
