@@ -151,6 +151,9 @@
     <Compile Include="Employee.cs">
       <DependentUpon>Survey.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeRelationship.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
     <Compile Include="Employee_Details.cs">
       <DependentUpon>Survey.tt</DependentUpon>
     </Compile>
@@ -158,6 +161,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\SurveyInfo.cs" />
+    <Compile Include="PostHierarchy.cs">
+      <DependentUpon>Survey.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs">
       <DependentUpon>Survey.tt</DependentUpon>
@@ -211,6 +217,10 @@
       <DependentUpon>Survey.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Admin\StartSurvey.cshtml" />
+    <Content Include="Views\SurveyLink\Index.cshtml" />
+    <Content Include="Views\SurveyLink\Surveylink.cshtml" />
+    <Content Include="Views\Survey\SurveyClosed.cshtml" />
+    <Content Include="Views\Survey\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -220,7 +230,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SurveyLink\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
