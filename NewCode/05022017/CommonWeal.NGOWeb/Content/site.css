@@ -882,9 +882,13 @@ tr.pager td {
 
 #estimate {
 float: right;
-    margin-right: 30px;
-    margin-top: 10px;
+    margin-right: 20px;
+   
 
+}
+.requestid {
+margin-right: 6px;
+ margin-right: 20px;
 }
 
 .uploadimage {
