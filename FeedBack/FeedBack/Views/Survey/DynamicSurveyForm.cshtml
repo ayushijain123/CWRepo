@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FeedBack.Models.questioncontent>
+﻿
+@model IEnumerable<FeedBack.Models.questioncontent>
 
 
 <form id="form1" class="form-horizontal" method="post" action="/Survey/index">
@@ -8,43 +9,43 @@
         </div>
         <table class="table table-bordered">
             @*<thead>
-                <tr>
-                    <th class="col-sm-7 center">Parameters</th>
-                    <th class="col-sm-1 center">5</th>
-                    <th class="col-sm-1 center">4</th>
-                    <th class="col-sm-1 center">3</th>
-                    <th class="col-sm-1 center">2</th>
-                    <th class="col-sm-1 center">1</th>
-                </tr>
-            </thead>*@
+                    <tr>
+                        <th class="col-sm-7 center">Parameters</th>
+                        <th class="col-sm-1 center">5</th>
+                        <th class="col-sm-1 center">4</th>
+                        <th class="col-sm-1 center">3</th>
+                        <th class="col-sm-1 center">2</th>
+                        <th class="col-sm-1 center">1</th>
+                    </tr>
+                </thead>*@
             <tbody>
-               
-              @foreach (var item in Model)
-              {
-                  if (item.AnswerType == "1")
-                  {
-                <tr>
-                    <td>@item.QuestionContent</td>
-                    @for(int i=1;i<=item.ColumnCount; i++)
+
+                @foreach (var item in Model)
+                {
+                    if (item.AnswerType == "1")
                     {
-                        <td class="center"><input type="radio" value="5" name="radio-@item.QuestionId" required /></td>
+                        <tr>
+                            <td>@item.QuestionContent</td>
+                            @for (int i = 1; i <= item.ColumnCount; i++)
+                            {
+                                <td class="center"><input type="radio" value="5" name="radio-@item.QuestionId" required /></td>
 
+                            }
+
+
+
+
+                        </tr>
                     }
-
-              
-
-                    
-                </tr>
-                      }
-                  }
+                }
 
 
-              
-                   
-                
+
+
+
             </tbody>
 
 
         </table>
-        </div>
+    </div>
 </form>
