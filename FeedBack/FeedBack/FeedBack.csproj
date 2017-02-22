@@ -128,7 +128,9 @@
       <DependentUpon>Survey.edmx</DependentUpon>
       <LastGenOutput>Survey.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +162,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\questioncontent.cs" />
     <Compile Include="Models\SurveyInfo.cs" />
     <Compile Include="PostHierarchy.cs">
       <DependentUpon>Survey.tt</DependentUpon>
@@ -221,6 +224,7 @@
     <Content Include="Views\SurveyLink\Surveylink.cshtml" />
     <Content Include="Views\Survey\SurveyClosed.cshtml" />
     <Content Include="Views\Survey\Error.cshtml" />
+    <Content Include="Views\Survey\DynamicSurveyForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -245,7 +249,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58329</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
