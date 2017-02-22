@@ -64,6 +64,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -118,8 +120,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Survey.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Survey.Context.cs</LastGenOutput>
       <DependentUpon>Survey.edmx</DependentUpon>
+      <LastGenOutput>Survey.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Survey.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
