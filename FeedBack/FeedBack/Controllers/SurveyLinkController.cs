@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.OleDb;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace FeedBack.Controllers
 {
@@ -35,7 +38,8 @@ namespace FeedBack.Controllers
         {
             FeedBack_180Entities objfeedback = new FeedBack_180Entities();            
             Employee_Details objemp = new Employee_Details();
-            var objemp1 = objfeedback.Employee_Details.ToList();          
+            var objemp1 = objfeedback.Employee_Details.ToList();
+            objfeedback.Database.ExecuteSqlCommand("TRUNCATE TABLE [SurveyLink]");
             SurveyLink objsurvey = new SurveyLink();          
             foreach (var item in objemp1)
             {
