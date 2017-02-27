@@ -60,7 +60,9 @@ namespace FeedBack.Controllers
         public ActionResult Index(FormCollection frm)
         {
             try
-            {             
+            {     
+                if(frm!=null)
+                {         
                 FeedBack_180Entities objfeedback = new FeedBack_180Entities();
                 List<QuestionAnswer> QueAnsList = new List<QuestionAnswer>();               
                 var SurveyId = Convert.ToInt32(frm[ConfigurationManager.AppSettings["SurveyId"]]);
@@ -81,7 +83,9 @@ namespace FeedBack.Controllers
                 objfeedback.SaveChanges();
                 TempData["feedback"] = "Feedback submitted successfully";
                 return RedirectToAction("SurveyClosed", "Survey");
-
+                }
+                TempData["feedback"] = "Null Value Exception";
+                return RedirectToAction("SurveyClosed", "Survey");
             }
             catch (Exception ex)
             {
